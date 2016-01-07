@@ -4,7 +4,7 @@
   <subtitle><![CDATA[未济]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://starding.github.io/"/>
-  <updated>2016-01-07T06:58:46.000Z</updated>
+  <updated>2016-01-07T07:00:54.000Z</updated>
   <id>http://starding.github.io/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://starding.github.io/2016/01/07/docker%E2%80%94%E2%80%94%E4%BB%8E%E9%9A%90%E5%96%BB%E8%AF%B4%E8%B5%B7/"/>
     <id>http://starding.github.io/2016/01/07/docker——从隐喻说起/</id>
     <published>2016-01-07T05:44:42.000Z</published>
-    <updated>2016-01-07T06:58:46.000Z</updated>
+    <updated>2016-01-07T07:00:54.000Z</updated>
     <content type="html"><![CDATA[<h2 id="u4EC0_u4E48_u662Fdocker"><a href="#u4EC0_u4E48_u662Fdocker" class="headerlink" title="什么是docker"></a>什么是docker</h2><p>首先来看维基百科的定义：</p>
 <blockquote>
 <p>Docker is an open-source project that automates the deployment of applications inside software containers, by providing an additional layer of abstraction and automation of operating-system-level virtualization on Linux. Docker uses the resource isolation features of the Linux kernel such as cgroups and kernel namespaces, and a union-capable filesystem such as aufs and others to allow independent “containers” to run within a single Linux instance, avoiding the overhead of starting and maintaining virtual machines.</p>
