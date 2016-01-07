@@ -21,7 +21,7 @@ Docker is an open-source project that automates the deployment of applications i
 <meta property="og:description" content="什么是docker首先来看维基百科的定义：
 
 Docker is an open-source project that automates the deployment of applications inside software containers, by providing an additional layer of abstraction and automation of oper">
-<meta property="og:updated_time" content="2016-01-07T06:50:59.000Z">
+<meta property="og:updated_time" content="2016-01-07T06:58:46.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="docker——从隐喻说起">
 <meta name="twitter:description" content="什么是docker首先来看维基百科的定义：
@@ -104,7 +104,7 @@ Docker is an open-source project that automates the deployment of applications i
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u4EC0_u4E48_u662Fdocker"><span class="toc-number">1.</span> <span class="toc-text">什么是docker</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#u5728docker_u51FA_u73B0_u4E4B_u524D_uFF0C_u6BD4_u5982_u8BF4_u6211_u8981_u90E8_u7F72_u4E00_u4E2Adjango_u5E94_u7528_uFF0C_u8981_u505A_u54EA_u4E9B_u4E8B_u60C5_3A"><span class="toc-number">1.0.1.</span> <span class="toc-text">在docker出现之前，比如说我要部署一个django应用，要做哪些事情:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#docker_u51FA_u73B0_u4E4B_u540E"><span class="toc-number">1.0.2.</span> <span class="toc-text">docker出现之后</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E00_u4E2A_u8BEF_u89E3"><span class="toc-number">1.1.</span> <span class="toc-text">一个误解</span></a></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u4EC0_u4E48_u662Fdocker"><span class="toc-number">1.</span> <span class="toc-text">什么是docker</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u91CD_u8981_u7684_u9690_u55BB"><span class="toc-number">2.</span> <span class="toc-text">重要的隐喻</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u5B57_u9762_u610F_u601D_uFF1Adocker_u2014_u2014_u7801_u5934_u5DE5_u4EBA_u3002"><span class="toc-number">2.1.</span> <span class="toc-text">字面意思：docker——码头工人。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#docker_uFF08_u7801_u5934_u5DE5_u4EBA_uFF09_u6B63_u662F_u501F_u7528_u4E86_u96C6_u88C5_u7BB1_u7684_u9690_u55BB"><span class="toc-number">2.2.</span> <span class="toc-text">docker（码头工人）正是借用了集装箱的隐喻</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#u5728docker_u51FA_u73B0_u4E4B_u524D_uFF0C_u6BD4_u5982_u8BF4_u6211_u8981_u90E8_u7F72_u4E00_u4E2Adjango_u5E94_u7528_uFF0C_u8981_u505A_u54EA_u4E9B_u4E8B_u60C5_3A"><span class="toc-number">2.2.1.</span> <span class="toc-text">在docker出现之前，比如说我要部署一个django应用，要做哪些事情:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#docker_u51FA_u73B0_u4E4B_u540E"><span class="toc-number">2.2.2.</span> <span class="toc-text">docker出现之后</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E00_u4E2A_u8BEF_u89E3"><span class="toc-number">2.3.</span> <span class="toc-text">一个误解</span></a></li></ol></li></ol>
 		
 		</div>
 		
@@ -114,20 +114,17 @@ Docker is an open-source project that automates the deployment of applications i
 <p>Docker是一个开放源代码软件项目，让应用程序布署在软件容器下的工作可以自动化进行，借此在Linux操作系统上，提供一个额外的软件抽象层，以及操作系统层虚拟化的自动管理机制。Docker利用Linux核心中的资源分离机制，例如cgroups，以及Linux核心命名空间（name space），来建立独立的软件容器（containers）。这可以在单一Linux实体下运作，避免启动一个虚拟机器造成的额外负担。</p>
 </blockquote>
 <p>通过定义，可以模糊的知道docker是可以实现自动化部署之类功能的工具，但是并不能清楚的理解它到底牛逼在什么地方，又好在哪里。为了理解这一点，需要额外的工作要做，一种情况是你可以在长期使用docker的过程中，主键体会到docker的优势。但是对于一个从未接触过docker，甚至对部署都不是很了解的信任，应该怎么快速理解这一点呢？一个比较好的办法，就是借助于隐喻。</p>
-<p>##重要的隐喻</p>
-<p>在《代码大全》中，作者在欢迎章节之后，就开始介绍软件开发中的隐喻，并且强调了隐喻的重要性：</p>
+<h2 id="u91CD_u8981_u7684_u9690_u55BB"><a href="#u91CD_u8981_u7684_u9690_u55BB" class="headerlink" title="重要的隐喻"></a>重要的隐喻</h2><p>在《代码大全》中，作者在欢迎章节之后，就开始介绍软件开发中的隐喻，并且强调了隐喻的重要性：</p>
 <blockquote>
 <p>计算机科学领域中有着搜友学科中最为丰富多彩的语言。你走进一间安全严密，温度精确控制在20℃的房间，并在里面发现了病毒（virus），特洛伊木马（Trojan horse），蠕虫（worm），臭虫（bug），逻辑炸弹（bomb），崩溃（crash），论坛口水战（flame），双绞线转换头（twisted sex changer），还有致命错误（fatal error）……在其他领域中，你能遇到这些吗？</p>
 <p>这些形象的隐喻描述了软件领域总各种特定的现象和事物，像这样生动活泼的隐喻还能够描述更加广泛的现象。借助这些隐喻，我们能更深刻的理解软件开发的过程。</p>
 </blockquote>
 <p>同样，要快速理解docker，抓出核心思想，隐喻是非常重要的</p>
-<p>###字面意思：docker——码头工人。</p>
-<p>docker的名称本身就带有隐喻的性质：在海洋物流中，一个非常重要的发明就是集装箱。</p>
+<h3 id="u5B57_u9762_u610F_u601D_uFF1Adocker_u2014_u2014_u7801_u5934_u5DE5_u4EBA_u3002"><a href="#u5B57_u9762_u610F_u601D_uFF1Adocker_u2014_u2014_u7801_u5934_u5DE5_u4EBA_u3002" class="headerlink" title="字面意思：docker——码头工人。"></a>字面意思：docker——码头工人。</h3><p>docker的名称本身就带有隐喻的性质：在海洋物流中，一个非常重要的发明就是集装箱。</p>
 <p>集装箱重要在哪里？为了理解这件事情，可以先考察一下集装箱出现之前的物流情况：货物生产出来之后，装箱，然后一箱一箱的搬到卡车上，然后再一箱一箱卸下来，送上火车，运送到码头附近的火车站，再一箱一箱卸下来，装上卡车，拉到货轮上，一箱一箱的装上去….</p>
 <p>可以发现，大量的时间，人力 ，物力全部浪费在了中间的装卸上，在物流里面，货物真正在路上的时间是一定的，在交通技术得到改善之前，也很难去缩短。于是货物的装卸这部分时间，就成了物流中的瓶颈，而这个局面在集装箱出现之后，得到了很大的改善。</p>
 <p>集装箱重要在它提供了一种通用的封装货物的标准规格（说白了指的就是它的尺寸，外形是符合一定标准的），这样就产生了一个优点，在物流运输中，只需要在运输前一次封装，集装箱就可以放上火车，卡车，拉到码头，直接放在货船上，卸船之后直接再放上火车，卡车，运送到目的地。而且，集装箱本身的标准，使得它非常容易机械化操作，这样就节省了大量的人力物力。</p>
-<p>###docker（码头工人）正是借用了集装箱的隐喻</p>
-<p>docker就像往集装箱里装货物的码头工人那样，它把应用打包成具有某种标准规格的集装箱，用计算机领域的语言来说，这种按照一定规格封装的集装箱叫「镜像」。其实就是将你原来的代码添加点内容，格式啥的，整出来的一个静态的应用。而且就像光盘镜像只能由特定的解析光盘镜像格式的软件来解析一样，这个镜像也只能由docker来解析。</p>
+<h3 id="docker_uFF08_u7801_u5934_u5DE5_u4EBA_uFF09_u6B63_u662F_u501F_u7528_u4E86_u96C6_u88C5_u7BB1_u7684_u9690_u55BB"><a href="#docker_uFF08_u7801_u5934_u5DE5_u4EBA_uFF09_u6B63_u662F_u501F_u7528_u4E86_u96C6_u88C5_u7BB1_u7684_u9690_u55BB" class="headerlink" title="docker（码头工人）正是借用了集装箱的隐喻"></a>docker（码头工人）正是借用了集装箱的隐喻</h3><p>docker就像往集装箱里装货物的码头工人那样，它把应用打包成具有某种标准规格的集装箱，用计算机领域的语言来说，这种按照一定规格封装的集装箱叫「镜像」。其实就是将你原来的代码添加点内容，格式啥的，整出来的一个静态的应用。而且就像光盘镜像只能由特定的解析光盘镜像格式的软件来解析一样，这个镜像也只能由docker来解析。</p>
 <p>集装箱减少了货物的运输工作量，那docker镜像又有什么相似的优势呢？首先可以看看docker出现之前的应用部署是啥样的。</p>
 <h4 id="u5728docker_u51FA_u73B0_u4E4B_u524D_uFF0C_u6BD4_u5982_u8BF4_u6211_u8981_u90E8_u7F72_u4E00_u4E2Adjango_u5E94_u7528_uFF0C_u8981_u505A_u54EA_u4E9B_u4E8B_u60C5_3A"><a href="#u5728docker_u51FA_u73B0_u4E4B_u524D_uFF0C_u6BD4_u5982_u8BF4_u6211_u8981_u90E8_u7F72_u4E00_u4E2Adjango_u5E94_u7528_uFF0C_u8981_u505A_u54EA_u4E9B_u4E8B_u60C5_3A" class="headerlink" title="在docker出现之前，比如说我要部署一个django应用，要做哪些事情:"></a>在docker出现之前，比如说我要部署一个django应用，要做哪些事情:</h4><ul>
 <li><p>首先我得有个python环境，比如我用的是python3，而你机器上是python2，那ok，先装个python3吧，一看装起来还挺麻烦，要先装各种依赖，还要解决一些可能的冲突，没办法硬着头皮上吧。</p>
@@ -209,7 +206,7 @@ Docker is an open-source project that automates the deployment of applications i
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u4EC0_u4E48_u662Fdocker"><span class="toc-number">1.</span> <span class="toc-text">什么是docker</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#u5728docker_u51FA_u73B0_u4E4B_u524D_uFF0C_u6BD4_u5982_u8BF4_u6211_u8981_u90E8_u7F72_u4E00_u4E2Adjango_u5E94_u7528_uFF0C_u8981_u505A_u54EA_u4E9B_u4E8B_u60C5_3A"><span class="toc-number">1.0.1.</span> <span class="toc-text">在docker出现之前，比如说我要部署一个django应用，要做哪些事情:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#docker_u51FA_u73B0_u4E4B_u540E"><span class="toc-number">1.0.2.</span> <span class="toc-text">docker出现之后</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E00_u4E2A_u8BEF_u89E3"><span class="toc-number">1.1.</span> <span class="toc-text">一个误解</span></a></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u4EC0_u4E48_u662Fdocker"><span class="toc-number">1.</span> <span class="toc-text">什么是docker</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u91CD_u8981_u7684_u9690_u55BB"><span class="toc-number">2.</span> <span class="toc-text">重要的隐喻</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u5B57_u9762_u610F_u601D_uFF1Adocker_u2014_u2014_u7801_u5934_u5DE5_u4EBA_u3002"><span class="toc-number">2.1.</span> <span class="toc-text">字面意思：docker——码头工人。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#docker_uFF08_u7801_u5934_u5DE5_u4EBA_uFF09_u6B63_u662F_u501F_u7528_u4E86_u96C6_u88C5_u7BB1_u7684_u9690_u55BB"><span class="toc-number">2.2.</span> <span class="toc-text">docker（码头工人）正是借用了集装箱的隐喻</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#u5728docker_u51FA_u73B0_u4E4B_u524D_uFF0C_u6BD4_u5982_u8BF4_u6211_u8981_u90E8_u7F72_u4E00_u4E2Adjango_u5E94_u7528_uFF0C_u8981_u505A_u54EA_u4E9B_u4E8B_u60C5_3A"><span class="toc-number">2.2.1.</span> <span class="toc-text">在docker出现之前，比如说我要部署一个django应用，要做哪些事情:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#docker_u51FA_u73B0_u4E4B_u540E"><span class="toc-number">2.2.2.</span> <span class="toc-text">docker出现之后</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E00_u4E2A_u8BEF_u89E3"><span class="toc-number">2.3.</span> <span class="toc-text">一个误解</span></a></li></ol></li></ol>
  
   </div>
 
