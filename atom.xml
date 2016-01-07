@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title><![CDATA[小狐濡尾]]></title>
-  
+  <subtitle><![CDATA[未济]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://starding.github.io/"/>
-  <updated>2016-01-06T15:58:47.000Z</updated>
+  <updated>2016-01-06T15:58:45.000Z</updated>
   <id>http://starding.github.io/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://starding.github.io/2016/01/06/python%E4%B8%AD%E7%9A%84%E9%97%AD%E5%8C%85%E5%92%8C%E8%A3%85%E9%A5%B0%E5%99%A8/"/>
     <id>http://starding.github.io/2016/01/06/python中的闭包和装饰器/</id>
     <published>2016-01-06T13:51:03.000Z</published>
-    <updated>2016-01-06T15:58:47.000Z</updated>
+    <updated>2016-01-06T15:58:45.000Z</updated>
     <content type="html"><![CDATA[<p>第一版创建于：2016-01-06</p>
 <h2 id="u95ED_u5305"><a href="#u95ED_u5305" class="headerlink" title="闭包"></a>闭包</h2><h3 id="u9996_u5148_u770B_u7EF4_u57FA_u767E_u79D1_u4E2D_u7684_u5B9A_u4E49_uFF1A"><a href="#u9996_u5148_u770B_u7EF4_u57FA_u767E_u79D1_u4E2D_u7684_u5B9A_u4E49_uFF1A" class="headerlink" title="首先看维基百科中的定义："></a>首先看维基百科中的定义：</h3><blockquote>
 <p>In programming languages, closures (also lexical closures or function closures) are a technique for implementing lexically scoped name binding in languages with first-class functions. Operationally, a closure is a record storing a function together with an environment: a mapping associating each free variable of the function (variables that are used locally, but defined in an enclosing scope) with the value or storage location to which the name was bound when the closure was created. A closure—unlike a plain function—allows the function to access those captured variables through the closure’s reference to them, even when the function is invoked outside their scope</p>
@@ -69,7 +69,7 @@
     <link href="http://starding.github.io/2016/01/05/hello-world/"/>
     <id>http://starding.github.io/2016/01/05/hello-world/</id>
     <published>2016-01-04T16:00:00.000Z</published>
-    <updated>2016-01-06T16:10:06.000Z</updated>
+    <updated>2016-01-06T16:10:05.000Z</updated>
     <content type="html"><![CDATA[<h3 id="u535A_u5BA2_u8FC1_u5230gitpages_u4E86"><a href="#u535A_u5BA2_u8FC1_u5230gitpages_u4E86" class="headerlink" title="博客迁到gitpages了"></a>博客迁到gitpages了</h3><h3 id="u6211_u66FE_u5728_u5F88_u591A_u5730_u65B9_u5199_u8FC7_u535A_u5BA2"><a href="#u6211_u66FE_u5728_u5F88_u591A_u5730_u65B9_u5199_u8FC7_u535A_u5BA2" class="headerlink" title="我曾在很多地方写过博客"></a>我曾在很多地方写过博客</h3><h3 id="u6700_u7EC8_u8FD8_u662F_u805A_u5408_u5728_u4E00_u8D77_u4E86"><a href="#u6700_u7EC8_u8FD8_u662F_u805A_u5408_u5728_u4E00_u8D77_u4E86" class="headerlink" title="最终还是聚合在一起了"></a>最终还是聚合在一起了</h3>]]></content>
     <summary type="html">
     <![CDATA[<h3 id="u535A_u5BA2_u8FC1_u5230gitpages_u4E86"><a href="#u535A_u5BA2_u8FC1_u5230gitpages_u4E86" class="headerlink" title="博客迁到gitpages了"></a]]>
