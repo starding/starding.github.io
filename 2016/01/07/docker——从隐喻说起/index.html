@@ -1,0 +1,591 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>docker——从隐喻说起 | 小狐濡尾</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="starding">
+    
+
+    
+    <meta name="description" content="什么是docker首先来看维基百科的定义：
+
+Docker is an open-source project that automates the deployment of applications inside software containers, by providing an additional layer of abstraction and automation of oper">
+<meta property="og:type" content="article">
+<meta property="og:title" content="docker——从隐喻说起">
+<meta property="og:url" content="http://starding.github.io/2016/01/07/docker——从隐喻说起/index.html">
+<meta property="og:site_name" content="小狐濡尾">
+<meta property="og:description" content="什么是docker首先来看维基百科的定义：
+
+Docker is an open-source project that automates the deployment of applications inside software containers, by providing an additional layer of abstraction and automation of oper">
+<meta property="og:updated_time" content="2016-01-07T06:50:59.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="docker——从隐喻说起">
+<meta name="twitter:description" content="什么是docker首先来看维基百科的定义：
+
+Docker is an open-source project that automates the deployment of applications inside software containers, by providing an additional layer of abstraction and automation of oper">
+
+    
+    <link rel="alternative" href="/atom.xml" title="小狐濡尾" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="小狐濡尾" title="小狐濡尾"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="小狐濡尾">小狐濡尾</a></h1>
+				<h2 class="blog-motto">未济</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页 | Home</a></li>
+					
+						<li><a href="/index">索引 | Index</a></li>
+					
+						<li><a href="/archives">归档 | Archives</a></li>
+					
+						<li><a href="/about">简介 | About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:starding.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/01/07/docker——从隐喻说起/" title="docker——从隐喻说起" itemprop="url">docker——从隐喻说起</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="starding" target="_blank" itemprop="author">starding</a>
+		
+  <p class="article-time">
+    <time datetime="2016-01-07T05:44:42.000Z" itemprop="datePublished"> 发表于 2016-01-07</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u4EC0_u4E48_u662Fdocker"><span class="toc-number">1.</span> <span class="toc-text">什么是docker</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#u5728docker_u51FA_u73B0_u4E4B_u524D_uFF0C_u6BD4_u5982_u8BF4_u6211_u8981_u90E8_u7F72_u4E00_u4E2Adjango_u5E94_u7528_uFF0C_u8981_u505A_u54EA_u4E9B_u4E8B_u60C5_3A"><span class="toc-number">1.0.1.</span> <span class="toc-text">在docker出现之前，比如说我要部署一个django应用，要做哪些事情:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#docker_u51FA_u73B0_u4E4B_u540E"><span class="toc-number">1.0.2.</span> <span class="toc-text">docker出现之后</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E00_u4E2A_u8BEF_u89E3"><span class="toc-number">1.1.</span> <span class="toc-text">一个误解</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<h2 id="u4EC0_u4E48_u662Fdocker"><a href="#u4EC0_u4E48_u662Fdocker" class="headerlink" title="什么是docker"></a>什么是docker</h2><p>首先来看维基百科的定义：</p>
+<blockquote>
+<p>Docker is an open-source project that automates the deployment of applications inside software containers, by providing an additional layer of abstraction and automation of operating-system-level virtualization on Linux. Docker uses the resource isolation features of the Linux kernel such as cgroups and kernel namespaces, and a union-capable filesystem such as aufs and others to allow independent “containers” to run within a single Linux instance, avoiding the overhead of starting and maintaining virtual machines.</p>
+<p>Docker是一个开放源代码软件项目，让应用程序布署在软件容器下的工作可以自动化进行，借此在Linux操作系统上，提供一个额外的软件抽象层，以及操作系统层虚拟化的自动管理机制。Docker利用Linux核心中的资源分离机制，例如cgroups，以及Linux核心命名空间（name space），来建立独立的软件容器（containers）。这可以在单一Linux实体下运作，避免启动一个虚拟机器造成的额外负担。</p>
+</blockquote>
+<p>通过定义，可以模糊的知道docker是可以实现自动化部署之类功能的工具，但是并不能清楚的理解它到底牛逼在什么地方，又好在哪里。为了理解这一点，需要额外的工作要做，一种情况是你可以在长期使用docker的过程中，主键体会到docker的优势。但是对于一个从未接触过docker，甚至对部署都不是很了解的信任，应该怎么快速理解这一点呢？一个比较好的办法，就是借助于隐喻。</p>
+<p>##重要的隐喻</p>
+<p>在《代码大全》中，作者在欢迎章节之后，就开始介绍软件开发中的隐喻，并且强调了隐喻的重要性：</p>
+<blockquote>
+<p>计算机科学领域中有着搜友学科中最为丰富多彩的语言。你走进一间安全严密，温度精确控制在20℃的房间，并在里面发现了病毒（virus），特洛伊木马（Trojan horse），蠕虫（worm），臭虫（bug），逻辑炸弹（bomb），崩溃（crash），论坛口水战（flame），双绞线转换头（twisted sex changer），还有致命错误（fatal error）……在其他领域中，你能遇到这些吗？</p>
+<p>这些形象的隐喻描述了软件领域总各种特定的现象和事物，像这样生动活泼的隐喻还能够描述更加广泛的现象。借助这些隐喻，我们能更深刻的理解软件开发的过程。</p>
+</blockquote>
+<p>同样，要快速理解docker，抓出核心思想，隐喻是非常重要的</p>
+<p>###字面意思：docker——码头工人。</p>
+<p>docker的名称本身就带有隐喻的性质：在海洋物流中，一个非常重要的发明就是集装箱。</p>
+<p>集装箱重要在哪里？为了理解这件事情，可以先考察一下集装箱出现之前的物流情况：货物生产出来之后，装箱，然后一箱一箱的搬到卡车上，然后再一箱一箱卸下来，送上火车，运送到码头附近的火车站，再一箱一箱卸下来，装上卡车，拉到货轮上，一箱一箱的装上去….</p>
+<p>可以发现，大量的时间，人力 ，物力全部浪费在了中间的装卸上，在物流里面，货物真正在路上的时间是一定的，在交通技术得到改善之前，也很难去缩短。于是货物的装卸这部分时间，就成了物流中的瓶颈，而这个局面在集装箱出现之后，得到了很大的改善。</p>
+<p>集装箱重要在它提供了一种通用的封装货物的标准规格（说白了指的就是它的尺寸，外形是符合一定标准的），这样就产生了一个优点，在物流运输中，只需要在运输前一次封装，集装箱就可以放上火车，卡车，拉到码头，直接放在货船上，卸船之后直接再放上火车，卡车，运送到目的地。而且，集装箱本身的标准，使得它非常容易机械化操作，这样就节省了大量的人力物力。</p>
+<p>###docker（码头工人）正是借用了集装箱的隐喻</p>
+<p>docker就像往集装箱里装货物的码头工人那样，它把应用打包成具有某种标准规格的集装箱，用计算机领域的语言来说，这种按照一定规格封装的集装箱叫「镜像」。其实就是将你原来的代码添加点内容，格式啥的，整出来的一个静态的应用。而且就像光盘镜像只能由特定的解析光盘镜像格式的软件来解析一样，这个镜像也只能由docker来解析。</p>
+<p>集装箱减少了货物的运输工作量，那docker镜像又有什么相似的优势呢？首先可以看看docker出现之前的应用部署是啥样的。</p>
+<h4 id="u5728docker_u51FA_u73B0_u4E4B_u524D_uFF0C_u6BD4_u5982_u8BF4_u6211_u8981_u90E8_u7F72_u4E00_u4E2Adjango_u5E94_u7528_uFF0C_u8981_u505A_u54EA_u4E9B_u4E8B_u60C5_3A"><a href="#u5728docker_u51FA_u73B0_u4E4B_u524D_uFF0C_u6BD4_u5982_u8BF4_u6211_u8981_u90E8_u7F72_u4E00_u4E2Adjango_u5E94_u7528_uFF0C_u8981_u505A_u54EA_u4E9B_u4E8B_u60C5_3A" class="headerlink" title="在docker出现之前，比如说我要部署一个django应用，要做哪些事情:"></a>在docker出现之前，比如说我要部署一个django应用，要做哪些事情:</h4><ul>
+<li><p>首先我得有个python环境，比如我用的是python3，而你机器上是python2，那ok，先装个python3吧，一看装起来还挺麻烦，要先装各种依赖，还要解决一些可能的冲突，没办法硬着头皮上吧。</p>
+</li>
+<li><p>装完python之后，因为有pip这些神奇的工具，很快就装完django，需要的python库了。咦，发现还要装mysql，还用了redis。没办法，继续上吧，下载，安装，配置。费了九牛二虎之力终于搞完了。一天就这么过去了。</p>
+</li>
+<li><p>啥？你告诉我原来的服务器不用了，要换一台服务器？我靠，那重新来一遍吧，有了昨天的经验，只用了大半天就搞定了。</p>
+</li>
+<li><p>啥？你说咱们的应用做的太好，要进行推广，需要指导它们部署？我选择狗带，删代码走人。</p>
+</li>
+</ul>
+<p>上面的描述可能有些夸张，但也绝不是罕有发生。在docker出现之前，这些正是运维人员很多时候都在做的事情，在不断的重复工作上，浪费了巨大的人力物力。</p>
+<h4 id="docker_u51FA_u73B0_u4E4B_u540E"><a href="#docker_u51FA_u73B0_u4E4B_u540E" class="headerlink" title="docker出现之后"></a>docker出现之后</h4><p>docker正是在部署过程中，将上面那些重复的部分，封装在Docker镜像里，由docker自动化完成。只需要在第一次部署时，构建完毕一个可用的docker镜像。然后在以后使用的过程中，短短的几行命令，就可以直接拉取镜像，根据这个镜像创建出一个容器，把服务跑起来了。</p>
+<p>所需要的仅仅是安装了docker的服务器，一个Dockerfile文件，以及比较流畅的网络而已。</p>
+<p>需要python3环境？直接 from python:3.x 搞定。</p>
+<p>需要迁移服务器？ 直接把应用连带Dockerfile，volumes数据拷贝到新服务器上，几条命令又搞定</p>
+<p>需要作为服务给别人使用？Dockerfile即是最清晰的部署文档，维护一个官方镜像即可。</p>
+<p>到这个地方，你可能已经发现了，docker镜像成为了一种像集装箱那样的标准货件，谁想用我的服务，直接拉取镜像就完事了。容器跑起来之后，能直接提供你所要的服务，不再像之前那样有繁复的安装过程————这些都有人给你做过了。</p>
+<h3 id="u4E00_u4E2A_u8BEF_u89E3"><a href="#u4E00_u4E2A_u8BEF_u89E3" class="headerlink" title="一个误解"></a>一个误解</h3><p>有人可能会问，我只有一台服务器，也不太可能会迁移。我的python服务，mysql服务，只需要部署一次，就可以在以后重复使用了。那这样docker对于我来说还有优势吗？毕竟docker也是有学习成本的。</p>
+<p>如果你真的确信你的应用都是一次性的，而且只提供给自己使用，那么docker在这种场景下的优势不是特别明显：即便是docker，最初的构建也是需要有人做的，也是有工作量的。这和你一次性部署的工作量差不多。但是即便如此也是又有点的，它提供了一个干净，隔离的环境。</p>
+<p>另外，很多人说docker改变了运维世界，这句话是从群体角度来说的，像mysql，python这样的使用群体众多的应用，以及会经常迁移，变动，重新部署的应用，docker化之后，整个群体所节省的时间，是非常巨大的。说是改变了运维的面貌毫不夸张。</p>
+<p>但是对于纯粹的单次部署，具体到每一个人上面，其效率并非有质的提升，因为即使是集装箱，要往里面装东西，也是有不可避免的工作量的。而你第一次构建自己的镜像时，就像往集装箱里装东西是类似的，需要和直接在机器上部署差不多的工作量。这个时候，docker的效率提升是很小的。</p>
+<p>但是，你真的确信，你所做的工作只是一次性的吗？</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/docker/">docker</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/docker/">docker</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://starding.github.io/2016/01/07/docker——从隐喻说起/" data-title="docker——从隐喻说起 | 小狐濡尾" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2016/01/06/python中的闭包和装饰器/"  title="python中的闭包和装饰器">
+ <strong>下一篇：</strong><br/> 
+ <span>python中的闭包和装饰器
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/01/07/docker——从隐喻说起/" data-title="docker——从隐喻说起" data-url="http://starding.github.io/2016/01/07/docker——从隐喻说起/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u4EC0_u4E48_u662Fdocker"><span class="toc-number">1.</span> <span class="toc-text">什么是docker</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#u5728docker_u51FA_u73B0_u4E4B_u524D_uFF0C_u6BD4_u5982_u8BF4_u6211_u8981_u90E8_u7F72_u4E00_u4E2Adjango_u5E94_u7528_uFF0C_u8981_u505A_u54EA_u4E9B_u4E8B_u60C5_3A"><span class="toc-number">1.0.1.</span> <span class="toc-text">在docker出现之前，比如说我要部署一个django应用，要做哪些事情:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#docker_u51FA_u73B0_u4E4B_u540E"><span class="toc-number">1.0.2.</span> <span class="toc-text">docker出现之后</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E00_u4E2A_u8BEF_u89E3"><span class="toc-number">1.1.</span> <span class="toc-text">一个误解</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="starding" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+
+<div class="doubanshow">
+<p class="asidetitle">豆瓣秀</p>
+<div>
+<script type="text/javascript" src="http://www.douban.com/service/badge/58816601/?show=collection&amp;n=12&amp;columns=3&amp;hidelogo=yes&amp;hideself=yes&amp;cat=book|movie" ></script>
+</div>
+</div>
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/docker/" title="docker">docker<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/python/" title="python">python<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/随笔/" title="随笔">随笔<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/docker/" title="docker">docker<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/python/" title="python">python<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/随笔/" title="随笔">随笔<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Starding. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/starding" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		<a href="https://www.douban.com/people/58816601" target="_blank" class="icon-douban" title="豆瓣"></a>
+		
+		
+		<a href="http://www.zhihu.com/people/starstarding" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		
+		<a href="mailto:starding@buaa.edu.cn" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="starding">starding</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"starding"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
