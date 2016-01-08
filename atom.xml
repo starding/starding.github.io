@@ -242,11 +242,11 @@ ssh://<a href="mailto:git@git.xiaohuruwei.com" target="_blank" rel="external">gi
   </entry>
   
   <entry>
-    <title><![CDATA[daoloud 持续集成html5应用]]></title>
-    <link href="http://starding.github.io/2016/01/07/daoloud-html5/"/>
-    <id>http://starding.github.io/2016/01/07/daoloud-html5/</id>
+    <title><![CDATA[daocloud 持续集成html5应用]]></title>
+    <link href="http://starding.github.io/2016/01/07/daocloud-html5/"/>
+    <id>http://starding.github.io/2016/01/07/daocloud-html5/</id>
     <published>2016-01-07T07:24:25.000Z</published>
-    <updated>2016-01-08T09:37:30.000Z</updated>
+    <updated>2016-01-08T10:13:18.000Z</updated>
     <content type="html"><![CDATA[<h1>daocloud介绍</h1>
 <p><a href="https://daocloud.io" target="_blank" rel="external">daocloud</a>提供基于docker进行持续集成的服务，使用它可以很方便的完成项目的自动化构建以及持续发布等功能。</p>
 <h1>什么是「简单的html5应用」</h1>
