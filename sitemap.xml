@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://starding.github.io/2016/01/07/daocloud-html5/</loc>
+    <lastmod>2016-01-08T12:15:18.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://starding.github.io/2016/01/07/raw-sql-in-django/</loc>
     <lastmod>2016-01-08T11:33:34.000Z</lastmod>
   </url>
@@ -9,11 +14,6 @@
   <url>
     <loc>http://starding.github.io/about/index.html</loc>
     <lastmod>2016-01-08T11:12:52.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://starding.github.io/2016/01/07/daocloud-html5/</loc>
-    <lastmod>2016-01-08T10:13:18.000Z</lastmod>
   </url>
   
   <url>
