@@ -11,28 +11,28 @@
     
 
     
-    <meta name="description" content="写在前面的话
-来自维基百科的：[货殖崇拜编程]:(https://zh.wikipedia.org/wiki/货物崇拜编程)
+    <meta name="description" content="写在前面的话来自维基百科的：货殖崇拜编程
 为因GFW屏蔽访问不了维基百科的同学准备的：
 
-货物崇拜编程（Cargo Cult Programming）是一种计算机程序设计中的反模式，其特征为不明就里地、仪式性地使用代码或程序架构。货物崇拜编程通常是程序员既没理解他要解决的bug、也没理解表面上的解决方案的典型表现。">
+货物崇拜编程（Cargo Cult Programming）是一种计算机程序设计中的反模式，其特征为不明就里地、仪式性地使用代码或程序架构。货物崇拜编程通常是程序员既没理解他要解决的bug、也没理解表面上的解决方案的典型表现。
+这个名词有时也指不熟练的或没经验的程序员从某处拷贝代码到另一处，却不太清楚其代码是">
 <meta property="og:type" content="article">
 <meta property="og:title" content="daocloud 持续集成html5应用">
 <meta property="og:url" content="http://starding.github.io/2016/01/07/daocloud-html5/index.html">
 <meta property="og:site_name" content="小狐濡尾">
-<meta property="og:description" content="写在前面的话
-来自维基百科的：[货殖崇拜编程]:(https://zh.wikipedia.org/wiki/货物崇拜编程)
+<meta property="og:description" content="写在前面的话来自维基百科的：货殖崇拜编程
 为因GFW屏蔽访问不了维基百科的同学准备的：
 
-货物崇拜编程（Cargo Cult Programming）是一种计算机程序设计中的反模式，其特征为不明就里地、仪式性地使用代码或程序架构。货物崇拜编程通常是程序员既没理解他要解决的bug、也没理解表面上的解决方案的典型表现。">
-<meta property="og:updated_time" content="2016-01-08T12:15:18.000Z">
+货物崇拜编程（Cargo Cult Programming）是一种计算机程序设计中的反模式，其特征为不明就里地、仪式性地使用代码或程序架构。货物崇拜编程通常是程序员既没理解他要解决的bug、也没理解表面上的解决方案的典型表现。
+这个名词有时也指不熟练的或没经验的程序员从某处拷贝代码到另一处，却不太清楚其代码是">
+<meta property="og:updated_time" content="2016-01-08T12:18:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="daocloud 持续集成html5应用">
-<meta name="twitter:description" content="写在前面的话
-来自维基百科的：[货殖崇拜编程]:(https://zh.wikipedia.org/wiki/货物崇拜编程)
+<meta name="twitter:description" content="写在前面的话来自维基百科的：货殖崇拜编程
 为因GFW屏蔽访问不了维基百科的同学准备的：
 
-货物崇拜编程（Cargo Cult Programming）是一种计算机程序设计中的反模式，其特征为不明就里地、仪式性地使用代码或程序架构。货物崇拜编程通常是程序员既没理解他要解决的bug、也没理解表面上的解决方案的典型表现。">
+货物崇拜编程（Cargo Cult Programming）是一种计算机程序设计中的反模式，其特征为不明就里地、仪式性地使用代码或程序架构。货物崇拜编程通常是程序员既没理解他要解决的bug、也没理解表面上的解决方案的典型表现。
+这个名词有时也指不熟练的或没经验的程序员从某处拷贝代码到另一处，却不太清楚其代码是">
 
     
     <link rel="alternative" href="/atom.xml" title="小狐濡尾" type="application/atom+xml">
@@ -110,36 +110,26 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">写在前面的话</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">daocloud介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">什么是「简单的html5应用」</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">部署大致解决方案</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#undefined"><span class="toc-number">5.</span> <span class="toc-text">构建应用前的准备</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#undefined"><span class="toc-number">6.</span> <span class="toc-text">使用daocloud进行持续构建镜像以及发布</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#undefined"><span class="toc-number">7.</span> <span class="toc-text">发布完成之后需要做的工作</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#u5199_u5728_u524D_u9762_u7684_u8BDD"><span class="toc-number">1.</span> <span class="toc-text">写在前面的话</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#daocloud_u4ECB_u7ECD"><span class="toc-number">2.</span> <span class="toc-text">daocloud介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u4EC0_u4E48_u662F_u300C_u7B80_u5355_u7684html5_u5E94_u7528_u300D"><span class="toc-number">3.</span> <span class="toc-text">什么是「简单的html5应用」</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u90E8_u7F72_u5927_u81F4_u89E3_u51B3_u65B9_u6848"><span class="toc-number">4.</span> <span class="toc-text">部署大致解决方案</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u6784_u5EFA_u5E94_u7528_u524D_u7684_u51C6_u5907"><span class="toc-number">5.</span> <span class="toc-text">构建应用前的准备</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u4F7F_u7528daocloud_u8FDB_u884C_u6301_u7EED_u6784_u5EFA_u955C_u50CF_u4EE5_u53CA_u53D1_u5E03"><span class="toc-number">6.</span> <span class="toc-text">使用daocloud进行持续构建镜像以及发布</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u53D1_u5E03_u5B8C_u6210_u4E4B_u540E_u9700_u8981_u505A_u7684_u5DE5_u4F5C"><span class="toc-number">7.</span> <span class="toc-text">发布完成之后需要做的工作</span></a></li></ol>
 		
 		</div>
 		
-		<h1>写在前面的话</h1>
-<p>来自维基百科的：[货殖崇拜编程]:(https://zh.wikipedia.org/wiki/货物崇拜编程)</p>
+		<h1 id="u5199_u5728_u524D_u9762_u7684_u8BDD"><a href="#u5199_u5728_u524D_u9762_u7684_u8BDD" class="headerlink" title="写在前面的话"></a>写在前面的话</h1><p>来自维基百科的：<a href="https://zh.wikipedia.org/wiki/货物崇拜编程" target="_blank" rel="external">货殖崇拜编程</a></p>
 <p>为因GFW屏蔽访问不了维基百科的同学准备的：</p>
 <blockquote>
 <p>货物崇拜编程（Cargo Cult Programming）是一种计算机程序设计中的反模式，其特征为不明就里地、仪式性地使用代码或程序架构。货物崇拜编程通常是程序员既没理解他要解决的bug、也没理解表面上的解决方案的典型表现。</p>
-</blockquote>
-<blockquote>
 <p>这个名词有时也指不熟练的或没经验的程序员从某处拷贝代码到另一处，却不太清楚其代码是如何工作的，或者不清楚在新的地方是否需要这段代码。也可以指不正确或过份的应用设计模式、代码风格或编程方法，却对其原理不明就里。</p>
-</blockquote>
-<blockquote>
 <p>货物崇拜编程来源于“货物崇拜”这个词。其衍生词还有“货物崇拜软件工程”。</p>
 </blockquote>
 <p>在阅读任何教程类的文章时，都不要有编程上的货殖崇拜，有些内容是需要你根据自己的实际情况修改一些内容的,需要你理解它，如果不理解某些内容，就需要先熟悉一下相关的知识。</p>
-<h1>daocloud介绍</h1>
-<p><a href="https://daocloud.io" target="_blank" rel="external">daocloud</a>提供基于docker进行持续集成的服务，使用它可以很方便的完成项目的自动化构建以及持续发布等功能。</p>
-<h1>什么是「简单的html5应用」</h1>
-<p>只有前端页面，并且使用nginx提供服务。</p>
-<h1>部署大致解决方案</h1>
-<p>本文假设一个使用场景：拥有自己的主机，并且绑定到了daocloud上，然后想通过daocloud进行持续化地部署到自己的主机上。如果想要部署一个纯前端项目，需要把nginx集成进去，然后使用nginx来提供服务。</p>
-<h1>构建应用前的准备</h1>
-<p>因为daocloud是基于daocker的，在使用daocloud之前，我们需要按照docker的规范，把自己的项目改成支持打包成镜像的应用，对于html5项目来说，就是添加Dockerfile文件和配置好所需要的nginx配置文件。比如我有一个应用叫myapp，其目录结构为(你的目录结构和这个可能也不一样)：</p>
-<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">myapp/  #&#24212;&#29992;&#26681;&#30446;&#24405;&#10;&#9500;&#9472;&#9472; myapp/  # &#20855;&#20307;&#30340;&#24212;&#29992;&#30446;&#24405;&#10;&#9474;&#160;&#160; &#9500;&#9472;&#9472; images/ # &#22270;&#29255;&#10;&#9474;&#160;&#160; &#9500;&#9472;&#9472; index.html  # &#40664;&#35748;&#30340;&#26816;&#32034;html&#10;&#9474;&#160;&#160; &#9500;&#9472;&#9472; scripts/  #  js&#25991;&#20214;&#22841;&#10;&#9474;&#160;&#160; &#9492;&#9472;&#9472; styles/    # &#23384;&#25918;css&#30340;&#25991;&#20214;&#22841;&#10;&#9500;&#9472;&#9472; Dockerfile   # Dockerfile&#10;&#9500;&#9472;&#9472; myapp.conf   # &#26412;&#24212;&#29992;&#30340;nginx&#37197;&#32622;&#25991;&#20214;&#10;&#9492;&#9472;&#9472; log/  # log&#25991;&#20214;</span><br></pre></td></tr></table></figure></p>
+<h1 id="daocloud_u4ECB_u7ECD"><a href="#daocloud_u4ECB_u7ECD" class="headerlink" title="daocloud介绍"></a>daocloud介绍</h1><p>  <a href="https://daocloud.io" target="_blank" rel="external">daocloud</a>提供基于docker进行持续集成的服务，使用它可以很方便的完成项目的自动化构建以及持续发布等功能。</p>
+<h1 id="u4EC0_u4E48_u662F_u300C_u7B80_u5355_u7684html5_u5E94_u7528_u300D"><a href="#u4EC0_u4E48_u662F_u300C_u7B80_u5355_u7684html5_u5E94_u7528_u300D" class="headerlink" title="什么是「简单的html5应用」"></a>什么是「简单的html5应用」</h1><p>只有前端页面，并且使用nginx提供服务。</p>
+<h1 id="u90E8_u7F72_u5927_u81F4_u89E3_u51B3_u65B9_u6848"><a href="#u90E8_u7F72_u5927_u81F4_u89E3_u51B3_u65B9_u6848" class="headerlink" title="部署大致解决方案"></a>部署大致解决方案</h1><p>本文假设一个使用场景：拥有自己的主机，并且绑定到了daocloud上，然后想通过daocloud进行持续化地部署到自己的主机上。如果想要部署一个纯前端项目，需要把nginx集成进去，然后使用nginx来提供服务。</p>
+<h1 id="u6784_u5EFA_u5E94_u7528_u524D_u7684_u51C6_u5907"><a href="#u6784_u5EFA_u5E94_u7528_u524D_u7684_u51C6_u5907" class="headerlink" title="构建应用前的准备"></a>构建应用前的准备</h1><p>因为daocloud是基于daocker的，在使用daocloud之前，我们需要按照docker的规范，把自己的项目改成支持打包成镜像的应用，对于html5项目来说，就是添加Dockerfile文件和配置好所需要的nginx配置文件。比如我有一个应用叫myapp，其目录结构为(你的目录结构和这个可能也不一样)：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">myapp/  #&#24212;&#29992;&#26681;&#30446;&#24405;&#10;&#9500;&#9472;&#9472; myapp/  # &#20855;&#20307;&#30340;&#24212;&#29992;&#30446;&#24405;&#10;&#9474;&#160;&#160; &#9500;&#9472;&#9472; images/ # &#22270;&#29255;&#10;&#9474;&#160;&#160; &#9500;&#9472;&#9472; index.html  # &#40664;&#35748;&#30340;&#26816;&#32034;html&#10;&#9474;&#160;&#160; &#9500;&#9472;&#9472; scripts/  #  js&#25991;&#20214;&#22841;&#10;&#9474;&#160;&#160; &#9492;&#9472;&#9472; styles/    # &#23384;&#25918;css&#30340;&#25991;&#20214;&#22841;&#10;&#9500;&#9472;&#9472; Dockerfile   # Dockerfile&#10;&#9500;&#9472;&#9472; myapp.conf   # &#26412;&#24212;&#29992;&#30340;nginx&#37197;&#32622;&#25991;&#20214;&#10;&#9492;&#9472;&#9472; log/  # log&#25991;&#20214;</span><br></pre></td></tr></table></figure>
 <p>在这个目录结构中，和docker镜像构建是就是Dockerfile这个文件，myapp.conf是个将要一起打包放入docker镜像中的文件，其他的都是应用本身的文件。</p>
-<p><strong>Dockerfile</strong>，就是一个daocker的规则文件，就像make的Makefile一样。Dockerfile描述了将自己的应用构建成docker镜像的过程。
-一个简单的Dockerfile的内容如下：</p>
-<p><figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 选择nginx服务</span></span><br><span class="line"><span class="built_in">FROM</span> nginx:<span class="number">1.9</span>.<span class="number">5</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># copy代码</span></span><br><span class="line"><span class="built_in">COPY</span> <span class="bash">. /src</span><br><span class="line"></span></span><br><span class="line"><span class="comment"># 添加nginx配置文件</span></span><br><span class="line"><span class="built_in">COPY</span> <span class="bash">myapp.conf /etc/nginx/conf.d/</span><br><span class="line"></span></span><br><span class="line"><span class="comment"># 去掉默认的nginx配置文件</span></span><br><span class="line"><span class="built_in">RUN</span> <span class="bash">rm /etc/nginx/conf.d/default.conf</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>Dockerfile</strong>，就是一个daocker的规则文件，就像make的Makefile一样。Dockerfile描述了将自己的应用构建成docker镜像的过程。<br>一个简单的Dockerfile的内容如下：</p>
+<figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 选择nginx服务</span></span><br><span class="line"><span class="built_in">FROM</span> nginx:<span class="number">1.9</span>.<span class="number">5</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># copy代码</span></span><br><span class="line"><span class="built_in">COPY</span> <span class="bash">. /src</span><br><span class="line"></span></span><br><span class="line"><span class="comment"># 添加nginx配置文件</span></span><br><span class="line"><span class="built_in">COPY</span> <span class="bash">myapp.conf /etc/nginx/conf.d/</span><br><span class="line"></span></span><br><span class="line"><span class="comment"># 去掉默认的nginx配置文件</span></span><br><span class="line"><span class="built_in">RUN</span> <span class="bash">rm /etc/nginx/conf.d/default.conf</span></span><br></pre></td></tr></table></figure>
 <p>解释：</p>
 <ul>
 <li>首先，想象将要构建的docker镜像包含一个linux操作系统。</li>
@@ -153,11 +143,10 @@
 <li>server_name 为 localhost，因为这个server_name是在docker容器内部使用的。</li>
 <li>location 中的root文件夹是</li>
 </ul>
-<p><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">server</span> &#123;</span><br><span class="line">    <span class="title">listen</span> <span class="number">80</span>;</span><br><span class="line">    <span class="title">server_name</span> localhost;</span><br><span class="line">    <span class="title">access_log</span> /src/log/myapp.access.log;</span><br><span class="line">    <span class="title">error_log</span> /src/log/myapp.<span class="built_in">error</span>.log;</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 这里你还可以选择根据需要配一些gzip等选项</span></span><br><span class="line"></span><br><span class="line">    <span class="title">location</span> / &#123;</span><br><span class="line">    <span class="title">root</span> /src/myapp/;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">server</span> &#123;</span><br><span class="line">    <span class="title">listen</span> <span class="number">80</span>;</span><br><span class="line">    <span class="title">server_name</span> localhost;</span><br><span class="line">    <span class="title">access_log</span> /src/log/myapp.access.log;</span><br><span class="line">    <span class="title">error_log</span> /src/log/myapp.<span class="built_in">error</span>.log;</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 这里你还可以选择根据需要配一些gzip等选项</span></span><br><span class="line"></span><br><span class="line">    <span class="title">location</span> / &#123;</span><br><span class="line">    <span class="title">root</span> /src/myapp/;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>然后将应用提交到github上，比如具体为：xiaohuruwei/myapp.git</p>
 <p>以上已经包含全部必须的材料了，下面进入daocloud环节。</p>
-<h1>使用daocloud进行持续构建镜像以及发布</h1>
-<p>因为前面的步骤已经构建好了一个支持docker的代码版本，而且不需要外联像mysql这样的外部服务，因此可以直接将其当做一个但应用的镜像来构建。</p>
+<h1 id="u4F7F_u7528daocloud_u8FDB_u884C_u6301_u7EED_u6784_u5EFA_u955C_u50CF_u4EE5_u53CA_u53D1_u5E03"><a href="#u4F7F_u7528daocloud_u8FDB_u884C_u6301_u7EED_u6784_u5EFA_u955C_u50CF_u4EE5_u53CA_u53D1_u5E03" class="headerlink" title="使用daocloud进行持续构建镜像以及发布"></a>使用daocloud进行持续构建镜像以及发布</h1><p>因为前面的步骤已经构建好了一个支持docker的代码版本，而且不需要外联像mysql这样的外部服务，因此可以直接将其当做一个但应用的镜像来构建。</p>
 <p>在这方面，daocloud已经有了完善的<a href="http://docs.daocloud.io/" target="_blank" rel="external">文档</a>，可以直接参考其中的创建新项目章节，以及持续集成章节。</p>
 <ul>
 <li>第四节<a href="http://docs.daocloud.io/ci-on-daocloud" target="_blank" rel="external">创建新项目</a>，根据具体情况选择要绑定需要的git源</li>
@@ -169,18 +158,16 @@
 <li>绑定git源</li>
 <li>选择要部署的git仓库，并构建成镜像</li>
 <li>部署到<strong>自有主机</strong>上</li>
-<li>将后续自动持续部署的设置打开
-<ul>
+<li>将后续自动持续部署的设置打开<ul>
 <li>在「代码构建」具体项目的「设置」中，将持续集成打开，设置好镜像和持续集成的触发规则，比如：在向docker-support分支提交代码时，就触发自动持续集成。</li>
 <li>在「应用列表」中的「发布」设置中，将自动发布打开。</li>
 </ul>
 </li>
 </ul>
-<h1>发布完成之后需要做的工作</h1>
-<p>发布完成之后，可以在daocloud上看到所创建的容器的具体信息。包括映射到宿主机上的端口号等等，点击端口号后可以看到该应用的访问地址，打开可以测试是否部署成功了</p>
+<h1 id="u53D1_u5E03_u5B8C_u6210_u4E4B_u540E_u9700_u8981_u505A_u7684_u5DE5_u4F5C"><a href="#u53D1_u5E03_u5B8C_u6210_u4E4B_u540E_u9700_u8981_u505A_u7684_u5DE5_u4F5C" class="headerlink" title="发布完成之后需要做的工作"></a>发布完成之后需要做的工作</h1><p>发布完成之后，可以在daocloud上看到所创建的容器的具体信息。包括映射到宿主机上的端口号等等，点击端口号后可以看到该应用的访问地址，打开可以测试是否部署成功了</p>
 <p>为方便后面的叙述，这里假设映射出的端口号为8888。因为是发布到自己的主机上，所以还需要自己配置域名以及nginx反向代理来对外提供访问服务。假设有一个域名已经绑定在了自己的主机上，这里假设为xiaohuruwei.com.</p>
 <p>登陆自己的主机，并配置nginx文件，如果是使用apt-get一类的包管理工具安装的，那么应该是在/etc/nginx/conf.d/目录下添加 myapp.conf:</p>
-<p><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">server</span> &#123;</span><br><span class="line">    <span class="title">listen</span> <span class="number">80</span>;</span><br><span class="line">    <span class="title">server_name</span> xiaohuruwei.com;</span><br><span class="line">    <span class="title">access_log</span> /var/log/nginx/myapp.access.log;</span><br><span class="line">    <span class="title">error_log</span> /var/log/nginx/myapp.<span class="built_in">error</span>.log;</span><br><span class="line">    <span class="title">client_max_body_size</span> <span class="number">200m</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 可以根据需要设置其他配置项</span></span><br><span class="line"></span><br><span class="line">    <span class="title">location</span> / &#123;</span><br><span class="line">        <span class="title">proxy_set_header</span> Host <span class="variable">$host</span>;</span><br><span class="line">        <span class="title">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">        <span class="title">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line"></span><br><span class="line">        <span class="title">proxy_pass</span> <span class="url">http://127.0.0.1:8888</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">server</span> &#123;</span><br><span class="line">    <span class="title">listen</span> <span class="number">80</span>;</span><br><span class="line">    <span class="title">server_name</span> xiaohuruwei.com;</span><br><span class="line">    <span class="title">access_log</span> /var/log/nginx/myapp.access.log;</span><br><span class="line">    <span class="title">error_log</span> /var/log/nginx/myapp.<span class="built_in">error</span>.log;</span><br><span class="line">    <span class="title">client_max_body_size</span> <span class="number">200m</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 可以根据需要设置其他配置项</span></span><br><span class="line"></span><br><span class="line">    <span class="title">location</span> / &#123;</span><br><span class="line">        <span class="title">proxy_set_header</span> Host <span class="variable">$host</span>;</span><br><span class="line">        <span class="title">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">        <span class="title">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line"></span><br><span class="line">        <span class="title">proxy_pass</span> <span class="url">http://127.0.0.1:8888</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>然后访问xiaohuruwei.com就可以看到内容了</p>
 <p>另外，需要在使用daocloud的时候，将自动构建和持续发布都打开，这样下次使用时，只需要往github推代码时，触发了你设定的更新规则，就会持续构建镜像并发布了。</p>
   
@@ -249,7 +236,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">写在前面的话</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">daocloud介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">什么是「简单的html5应用」</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">部署大致解决方案</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#undefined"><span class="toc-number">5.</span> <span class="toc-text">构建应用前的准备</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#undefined"><span class="toc-number">6.</span> <span class="toc-text">使用daocloud进行持续构建镜像以及发布</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#undefined"><span class="toc-number">7.</span> <span class="toc-text">发布完成之后需要做的工作</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#u5199_u5728_u524D_u9762_u7684_u8BDD"><span class="toc-number">1.</span> <span class="toc-text">写在前面的话</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#daocloud_u4ECB_u7ECD"><span class="toc-number">2.</span> <span class="toc-text">daocloud介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u4EC0_u4E48_u662F_u300C_u7B80_u5355_u7684html5_u5E94_u7528_u300D"><span class="toc-number">3.</span> <span class="toc-text">什么是「简单的html5应用」</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u90E8_u7F72_u5927_u81F4_u89E3_u51B3_u65B9_u6848"><span class="toc-number">4.</span> <span class="toc-text">部署大致解决方案</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u6784_u5EFA_u5E94_u7528_u524D_u7684_u51C6_u5907"><span class="toc-number">5.</span> <span class="toc-text">构建应用前的准备</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u4F7F_u7528daocloud_u8FDB_u884C_u6301_u7EED_u6784_u5EFA_u955C_u50CF_u4EE5_u53CA_u53D1_u5E03"><span class="toc-number">6.</span> <span class="toc-text">使用daocloud进行持续构建镜像以及发布</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u53D1_u5E03_u5B8C_u6210_u4E4B_u540E_u9700_u8981_u505A_u7684_u5DE5_u4F5C"><span class="toc-number">7.</span> <span class="toc-text">发布完成之后需要做的工作</span></a></li></ol>
  
   </div>
 
