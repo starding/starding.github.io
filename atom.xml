@@ -16,8 +16,8 @@
   
   <entry>
     <title><![CDATA[《三体》，《行尸走肉》与社会达尔文主义]]></title>
-    <link href="http://starding.github.io/2016/01/07/%E3%80%8A%E4%B8%89%E4%BD%93%E3%80%8B%EF%BC%8C%E3%80%8A%E8%A1%8C%E5%B0%B8%E8%B5%B0%E8%82%89%E3%80%8B%E4%B8%8E%E7%A4%BE%E4%BC%9A%E8%BE%BE%E5%B0%94%E6%96%87%E4%B8%BB%E4%B9%89/"/>
-    <id>http://starding.github.io/2016/01/07/《三体》，《行尸走肉》与社会达尔文主义/</id>
+    <link href="http://starding.github.io/2016/01/07/three-body-walking-dead-Darwin/"/>
+    <id>http://starding.github.io/2016/01/07/three-body-walking-dead-Darwin/</id>
     <published>2016-01-07T07:55:11.000Z</published>
     <updated>2016-01-07T08:15:13.000Z</updated>
     <content type="html"><![CDATA[<p>看大刘的《三体》，已经是几年前的事情了。除了宏观的叙事和一些经典场景，已忘的七七八八。刚开始看《行尸走肉》时，还以为是个单纯的丧尸剧，但随着剧情的不断深入，就发现它描述了更多的东西。在某些重要的方面，两者有些相像。不过是一个把达尔文主义推广到整个宇宙，建立了较为极端的达尔文性质的宇宙社会学，另一个则是让自人类开始出现以来，数百万年形成的世界秩序洗牌，重新审视人类这一物种，同样渗透着浓厚的达尔文思想。</p>
@@ -101,8 +101,8 @@
   
   <entry>
     <title><![CDATA[django中使用原生sql]]></title>
-    <link href="http://starding.github.io/2016/01/07/django%E4%B8%AD%E4%BD%BF%E7%94%A8%E5%8E%9F%E7%94%9Fsql/"/>
-    <id>http://starding.github.io/2016/01/07/django中使用原生sql/</id>
+    <link href="http://starding.github.io/2016/01/07/raw-sql-in-django/"/>
+    <id>http://starding.github.io/2016/01/07/raw-sql-in-django/</id>
     <published>2016-01-07T07:29:46.000Z</published>
     <updated>2016-01-07T07:31:01.000Z</updated>
     <content type="html"><![CDATA[<h2>orm并非万能</h2>
@@ -147,8 +147,8 @@
   
   <entry>
     <title><![CDATA[docker 部署gitlab]]></title>
-    <link href="http://starding.github.io/2016/01/07/docker-%E9%83%A8%E7%BD%B2gitlab/"/>
-    <id>http://starding.github.io/2016/01/07/docker-部署gitlab/</id>
+    <link href="http://starding.github.io/2016/01/07/deploy-gitlab-by-docker/"/>
+    <id>http://starding.github.io/2016/01/07/deploy-gitlab-by-docker/</id>
     <published>2016-01-07T07:27:22.000Z</published>
     <updated>2016-01-07T07:28:29.000Z</updated>
     <content type="html"><![CDATA[<h1>拉取镜像及启动容器</h1>
@@ -243,8 +243,8 @@ ssh://<a href="mailto:git@git.xiaohuruwei.com" target="_blank" rel="external">gi
   
   <entry>
     <title><![CDATA[daoloud 持续集成html5应用]]></title>
-    <link href="http://starding.github.io/2016/01/07/daoloud-%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90html5%E5%BA%94%E7%94%A8/"/>
-    <id>http://starding.github.io/2016/01/07/daoloud-持续集成html5应用/</id>
+    <link href="http://starding.github.io/2016/01/07/daoloud-html5/"/>
+    <id>http://starding.github.io/2016/01/07/daoloud-html5/</id>
     <published>2016-01-07T07:24:25.000Z</published>
     <updated>2016-01-07T07:25:17.000Z</updated>
     <content type="html"><![CDATA[<h1>daocloud介绍</h1>
@@ -285,8 +285,8 @@ ssh://<a href="mailto:git@git.xiaohuruwei.com" target="_blank" rel="external">gi
   
   <entry>
     <title><![CDATA[docker——从隐喻说起]]></title>
-    <link href="http://starding.github.io/2016/01/07/docker%E2%80%94%E2%80%94%E4%BB%8E%E9%9A%90%E5%96%BB%E8%AF%B4%E8%B5%B7/"/>
-    <id>http://starding.github.io/2016/01/07/docker——从隐喻说起/</id>
+    <link href="http://starding.github.io/2016/01/07/docker-a-metaphor/"/>
+    <id>http://starding.github.io/2016/01/07/docker-a-metaphor/</id>
     <published>2016-01-07T05:44:42.000Z</published>
     <updated>2016-01-07T07:00:54.000Z</updated>
     <content type="html"><![CDATA[<h2>什么是docker</h2>
@@ -360,8 +360,8 @@ ssh://<a href="mailto:git@git.xiaohuruwei.com" target="_blank" rel="external">gi
   
   <entry>
     <title><![CDATA[python中的闭包和装饰器]]></title>
-    <link href="http://starding.github.io/2016/01/06/python%E4%B8%AD%E7%9A%84%E9%97%AD%E5%8C%85%E5%92%8C%E8%A3%85%E9%A5%B0%E5%99%A8/"/>
-    <id>http://starding.github.io/2016/01/06/python中的闭包和装饰器/</id>
+    <link href="http://starding.github.io/2016/01/06/closure-decorator-in-python/"/>
+    <id>http://starding.github.io/2016/01/06/closure-decorator-in-python/</id>
     <published>2016-01-06T13:51:03.000Z</published>
     <updated>2016-01-06T15:58:47.000Z</updated>
     <content type="html"><![CDATA[<p>第一版创建于：2016-01-06</p>
