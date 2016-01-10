@@ -4,7 +4,7 @@
   <subtitle><![CDATA[未济]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://starding.github.io/"/>
-  <updated>2016-01-10T13:10:12.000Z</updated>
+  <updated>2016-01-10T13:15:15.000Z</updated>
   <id>http://starding.github.io/</id>
   
   <author>
@@ -15,11 +15,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title><![CDATA[小心python finally语句存在的陷阱]]></title>
+    <title><![CDATA[python finally语句存在的陷阱]]></title>
     <link href="http://starding.github.io/2016/01/10/finally-trap/"/>
     <id>http://starding.github.io/2016/01/10/finally-trap/</id>
     <published>2016-01-10T11:22:10.000Z</published>
-    <updated>2016-01-10T13:10:12.000Z</updated>
+    <updated>2016-01-10T13:15:15.000Z</updated>
     <content type="html"><![CDATA[<h2>finally总是会被执行</h2>
 <p>在python的异常处理中，无论try语句中是否有异常抛出，finally语句总会被执行。由于这个特性，finally语句经常被用来做一些清理工作，例如关闭文件，数据库等等。</p>
 <p>如果当try-except-finally中出现异常，并且未被妥善处理时，python会先把发生的异常暂存，当finally中的动作执行完毕之后，把保存的异常返回给上级。try-except-finally中的语句执行顺序，决定了它会有一些潜在的陷阱。</p>
