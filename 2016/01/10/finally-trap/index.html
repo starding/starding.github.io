@@ -4,30 +4,29 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>django中使用原生sql | 小狐濡尾</title>
+    <title>小心python finally语句存在的陷阱 | 小狐濡尾</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="starding">
     
 
     
-    <meta name="description" content="orm并非万能
-从功能集上讲，django的orm只是sql的一个子集。也就是说很多使用sql能实现的功能，django orm是无法完成的，更不用说sql甚至是图灵完备的了。比如，直到1.8中，django才逐渐实现了case，when，if这些控制流。而这些内容在一些特殊类型的表操作中非常常见，比如说报表管理。
-好在django提供了使用原生sql的接口，这样就能通过原生sql来实现一些复杂的">
+    <meta name="description" content="finally总是会被执行
+在python的异常处理中，无论try语句中是否有异常抛出，finally语句总会被执行。由于这个特性，finally语句经常被用来做一些清理工作，例如关闭文件，数据库等等。
+如果当try-except-finally中出现异常，并且未被妥善处理时，python会先把发生的异常暂存，当finally中的动作执行完毕之后，把保存的异常返回给上级。try-except-fi">
 <meta property="og:type" content="article">
-<meta property="og:title" content="django中使用原生sql">
-<meta property="og:url" content="http://starding.github.io/2016/01/07/raw-sql-in-django/index.html">
+<meta property="og:title" content="小心python finally语句存在的陷阱">
+<meta property="og:url" content="http://starding.github.io/2016/01/10/finally-trap/index.html">
 <meta property="og:site_name" content="小狐濡尾">
-<meta property="og:description" content="orm并非万能
-从功能集上讲，django的orm只是sql的一个子集。也就是说很多使用sql能实现的功能，django orm是无法完成的，更不用说sql甚至是图灵完备的了。比如，直到1.8中，django才逐渐实现了case，when，if这些控制流。而这些内容在一些特殊类型的表操作中非常常见，比如说报表管理。
-好在django提供了使用原生sql的接口，这样就能通过原生sql来实现一些复杂的">
-<meta property="og:image" content="http://7xpxcb.com1.z0.glb.clouddn.com/starding48482-ddc55e26121f44aa.png">
-<meta property="og:updated_time" content="2016-01-08T11:33:34.000Z">
+<meta property="og:description" content="finally总是会被执行
+在python的异常处理中，无论try语句中是否有异常抛出，finally语句总会被执行。由于这个特性，finally语句经常被用来做一些清理工作，例如关闭文件，数据库等等。
+如果当try-except-finally中出现异常，并且未被妥善处理时，python会先把发生的异常暂存，当finally中的动作执行完毕之后，把保存的异常返回给上级。try-except-fi">
+<meta property="og:updated_time" content="2016-01-10T13:10:12.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="django中使用原生sql">
-<meta name="twitter:description" content="orm并非万能
-从功能集上讲，django的orm只是sql的一个子集。也就是说很多使用sql能实现的功能，django orm是无法完成的，更不用说sql甚至是图灵完备的了。比如，直到1.8中，django才逐渐实现了case，when，if这些控制流。而这些内容在一些特殊类型的表操作中非常常见，比如说报表管理。
-好在django提供了使用原生sql的接口，这样就能通过原生sql来实现一些复杂的">
+<meta name="twitter:title" content="小心python finally语句存在的陷阱">
+<meta name="twitter:description" content="finally总是会被执行
+在python的异常处理中，无论try语句中是否有异常抛出，finally语句总会被执行。由于这个特性，finally语句经常被用来做一些清理工作，例如关闭文件，数据库等等。
+如果当try-except-finally中出现异常，并且未被妥善处理时，python会先把发生的异常暂存，当finally中的动作执行完毕之后，把保存的异常返回给上级。try-except-fi">
 
     
     <link rel="alternative" href="/atom.xml" title="小狐濡尾" type="application/atom+xml">
@@ -89,14 +88,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/01/07/raw-sql-in-django/" title="django中使用原生sql" itemprop="url">django中使用原生sql</a>
+      <a href="/2016/01/10/finally-trap/" title="小心python finally语句存在的陷阱" itemprop="url">小心python finally语句存在的陷阱</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="starding" target="_blank" itemprop="author">starding</a>
 		
   <p class="article-time">
-    <time datetime="2016-01-07T07:29:46.000Z" itemprop="datePublished"> 发表于 2016-01-07</time>
+    <time datetime="2016-01-10T11:22:10.000Z" itemprop="datePublished"> 发表于 2016-01-10</time>
     
   </p>
 </header>
@@ -105,36 +104,22 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">orm并非万能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">sql控制流之CASE WHEN一个例子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">在上述基础上实现链式查询</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">finally总是会被执行</span></a></li></ol>
 		
 		</div>
 		
-		<h2>orm并非万能</h2>
-<p>从功能集上讲，django的orm只是sql的一个子集。也就是说很多使用sql能实现的功能，django orm是无法完成的，更不用说sql甚至是图灵完备的了。比如，直到1.8中，django才逐渐实现了case，when，if这些控制流。而这些内容在一些特殊类型的表操作中非常常见，比如说报表管理。</p>
-<p>好在django提供了使用原生sql的接口，这样就能通过原生sql来实现一些复杂的功能。</p>
-<h2>sql控制流之CASE WHEN一个例子</h2>
-<p>现有一张档案信息表archives：</p>
-<p><img src="http://7xpxcb.com1.z0.glb.clouddn.com/starding48482-ddc55e26121f44aa.png" alt="mysql-demo"></p>
-<p>字段说明：</p>
-<ul>
-<li>number 档案号</li>
-<li>type 档案类型</li>
-<li>status 档案状态</li>
-<li>company 公司</li>
-<li>branch_company 分公司</li>
-</ul>
-<p><strong>需求是计算出表中同一type，同一分公司下的档案总数，和status=01的档案数，以及它占档案总数的比值。</strong></p>
-<p>当然，使用编程语言也可以实现这个功能，但是会比较复杂。这个时候可以使用case when语句来精确控制表中同一字段下，不同内容的选择。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">SELECT</span> </span><br><span class="line">      <span class="keyword">COUNT</span>(<span class="keyword">CASE</span> <span class="keyword">WHEN</span> <span class="keyword">status</span>=<span class="string">'01'</span> <span class="keyword">THEN</span> <span class="keyword">status</span> <span class="keyword">END</span>) status_01,</span><br><span class="line">      <span class="keyword">COUNT</span>(*) total,</span><br><span class="line">      <span class="keyword">CONCAT</span>(<span class="keyword">FORMAT</span>(<span class="keyword">COUNT</span>(<span class="keyword">CASE</span> <span class="keyword">WHEN</span> <span class="keyword">status</span>=<span class="string">'01'</span> <span class="keyword">THEN</span> <span class="keyword">status</span> <span class="keyword">END</span>)/</span><br><span class="line">      <span class="keyword">COUNT</span>(*)*<span class="number">100</span>, <span class="number">2</span>), <span class="string">'%'</span>)</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">      archives</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span></span><br><span class="line">      <span class="keyword">status</span>, subbranch_company</span></span><br></pre></td></tr></table></figure>
-<p>这样就可以解决上面提出的问题，因为这个表是临时杜撰的，结果这里就不贴了。</p>
-<h2>在上述基础上实现链式查询</h2>
-<p>在django的orm中，一个非常好用的功能就是使用链式查询，你可以不断连接filter等方法来过滤出想要的内容。</p>
-<p>这在一些特定的场景中特别有用。比如在上面的表中，我有时候想要某个分公司或中支公司下的数据，有时候又想要单一类型下的数据。如果针对每一种条件组合分别写相应地sql查询的话，会非常复杂，而且有时候组合会特别多。而链式查询比较完美的解决了这个问题。
-而为了让原生sql也能有个简单的链式查询，我们需要不断连接where中的条件子句。为此可以写一个简单的类来实现它：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GenQuerySQL</span><span class="params">(object)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, table)</span>:</span></span><br><span class="line">        self.table = table</span><br><span class="line">        self.group_by_fields = <span class="string">" "</span></span><br><span class="line">        self.where_conditions = <span class="string">" 1=1 "</span></span><br><span class="line">        self.fields = <span class="string">" "</span></span><br><span class="line">        self.order_by_fields = <span class="string">""</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">where</span><span class="params">(self, where_condition)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> where_condition:</span><br><span class="line">            self.where_conditions += <span class="string">" and "</span> + where_condition</span><br><span class="line">        <span class="keyword">return</span> self</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">add_field</span><span class="params">(self, fields)</span>:</span></span><br><span class="line">        self.fields += <span class="string">" "</span> + fields</span><br><span class="line">        <span class="keyword">return</span> self</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">group_by</span><span class="params">(self, group_by_field)</span>:</span></span><br><span class="line">        self.group_by_fields = group_by_field</span><br><span class="line">        <span class="keyword">return</span> self</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">order_by</span><span class="params">(self, order_by_field)</span>:</span></span><br><span class="line">        self.order_by_fields = order_by_field</span><br><span class="line">        <span class="keyword">return</span> self</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">sql</span><span class="params">(self)</span>:</span></span><br><span class="line">       SQL = <span class="string">'SELECT '</span> + self.fields + <span class="string">' FROM '</span> + self.table + <span class="string">' WHERE '</span> + self.where_conditions + <span class="string">' GROUP BY '</span> + self.group_by_fields + <span class="string">' ORDER BY '</span> + self.order_by_fields +  <span class="string">";"</span></span><br><span class="line">       <span class="keyword">return</span> SQL</span><br></pre></td></tr></table></figure>
-<p>这个类可以简单的模拟链式查询的功能，可以这样使用它：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">archive_statistics = GenQuerySQL(SOME_TABLE)</span><br><span class="line">raw_sql = archive_statistics.add_field(fields).where(where_condition).group_by(group_by_fields).order_by(order_by_fields).sql()</span><br></pre></td></tr></table></figure>
-<p>其中.where可以多次连接。当然也可以使用另一种方式：先把where语句根据条件构造完毕，最终再拼接成sql语句。其思想是一样的：先过滤条件，最终再查询数据库。</p>
+		<h2>finally总是会被执行</h2>
+<p>在python的异常处理中，无论try语句中是否有异常抛出，finally语句总会被执行。由于这个特性，finally语句经常被用来做一些清理工作，例如关闭文件，数据库等等。</p>
+<p>如果当try-except-finally中出现异常，并且未被妥善处理时，python会先把发生的异常暂存，当finally中的动作执行完毕之后，把保存的异常返回给上级。try-except-finally中的语句执行顺序，决定了它会有一些潜在的陷阱。</p>
+<p>看以下例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">finallyTest</span><span class="params">()</span>:</span></span><br><span class="line">	<span class="keyword">print</span> <span class="string">'start------'</span></span><br><span class="line">	<span class="keyword">while</span>  <span class="keyword">True</span>:</span><br><span class="line">		<span class="keyword">try</span>:</span><br><span class="line">			<span class="keyword">print</span> <span class="string">"running------"</span></span><br><span class="line">			<span class="keyword">raise</span> IndexError(<span class="string">"r"</span>)	<span class="comment">#抛出异IndexError异常                		except NameError as e:</span></span><br><span class="line">			<span class="keyword">print</span> <span class="string">'NameError happended &#123;0&#125;'</span>.format(str(e))                    			<span class="keyword">break</span></span><br><span class="line">		<span class="keyword">finally</span>:</span><br><span class="line">			<span class="keyword">print</span> <span class="string">'finally executed'</span>                    			<span class="keyword">break</span> <span class="comment">#finally语句中有break语句</span></span><br><span class="line">			</span><br><span class="line">FinallyTest()</span><br><span class="line"><span class="comment">#上述程序输出结果为：</span></span><br><span class="line">start------</span><br><span class="line">running------</span><br><span class="line"><span class="keyword">finally</span> executed</span><br></pre></td></tr></table></figure>
+<p>在上面的例子中，在try语句中，raise出了一个IndexError异常，而且except语句也没有捕获这个错误。按照平常的理解，这个错误会向上级（也就是调用这个函数的程序）传递，在本例中会传递到解释器，并引发一个IndexError错误。但是整个函数执行完之后并没有异常出现。</p>
+<p>原因就在于在当try块中发生异常的时候，如果在except语句中找不到对应的异常处理，异常将会被「临时保存起来」。当finally执行完毕的时候，临时保存的异常将会「再次被抛出」，但如果finally语句中产生了新的异常或者执行了return或者break语句，那么临时保存的异常将会被丢失，从而导致「异常屏蔽」。</p>
+<p>另外一个稍微复杂一些例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> logging</span><br><span class="line"></span><br><span class="line">logger = logging.Logger(__name__)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">returnTest</span><span class="params">(a)</span>:</span></span><br><span class="line">	<span class="keyword">try</span>:</span><br><span class="line">		<span class="keyword">if</span> a == <span class="keyword">False</span>:</span><br><span class="line">			<span class="keyword">raise</span> ValueError(<span class="string">"data can not be False"</span>)</span><br><span class="line">		<span class="keyword">else</span>:</span><br><span class="line">		   <span class="keyword">return</span> a  </span><br><span class="line">	<span class="keyword">except</span> ValueError <span class="keyword">as</span> e:</span><br><span class="line">		logger.exception(<span class="string">"exception!, &#123;detail&#125;"</span>).fomat(detail)</span><br><span class="line">	   <span class="keyword">return</span> <span class="string">"return exception in except statement"</span> </span><br><span class="line">	<span class="keyword">finally</span>:</span><br><span class="line">		<span class="keyword">return</span> <span class="string">"return in finally statement"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> returnTest(<span class="keyword">False</span>)</span><br><span class="line"><span class="keyword">print</span> returnTest(<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure>
+<p>按照平常理解，第一个print语句会触发错误，然后进入except语句打印异常，而同时finally部分中的语句必然会执行，所以这里会返回一个'return in finally statement'值。第二个则会返回True。实际上则不然，返回值竟然都是'return in finally statement'。</p>
+<p>原因是和上面的例子中是一样的，无论是try复合语句中，还是except复合语句中的return/break语句，这种会产生程序跳转的语句会先被保存起来。然后再去执行finally中的语句，而一旦finally中出现了跳转语句，就会直接跳转了，这样早成的结果就是上面保存状态的消失。</p>
+<p><strong>需要理解try-except-finally中语句执行的顺序</strong></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -148,7 +133,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/django/">django</a><a href="/tags/python/">python</a>
+  <span></span> <a href="/tags/python/">python</a>
   </div>
 
 </div>
@@ -157,7 +142,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://starding.github.io/2016/01/07/raw-sql-in-django/" data-title="django中使用原生sql | 小狐濡尾" data-tsina="null" class="share clearfix">
+	  <div data-url="http://starding.github.io/2016/01/10/finally-trap/" data-title="小心python finally语句存在的陷阱 | 小狐濡尾" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -170,19 +155,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/01/07/science-in-east-and-west/" title="科学史上的东方与西方">
-  <strong>上一篇：</strong><br/>
-  <span>
-  科学史上的东方与西方</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/01/07/deploy-gitlab-by-docker/"  title="docker 部署gitlab">
+<a href="/2016/01/10/open-questions/"  title="待解决的问题">
  <strong>下一篇：</strong><br/> 
- <span>docker 部署gitlab
+ <span>待解决的问题
 </span>
 </a>
 </div>
@@ -191,7 +168,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/01/07/raw-sql-in-django/" data-title="django中使用原生sql" data-url="http://starding.github.io/2016/01/07/raw-sql-in-django/"></div>
+	<div class="ds-thread" data-thread-key="2016/01/10/finally-trap/" data-title="小心python finally语句存在的陷阱" data-url="http://starding.github.io/2016/01/10/finally-trap/"></div>
 </section>
 
 
@@ -201,7 +178,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">orm并非万能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">sql控制流之CASE WHEN一个例子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">在上述基础上实现链式查询</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">finally总是会被执行</span></a></li></ol>
  
   </div>
 
