@@ -4,7 +4,7 @@
   <subtitle><![CDATA[未济]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://starding.github.io/"/>
-  <updated>2016-01-09T06:39:10.000Z</updated>
+  <updated>2016-01-09T06:39:33.000Z</updated>
   <id>http://starding.github.io/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://starding.github.io/2016/01/09/my-front-end-introduction/"/>
     <id>http://starding.github.io/2016/01/09/my-front-end-introduction/</id>
     <published>2016-01-09T06:34:19.000Z</published>
-    <updated>2016-01-09T06:39:10.000Z</updated>
+    <updated>2016-01-09T06:39:33.000Z</updated>
     <content type="html"><![CDATA[<p>之前也多多少少接触过一点前端，但每次都会触及一些细枝末节，像html的某个元素啦，或是某个css的具体意思了，再或者是写一点javascript啦之类的内容。但总是感觉对前端缺乏一种比较顶层的认识。</p>
 <p>虽然偶尔也会听说一些关于网页三剑客的比喻。类似html是网页的骨骼，负责网页的骨架部分；css是网页的皮肤，负责网页的外观部分；javascript则是网页的肌肉，给网页上的交互提供动力。不过这种说法似乎又太过于宽泛了，难以让人形成具体的认识。</p>
 <p>所以本文试着整理一种介于上述比喻，以及底层细节之间的一些内容。通过分别叙述html，css，javascript的核心角色，试着能不能找到那种高屋建瓴的感觉。</p>
