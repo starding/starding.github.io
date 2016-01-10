@@ -2,8 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://starding.github.io/2016/01/05/hello-world/</loc>
+    <lastmod>2016-01-10T06:50:09.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://starding.github.io/2016/01/09/my-front-end-introduction/</loc>
-    <lastmod>2016-01-10T04:22:38.000Z</lastmod>
+    <lastmod>2016-01-10T04:24:44.000Z</lastmod>
   </url>
   
   <url>
@@ -34,11 +39,6 @@
   <url>
     <loc>http://starding.github.io/2016/01/07/deploy-gitlab-by-docker/</loc>
     <lastmod>2016-01-07T07:28:29.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://starding.github.io/2016/01/05/hello-world/</loc>
-    <lastmod>2016-01-07T07:21:27.000Z</lastmod>
   </url>
   
   <url>

@@ -4,7 +4,7 @@
   <subtitle><![CDATA[未济]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://starding.github.io/"/>
-  <updated>2016-01-10T04:22:38.000Z</updated>
+  <updated>2016-01-10T04:24:44.000Z</updated>
   <id>http://starding.github.io/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://starding.github.io/2016/01/09/my-front-end-introduction/"/>
     <id>http://starding.github.io/2016/01/09/my-front-end-introduction/</id>
     <published>2016-01-09T06:34:19.000Z</published>
-    <updated>2016-01-10T04:22:38.000Z</updated>
+    <updated>2016-01-10T04:24:44.000Z</updated>
     <content type="html"><![CDATA[<p>之前也多多少少接触过一点前端，但每次都会触及一些细枝末节，像html的某个元素啦，或是某个css的具体意思了，再或者是写一点javascript啦之类的内容。但总是感觉对前端缺乏一种比较顶层的认识。</p>
 <p>虽然偶尔也会听说一些关于网页三剑客的比喻。类似html是网页的骨骼，负责网页的骨架部分；css是网页的皮肤，负责网页的外观部分；javascript则是网页的肌肉，给网页上的交互提供动力。不过这种说法似乎又太过于宽泛了，难以让人形成具体的认识。</p>
 <p>所以本文试着整理一种介于上述比喻，以及底层细节之间的一些内容。通过分别叙述html，css，javascript的核心角色，试着能不能找到那种高屋建瓴的感觉。</p>
@@ -551,7 +551,7 @@ ssh://<a href="mailto:git@git.xiaohuruwei.com" target="_blank" rel="external">gi
     <link href="http://starding.github.io/2016/01/05/hello-world/"/>
     <id>http://starding.github.io/2016/01/05/hello-world/</id>
     <published>2016-01-04T16:00:00.000Z</published>
-    <updated>2016-01-07T07:21:27.000Z</updated>
+    <updated>2016-01-10T06:50:09.000Z</updated>
     <content type="html"><![CDATA[<h3>仔细一想，我写博客也有一段时间了</h3>
 <p>回想这些年，我从大一的时候，就开始试着写博客了。当时涉及的技术比较少，大部分文章都是一些随笔，其内容也多是对一些社会事件的思考。</p>
 <p>刚开始还不知道有独立博客这个概念，而且文章也都是发在qq空间的，原因是因为qq空间是我当时所知道的唯一能在网络上发表并保存日志的地方，也就将其档博客使用了。同时qq空间也有一些优点，因为它是基于qq这个社交平台的，自己所写的文章，总是可以被好友以及其他人看到，也会不时的得到一些反馈，这也是我当时的写作动力之一。</p>
@@ -566,6 +566,16 @@ ssh://<a href="mailto:git@git.xiaohuruwei.com" target="_blank" rel="external">gi
 <h3>最终还是聚合在一起了</h3>
 <p>github本身就是程序员最常去的地方，gitpages评价又高，仅用了半天就搭起了一个半独立博客，一看效果，这正是我想要的。</p>
 <p>于是开始了聚合之路...</p>
+<p>后来无意中看到网上有人总结的<a href="http://www.ruanyifeng.com/blog/2012/08/blogging_with_jekyll.html" target="_blank" rel="external">「写博客的三个阶段」</a>，表示深有同感，摘抄如下:</p>
+<blockquote>
+<p>第一阶段，刚接触Blog，觉得很新鲜，试着选择一个免费空间来写。</p>
+</blockquote>
+<blockquote>
+<p>第二阶段，发现免费空间限制太多，就自己购买域名和空间，搭建独立博客。</p>
+</blockquote>
+<blockquote>
+<p>第三阶段，觉得独立博客的管理太麻烦，最好在保留控制权的前提下，让别人来管，自己只负责写文章。</p>
+</blockquote>
 ]]></content>
     <summary type="html">
     <![CDATA[<h3>仔细一想，我写博客也有一段时间了</h3>
