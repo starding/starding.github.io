@@ -4,7 +4,7 @@
   <subtitle><![CDATA[未济]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://starding.github.io/"/>
-  <updated>2016-01-10T13:51:48.000Z</updated>
+  <updated>2016-01-11T05:10:40.000Z</updated>
   <id>http://starding.github.io/</id>
   
   <author>
@@ -15,9 +15,36 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[kuaibo-technological-neutrality]]></title>
+    <link href="http://starding.github.io/2016/01/11/kuaibo-technological-neutrality/"/>
+    <id>http://starding.github.io/2016/01/11/kuaibo-technological-neutrality/</id>
+    <published>2016-01-11T05:07:32.000Z</published>
+    <updated>2016-01-11T05:10:40.000Z</updated>
+    <content type="html"><![CDATA[<h1>快播案与技术中性论</h1>
+<p>只讨论技术中性论这一点内容，无关政治与法律</p>
+<h2>科学哲学中的技术中性论</h2>
+<h3>技术的意向结构</h3>
+<h2>科学哲学与社会技术决策</h2>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h1>快播案与技术中性论</h1>
+<p>只讨论技术中性论这一点内容，无关政治与法律</p>
+<h2>科学哲学中的技术中性论</h2>
+<h3>技术的意向结构</h3>
+<h2>科学哲学与社会技术决策</h2>
+]]>
+    </summary>
+    
+      <category term="随笔，科学哲学" scheme="http://starding.github.io/tags/%E9%9A%8F%E7%AC%94%EF%BC%8C%E7%A7%91%E5%AD%A6%E5%93%B2%E5%AD%A6/"/>
+    
+      <category term="科学史与科学哲学" scheme="http://starding.github.io/categories/%E7%A7%91%E5%AD%A6%E5%8F%B2%E4%B8%8E%E7%A7%91%E5%AD%A6%E5%93%B2%E5%AD%A6/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[那些年我在python中扑过的街]]></title>
-    <link href="http://starding.github.io/2016/01/10/finally-trap/"/>
-    <id>http://starding.github.io/2016/01/10/finally-trap/</id>
+    <link href="http://starding.github.io/2016/01/10/traps-in-python/"/>
+    <id>http://starding.github.io/2016/01/10/traps-in-python/</id>
     <published>2016-01-10T11:22:10.000Z</published>
     <updated>2016-01-10T13:51:48.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
@@ -410,11 +437,11 @@ ssh://<a href="mailto:git@git.xiaohuruwei.com" target="_blank" rel="external">gi
   </entry>
   
   <entry>
-    <title><![CDATA[daocloud 持续集成html5应用]]></title>
-    <link href="http://starding.github.io/2016/01/07/daocloud-html5/"/>
-    <id>http://starding.github.io/2016/01/07/daocloud-html5/</id>
+    <title><![CDATA[使用daocloud持续集成自己的应用]]></title>
+    <link href="http://starding.github.io/2016/01/07/daocloud-deploy/"/>
+    <id>http://starding.github.io/2016/01/07/daocloud-deploy/</id>
     <published>2016-01-07T07:24:25.000Z</published>
-    <updated>2016-01-08T12:18:14.000Z</updated>
+    <updated>2016-01-11T11:49:57.000Z</updated>
     <content type="html"><![CDATA[<h1>写在前面的话</h1>
 <p>来自维基百科的：<a href="https://zh.wikipedia.org/wiki/%E8%B4%A7%E7%89%A9%E5%B4%87%E6%8B%9C%E7%BC%96%E7%A8%8B" target="_blank" rel="external">货殖崇拜编程</a></p>
 <p>为因GFW屏蔽访问不了维基百科的同学准备的：</p>
@@ -430,11 +457,19 @@ ssh://<a href="mailto:git@git.xiaohuruwei.com" target="_blank" rel="external">gi
 <p>在阅读任何教程类的文章时，都不要有编程上的货殖崇拜，有些内容是需要你根据自己的实际情况修改一些内容的,需要你理解它，如果不理解某些内容，就需要先熟悉一下相关的知识。</p>
 <h1>daocloud介绍</h1>
 <p><a href="https://daocloud.io" target="_blank" rel="external">daocloud</a>提供基于docker进行持续集成的服务，使用它可以很方便的完成项目的自动化构建以及持续发布等功能。</p>
-<h1>什么是「简单的html5应用」</h1>
+<h1>持续集成简单的html5应用</h1>
+<h2>本小节使用场景</h2>
+<ul>
+<li>拥有自己的主机</li>
+<li>将主机添加到了daocloud上</li>
+<li>只使用daocloud的自动构建和部署功能</li>
+<li>镜像也要部署到自己的主机上。</li>
+</ul>
+<h2>什么是「简单的html5应用」</h2>
 <p>只有前端页面，并且使用nginx提供服务。</p>
-<h1>部署大致解决方案</h1>
+<h2>部署大致解决方案</h2>
 <p>本文假设一个使用场景：拥有自己的主机，并且绑定到了daocloud上，然后想通过daocloud进行持续化地部署到自己的主机上。如果想要部署一个纯前端项目，需要把nginx集成进去，然后使用nginx来提供服务。</p>
-<h1>构建应用前的准备</h1>
+<h2>构建应用前的准备</h2>
 <p>因为daocloud是基于daocker的，在使用daocloud之前，我们需要按照docker的规范，把自己的项目改成支持打包成镜像的应用，对于html5项目来说，就是添加Dockerfile文件和配置好所需要的nginx配置文件。比如我有一个应用叫myapp，其目录结构为(你的目录结构和这个可能也不一样)：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">myapp/  #&#24212;&#29992;&#26681;&#30446;&#24405;&#10;&#9500;&#9472;&#9472; myapp/  # &#20855;&#20307;&#30340;&#24212;&#29992;&#30446;&#24405;&#10;&#9474;&#160;&#160; &#9500;&#9472;&#9472; images/ # &#22270;&#29255;&#10;&#9474;&#160;&#160; &#9500;&#9472;&#9472; index.html  # &#40664;&#35748;&#30340;&#26816;&#32034;html&#10;&#9474;&#160;&#160; &#9500;&#9472;&#9472; scripts/  #  js&#25991;&#20214;&#22841;&#10;&#9474;&#160;&#160; &#9492;&#9472;&#9472; styles/    # &#23384;&#25918;css&#30340;&#25991;&#20214;&#22841;&#10;&#9500;&#9472;&#9472; Dockerfile   # Dockerfile&#10;&#9500;&#9472;&#9472; myapp.conf   # &#26412;&#24212;&#29992;&#30340;nginx&#37197;&#32622;&#25991;&#20214;&#10;&#9492;&#9472;&#9472; log/  # log&#25991;&#20214;</span><br></pre></td></tr></table></figure>
 <p>在这个目录结构中，和docker镜像构建是就是Dockerfile这个文件，myapp.conf是个将要一起打包放入docker镜像中的文件，其他的都是应用本身的文件。</p>
@@ -457,7 +492,7 @@ ssh://<a href="mailto:git@git.xiaohuruwei.com" target="_blank" rel="external">gi
 <figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">server</span> &#123;</span><br><span class="line">    <span class="title">listen</span> <span class="number">80</span>;</span><br><span class="line">    <span class="title">server_name</span> localhost;</span><br><span class="line">    <span class="title">access_log</span> /src/log/myapp.access.log;</span><br><span class="line">    <span class="title">error_log</span> /src/log/myapp.<span class="built_in">error</span>.log;</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 这里你还可以选择根据需要配一些gzip等选项</span></span><br><span class="line"></span><br><span class="line">    <span class="title">location</span> / &#123;</span><br><span class="line">    <span class="title">root</span> /src/myapp/;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>然后将应用提交到github上，比如具体为：xiaohuruwei/myapp.git</p>
 <p>以上已经包含全部必须的材料了，下面进入daocloud环节。</p>
-<h1>使用daocloud进行持续构建镜像以及发布</h1>
+<h2>使用daocloud进行持续构建镜像以及发布</h2>
 <p>因为前面的步骤已经构建好了一个支持docker的代码版本，而且不需要外联像mysql这样的外部服务，因此可以直接将其当做一个但应用的镜像来构建。</p>
 <p>在这方面，daocloud已经有了完善的<a href="http://docs.daocloud.io/" target="_blank" rel="external">文档</a>，可以直接参考其中的创建新项目章节，以及持续集成章节。</p>
 <ul>
@@ -477,14 +512,51 @@ ssh://<a href="mailto:git@git.xiaohuruwei.com" target="_blank" rel="external">gi
 </ul>
 </li>
 </ul>
-<h1>发布完成之后需要做的工作</h1>
+<h2>发布完成之后需要做的工作</h2>
 <p>发布完成之后，可以在daocloud上看到所创建的容器的具体信息。包括映射到宿主机上的端口号等等，点击端口号后可以看到该应用的访问地址，打开可以测试是否部署成功了</p>
 <p>为方便后面的叙述，这里假设映射出的端口号为8888。因为是发布到自己的主机上，所以还需要自己配置域名以及nginx反向代理来对外提供访问服务。假设有一个域名已经绑定在了自己的主机上，这里假设为xiaohuruwei.com.</p>
 <p>登陆自己的主机，并配置nginx文件，如果是使用apt-get一类的包管理工具安装的，那么应该是在/etc/nginx/conf.d/目录下添加 myapp.conf:</p>
 <figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">server</span> &#123;</span><br><span class="line">    <span class="title">listen</span> <span class="number">80</span>;</span><br><span class="line">    <span class="title">server_name</span> xiaohuruwei.com;</span><br><span class="line">    <span class="title">access_log</span> /var/log/nginx/myapp.access.log;</span><br><span class="line">    <span class="title">error_log</span> /var/log/nginx/myapp.<span class="built_in">error</span>.log;</span><br><span class="line">    <span class="title">client_max_body_size</span> <span class="number">200m</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 可以根据需要设置其他配置项</span></span><br><span class="line"></span><br><span class="line">    <span class="title">location</span> / &#123;</span><br><span class="line">        <span class="title">proxy_set_header</span> Host <span class="variable">$host</span>;</span><br><span class="line">        <span class="title">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">        <span class="title">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line"></span><br><span class="line">        <span class="title">proxy_pass</span> <span class="url">http://127.0.0.1:8888</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>然后访问xiaohuruwei.com就可以看到内容了</p>
 <p>另外，需要在使用daocloud的时候，将自动构建和持续发布都打开，这样下次使用时，只需要往github推代码时，触发了你设定的更新规则，就会持续构建镜像并发布了。</p>
-]]></content>
+<hr>
+<h1>持续集成依赖外部服务的应用</h1>
+<p>以django应用为例</p>
+<h2>本文适用的场景</h2>
+<ul>
+<li>拥有自己的主机</li>
+<li>将主机添加到了daocloud上</li>
+<li>只使用daocloud的自动构建和部署功能</li>
+<li><strong>所依赖的外部服务已经（以daocke容器）存在于自己的主机上</strong>，镜像也要部署在自己的主机上。在部署的同时连接主机上已经存在的外部服务（如mysql，redis等）。</li>
+</ul>
+<h2>依赖外部服务的应用</h2>
+<p>在docker领域中，如果一个docker镜像自身需要其他镜像来提供服务，就说这个镜像是带外部服务的。</p>
+<p>以一个简单的django应用为例，如果这个django应用自身无法完成任务，而需要mysql或者其他数据库作为数据的持久化服务，那么这个django应用就是依赖外部服务的。</p>
+<h2>构建前的准备</h2>
+<p>准备同html5接近，因为需要连接外部服务，而且因为uwsig服务默认不支持静态文件的处理，所以多了一些对原代码的改造。</p>
+<h3>项目结构</h3>
+<p>首先是django应用的目录，比如有一个应用叫taikang，目录结构如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">taikang&#9;# &#39033;&#30446;&#26681;&#30446;&#24405;&#9;&#10;&#9500;&#9472;&#9472; Dockerfile&#9;# Dockerfile&#25991;&#20214;&#10;&#9500;&#9472;&#9472; logs&#9;&#10;&#9500;&#9472;&#9472; manage.py&#10;&#9500;&#9472;&#9472; Makefile&#9;# makefile&#25991;&#20214;&#10;&#9500;&#9472;&#9472; requirements.txt&#9;# &#24212;&#29992;&#20381;&#36182;&#30340;python&#24211;&#10;&#9500;&#9472;&#9472; templates&#10;&#9492;&#9472;&#9472; taikang&#9;&#9;# &#24212;&#29992;&#30446;&#24405;&#10;&#9;&#9500;&#9472;&#9472; __init__.py&#10;&#9;&#9500;&#9472;&#9472; models.py&#10;&#9;&#9500;&#9472;&#9472; settings.py   # django&#30340;&#37197;&#32622;&#25991;&#20214;&#10;&#9;&#9500;&#9472;&#9472; urls.py&#10;&#9;&#9500;&#9472;&#9472; views.py&#10;&#9;&#9492;&#9472;&#9472; wsgi.py</span><br></pre></td></tr></table></figure>
+<h3>Dockerfile文件编写</h3>
+<p>Dockerfile文件的含义和html5部署中是完全相同的，这里为：</p>
+<figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用python2.7.10版本作为基础服务</span></span><br><span class="line"><span class="built_in">from</span> python:<span class="number">2.7</span>.<span class="number">10</span></span><br><span class="line"></span><br><span class="line">将当前项目中的内容全<span class="built_ins">copy</span>到镜像中的 /src 目录下</span><br><span class="line"><span class="built_in">COPY</span> <span class="bash">. /src</span><br><span class="line"></span></span><br><span class="line"><span class="comment"># 安装django应用依赖的库，这里设置为豆瓣的pypi源</span></span><br><span class="line"><span class="built_in">RUN</span> <span class="bash"><span class="built_in">cd</span> /src; pip install -r  requirements.txt -i http://pypi.douban.com/simple --trusted-host pypi.douban.com</span><br><span class="line"></span></span><br><span class="line"><span class="comment"># 镜像暴露出8000端口</span></span><br><span class="line"><span class="built_in">EXPOSE</span> <span class="number">8000</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置工作目录为代码所在目录</span></span><br><span class="line"><span class="built_in">WORKDIR</span>  <span class="bash">/src</span><br><span class="line"></span></span><br><span class="line"><span class="comment"># 设置应用启动命令</span></span><br><span class="line"><span class="built_in">CMD</span> <span class="bash">[<span class="string">"make"</span>, <span class="string">"start-uwsgi"</span>]</span></span><br></pre></td></tr></table></figure>
+<h3>Makefile文件编写</h3>
+<p>可以注意到，上述最后的启动命令中使用了make命令，这也是前面目录结构中Makefile文件的作用所在。有关makefile的知识，这里不再详述.
+总之可以让你更方便的管理应用，这里直接贴出makefile文件：</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># uwsig启动的host和端口 </span></span><br><span class="line"><span class="constant">host</span>:=0.0.0.0</span><br><span class="line"><span class="constant">port</span>:=8000</span><br><span class="line"></span><br><span class="line"><span class="comment"># debug的时候直接使用django自带的服务启动</span></span><br><span class="line"><span class="title">debug:</span></span><br><span class="line">    ./manage.py runserver $(host):$(port)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动uwsgi服务</span></span><br><span class="line">start-uwsgi:</span><br><span class="line">    uwsgi --socket $(host):$(port) \</span><br><span class="line">        --chdir $(shell pwd) \</span><br><span class="line">        --wsgi-file taikang/wsgi.py \</span><br><span class="line">        --master \</span><br><span class="line">        --process 4 \</span><br><span class="line">        --pidfile $(shell pwd)/uwsgi.pid</span><br><span class="line"></span><br><span class="line"><span class="comment"># 停止uwsgi服务</span></span><br><span class="line">stop-uwsgi:</span><br><span class="line">    uwsgi --stop uwsgi.pid</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重载uwsgi服务</span></span><br><span class="line">reload-uwsgi:</span><br><span class="line">    uwsgi --reload uwsgi.pid</span><br><span class="line"></span><br><span class="line"><span class="comment"># 收集静态文件</span></span><br><span class="line"><span class="title">collectstatic:</span></span><br><span class="line">    ./manage.py collectstatic --noinput</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="phony"><span class="keyword">.PHONY</span>: debug \</span></span><br><span class="line">    collectstatic \</span><br><span class="line">    reload-uwsgi \</span><br><span class="line">    start-uwsgi \</span><br><span class="line">    stop-uwsgi</span><br></pre></td></tr></table></figure>
+<h3>静态文件支持</h3>
+<p>在uwsgi提供服务时，静态文件需要单独进行处理，目前推荐使用django的<a href="https://github.com/evansd/whitenoise" target="_blank" rel="external">whitenoise库</a> 。可以方便的提供静态文件服务，仅仅需要几行配置。</p>
+<h3>通过环境变量来连接服务</h3>
+<p>在使用docker部署项目，当需要连接外部的服务时，一般通过link + 环境变量的参数进行。而为了支持环境变量的形式，我们的django应用也要做一些相应的改变。具体就是修改settings.py中的配置。</p>
+<p>修改settings.py文件，以mysql为例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 原来的mysql配置文件</span></span><br><span class="line"><span class="comment">#DATABASES = &#123;</span></span><br><span class="line"><span class="comment">#    'default': &#123;</span></span><br><span class="line"><span class="comment">#        'ENGINE': 'django.db.backends.mysql',</span></span><br><span class="line"><span class="comment">#        'NAME': 'starding_taikang',</span></span><br><span class="line"><span class="comment">#        'USER': 'root',</span></span><br><span class="line"><span class="comment">#        'PASSWORD': 'nameLR9969',</span></span><br><span class="line"><span class="comment">#        'HOST': 'localhost',</span></span><br><span class="line"><span class="comment">#        'PORT': '3306'</span></span><br><span class="line"><span class="comment">#    &#125;</span></span><br><span class="line"><span class="comment">#&#125;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 通过获取环境变量的形式来获取服务</span></span><br><span class="line"><span class="keyword">import</span> os  <span class="comment"># 导入os库</span></span><br><span class="line">mysql_name = os.environ.get(<span class="string">'MYSQL_INSTANCE_NAME'</span>) <span class="keyword">or</span> <span class="string">"taikang"</span>  <span class="comment"># 获取数据库名称</span></span><br><span class="line">mysql_user = os.environ.get(<span class="string">'MYSQL_USERNAME'</span>) <span class="keyword">or</span> <span class="string">"root"</span>  <span class="comment"># 获取mysql用户名</span></span><br><span class="line">mysql_password = os.environ.get(<span class="string">'MYSQL_PASSWORD'</span>) <span class="keyword">or</span> <span class="string">"your_password"</span>  <span class="comment"># 获取密码</span></span><br><span class="line">mysql_host = os.environ.get(<span class="string">'MYSQL_ADDR'</span>) <span class="keyword">or</span> <span class="string">"127.0.0.1"</span>  <span class="comment"># 获取服务地址</span></span><br><span class="line">mysql_port = <span class="string">"3306"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 直接使用上面的变量代替字符串</span></span><br><span class="line">DATABASES = &#123;</span><br><span class="line">   <span class="string">'default'</span>: &#123;</span><br><span class="line">       <span class="string">'ENGINE'</span>: <span class="string">'django.db.backends.mysql'</span>,</span><br><span class="line">       <span class="string">'NAME'</span>: mysql_name,</span><br><span class="line">       <span class="string">'USER'</span>: mysql_user,</span><br><span class="line">       <span class="string">'PASSWORD'</span>: mysql_password,</span><br><span class="line">       <span class="string">'HOST'</span>: mysql_host,</span><br><span class="line">       <span class="string">'PORT'</span>: mysql_port</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2>使用daocloud部署构建好的taikang项目</h2>
+<p>步骤基本同html5部署，假设你完成镜像构建之后，产生的镜像地址为：<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#19979;&#19968;&#27493;&#22312;&#20351;&#29992;&#38236;&#20687;&#37096;&#32626;&#30340;&#26102;&#20505;&#65292;&#38656;&#35201;&#36830;&#25509;&#22806;&#37096;&#26381;&#21153;&#65292;&#20855;&#20307;&#26159;&#25163;&#21160;&#32534;&#36753;yaml&#25991;&#20214;&#12290;&#10;&#10;```yaml&#10;takang_test:&#10;  image: daocloud.io/xiaohuruwei/taking:latest&#10;  restart: always&#10;  external_links:&#10;  - mysql1:mysql&#9;  # &#21069;&#38754;&#30340;mysql1&#26159;&#20320;&#20027;&#26426;&#19978;&#24050;&#32463;&#23384;&#22312;&#30340;mysql&#30340;&#23481;&#22120;&#23454;&#20363;&#65292;&#20882;&#21495;&#21518;&#38754;&#26159;&#21035;&#21517;&#10;  ports:&#10;  - &#39;8000&#39;&#10;  environment:    # &#29615;&#22659;&#21464;&#37327;    &#10;  - MYSQL_ADDR=mysql</span><br></pre></td></tr></table></figure></p>
+<p>但是我发现这种方法似乎有一些bug，如果上面的方法不成功，那么你就先直接部署，部署成功之后，再去修改yaml文件成为上面描述的样子。在修改yaml文件的时候，daocloud会提示重新部署，选择确定即可。</p>
+<p>至此，django项目也部署完成了。然后同html5项目部署一样，把各种自动构建，自动发布的功能打开就行了。</p>
+<p><strong>注意：</strong> 由于django项目是使用uwsgi部署的，直接访问daocloud给出的地址是错误的，这个时候必须配置nginx反向代理。</p>
+<p>附上uwsgi部署的django nginx代理配置文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">server &#123;&#10;    listen 80;&#10;    server_name xiaohuruwei.com;&#10;    access_log /var/log/nginx/taikang.access.log;&#10;    error_log /var/log/nginx/taikang.error.log;&#10;    client_max_body_size 200m;&#10;&#10;    gzip on;&#10;    gzip_min_length 1k;&#10;    gzip_buffers 16 64k;&#10;    gzip_http_version 1.1;&#10;    gzip_comp_level 6;&#10;    gzip_types text/plain application/x-javascript text/javascript text/css application/xml;&#10;    gzip_vary on;&#10;&#10;    location / &#123;&#10;        proxy_set_header Host $host;&#10;        proxy_set_header X-Real-IP $remote_addr;&#10;        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;&#10;&#10;        include uwsgi_params;&#10;        uwsgi_pass 127.0.0.1:32801;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>]]></content>
     <summary type="html">
     <![CDATA[<h1>写在前面的话</h1>
 <p>来自维基百科的：<a href="https://zh.wikipedia.org/wiki/%E8%B4%A7%E7%89%A9%E5%B4%87%E6%8B%9C%E7%BC%96%E7%A8%8B" target="_blank" re]]>
