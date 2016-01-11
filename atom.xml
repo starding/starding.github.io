@@ -4,7 +4,7 @@
   <subtitle><![CDATA[未济]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://starding.github.io/"/>
-  <updated>2016-01-11T15:27:11.000Z</updated>
+  <updated>2016-01-11T15:28:34.000Z</updated>
   <id>http://starding.github.io/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://starding.github.io/2016/01/11/kuaibo-technological-neutrality/"/>
     <id>http://starding.github.io/2016/01/11/kuaibo-technological-neutrality/</id>
     <published>2016-01-11T05:07:32.000Z</published>
-    <updated>2016-01-11T15:27:11.000Z</updated>
+    <updated>2016-01-11T15:28:34.000Z</updated>
     <content type="html"><![CDATA[<p>本文只讨论快播案中的的「技术中性论」问题，以及它在科学哲学中的地位与现状。</p>
 <blockquote>
 <p>technological neutrality</p>
@@ -161,7 +161,9 @@
 <p>中文意思为「技术中性论」， 核心主张是技]]>
     </summary>
     
-      <category term="随笔，科学哲学" scheme="http://starding.github.io/tags/%E9%9A%8F%E7%AC%94%EF%BC%8C%E7%A7%91%E5%AD%A6%E5%93%B2%E5%AD%A6/"/>
+      <category term="科学哲学" scheme="http://starding.github.io/tags/%E7%A7%91%E5%AD%A6%E5%93%B2%E5%AD%A6/"/>
+    
+      <category term="随笔" scheme="http://starding.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
     
       <category term="科学史与科学哲学" scheme="http://starding.github.io/categories/%E7%A7%91%E5%AD%A6%E5%8F%B2%E4%B8%8E%E7%A7%91%E5%AD%A6%E5%93%B2%E5%AD%A6/"/>
     
