@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://starding.github.io/2016/01/07/daocloud-deploy/</loc>
+    <lastmod>2016-01-12T08:28:25.000Z</lastmod>
+    <data>
+        <display>
+        <title>使用daocloud持续集成应用</title>
+        <pubTime>2016-01-07T07:24:25.000Z</pubTime>
+        
+        <tag>docker</tag>
+         
+         
+           
+             
+              <breadCrumb title="docker" url="http://starding.github.io/categories/docker/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://starding.github.io/2016/01/11/kuaibo-technological-neutrality/</loc>
     <lastmod>2016-01-12T07:44:17.000Z</lastmod>
     <data>
@@ -19,26 +39,6 @@
            
              
               <breadCrumb title="科学史与科学哲学" url="http://starding.github.io/categories/%E7%A7%91%E5%AD%A6%E5%8F%B2%E4%B8%8E%E7%A7%91%E5%AD%A6%E5%93%B2%E5%AD%A6/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://starding.github.io/2016/01/07/daocloud-deploy/</loc>
-    <lastmod>2016-01-12T07:29:29.000Z</lastmod>
-    <data>
-        <display>
-        <title>使用daocloud持续集成应用</title>
-        <pubTime>2016-01-07T07:24:25.000Z</pubTime>
-        
-        <tag>docker</tag>
-         
-         
-           
-             
-              <breadCrumb title="docker" url="http://starding.github.io/categories/docker/"/>
           
         </display>
     </data>
