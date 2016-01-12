@@ -577,7 +577,7 @@ ssh://<a href="mailto:git@git.xiaohuruwei.com" target="_blank" rel="external">gi
     <link href="http://starding.github.io/2016/01/07/daocloud-deploy/"/>
     <id>http://starding.github.io/2016/01/07/daocloud-deploy/</id>
     <published>2016-01-07T07:24:25.000Z</published>
-    <updated>2016-01-12T04:16:37.000Z</updated>
+    <updated>2016-01-12T06:29:52.000Z</updated>
     <content type="html"><![CDATA[<h1>写在前面的话</h1>
 <p>来自维基百科的：<a href="https://zh.wikipedia.org/wiki/%E8%B4%A7%E7%89%A9%E5%B4%87%E6%8B%9C%E7%BC%96%E7%A8%8B" target="_blank" rel="external">货殖崇拜编程</a></p>
 <p>为因GFW屏蔽访问不了维基百科的同学准备的：</p>
@@ -632,7 +632,7 @@ ssh://<a href="mailto:git@git.xiaohuruwei.com" target="_blank" rel="external">gi
 <p>然后将应用提交到github上，比如具体为：xiaohuruwei/jinli.git</p>
 <p>以上已经包含全部必须的材料了，下面进入daocloud环节。</p>
 <h2>使用daocloud进行持续构建镜像以及发布</h2>
-<p>因为前面的步骤已经构建好了一个支持docker的代码版本，而且不需要外联像mysql这样的外部服务，因此可以直接将其当做一个但应用的镜像来构建。</p>
+<p>因为前面的步骤已经构建好了一个支持docker的代码版本，而且不需要外联像mysql这样的外部服务，因此可以直接将其当做一个单应用的镜像来构建。</p>
 <p>在这方面，daocloud已经有了完善的<a href="http://docs.daocloud.io/" target="_blank" rel="external">文档</a>，可以直接参考其中的创建新项目章节，以及持续集成章节。</p>
 <ul>
 <li>第四节<a href="http://docs.daocloud.io/ci-on-daocloud" target="_blank" rel="external">创建新项目</a>，根据具体情况选择要绑定需要的git源</li>
