@@ -573,11 +573,11 @@ ssh://<a href="mailto:git@git.xiaohuruwei.com" target="_blank" rel="external">gi
   </entry>
   
   <entry>
-    <title><![CDATA[使用daocloud持续集成自己的应用]]></title>
+    <title><![CDATA[使用daocloud持续集成应用]]></title>
     <link href="http://starding.github.io/2016/01/07/daocloud-deploy/"/>
     <id>http://starding.github.io/2016/01/07/daocloud-deploy/</id>
     <published>2016-01-07T07:24:25.000Z</published>
-    <updated>2016-01-12T07:11:13.000Z</updated>
+    <updated>2016-01-12T07:29:29.000Z</updated>
     <content type="html"><![CDATA[<h1>写在前面的话</h1>
 <p>来自维基百科的：<a href="https://zh.wikipedia.org/wiki/%E8%B4%A7%E7%89%A9%E5%B4%87%E6%8B%9C%E7%BC%96%E7%A8%8B" target="_blank" rel="external">货殖崇拜编程</a></p>
 <p>为因GFW屏蔽访问不了维基百科的同学准备的：</p>
@@ -639,7 +639,7 @@ ssh://<a href="mailto:git@git.xiaohuruwei.com" target="_blank" rel="external">gi
 <li>第五节<a href="http://docs.daocloud.io/ci-image-build" target="_blank" rel="external">持续集成和镜像构建</a>,在简单的html部署中，不需要了解daocloud.yml的写法</li>
 <li>第九节中的<a href="http://docs.daocloud.io/app-deploy-mgmt/deploy-to-cluster" target="_blank" rel="external">向自由主机集群上发布应用</a></li>
 </ul>
-<p>在上面的过程中，核心抓住几点：</p>
+<p>在上面的过程中，核心部分如下：</p>
 <ul>
 <li>绑定git源</li>
 <li>选择要部署的git仓库，并构建成镜像</li>
