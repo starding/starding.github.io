@@ -11,31 +11,22 @@
     
 
     
-    <meta name="description" content="拉取镜像及启动容器
-参考：gitlab documentation
-首先使用dao加速器拉取daocker镜像：
-1dao pull gitlab/gitlab-ce
-创建volumes
-简单来说volumes，就是可以映射到容器中去的容器外部存储空间。你可以将一些比价通用的配置文件，数据，或者是代码等都使用volumes的形式存储在容器所在的宿主机器上。这样不仅可以永久保留数据，保证数据的安全性">
+    <meta name="description" content="拉取镜像及启动容器参考：gitlab documentation
+首先使用dao加速器拉取daocker镜像：1dao pull gitlab/gitlab-ce
+创建volumes简单来说volumes，就是可以映射到容器中去的容器外部存储空间。你可以将一些比价通用的配置文件，数据，或者是代码等都使用volumes的形式存储在容器所在的宿主机器上。这样不仅可以永久保留数据，保证数据的安全性。同时">
 <meta property="og:type" content="article">
 <meta property="og:title" content="docker 部署gitlab">
 <meta property="og:url" content="http://starding.github.io/2016/01/07/deploy-gitlab-by-docker/index.html">
 <meta property="og:site_name" content="小狐濡尾">
-<meta property="og:description" content="拉取镜像及启动容器
-参考：gitlab documentation
-首先使用dao加速器拉取daocker镜像：
-1dao pull gitlab/gitlab-ce
-创建volumes
-简单来说volumes，就是可以映射到容器中去的容器外部存储空间。你可以将一些比价通用的配置文件，数据，或者是代码等都使用volumes的形式存储在容器所在的宿主机器上。这样不仅可以永久保留数据，保证数据的安全性">
+<meta property="og:description" content="拉取镜像及启动容器参考：gitlab documentation
+首先使用dao加速器拉取daocker镜像：1dao pull gitlab/gitlab-ce
+创建volumes简单来说volumes，就是可以映射到容器中去的容器外部存储空间。你可以将一些比价通用的配置文件，数据，或者是代码等都使用volumes的形式存储在容器所在的宿主机器上。这样不仅可以永久保留数据，保证数据的安全性。同时">
 <meta property="og:updated_time" content="2016-01-07T07:28:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="docker 部署gitlab">
-<meta name="twitter:description" content="拉取镜像及启动容器
-参考：gitlab documentation
-首先使用dao加速器拉取daocker镜像：
-1dao pull gitlab/gitlab-ce
-创建volumes
-简单来说volumes，就是可以映射到容器中去的容器外部存储空间。你可以将一些比价通用的配置文件，数据，或者是代码等都使用volumes的形式存储在容器所在的宿主机器上。这样不仅可以永久保留数据，保证数据的安全性">
+<meta name="twitter:description" content="拉取镜像及启动容器参考：gitlab documentation
+首先使用dao加速器拉取daocker镜像：1dao pull gitlab/gitlab-ce
+创建volumes简单来说volumes，就是可以映射到容器中去的容器外部存储空间。你可以将一些比价通用的配置文件，数据，或者是代码等都使用volumes的形式存储在容器所在的宿主机器上。这样不仅可以永久保留数据，保证数据的安全性。同时">
 
     
     <link rel="alternative" href="/atom.xml" title="小狐濡尾" type="application/atom+xml">
@@ -113,83 +104,54 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">拉取镜像及启动容器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.1.</span> <span class="toc-text">首先使用dao加速器拉取daocker镜像：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">创建volumes</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">配置nginx，支持https</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.1.</span> <span class="toc-text">https proxy</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">开放gitlab的https支持</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#undefined"><span class="toc-number">5.</span> <span class="toc-text">访问gitlab测试</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#undefined"><span class="toc-number">6.</span> <span class="toc-text">开启邮件服务</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#undefined"><span class="toc-number">7.</span> <span class="toc-text">ssh方式访问</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#undefined"><span class="toc-number">8.</span> <span class="toc-text">关于ssl证书参考：</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#u62C9_u53D6_u955C_u50CF_u53CA_u542F_u52A8_u5BB9_u5668"><span class="toc-number">1.</span> <span class="toc-text">拉取镜像及启动容器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u9996_u5148_u4F7F_u7528dao_u52A0_u901F_u5668_u62C9_u53D6daocker_u955C_u50CF_uFF1A"><span class="toc-number">1.1.</span> <span class="toc-text">首先使用dao加速器拉取daocker镜像：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u521B_u5EFAvolumes"><span class="toc-number">2.</span> <span class="toc-text">创建volumes</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u914D_u7F6Enginx_uFF0C_u652F_u6301https"><span class="toc-number">3.</span> <span class="toc-text">配置nginx，支持https</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#https_proxy"><span class="toc-number">3.1.</span> <span class="toc-text">https proxy</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u5F00_u653Egitlab_u7684https_u652F_u6301"><span class="toc-number">4.</span> <span class="toc-text">开放gitlab的https支持</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u8BBF_u95EEgitlab_u6D4B_u8BD5"><span class="toc-number">5.</span> <span class="toc-text">访问gitlab测试</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u5F00_u542F_u90AE_u4EF6_u670D_u52A1"><span class="toc-number">6.</span> <span class="toc-text">开启邮件服务</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ssh_u65B9_u5F0F_u8BBF_u95EE"><span class="toc-number">7.</span> <span class="toc-text">ssh方式访问</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u5173_u4E8Essl_u8BC1_u4E66_u53C2_u8003_uFF1A"><span class="toc-number">8.</span> <span class="toc-text">关于ssl证书参考：</span></a></li></ol>
 		
 		</div>
 		
-		<h1>拉取镜像及启动容器</h1>
-<p>参考：<a href="http://doc.gitlab.com/omnibus/docker/" target="_blank" rel="external">gitlab documentation</a></p>
-<h2>首先使用dao加速器拉取daocker镜像：</h2>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dao pull gitlab/gitlab-ce</span><br></pre></td></tr></table></figure>
-<h1>创建volumes</h1>
-<p>简单来说volumes，就是可以映射到容器中去的容器外部存储空间。你可以将一些比价通用的配置文件，数据，或者是代码等都使用volumes的形式存储在容器所在的宿主机器上。这样不仅可以永久保留数据，保证数据的安全性。同时还可以方便的修改volumes中的内容，然后重新映射到容器中，这对于需要经常动态修改文件的容器非常有用。
-在本次部署gitlab的时候，创建三个volumes，分别是/mnt/volumes/gitlab下的 config，logs，data目录。
-启动一个gitlab容器</p>
+		<h1 id="u62C9_u53D6_u955C_u50CF_u53CA_u542F_u52A8_u5BB9_u5668"><a href="#u62C9_u53D6_u955C_u50CF_u53CA_u542F_u52A8_u5BB9_u5668" class="headerlink" title="拉取镜像及启动容器"></a>拉取镜像及启动容器</h1><p>参考：<a href="http://doc.gitlab.com/omnibus/docker/" target="_blank" rel="external">gitlab documentation</a></p>
+<h2 id="u9996_u5148_u4F7F_u7528dao_u52A0_u901F_u5668_u62C9_u53D6daocker_u955C_u50CF_uFF1A"><a href="#u9996_u5148_u4F7F_u7528dao_u52A0_u901F_u5668_u62C9_u53D6daocker_u955C_u50CF_uFF1A" class="headerlink" title="首先使用dao加速器拉取daocker镜像："></a>首先使用dao加速器拉取daocker镜像：</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dao pull gitlab/gitlab-ce</span><br></pre></td></tr></table></figure>
+<h1 id="u521B_u5EFAvolumes"><a href="#u521B_u5EFAvolumes" class="headerlink" title="创建volumes"></a>创建volumes</h1><p>简单来说volumes，就是可以映射到容器中去的容器外部存储空间。你可以将一些比价通用的配置文件，数据，或者是代码等都使用volumes的形式存储在容器所在的宿主机器上。这样不仅可以永久保留数据，保证数据的安全性。同时还可以方便的修改volumes中的内容，然后重新映射到容器中，这对于需要经常动态修改文件的容器非常有用。<br>在本次部署gitlab的时候，创建三个volumes，分别是/mnt/volumes/gitlab下的 config，logs，data目录。<br>启动一个gitlab容器</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker run --detach \&#10;    --hostname git.xiaohuruwei.com \&#10;    --publish 8443:443 --publish 8080:80 --publish 2222:22 \&#10;    --name gitlab \&#10;    --restart always \&#10;    --volume /mnt/volumes/gitlab/config:/etc/gitlab \&#10;    --volume /mnt/volumes/gitlab/logs:/var/log/gitlab \&#10;    --volume /mnt/volumes/gitlab/data:/var/opt/gitlab \&#10;    gitlab/gitlab-ce:latest</span><br></pre></td></tr></table></figure>
 <p>命令参数解释：</p>
-<p>--hostname
-指定容器中绑定的域名，会在创建镜像仓库的时候使用到，这里绑定git.xiaohuruwei.com</p>
-<p>--publish
-端口映射，冒号前面是宿主机端口，后面是容器expose出的端口</p>
-<p>--volume
-volume 映射，冒号前面是宿主机的一个文件路径，后面是容器中的文件路径</p>
-<h1>配置nginx，支持https</h1>
-<p>参考：<a href="https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/doc/settings/nginx.md#enable-https" target="_blank" rel="external">gitlab set nginx</a>
-nginx 配置文件</p>
+<p>–hostname<br>指定容器中绑定的域名，会在创建镜像仓库的时候使用到，这里绑定git.xiaohuruwei.com</p>
+<p>–publish<br>端口映射，冒号前面是宿主机端口，后面是容器expose出的端口</p>
+<p>–volume<br>volume 映射，冒号前面是宿主机的一个文件路径，后面是容器中的文件路径</p>
+<h1 id="u914D_u7F6Enginx_uFF0C_u652F_u6301https"><a href="#u914D_u7F6Enginx_uFF0C_u652F_u6301https" class="headerlink" title="配置nginx，支持https"></a>配置nginx，支持https</h1><p>参考：<a href="https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/doc/settings/nginx.md#enable-https" target="_blank" rel="external">gitlab set nginx</a><br>nginx 配置文件</p>
 <figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">server</span> &#123;</span><br><span class="line">    <span class="title">listen</span> <span class="number">80</span>;</span><br><span class="line">    <span class="title">server_name</span> git.xiaohuruwei.com;</span><br><span class="line">    <span class="title">access_log</span> /var/log/nginx/gitlab.xiaohuruwei.access.log;</span><br><span class="line">    <span class="title">error_log</span> /var/log/nginx/gitlab.xiaohuruwei.<span class="built_in">error</span>.log;</span><br><span class="line">    <span class="title">rewrite</span><span class="regexp"> ^</span> <span class="url">https://git.xiaohuruwei.com</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2>https proxy</h2>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">server</span> &#123;</span><br><span class="line">    <span class="title">listen</span>       <span class="number">443</span> ssl;</span><br><span class="line">    <span class="title">server_name</span>  git.xiaohuruwei.com;</span><br><span class="line">    <span class="title">access_log</span> /var/log/nginx/https-gitlab.xiaohuruwei.access.log;</span><br><span class="line">    <span class="title">error_log</span> /var/log/nginx/https-gitlab.xiaohuruwei.<span class="built_in">error</span>.log;</span><br><span class="line">    <span class="comment"># ssl 证书配置，这里使用的是自己生成的证书，在访问时会提示证书问题，选择相信即可。</span></span><br><span class="line">    <span class="comment"># 如果想要公认的证书，需要在网络上的一些授权中心生成</span></span><br><span class="line">    <span class="title">ssl</span> <span class="built_in">on</span>;</span><br><span class="line">    <span class="title">ssl_certificate</span> /etc/nginx/ssl/getbase.crt;</span><br><span class="line">    <span class="title">ssl_certificate_key</span> /etc/nginx/ssl/getbase_nopass.key;</span><br><span class="line">    <span class="title">location</span> / &#123;</span><br><span class="line">        <span class="title">proxy_set_header</span> Host <span class="variable">$host</span>;</span><br><span class="line">        <span class="title">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">        <span class="title">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">        <span class="title">proxy_pass</span> <span class="url">https://localhost:8443</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1>开放gitlab的https支持</h1>
-<p>仅仅由nginx反向代理https是不行的，因为还需要打开gitlab的https支持。</p>
+<h2 id="https_proxy"><a href="#https_proxy" class="headerlink" title="https proxy"></a>https proxy</h2><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">server</span> &#123;</span><br><span class="line">    <span class="title">listen</span>       <span class="number">443</span> ssl;</span><br><span class="line">    <span class="title">server_name</span>  git.xiaohuruwei.com;</span><br><span class="line">    <span class="title">access_log</span> /var/log/nginx/https-gitlab.xiaohuruwei.access.log;</span><br><span class="line">    <span class="title">error_log</span> /var/log/nginx/https-gitlab.xiaohuruwei.<span class="built_in">error</span>.log;</span><br><span class="line">    <span class="comment"># ssl 证书配置，这里使用的是自己生成的证书，在访问时会提示证书问题，选择相信即可。</span></span><br><span class="line">    <span class="comment"># 如果想要公认的证书，需要在网络上的一些授权中心生成</span></span><br><span class="line">    <span class="title">ssl</span> <span class="built_in">on</span>;</span><br><span class="line">    <span class="title">ssl_certificate</span> /etc/nginx/ssl/getbase.crt;</span><br><span class="line">    <span class="title">ssl_certificate_key</span> /etc/nginx/ssl/getbase_nopass.key;</span><br><span class="line">    <span class="title">location</span> / &#123;</span><br><span class="line">        <span class="title">proxy_set_header</span> Host <span class="variable">$host</span>;</span><br><span class="line">        <span class="title">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">        <span class="title">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">        <span class="title">proxy_pass</span> <span class="url">https://localhost:8443</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="u5F00_u653Egitlab_u7684https_u652F_u6301"><a href="#u5F00_u653Egitlab_u7684https_u652F_u6301" class="headerlink" title="开放gitlab的https支持"></a>开放gitlab的https支持</h1><p>仅仅由nginx反向代理https是不行的，因为还需要打开gitlab的https支持。</p>
 <ul>
 <li>修改配置文件，在/mnt/volumes/gitlab/config/ 目录下的gitlab.rb中添加：</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># note the &#39;https&#39; below&#10;external_url &#34;https://gitlab.example.com&#34;</span><br></pre></td></tr></table></figure>
 <ul>
-<li>
-<p>新建ssl目录，同时在该目录下添加ssl证书文件，命名要与上述域名中保持一致</p>
-<p>git.xiaohuruwei.com.crt
-git.xiaohuruwei.com.key</p>
+<li><p>新建ssl目录，同时在该目录下添加ssl证书文件，命名要与上述域名中保持一致</p>
+<p>git.xiaohuruwei.com.crt<br>git.xiaohuruwei.com.key</p>
 </li>
-<li>
-<p>重新启动容器</p>
-</li>
-</ul>
+<li><p>重新启动容器</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker restart gitlab</span><br></pre></td></tr></table></figure>
-<h1>访问gitlab测试</h1>
-<ul>
+</li>
+</ul>
+<h1 id="u8BBF_u95EEgitlab_u6D4B_u8BD5"><a href="#u8BBF_u95EEgitlab_u6D4B_u8BD5" class="headerlink" title="访问gitlab测试"></a>访问gitlab测试</h1><ul>
 <li>打开web界面，默认登录名为root，密码为5iveL!fe（已经改为厘米脚印的默认密码），新建一个project仓库:test</li>
-<li>因为ssl证书是自己生成的，并不具有全网通用性，因此只能先选择相信证书。在本地设置环境变量：</li>
-</ul>
+<li><p>因为ssl证书是自己生成的，并不具有全网通用性，因此只能先选择相信证书。在本地设置环境变量：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export GIT_SSL_NO_VERIFY=1</span><br></pre></td></tr></table></figure>
-<ul>
-<li>然后克隆仓库： git clone https://git.xiaohuruwei.com/root/test.git</li>
+</li>
+<li><p>然后克隆仓库： git clone <a href="https://git.xiaohuruwei.com/root/test.git" target="_blank" rel="external">https://git.xiaohuruwei.com/root/test.git</a></p>
+</li>
 </ul>
-<h1>开启邮件服务</h1>
-<p>默认的邮件服务不太好使，所以这里配置自己的邮件服务。参考官方<a href="https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/doc/settings/smtp.md#examples" target="_blank" rel="external">gitlab stmp文档</a>。</p>
-<p>使用163邮箱, 按照官方文档配置后，会发现发送邮件没有起作用。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gitlab_rails[&#39;smtp_enable&#39;] = true&#10;gitlab_rails[&#39;smtp_address&#39;] = &#34;smtp.163.com&#34;&#10;gitlab_rails[&#39;smtp_port&#39;] = 25&#10;gitlab_rails[&#39;smtp_user_name&#39;] = &#34;xiaohuruwei@163.com&#34;&#10;gitlab_rails[&#39;smtp_password&#39;] = &#34;xxxx&#34;&#10;gitlab_rails[&#39;smtp_domain&#39;] = &#34;163.com&#34;&#10;gitlab_rails[&#39;smtp_authentication&#39;] = &#34;login&#34;&#10;gitlab_rails[&#39;smtp_enable_starttls_auto&#39;] = true&#10;gitlab_rails[&#39;smtp_tls&#39;] = false&#10;gitlab_rails[&#39;smtp_openssl_verify_mode&#39;] = &#39;none&#39;</span><br></pre></td></tr></table></figure>
-<p>查看log时，由于log比较杂乱，没有发现问题，后来在ruby社区发现有人解决过同样的问题：
-<a href="https://ruby-china.org/topics/20450" target="_blank" rel="external">GitLab 配置通过 smtp.163.com 发送邮件</a>
-以及网易的官方解释：
-<a href="http://www.mail163.cn/fault/analysis/1109.html" target="_blank" rel="external">网易服务器smtp机器要求身份验证帐号和发信帐号必须一致，如果用户在发送邮件时，身份验证帐号和发件人帐号是不同的，因此拒绝发送。</a>
-所以又添加了两行配置后测试可以正常使用了：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gitlab_rails[&#39;gitlab_email_from&#39;] = &#34;xiaohuruwei@163.com&#34;&#10;user[&#39;git_user_email&#39;] = &#34;xiaohuruwei@163.com&#34;</span><br></pre></td></tr></table></figure>
-<h1>ssh方式访问</h1>
-<p>因为是使用docker部署的，通过ssh方式(比如git clone <a href="mailto:git@git.xiaohuruwei.com" target="_blank" rel="external">git@git.xiaohuruwei.com</a>)访问会有两层认证:</p>
+<h1 id="u5F00_u542F_u90AE_u4EF6_u670D_u52A1"><a href="#u5F00_u542F_u90AE_u4EF6_u670D_u52A1" class="headerlink" title="开启邮件服务"></a>开启邮件服务</h1><p>默认的邮件服务不太好使，所以这里配置自己的邮件服务。参考官方<a href="https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/doc/settings/smtp.md#examples" target="_blank" rel="external">gitlab stmp文档</a>。</p>
+<p>使用163邮箱, 按照官方文档配置后，会发现发送邮件没有起作用。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gitlab_rails[&#39;smtp_enable&#39;] = true&#10;gitlab_rails[&#39;smtp_address&#39;] = &#34;smtp.163.com&#34;&#10;gitlab_rails[&#39;smtp_port&#39;] = 25&#10;gitlab_rails[&#39;smtp_user_name&#39;] = &#34;xiaohuruwei@163.com&#34;&#10;gitlab_rails[&#39;smtp_password&#39;] = &#34;xxxx&#34;&#10;gitlab_rails[&#39;smtp_domain&#39;] = &#34;163.com&#34;&#10;gitlab_rails[&#39;smtp_authentication&#39;] = &#34;login&#34;&#10;gitlab_rails[&#39;smtp_enable_starttls_auto&#39;] = true&#10;gitlab_rails[&#39;smtp_tls&#39;] = false&#10;gitlab_rails[&#39;smtp_openssl_verify_mode&#39;] = &#39;none&#39;</span><br></pre></td></tr></table></figure></p>
+<p>查看log时，由于log比较杂乱，没有发现问题，后来在ruby社区发现有人解决过同样的问题：<br><a href="https://ruby-china.org/topics/20450" target="_blank" rel="external">GitLab 配置通过 smtp.163.com 发送邮件</a><br>以及网易的官方解释：<br><a href="http://www.mail163.cn/fault/analysis/1109.html" target="_blank" rel="external">网易服务器smtp机器要求身份验证帐号和发信帐号必须一致，如果用户在发送邮件时，身份验证帐号和发件人帐号是不同的，因此拒绝发送。</a><br>所以又添加了两行配置后测试可以正常使用了：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gitlab_rails[&#39;gitlab_email_from&#39;] = &#34;xiaohuruwei@163.com&#34;&#10;user[&#39;git_user_email&#39;] = &#34;xiaohuruwei@163.com&#34;</span><br></pre></td></tr></table></figure></p>
+<h1 id="ssh_u65B9_u5F0F_u8BBF_u95EE"><a href="#ssh_u65B9_u5F0F_u8BBF_u95EE" class="headerlink" title="ssh方式访问"></a>ssh方式访问</h1><p>因为是使用docker部署的，通过ssh方式(比如git clone <a href="mailto:git@git.xiaohuruwei.com" target="_blank" rel="external">git@git.xiaohuruwei.com</a>)访问会有两层认证:</p>
 <ul>
 <li>一层是freelancer服务器的认证</li>
 <li>另一层是gitlab的认证。</li>
 </ul>
-<p>后者需要使用ssh-key
-前者可能需要ssh本身的反向代理(现在使用的nginx不支持除http，https以外的反向代理)，</p>
-<p>现在发现使用端口转发的形式比较困难，但是可以改变默认的gitlab的ssh端口为非标准端口：
-直接修改gitlab配置文件中的变量：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gitlab_shell_ssh_port = 2222</span><br></pre></td></tr></table></figure>
-<p>然后重新启动docker容器，就可以在web界面中看到相应的ssh地址发生了改变:
-ssh://<a href="mailto:git@git.xiaohuruwei.com" target="_blank" rel="external">git@git.xiaohuruwei.com</a>:2222/root/test.git  然后就直接可以继续使用git clone来继续操作了</p>
-<h1>关于ssl证书参考：</h1>
-<p><a href="http://www.guokr.com/post/116169/" target="_blank" rel="external">https那些事，ssl证书</a></p>
+<p>后者需要使用ssh-key<br>前者可能需要ssh本身的反向代理(现在使用的nginx不支持除http，https以外的反向代理)，</p>
+<p>现在发现使用端口转发的形式比较困难，但是可以改变默认的gitlab的ssh端口为非标准端口：<br>直接修改gitlab配置文件中的变量：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gitlab_shell_ssh_port = 2222</span><br></pre></td></tr></table></figure></p>
+<p> 然后重新启动docker容器，就可以在web界面中看到相应的ssh地址发生了改变:<br>ssh://<a href="mailto:git@git.xiaohuruwei.com" target="_blank" rel="external">git@git.xiaohuruwei.com</a>:2222/root/test.git  然后就直接可以继续使用git clone来继续操作了</p>
+<h1 id="u5173_u4E8Essl_u8BC1_u4E66_u53C2_u8003_uFF1A"><a href="#u5173_u4E8Essl_u8BC1_u4E66_u53C2_u8003_uFF1A" class="headerlink" title="关于ssl证书参考："></a>关于ssl证书参考：</h1><p><a href="http://www.guokr.com/post/116169/" target="_blank" rel="external">https那些事，ssl证书</a></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -256,7 +218,7 @@ ssh://<a href="mailto:git@git.xiaohuruwei.com" target="_blank" rel="external">gi
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">拉取镜像及启动容器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.1.</span> <span class="toc-text">首先使用dao加速器拉取daocker镜像：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">创建volumes</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">配置nginx，支持https</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.1.</span> <span class="toc-text">https proxy</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">开放gitlab的https支持</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#undefined"><span class="toc-number">5.</span> <span class="toc-text">访问gitlab测试</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#undefined"><span class="toc-number">6.</span> <span class="toc-text">开启邮件服务</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#undefined"><span class="toc-number">7.</span> <span class="toc-text">ssh方式访问</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#undefined"><span class="toc-number">8.</span> <span class="toc-text">关于ssl证书参考：</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#u62C9_u53D6_u955C_u50CF_u53CA_u542F_u52A8_u5BB9_u5668"><span class="toc-number">1.</span> <span class="toc-text">拉取镜像及启动容器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u9996_u5148_u4F7F_u7528dao_u52A0_u901F_u5668_u62C9_u53D6daocker_u955C_u50CF_uFF1A"><span class="toc-number">1.1.</span> <span class="toc-text">首先使用dao加速器拉取daocker镜像：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u521B_u5EFAvolumes"><span class="toc-number">2.</span> <span class="toc-text">创建volumes</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u914D_u7F6Enginx_uFF0C_u652F_u6301https"><span class="toc-number">3.</span> <span class="toc-text">配置nginx，支持https</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#https_proxy"><span class="toc-number">3.1.</span> <span class="toc-text">https proxy</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u5F00_u653Egitlab_u7684https_u652F_u6301"><span class="toc-number">4.</span> <span class="toc-text">开放gitlab的https支持</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u8BBF_u95EEgitlab_u6D4B_u8BD5"><span class="toc-number">5.</span> <span class="toc-text">访问gitlab测试</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u5F00_u542F_u90AE_u4EF6_u670D_u52A1"><span class="toc-number">6.</span> <span class="toc-text">开启邮件服务</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ssh_u65B9_u5F0F_u8BBF_u95EE"><span class="toc-number">7.</span> <span class="toc-text">ssh方式访问</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u5173_u4E8Essl_u8BC1_u4E66_u53C2_u8003_uFF1A"><span class="toc-number">8.</span> <span class="toc-text">关于ssl证书参考：</span></a></li></ol>
  
   </div>
 

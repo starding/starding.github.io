@@ -11,23 +11,20 @@
     
 
     
-    <meta name="description" content="orm并非万能
-从功能集上讲，django的orm只是sql的一个子集。也就是说很多使用sql能实现的功能，django orm是无法完成的，更不用说sql甚至是图灵完备的了。比如，直到1.8中，django才逐渐实现了case，when，if这些控制流。而这些内容在一些特殊类型的表操作中非常常见，比如说报表管理。
-好在django提供了使用原生sql的接口，这样就能通过原生sql来实现一些复杂的">
+    <meta name="description" content="orm并非万能从功能集上讲，django的orm只是sql的一个子集。也就是说很多使用sql能实现的功能，django orm是无法完成的，更不用说sql甚至是图灵完备的了。比如，直到1.8中，django才逐渐实现了case，when，if这些控制流。而这些内容在一些特殊类型的表操作中非常常见，比如说报表管理。
+好在django提供了使用原生sql的接口，这样就能通过原生sql来实现一些复杂的功">
 <meta property="og:type" content="article">
 <meta property="og:title" content="django中使用原生sql">
 <meta property="og:url" content="http://starding.github.io/2016/01/07/raw-sql-in-django/index.html">
 <meta property="og:site_name" content="小狐濡尾">
-<meta property="og:description" content="orm并非万能
-从功能集上讲，django的orm只是sql的一个子集。也就是说很多使用sql能实现的功能，django orm是无法完成的，更不用说sql甚至是图灵完备的了。比如，直到1.8中，django才逐渐实现了case，when，if这些控制流。而这些内容在一些特殊类型的表操作中非常常见，比如说报表管理。
-好在django提供了使用原生sql的接口，这样就能通过原生sql来实现一些复杂的">
+<meta property="og:description" content="orm并非万能从功能集上讲，django的orm只是sql的一个子集。也就是说很多使用sql能实现的功能，django orm是无法完成的，更不用说sql甚至是图灵完备的了。比如，直到1.8中，django才逐渐实现了case，when，if这些控制流。而这些内容在一些特殊类型的表操作中非常常见，比如说报表管理。
+好在django提供了使用原生sql的接口，这样就能通过原生sql来实现一些复杂的功">
 <meta property="og:image" content="http://7xpxcb.com1.z0.glb.clouddn.com/starding48482-ddc55e26121f44aa.png">
 <meta property="og:updated_time" content="2016-01-08T11:33:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="django中使用原生sql">
-<meta name="twitter:description" content="orm并非万能
-从功能集上讲，django的orm只是sql的一个子集。也就是说很多使用sql能实现的功能，django orm是无法完成的，更不用说sql甚至是图灵完备的了。比如，直到1.8中，django才逐渐实现了case，when，if这些控制流。而这些内容在一些特殊类型的表操作中非常常见，比如说报表管理。
-好在django提供了使用原生sql的接口，这样就能通过原生sql来实现一些复杂的">
+<meta name="twitter:description" content="orm并非万能从功能集上讲，django的orm只是sql的一个子集。也就是说很多使用sql能实现的功能，django orm是无法完成的，更不用说sql甚至是图灵完备的了。比如，直到1.8中，django才逐渐实现了case，when，if这些控制流。而这些内容在一些特殊类型的表操作中非常常见，比如说报表管理。
+好在django提供了使用原生sql的接口，这样就能通过原生sql来实现一些复杂的功">
 
     
     <link rel="alternative" href="/atom.xml" title="小狐濡尾" type="application/atom+xml">
@@ -105,15 +102,13 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">orm并非万能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">sql控制流之CASE WHEN一个例子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">在上述基础上实现链式查询</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#orm_u5E76_u975E_u4E07_u80FD"><span class="toc-number">1.</span> <span class="toc-text">orm并非万能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sql_u63A7_u5236_u6D41_u4E4BCASE_WHEN_u4E00_u4E2A_u4F8B_u5B50"><span class="toc-number">2.</span> <span class="toc-text">sql控制流之CASE WHEN一个例子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5728_u4E0A_u8FF0_u57FA_u7840_u4E0A_u5B9E_u73B0_u94FE_u5F0F_u67E5_u8BE2"><span class="toc-number">3.</span> <span class="toc-text">在上述基础上实现链式查询</span></a></li></ol>
 		
 		</div>
 		
-		<h2>orm并非万能</h2>
-<p>从功能集上讲，django的orm只是sql的一个子集。也就是说很多使用sql能实现的功能，django orm是无法完成的，更不用说sql甚至是图灵完备的了。比如，直到1.8中，django才逐渐实现了case，when，if这些控制流。而这些内容在一些特殊类型的表操作中非常常见，比如说报表管理。</p>
+		<h2 id="orm_u5E76_u975E_u4E07_u80FD"><a href="#orm_u5E76_u975E_u4E07_u80FD" class="headerlink" title="orm并非万能"></a>orm并非万能</h2><p>从功能集上讲，django的orm只是sql的一个子集。也就是说很多使用sql能实现的功能，django orm是无法完成的，更不用说sql甚至是图灵完备的了。比如，直到1.8中，django才逐渐实现了case，when，if这些控制流。而这些内容在一些特殊类型的表操作中非常常见，比如说报表管理。</p>
 <p>好在django提供了使用原生sql的接口，这样就能通过原生sql来实现一些复杂的功能。</p>
-<h2>sql控制流之CASE WHEN一个例子</h2>
-<p>现有一张档案信息表archives：</p>
+<h2 id="sql_u63A7_u5236_u6D41_u4E4BCASE_WHEN_u4E00_u4E2A_u4F8B_u5B50"><a href="#sql_u63A7_u5236_u6D41_u4E4BCASE_WHEN_u4E00_u4E2A_u4F8B_u5B50" class="headerlink" title="sql控制流之CASE WHEN一个例子"></a>sql控制流之CASE WHEN一个例子</h2><p>现有一张档案信息表archives：</p>
 <p><img src="http://7xpxcb.com1.z0.glb.clouddn.com/starding48482-ddc55e26121f44aa.png" alt="mysql-demo"></p>
 <p>字段说明：</p>
 <ul>
@@ -127,10 +122,8 @@
 <p>当然，使用编程语言也可以实现这个功能，但是会比较复杂。这个时候可以使用case when语句来精确控制表中同一字段下，不同内容的选择。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">SELECT</span> </span><br><span class="line">      <span class="keyword">COUNT</span>(<span class="keyword">CASE</span> <span class="keyword">WHEN</span> <span class="keyword">status</span>=<span class="string">'01'</span> <span class="keyword">THEN</span> <span class="keyword">status</span> <span class="keyword">END</span>) status_01,</span><br><span class="line">      <span class="keyword">COUNT</span>(*) total,</span><br><span class="line">      <span class="keyword">CONCAT</span>(<span class="keyword">FORMAT</span>(<span class="keyword">COUNT</span>(<span class="keyword">CASE</span> <span class="keyword">WHEN</span> <span class="keyword">status</span>=<span class="string">'01'</span> <span class="keyword">THEN</span> <span class="keyword">status</span> <span class="keyword">END</span>)/</span><br><span class="line">      <span class="keyword">COUNT</span>(*)*<span class="number">100</span>, <span class="number">2</span>), <span class="string">'%'</span>)</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">      archives</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span></span><br><span class="line">      <span class="keyword">status</span>, subbranch_company</span></span><br></pre></td></tr></table></figure>
 <p>这样就可以解决上面提出的问题，因为这个表是临时杜撰的，结果这里就不贴了。</p>
-<h2>在上述基础上实现链式查询</h2>
-<p>在django的orm中，一个非常好用的功能就是使用链式查询，你可以不断连接filter等方法来过滤出想要的内容。</p>
-<p>这在一些特定的场景中特别有用。比如在上面的表中，我有时候想要某个分公司或中支公司下的数据，有时候又想要单一类型下的数据。如果针对每一种条件组合分别写相应地sql查询的话，会非常复杂，而且有时候组合会特别多。而链式查询比较完美的解决了这个问题。
-而为了让原生sql也能有个简单的链式查询，我们需要不断连接where中的条件子句。为此可以写一个简单的类来实现它：</p>
+<h2 id="u5728_u4E0A_u8FF0_u57FA_u7840_u4E0A_u5B9E_u73B0_u94FE_u5F0F_u67E5_u8BE2"><a href="#u5728_u4E0A_u8FF0_u57FA_u7840_u4E0A_u5B9E_u73B0_u94FE_u5F0F_u67E5_u8BE2" class="headerlink" title="在上述基础上实现链式查询"></a>在上述基础上实现链式查询</h2><p>在django的orm中，一个非常好用的功能就是使用链式查询，你可以不断连接filter等方法来过滤出想要的内容。</p>
+<p>这在一些特定的场景中特别有用。比如在上面的表中，我有时候想要某个分公司或中支公司下的数据，有时候又想要单一类型下的数据。如果针对每一种条件组合分别写相应地sql查询的话，会非常复杂，而且有时候组合会特别多。而链式查询比较完美的解决了这个问题。<br>而为了让原生sql也能有个简单的链式查询，我们需要不断连接where中的条件子句。为此可以写一个简单的类来实现它：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GenQuerySQL</span><span class="params">(object)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, table)</span>:</span></span><br><span class="line">        self.table = table</span><br><span class="line">        self.group_by_fields = <span class="string">" "</span></span><br><span class="line">        self.where_conditions = <span class="string">" 1=1 "</span></span><br><span class="line">        self.fields = <span class="string">" "</span></span><br><span class="line">        self.order_by_fields = <span class="string">""</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">where</span><span class="params">(self, where_condition)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> where_condition:</span><br><span class="line">            self.where_conditions += <span class="string">" and "</span> + where_condition</span><br><span class="line">        <span class="keyword">return</span> self</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">add_field</span><span class="params">(self, fields)</span>:</span></span><br><span class="line">        self.fields += <span class="string">" "</span> + fields</span><br><span class="line">        <span class="keyword">return</span> self</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">group_by</span><span class="params">(self, group_by_field)</span>:</span></span><br><span class="line">        self.group_by_fields = group_by_field</span><br><span class="line">        <span class="keyword">return</span> self</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">order_by</span><span class="params">(self, order_by_field)</span>:</span></span><br><span class="line">        self.order_by_fields = order_by_field</span><br><span class="line">        <span class="keyword">return</span> self</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">sql</span><span class="params">(self)</span>:</span></span><br><span class="line">       SQL = <span class="string">'SELECT '</span> + self.fields + <span class="string">' FROM '</span> + self.table + <span class="string">' WHERE '</span> + self.where_conditions + <span class="string">' GROUP BY '</span> + self.group_by_fields + <span class="string">' ORDER BY '</span> + self.order_by_fields +  <span class="string">";"</span></span><br><span class="line">       <span class="keyword">return</span> SQL</span><br></pre></td></tr></table></figure>
 <p>这个类可以简单的模拟链式查询的功能，可以这样使用它：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">archive_statistics = GenQuerySQL(SOME_TABLE)</span><br><span class="line">raw_sql = archive_statistics.add_field(fields).where(where_condition).group_by(group_by_fields).order_by(order_by_fields).sql()</span><br></pre></td></tr></table></figure>
@@ -201,7 +194,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">orm并非万能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">sql控制流之CASE WHEN一个例子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">在上述基础上实现链式查询</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#orm_u5E76_u975E_u4E07_u80FD"><span class="toc-number">1.</span> <span class="toc-text">orm并非万能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sql_u63A7_u5236_u6D41_u4E4BCASE_WHEN_u4E00_u4E2A_u4F8B_u5B50"><span class="toc-number">2.</span> <span class="toc-text">sql控制流之CASE WHEN一个例子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5728_u4E0A_u8FF0_u57FA_u7840_u4E0A_u5B9E_u73B0_u94FE_u5F0F_u67E5_u8BE2"><span class="toc-number">3.</span> <span class="toc-text">在上述基础上实现链式查询</span></a></li></ol>
  
   </div>
 
