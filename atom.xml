@@ -4,7 +4,7 @@
   <subtitle><![CDATA[未济]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://starding.github.io/"/>
-  <updated>2016-01-12T07:44:17.000Z</updated>
+  <updated>2016-01-15T03:58:15.000Z</updated>
   <id>http://starding.github.io/</id>
   
   <author>
@@ -13,6 +13,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[vim学习]]></title>
+    <link href="http://starding.github.io/2016/01/14/learn-vim/"/>
+    <id>http://starding.github.io/2016/01/14/learn-vim/</id>
+    <published>2016-01-14T15:21:24.000Z</published>
+    <updated>2016-01-15T03:58:15.000Z</updated>
+    <content type="html"><![CDATA[<p>记录用到的一些vim使用方法，积累够一定数量再整理</p>
+<h2>使用场景1</h2>
+<p>有一次，我需要在一个包含很多行短文字的后面补上的空格，将每一行补成相同的宽度。然后接下来在markdown中制作表格.</p>
+<p>刚开始使用各种列编辑，块编辑尝试都没有用。难道必须写一个程序来专门处理这件事情？</p>
+<p>后来发现正则表达式基本能满足这一要求：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%s/$/ n_spaces /g</span><br></pre></td></tr></table></figure>
+<p>在vim中，$符有丰富的含义，这里值指的是行尾前一个字符</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>记录用到的一些vim使用方法，积累够一定数量再整理</p>
+<h2>使用场景1</h2>
+<p>有一次，我需要在一个包含很多行短文字的后面补上的空格，将每一行补成相同的宽度。然后接下来在markdown中制作表格.</p>
+<p>刚开始使用各种列编辑，块编辑尝试都没有用。难]]>
+    </summary>
+    
+      <category term="vim" scheme="http://starding.github.io/tags/vim/"/>
+    
+      <category term="vim" scheme="http://starding.github.io/categories/vim/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[从快播案看技术中性论的地位]]></title>
@@ -575,7 +602,7 @@ ssh://<a href="mailto:git@git.xiaohuruwei.com" target="_blank" rel="external">gi
     <link href="http://starding.github.io/2016/01/07/daocloud-deploy/"/>
     <id>http://starding.github.io/2016/01/07/daocloud-deploy/</id>
     <published>2016-01-07T07:24:25.000Z</published>
-    <updated>2016-01-13T04:22:12.000Z</updated>
+    <updated>2016-01-15T06:51:05.000Z</updated>
     <content type="html"><![CDATA[<h1>写在前面的话</h1>
 <p>来自维基百科的：<a href="https://zh.wikipedia.org/wiki/%E8%B4%A7%E7%89%A9%E5%B4%87%E6%8B%9C%E7%BC%96%E7%A8%8B" target="_blank" rel="external">货殖崇拜编程</a></p>
 <p>为因GFW屏蔽访问不了维基百科的同学准备的：</p>
@@ -687,7 +714,7 @@ ssh://<a href="mailto:git@git.xiaohuruwei.com" target="_blank" rel="external">gi
 <h3>通过环境变量来连接服务</h3>
 <p>在使用docker部署项目，当需要连接外部的服务时，一般通过link + 环境变量的参数进行。而为了支持环境变量的形式，我们的django应用也要做一些相应的改变。具体就是修改settings.py中的配置。</p>
 <p>修改settings.py文件，以mysql为例：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 原来的mysql配置文件</span></span><br><span class="line"><span class="comment">#DATABASES = &#123;</span></span><br><span class="line"><span class="comment">#    'default': &#123;</span></span><br><span class="line"><span class="comment">#        'ENGINE': 'django.db.backends.mysql',</span></span><br><span class="line"><span class="comment">#        'NAME': 'starding_taikang',</span></span><br><span class="line"><span class="comment">#        'USER': 'root',</span></span><br><span class="line"><span class="comment">#        'PASSWORD': 'nameLR9969',</span></span><br><span class="line"><span class="comment">#        'HOST': 'localhost',</span></span><br><span class="line"><span class="comment">#        'PORT': '3306'</span></span><br><span class="line"><span class="comment">#    &#125;</span></span><br><span class="line"><span class="comment">#&#125;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 通过获取环境变量的形式来获取服务</span></span><br><span class="line"><span class="keyword">import</span> os  <span class="comment"># 导入os库</span></span><br><span class="line">mysql_name = os.environ.get(<span class="string">'MYSQL_INSTANCE_NAME'</span>) <span class="keyword">or</span> <span class="string">"taikang"</span>  <span class="comment"># 获取数据库名称</span></span><br><span class="line">mysql_user = os.environ.get(<span class="string">'MYSQL_USERNAME'</span>) <span class="keyword">or</span> <span class="string">"root"</span>  <span class="comment"># 获取mysql用户名</span></span><br><span class="line">mysql_password = os.environ.get(<span class="string">'MYSQL_PASSWORD'</span>) <span class="keyword">or</span> <span class="string">"your_password"</span>  <span class="comment"># 获取密码</span></span><br><span class="line">mysql_host = os.environ.get(<span class="string">'MYSQL_ADDR'</span>) <span class="keyword">or</span> <span class="string">"127.0.0.1"</span>  <span class="comment"># 获取服务地址</span></span><br><span class="line">mysql_port = <span class="string">"3306"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 直接使用上面的变量代替字符串</span></span><br><span class="line">DATABASES = &#123;</span><br><span class="line">   <span class="string">'default'</span>: &#123;</span><br><span class="line">       <span class="string">'ENGINE'</span>: <span class="string">'django.db.backends.mysql'</span>,</span><br><span class="line">       <span class="string">'NAME'</span>: mysql_name,</span><br><span class="line">       <span class="string">'USER'</span>: mysql_user,</span><br><span class="line">       <span class="string">'PASSWORD'</span>: mysql_password,</span><br><span class="line">       <span class="string">'HOST'</span>: mysql_host,</span><br><span class="line">       <span class="string">'PORT'</span>: mysql_port</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 原来的mysql配置文件</span></span><br><span class="line"><span class="comment">#DATABASES = &#123;</span></span><br><span class="line"><span class="comment">#    'default': &#123;</span></span><br><span class="line"><span class="comment">#        'ENGINE': 'django.db.backends.mysql',</span></span><br><span class="line"><span class="comment">#        'NAME': 'starding_taikang',</span></span><br><span class="line"><span class="comment">#        'USER': 'root',</span></span><br><span class="line"><span class="comment">#        'PASSWORD': 'your_password_here',</span></span><br><span class="line"><span class="comment">#        'HOST': 'localhost',</span></span><br><span class="line"><span class="comment">#        'PORT': '3306'</span></span><br><span class="line"><span class="comment">#    &#125;</span></span><br><span class="line"><span class="comment">#&#125;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 通过获取环境变量的形式来获取服务</span></span><br><span class="line"><span class="keyword">import</span> os  <span class="comment"># 导入os库</span></span><br><span class="line">mysql_name = os.environ.get(<span class="string">'MYSQL_INSTANCE_NAME'</span>) <span class="keyword">or</span> <span class="string">"taikang"</span>  <span class="comment"># 获取数据库名称</span></span><br><span class="line">mysql_user = os.environ.get(<span class="string">'MYSQL_USERNAME'</span>) <span class="keyword">or</span> <span class="string">"root"</span>  <span class="comment"># 获取mysql用户名</span></span><br><span class="line">mysql_password = os.environ.get(<span class="string">'MYSQL_PASSWORD'</span>) <span class="keyword">or</span> <span class="string">"your_password"</span>  <span class="comment"># 获取密码</span></span><br><span class="line">mysql_host = os.environ.get(<span class="string">'MYSQL_ADDR'</span>) <span class="keyword">or</span> <span class="string">"127.0.0.1"</span>  <span class="comment"># 获取服务地址</span></span><br><span class="line">mysql_port = <span class="string">"3306"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 直接使用上面的变量代替字符串</span></span><br><span class="line">DATABASES = &#123;</span><br><span class="line">   <span class="string">'default'</span>: &#123;</span><br><span class="line">       <span class="string">'ENGINE'</span>: <span class="string">'django.db.backends.mysql'</span>,</span><br><span class="line">       <span class="string">'NAME'</span>: mysql_name,</span><br><span class="line">       <span class="string">'USER'</span>: mysql_user,</span><br><span class="line">       <span class="string">'PASSWORD'</span>: mysql_password,</span><br><span class="line">       <span class="string">'HOST'</span>: mysql_host,</span><br><span class="line">       <span class="string">'PORT'</span>: mysql_port</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2>使用daocloud部署构建好的taikang项目</h2>
 <p>步骤基本同html5部署，假设你完成镜像构建之后，产生的镜像地址为：<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#19979;&#19968;&#27493;&#22312;&#20351;&#29992;&#38236;&#20687;&#37096;&#32626;&#30340;&#26102;&#20505;&#65292;&#38656;&#35201;&#36830;&#25509;&#22806;&#37096;&#26381;&#21153;&#65292;&#20855;&#20307;&#26159;&#25163;&#21160;&#32534;&#36753;yaml&#25991;&#20214;&#12290;&#10;&#10;```yaml&#10;takang_test:&#10;  image: daocloud.io/xiaohuruwei/taking:latest&#10;  restart: always&#10;  external_links:&#10;  - mysql1:mysql&#9;  # &#21069;&#38754;&#30340;mysql1&#26159;&#20320;&#20027;&#26426;&#19978;&#24050;&#32463;&#23384;&#22312;&#30340;mysql&#30340;&#23481;&#22120;&#23454;&#20363;&#65292;&#20882;&#21495;&#21518;&#38754;&#26159;&#21035;&#21517;&#10;  ports:&#10;  - &#39;8000&#39;&#10;  environment:    # &#29615;&#22659;&#21464;&#37327;    &#10;  - MYSQL_ADDR=mysql</span><br></pre></td></tr></table></figure></p>
 <p>但是我发现这种方法似乎有一些bug，如果上面的方法不成功，那么你就先直接部署，部署成功之后，再去修改yaml文件成为上面描述的样子。在修改yaml文件的时候，daocloud会提示重新部署，选择确定即可。</p>
