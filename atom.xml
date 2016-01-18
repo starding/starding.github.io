@@ -4,7 +4,7 @@
   <subtitle><![CDATA[未济]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://starding.github.io/"/>
-  <updated>2016-01-18T09:00:30.000Z</updated>
+  <updated>2016-01-18T16:20:22.000Z</updated>
   <id>http://starding.github.io/</id>
   
   <author>
@@ -13,6 +13,81 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[javascript犀牛书（第六版）学习笔记]]></title>
+    <link href="http://starding.github.io/2016/01/19/learn-javascript-follow-definitive-guide/"/>
+    <id>http://starding.github.io/2016/01/19/learn-javascript-follow-definitive-guide/</id>
+    <published>2016-01-18T16:14:52.000Z</published>
+    <updated>2016-01-18T16:20:22.000Z</updated>
+    <content type="html"><![CDATA[<p>记录一些学习javascript中，比较重要或是比较容易混乱的地方。不断更新，直到看完。</p>
+<p>2016-1-15 更新到try-except-finally语句</p>
+<h2 id="u53D8_u91CF"><a href="#u53D8_u91CF" class="headerlink" title="变量"></a>变量</h2><h3 id="u53D8_u91CF_u53CA_u53D8_u91CF_u7C7B_u578B"><a href="#u53D8_u91CF_u53CA_u53D8_u91CF_u7C7B_u578B" class="headerlink" title="变量及变量类型"></a>变量及变量类型</h3><p>javascript中的变量本身没有类型，给一个变量赋值时，其实是这个变量引用了这个值。这根python中是一致的。</p>
+<p>他们都区别于C语言等固定类型的变量，在C语言中，当声明一个变量时，需要指定它的类型，这个变量其实就是一个固定大小的空间，直接用于存放变量的值。数组也是一样，一个数组只能存储同样类型的值，C语言需要根据类型决定如何分配内存大小，比如int是4个字节。</p>
+<p>而javascript和Python中，无需声明变量类型。变量只是对数据的引用，而类型是数据本身决定的，这个变量引用了什么类型，这个变量就是什么类型。</p>
+<h3 id="u53D8_u91CF_u58F0_u660E"><a href="#u53D8_u91CF_u58F0_u660E" class="headerlink" title="变量声明"></a>变量声明</h3><ul>
+<li>声明提前<ul>
+<li>指的是var声明变量时，会提前到其所在作用域的顶部</li>
+</ul>
+</li>
+<li>可配置性<ul>
+<li>全局变量是全局对象的属性，但局部变量没有此规定</li>
+<li>var声明的全局变量是不可配置的，无法通过delete运算符删除</li>
+</ul>
+</li>
+</ul>
+<h2 id="u6570_u636E_u7C7B_u578B"><a href="#u6570_u636E_u7C7B_u578B" class="headerlink" title="数据类型"></a>数据类型</h2><p>javascript中的数据类型分为两类:</p>
+<h3 id="u539F_u59CB_u7C7B_u578B"><a href="#u539F_u59CB_u7C7B_u578B" class="headerlink" title="原始类型"></a>原始类型</h3><ul>
+<li><p>原始类型 primitive type（5种）</p>
+<ul>
+<li>数字</li>
+<li>字符串</li>
+<li>布尔值</li>
+<li>null</li>
+<li>undefined</li>
+</ul>
+</li>
+<li><p>原始类型不是对象，但你可能会见过 APrimitiveType.method的调用形式，这是因为数字，字符串，布尔值存在「包装对象」这个概念。也就是说，档使用上面的.运算时，javascript会自动调用 new String(s) | new Number(s) | new Boolean(s) 的方式将这三种基本类型临时转换为对象，并继承相应类型的方法。</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//一个经典的例子</span></span><br><span class="line"><span class="keyword">var</span> s = <span class="string">"test"</span>;</span><br><span class="line">s.len = <span class="number">4</span>;  <span class="comment">//因为点运算，这里会临时建立一个string对象，但是随即又销毁了</span></span><br><span class="line"><span class="keyword">var</span> t = s.len; <span class="comment">//这里也会创建一个string对象，但是已经不是上面那个了，故undefined</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>null和undefined没有包装对象</p>
+</li>
+<li><p>可以使用构造函数显式地构造包装对象。</p>
+</li>
+</ul>
+<h3 id="u5BF9_u8C61_u7C7B_u578B"><a href="#u5BF9_u8C61_u7C7B_u578B" class="headerlink" title="对象类型"></a>对象类型</h3><ul>
+<li>对象类型（object）（除了5种原始类型的数据类型，都是对象类型）<ul>
+<li>普通对象（名值对对象）</li>
+<li>数组</li>
+<li>函数<ul>
+<li>javascript可以将function对象当做普通对象对待</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="u8868_u8FBE_u5F0F_u548C_u8FD0_u7B97_u7B26"><a href="#u8868_u8FBE_u5F0F_u548C_u8FD0_u7B97_u7B26" class="headerlink" title="表达式和运算符"></a>表达式和运算符</h2><h3 id="eval"><a href="#eval" class="headerlink" title="eval"></a>eval</h3><p>eval()实际上是个函数，但它早已被当成运算符看待。ECMAscript会尽量约束eval()的表现，使其看起来像个表达式。</p>
+<p>这是因为如果将eval当做普通的函数对待，不做任何限制的话，会有很多缺点。一是因为eval()会动态的执行代码段，破坏原来的代码结构，解释器难以优化。二是因为如果eval是普通的函数，那么它就可以被赋值给其他的变量名，比如g = eval, 这样导致任何使用g的地方，也会产生上述问题，导致javascript的代码优化变得困难，性能堪忧。</p>
+<p>综上所述，如果eval的表现行为像一个运算符的话，就不会有上述这么严重的问题，所以在ECMAscript语法中，不断的约束它，让他的表现更接近为运算符。</p>
+<h2 id="u8BED_u53E5"><a href="#u8BED_u53E5" class="headerlink" title="语句"></a>语句</h2><h3 id="u6807_u7B7E_u8BED_u53E5"><a href="#u6807_u7B7E_u8BED_u53E5" class="headerlink" title="标签语句"></a>标签语句</h3><p>主要用于配合continue和break使用，来实现更灵活一些的跳转。</p>
+<h3 id="throw/try/catch/finally"><a href="#throw/try/catch/finally" class="headerlink" title="throw/try/catch/finally"></a>throw/try/catch/finally</h3><p>之前写过一篇<a href="http://starding.github.io/2016/01/10/traps-in-python/">那些年我在python中扑过的街</a>，在其中提到过python中，try/except/finally中容易进的坑。</p>
+<p>这个坑在javascript中也是同样的，就像那篇文章里说的那样，因为finally的设计目的就是无论如何都会执行，那么一旦finally中出现了跳转语句，其他语句中的返回内容就会被忽略。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">finallyTest</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> x = <span class="string">'catch'</span>, y = <span class="string">'except'</span>, z = <span class="string">'finally'</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        k = x + y;</span><br><span class="line">        a = b;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"here is try------------"</span>);</span><br><span class="line">    &#125; <span class="keyword">catch</span>(e) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"here is catch----------"</span>);</span><br><span class="line">        <span class="keyword">return</span> x;</span><br><span class="line">    &#125; <span class="keyword">finally</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"here is finally---------"</span>);</span><br><span class="line">        <span class="keyword">return</span> z;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//执行</span></span><br><span class="line">finallyTest()</span><br><span class="line"></span><br><span class="line"><span class="comment">//返回值</span></span><br><span class="line">here is <span class="keyword">catch</span>----------</span><br><span class="line">here is <span class="keyword">finally</span>---------</span><br><span class="line"><span class="string">'finally'</span></span><br></pre></td></tr></table></figure>]]></content>
+    <summary type="html">
+    <![CDATA[<p>记录一些学习javascript中，比较重要或是比较容易混乱的地方。不断更新，直到看完。</p>
+<p>2016-1-15 更新到try-except-finally语句</p>
+<h2 id="u53D8_u91CF"><a href="#u53D8_u91CF" cla]]>
+    </summary>
+    
+      <category term="javascript" scheme="http://starding.github.io/tags/javascript/"/>
+    
+      <category term="前端" scheme="http://starding.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="javascript" scheme="http://starding.github.io/categories/javascript/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[docker-gitlab数据迁移]]></title>
