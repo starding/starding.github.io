@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="小狐濡尾">
 <meta property="og:description" content="docker的filesystem坑前两天服务器出现了些问题，于是就重启了。没想到重启之后gitlab就跪了，启动时总是遇到一类比较底层的filesystem unkown错误，其报错细节不止一种。想来是底层的文件系统出了问题。
 第一反应是先把gitlab的volumes备份了一下，然后直接删掉现有的gitlab容器，重开容器，没想到这个错误一直存在（删的时候没有选择-v），最后甚至把镜像都删掉了">
-<meta property="og:updated_time" content="2016-01-18T08:57:36.000Z">
+<meta property="og:updated_time" content="2016-01-18T09:00:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="docker-gitlab数据迁移">
 <meta name="twitter:description" content="docker的filesystem坑前两天服务器出现了些问题，于是就重启了。没想到重启之后gitlab就跪了，启动时总是遇到一类比较底层的filesystem unkown错误，其报错细节不止一种。想来是底层的文件系统出了问题。
@@ -111,6 +111,7 @@
 <p>这个底层错误，stackoverflow或github上给出的解决办法是：关掉docker，删除/var/lib/docker中的所有内容，然后重启gilab。我觉得可能是另一个神坑，没敢往里跳。于是选择慢慢研究这个问题，先在另外一台服务器上重新部署一下gitlab。</p>
 <p>这个时候只需要把数据迁移过去就行了。</p>
 <h1 id="gitlab_u6570_u636E_u8FC1_u79FB"><a href="#gitlab_u6570_u636E_u8FC1_u79FB" class="headerlink" title="gitlab数据迁移"></a>gitlab数据迁移</h1><p>原以为迁移会很简单，没想到也有不少坑等着跳。直接把volumes文件拷贝到新服务器上，按照原来的方法挂载，启动，首先发现是redis啥啥没有权限。于是google了一番，把权限都改了，然后发现出了一个<a href="https://gitlab.com/gitlab-org/gitlab-ce/commit/ff98c631c1004247656677568989e5ed68fc88f3" target="_blank" rel="external">unfoudmethod错误</a>。发现是数据库没有migrate的原因。</p>
+<p>另外还有一个隐藏的坑就是，gitlab的版本问题。这种服务应用，尽量不要使用latest作为版本号，不然出了事情，还得去找自己使用的究竟是什么版本，如果找不到…准备拼人品吧。</p>
 <p>感觉这么一个一个坑的跳，太二了，直到我发现了这篇教程，原来已经有人把坑都填好了：<a href="https://cmanios.wordpress.com/2015/12/04/migrate-a-gitlab-docker-container-from-version-8-0-4-to-8-2-0/" target="_blank" rel="external">Migrate a Gitlab Docker container from version 8.0.4 to 8.2.0
 </a></p>
 <p>附录：下面是原文（有时间了考虑翻译一下）<br>-</p>
