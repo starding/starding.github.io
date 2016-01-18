@@ -14,8 +14,7 @@
     <meta name="description" content="前事不忘，后事之师。       ——《战国策·赵策一》
 
 python中的包导入这个比较简单，一个例子带过吧，但刚开始确实扑街了…
-文件结构：
-123456789101112packages├── __init__.py└── my_module.py# 这种是包导入import packages# 后续是从__init__.py中定义的属性中获取的packages.some_module.so">
+12345678910111213#文件结构：packages├── __init__.py└── my_module.py# 这种是包导入import packages# 后续是从__init__.py中定义的属性中获取的packages.some_module.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="那些年我在python中扑过的街">
 <meta property="og:url" content="http://starding.github.io/2016/01/10/traps-in-python/index.html">
@@ -23,16 +22,14 @@ python中的包导入这个比较简单，一个例子带过吧，但刚开始�
 <meta property="og:description" content="前事不忘，后事之师。       ——《战国策·赵策一》
 
 python中的包导入这个比较简单，一个例子带过吧，但刚开始确实扑街了…
-文件结构：
-123456789101112packages├── __init__.py└── my_module.py# 这种是包导入import packages# 后续是从__init__.py中定义的属性中获取的packages.some_module.so">
-<meta property="og:updated_time" content="2016-01-18T12:00:11.000Z">
+12345678910111213#文件结构：packages├── __init__.py└── my_module.py# 这种是包导入import packages# 后续是从__init__.py中定义的属性中获取的packages.some_module.">
+<meta property="og:updated_time" content="2016-01-18T12:03:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="那些年我在python中扑过的街">
 <meta name="twitter:description" content="前事不忘，后事之师。       ——《战国策·赵策一》
 
 python中的包导入这个比较简单，一个例子带过吧，但刚开始确实扑街了…
-文件结构：
-123456789101112packages├── __init__.py└── my_module.py# 这种是包导入import packages# 后续是从__init__.py中定义的属性中获取的packages.some_module.so">
+12345678910111213#文件结构：packages├── __init__.py└── my_module.py# 这种是包导入import packages# 后续是从__init__.py中定义的属性中获取的packages.some_module.">
 
     
     <link rel="alternative" href="/atom.xml" title="小狐濡尾" type="application/atom+xml">
@@ -118,8 +115,7 @@ python中的包导入这个比较简单，一个例子带过吧，但刚开始�
 <p>前事不忘，后事之师。       ——《战国策·赵策一》</p>
 </blockquote>
 <h2 id="python_u4E2D_u7684_u5305_u5BFC_u5165"><a href="#python_u4E2D_u7684_u5305_u5BFC_u5165" class="headerlink" title="python中的包导入"></a>python中的包导入</h2><p>这个比较简单，一个例子带过吧，但刚开始确实扑街了…</p>
-<p>文件结构：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">packages</span><br><span class="line">├── __init__.py</span><br><span class="line">└── my_module.py</span><br><span class="line"></span><br><span class="line"><span class="comment"># 这种是包导入</span></span><br><span class="line"><span class="keyword">import</span> packages</span><br><span class="line"><span class="comment"># 后续是从__init__.py中定义的属性中获取的</span></span><br><span class="line">packages.some_module.some_method</span><br><span class="line"></span><br><span class="line"><span class="comment"># 这种是把包当做搜索路径上的一环</span></span><br><span class="line"><span class="keyword">from</span> packages <span class="keyword">import</span> some_module</span><br><span class="line">some_module.some_method</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#文件结构：</span></span><br><span class="line">packages</span><br><span class="line">├── __init__.py</span><br><span class="line">└── my_module.py</span><br><span class="line"></span><br><span class="line"><span class="comment"># 这种是包导入</span></span><br><span class="line"><span class="keyword">import</span> packages</span><br><span class="line"><span class="comment"># 后续是从__init__.py中定义的属性中获取的</span></span><br><span class="line">packages.some_module.some_method</span><br><span class="line"></span><br><span class="line"><span class="comment"># 这种是把包当做搜索路径上的一环</span></span><br><span class="line"><span class="keyword">from</span> packages <span class="keyword">import</span> some_module</span><br><span class="line">some_module.some_method</span><br></pre></td></tr></table></figure>
 <h2 id="try-except-finally_u4E2D_u8BED_u53E5_u6267_u884C_u987A_u5E8F"><a href="#try-except-finally_u4E2D_u8BED_u53E5_u6267_u884C_u987A_u5E8F" class="headerlink" title="try-except-finally中语句执行顺序"></a>try-except-finally中语句执行顺序</h2><p>在python的异常处理中，无论try语句中是否有异常抛出，finally语句总会被执行。由于这个特性，finally语句经常被用来做一些清理工作，例如关闭文件，数据库等等。</p>
 <p>如果当try-except-finally中出现异常，并且未被妥善处理时，python会先把发生的异常暂存，当finally中的动作执行完毕之后，把保存的异常返回给上级。try-except-finally中的语句执行顺序，决定了它会有一些潜在的陷阱。</p>
 <p>看以下例子：</p>
