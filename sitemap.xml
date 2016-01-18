@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://starding.github.io/2016/01/10/traps-in-python/</loc>
+    <lastmod>2016-01-18T11:58:26.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://starding.github.io/2016/01/18/gitlab-migrate/</loc>
     <lastmod>2016-01-18T09:00:30.000Z</lastmod>
   </url>
@@ -39,11 +44,6 @@
   <url>
     <loc>http://starding.github.io/2016/01/07/three-body-walking-dead-Darwin/</loc>
     <lastmod>2016-01-12T03:20:34.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://starding.github.io/2016/01/10/traps-in-python/</loc>
-    <lastmod>2016-01-10T13:51:48.000Z</lastmod>
   </url>
   
   <url>

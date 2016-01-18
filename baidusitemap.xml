@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://starding.github.io/2016/01/10/traps-in-python/</loc>
+    <lastmod>2016-01-18T11:58:26.000Z</lastmod>
+    <data>
+        <display>
+        <title>那些年我在python中扑过的街</title>
+        <pubTime>2016-01-10T11:22:10.000Z</pubTime>
+        
+        <tag>python</tag>
+         
+         
+           
+             
+              <breadCrumb title="python" url="http://starding.github.io/categories/python/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://starding.github.io/2016/01/18/gitlab-migrate/</loc>
     <lastmod>2016-01-18T09:00:30.000Z</lastmod>
     <data>
@@ -165,26 +185,6 @@
            
              
               <breadCrumb title="随笔" url="http://starding.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://starding.github.io/2016/01/10/traps-in-python/</loc>
-    <lastmod>2016-01-10T13:51:48.000Z</lastmod>
-    <data>
-        <display>
-        <title>那些年我在python中扑过的街</title>
-        <pubTime>2016-01-10T11:22:10.000Z</pubTime>
-        
-        <tag>python</tag>
-         
-         
-           
-             
-              <breadCrumb title="python" url="http://starding.github.io/categories/python/"/>
           
         </display>
     </data>
