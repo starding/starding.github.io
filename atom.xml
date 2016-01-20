@@ -200,7 +200,7 @@
     <link href="http://starding.github.io/2016/01/15/python-iterator-generator/"/>
     <id>http://starding.github.io/2016/01/15/python-iterator-generator/</id>
     <published>2016-01-15T14:59:16.000Z</published>
-    <updated>2016-01-20T03:42:40.000Z</updated>
+    <updated>2016-01-20T05:46:52.000Z</updated>
     <content type="html"><![CDATA[<p>简单整理一下吧，毕竟输出才是检验自己水平更好的方法。而且感觉网上很多文章都不是很靠谱，很明显甚至连官方文档都没有看，就只根据经验就直接写文章来总结了，很容易误导人。</p>
 <h2 id="Iterator_Types"><a href="#Iterator_Types" class="headerlink" title="Iterator Types"></a>Iterator Types</h2><p>迭代器类型</p>
 <h3 id="u5148_u770Bpython2-7_u5B98_u65B9_u6587_u6863_u4E2D_u5173_u4E8E_u8FED_u4EE3_u7684_u90E8_u5206_uFF1A"><a href="#u5148_u770Bpython2-7_u5B98_u65B9_u6587_u6863_u4E2D_u5173_u4E8E_u8FED_u4EE3_u7684_u90E8_u5206_uFF1A" class="headerlink" title="先看python2.7官方文档中关于迭代的部分："></a>先看python2.7官方文档中关于迭代的部分：</h3><p>在阅读之前，需要明确几个词的含义：</p>
@@ -245,7 +245,17 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">for_stmt ::=  <span class="string">"for"</span> target_list <span class="string">"in"</span> expression_list <span class="string">":"</span> suite </span><br><span class="line">              [<span class="string">"else"</span> <span class="string">":"</span> suite]</span><br></pre></td></tr></table></figure>
 <p>The expression list is evaluated once; it should yield an iterable object. An iterator is created for the result of the expression_list. The suite is then executed once for each item provided by the iterator, in the order of ascending indices. Each item in turn is assigned to the target list using the standard rules for assignments, and then the suite is executed. When the items are exhausted (which is immediately when the sequence is empty), the suite in the else clause, if present, is executed, and the loop terminates.</p>
 </blockquote>
-<h2 id="Generator_Types"><a href="#Generator_Types" class="headerlink" title="Generator Types"></a>Generator Types</h2><p>待续</p>
+<h2 id="Generator_Types"><a href="#Generator_Types" class="headerlink" title="Generator Types"></a>Generator Types</h2><p>生成器类型</p>
+<h3 id="u5B98_u65B9_u6587_u6863_u7684_u5B9A_u4E49_uFF1A"><a href="#u5B98_u65B9_u6587_u6863_u7684_u5B9A_u4E49_uFF1A" class="headerlink" title="官方文档的定义："></a>官方文档的定义：</h3><blockquote>
+<p>Python’s generators provide a convenient way to implement the iterator protocol. If a container object’s <code>__iter__()</code> method is implemented as a generator, it will automatically return an iterator object (technically, a generator object) supplying the <code>__iter__()</code> and <code>next()</code> methods. More information about generators can be found in the documentation for the yield expression.</p>
+<p>python 的生成器提供了应用迭代器协议的便捷方式。如果一个容器对象的<code>__iter__()</code>方法被用于生成器，它会自动地返回一个迭代器对象（技术上讲，是一个生成器对象），并且提供<code>__iter__()</code> 和<code>next()</code>方法。</p>
+</blockquote>
+<h3 id="u6982_u5FF5_u8FA8_u6790-1"><a href="#u6982_u5FF5_u8FA8_u6790-1" class="headerlink" title="概念辨析"></a>概念辨析</h3><p>上述内容的意思是，生成器对象不过是一种应用迭代器协议的快捷方式。平时我们需要一个自定义的迭代器<br>时，需要手动的去实现需要的<code>__iter__()</code>和<code>next()</code>方法，但是使用生成器对象的话，可以自动返回一个支持迭代协议的迭代器。而创建一个生成器，只需要在函数中使用yield表达式就可以了，这样会创建一个生成器函数，当它被调用时，会返回一个迭代器（通常被叫做生成器），它会控制生成器函数的执行。</p>
+<blockquote>
+<p>The yield expression is only used when defining a generator function, and can only be used in the body of a function definition. Using a yield expression in a function definition is sufficient to cause that definition to create a generator function instead of a normal function.</p>
+<p>When a generator function is called, it returns an iterator known as a generator. That generator then controls the execution of a generator function. The execution starts when one of the generator’s methods is called. At that time, the execution proceeds to the first yield expression, where it is suspended again, returning the value of expression_list to generator’s caller. By suspended we mean that all local state is retained, including the current bindings of local variables, the instruction pointer, and the internal evaluation stack. When the execution is resumed by calling one of the generator’s methods, the function can proceed exactly as if the yield expression was just another external call. The value of the yield expression after resuming depends on the method which resumed the execution.</p>
+<p>All of this makes generator functions quite similar to coroutines; they yield multiple times, they have more than one entry point and their execution can be suspended. The only difference is that a generator function cannot control where should the execution continue after it yields; the control is always transferred to the generator’s caller</p>
+</blockquote>
 ]]></content>
     <summary type="html">
     <![CDATA[<p>简单整理一下吧，毕竟输出才是检验自己水平更好的方法。而且感觉网上很多文章都不是很靠谱，很明显甚至连官方文档都没有看，就只根据经验就直接写文章来总结了，很容易误导人。</p>
