@@ -31,7 +31,7 @@ Iterator Types迭代器类型
 「iteration」 迭代
 「iterable」 可迭代的
 「contain">
-<meta property="og:updated_time" content="2016-01-20T03:24:59.000Z">
+<meta property="og:updated_time" content="2016-01-20T03:42:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python中的装饰器和迭代器">
 <meta name="twitter:description" content="简单整理一下吧，毕竟输出才是检验自己水平更好的方法。而且感觉网上很多文章都不是很靠谱，很明显甚至连官方文档都没有看，就只根据经验就直接写文章来总结了，很容易误导人。
@@ -119,7 +119,7 @@ Iterator Types迭代器类型
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Iterator_Types"><span class="toc-number">1.</span> <span class="toc-text">Iterator Types</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u5148_u770Bpython2-7_u5B98_u65B9_u6587_u6863_u4E2D_u5173_u4E8E_u8FED_u4EE3_u7684_u90E8_u5206_uFF1A"><span class="toc-number">1.1.</span> <span class="toc-text">先看python2.7官方文档中关于迭代的部分：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u6982_u5FF5_u8FA8_u6790"><span class="toc-number">1.2.</span> <span class="toc-text">概念辨析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Generator_Types"><span class="toc-number">2.</span> <span class="toc-text">Generator Types</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Iterator_Types"><span class="toc-number">1.</span> <span class="toc-text">Iterator Types</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u5148_u770Bpython2-7_u5B98_u65B9_u6587_u6863_u4E2D_u5173_u4E8E_u8FED_u4EE3_u7684_u90E8_u5206_uFF1A"><span class="toc-number">1.1.</span> <span class="toc-text">先看python2.7官方文档中关于迭代的部分：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u6982_u5FF5_u8FA8_u6790"><span class="toc-number">1.2.</span> <span class="toc-text">概念辨析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#The_for_statement"><span class="toc-number">1.2.1.</span> <span class="toc-text">The for statement</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Generator_Types"><span class="toc-number">2.</span> <span class="toc-text">Generator Types</span></a></li></ol>
 		
 		</div>
 		
@@ -138,15 +138,15 @@ Iterator Types迭代器类型
 <p>python提供一种基于容器对象（container）的迭代概念。并且使用了两个特的方法来实现这一概念；这些方法允许自定义的类支持迭代。符合下面详细描述的序列（sequences），都将支持迭代方法。</p>
 <p>One method needs to be defined for container objects to provide iteration support:</p>
 <p>第一个在容器对象中定义的方法用于支持迭代（iteration）</p>
-<p><strong>container.<strong>iter</strong>()</strong></p>
+<p><strong><code>container.__iter__()</code></strong></p>
 <p>Return an iterator object. The object is required to support the iterator protocol described below. If a container supports different types of iteration, additional methods can be provided to specifically request iterators for those iteration types. (An example of an object supporting multiple forms of iteration would be a tree structure which supports both breadth-first and depth-first traversal.) This method corresponds to the tp_iter slot of the type structure for Python objects in the Python/C API.</p>
 <p>返回一个迭代器对象（iterator object）。这个对象需要支持下面描述的迭代器协议（iterator protocal）。如果一个容器对象需要支持不同类型的迭代方式，也可以往容器对象中添加更多的方法来支持那些迭代方式。（一个对象支持多种跌打方式的例子是同时支持深度优先遍历和广度优先遍历的树结构）</p>
 <p>The iterator objects themselves are required to support the following two methods, which together form the iterator protocol:</p>
 <p>迭代器本身也需要支持下面的两个方法，『这两个方法一起构成了迭代器协议』</p>
-<p><strong>iterator.<strong>iter</strong>()</strong></p>
+<p><strong><code>iterator.__iter__()</code></strong></p>
 <p>Return the iterator object itself. This is required to allow both containers and iterators to be used with the for and in statements. This method corresponds to the tp_iter slot of the type structure for Python objects in the Python/C API.</p>
 <p>返回迭代器对象自身。如果在for语句以及in语句中，使用容器对象和迭代器对象的话，那么它们都需要拥有此方法。</p>
-<p><strong>iterator.next()</strong></p>
+<p><strong><code>iterator.next()</code></strong></p>
 <p>Return the next item from the container. If there are no further items, raise the StopIteration exception. This method corresponds to the tp_iternext slot of the type structure for Python objects in the Python/C API.</p>
 <p>返回容器中的下一个元素。如果没有下一个元素，则产生一个StopIteration异常。</p>
 <p>Python defines several iterator objects to support iteration over general and specific sequence types, dictionaries, and other more specialized forms. The specific types are not important beyond their implementation of the iterator protocol.</p>
@@ -156,9 +156,15 @@ Iterator Types迭代器类型
 </blockquote>
 <h3 id="u6982_u5FF5_u8FA8_u6790"><a href="#u6982_u5FF5_u8FA8_u6790" class="headerlink" title="概念辨析"></a>概念辨析</h3><p>上面大致就是python2.7中关于迭代的核心内容，整理一下就是：</p>
 <ul>
-<li>对于容器对象（container）来说，要支持迭代的话，需要在容器内部实现一个<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* &#23545;&#20110;&#36845;&#20195;&#22120;&#26469;&#35828;&#65292;&#23427;&#20063;&#38656;&#35201;&#19968;&#20010;```__iter__()```&#26041;&#27861;&#65292;&#29992;&#20110;&#36820;&#22238;&#36825;&#20010;&#36845;&#20195;&#22120;&#33258;&#36523;&#12290;&#21516;&#26102;&#38656;&#35201;&#19968;&#20010;```next()```&#26041;&#27861;&#65292;&#26469;&#36820;&#22238;&#19979;&#19968;&#20010;&#20803;&#32032;&#12290;&#36845;&#20195;&#22120;&#26412;&#36523;&#24403;&#28982;&#26159;&#12300;&#21487;&#36845;&#20195;&#30340;&#12301;&#12290;&#36845;&#20195;&#22120;&#30340;&#36825;&#20004;&#20010;&#26041;&#27861;&#65292;&#21512;&#22312;&#19968;&#36215;&#65292;&#21483;&#20570;&#12300;&#36845;&#20195;&#22120;&#21327;&#35758;&#12301;&#12290;&#10;&#10;&#22312;for&#65292;in&#35821;&#21477;&#20013;&#65292;&#26080;&#35770;&#26159;&#20351;&#29992;&#23481;&#22120;&#23545;&#35937;&#65288;&#22914;&#21015;&#34920;&#65289;&#65292;&#36824;&#26159;&#36845;&#20195;&#22120;&#23545;&#35937;&#65292;&#23427;&#20204;&#20869;&#37096;&#37117;&#38656;&#35201;&#25903;&#25345;```__iter__()```&#26041;&#27861;&#12290;&#23545;&#20110;&#23481;&#22120;&#23545;&#35937;&#26469;&#35828;&#36825;&#20010;&#26041;&#27861;&#20250;&#36820;&#22238;&#19968;&#20010;&#36845;&#20195;&#22120;&#65292;&#23545;&#20110;&#36845;&#20195;&#22120;&#23545;&#35937;&#26469;&#35828;&#65292;&#36825;&#20010;&#26041;&#27861;&#20250;&#36820;&#22238;&#33258;&#36523;&#12290;&#28982;&#21518;&#29992;&#20110;&#36845;&#20195;, &#25442;&#21477;&#35805;&#35828;&#65292;&#21363;&#20351;&#26159;&#23481;&#22120;&#23545;&#35937;&#65292;&#20063;&#26159;&#20808;&#36716;&#25442;&#20026;&#36845;&#20195;&#22120;&#23545;&#35937;&#20877;&#36827;&#34892;&#36845;&#20195;&#30340;&#12290;&#36825;&#22312;python&#30340;&#25991;&#26723;&#20013;&#20063;&#26377;&#35828;&#26126;&#65306;&#10;&#10;#### The for statement&#10;&#10;&#62; The for statement is used to iterate over the elements of a sequence (such as a string, tuple or list) or other iterable object:&#10;&#10; &#10;&#62; ```python&#10;&#62; for_stmt ::=  &#34;for&#34; target_list &#34;in&#34; expression_list &#34;:&#34; suite &#10;&#62;               [&#34;else&#34; &#34;:&#34; suite]&#10;&#62;</span><br></pre></td></tr></table></figure></li>
+<li><p>对于容器对象（container）来说，要支持迭代的话，需要在容器内部实现一个<code>__iter__()</code>方法。这个方法返回一个「迭代器对象」（iterator）。如果一个容器实现了这个方法，那么我们称这个容器是「可迭代的」（iterable）。</p>
+</li>
+<li><p>对于迭代器来说，它也需要一个<code>__iter__()</code>方法，用于返回这个迭代器自身。同时需要一个<code>next()</code>方法，来返回下一个元素。迭代器本身当然是「可迭代的」。迭代器的这两个方法，合在一起，叫做「迭代器协议」。</p>
+</li>
 </ul>
-<blockquote>
+<p>在for，in语句中，无论是使用容器对象（如列表），还是迭代器对象，它们内部都需要支持<code>__iter__()</code>方法。对于容器对象来说这个方法会返回一个迭代器，对于迭代器对象来说，这个方法会返回自身。然后用于迭代, 换句话说，即使是容器对象，也是先转换为迭代器对象再进行迭代的。这在python的文档中也有说明：</p>
+<h4 id="The_for_statement"><a href="#The_for_statement" class="headerlink" title="The for statement"></a>The for statement</h4><blockquote>
+<p>The for statement is used to iterate over the elements of a sequence (such as a string, tuple or list) or other iterable object:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">for_stmt ::=  <span class="string">"for"</span> target_list <span class="string">"in"</span> expression_list <span class="string">":"</span> suite </span><br><span class="line">              [<span class="string">"else"</span> <span class="string">":"</span> suite]</span><br></pre></td></tr></table></figure>
 <p>The expression list is evaluated once; it should yield an iterable object. An iterator is created for the result of the expression_list. The suite is then executed once for each item provided by the iterator, in the order of ascending indices. Each item in turn is assigned to the target list using the standard rules for assignments, and then the suite is executed. When the items are exhausted (which is immediately when the sequence is empty), the suite in the else clause, if present, is executed, and the loop terminates.</p>
 </blockquote>
 <h2 id="Generator_Types"><a href="#Generator_Types" class="headerlink" title="Generator Types"></a>Generator Types</h2><p>待续</p>
@@ -228,7 +234,7 @@ Iterator Types迭代器类型
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Iterator_Types"><span class="toc-number">1.</span> <span class="toc-text">Iterator Types</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u5148_u770Bpython2-7_u5B98_u65B9_u6587_u6863_u4E2D_u5173_u4E8E_u8FED_u4EE3_u7684_u90E8_u5206_uFF1A"><span class="toc-number">1.1.</span> <span class="toc-text">先看python2.7官方文档中关于迭代的部分：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u6982_u5FF5_u8FA8_u6790"><span class="toc-number">1.2.</span> <span class="toc-text">概念辨析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Generator_Types"><span class="toc-number">2.</span> <span class="toc-text">Generator Types</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Iterator_Types"><span class="toc-number">1.</span> <span class="toc-text">Iterator Types</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u5148_u770Bpython2-7_u5B98_u65B9_u6587_u6863_u4E2D_u5173_u4E8E_u8FED_u4EE3_u7684_u90E8_u5206_uFF1A"><span class="toc-number">1.1.</span> <span class="toc-text">先看python2.7官方文档中关于迭代的部分：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u6982_u5FF5_u8FA8_u6790"><span class="toc-number">1.2.</span> <span class="toc-text">概念辨析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#The_for_statement"><span class="toc-number">1.2.1.</span> <span class="toc-text">The for statement</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Generator_Types"><span class="toc-number">2.</span> <span class="toc-text">Generator Types</span></a></li></ol>
  
   </div>
 
