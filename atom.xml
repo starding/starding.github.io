@@ -850,7 +850,7 @@
     <link href="http://starding.github.io/2016/01/07/docker-a-metaphor/"/>
     <id>http://starding.github.io/2016/01/07/docker-a-metaphor/</id>
     <published>2016-01-07T05:44:42.000Z</published>
-    <updated>2016-01-07T07:00:54.000Z</updated>
+    <updated>2016-01-21T08:14:39.000Z</updated>
     <content type="html"><![CDATA[<h2 id="u4EC0_u4E48_u662Fdocker"><a href="#u4EC0_u4E48_u662Fdocker" class="headerlink" title="什么是docker"></a>什么是docker</h2><p>首先来看维基百科的定义：</p>
 <blockquote>
 <p>Docker is an open-source project that automates the deployment of applications inside software containers, by providing an additional layer of abstraction and automation of operating-system-level virtualization on Linux. Docker uses the resource isolation features of the Linux kernel such as cgroups and kernel namespaces, and a union-capable filesystem such as aufs and others to allow independent “containers” to run within a single Linux instance, avoiding the overhead of starting and maintaining virtual machines.</p>
@@ -863,11 +863,11 @@
 <p>这些形象的隐喻描述了软件领域总各种特定的现象和事物，像这样生动活泼的隐喻还能够描述更加广泛的现象。借助这些隐喻，我们能更深刻的理解软件开发的过程。</p>
 </blockquote>
 <p>同样，要快速理解docker，抓出核心思想，隐喻是非常重要的</p>
-<h3 id="u5B57_u9762_u610F_u601D_uFF1Adocker_u2014_u2014_u7801_u5934_u5DE5_u4EBA_u3002"><a href="#u5B57_u9762_u610F_u601D_uFF1Adocker_u2014_u2014_u7801_u5934_u5DE5_u4EBA_u3002" class="headerlink" title="字面意思：docker——码头工人。"></a>字面意思：docker——码头工人。</h3><p>docker的名称本身就带有隐喻的性质：在海洋物流中，一个非常重要的发明就是集装箱。</p>
+<h3 id="u5B57_u9762_u610F_u601D_uFF1Adocker_u2014_u2014_u7801_u5934_u5DE5_u4EBA_u3002"><a href="#u5B57_u9762_u610F_u601D_uFF1Adocker_u2014_u2014_u7801_u5934_u5DE5_u4EBA_u3002" class="headerlink" title="字面意思：docker——码头工人。"></a>字面意思：docker——码头工人。</h3><p>docker的名称本身就带有隐喻的性质：在全球物流系统中，一个非常重要的发明就是集装箱。</p>
 <p>集装箱重要在哪里？为了理解这件事情，可以先考察一下集装箱出现之前的物流情况：货物生产出来之后，装箱，然后一箱一箱的搬到卡车上，然后再一箱一箱卸下来，送上火车，运送到码头附近的火车站，再一箱一箱卸下来，装上卡车，拉到货轮上，一箱一箱的装上去….</p>
 <p>可以发现，大量的时间，人力 ，物力全部浪费在了中间的装卸上，在物流里面，货物真正在路上的时间是一定的，在交通技术得到改善之前，也很难去缩短。于是货物的装卸这部分时间，就成了物流中的瓶颈，而这个局面在集装箱出现之后，得到了很大的改善。</p>
-<p>集装箱重要在它提供了一种通用的封装货物的标准规格（说白了指的就是它的尺寸，外形是符合一定标准的），这样就产生了一个优点，在物流运输中，只需要在运输前一次封装，集装箱就可以放上火车，卡车，拉到码头，直接放在货船上，卸船之后直接再放上火车，卡车，运送到目的地。而且，集装箱本身的标准，使得它非常容易机械化操作，这样就节省了大量的人力物力。</p>
-<h3 id="docker_uFF08_u7801_u5934_u5DE5_u4EBA_uFF09_u6B63_u662F_u501F_u7528_u4E86_u96C6_u88C5_u7BB1_u7684_u9690_u55BB"><a href="#docker_uFF08_u7801_u5934_u5DE5_u4EBA_uFF09_u6B63_u662F_u501F_u7528_u4E86_u96C6_u88C5_u7BB1_u7684_u9690_u55BB" class="headerlink" title="docker（码头工人）正是借用了集装箱的隐喻"></a>docker（码头工人）正是借用了集装箱的隐喻</h3><p>docker就像往集装箱里装货物的码头工人那样，它把应用打包成具有某种标准规格的集装箱，用计算机领域的语言来说，这种按照一定规格封装的集装箱叫「镜像」。其实就是将你原来的代码添加点内容，格式啥的，整出来的一个静态的应用。而且就像光盘镜像只能由特定的解析光盘镜像格式的软件来解析一样，这个镜像也只能由docker来解析。</p>
+<p>集装箱重要在它提供了一种通用的封装货物的标准规格（说白了指的就是它的尺寸，外形是符合一定标准的），这样就产生了一个巨大的优点：在物流运输中，只需要在运输前一次封装，集装箱就可以放上火车，卡车，拉到码头，直接放在货船上，卸船之后直接再放上火车，卡车，运送到目的地。而且，集装箱本身的标准，使得它非常容易机械化操作，这也引发了以集装箱为中心的整个全球物流的标准化进程，从而节省了大量的时间资源和人力资源，促进了全球资源的流动与重新配置。</p>
+<h3 id="docker_uFF08_u7801_u5934_u5DE5_u4EBA_uFF09_u6B63_u662F_u501F_u7528_u4E86_u96C6_u88C5_u7BB1_u7684_u9690_u55BB"><a href="#docker_uFF08_u7801_u5934_u5DE5_u4EBA_uFF09_u6B63_u662F_u501F_u7528_u4E86_u96C6_u88C5_u7BB1_u7684_u9690_u55BB" class="headerlink" title="docker（码头工人）正是借用了集装箱的隐喻"></a>docker（码头工人）正是借用了集装箱的隐喻</h3><p>docker就像往集装箱里装货物的码头工人那样，它把应用打包成具有某种标准规格的集装箱，用计算机领域的语言来说，这种按照一定规格封装的集装箱叫「镜像」。其实就是将你原来的代码添加点额外的内容，格式啥的，整出来的一个静态的应用。而且就像光盘镜像只能由特定的解析光盘镜像格式的软件来解析一样，这个镜像也只能由docker来解析。</p>
 <p>集装箱减少了货物的运输工作量，那docker镜像又有什么相似的优势呢？首先可以看看docker出现之前的应用部署是啥样的。</p>
 <h4 id="u5728docker_u51FA_u73B0_u4E4B_u524D_uFF0C_u6BD4_u5982_u8BF4_u6211_u8981_u90E8_u7F72_u4E00_u4E2Adjango_u5E94_u7528_uFF0C_u8981_u505A_u54EA_u4E9B_u4E8B_u60C5_3A"><a href="#u5728docker_u51FA_u73B0_u4E4B_u524D_uFF0C_u6BD4_u5982_u8BF4_u6211_u8981_u90E8_u7F72_u4E00_u4E2Adjango_u5E94_u7528_uFF0C_u8981_u505A_u54EA_u4E9B_u4E8B_u60C5_3A" class="headerlink" title="在docker出现之前，比如说我要部署一个django应用，要做哪些事情:"></a>在docker出现之前，比如说我要部署一个django应用，要做哪些事情:</h4><ul>
 <li><p>首先我得有个python环境，比如我用的是python3，而你机器上是python2，那ok，先装个python3吧，一看装起来还挺麻烦，要先装各种依赖，还要解决一些可能的冲突，没办法硬着头皮上吧。</p>
@@ -880,13 +880,30 @@
 </li>
 </ul>
 <p>上面的描述可能有些夸张，但也绝不是罕有发生。在docker出现之前，这些正是运维人员很多时候都在做的事情，在不断的重复工作上，浪费了巨大的人力物力。</p>
-<h4 id="docker_u51FA_u73B0_u4E4B_u540E"><a href="#docker_u51FA_u73B0_u4E4B_u540E" class="headerlink" title="docker出现之后"></a>docker出现之后</h4><p>docker正是在部署过程中，将上面那些重复的部分，封装在Docker镜像里，由docker自动化完成。只需要在第一次部署时，构建完毕一个可用的docker镜像。然后在以后使用的过程中，短短的几行命令，就可以直接拉取镜像，根据这个镜像创建出一个容器，把服务跑起来了。</p>
-<p>所需要的仅仅是安装了docker的服务器，一个Dockerfile文件，以及比较流畅的网络而已。</p>
+<h4 id="docker_u51FA_u73B0_u4E4B_u540E"><a href="#docker_u51FA_u73B0_u4E4B_u540E" class="headerlink" title="docker出现之后"></a>docker出现之后</h4><h5 id="u6807_u51C6_u7684_u4EA4_u4ED8_u4EF6"><a href="#u6807_u51C6_u7684_u4EA4_u4ED8_u4EF6" class="headerlink" title="标准的交付件"></a>标准的交付件</h5><p>到这里梳理一下镜像的概念，笼统地说，镜像分为两种：</p>
+<ul>
+<li>一种简单的称之为基础独立镜像吧。它一般是一个独立的服务，最独立的服务镜像，莫过于各种精简的操作系统了。它们被封装在镜像中，作为最基础的服务，基本上所有镜像都离不开它。但是对于我们这些普通应用开发者来说，一般不会直接使用这种镜像。</li>
+</ul>
+<p>如果要使用这种镜像，我们的Dockerfile一般类似于下面这样：</p>
+<figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 基础的操作系统</span></span><br><span class="line"><span class="built_in">From</span> ubuntu:latest</span><br><span class="line"></span><br><span class="line"><span class="comment"># 构建其他需要的其他服务，以及我们自己的代码</span></span><br><span class="line"><span class="built_in">RUN</span> <span class="bash">apt-get install mysql</span><br><span class="line"></span></span><br><span class="line"><span class="built_in">COPY</span> <span class="bash">.  /src/</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>另一种，姑且称之为组合镜像。它建立在一个独立镜像的基础上，在上面组合了其他服务，比如python服务，或是mysql之类的服务。作为比较顶层的应用开发者，我们一般会直接使用这种组合好后的服务镜像。</li>
+</ul>
+<p>Dockerfile则类似于这样：</p>
+<figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 基础python服务</span></span><br><span class="line"><span class="built_in">From</span> python:<span class="number">2.7</span>.<span class="number">10</span> </span><br><span class="line"></span><br><span class="line"><span class="comment"># 我们自己的代码</span></span><br><span class="line"><span class="built_in">RUN</span> <span class="bash">apt-get install mysql</span><br><span class="line"></span></span><br><span class="line"><span class="built_in">COPY</span> <span class="bash">.  /src/</span></span><br></pre></td></tr></table></figure>
+<p>其实像上面的python服务，其本身也是建立在一个基础的操作系统之上的。如果我们查看dockerhub上的python的Dockerfile，就可以明确这一点：</p>
+<figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">FROM</span> buildpack-deps:jessie    <span class="comment"># jessie就是一个精简的debian操作系统</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># remove several traces of debian python</span></span><br><span class="line"><span class="built_in">RUN</span> <span class="bash">apt-get purge -y python.*</span></span><br></pre></td></tr></table></figure>
+<p>而我们自己构建的镜像，也可以称之为一种组合镜像。我们一般使用Dockerfile将自己的应用代码，加上上面的某些具体的服务镜像（比如python）再组合起来，就可以构建我们自己的应用了。</p>
+<p>docker正是在部署过程中，将上面那些重复的部分，由docker自动化完成。只需要在第一次部署时，构建完可用的docker镜像。然后在以后使用的过程中，短短的几行命令，就可以直接拉取镜像，根据这个镜像创建出一个容器，把服务跑起来了。所需要的仅仅是安装了docker的服务器，一个Dockerfile文件，以及比较流畅的网络而已。</p>
 <p>需要python3环境？直接 from python:3.x 搞定。</p>
 <p>需要迁移服务器？ 直接把应用连带Dockerfile，volumes数据拷贝到新服务器上，几条命令又搞定</p>
 <p>需要作为服务给别人使用？Dockerfile即是最清晰的部署文档，维护一个官方镜像即可。</p>
-<p>到这个地方，你可能已经发现了，docker镜像成为了一种像集装箱那样的标准货件，谁想用我的服务，直接拉取镜像就完事了。容器跑起来之后，能直接提供你所要的服务，不再像之前那样有繁复的安装过程————这些都有人给你做过了。</p>
-<h3 id="u4E00_u4E2A_u8BEF_u89E3"><a href="#u4E00_u4E2A_u8BEF_u89E3" class="headerlink" title="一个误解"></a>一个误解</h3><p>有人可能会问，我只有一台服务器，也不太可能会迁移。我的python服务，mysql服务，只需要部署一次，就可以在以后重复使用了。那这样docker对于我来说还有优势吗？毕竟docker也是有学习成本的。</p>
+<p>到这个地方，你可能已经发现了，docker镜像成为了一种像集装箱那样的标准货件。它不像传统的软件交付方式那样，只把代码以及说明文档之类的给你就完了，而是直接给你一个标准docker货件，它可能是Dockerfile，或者直接就是镜像，这不仅包括了代码，还包括了代码本身运行的OS等各种整体环境。谁想用我的服务，直接拉取镜像，实例化一个容器就可以了，能直接提供你所要的服务，不再像之前那样有繁复的安装过程————这些都有人给你做过了。</p>
+<h5 id="u7EDF_u4E00_u7684_u7BA1_u7406_u670D_u52A1"><a href="#u7EDF_u4E00_u7684_u7BA1_u7406_u670D_u52A1" class="headerlink" title="统一的管理服务"></a>统一的管理服务</h5><p>使用docker部署的应用，都会在docker的管理范围之内。这也是docker的另一个非常大的优点，它提供了一种隔离的空间，把服务器上的零散的部署应用集中起来进行管理。</p>
+<p>举个例子，比如我一个服务器上部署了n多服务，有mysql，redis，rabbitmq，其他还有一堆应用。有一天我服务器突然断电重启了，准备茶几吧。那些没有设置自动重启的应用，那些重启出问题的应用，那些你甚至都不知道隐藏在某个角落里的重要应用没启动成功….</p>
+<p>然而使用docker，一眼就可以看出那些应用正常启动了，那些应用又出问题了。接下来只用有条不紊的处理就ok了。</p>
+<h5 id="u6301_u7EED_u4EA4_u4ED8_u4E0A_u7684_u5E94_u7528"><a href="#u6301_u7EED_u4EA4_u4ED8_u4E0A_u7684_u5E94_u7528" class="headerlink" title="持续交付上的应用"></a>持续交付上的应用</h5><p>这个就是后话了，待续 </p>
+<h3 id="u5173_u4E8Edocker_u7684_u4E00_u4E2A_u8BEF_u89E3"><a href="#u5173_u4E8Edocker_u7684_u4E00_u4E2A_u8BEF_u89E3" class="headerlink" title="关于docker的一个误解"></a>关于docker的一个误解</h3><p>有人可能会问，我只有一台服务器，也不太可能会迁移。我的python服务，mysql服务，只需要部署一次，就可以在以后重复使用了。那这样docker对于我来说还有优势吗？毕竟docker也是有学习成本的。</p>
 <p>如果你真的确信你的应用都是一次性的，而且只提供给自己使用，那么docker在这种场景下的优势不是特别明显：即便是docker，最初的构建也是需要有人做的，也是有工作量的。这和你一次性部署的工作量差不多。但是即便如此也是又有点的，它提供了一个干净，隔离的环境。</p>
 <p>另外，很多人说docker改变了运维世界，这句话是从群体角度来说的，像mysql，python这样的使用群体众多的应用，以及会经常迁移，变动，重新部署的应用，docker化之后，整个群体所节省的时间，是非常巨大的。说是改变了运维的面貌毫不夸张。</p>
 <p>但是对于纯粹的单次部署，具体到每一个人上面，其效率并非有质的提升，因为即使是集装箱，要往里面装东西，也是有不可避免的工作量的。而你第一次构建自己的镜像时，就像往集装箱里装东西是类似的，需要和直接在机器上部署差不多的工作量。这个时候，docker的效率提升是很小的。</p>

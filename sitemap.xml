@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://starding.github.io/2016/01/07/docker-a-metaphor/</loc>
+    <lastmod>2016-01-21T08:14:39.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://starding.github.io/2016/01/15/python-iterator-generator/</loc>
     <lastmod>2016-01-20T05:46:52.000Z</lastmod>
   </url>
@@ -79,11 +84,6 @@
   <url>
     <loc>http://starding.github.io/2016/01/07/deploy-gitlab-by-docker/</loc>
     <lastmod>2016-01-07T07:28:29.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://starding.github.io/2016/01/07/docker-a-metaphor/</loc>
-    <lastmod>2016-01-07T07:00:54.000Z</lastmod>
   </url>
   
   <url>
