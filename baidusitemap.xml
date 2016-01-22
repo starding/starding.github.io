@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://starding.github.io/2016/01/10/traps-in-python/</loc>
+    <lastmod>2016-01-22T16:19:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>那些年我在python中扑过的街</title>
+        <pubTime>2016-01-10T11:22:10.000Z</pubTime>
+        
+        <tag>python</tag>
+         
+         
+           
+             
+              <breadCrumb title="python" url="http://starding.github.io/categories/python/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://starding.github.io/2016/01/07/docker-a-metaphor/</loc>
     <lastmod>2016-01-21T08:14:39.000Z</lastmod>
     <data>
@@ -59,26 +79,6 @@
            
              
               <breadCrumb title="javascript" url="http://starding.github.io/categories/javascript/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://starding.github.io/2016/01/10/traps-in-python/</loc>
-    <lastmod>2016-01-18T12:03:02.000Z</lastmod>
-    <data>
-        <display>
-        <title>那些年我在python中扑过的街</title>
-        <pubTime>2016-01-10T11:22:10.000Z</pubTime>
-        
-        <tag>python</tag>
-         
-         
-           
-             
-              <breadCrumb title="python" url="http://starding.github.io/categories/python/"/>
           
         </display>
     </data>
