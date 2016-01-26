@@ -2,8 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://starding.github.io/2016/01/09/my-front-end-introduction/</loc>
+    <lastmod>2016-01-26T12:46:35.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://starding.github.io/2016/01/07/daocloud-deploy/</loc>
+    <lastmod>2016-01-25T12:20:35.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://starding.github.io/2016/01/10/traps-in-python/</loc>
-    <lastmod>2016-01-22T16:19:39.000Z</lastmod>
+    <lastmod>2016-01-25T06:15:05.000Z</lastmod>
   </url>
   
   <url>
@@ -32,18 +42,8 @@
   </url>
   
   <url>
-    <loc>http://starding.github.io/2016/01/07/daocloud-deploy/</loc>
-    <lastmod>2016-01-15T07:30:18.000Z</lastmod>
-  </url>
-  
-  <url>
     <loc>http://starding.github.io/2016/01/14/learn-vim/</loc>
     <lastmod>2016-01-15T03:58:15.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://starding.github.io/2016/01/09/my-front-end-introduction/</loc>
-    <lastmod>2016-01-14T09:36:30.000Z</lastmod>
   </url>
   
   <url>
