@@ -127,15 +127,22 @@
     <link href="http://starding.github.io/2016/01/18/gitlab-migrate/"/>
     <id>http://starding.github.io/2016/01/18/gitlab-migrate/</id>
     <published>2016-01-18T08:04:04.000Z</published>
-    <updated>2016-01-18T09:00:30.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="docker_u7684filesystem_u5751"><a href="#docker_u7684filesystem_u5751" class="headerlink" title="docker的filesystem坑"></a>docker的filesystem坑</h1><p>前两天服务器出现了些问题，于是就重启了。没想到重启之后gitlab就跪了，启动时总是遇到一类比较底层的filesystem unkown错误，其报错细节不止一种。想来是底层的文件系统出了问题。</p>
-<p>第一反应是先把gitlab的volumes备份了一下，然后直接删掉现有的gitlab容器，重开容器，没想到这个错误一直存在（删的时候没有选择-v），最后甚至把镜像都删掉了，重新拉镜像，仍然是出现filesystem类错误（只有gitlab如此，其他容器，镜像不受影响）。</p>
-<p>网上查了很多解决办法，github上的docker仓库下，也有提到这一系列问题：<a href="https://github.com/docker/docker/issues/4036" target="_blank" rel="external">docker fails to mount the block device for the container on devicemapper</a>，感觉掉到一个深不见底的神坑里了。</p>
-<p>这个底层错误，stackoverflow或github上给出的解决办法是：关掉docker，删除/var/lib/docker中的所有内容，然后重启gilab。我觉得可能是另一个神坑，没敢往里跳。于是选择慢慢研究这个问题，先在另外一台服务器上重新部署一下gitlab。</p>
-<p>这个时候只需要把数据迁移过去就行了。</p>
-<h1 id="gitlab_u6570_u636E_u8FC1_u79FB"><a href="#gitlab_u6570_u636E_u8FC1_u79FB" class="headerlink" title="gitlab数据迁移"></a>gitlab数据迁移</h1><p>原以为迁移会很简单，没想到也有不少坑等着跳。直接把volumes文件拷贝到新服务器上，按照原来的方法挂载，启动，首先发现是redis啥啥没有权限。于是google了一番，把权限都改了，然后发现出了一个<a href="https://gitlab.com/gitlab-org/gitlab-ce/commit/ff98c631c1004247656677568989e5ed68fc88f3" target="_blank" rel="external">unfoudmethod错误</a>。发现是数据库没有migrate的原因。</p>
-<p>另外还有一个隐藏的坑就是，gitlab的版本问题。这种服务应用，尽量不要使用latest作为版本号，不然出了事情，还得去找自己使用的究竟是什么版本，如果找不到…准备拼人品吧。</p>
-<p>感觉这么一个一个坑的跳，太二了，直到我发现了这篇教程，原来已经有人把坑都填好了：<a href="https://cmanios.wordpress.com/2015/12/04/migrate-a-gitlab-docker-container-from-version-8-0-4-to-8-2-0/" target="_blank" rel="external">Migrate a Gitlab Docker container from version 8.0.4 to 8.2.0
+    <updated>2016-02-25T06:34:34.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="u95EE_u9898_u6765_u6E90_uFF1Adocker_u7684file_system_u795E_u5751"><a href="#u95EE_u9898_u6765_u6E90_uFF1Adocker_u7684file_system_u795E_u5751" class="headerlink" title="问题来源：docker的file system神坑"></a>问题来源：docker的file system神坑</h2><p>我们的gitlab是使用docker部署的，方便快捷。</p>
+<p>但是后来服务器上的某个应用出现了内存泄露，没想到重启服务器之后整个docker就跪了，启动容器时总是遇到一系列比较底层的filesystem unkown错误，而且报错细节不止一种。调查之后，发现是docker使用的 devicemapper 出现了bug，而且查看docker官方的github，有不少人遇到这个bug，讨论话题在此：<a href="https://github.com/docker/docker/issues/4036" target="_blank" rel="external">docker fails to mount the block device for the container on devicemapper</a>，感觉掉到一个深不见底的神坑里了。</p>
+<p>stackoverflow或github上给出的解决办法是：关掉docker，删除/var/lib/docker中的所有内容，然后重启gilab。我觉得可能是另一个神坑，没敢往里跳。于是选择慢慢研究这个问题，先在另外一台服务器上重新部署一下gitlab，并且把数据迁移过去就行了。</p>
+<h2 id="gitlab_u6570_u636E_u8FC1_u79FB"><a href="#gitlab_u6570_u636E_u8FC1_u79FB" class="headerlink" title="gitlab数据迁移"></a>gitlab数据迁移</h2><p>原以为迁移会很简单，没想到也有不少坑等着跳。</p>
+<p>先把原服务器上的gitlab的volumes备份了一下，直接把备份好的volumes文件拷贝到新服务器上，按照原来的方法挂载，启动。</p>
+<h3 id="u9047_u5230_u7684_u95EE_u9898"><a href="#u9047_u5230_u7684_u95EE_u9898" class="headerlink" title="遇到的问题"></a>遇到的问题</h3><ol>
+<li>首先发现是redis啥啥没有权限，于是google了一番，把权限都改了。</li>
+</ol>
+<ol>
+<li><p>然后出了一个<a href="https://gitlab.com/gitlab-org/gitlab-ce/commit/ff98c631c1004247656677568989e5ed68fc88f3" target="_blank" rel="external">unfoudmethod错误</a>。调查是数据库没有migrate的造成的。</p>
+</li>
+<li><p>还有一个隐藏的坑就是，gitlab的版本问题。这种服务应用，尽量不要使用latest作为版本号，不然出了事情，还得去找自己使用的究竟是什么版本，如果找不到…准备拼人品吧。</p>
+</li>
+</ol>
+<h3 id="u6700_u7EC8_u7684_u89E3_u51B3_u529E_u6CD5"><a href="#u6700_u7EC8_u7684_u89E3_u51B3_u529E_u6CD5" class="headerlink" title="最终的解决办法"></a>最终的解决办法</h3><p>感觉这么一个一个坑的跳，太二了，直到我发现了这篇教程，原来已经有人把坑都填好了：<a href="https://cmanios.wordpress.com/2015/12/04/migrate-a-gitlab-docker-container-from-version-8-0-4-to-8-2-0/" target="_blank" rel="external">Migrate a Gitlab Docker container from version 8.0.4 to 8.2.0
 </a></p>
 <p>附录：下面是原文（有时间了考虑翻译一下）<br>-</p>
 <p>A few days ago, I had to migrate a Gitlab instance installed in Docker from version 8.04 to 8.2.0. I followed the exact steps described in GitLab Docker images documentation. But it was not so easy! Of cource, it required some more! Thus, after 4 hours of errors, searching and trials I found the way! Thank god!</p>
@@ -171,7 +178,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gitlab-rake cache:clear</span><br></pre></td></tr></table></figure>
 <h2 id="13-After_that_you_will_be_able_to_login_properly_to_http_3A//localhost_3A8082"><a href="#13-After_that_you_will_be_able_to_login_properly_to_http_3A//localhost_3A8082" class="headerlink" title="13.After that you will be able to login properly to http://localhost:8082"></a>13.After that you will be able to login properly to <a href="http://localhost:8082" target="_blank" rel="external">http://localhost:8082</a></h2>]]></content>
     <summary type="html">
-    <![CDATA[<h1 id="docker_u7684filesystem_u5751"><a href="#docker_u7684filesystem_u5751" class="headerlink" title="docker的filesystem坑"></a>docker的files]]>
+    <![CDATA[<h2 id="u95EE_u9898_u6765_u6E90_uFF1Adocker_u7684file_system_u795E_u5751"><a href="#u95EE_u9898_u6765_u6E90_uFF1Adocker_u7684file_system_u79]]>
     </summary>
     
       <category term="docker" scheme="http://starding.github.io/tags/docker/"/>

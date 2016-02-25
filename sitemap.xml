@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://starding.github.io/2016/01/18/gitlab-migrate/</loc>
+    <lastmod>2016-02-25T06:34:34.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://starding.github.io/2016/02/25/questions-record/</loc>
     <lastmod>2016-02-25T03:35:23.000Z</lastmod>
   </url>
@@ -39,11 +44,6 @@
   <url>
     <loc>http://starding.github.io/2016/01/15/python-iterator-generator/</loc>
     <lastmod>2016-01-20T05:46:52.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://starding.github.io/2016/01/18/gitlab-migrate/</loc>
-    <lastmod>2016-01-18T09:00:30.000Z</lastmod>
   </url>
   
   <url>
