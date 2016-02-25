@@ -4,7 +4,7 @@
   <subtitle><![CDATA[未济]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://starding.github.io/"/>
-  <updated>2016-01-18T16:28:24.000Z</updated>
+  <updated>2016-02-25T03:12:44.000Z</updated>
   <id>http://starding.github.io/</id>
   
   <author>
@@ -15,11 +15,32 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[问题记录]]></title>
+    <link href="http://starding.github.io/2016/02/25/questions-record/"/>
+    <id>http://starding.github.io/2016/02/25/questions-record/</id>
+    <published>2016-02-25T02:54:31.000Z</published>
+    <updated>2016-02-25T03:12:44.000Z</updated>
+    <content type="html"><![CDATA[<p>Meta: 本文章用来记录平时遇到的问题以及相应的解决方案</p>
+<h3 id="u5F80mysql_u4E2D_u5199_u5927_u91CF_u6570_u636E_u65F6_uFF0C_u51FA_u73B0_u9519_u8BEF_uFF1A2006__u2018mysql_server_has_gone_away_u2019"><a href="#u5F80mysql_u4E2D_u5199_u5927_u91CF_u6570_u636E_u65F6_uFF0C_u51FA_u73B0_u9519_u8BEF_uFF1A2006__u2018mysql_server_has_gone_away_u2019" class="headerlink" title="往mysql中写大量数据时，出现错误：2006 ‘mysql server has gone away’"></a>往mysql中写大量数据时，出现错误：2006 ‘mysql server has gone away’</h3><h4 id="u95EE_u9898_u573A_u666F"><a href="#u95EE_u9898_u573A_u666F" class="headerlink" title="问题场景"></a>问题场景</h4><p>在做一个档案管理系统时，使用django+mysql，当一次性往mysql中写入了近3w条数据时，就出现了这个错误</p>
+<h4 id="u89E3_u51B3_u65B9_u6848"><a href="#u89E3_u51B3_u65B9_u6848" class="headerlink" title="解决方案"></a>解决方案</h4><p>调查发现是因为mysql默认的有一个写入数据大小限制。只需要在<code>/etc/my.cnf</code>(如果没有这个文件就自己建立一个)下加上下面的代码即可</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]&#10;max_allowed_packet = 16M</span><br></pre></td></tr></table></figure>
+<p>当然，也可以限制一下自己每次往mysql中写入数据的数量来解决这个问题。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Meta: 本文章用来记录平时遇到的问题以及相应的解决方案</p>
+<h3 id="u5F80mysql_u4E2D_u5199_u5927_u91CF_u6570_u636E_u65F6_uFF0C_u51FA_u73B0_u9519_u8BEF_uFF1A2006__u]]>
+    </summary>
+    
+      <category term="问题" scheme="http://starding.github.io/categories/%E9%97%AE%E9%A2%98/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[javascript犀牛书（第六版）学习笔记]]></title>
     <link href="http://starding.github.io/2016/01/19/learn-javascript-follow-definitive-guide/"/>
     <id>http://starding.github.io/2016/01/19/learn-javascript-follow-definitive-guide/</id>
     <published>2016-01-18T16:14:52.000Z</published>
-    <updated>2016-01-18T16:28:24.000Z</updated>
+    <updated>2016-02-24T06:11:03.000Z</updated>
     <content type="html"><![CDATA[<p>记录一些学习javascript中，比较重要或是比较容易混乱的地方。不断更新，直到看完。</p>
 <p>2016-1-18 更新到try-except-finally语句</p>
 <h2 id="u53D8_u91CF"><a href="#u53D8_u91CF" class="headerlink" title="变量"></a>变量</h2><h3 id="u53D8_u91CF_u53CA_u53D8_u91CF_u7C7B_u578B"><a href="#u53D8_u91CF_u53CA_u53D8_u91CF_u7C7B_u578B" class="headerlink" title="变量及变量类型"></a>变量及变量类型</h3><p>javascript中的变量本身没有类型，给一个变量赋值时，其实是这个变量引用了这个值。这根python中是一致的。</p>
@@ -74,7 +95,10 @@
 <h2 id="u8BED_u53E5"><a href="#u8BED_u53E5" class="headerlink" title="语句"></a>语句</h2><h3 id="u6807_u7B7E_u8BED_u53E5"><a href="#u6807_u7B7E_u8BED_u53E5" class="headerlink" title="标签语句"></a>标签语句</h3><p>主要用于配合continue和break使用，来实现更灵活一些的跳转。</p>
 <h3 id="throw/try/catch/finally"><a href="#throw/try/catch/finally" class="headerlink" title="throw/try/catch/finally"></a>throw/try/catch/finally</h3><p>之前写过一篇<a href="http://starding.github.io/2016/01/10/traps-in-python/">那些年我在python中扑过的街</a>，在其中提到过python中，try/except/finally中容易进的坑。</p>
 <p>这个坑在javascript中也是同样的，就像那篇文章里说的那样，因为finally的设计目的就是无论如何都会执行，那么一旦finally中出现了跳转语句，其他语句中的返回内容就会被忽略。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">finallyTest</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> x = <span class="string">'catch'</span>, y = <span class="string">'except'</span>, z = <span class="string">'finally'</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        k = x + y;</span><br><span class="line">        a = b;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"here is try------------"</span>);</span><br><span class="line">    &#125; <span class="keyword">catch</span>(e) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"here is catch----------"</span>);</span><br><span class="line">        <span class="keyword">return</span> x;</span><br><span class="line">    &#125; <span class="keyword">finally</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"here is finally---------"</span>);</span><br><span class="line">        <span class="keyword">return</span> z;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//执行</span></span><br><span class="line">finallyTest()</span><br><span class="line"></span><br><span class="line"><span class="comment">//返回值</span></span><br><span class="line">here is <span class="keyword">catch</span>----------</span><br><span class="line">here is <span class="keyword">finally</span>---------</span><br><span class="line"><span class="string">'finally'</span></span><br></pre></td></tr></table></figure>]]></content>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">finallyTest</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> x = <span class="string">'catch'</span>, y = <span class="string">'except'</span>, z = <span class="string">'finally'</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        k = x + y;</span><br><span class="line">        a = b;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"here is try------------"</span>);</span><br><span class="line">    &#125; <span class="keyword">catch</span>(e) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"here is catch----------"</span>);</span><br><span class="line">        <span class="keyword">return</span> x;</span><br><span class="line">    &#125; <span class="keyword">finally</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"here is finally---------"</span>);</span><br><span class="line">        <span class="keyword">return</span> z;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//执行</span></span><br><span class="line">finallyTest()</span><br><span class="line"></span><br><span class="line"><span class="comment">//返回值</span></span><br><span class="line">here is <span class="keyword">catch</span>----------</span><br><span class="line">here is <span class="keyword">finally</span>---------</span><br><span class="line"><span class="string">'finally'</span></span><br></pre></td></tr></table></figure>
+<h3 id="use_strict"><a href="#use_strict" class="headerlink" title="use strict"></a>use strict</h3><p>use strict其实是ECMAscript 5 中加入的指令，非常接近于语句，但又有所区分：不包含关键字，只是个字符串字面量。而且只能出现在特定的位置。</p>
+<p>use strict的目的是使其后的代码使用js的「严格模式」执行，它是js的一个子集，修正了一些语言的重要缺陷，并提供健壮的cha功能和增强的安全机制。</p>
+]]></content>
     <summary type="html">
     <![CDATA[<p>记录一些学习javascript中，比较重要或是比较容易混乱的地方。不断更新，直到看完。</p>
 <p>2016-1-18 更新到try-except-finally语句</p>
