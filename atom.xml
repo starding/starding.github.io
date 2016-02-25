@@ -4,7 +4,7 @@
   <subtitle><![CDATA[未济]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://starding.github.io/"/>
-  <updated>2016-02-25T03:12:44.000Z</updated>
+  <updated>2016-02-25T03:35:23.000Z</updated>
   <id>http://starding.github.io/</id>
   
   <author>
@@ -19,16 +19,25 @@
     <link href="http://starding.github.io/2016/02/25/questions-record/"/>
     <id>http://starding.github.io/2016/02/25/questions-record/</id>
     <published>2016-02-25T02:54:31.000Z</published>
-    <updated>2016-02-25T03:12:44.000Z</updated>
+    <updated>2016-02-25T03:35:23.000Z</updated>
     <content type="html"><![CDATA[<p>Meta: 本文章用来记录平时遇到的问题以及相应的解决方案</p>
-<h3 id="u5F80mysql_u4E2D_u5199_u5927_u91CF_u6570_u636E_u65F6_uFF0C_u51FA_u73B0_u9519_u8BEF_uFF1A2006__u2018mysql_server_has_gone_away_u2019"><a href="#u5F80mysql_u4E2D_u5199_u5927_u91CF_u6570_u636E_u65F6_uFF0C_u51FA_u73B0_u9519_u8BEF_uFF1A2006__u2018mysql_server_has_gone_away_u2019" class="headerlink" title="往mysql中写大量数据时，出现错误：2006 ‘mysql server has gone away’"></a>往mysql中写大量数据时，出现错误：2006 ‘mysql server has gone away’</h3><h4 id="u95EE_u9898_u573A_u666F"><a href="#u95EE_u9898_u573A_u666F" class="headerlink" title="问题场景"></a>问题场景</h4><p>在做一个档案管理系统时，使用django+mysql，当一次性往mysql中写入了近3w条数据时，就出现了这个错误</p>
-<h4 id="u89E3_u51B3_u65B9_u6848"><a href="#u89E3_u51B3_u65B9_u6848" class="headerlink" title="解决方案"></a>解决方案</h4><p>调查发现是因为mysql默认的有一个写入数据大小限制。只需要在<code>/etc/my.cnf</code>(如果没有这个文件就自己建立一个)下加上下面的代码即可</p>
+<h3 id="linux_crontab_+_django_command__u5B9A_u65F6_u6267_u884C_u547D_u4EE4"><a href="#linux_crontab_+_django_command__u5B9A_u65F6_u6267_u884C_u547D_u4EE4" class="headerlink" title="linux crontab +  django command 定时执行命令"></a>linux crontab +  django command 定时执行命令</h3><h4 id="u95EE_u9898_u573A_u666F"><a href="#u95EE_u9898_u573A_u666F" class="headerlink" title="问题场景"></a>问题场景</h4><p>在做一个档案管理系统时，有一个需要定时从DB2数据库中取出数据，处理之后，存入mysql中的任务。这意味着需要在django中单独跑一个脚本，这个脚本使用django的环境。</p>
+<h4 id="u89E3_u51B3_u65B9_u6848"><a href="#u89E3_u51B3_u65B9_u6848" class="headerlink" title="解决方案"></a>解决方案</h4><p>django提供了一种用户自定义命令来实现这个功能：</p>
+<blockquote>
+<p><a href="https://docs.djangoproject.com/en/1.9/howto/custom-management-commands/" target="_blank" rel="external">Writing custom django-admin commands¶</a></p>
+</blockquote>
+<p>而linux则提供了定时执行任务方面的好用工具：</p>
+<blockquote>
+<p><a href="http://linuxtools-rst.readthedocs.org/zh_CN/latest/tool/crontab.html" target="_blank" rel="external">linux crontab</a></p>
+</blockquote>
+<h3 id="u5F80mysql_u4E2D_u5199_u5927_u91CF_u6570_u636E_u65F6_uFF0C_u51FA_u73B0_u9519_u8BEF_uFF1A2006__u2018mysql_server_has_gone_away_u2019"><a href="#u5F80mysql_u4E2D_u5199_u5927_u91CF_u6570_u636E_u65F6_uFF0C_u51FA_u73B0_u9519_u8BEF_uFF1A2006__u2018mysql_server_has_gone_away_u2019" class="headerlink" title="往mysql中写大量数据时，出现错误：2006 ‘mysql server has gone away’"></a>往mysql中写大量数据时，出现错误：2006 ‘mysql server has gone away’</h3><h4 id="u95EE_u9898_u573A_u666F-1"><a href="#u95EE_u9898_u573A_u666F-1" class="headerlink" title="问题场景"></a>问题场景</h4><p>在做一个档案管理系统时，使用django+mysql，当一次性往mysql中写入了近3w条数据时，就出现了这个错误</p>
+<h4 id="u89E3_u51B3_u65B9_u6848-1"><a href="#u89E3_u51B3_u65B9_u6848-1" class="headerlink" title="解决方案"></a>解决方案</h4><p>调查发现是因为mysql默认的有一个写入数据大小限制。只需要在<code>/etc/my.cnf</code>(如果没有这个文件就自己建立一个)下加上下面的代码即可</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]&#10;max_allowed_packet = 16M</span><br></pre></td></tr></table></figure>
 <p>当然，也可以限制一下自己每次往mysql中写入数据的数量来解决这个问题。</p>
 ]]></content>
     <summary type="html">
     <![CDATA[<p>Meta: 本文章用来记录平时遇到的问题以及相应的解决方案</p>
-<h3 id="u5F80mysql_u4E2D_u5199_u5927_u91CF_u6570_u636E_u65F6_uFF0C_u51FA_u73B0_u9519_u8BEF_uFF1A2006__u]]>
+<h3 id="linux_crontab_+_django_command__u5B9A_u65F6_u6267_u884C_u547D_u4EE4"><a href="#linux_crontab_+_]]>
     </summary>
     
       <category term="问题" scheme="http://starding.github.io/categories/%E9%97%AE%E9%A2%98/"/>
