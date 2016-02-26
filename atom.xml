@@ -958,14 +958,14 @@
     <link href="http://starding.github.io/2016/01/07/docker-a-metaphor/"/>
     <id>http://starding.github.io/2016/01/07/docker-a-metaphor/</id>
     <published>2016-01-07T05:44:42.000Z</published>
-    <updated>2016-02-26T07:43:10.000Z</updated>
+    <updated>2016-02-26T07:58:22.000Z</updated>
     <content type="html"><![CDATA[<h2 id="docker_u7684_u5B66_u672F_u5316_u5B9A_u4E49"><a href="#docker_u7684_u5B66_u672F_u5316_u5B9A_u4E49" class="headerlink" title="docker的学术化定义"></a>docker的学术化定义</h2><p>首先来看维基百科的定义：</p>
 <blockquote>
 <p>Docker is an open-source project that automates the deployment of applications inside software containers, by providing an additional layer of abstraction and automation of operating-system-level virtualization on Linux. Docker uses the resource isolation features of the Linux kernel such as cgroups and kernel namespaces, and a union-capable filesystem such as aufs and others to allow independent “containers” to run within a single Linux instance, avoiding the overhead of starting and maintaining virtual machines.</p>
 <p>Docker是一个开放源代码软件项目，让应用程序布署在软件容器下的工作可以自动化进行，借此在Linux操作系统上，提供一个额外的软件抽象层，以及操作系统层虚拟化的自动管理机制。Docker利用Linux核心中的资源分离机制，例如cgroups，以及Linux核心命名空间（name space），来建立独立的软件容器（containers）。这可以在单一Linux实体下运作，避免启动一个虚拟机器造成的额外负担。</p>
 </blockquote>
 <p>通过这个比较学术化的定义，可以模糊的知道docker是可以实现自动化部署之类功能的工具，但是并不能清楚的理解它到底牛逼在什么地方，又好在哪里。为了搞明白这些，只看定义是远远不够的，一种手段是可以在长期使用docker的过程中，逐渐体会到docker的优势。但是对于一个从未接触过docker，甚至对部署都不是很了解的新人，应该怎么快速理解这一点呢？一个比较好的办法，就是借助于隐喻。</p>
-<h2 id="Docker_u7684_u9690_u55BB"><a href="#Docker_u7684_u9690_u55BB" class="headerlink" title="Docker的隐喻"></a>Docker的隐喻</h2><p>关于「隐喻」的概念，有一篇文章单独介绍：<a href="/">「隐喻」</a></p>
+<h2 id="Docker_u7684_u9690_u55BB"><a href="#Docker_u7684_u9690_u55BB" class="headerlink" title="Docker的隐喻"></a>Docker的隐喻</h2><p>关于「隐喻」的概念，有一篇文章单独介绍：<a href="/./metaphor">「隐喻」</a></p>
 <p>同样，要快速理解docker，抓出核心思想，隐喻是非常重要的</p>
 <h3 id="u5B57_u9762_u610F_u601D_uFF1Adocker_u2014_u2014_u7801_u5934_u5DE5_u4EBA_u3002"><a href="#u5B57_u9762_u610F_u601D_uFF1Adocker_u2014_u2014_u7801_u5934_u5DE5_u4EBA_u3002" class="headerlink" title="字面意思：docker——码头工人。"></a>字面意思：docker——码头工人。</h3><p>docker的名称本身就带有隐喻的性质：在全球物流系统中，一个非常重要的发明就是集装箱。</p>
 <p>集装箱重要在哪里？为了理解这件事情，可以先考察一下集装箱出现之前的物流情况：货物生产出来之后，装箱，然后一箱一箱的搬到卡车上，然后再一箱一箱卸下来，送上火车，运送到码头附近的火车站，再一箱一箱卸下来，装上卡车，拉到货轮上，一箱一箱的装上去….</p>
