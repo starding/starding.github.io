@@ -4,7 +4,7 @@
   <subtitle><![CDATA[未济]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://starding.github.io/"/>
-  <updated>2016-02-25T03:35:23.000Z</updated>
+  <updated>2016-02-26T03:33:19.000Z</updated>
   <id>http://starding.github.io/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://starding.github.io/2016/02/25/questions-record/"/>
     <id>http://starding.github.io/2016/02/25/questions-record/</id>
     <published>2016-02-25T02:54:31.000Z</published>
-    <updated>2016-02-25T03:35:23.000Z</updated>
+    <updated>2016-02-26T03:33:19.000Z</updated>
     <content type="html"><![CDATA[<p>Meta: 本文章用来记录平时遇到的问题以及相应的解决方案</p>
 <h3 id="linux_crontab_+_django_command__u5B9A_u65F6_u6267_u884C_u547D_u4EE4"><a href="#linux_crontab_+_django_command__u5B9A_u65F6_u6267_u884C_u547D_u4EE4" class="headerlink" title="linux crontab +  django command 定时执行命令"></a>linux crontab +  django command 定时执行命令</h3><h4 id="u95EE_u9898_u573A_u666F"><a href="#u95EE_u9898_u573A_u666F" class="headerlink" title="问题场景"></a>问题场景</h4><p>在做一个档案管理系统时，有一个需要定时从DB2数据库中取出数据，处理之后，存入mysql中的任务。这意味着需要在django中单独跑一个脚本，这个脚本使用django的环境。</p>
 <h4 id="u89E3_u51B3_u65B9_u6848"><a href="#u89E3_u51B3_u65B9_u6848" class="headerlink" title="解决方案"></a>解决方案</h4><p>django提供了一种用户自定义命令来实现这个功能：</p>
@@ -34,6 +34,13 @@
 <h4 id="u89E3_u51B3_u65B9_u6848-1"><a href="#u89E3_u51B3_u65B9_u6848-1" class="headerlink" title="解决方案"></a>解决方案</h4><p>调查发现是因为mysql默认的有一个写入数据大小限制。只需要在<code>/etc/my.cnf</code>(如果没有这个文件就自己建立一个)下加上下面的代码即可</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]&#10;max_allowed_packet = 16M</span><br></pre></td></tr></table></figure>
 <p>当然，也可以限制一下自己每次往mysql中写入数据的数量来解决这个问题。</p>
+<h3 id="CSS__u4F2A_u7C7B_u548C_u4F2A_u5143_u7D20_u533A_u522B"><a href="#CSS__u4F2A_u7C7B_u548C_u4F2A_u5143_u7D20_u533A_u522B" class="headerlink" title="CSS 伪类和伪元素区别"></a>CSS 伪类和伪元素区别</h3><p><strong>伪类：Pseudo-elements</strong></p>
+<p><strong>伪元素：Pseudo-classes</strong></p>
+<h4 id="u6982_u5FF5_u8FA8_u6790"><a href="#u6982_u5FF5_u8FA8_u6790" class="headerlink" title="概念辨析"></a>概念辨析</h4><p><strong>stackoverflows上的回答</strong></p>
+<p><a href="http://stackoverflow.com/questions/8069973/what-is-the-difference-between-a-pseudo-class-and-a-pseudo-element-in-css" target="_blank" rel="external">What is the difference between a pseudo-class and a pseudo-element in CSS?</a></p>
+<p><strong>W3C上的说明</strong></p>
+<p><a href="https://www.w3.org/TR/2011/REC-css3-selectors-20110929/#pseudo-elements" target="_blank" rel="external">pseudo-elements</a></p>
+<p><a href="https://www.w3.org/TR/2011/REC-css3-selectors-20110929/#pseudo-classes" target="_blank" rel="external">pseudo-classes</a></p>
 ]]></content>
     <summary type="html">
     <![CDATA[<p>Meta: 本文章用来记录平时遇到的问题以及相应的解决方案</p>
