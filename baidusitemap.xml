@@ -4,16 +4,14 @@
 
     
   <url>
-    <loc>http://starding.github.io/2016/01/18/gitlab-migrate/</loc>
-    <lastmod>2016-02-26T09:43:53.000Z</lastmod>
+    <loc>http://starding.github.io/2016/01/07/docker-a-metaphor/</loc>
+    <lastmod>2016-02-27T15:40:31.000Z</lastmod>
     <data>
         <display>
-        <title>docker-gitlab数据迁移</title>
-        <pubTime>2016-01-18T08:04:04.000Z</pubTime>
+        <title>docker——从隐喻说起</title>
+        <pubTime>2016-01-07T05:44:42.000Z</pubTime>
         
         <tag>docker</tag>
-         
-        <tag>gitlab</tag>
          
          
            
@@ -26,14 +24,16 @@
 
     
   <url>
-    <loc>http://starding.github.io/2016/01/07/docker-a-metaphor/</loc>
-    <lastmod>2016-02-26T07:59:48.000Z</lastmod>
+    <loc>http://starding.github.io/2016/01/18/gitlab-migrate/</loc>
+    <lastmod>2016-02-26T09:43:53.000Z</lastmod>
     <data>
         <display>
-        <title>docker——从隐喻说起</title>
-        <pubTime>2016-01-07T05:44:42.000Z</pubTime>
+        <title>docker-gitlab数据迁移</title>
+        <pubTime>2016-01-18T08:04:04.000Z</pubTime>
         
         <tag>docker</tag>
+         
+        <tag>gitlab</tag>
          
          
            

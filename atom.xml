@@ -960,7 +960,7 @@
     <link href="http://starding.github.io/2016/01/07/docker-a-metaphor/"/>
     <id>http://starding.github.io/2016/01/07/docker-a-metaphor/</id>
     <published>2016-01-07T05:44:42.000Z</published>
-    <updated>2016-02-26T07:59:48.000Z</updated>
+    <updated>2016-02-27T15:40:31.000Z</updated>
     <content type="html"><![CDATA[<h2 id="docker_u7684_u5B66_u672F_u5316_u5B9A_u4E49"><a href="#docker_u7684_u5B66_u672F_u5316_u5B9A_u4E49" class="headerlink" title="docker的学术化定义"></a>docker的学术化定义</h2><p>首先来看维基百科的定义：</p>
 <blockquote>
 <p>Docker is an open-source project that automates the deployment of applications inside software containers, by providing an additional layer of abstraction and automation of operating-system-level virtualization on Linux. Docker uses the resource isolation features of the Linux kernel such as cgroups and kernel namespaces, and a union-capable filesystem such as aufs and others to allow independent “containers” to run within a single Linux instance, avoiding the overhead of starting and maintaining virtual machines.</p>
@@ -1004,19 +1004,24 @@
 <p>其实像上面的python服务，其本身也是建立在一个基础的操作系统之上的。如果我们查看dockerhub上的python的Dockerfile，就可以明确这一点：</p>
 <figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">FROM</span> buildpack-deps:jessie    <span class="comment"># jessie就是一个精简的debian操作系统</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># remove several traces of debian python</span></span><br><span class="line"><span class="built_in">RUN</span> <span class="bash">apt-get purge -y python.*</span></span><br></pre></td></tr></table></figure>
 <p>而我们自己构建的镜像，也可以称之为一种组合镜像。我们一般使用Dockerfile将自己的应用代码，加上上面的某些具体的服务镜像（比如python）再组合起来，就可以构建我们自己的应用了。</p>
-<p>docker正是在部署过程中，将上面那些重复的部分，由docker自动化完成。只需要在第一次部署时，构建完可用的docker镜像。然后在以后使用的过程中，短短的几行命令，就可以直接拉取镜像，根据这个镜像创建出一个容器，把服务跑起来了。所需要的仅仅是安装了docker的服务器，一个Dockerfile文件，以及比较流畅的网络而已。</p>
-<p>需要python3环境？直接 from python:3.x 搞定。</p>
-<p>需要迁移服务器？ 直接把应用连带Dockerfile，volumes数据拷贝到新服务器上，几条命令又搞定</p>
-<p>需要作为服务给别人使用？Dockerfile即是最清晰的部署文档，维护一个官方镜像即可。</p>
-<p>到这个地方，你可能已经发现了，docker镜像成为了一种像集装箱那样的标准货件。它不像传统的软件交付方式那样，只把代码以及说明文档之类的给你就完了，而是直接给你一个标准docker货件，它可能是Dockerfile，或者直接就是镜像，这不仅包括了代码，还包括了代码本身运行的OS等各种整体环境。谁想用我的服务，直接拉取镜像，实例化一个容器就可以了，能直接提供你所要的服务，不再像之前那样有繁复的安装过程————这些都有人给你做过了。</p>
+<h5 id="Docker__u7A76_u7ADF_u505A_u4E86_u4EC0_u4E48_u7B80_u5316_uFF1F"><a href="#Docker__u7A76_u7ADF_u505A_u4E86_u4EC0_u4E48_u7B80_u5316_uFF1F" class="headerlink" title="Docker 究竟做了什么简化？"></a>Docker 究竟做了什么简化？</h5><p>docker正是在部署过程中，将上面那些重复的部分，由docker自动化完成。只需要在第一次部署时，构建完可用的docker镜像。然后在以后使用的过程中，短短的几行命令，就可以直接拉取镜像，根据这个镜像创建出一个容器，把服务跑起来了。所需要的仅仅是安装了docker的服务器，一个Dockerfile文件，以及比较流畅的网络而已。真可谓，『一次构建，到处部署』。</p>
+<ul>
+<li>需要python3环境？直接 from python:3.x 搞定。</li>
+<li>需要迁移服务器？ 直接把应用连带Dockerfile，volumes数据拷贝到新服务器上，几条命令又搞定</li>
+<li>需要作为服务给别人使用？Dockerfile即是最清晰的部署文档，维护一个官方镜像即可，谁需要就直接拉下来几条命令部署上就行了。</li>
+</ul>
+<p>到这个地方，你可能已经发现了，docker镜像成为了一种像集装箱那样的标准货件。它不像传统的软件交付方式那样，只把代码以及说明文档之类的给你就完了，而是直接给你一个标准docker货件，它可能 Dockerfile，或者直接就是镜像，这个标准件不仅包括了代码本身，还包括了代码运行的OS等各种整体环境。</p>
+<p>于是，谁想用我的服务，直接拉取镜像，实例化一个容器就可以了，能直接提供你所要的服务，不再像之前那样有繁复的安装过程————这些都有人给你做过了。</p>
+<h5 id="u5F53_u7136_u4F18_u70B9_u4E0D_u6B62_u4E8E_u6B64"><a href="#u5F53_u7136_u4F18_u70B9_u4E0D_u6B62_u4E8E_u6B64" class="headerlink" title="当然优点不止于此"></a>当然优点不止于此</h5><p>就像集装箱带来的物流领域的「标准化」，不只是单纯影响集装箱这个范围本身，而是整个领域的运输器械，物流管理等整个领域的标准化和效率的提高。</p>
+<p>也就是说基于一件核心事物「标准化」，可以做更多的事情，比如集装箱的机械自动搬运等。docker也是类似的，一旦这种软件标准件建立起来之后，就可以基于这种标准件和相应的管理方式带来更多的改变。比如</p>
 <h5 id="u7EDF_u4E00_u7684_u7BA1_u7406_u670D_u52A1"><a href="#u7EDF_u4E00_u7684_u7BA1_u7406_u670D_u52A1" class="headerlink" title="统一的管理服务"></a>统一的管理服务</h5><p>使用docker部署的应用，都会在docker的管理范围之内。这也是docker的另一个非常大的优点，它提供了一种隔离的空间，把服务器上的零散的部署应用集中起来进行管理。</p>
 <p>举个例子，比如我一个服务器上部署了n多服务，有mysql，redis，rabbitmq，其他还有一堆应用。有一天我服务器突然断电重启了，准备茶几吧。那些没有设置自动重启的应用，那些重启出问题的应用，那些你甚至都不知道隐藏在某个角落里的重要应用没启动成功….</p>
 <p>然而使用docker，一眼就可以看出那些应用正常启动了，那些应用又出问题了。接下来只用有条不紊的处理就ok了。</p>
 <h5 id="u6301_u7EED_u4EA4_u4ED8_u4E0A_u7684_u5E94_u7528"><a href="#u6301_u7EED_u4EA4_u4ED8_u4E0A_u7684_u5E94_u7528" class="headerlink" title="持续交付上的应用"></a>持续交付上的应用</h5><p>持续交付有一些超出范围，自己去寻找答案吧</p>
 <h3 id="u5173_u4E8Edocker_u7684_u4E00_u4E2A_u8BEF_u89E3"><a href="#u5173_u4E8Edocker_u7684_u4E00_u4E2A_u8BEF_u89E3" class="headerlink" title="关于docker的一个误解"></a>关于docker的一个误解</h3><p>有人可能会问，我只有一台服务器，也不太可能会迁移。我的python服务，mysql服务，只需要部署一次，就可以在以后重复使用了。那这样docker对于我来说还有优势吗？毕竟docker也是有学习成本的。</p>
 <p>如果你真的确信你的应用都是一次性的，而且只提供给自己使用，那么docker在这种场景下的优势不是特别明显：即便是docker，最初的构建也是需要有人做的，也是有工作量的。这和你一次性部署的工作量差不多。但是即便如此也是又有点的，它提供了一个干净，隔离的环境。</p>
-<p>另外，很多人说docker改变了运维世界，这句话是从群体角度来说的，像mysql，python这样的使用群体众多的应用，以及会经常迁移，变动，重新部署的应用，docker化之后，整个群体所节省的时间，是非常巨大的。说是改变了运维的面貌毫不夸张。</p>
-<p>但是对于纯粹的单次部署，具体到每一个人上面，其效率并非有质的提升，因为即使是集装箱，要往里面装东西，也是有不可避免的工作量的。而你第一次构建自己的镜像时，就像往集装箱里装东西是类似的，需要和直接在机器上部署差不多的工作量。这个时候，docker的效率提升是很小的。</p>
+<p>另外，很多人说docker改变了运维世界，这句话是从群体角度来说的，像mysql，python这样的使用群体众多的应用，以及会经常迁移，变动，重新部署的应用，docker化之后，整个群体所节省的时间，是非常巨大的。</p>
+<p>也就是说，docker并不能部署的工作「减少为0」，比较好的情况下是「基本减少为1」，因为无论如何都需要把应用及所在环境构建一遍，就像集装箱虽然减少了运输途中的搬运过程，但是把货物搬进集装箱这一次操作是难以避免的，但这可以成为「一次构建，到处交付」的基础。你第一次构建自己的镜像时，就像往集装箱里装东西是类似的，需要和直接在机器上部署差不多的工作量。这个时候，docker的效率提升是很小的。</p>
 <p>但是，你真的确信，你所做的工作只是一次性的吗？</p>
 ]]></content>
     <summary type="html">
