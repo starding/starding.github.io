@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://starding.github.io/2016/01/14/learn-vim/</loc>
+    <lastmod>2016-03-13T08:45:53.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://starding.github.io/2016/01/18/gitlab-migrate/</loc>
     <lastmod>2016-03-04T03:38:36.000Z</lastmod>
   </url>
@@ -59,11 +64,6 @@
   <url>
     <loc>http://starding.github.io/2016/01/15/learn-in-computer-sciense/</loc>
     <lastmod>2016-01-15T17:19:34.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://starding.github.io/2016/01/14/learn-vim/</loc>
-    <lastmod>2016-01-15T03:58:15.000Z</lastmod>
   </url>
   
   <url>
