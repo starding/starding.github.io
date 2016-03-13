@@ -388,10 +388,11 @@
     <link href="http://starding.github.io/2016/01/14/learn-vim/"/>
     <id>http://starding.github.io/2016/01/14/learn-vim/</id>
     <published>2016-01-14T15:21:24.000Z</published>
-    <updated>2016-03-13T08:45:53.000Z</updated>
+    <updated>2016-03-13T08:47:29.000Z</updated>
     <content type="html"><![CDATA[<p>记录用到的一些vim使用方法，积累够一定数量再整理</p>
 <h2 id="vim_u5206_u5C4F_u4E0E_ctrl_p_u63D2_u4EF6"><a href="#vim_u5206_u5C4F_u4E0E_ctrl_p_u63D2_u4EF6" class="headerlink" title="vim分屏与 ctrl p插件"></a>vim分屏与 <code>ctrl p</code>插件</h2><p>之前总是听说 <code>ctrl p</code> 插件如何如何好用。不过我开始试用的时候，确实没有体会到太强大的地方，知道后来发现vim的分屏功能。</p>
 <p>试用vim分屏功能，加上ctrl p实现了不退出vim直接打开多个文件的功能，节省了大量在命令行下各种 <code>cd 目录</code> 的时间。</p>
+<p>参考：<a href="http://coolshell.cn/articles/1679.html" target="_blank" rel="external">Vim的分屏功能</a></p>
 <h2 id="u57FA_u7840_u6B63_u5219_u8868_u8FBE_u5F0F"><a href="#u57FA_u7840_u6B63_u5219_u8868_u8FBE_u5F0F" class="headerlink" title="基础正则表达式"></a>基础正则表达式</h2><p>有一次，我需要在一个包含很多行短文字的后面补上的空格，将每一行补成相同的宽度。<br>刚开始使用各种列编辑，块编辑尝试都没有用。难道必须写一个程序来专门处理这件事情？</p>
 <p>后来发现正则表达式基本能满足这一要求：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%s/$/ n_spaces /g</span><br></pre></td></tr></table></figure>
