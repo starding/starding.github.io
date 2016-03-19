@@ -65,8 +65,8 @@
     <link href="http://starding.github.io/2016/03/19/html5-design-principle/"/>
     <id>http://starding.github.io/2016/03/19/html5-design-principle/</id>
     <published>2016-03-19T03:39:52.000Z</published>
-    <updated>2016-03-19T07:00:42.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="html5_u8BBE_u8BA1_u539F_u7406"><a href="#html5_u8BBE_u8BA1_u539F_u7406" class="headerlink" title="html5设计原理"></a>html5设计原理</h1><h2 id="u524D_u8A00"><a href="#u524D_u8A00" class="headerlink" title="前言"></a>前言</h2><p>之所以取个这么大的标题，是因为这是一篇翻译稿的标题。个人认为这篇演讲的翻译稿非常符合个人的思维习惯，而且网上没有一个比较好的版本，故单读整理出来，形成一篇转载文章。</p>
+    <updated>2016-03-19T07:03:38.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="html5_u8BBE_u8BA1_u539F_u7406"><a href="#html5_u8BBE_u8BA1_u539F_u7406" class="headerlink" title="html5设计原理"></a>html5设计原理</h1><h2 id="u524D_u8A00"><a href="#u524D_u8A00" class="headerlink" title="前言"></a>前言</h2><p>之所以取个这么大的标题，是因为这是一篇翻译稿的标题。个人认为这篇演讲的翻译稿非常符合我的思维习惯，而且网上没有一个比较好的版本，故单读整理出来，形成一篇转载文章。</p>
 <p>前一段时间，我们小组一直有一个争论，就是在时间传输的时候，到底是使用utc时间，还是使用unix时间戳。个人坚持的观点就是「先为人设计，再为机器设计」，赞同语义化更强的utc时间。</p>
 <p>上面的事是想说明，有时候我们做出一件决策，并非是根据一时的想法，而应该去遵循一些明显经过时间检验的设计原则行事。尤其是一些两难的选择时，遵循一些这个领域的原则，可能会带来意象不到的好处。</p>
 <p>而我们在关注一件新事物，比如html5时，不仅仅只是看它出现了那些新元素，新api等等。而是应该考虑这背后的一些设计理念以及发展历程，它解决了什么痛点等等。</p>
