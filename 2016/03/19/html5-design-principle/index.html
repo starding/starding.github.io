@@ -12,21 +12,21 @@
 
     
     <meta name="description" content="html5设计原理前言之所以取个这么大的标题，是因为这是一篇翻译稿的标题。个人认为这篇演讲的翻译稿非常符合我的思维习惯，而且网上没有一个比较好的版本，故单读整理出来，形成一篇转载文章。
-前一段时间，我们小组一直有一个争论，就是在时间传输的时候，到底是使用utc时间，还是使用unix时间戳。个人坚持的观点就是「先为人设计，再为机器设计」，赞同语义化更强的utc时间。
-上面的事是想说明，有时候我们做出">
+前一段时间，我们小组一直有一个争论，就是在api中到底是使用utc时间，还是使用unix时间戳。个人坚持的观点就是「先为人设计，再为机器设计」，赞同语义化更强的utc时间。
+上面的例子是想说明，有时候我们做出一件决">
 <meta property="og:type" content="article">
 <meta property="og:title" content="html5设计原理">
 <meta property="og:url" content="http://starding.github.io/2016/03/19/html5-design-principle/index.html">
 <meta property="og:site_name" content="小狐濡尾">
 <meta property="og:description" content="html5设计原理前言之所以取个这么大的标题，是因为这是一篇翻译稿的标题。个人认为这篇演讲的翻译稿非常符合我的思维习惯，而且网上没有一个比较好的版本，故单读整理出来，形成一篇转载文章。
-前一段时间，我们小组一直有一个争论，就是在时间传输的时候，到底是使用utc时间，还是使用unix时间戳。个人坚持的观点就是「先为人设计，再为机器设计」，赞同语义化更强的utc时间。
-上面的事是想说明，有时候我们做出">
-<meta property="og:updated_time" content="2016-03-19T14:42:05.000Z">
+前一段时间，我们小组一直有一个争论，就是在api中到底是使用utc时间，还是使用unix时间戳。个人坚持的观点就是「先为人设计，再为机器设计」，赞同语义化更强的utc时间。
+上面的例子是想说明，有时候我们做出一件决">
+<meta property="og:updated_time" content="2016-03-19T14:51:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="html5设计原理">
 <meta name="twitter:description" content="html5设计原理前言之所以取个这么大的标题，是因为这是一篇翻译稿的标题。个人认为这篇演讲的翻译稿非常符合我的思维习惯，而且网上没有一个比较好的版本，故单读整理出来，形成一篇转载文章。
-前一段时间，我们小组一直有一个争论，就是在时间传输的时候，到底是使用utc时间，还是使用unix时间戳。个人坚持的观点就是「先为人设计，再为机器设计」，赞同语义化更强的utc时间。
-上面的事是想说明，有时候我们做出">
+前一段时间，我们小组一直有一个争论，就是在api中到底是使用utc时间，还是使用unix时间戳。个人坚持的观点就是「先为人设计，再为机器设计」，赞同语义化更强的utc时间。
+上面的例子是想说明，有时候我们做出一件决">
 
     
     <link rel="alternative" href="/atom.xml" title="小狐濡尾" type="application/atom+xml">
@@ -109,10 +109,12 @@
 		</div>
 		
 		<h1 id="html5_u8BBE_u8BA1_u539F_u7406"><a href="#html5_u8BBE_u8BA1_u539F_u7406" class="headerlink" title="html5设计原理"></a>html5设计原理</h1><h2 id="u524D_u8A00"><a href="#u524D_u8A00" class="headerlink" title="前言"></a>前言</h2><p>之所以取个这么大的标题，是因为这是一篇翻译稿的标题。个人认为这篇演讲的翻译稿非常符合我的思维习惯，而且网上没有一个比较好的版本，故单读整理出来，形成一篇转载文章。</p>
-<p>前一段时间，我们小组一直有一个争论，就是在时间传输的时候，到底是使用utc时间，还是使用unix时间戳。个人坚持的观点就是「先为人设计，再为机器设计」，赞同语义化更强的utc时间。</p>
-<p>上面的事是想说明，有时候我们做出一件决策，并非是根据一时的想法，而应该去遵循一些明显经过时间检验的设计原则行事。尤其是一些两难的选择时，遵循一些这个领域的原则，可能会带来意象不到的好处。</p>
-<p>而我们在关注一件新事物，比如html5时，不仅仅只是看它出现了那些新元素，新api等等。而是应该考虑这背后的一些设计理念以及发展历程，它解决了什么痛点等等。</p>
-<h2 id="u6B63_u6587"><a href="#u6B63_u6587" class="headerlink" title="正文"></a>正文</h2><h3 id="HTML5_u8BBE_u8BA1_u539F_u7406"><a href="#HTML5_u8BBE_u8BA1_u539F_u7406" class="headerlink" title="HTML5设计原理"></a>HTML5设计原理</h3><p>2010年10月21日 <a href="http://www.cn-cuckoo.com/category/web" target="_blank" rel="external">Web开发</a>, 翻译.(不清楚博主的这篇翻译文章为什么没了，但原翻译者应该是他没错，这里只进行一下整理)</p>
+<p>前一段时间，我们小组一直有一个争论，就是在api中到底是使用utc时间，还是使用unix时间戳。个人坚持的观点就是「先为人设计，再为机器设计」，赞同语义化更强的utc时间。</p>
+<p>上面的例子是想说明，有时候我们做出一件决策，不能仅仅根据根据一时的想法，想当然的认为某些事情应该怎样，而应该遵循一些明显经过时间检验的设计原则行事。尤其是遇到一些两难的选择时，遵循一些这个领域的原则，可能会带来意象不到的好处。</p>
+<p>同样，我们在关注一件新事物，比如html5时（其实不算新了），不能只是看它出现了那些新元素，新api等等。而是应该考虑这背后的一些设计理念以及发展历程，它解决了什么痛点，如此我们才能更好的把握这些事物从哪里来，未来会怎样等问题的脉络。</p>
+<h2 id="u6B63_u6587"><a href="#u6B63_u6587" class="headerlink" title="正文"></a>正文</h2><h3 id="HTML5_u8BBE_u8BA1_u539F_u7406"><a href="#HTML5_u8BBE_u8BA1_u539F_u7406" class="headerlink" title="HTML5设计原理"></a>HTML5设计原理</h3><p>2010年10月21日 </p>
+<p><a href="http://www.cn-cuckoo.com/category/web" target="_blank" rel="external">Web开发</a>翻译 </p>
+<p>注：不清楚博主的这篇翻译文章为什么没了，但原翻译者应该是他没错，这里只进行一下整理</p>
 <p><a href="http://adactio.com/articles/1704/" target="_blank" rel="external">Jeremy Keith在 Fronteers 2010 上的主题演讲</a></p>
 <p>今天我想跟大家谈一谈HTML5的设计。主要分两个方面：一方面，当然了，就是HTML5。我可以站在这儿只讲HTML5，但我并不打算这样做，因为如果你想了解HTML5的话，你可以Google，可以看书，甚至可以看规范。</p>
 <p>实际上，确实有人会谈到规范的内容。史蒂夫·福克纳（Steve Faulkner）会讲HTML5与可访问性。而保罗·艾里什（Paul Irish）则会讲HTML5提供的各种API。因此，我今天站在这里，不会光讲一讲HTML5就算完事了。</p>
