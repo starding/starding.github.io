@@ -1,840 +1,974 @@
-
- <!DOCTYPE HTML>
+<!DOCTYPE HTML>
 <html lang="zh-CN">
+
 <head>
   <meta charset="UTF-8">
-  
-    <title>html5设计原理 | 小狐濡尾</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
-    
-    <meta name="author" content="starding">
-    
 
-    
-    <meta name="description" content="html5设计原理前言之所以取个这么大的标题，是因为这是一篇翻译稿的标题。个人认为这篇演讲的翻译稿非常符合我的思维习惯，而且网上没有一个比较好的版本，故单读整理出来，形成一篇转载文章。
-前一段时间，我们小组一直有一个争论，就是在api中到底是使用utc时间，还是使用unix时间戳。个人坚持的观点就是「先为人设计，再为机器设计」，赞同语义化更强的utc时间。
-上面的例子是想说明，有时候我们做出一件决">
-<meta property="og:type" content="article">
-<meta property="og:title" content="html5设计原理">
-<meta property="og:url" content="http://starding.github.io/2016/03/19/html5-design-principle/index.html">
-<meta property="og:site_name" content="小狐濡尾">
-<meta property="og:description" content="html5设计原理前言之所以取个这么大的标题，是因为这是一篇翻译稿的标题。个人认为这篇演讲的翻译稿非常符合我的思维习惯，而且网上没有一个比较好的版本，故单读整理出来，形成一篇转载文章。
-前一段时间，我们小组一直有一个争论，就是在api中到底是使用utc时间，还是使用unix时间戳。个人坚持的观点就是「先为人设计，再为机器设计」，赞同语义化更强的utc时间。
-上面的例子是想说明，有时候我们做出一件决">
-<meta property="og:image" content="http://starding.github.io/foo">
-<meta property="og:image" content="http://starding.github.io/foo">
-<meta property="og:image" content="http://starding.github.io/foo">
-<meta property="og:image" content="http://starding.github.io/foo">
-<meta property="og:updated_time" content="2016-03-19T14:57:21.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="html5设计原理">
-<meta name="twitter:description" content="html5设计原理前言之所以取个这么大的标题，是因为这是一篇翻译稿的标题。个人认为这篇演讲的翻译稿非常符合我的思维习惯，而且网上没有一个比较好的版本，故单读整理出来，形成一篇转载文章。
-前一段时间，我们小组一直有一个争论，就是在api中到底是使用utc时间，还是使用unix时间戳。个人坚持的观点就是「先为人设计，再为机器设计」，赞同语义化更强的utc时间。
-上面的例子是想说明，有时候我们做出一件决">
+  <title>html5设计原理 | 小狐濡尾</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
 
-    
-    <link rel="alternative" href="/atom.xml" title="小狐濡尾" type="application/atom+xml">
-    
-    
-    <link rel="icon" href="/img/my_favicon.ico">
-    
-    
-    <link rel="apple-touch-icon" href="/img/jacman.jpg">
-    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
-    
-    <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <meta name="author" content="starding">
+
+
+
+  <meta name="description" content="html5设计原理
+前言
+之所以取个这么大的标题，是因为这是一篇翻译稿的标题。个人认为这篇演讲的翻译稿非常符合我的思维习惯，而且网上没有一个比较好的版本，故单读整理出来，形成一篇转载文章。
+前一段时间，我们小组一直有一个争论，就是在api中到底是使用utc时间，还是使用unix时间戳。个人坚持的观点就是「先为人设计，再为机器设计」，赞同语义化更强的utc时间。
+上面的例子是想说明，有时候我们做出一">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="html5设计原理">
+  <meta property="og:url" content="http://starding.github.io/2016/03/19/html5-design-principle/index.html">
+  <meta property="og:site_name" content="小狐濡尾">
+  <meta property="og:description" content="html5设计原理
+前言
+之所以取个这么大的标题，是因为这是一篇翻译稿的标题。个人认为这篇演讲的翻译稿非常符合我的思维习惯，而且网上没有一个比较好的版本，故单读整理出来，形成一篇转载文章。
+前一段时间，我们小组一直有一个争论，就是在api中到底是使用utc时间，还是使用unix时间戳。个人坚持的观点就是「先为人设计，再为机器设计」，赞同语义化更强的utc时间。
+上面的例子是想说明，有时候我们做出一">
+  <meta property="og:image" content="http://starding.github.io/foo">
+  <meta property="og:image" content="http://starding.github.io/foo">
+  <meta property="og:image" content="http://starding.github.io/foo">
+  <meta property="og:image" content="http://starding.github.io/foo">
+  <meta property="og:updated_time" content="2016-03-19T15:26:03.000Z">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="html5设计原理">
+  <meta name="twitter:description" content="html5设计原理
+前言
+之所以取个这么大的标题，是因为这是一篇翻译稿的标题。个人认为这篇演讲的翻译稿非常符合我的思维习惯，而且网上没有一个比较好的版本，故单读整理出来，形成一篇转载文章。
+前一段时间，我们小组一直有一个争论，就是在api中到底是使用utc时间，还是使用unix时间戳。个人坚持的观点就是「先为人设计，再为机器设计」，赞同语义化更强的utc时间。
+上面的例子是想说明，有时候我们做出一">
+
+
+  <link rel="alternative" href="/atom.xml" title="小狐濡尾" type="application/atom+xml">
+
+
+  <link rel="icon" href="/img/my_favicon.ico">
+
+
+  <link rel="apple-touch-icon" href="/img/jacman.jpg">
+  <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
 </head>
 
-  <body>
-    <header>
-      
-<div>
-		
-			<div id="imglogo">
-				<a href="/"><img src="/img/my_white_logo.png" alt="小狐濡尾" title="小狐濡尾"/></a>
-			</div>
-			
-			<div id="textlogo">
-				<h1 class="site-name"><a href="/" title="小狐濡尾">小狐濡尾</a></h1>
-				<h2 class="blog-motto">未济</h2>
-			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
-			</a></div>
-			<nav class="animated">
-				<ul>
-					<ul>
-					 
-						<li><a href="/">主页 | Home</a></li>
-					
-						<li><a href="/index">索引 | Index</a></li>
-					
-						<li><a href="/archives">归档 | Archives</a></li>
-					
-						<li><a href="/about">简介 | About</a></li>
-					
-					<li>
- 					
-					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
-						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
-						<input type="hidden" name="q" value="site:starding.github.io">
-					</form>
-					
-					</li>
-				</ul>
-			</nav>			
-</div>
-    </header>
-    <div id="container">
-      <div id="main" class="post" itemscope itemprop="blogPost">
-  
-	<article itemprop="articleBody"> 
-		<header class="article-info clearfix">
-  <h1 itemprop="name">
+<body>
+  <header>
+    <div>
+
+      <div id="imglogo">
+        <a href="/"><img src="/img/my_white_logo.png" alt="小狐濡尾" title="小狐濡尾" /></a>
+      </div>
+
+      <div id="textlogo">
+        <h1 class="site-name"><a href="/" title="小狐濡尾">小狐濡尾</a></h1>
+        <h2 class="blog-motto">未济</h2>
+      </div>
+      <div class="navbar">
+        <a class="navbutton navmobile" href="#" title="菜单">
+        </a>
+      </div>
+      <nav class="animated">
+        <ul>
+          <ul>
+
+            <li><a href="/">主页 | Home</a></li>
+
+            <li><a href="/index">索引 | Index</a></li>
+
+            <li><a href="/archives">归档 | Archives</a></li>
+
+            <li><a href="/about">简介 | About</a></li>
+
+            <li>
+
+              <form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+                <label>Search</label>
+                <input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+                <input type="hidden" name="q" value="site:starding.github.io">
+              </form>
+
+            </li>
+          </ul>
+      </nav>
+    </div>
+  </header>
+  <div id="container">
+    <div id="main" class="post" itemscope itemprop="blogPost">
+
+      <article itemprop="articleBody">
+        <header class="article-info clearfix">
+          <h1 itemprop="name">
     
       <a href="/2016/03/19/html5-design-principle/" title="html5设计原理" itemprop="url">html5设计原理</a>
   </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="starding" target="_blank" itemprop="author">starding</a>
-		
-  <p class="article-time">
-    <time datetime="2016-03-19T03:39:52.000Z" itemprop="datePublished"> 发表于 2016-03-19</time>
-    
-  </p>
-</header>
-	<div class="article-content">
-		
-		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目录</strong>
-		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#html5_u8BBE_u8BA1_u539F_u7406"><span class="toc-number">1.</span> <span class="toc-text">html5设计原理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u524D_u8A00"><span class="toc-number">1.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u6B63_u6587"><span class="toc-number">1.2.</span> <span class="toc-text">正文</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HTML5_u8BBE_u8BA1_u539F_u7406"><span class="toc-number">1.2.1.</span> <span class="toc-text">HTML5设计原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u8BBE_u8BA1_u539F_u7406"><span class="toc-number">1.2.2.</span> <span class="toc-text">设计原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTML"><span class="toc-number">1.2.3.</span> <span class="toc-text">HTML</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTML5"><span class="toc-number">1.2.4.</span> <span class="toc-text">HTML5</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u907F_u514D_u4E0D_u5FC5_u8981_u7684_u590D_u6742_u6027"><span class="toc-number">1.2.5.</span> <span class="toc-text">避免不必要的复杂性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u652F_u6301_u5DF2_u6709_u7684_u5185_u5BB9"><span class="toc-number">1.2.6.</span> <span class="toc-text">支持已有的内容</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.3.</span> <span class="toc-text">Headline text</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">…</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u6700_u7EC8_u7528_u6237_u4F18_u5148"><span class="toc-number">2.0.1.</span> <span class="toc-text">最终用户优先</span></a></li></ol></li></ol></li></ol>
-		
-		</div>
-		
-		<h1 id="html5_u8BBE_u8BA1_u539F_u7406"><a href="#html5_u8BBE_u8BA1_u539F_u7406" class="headerlink" title="html5设计原理"></a>html5设计原理</h1><h2 id="u524D_u8A00"><a href="#u524D_u8A00" class="headerlink" title="前言"></a>前言</h2><p>之所以取个这么大的标题，是因为这是一篇翻译稿的标题。个人认为这篇演讲的翻译稿非常符合我的思维习惯，而且网上没有一个比较好的版本，故单读整理出来，形成一篇转载文章。</p>
-<p>前一段时间，我们小组一直有一个争论，就是在api中到底是使用utc时间，还是使用unix时间戳。个人坚持的观点就是「先为人设计，再为机器设计」，赞同语义化更强的utc时间。</p>
-<p>上面的例子是想说明，有时候我们做出一件决策，不能仅仅根据根据一时的想法，想当然的认为某些事情应该怎样，而应该遵循一些明显经过时间检验的设计原则行事。尤其是遇到一些两难的选择时，遵循一些这个领域的原则，可能会带来意象不到的好处。</p>
-<p>同样，我们在关注一件新事物，比如html5时（其实不算新了），不能只是看它出现了那些新元素，新api等等。而是应该考虑这背后的一些设计理念以及发展历程，它解决了什么痛点，如此我们才能更好的把握这些事物从哪里来，未来会怎样等问题的脉络。</p>
-<h2 id="u6B63_u6587"><a href="#u6B63_u6587" class="headerlink" title="正文"></a>正文</h2><h3 id="HTML5_u8BBE_u8BA1_u539F_u7406"><a href="#HTML5_u8BBE_u8BA1_u539F_u7406" class="headerlink" title="HTML5设计原理"></a>HTML5设计原理</h3><p>2010年10月21日 </p>
-<p><a href="http://www.cn-cuckoo.com/category/web" target="_blank" rel="external">Web开发</a>翻译 </p>
-<p>注：不清楚博主的这篇翻译文章为什么没了，但原翻译者应该是他没错，这里只进行一下整理</p>
-<p><a href="http://adactio.com/articles/1704/" target="_blank" rel="external">Jeremy Keith在 Fronteers 2010 上的主题演讲</a></p>
-<p>今天我想跟大家谈一谈HTML5的设计。主要分两个方面：一方面，当然了，就是HTML5。我可以站在这儿只讲HTML5，但我并不打算这样做，因为如果你想了解HTML5的话，你可以Google，可以看书，甚至可以看规范。</p>
-<p>实际上，确实有人会谈到规范的内容。史蒂夫·福克纳（Steve Faulkner）会讲HTML5与可访问性。而保罗·艾里什（Paul Irish）则会讲HTML5提供的各种API。因此，我今天站在这里，不会光讲一讲HTML5就算完事了。</p>
-<p>说老实话，在正式开始之前，我想先交待清楚我所说的HTML5到底是什么意思。这话听起来有点搞笑：这会子你一直在说HTML5，难道我们还不知道什么是HTML5吗？大家知道，有一个规范，它的名字叫HTML5。我所说的HTML5，指的就是这个规范。但问题是，有些人所说的HTML5，指的不仅仅是这个规范，还有别的意思。比如说，用HTML5来代指CSS3就是一种常见的叫法。我可不是这样的。我所说的HTML5，不包含CSS3，就是HTML5。</p>
-<p>类似的术语问题以前也有过。Ajax本来是一种含义明确的技术，但过了不久，它的含义就变成了“用JavaScript来做一切好玩的东西”。这就是Ajax，对不对？今天，HTML5也面临同样的问题，它本来指的是一个特定的规范，但如今含义却成了“在Web上做一切好玩的事。”我说的不是这种HTML5，不是这种涵盖了最近刚刚出现的各种新东东的HTML5。我说的仅仅是规范本身：HTML5。</p>
-<p>刚才已经说了，我今天想要讲的内容不多，也没有打算介绍HTML5都包含什么。今天我要讲的是它的另一方面，即HTML5的设计。换句话说，我要讲的不是规范里都包含什么，而是规范里为什么会包含它们，以及在设计这个规范的时候，设计者们是怎么看待这些东西的。</p>
-<h3 id="u8BBE_u8BA1_u539F_u7406"><a href="#u8BBE_u8BA1_u539F_u7406" class="headerlink" title="设计原理"></a>设计原理</h3><p>设计原理本质上是一种信念、一种想法、一个概念，是你行动的支柱。不管你是制定规范，还是制造一种有形的物品，或者编写软件，甚至发明编程语言。你都能找到背后的一个或者多个设计原理，多人协作的任何成果都是例证。不仅仅Web开发领域是这样。纵观人类历史，像国家和社会这样大规模的构建活动背后，同样也有设计原理。</p>
-<p>就拿美国为例吧，美国的设计原理都写在了《独立宣言》中了。</p>
-<blockquote>
-<p>我们认为这些真理是不言而喻的，人人生而平等，造物主赋予了每个人不可剥夺的权利，包括生存、自由和追求幸福。</p>
-</blockquote>
-<p>这里有一句口号：生存、自由和追求幸福。这是被写进宪法中的核心理念，它关系到我们所有人的一切，也就是我们构建自己社会的原则。</p>
-<p>还有一个例子，就是卡尔·马克思（Karl Marx），他的著作在20世纪曾被奉为建设社会主义的圭臬。其基本思想大致可以归结为下面这条设计原理：</p>
-<blockquote>
-<p>各尽所能，各取所需。</p>
-</blockquote>
-<p>这其实就是一种经济体系背后的设计原理。</p>
-<p>还有一个例子，比前面两个的历史更久远一些，不过大同小异：</p>
-<blockquote>
-<p>人人为我，我为人人。</p>
-</blockquote>
-<p>这个极为简单的设计原理，是两千年前的拿撒勒犹太人耶稣基督提出来的。而这条原则成为了后来许多宗教的核心教义。原理与实践有时候并不是同步的。</p>
-<p>下面是小说中的一个例子。英国小说家乔治·奥威尔（George Orwell）笔下的《动物庄园》，就是在一条设计原理的基础上构建起来的虚拟社会。这条设计原理是：</p>
-<blockquote>
-<p>四条腿的都是好人，两条腿的都是坏蛋！</p>
-</blockquote>
-<p>《动物庄园》中有意思的是，随着社会的变迁——变得越来越坏，这条设计原理也跟着发生了改变，变成了“四条腿的都是好人，两条腿的就更好了。”最关键的是，即使是在虚构的作品里，设计原理都是存在的。</p>
-<p>还有一套虚构的作品是以三条设计原理为基础构建起来的，那就是美国著名小说家艾萨克·阿西莫夫（Issac Asimov）的机器人经典系列。阿西莫夫发明了机器人学这个术语，并提出了机器人学三大法则，然后在这三个简单的设计原理基础上创作了一系列经典作品——大约有50本书。无论作品的情节如何变化，实际上都是从不同的角度来阐释这三大设计原理。我想，在座各位对机器人三大法则都不应该陌生。</p>
-<blockquote>
-<p>机器人不得伤害人类，或袖手旁观人类受伤害。</p>
-<p>机器人必须服从人类命令，除非命令违反第一法则。</p>
-<p>机器人必须自卫，只要不违背第一和第二法则。</p>
-</blockquote>
-<p>这些恐怕是第一次出现在小说中的针对软件的设计原理了。虽然基于这三个设计原理的软件运行在虚构的机器人的“正电子脑”中，但我想这应该是软件设计原理的事实开端。从此以后，我们才看到大量优秀软件背后的设计原理。</p>
-<p>蒂姆·伯纳斯-李（Tim Berners-Lee），Web的发明者，在W3C的网站上发表过一份文档，其中有一个URL给出了他自己的一套设计原理。这些设计原理并不那么容易理解，不仅多，而且随着时时间推移，他还会不断补充、修改和删除。不过我还是觉得把自己认同的设计原理写出来放在某个地方真是个不错的主意。</p>
-<p>实际上，CSS的发明人之一伯特·波斯（Bert Bos），也在W3C的网站上放着一份文档，其中讲的都是基本的设计原理，比如怎样设计并构建一种格式，无论是CSS还是其他格式。推荐大家看一看。</p>
-<p>只要你在W3C的站点中随便找一找，就可以发现非常多的这种设计原理，包括蒂姆·伯纳斯-李个人的。当然，你还会看到他从软件工程学校里借用的一些口号：分权（decentalisation）、容忍（tolerance）、简易（simplicity）、模块化（modularity）。这些都是在他发明新格式的时候，头脑中无时无刻不在想的那些关键词。</p>
-<p>在座各位对蒂姆·伯纳斯-李的贡献都是非常熟悉的，因为大家每天都在用。他发明了Web，与罗伯特·卡里奥（Robert Cailliau）共同发明了Web，而且在发明Web的同时，也发明了我们每天都在Web上使用的语言。当然，这门语言就是HTML：超文本标记语言。</p>
-<h3 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h3><p>HTML最早是从2.0版开始的。从来就没有1.0版。如果有人告诉你说，他最早是从HTML 1.0开始使用HTML的，那他绝对是在忽悠你。从前确实有一个名叫HTML Tags的文档，其中的部分标签一直用到现在，但那个文档并非官方的规范。</p>
-<p>使用标签、尖括号、p或h1，等等，并不是蒂姆·伯纳斯-李首创的想法。当时的SGML里就有了这些概念，而且当时的CERN（Conseil Europeen pour la Recherche Nucleaire，欧洲核子研究委员会）也在使用SGML的一个特定的版本。也就是说，即便在那个时代，他也没有白手起家；这一点在HTML后来的发展过程中也体现了出来：继往开来、承前启后，而不是另立门户、从头开始。</p>
-<p>换句话说，这篇名为HTML Tags的文档可以算作HTML的第一个版本，但它却不是一个正式的版本。第一个正式版本，HTML 2.0，也不是出自W3C之手。HTML 2.0是由IETF，因特网工程任务组（Internet Engineering Task Force）制定的。在W3C成立之前，IETF已经发布了不少标准。但从第三个版本开始往后，W3C，万维网联盟（World Wide Web Consortium）开始接手，并负责后续版本的制定工作。</p>
-<p>20世纪九十年代HTML有过几次快速的发展。众所周知，在那个时代要想构建网站，可是一项十分复杂的工程。浏览器大战曾令人头疼不已。市场竞争的结果就是各家浏览器里都塞满了各种专有的特性，都试图在专有特性上胜人一筹。当时的混乱程度不堪回首，HTML到底还重不重要，或者它作为Web格式的前景如何，谁都说不清楚。</p>
-<p>从1997年到1999年，HTML的版本从3.2到4.0到4.01，经历了非常快的发展。问题是到了4.01的时候，W3C的认识发生了倒退，他们说“好了，这个版本就这样了，HTML也就这样了；HTML 4.01是HTML的最后一个版本了，我们用不着HTML工作组了。”</p>
-<p>W3C并没有停止开发这门语言，只不过他们对HTML不再感兴趣了。在HTML 4.01之后，他们提出了XHTML 1.0。虽然听起来完全不同，但XHTML 1.0与HTML 4.01其实是一样的。我的意思是说，从字面上看这两个规范的内容是一样的，词汇表是一样的，所有的元素是一样，所有的属性也都是一样的。唯一一点不同之处，就是XHTML 1.0要求使用XML语法。也就是说，所有属性都必须使用小写字母，所有元素也必须使用小写字母，所有属性值都必须加引号，你还得记着使用结束标签，记着对img和br要使用自结束标签。</p>
-<p>从规范本身的内容来看，实际上是相同的，没有什么不同。不同之处就是编码风格，因为对浏览器来说，读取符合HTML 4.01、HTML 3.2，或者XHTML 1.0规范的网页都没有问题，对浏览器来说这些网页都是一样的，都会生成相同的DOM树。只不过人们会比较喜欢XHTML 1.0，因为不少人认同它比较严格的编码风格。</p>
-<p>到了2000年，Web标准项目（Web Standards Project）的活动开展得如火如荼，开发人员对浏览器里包含的那些乱七八糟的专有特性已经忍无可忍了。大家都很生气，就骂那些浏览器厂商“遵守个规范就他妈的真有那么难吗？”当时CSS有了长足的发展，而且与XHTML 1.0结合得也很紧密，CSS加XHTML 1.0基本上就可以算是“最佳实践”了。虽然在我看来HTML 4.01与XHTML 1.0没有本质上的不同，但大家都接受了。专业的开发人员能做到元素全部小写，属性全部小写，属性值也全部加引号：由于专业人员起到了模范带头作用，越来越多的人也都开始支持这种语法。</p>
-<p>我就是一个例子！过去的10年，我一直都使用XHTML 1.0文档类型，原因是这样一来验证器就能给我帮上很大的忙，对不对？只要我写的是XHTML 1.0，然后用验证器测试，它就能告诉我是不是忘了给属性值加引号，是不是没有结束某个标签，等等等等。而如果我写的是HTML 4.01，同样的问题就变成了有效的了，验证器就不一定会提醒我了。</p>
-<p>这就是我一直使用XHTML 1.0的原因。我估计很多人都……使用XHTML 1.0的朋友，请把手举起来。好的。HTML 4.01呢？人少多了。一直没有举手的呢，大声点，你们用什么？HTML5，也很好！更早的呢，还有人使用更早的文档类型吗？没有了？</p>
-<p>10年来我一直使用XHTML 1.0，就是因为验证器能够真正帮到我。有人用XHTML 1.1吗？你知道有人用吗？请举手，别放下。有人把网页标记为XML文档吗？有吗？那你们使用的就不是XHTML 1.1。</p>
-<p>这就是个大问题。XHTML 1.0之后是XHTML 1.1，只是小数点后面的数字加了一个1，而且从词汇表的角度看，规范本身没有什么新东西，元素也都相同，属性也都相同。但对XHTML 1.1来说，唯一的变化是你必须把自己的文档标记为XML文档。在使用XHTML 1.0的时候，还可以把文档标记为HTML，而我们也正是这样做的，否则把文档标记为XML没准真会把人逼疯的。</p>
-<p>为什么这么说呢？首先，把文档标记为XML后，Internet Explorer不能处理。当然，IE9是可以处理了。恐怕有人会讲“真是太可爱了”，他们到现在居然都没有忘了这件事。这艘船终于靠岸了！不过那时候，作为全球领先的浏览器，IE无法处理接收到的XML文档类型的文档，而规范又要求你以XML文档类型来发送文档，这不把人逼疯才怪呢。</p>
-<p>所以说XHTML 1.1有点脱离现实，而你不想把文档以XML格式发送给那些能够理解XML的浏览器，则是因为XML的错误处理模型。XML的语法，无论是属性小写，元素小写，还是始终要给属性值加引号，这些都没有问题，都很好，事实上我也喜欢这样做，但XML的错误处理模型却是这样的：解析器如果遇到错误，停止解析。规范里就是这么写的。如果你把XHTML 1.1标记为XML文档类型，假设你用Firefox打开这个文档，而文档中有一个和号（&amp;）没有正确编码，就算整个页面中就这一处错误，你看到的也将是黄屏，浏览器死掉了。Firefox会说：“没戏了，页面中有一个错误，你看不到这个网页了。”根据XML规范，这样处理是正确的，对Firefox而言，遇到错误就停止解析，并且不呈现其他任何内容是严格按照XML规范做的。因为它不是HTML，HTML根本就没有错误处理模型，但根据XML规范，这样做没错。</p>
-<p>这就是为什么你不会把文档标记为XML的另一个原因。接下来，新的版本是XHTML 2，大家注意后面没有日期，因为这个规范并没有完成。</p>
-<p>现在就说说XHTML 2，我很愿意把问题说清楚，XHTML 2实际上真是一个非常非常好的规范，确实非常好……从理论的角度来说。我的意思是说，制定这个规范的人都是非常非常有头脑的。直说吧，领导制定这个规范的家伙是斯蒂芬·彭伯顿（Stephen Pemberton），他应该是本地人，是一个聪明过人的家伙。规范本身也很了不起，如果所有人都同意使用的话，也一定是一个非常好的格式。只不过，还不够实际。</p>
-<p>首先，XHTML 2仍然使用XML错误处理模型，你必须保证以XML文档类型发送文档；这一点不言自明：没人愿意这样做。其次，XHTML 2有意不再向后兼容已有的HTML的各个版本。他们甚至曾经讨论过废除img元素，这对每天都在做Web开发的人来说确实有点疯了的味道。但我们知道，他们之所以这样做，理论上确实有充足的理由——使用object元素可能会更好。</p>
-<p>因此，无论XHTML 2在理论上是多么完美的一种格式，但却从未有机会付诸实践。而之所以难以将其付诸实践，就是因为像你我这样的开发人员永远不会支持它，它不向后兼容。同样，浏览器厂商也不会，浏览器厂商必须要保证向后兼容。</p>
-<p>为什么XHTML 1.1没有像XML那样得到真正广泛地应用，为什么XHTML 2从未落到实处？因为它违反了一条设计原理，这条设计原理就是著名的伯斯塔尔法则（Postel’s Law）。大家都知道：</p>
-<blockquote>
-<p>发送时要保守；接收时要开放。</p>
-</blockquote>
-<p>没错，接收的时候要开放，而这也正是Web得以构建的基础。开发浏览器的人必须敞开胸怀，接收所有发送给浏览器的东西，因为它们过去一直都在接收那些不够标准的东西，对不对？Web上的很多文档都不规范，但那正是Web发展的动力。从某种角度讲，Web走的正是一条混沌发展之路，虽然混沌，但却非常美丽诱人。在Web上，格式不规范的文档随处可见，但那又怎样呢？如果所有人都能够写出精准的XML，所有文档的格式都十分正确，那当然好了。可是，那不现实。现实是伯斯塔尔法则。</p>
-<p>作为专业人士，在发送文档的时候，我们会尽量保守一些，尽量采用最佳实践，尽量确保文档格式良好。但从浏览器的角度说，它们必须以开放的姿态去接收任何文档。</p>
-<p>有人可能会说XML有错误处理模型，XHTML 1.1和XHTML 2都使用该模型，但那个错误处理模型太苛刻了。它绝对不符合接收时开放这个法则，遇到一个错误就停止解析怎么能叫开放呢？我们只能说它与健壮性法则（也就是伯斯塔尔法则）是对立的。</p>
-<h3 id="HTML5"><a href="#HTML5" class="headerlink" title="HTML5"></a>HTML5</h3><p>之后，就到了HTML5，但HTML5并不是由W3C直接制定的。故事的经过是这样的，到20世纪末的时候，还没有HTML工作组，W3C内部的一些人就开始琢磨了，“HTML也许还可以更长寿一点，只要我们对它稍加扩展就行了。只要把我们放在XHTML上的时间和精力拿出一部分来，就可以提升一下HTML中的表单，可以让HTML更接近编程语言，就可以让它更上一层楼。”</p>
-<p>于是，在2004年W3C成员内部的一次研讨会上，当时Opera公司的代表伊恩·希克森（Ian Hickson）提出了一个扩展和改进HTML的建议。他建议新任务组可以跟XHTML 2并行，但是在已有HTML的基础上开展工作，目标是对HTML进行扩展。W3C投票表决的结果是——“反对”，因为HTML已经死了，XHTML 2才是未来的方向。然后，Opera、Apple等浏览器厂商，以及其他一些成员说：“那好吧，不指望他们了，我们自已一样可以做这件事，我们脱离W3C。”他们成立了Web Hypertext Applications Technology Working Group（Web超文本应用技术工作组，WHATWG）——可巧的是，他们自称工作组，而不是特别小组（task force），这就为HTML5将来的命运埋下了伏笔。</p>
-<p>WHATWG决定完全脱离W3C，在HTML的基础上开展工作，向其中添加一些新东西。这个工作组的成员里有浏览器厂商，因此他们不仅可以说加就加，而且还能够一一实现。结果，大家不断提出一些好点子，并且逐一做到了浏览器中。</p>
-<p>WHATWG的工作效率很高，不久就初见成效。在此期间，W3C的XHTML 2没有什么实质性的进展。特别是，如果从实现的角度来说，用原地踏步形容似乎也不为过。</p>
-<p>结果，一件有意思的事情发生了。那是在2006年，蒂姆·伯纳斯-李写了一篇博客，说：“你们知道吗？我们错了。我们错在企图一夜之间就让Web跨入XML时代，我们的想法太不切实际了，是的，也许我们应该重新组建HTML工作组了。”善哉斯言，后来的故事情节果真就是这样发展的。W3C在2007年组建了HTML5工作组。这个工作组面临的第一个问题，毫无疑问就是“我们是从头开始做起呢，还是在2004年成立的那个叫WHATWG的工作组既有成果的基础上开始工作呢？”答案是显而易见的，他们当然希望从已经取得的成果着手，以之为基础展开工作。于是他们又投了一次票，同意“在WHATWG工作成果的基础上继续开展工作”。好了，这下他们要跟WHATWG并肩战斗了。</p>
-<p>第二个问题就是如何理顺两个工作组之间的关系。W3C这个工作组的编辑应该由谁担任？是不是还让WHATWG的编辑，也就是现在Google的伊恩·希克森来兼任？于是他们又投了一次票，赞成“让伊恩·希克森担任W3C HTML5规范的编辑，同时兼任WHATWG的编辑，更有助于新工作组开展工作。”</p>
-<p>这就是他们投票的结果，也就是我们今天看到的局面：一种格式，两个版本。WHATWG的网站上有这个规范，而W3C的站点上同样也有一份。</p>
-<p>如果你不了解内情，很可能会产生这样的疑问：“哪个版本才是真正的规范？”当然，这两个版本内容是一样的……基本上相同。实际上，这两个版本将来还会分道扬镳。现在已经有了分道扬镳的迹象了。我的意思是说，W3C最终要制定一个具体的规范，这个规范会成为一个工作草案，定格在某个历史时刻。</p>
-<p>而WHATWG呢，他们还在不断地迭代。即使目前我们说的HTML5，也不能完全涵盖WHATWG正在从事的工作。最准确的理解是他们正在开发一项简单的HTML或Web技术，因为这才是他们工作的核心目标。然而，同时存在两个这样的工作组，这两个工作组同时开发一个基本相同的规范，这无论如何也容易让人产生误解。误解就可能造成麻烦。</p>
-<p>其实这两个工作组背后各自有各自的流程，因为它们的理念完全不同。在WHATWG，可以说是一种独裁的工作机制。我刚才说了，伊恩·希克森是编辑。他会听取各方意见，在所有成员各抒己见，充分陈述自己的观点之后，他批准自己认为正确的意见。<br>W3C则截然相反，可以说是一种民主的工作机制。所有成员都可以发表意见，而且每个人都有投票表决的权利。这个流程的关键在于投票表决。从表面上看，WHATWG的工作机制让人不好接受。岂止是不好接受，简直是历史的倒退。相信谁都会认为“运作任何项目都不能采取这种方式！”</p>
-<p>W3C的工作机制听起来让人很舒服。至少体现了人人平等嘛。但在实践中，WHATWG的工作机制运行得非常非常好。我认为之所以会这样，主要归功于伊恩·希克森。他的的确确是一个非常称职的编辑。他在听取各方意见时，始终可以做到丝毫不带个人感情色彩。</p>
-<p>从原理上讲，W3C的工作机制很公平，而实际上却非常容易在某些流程或环节上卡壳，造成工作停滞不前，一件事情要达成决议往往需要花费很长时间。那到底哪种工作机制最好呢？我认为，最好的工作机制是将二者结合起来。而事实也是两个规范制定主体在共同制定一份相同的规范，我想，这倒是非常有利于两种工作机制相互取长补短。</p>
-<p>两个工作组之所以能够同心同德，主要原因是HTML5的设计思想。因为他们从一开始就确定了设计HTML5所要坚持的原则。结果，我们不仅看到了一份规范，也就是W3C站点上公布的那份文档，即HTML5语言规范，还在W3C站点上看到了另一份文档，也就是HTML设计原理。而这份文档的一位编辑今天也来到了我们大会的现场，他就是安妮·奇泰丝（Anne Van Kesteren）。如果大家对这份文档有问题，可以请教安妮。</p>
-<p>这份文档非常好，真的非常出色。这份文档，可以说见证了W3C与WHATWG同心协力共谋发展的历程。难道你们不觉得他们像是一对欢喜冤家吗？那他们还怎么同心同德呢？这份文档忠实地记录了他们一道做了什么，他们共同拥护什么。</p>
-<p>接下来，我想要讲的就是这份文档。因为，既然他们能就这份文档达成共识，那么我相信，HTML5必将是一个伟大的规范，而他们已经认可这就是他们的共同行动纲领。为此，你才会看到诸如兼容性、实用性、互用性之类的概念。即便W3C与WHATWG之间再有多大的分歧——确实相当多——至少他们还有这份文档中记录的共识。这一点才是至关重要的。正因为他们有了共识，才有了这份基于共识描述设计原理的文档。</p>
-<h3 id="u907F_u514D_u4E0D_u5FC5_u8981_u7684_u590D_u6742_u6027"><a href="#u907F_u514D_u4E0D_u5FC5_u8981_u7684_u590D_u6742_u6027" class="headerlink" title="避免不必要的复杂性"></a>避免不必要的复杂性</h3><p>下面我就给大家介绍一些这份文档中记载的设计原理。第一个，非常简单：避免不必要的复杂性。好像很简单吧。我用一个例子来说明。</p>
-<p>假设我使用HTML 4.01规范，我打开文档，输入doctype。这里有人记得HTML 4.01的doctype吗？好，没有，我猜没有。除非……我的意思是说，你是傻冒。现场恐怕真有人背过，这就是HTML 4.01的doctype：</p>
-<pre><code class="html"><span class="meta">&lt;!DOCTYPE html PUBLIC "-//W3C/DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"&gt;</span>
+          <p class="article-author">By
+
+            <a href="/about" title="starding" target="_blank" itemprop="author">starding</a>
+
+            <p class="article-time">
+              <time datetime="2016-03-19T03:39:52.000Z" itemprop="datePublished"> 发表于 2016-03-19</time>
+
+            </p>
+        </header>
+        <div class="article-content">
+
+          <div id="toc" class="toc-article">
+            <strong class="toc-title">文章目录</strong>
+
+            <ol class="toc">
+              <li class="toc-item toc-level-1"><a class="toc-link" href="#html5_u8BBE_u8BA1_u539F_u7406"><span class="toc-number">1.</span> <span class="toc-text">html5设计原理</span></a>
+                <ol class="toc-child">
+                  <li class="toc-item toc-level-2"><a class="toc-link" href="#u524D_u8A00"><span class="toc-number">1.1.</span> <span class="toc-text">前言</span></a></li>
+                  <li class="toc-item toc-level-2"><a class="toc-link" href="#u6B63_u6587"><span class="toc-number">1.2.</span> <span class="toc-text">正文</span></a>
+                    <ol class="toc-child">
+                      <li class="toc-item toc-level-3"><a class="toc-link" href="#HTML5_u8BBE_u8BA1_u539F_u7406"><span class="toc-number">1.2.1.</span> <span class="toc-text">HTML5设计原理</span></a></li>
+                      <li class="toc-item toc-level-3"><a class="toc-link" href="#u8BBE_u8BA1_u539F_u7406"><span class="toc-number">1.2.2.</span> <span class="toc-text">设计原理</span></a></li>
+                      <li class="toc-item toc-level-3"><a class="toc-link" href="#HTML"><span class="toc-number">1.2.3.</span> <span class="toc-text">HTML</span></a></li>
+                      <li class="toc-item toc-level-3"><a class="toc-link" href="#HTML5"><span class="toc-number">1.2.4.</span> <span class="toc-text">HTML5</span></a></li>
+                      <li class="toc-item toc-level-3"><a class="toc-link" href="#u907F_u514D_u4E0D_u5FC5_u8981_u7684_u590D_u6742_u6027"><span class="toc-number">1.2.5.</span> <span class="toc-text">避免不必要的复杂性</span></a></li>
+                      <li class="toc-item toc-level-3"><a class="toc-link" href="#u652F_u6301_u5DF2_u6709_u7684_u5185_u5BB9"><span class="toc-number">1.2.6.</span> <span class="toc-text">支持已有的内容</span></a></li>
+                    </ol>
+                  </li>
+                  <li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.3.</span> <span class="toc-text">Headline text</span></a></li>
+                </ol>
+              </li>
+              <li class="toc-item toc-level-1"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">…</span></a>
+                <ol class="toc-child">
+                  <li class="toc-item toc-level-3"><a class="toc-link" href="#u6700_u7EC8_u7528_u6237_u4F18_u5148"><span class="toc-number">2.0.1.</span> <span class="toc-text">最终用户优先</span></a></li>
+                </ol>
+              </li>
+            </ol>
+            </li>
+            </ol>
+
+          </div>
+
+          <h1 id="html5_u8BBE_u8BA1_u539F_u7406"><a href="#html5_u8BBE_u8BA1_u539F_u7406" class="headerlink" title="html5设计原理"></a>html5设计原理</h1>
+          <h2 id="u524D_u8A00"><a href="#u524D_u8A00" class="headerlink" title="前言"></a>前言</h2>
+          <p>之所以取个这么大的标题，是因为这是一篇翻译稿的标题。个人认为这篇演讲的翻译稿非常符合我的思维习惯，而且网上没有一个比较好的版本，故单读整理出来，形成一篇转载文章。</p>
+          <p>前一段时间，我们小组一直有一个争论，就是在api中到底是使用utc时间，还是使用unix时间戳。个人坚持的观点就是「先为人设计，再为机器设计」，赞同语义化更强的utc时间。</p>
+          <p>上面的例子是想说明，有时候我们做出一件决策，不能仅仅根据根据一时的想法，想当然的认为某些事情应该怎样，而应该遵循一些明显经过时间检验的设计原则行事。尤其是遇到一些两难的选择时，遵循一些这个领域的原则，可能会带来意象不到的好处。</p>
+          <p>同样，我们在关注一件新事物，比如html5时（其实不算新了），不能只是看它出现了那些新元素，新api等等。而是应该考虑这背后的一些设计理念以及发展历程，它解决了什么痛点，如此我们才能更好的把握这些事物从哪里来，未来会怎样等问题的脉络。</p>
+          <h2 id="u6B63_u6587"><a href="#u6B63_u6587" class="headerlink" title="正文"></a>正文</h2>
+          <h3 id="HTML5_u8BBE_u8BA1_u539F_u7406"><a href="#HTML5_u8BBE_u8BA1_u539F_u7406" class="headerlink" title="HTML5设计原理"></a>HTML5设计原理</h3>
+          <p>2010年10月21日 </p>
+          <p><a href="http://www.cn-cuckoo.com/category/web" target="_blank" rel="external">Web开发</a>翻译 </p>
+          <p>注：不清楚博主的这篇翻译文章为什么没了，但原翻译者应该是他没错，这里只进行一下整理</p>
+          <p><a href="http://adactio.com/articles/1704/" target="_blank" rel="external">Jeremy Keith在 Fronteers 2010 上的主题演讲</a></p>
+          <p>今天我想跟大家谈一谈HTML5的设计。主要分两个方面：一方面，当然了，就是HTML5。我可以站在这儿只讲HTML5，但我并不打算这样做，因为如果你想了解HTML5的话，你可以Google，可以看书，甚至可以看规范。</p>
+          <p>实际上，确实有人会谈到规范的内容。史蒂夫·福克纳（Steve Faulkner）会讲HTML5与可访问性。而保罗·艾里什（Paul Irish）则会讲HTML5提供的各种API。因此，我今天站在这里，不会光讲一讲HTML5就算完事了。</p>
+          <p>说老实话，在正式开始之前，我想先交待清楚我所说的HTML5到底是什么意思。这话听起来有点搞笑：这会子你一直在说HTML5，难道我们还不知道什么是HTML5吗？大家知道，有一个规范，它的名字叫HTML5。我所说的HTML5，指的就是这个规范。但问题是，有些人所说的HTML5，指的不仅仅是这个规范，还有别的意思。比如说，用HTML5来代指CSS3就是一种常见的叫法。我可不是这样的。我所说的HTML5，不包含CSS3，就是HTML5。</p>
+          <p>类似的术语问题以前也有过。Ajax本来是一种含义明确的技术，但过了不久，它的含义就变成了“用JavaScript来做一切好玩的东西”。这就是Ajax，对不对？今天，HTML5也面临同样的问题，它本来指的是一个特定的规范，但如今含义却成了“在Web上做一切好玩的事。”我说的不是这种HTML5，不是这种涵盖了最近刚刚出现的各种新东东的HTML5。我说的仅仅是规范本身：HTML5。</p>
+          <p>刚才已经说了，我今天想要讲的内容不多，也没有打算介绍HTML5都包含什么。今天我要讲的是它的另一方面，即HTML5的设计。换句话说，我要讲的不是规范里都包含什么，而是规范里为什么会包含它们，以及在设计这个规范的时候，设计者们是怎么看待这些东西的。</p>
+          <h3 id="u8BBE_u8BA1_u539F_u7406"><a href="#u8BBE_u8BA1_u539F_u7406" class="headerlink" title="设计原理"></a>设计原理</h3>
+          <p>设计原理本质上是一种信念、一种想法、一个概念，是你行动的支柱。不管你是制定规范，还是制造一种有形的物品，或者编写软件，甚至发明编程语言。你都能找到背后的一个或者多个设计原理，多人协作的任何成果都是例证。不仅仅Web开发领域是这样。纵观人类历史，像国家和社会这样大规模的构建活动背后，同样也有设计原理。</p>
+          <p>就拿美国为例吧，美国的设计原理都写在了《独立宣言》中了。</p>
+          <blockquote>
+            <p>我们认为这些真理是不言而喻的，人人生而平等，造物主赋予了每个人不可剥夺的权利，包括生存、自由和追求幸福。</p>
+          </blockquote>
+          <p>这里有一句口号：生存、自由和追求幸福。这是被写进宪法中的核心理念，它关系到我们所有人的一切，也就是我们构建自己社会的原则。</p>
+          <p>还有一个例子，就是卡尔·马克思（Karl Marx），他的著作在20世纪曾被奉为建设社会主义的圭臬。其基本思想大致可以归结为下面这条设计原理：</p>
+          <blockquote>
+            <p>各尽所能，各取所需。</p>
+          </blockquote>
+          <p>这其实就是一种经济体系背后的设计原理。</p>
+          <p>还有一个例子，比前面两个的历史更久远一些，不过大同小异：</p>
+          <blockquote>
+            <p>人人为我，我为人人。</p>
+          </blockquote>
+          <p>这个极为简单的设计原理，是两千年前的拿撒勒犹太人耶稣基督提出来的。而这条原则成为了后来许多宗教的核心教义。原理与实践有时候并不是同步的。</p>
+          <p>下面是小说中的一个例子。英国小说家乔治·奥威尔（George Orwell）笔下的《动物庄园》，就是在一条设计原理的基础上构建起来的虚拟社会。这条设计原理是：</p>
+          <blockquote>
+            <p>四条腿的都是好人，两条腿的都是坏蛋！</p>
+          </blockquote>
+          <p>《动物庄园》中有意思的是，随着社会的变迁——变得越来越坏，这条设计原理也跟着发生了改变，变成了“四条腿的都是好人，两条腿的就更好了。”最关键的是，即使是在虚构的作品里，设计原理都是存在的。</p>
+          <p>还有一套虚构的作品是以三条设计原理为基础构建起来的，那就是美国著名小说家艾萨克·阿西莫夫（Issac Asimov）的机器人经典系列。阿西莫夫发明了机器人学这个术语，并提出了机器人学三大法则，然后在这三个简单的设计原理基础上创作了一系列经典作品——大约有50本书。无论作品的情节如何变化，实际上都是从不同的角度来阐释这三大设计原理。我想，在座各位对机器人三大法则都不应该陌生。</p>
+          <blockquote>
+            <p>机器人不得伤害人类，或袖手旁观人类受伤害。</p>
+            <p>机器人必须服从人类命令，除非命令违反第一法则。</p>
+            <p>机器人必须自卫，只要不违背第一和第二法则。</p>
+          </blockquote>
+          <p>这些恐怕是第一次出现在小说中的针对软件的设计原理了。虽然基于这三个设计原理的软件运行在虚构的机器人的“正电子脑”中，但我想这应该是软件设计原理的事实开端。从此以后，我们才看到大量优秀软件背后的设计原理。</p>
+          <p>蒂姆·伯纳斯-李（Tim Berners-Lee），Web的发明者，在W3C的网站上发表过一份文档，其中有一个URL给出了他自己的一套设计原理。这些设计原理并不那么容易理解，不仅多，而且随着时时间推移，他还会不断补充、修改和删除。不过我还是觉得把自己认同的设计原理写出来放在某个地方真是个不错的主意。</p>
+          <p>实际上，CSS的发明人之一伯特·波斯（Bert Bos），也在W3C的网站上放着一份文档，其中讲的都是基本的设计原理，比如怎样设计并构建一种格式，无论是CSS还是其他格式。推荐大家看一看。</p>
+          <p>只要你在W3C的站点中随便找一找，就可以发现非常多的这种设计原理，包括蒂姆·伯纳斯-李个人的。当然，你还会看到他从软件工程学校里借用的一些口号：分权（decentalisation）、容忍（tolerance）、简易（simplicity）、模块化（modularity）。这些都是在他发明新格式的时候，头脑中无时无刻不在想的那些关键词。</p>
+          <p>在座各位对蒂姆·伯纳斯-李的贡献都是非常熟悉的，因为大家每天都在用。他发明了Web，与罗伯特·卡里奥（Robert Cailliau）共同发明了Web，而且在发明Web的同时，也发明了我们每天都在Web上使用的语言。当然，这门语言就是HTML：超文本标记语言。</p>
+          <h3 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h3>
+          <p>HTML最早是从2.0版开始的。从来就没有1.0版。如果有人告诉你说，他最早是从HTML 1.0开始使用HTML的，那他绝对是在忽悠你。从前确实有一个名叫HTML Tags的文档，其中的部分标签一直用到现在，但那个文档并非官方的规范。</p>
+          <p>使用标签、尖括号、p或h1，等等，并不是蒂姆·伯纳斯-李首创的想法。当时的SGML里就有了这些概念，而且当时的CERN（Conseil Europeen pour la Recherche Nucleaire，欧洲核子研究委员会）也在使用SGML的一个特定的版本。也就是说，即便在那个时代，他也没有白手起家；这一点在HTML后来的发展过程中也体现了出来：继往开来、承前启后，而不是另立门户、从头开始。</p>
+          <p>换句话说，这篇名为HTML Tags的文档可以算作HTML的第一个版本，但它却不是一个正式的版本。第一个正式版本，HTML 2.0，也不是出自W3C之手。HTML 2.0是由IETF，因特网工程任务组（Internet Engineering Task Force）制定的。在W3C成立之前，IETF已经发布了不少标准。但从第三个版本开始往后，W3C，万维网联盟（World Wide Web Consortium）开始接手，并负责后续版本的制定工作。</p>
+          <p>20世纪九十年代HTML有过几次快速的发展。众所周知，在那个时代要想构建网站，可是一项十分复杂的工程。浏览器大战曾令人头疼不已。市场竞争的结果就是各家浏览器里都塞满了各种专有的特性，都试图在专有特性上胜人一筹。当时的混乱程度不堪回首，HTML到底还重不重要，或者它作为Web格式的前景如何，谁都说不清楚。</p>
+          <p>从1997年到1999年，HTML的版本从3.2到4.0到4.01，经历了非常快的发展。问题是到了4.01的时候，W3C的认识发生了倒退，他们说“好了，这个版本就这样了，HTML也就这样了；HTML 4.01是HTML的最后一个版本了，我们用不着HTML工作组了。”</p>
+          <p>W3C并没有停止开发这门语言，只不过他们对HTML不再感兴趣了。在HTML 4.01之后，他们提出了XHTML 1.0。虽然听起来完全不同，但XHTML 1.0与HTML 4.01其实是一样的。我的意思是说，从字面上看这两个规范的内容是一样的，词汇表是一样的，所有的元素是一样，所有的属性也都是一样的。唯一一点不同之处，就是XHTML 1.0要求使用XML语法。也就是说，所有属性都必须使用小写字母，所有元素也必须使用小写字母，所有属性值都必须加引号，你还得记着使用结束标签，记着对img和br要使用自结束标签。</p>
+          <p>从规范本身的内容来看，实际上是相同的，没有什么不同。不同之处就是编码风格，因为对浏览器来说，读取符合HTML 4.01、HTML 3.2，或者XHTML 1.0规范的网页都没有问题，对浏览器来说这些网页都是一样的，都会生成相同的DOM树。只不过人们会比较喜欢XHTML 1.0，因为不少人认同它比较严格的编码风格。</p>
+          <p>到了2000年，Web标准项目（Web Standards Project）的活动开展得如火如荼，开发人员对浏览器里包含的那些乱七八糟的专有特性已经忍无可忍了。大家都很生气，就骂那些浏览器厂商“遵守个规范就他妈的真有那么难吗？”当时CSS有了长足的发展，而且与XHTML 1.0结合得也很紧密，CSS加XHTML 1.0基本上就可以算是“最佳实践”了。虽然在我看来HTML 4.01与XHTML 1.0没有本质上的不同，但大家都接受了。专业的开发人员能做到元素全部小写，属性全部小写，属性值也全部加引号：由于专业人员起到了模范带头作用，越来越多的人也都开始支持这种语法。</p>
+          <p>我就是一个例子！过去的10年，我一直都使用XHTML 1.0文档类型，原因是这样一来验证器就能给我帮上很大的忙，对不对？只要我写的是XHTML 1.0，然后用验证器测试，它就能告诉我是不是忘了给属性值加引号，是不是没有结束某个标签，等等等等。而如果我写的是HTML 4.01，同样的问题就变成了有效的了，验证器就不一定会提醒我了。</p>
+          <p>这就是我一直使用XHTML 1.0的原因。我估计很多人都……使用XHTML 1.0的朋友，请把手举起来。好的。HTML 4.01呢？人少多了。一直没有举手的呢，大声点，你们用什么？HTML5，也很好！更早的呢，还有人使用更早的文档类型吗？没有了？</p>
+          <p>10年来我一直使用XHTML 1.0，就是因为验证器能够真正帮到我。有人用XHTML 1.1吗？你知道有人用吗？请举手，别放下。有人把网页标记为XML文档吗？有吗？那你们使用的就不是XHTML 1.1。</p>
+          <p>这就是个大问题。XHTML 1.0之后是XHTML 1.1，只是小数点后面的数字加了一个1，而且从词汇表的角度看，规范本身没有什么新东西，元素也都相同，属性也都相同。但对XHTML 1.1来说，唯一的变化是你必须把自己的文档标记为XML文档。在使用XHTML 1.0的时候，还可以把文档标记为HTML，而我们也正是这样做的，否则把文档标记为XML没准真会把人逼疯的。</p>
+          <p>为什么这么说呢？首先，把文档标记为XML后，Internet Explorer不能处理。当然，IE9是可以处理了。恐怕有人会讲“真是太可爱了”，他们到现在居然都没有忘了这件事。这艘船终于靠岸了！不过那时候，作为全球领先的浏览器，IE无法处理接收到的XML文档类型的文档，而规范又要求你以XML文档类型来发送文档，这不把人逼疯才怪呢。</p>
+          <p>所以说XHTML 1.1有点脱离现实，而你不想把文档以XML格式发送给那些能够理解XML的浏览器，则是因为XML的错误处理模型。XML的语法，无论是属性小写，元素小写，还是始终要给属性值加引号，这些都没有问题，都很好，事实上我也喜欢这样做，但XML的错误处理模型却是这样的：解析器如果遇到错误，停止解析。规范里就是这么写的。如果你把XHTML 1.1标记为XML文档类型，假设你用Firefox打开这个文档，而文档中有一个和号（&amp;）没有正确编码，就算整个页面中就这一处错误，你看到的也将是黄屏，浏览器死掉了。Firefox会说：“没戏了，页面中有一个错误，你看不到这个网页了。”根据XML规范，这样处理是正确的，对Firefox而言，遇到错误就停止解析，并且不呈现其他任何内容是严格按照XML规范做的。因为它不是HTML，HTML根本就没有错误处理模型，但根据XML规范，这样做没错。</p>
+          <p>这就是为什么你不会把文档标记为XML的另一个原因。接下来，新的版本是XHTML 2，大家注意后面没有日期，因为这个规范并没有完成。</p>
+          <p>现在就说说XHTML 2，我很愿意把问题说清楚，XHTML 2实际上真是一个非常非常好的规范，确实非常好……从理论的角度来说。我的意思是说，制定这个规范的人都是非常非常有头脑的。直说吧，领导制定这个规范的家伙是斯蒂芬·彭伯顿（Stephen Pemberton），他应该是本地人，是一个聪明过人的家伙。规范本身也很了不起，如果所有人都同意使用的话，也一定是一个非常好的格式。只不过，还不够实际。</p>
+          <p>首先，XHTML 2仍然使用XML错误处理模型，你必须保证以XML文档类型发送文档；这一点不言自明：没人愿意这样做。其次，XHTML 2有意不再向后兼容已有的HTML的各个版本。他们甚至曾经讨论过废除img元素，这对每天都在做Web开发的人来说确实有点疯了的味道。但我们知道，他们之所以这样做，理论上确实有充足的理由——使用object元素可能会更好。</p>
+          <p>因此，无论XHTML 2在理论上是多么完美的一种格式，但却从未有机会付诸实践。而之所以难以将其付诸实践，就是因为像你我这样的开发人员永远不会支持它，它不向后兼容。同样，浏览器厂商也不会，浏览器厂商必须要保证向后兼容。</p>
+          <p>为什么XHTML 1.1没有像XML那样得到真正广泛地应用，为什么XHTML 2从未落到实处？因为它违反了一条设计原理，这条设计原理就是著名的伯斯塔尔法则（Postel’s Law）。大家都知道：</p>
+          <blockquote>
+            <p>发送时要保守；接收时要开放。</p>
+          </blockquote>
+          <p>没错，接收的时候要开放，而这也正是Web得以构建的基础。开发浏览器的人必须敞开胸怀，接收所有发送给浏览器的东西，因为它们过去一直都在接收那些不够标准的东西，对不对？Web上的很多文档都不规范，但那正是Web发展的动力。从某种角度讲，Web走的正是一条混沌发展之路，虽然混沌，但却非常美丽诱人。在Web上，格式不规范的文档随处可见，但那又怎样呢？如果所有人都能够写出精准的XML，所有文档的格式都十分正确，那当然好了。可是，那不现实。现实是伯斯塔尔法则。</p>
+          <p>作为专业人士，在发送文档的时候，我们会尽量保守一些，尽量采用最佳实践，尽量确保文档格式良好。但从浏览器的角度说，它们必须以开放的姿态去接收任何文档。</p>
+          <p>有人可能会说XML有错误处理模型，XHTML 1.1和XHTML 2都使用该模型，但那个错误处理模型太苛刻了。它绝对不符合接收时开放这个法则，遇到一个错误就停止解析怎么能叫开放呢？我们只能说它与健壮性法则（也就是伯斯塔尔法则）是对立的。</p>
+          <h3 id="HTML5"><a href="#HTML5" class="headerlink" title="HTML5"></a>HTML5</h3>
+          <p>之后，就到了HTML5，但HTML5并不是由W3C直接制定的。故事的经过是这样的，到20世纪末的时候，还没有HTML工作组，W3C内部的一些人就开始琢磨了，“HTML也许还可以更长寿一点，只要我们对它稍加扩展就行了。只要把我们放在XHTML上的时间和精力拿出一部分来，就可以提升一下HTML中的表单，可以让HTML更接近编程语言，就可以让它更上一层楼。”</p>
+          <p>于是，在2004年W3C成员内部的一次研讨会上，当时Opera公司的代表伊恩·希克森（Ian Hickson）提出了一个扩展和改进HTML的建议。他建议新任务组可以跟XHTML 2并行，但是在已有HTML的基础上开展工作，目标是对HTML进行扩展。W3C投票表决的结果是——“反对”，因为HTML已经死了，XHTML 2才是未来的方向。然后，Opera、Apple等浏览器厂商，以及其他一些成员说：“那好吧，不指望他们了，我们自已一样可以做这件事，我们脱离W3C。”他们成立了Web
+            Hypertext Applications Technology Working Group（Web超文本应用技术工作组，WHATWG）——可巧的是，他们自称工作组，而不是特别小组（task force），这就为HTML5将来的命运埋下了伏笔。</p>
+          <p>WHATWG决定完全脱离W3C，在HTML的基础上开展工作，向其中添加一些新东西。这个工作组的成员里有浏览器厂商，因此他们不仅可以说加就加，而且还能够一一实现。结果，大家不断提出一些好点子，并且逐一做到了浏览器中。</p>
+          <p>WHATWG的工作效率很高，不久就初见成效。在此期间，W3C的XHTML 2没有什么实质性的进展。特别是，如果从实现的角度来说，用原地踏步形容似乎也不为过。</p>
+          <p>结果，一件有意思的事情发生了。那是在2006年，蒂姆·伯纳斯-李写了一篇博客，说：“你们知道吗？我们错了。我们错在企图一夜之间就让Web跨入XML时代，我们的想法太不切实际了，是的，也许我们应该重新组建HTML工作组了。”善哉斯言，后来的故事情节果真就是这样发展的。W3C在2007年组建了HTML5工作组。这个工作组面临的第一个问题，毫无疑问就是“我们是从头开始做起呢，还是在2004年成立的那个叫WHATWG的工作组既有成果的基础上开始工作呢？”答案是显而易见的，他们当然希望从已经取得的成果着手，以之为基础展开工作。于是他们又投了一次票，同意“在WHATWG工作成果的基础上继续开展工作”。好了，这下他们要跟WHATWG并肩战斗了。</p>
+          <p>第二个问题就是如何理顺两个工作组之间的关系。W3C这个工作组的编辑应该由谁担任？是不是还让WHATWG的编辑，也就是现在Google的伊恩·希克森来兼任？于是他们又投了一次票，赞成“让伊恩·希克森担任W3C HTML5规范的编辑，同时兼任WHATWG的编辑，更有助于新工作组开展工作。”</p>
+          <p>这就是他们投票的结果，也就是我们今天看到的局面：一种格式，两个版本。WHATWG的网站上有这个规范，而W3C的站点上同样也有一份。</p>
+          <p>如果你不了解内情，很可能会产生这样的疑问：“哪个版本才是真正的规范？”当然，这两个版本内容是一样的……基本上相同。实际上，这两个版本将来还会分道扬镳。现在已经有了分道扬镳的迹象了。我的意思是说，W3C最终要制定一个具体的规范，这个规范会成为一个工作草案，定格在某个历史时刻。</p>
+          <p>而WHATWG呢，他们还在不断地迭代。即使目前我们说的HTML5，也不能完全涵盖WHATWG正在从事的工作。最准确的理解是他们正在开发一项简单的HTML或Web技术，因为这才是他们工作的核心目标。然而，同时存在两个这样的工作组，这两个工作组同时开发一个基本相同的规范，这无论如何也容易让人产生误解。误解就可能造成麻烦。</p>
+          <p>其实这两个工作组背后各自有各自的流程，因为它们的理念完全不同。在WHATWG，可以说是一种独裁的工作机制。我刚才说了，伊恩·希克森是编辑。他会听取各方意见，在所有成员各抒己见，充分陈述自己的观点之后，他批准自己认为正确的意见。<br>W3C则截然相反，可以说是一种民主的工作机制。所有成员都可以发表意见，而且每个人都有投票表决的权利。这个流程的关键在于投票表决。从表面上看，WHATWG的工作机制让人不好接受。岂止是不好接受，简直是历史的倒退。相信谁都会认为“运作任何项目都不能采取这种方式！”</p>
+          <p>W3C的工作机制听起来让人很舒服。至少体现了人人平等嘛。但在实践中，WHATWG的工作机制运行得非常非常好。我认为之所以会这样，主要归功于伊恩·希克森。他的的确确是一个非常称职的编辑。他在听取各方意见时，始终可以做到丝毫不带个人感情色彩。</p>
+          <p>从原理上讲，W3C的工作机制很公平，而实际上却非常容易在某些流程或环节上卡壳，造成工作停滞不前，一件事情要达成决议往往需要花费很长时间。那到底哪种工作机制最好呢？我认为，最好的工作机制是将二者结合起来。而事实也是两个规范制定主体在共同制定一份相同的规范，我想，这倒是非常有利于两种工作机制相互取长补短。</p>
+          <p>两个工作组之所以能够同心同德，主要原因是HTML5的设计思想。因为他们从一开始就确定了设计HTML5所要坚持的原则。结果，我们不仅看到了一份规范，也就是W3C站点上公布的那份文档，即HTML5语言规范，还在W3C站点上看到了另一份文档，也就是HTML设计原理。而这份文档的一位编辑今天也来到了我们大会的现场，他就是安妮·奇泰丝（Anne Van Kesteren）。如果大家对这份文档有问题，可以请教安妮。</p>
+          <p>这份文档非常好，真的非常出色。这份文档，可以说见证了W3C与WHATWG同心协力共谋发展的历程。难道你们不觉得他们像是一对欢喜冤家吗？那他们还怎么同心同德呢？这份文档忠实地记录了他们一道做了什么，他们共同拥护什么。</p>
+          <p>接下来，我想要讲的就是这份文档。因为，既然他们能就这份文档达成共识，那么我相信，HTML5必将是一个伟大的规范，而他们已经认可这就是他们的共同行动纲领。为此，你才会看到诸如兼容性、实用性、互用性之类的概念。即便W3C与WHATWG之间再有多大的分歧——确实相当多——至少他们还有这份文档中记录的共识。这一点才是至关重要的。正因为他们有了共识，才有了这份基于共识描述设计原理的文档。</p>
+          <h3 id="u907F_u514D_u4E0D_u5FC5_u8981_u7684_u590D_u6742_u6027"><a href="#u907F_u514D_u4E0D_u5FC5_u8981_u7684_u590D_u6742_u6027" class="headerlink" title="避免不必要的复杂性"></a>避免不必要的复杂性</h3>
+          <p>下面我就给大家介绍一些这份文档中记载的设计原理。第一个，非常简单：避免不必要的复杂性。好像很简单吧。我用一个例子来说明。</p>
+          <p>假设我使用HTML 4.01规范，我打开文档，输入doctype。这里有人记得HTML 4.01的doctype吗？好，没有，我猜没有。除非……我的意思是说，你是傻冒。现场恐怕真有人背过，这就是HTML 4.01的doctype：</p>
+          <pre><code class="html"><span class="meta">&lt;!DOCTYPE html PUBLIC "-//W3C/DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"&gt;</span>
 </code></pre>
-<p>我不记这个两行代码，不然还要记事本、要Google、要模板有什么用呢？</p>
-<p>要是我使用XHTML 1.0呢，这个规范我都已经用了10年了。有谁记得住这个doctype吗？没错，它的长度跟HTML 4.01的差不太多：</p>
-<pre><code class="html"><span class="meta">&lt;!DOCTYPE html PUBLIC "-//W3C/DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;</span>
+          <p>我不记这个两行代码，不然还要记事本、要Google、要模板有什么用呢？</p>
+          <p>要是我使用XHTML 1.0呢，这个规范我都已经用了10年了。有谁记得住这个doctype吗？没错，它的长度跟HTML 4.01的差不太多：</p>
+          <pre><code class="html"><span class="meta">&lt;!DOCTYPE html PUBLIC "-//W3C/DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;</span>
 </code></pre>
-<p>是不是，基本上相同。它要告诉浏览器的是：这个文档是XHTML 1.0的文档。那么在HTML 5中，省掉不必要的复杂性，doctype就简化成了：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="doctype">&lt;!DOCTYPE html&gt;</span></span><br></pre></td></tr></table></figure>
-<p>仅此而已。好了，就连我也能过目不忘了。我用不着把这几个字符记在记事本里了。我得说，在我第一次看到这个doctype的时候——我当然以为这是一个HTML文档的doctype——被它吓了一跳：“是不是还少一个数字5啊？”我心里想：“这个doctype想告诉浏览器什么呢？就说这个文档是HTML吗？难道这是有史以来唯一一个HTML版本吗，这件事我得首先搞清楚，HTML今后永远不会再有新版本了吗？”好一副唯我独尊的架式！我错了，因为这个doctype并没有这个意思。为此，必须先搞清楚为什么文档一开头就要写doctype。它不是写给浏览器看的。Doctype是写给验证器看的。也就是说，我之所以要在文档一开头写那行XHTML 1.0的doctype，是为了告诉验证器，让验证器按照该doctype来验证我的文档。</p>
-<p>浏览器反倒无所谓了。假设我写的是HTML 3.2文档，文档开头写的是HTML 3.2的doctype。而在文档中某个地方，我使用了HTML 4.01中才出现的一个元素。浏览器会怎么处理这种情况？它会因为这个元素出现在比doctype声明的HTML版本更晚的规范中，就不解释呈现该元素吗？不会，当然不会！它照样会解释呈现该元素，别忘了伯斯塔尔法则，别忘了健壮性。浏览器在接收的时候必须要开放。因此，它不会检查任何格式类型，而验证器会，验证器才关心格式类型。这才是存在doctype的真正原因。</p>
-<p>而按照HTML5的另一个设计原理，它必须向前向后兼容，兼容未来的HTML版本——不管是HTML6、HTML7，还是其他什么——都要与当前的HTML版本，HTML5，兼容。因此，把一个版本号放在doctype里面没有多大的意义，即使对验器证也一样。</p>
-<p>刚才，我说doctype不是为浏览器写的，这样说大多数情况下没有问题。在有一种情况下，你使用的doctype会影响到浏览器，相信在座诸位也都知道。但在这种情况下，Doctype并非真正用得其所，而只是为了达到某种特殊的目的才使用doctype。当初微软在引入CSS的时候，走在了标准的前头，他们率先在浏览器中支持CSS，也推出了自己的盒模型——后来标准发布了，但标准中使用了不一样的盒模型。他们怎么办？他们想支持标准，但也想向后兼容自己过去推出的编码方式。他们怎么知道网页作者想使用标准，还是想使用他们过去的方式？</p>
-<p>于是，他们想出了一个非常巧妙的主意。那就是利用doctype，利用有效的doctype来触发标准模式，而不是兼容模型（quiks mode）。这个主意非常巧妙。我们今天也都是这样在做，在我们向文档中加入doctype时，就相当于声明了“我想使用标准模式”，但这并不是发明doctype的本意。这只是为了达到特殊的目的在利用doctype。</p>
-<p>下面我出一道有奖抢答题，听好：“一分钟后开始，如果你手快的话，第一个在文档前面写完doctype html，然后我用Internet Explorer打开你的文档，会触发它的标准模式，还是会触发它的兼容模式？”</p>
-<p>答案是，这是在Internet Explorer中触发标准模式的最少字符数目。我认为这也说明了HTML5规范的本质：它不追求理论上的完美。HTML5所体现的不是“噢，给作者一个简短好记的doctype不好吗？”，没错，简短好记是很好，但如果这个好记的doctype无法适应现有的浏览器，还不如把它忘了更好。因此，这个平衡把握得非常好，不仅理论上看是个好主意——简短好记的doctype，而且实践中同样也是个好主意——仍然可以触发标准模式。应该说，Doctype是一个非常典型的例子。</p>
-<p>还有一个例子，同样可以说明规范是如何省略不必要的复杂性，避免不必要的复杂性的。如果前面的文档使用的是HTML 4.01，假设我要指定文档的字符编码。理想的方式，是通过服务器在头部信息中发送字符编码，不过也可以在文档这个级别上指定：</p>
-<pre><code class="html"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"Content-Type"</span> <span class="attr">content</span>=<span class="string">"text/html; charset=utf-8"</span>&gt;</span>
+          <p>是不是，基本上相同。它要告诉浏览器的是：这个文档是XHTML 1.0的文档。那么在HTML 5中，省掉不必要的复杂性，doctype就简化成了：</p>
+          <figure class="highlight html">
+            <table>
+              <tr>
+                <td class="gutter"><pre><span class="line">1</span><br></pre></td>
+                <td class="code"><pre><span class="line"><span class="doctype">&lt;!DOCTYPE html&gt;</span></span><br></pre></td>
+              </tr>
+            </table>
+          </figure>
+          <p>仅此而已。好了，就连我也能过目不忘了。我用不着把这几个字符记在记事本里了。我得说，在我第一次看到这个doctype的时候——我当然以为这是一个HTML文档的doctype——被它吓了一跳：“是不是还少一个数字5啊？”我心里想：“这个doctype想告诉浏览器什么呢？就说这个文档是HTML吗？难道这是有史以来唯一一个HTML版本吗，这件事我得首先搞清楚，HTML今后永远不会再有新版本了吗？”好一副唯我独尊的架式！我错了，因为这个doctype并没有这个意思。为此，必须先搞清楚为什么文档一开头就要写doctype。它不是写给浏览器看的。Doctype是写给验证器看的。也就是说，我之所以要在文档一开头写那行XHTML
+            1.0的doctype，是为了告诉验证器，让验证器按照该doctype来验证我的文档。
+          </p>
+          <p>浏览器反倒无所谓了。假设我写的是HTML 3.2文档，文档开头写的是HTML 3.2的doctype。而在文档中某个地方，我使用了HTML 4.01中才出现的一个元素。浏览器会怎么处理这种情况？它会因为这个元素出现在比doctype声明的HTML版本更晚的规范中，就不解释呈现该元素吗？不会，当然不会！它照样会解释呈现该元素，别忘了伯斯塔尔法则，别忘了健壮性。浏览器在接收的时候必须要开放。因此，它不会检查任何格式类型，而验证器会，验证器才关心格式类型。这才是存在doctype的真正原因。</p>
+          <p>而按照HTML5的另一个设计原理，它必须向前向后兼容，兼容未来的HTML版本——不管是HTML6、HTML7，还是其他什么——都要与当前的HTML版本，HTML5，兼容。因此，把一个版本号放在doctype里面没有多大的意义，即使对验器证也一样。</p>
+          <p>刚才，我说doctype不是为浏览器写的，这样说大多数情况下没有问题。在有一种情况下，你使用的doctype会影响到浏览器，相信在座诸位也都知道。但在这种情况下，Doctype并非真正用得其所，而只是为了达到某种特殊的目的才使用doctype。当初微软在引入CSS的时候，走在了标准的前头，他们率先在浏览器中支持CSS，也推出了自己的盒模型——后来标准发布了，但标准中使用了不一样的盒模型。他们怎么办？他们想支持标准，但也想向后兼容自己过去推出的编码方式。他们怎么知道网页作者想使用标准，还是想使用他们过去的方式？</p>
+          <p>于是，他们想出了一个非常巧妙的主意。那就是利用doctype，利用有效的doctype来触发标准模式，而不是兼容模型（quiks mode）。这个主意非常巧妙。我们今天也都是这样在做，在我们向文档中加入doctype时，就相当于声明了“我想使用标准模式”，但这并不是发明doctype的本意。这只是为了达到特殊的目的在利用doctype。</p>
+          <p>下面我出一道有奖抢答题，听好：“一分钟后开始，如果你手快的话，第一个在文档前面写完doctype html，然后我用Internet Explorer打开你的文档，会触发它的标准模式，还是会触发它的兼容模式？”</p>
+          <p>答案是，这是在Internet Explorer中触发标准模式的最少字符数目。我认为这也说明了HTML5规范的本质：它不追求理论上的完美。HTML5所体现的不是“噢，给作者一个简短好记的doctype不好吗？”，没错，简短好记是很好，但如果这个好记的doctype无法适应现有的浏览器，还不如把它忘了更好。因此，这个平衡把握得非常好，不仅理论上看是个好主意——简短好记的doctype，而且实践中同样也是个好主意——仍然可以触发标准模式。应该说，Doctype是一个非常典型的例子。</p>
+          <p>还有一个例子，同样可以说明规范是如何省略不必要的复杂性，避免不必要的复杂性的。如果前面的文档使用的是HTML 4.01，假设我要指定文档的字符编码。理想的方式，是通过服务器在头部信息中发送字符编码，不过也可以在文档这个级别上指定：</p>
+          <pre><code class="html"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"Content-Type"</span> <span class="attr">content</span>=<span class="string">"text/html; charset=utf-8"</span>&gt;</span>
 </code></pre>
-<p>同样，我也不会把这行代码背下来。我还想省下自己的脑细胞去记点别的更有价值的东西呢。不过，如果我想指定文档使用UTF-8编码，只能添加这行代码。这是在HTML 4.01中需要这样做。要是你在XHTML 1.0指定同样的编码，就得多敲一下键盘，因为你还得声明meta元素位于一个开始的XML标签中。</p>
-<p>```html<br>&lt;?xml version=”1.0” encoding=”UTF-8” ?&gt;</p>
-<p><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#13;&#22312;HTML5&#20013;&#65292;&#20320;&#35201;&#25970;&#30340;&#23383;&#31526;&#21482;&#26377;&#65306;&#10;&#10;```html&#13;&#60;meta&#160;charset=&#34;utf-8&#34;&#62;</span><br></pre></td></tr></table></figure></p>
-<p>简短好记。我能背下来。</p>
-<p>同样，这样写也是有效的。它不仅适用于最新版本的浏览器，只要是今天还有人在用的浏览器都同样有效。为什么？因为在我们把这些meta元素输入浏览器时，浏览器会这样解释它：“元数据（meta）点点点点点，字符集（charset）utf-8。”这就是浏览器在解释那行字符串时真正看到的内容。它必须看到这些内容，根据就是伯斯塔尔法则，对不对？</p>
-<p>我多次提到健壮性原理，但总有人不理解。我们换一种说法，浏览器会想“好，我觉得作者是想要指定一个字符集……看，没错，utf-8。”这些都是规范里明文规定的。如今，不仅那个斜杠可以省了，而且总共只要写meta charset=”utf-8″就行了。</p>
-<p>关于省略不必要的复杂性，或者说避免不必要的复杂性的例子还有不少。但关键是既能避免不必要的复杂性，还不会妨碍在现有浏览器中使用。比如说，在HTML5中，如果我使用link元素链接到一个样式表，我说了rel=”stylesheet”，然后再说type=”text/css”，那就是重复自己了。对浏览器而言，我就是在重复自己。浏览器用不着同时看到这两个属性。浏览器只要看到rel=”stylesheet”就够了，因为它可以猜出来你要链接的是一个CSS样式表。所以就不用再指定type属性了。你不是已经说了这是一个样式表了嘛；不用再说第二次了。当然，愿意的话，你可以再说；如果你想包含type属性，请便。</p>
-<p>同样地，如果你使用了script元素，你说type=”text/javascript”，浏览器差不多就知道是怎么回事了。对Web开发而言，你还使用其他的脚本语言吗？如果你真想用其他脚本语言，没人会阻拦你。但我要奉劝你一句，任何浏览器都不会支持你。<br>愿意的话，你可以添加一个type属性。不过，也可以什么都不写，浏览器自然会假设你在使用JavaScript。避免-不必要的-复杂性。</p>
-<h3 id="u652F_u6301_u5DF2_u6709_u7684_u5185_u5BB9"><a href="#u652F_u6301_u5DF2_u6709_u7684_u5185_u5BB9" class="headerlink" title="支持已有的内容"></a>支持已有的内容</h3><p>支持已有的内容。这一点非常重要，因为很多人都认为HTML5很新，很闪亮；它应该代表着未来发展的方向，应该把Web推向一个新的发展阶段。这就是HTML5，对吗？显然，我们都会考虑让Web的未来发展得更好，但他们则必须考虑过去。别忘了W3C这个工作组中有很多人代表的是浏览器厂商，他们肯定是要考虑支持已有内容的。只要你想构建一款浏览器，就必须记住这个原则：必须支持已有的内容。</p>
-<p>下面我们就来看一个HTML5支持已有内容的例子。</p>
-<p>这个例子展示了编写同样内容的四种不同方式。上面是一个img元素，下面是带一个属性的段落元素。四种写法唯一的不同点就是语法。把其中任何一段代码交给浏览器，浏览器都会生成相同的DOM树，没有任何问题。从浏览器的角度看，这四种写法没有区别。因而在HTML5中，你可以随意使用下列任何语法。</p>
-<p>```html<br><img src="foo" alt="bar"></p>
-<p class="foo">Hello world</p>
+          <p>同样，我也不会把这行代码背下来。我还想省下自己的脑细胞去记点别的更有价值的东西呢。不过，如果我想指定文档使用UTF-8编码，只能添加这行代码。这是在HTML 4.01中需要这样做。要是你在XHTML 1.0指定同样的编码，就得多敲一下键盘，因为你还得声明meta元素位于一个开始的XML标签中。</p>
+          <p>&lt;?xml version=”1.0” encoding=”UTF-8” ?&gt;<br>
+            <figure class="highlight html">
+              <table>
+                <tr>
+                  <td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td>
+                  <td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">meta http-equiv="Content-Type" content="text</span>/<span class="attribute">html</span>; <span class="attribute">charset</span>=<span class="value">utf-8"</span> /&gt;</span></span><br><span class="line">```
 
-<p><img src="foo" alt="bar"></p>
-<p></p><p class="foo">Hello world</p>
-<p><img src="foo" alt="bar"></p>
-<p class="foo">Hello world</p>
+在HTML5中，你要敲的字符只有：</span><br><span class="line"></span><br><span class="line">```html
+<span class="tag">&lt;<span class="title">meta charset="utf-8"</span>&gt;</span></span><br></pre></td>
+                </tr>
+              </table>
+            </figure>
+          </p>
+          <p>简短好记。我能背下来。</p>
+          <p>同样，这样写也是有效的。它不仅适用于最新版本的浏览器，只要是今天还有人在用的浏览器都同样有效。为什么？因为在我们把这些meta元素输入浏览器时，浏览器会这样解释它：“元数据（meta）点点点点点，字符集（charset）utf-8。”这就是浏览器在解释那行字符串时真正看到的内容。它必须看到这些内容，根据就是伯斯塔尔法则，对不对？</p>
+          <p>我多次提到健壮性原理，但总有人不理解。我们换一种说法，浏览器会想“好，我觉得作者是想要指定一个字符集……看，没错，utf-8。”这些都是规范里明文规定的。如今，不仅那个斜杠可以省了，而且总共只要写meta charset=”utf-8″就行了。</p>
+          <p>关于省略不必要的复杂性，或者说避免不必要的复杂性的例子还有不少。但关键是既能避免不必要的复杂性，还不会妨碍在现有浏览器中使用。比如说，在HTML5中，如果我使用link元素链接到一个样式表，我说了rel=”stylesheet”，然后再说type=”text/css”，那就是重复自己了。对浏览器而言，我就是在重复自己。浏览器用不着同时看到这两个属性。浏览器只要看到rel=”stylesheet”就够了，因为它可以猜出来你要链接的是一个CSS样式表。所以就不用再指定type属性了。你不是已经说了这是一个样式表了嘛；不用再说第二次了。当然，愿意的话，你可以再说；如果你想包含type属性，请便。</p>
+          <p>同样地，如果你使用了script元素，你说type=”text/javascript”，浏览器差不多就知道是怎么回事了。对Web开发而言，你还使用其他的脚本语言吗？如果你真想用其他脚本语言，没人会阻拦你。但我要奉劝你一句，任何浏览器都不会支持你。<br>愿意的话，你可以添加一个type属性。不过，也可以什么都不写，浏览器自然会假设你在使用JavaScript。避免-不必要的-复杂性。</p>
+          <h3 id="u652F_u6301_u5DF2_u6709_u7684_u5185_u5BB9"><a href="#u652F_u6301_u5DF2_u6709_u7684_u5185_u5BB9" class="headerlink" title="支持已有的内容"></a>支持已有的内容</h3>
+          <p>支持已有的内容。这一点非常重要，因为很多人都认为HTML5很新，很闪亮；它应该代表着未来发展的方向，应该把Web推向一个新的发展阶段。这就是HTML5，对吗？显然，我们都会考虑让Web的未来发展得更好，但他们则必须考虑过去。别忘了W3C这个工作组中有很多人代表的是浏览器厂商，他们肯定是要考虑支持已有内容的。只要你想构建一款浏览器，就必须记住这个原则：必须支持已有的内容。</p>
+          <p>下面我们就来看一个HTML5支持已有内容的例子。</p>
+          <p>这个例子展示了编写同样内容的四种不同方式。上面是一个img元素，下面是带一个属性的段落元素。四种写法唯一的不同点就是语法。把其中任何一段代码交给浏览器，浏览器都会生成相同的DOM树，没有任何问题。从浏览器的角度看，这四种写法没有区别。因而在HTML5中，你可以随意使用下列任何语法。</p>
+          <p>```html<br><img src="foo" alt="bar"></p>
+          <p class="foo">Hello world</p>
 
-
-<p><img src="foo" alt="bar"></p>
-<p></p><p class="foo">Hello world</p><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#13;&#22909;&#20102;&#65292;&#30475;&#21040;&#36825;&#20960;&#27573;&#20195;&#30721;&#65292;&#24656;&#24597;&#26377;&#20154;&#20250;&#35828;&#8220;&#19981;&#23545;&#19981;&#23545;&#19981;&#23545;&#12290;&#20854;&#20013;&#21482;&#26377;&#19968;&#20010;&#26159;&#23545;&#30340;&#65292;&#21478;&#22806;&#19977;&#20010;&#8212;&#8212;&#35828;&#19981;&#22909;&#12290;&#8221;&#19981;&#23545;&#65292;&#24212;&#35813;&#32473;&#23646;&#24615;&#20540;&#21152;&#24341;&#21495;&#65281;&#25308;&#25176;&#65292;&#25105;&#20204;&#21487;&#26159;&#19968;&#30452;&#37117;&#32473;&#23646;&#24615;&#20540;&#21152;&#24341;&#21495;&#30340;&#65281;&#20803;&#32032;&#21517;&#22823;&#20889;&#23545;&#21527;&#65311;&#36825;&#31181;&#20570;&#27861;10&#24180;&#19981;&#26159;&#23601;&#34987;&#25243;&#24323;&#20102;&#21527;&#65311;&#13;&#13;&#30475;&#21040;HTML5&#21516;&#26102;&#20801;&#35768;&#36825;&#20123;&#20889;&#27861;&#65292;&#25105;&#24515;&#37324;&#24525;&#19981;&#20303;&#19968;&#38453;&#38453;&#24819;&#21520;&#12290;&#25105;&#20889;&#20102;10&#24180;&#30340;XHTML 1.0&#65292;&#24050;&#32463;&#38750;&#24120;&#36866;&#24212;&#20005;&#26684;&#30340;&#35821;&#27861;&#20102;&#12290;&#20294;&#20320;&#24517;&#39035;&#26126;&#30333;&#65292;&#31449;&#22312;&#27983;&#35272;&#22120;&#30340;&#35282;&#24230;&#19978;&#65292;&#36825;&#20123;&#20889;&#27861;&#23454;&#38469;&#19978;&#37117;&#26159;&#19968;&#26679;&#30340;&#12290;&#30830;&#23454;&#27809;&#26377;&#20160;&#20040;&#38382;&#39064;&#12290;&#13;&#13;&#36824;&#26377;&#35841;&#20063;&#24863;&#21040;&#19981;&#33298;&#26381;&#20102;&#21527;&#65311;&#26377;&#35841;&#30475;&#21040;&#36825;&#20123;&#20043;&#21518;&#24819;&#8220;&#22114;&#65292;&#36825;&#19981;&#26159;&#20081;&#20889;&#22043;&#65292;&#36825;&#26679;&#20570;&#19981;&#23545;&#8221;&#65311;&#21482;&#26377;&#25105;&#36825;&#26679;&#24819;&#21527;&#65311;&#36824;&#26377;&#21035;&#20154;&#21527;&#65311;&#13;&#13;&#20294;&#26159;&#65292;HTML5&#24517;&#39035;&#25903;&#25345;&#24050;&#32463;&#23384;&#22312;&#30340;&#20869;&#23481;&#65292;&#32780;&#24050;&#26377;&#30340;&#20869;&#23481;&#23601;&#26159;&#36825;&#20010;&#26679;&#23376;&#30340;&#12290;&#19981;&#26159;&#21527;&#65311;&#26681;&#25454;&#20271;&#26031;&#22612;&#23572;&#27861;&#21017;&#65292;&#27983;&#35272;&#22120;&#27809;&#26377;&#21035;&#30340;&#36873;&#25321;&#12290;&#13;&#13;&#26377;&#20154;&#21487;&#33021;&#20250;&#35828;&#8220;&#36825;&#26679;&#19981;&#34892;&#12290;&#25105;&#35273;&#24471;&#35821;&#35328;&#26412;&#36523;&#24212;&#35813;&#25552;&#20379;&#19968;&#31181;&#24320;&#20851;&#65292;&#35753;&#20316;&#32773;&#33021;&#22815;&#34920;&#26126;&#33258;&#24049;&#24819;&#20570;&#20160;&#20040;&#12290;&#8221;&#27604;&#22914;&#35828;&#65292;&#24819;&#20351;&#29992;&#26576;&#31181;&#29305;&#23450;&#30340;&#35821;&#27861;&#65292;&#20687;XHTML&#65292;&#32780;&#19981;&#26159;&#20351;&#29992;&#20854;&#20182;&#35821;&#27861;&#12290;&#25105;&#29702;&#35299;&#36825;&#20123;&#20154;&#30340;&#24819;&#27861;&#12290;&#20294;&#25105;&#19981;&#36190;&#25104;&#22312;&#35821;&#35328;&#37324;&#35774;&#32622;&#24320;&#20851;&#12290;&#22240;&#20026;&#25105;&#20204;&#35752;&#35770;&#30340;&#21482;&#26159;&#32534;&#30721;&#39118;&#26684;&#25110;&#32773;&#20889;&#20316;&#39118;&#26684;&#65292;&#36319;&#21738;&#31181;&#35821;&#27861;&#27491;&#30830;&#26080;&#20851;&#12290;&#23545;&#20110;&#20687;&#25105;&#20204;&#36825;&#26679;&#30340;&#19987;&#19994;&#20154;&#22763;&#65292;&#25105;&#35748;&#20026;&#21487;&#20197;&#20351;&#29992;lint&#24037;&#20855;&#65288;&#19968;&#31181;&#36719;&#20214;&#36136;&#37327;&#20445;&#35777;&#24037;&#20855;&#65292;&#25110;&#32773;&#35828;&#26159;&#19968;&#31181;&#26356;&#21152;&#20005;&#26684;&#30340;&#32534;&#35793;&#22120;&#12290;&#23427;&#19981;&#20165;&#21487;&#20197;&#35937;&#26222;&#36890;&#32534;&#35793;&#22120;&#37027;&#26679;&#26816;&#26597;&#20986;&#19968;&#33324;&#30340;&#35821;&#27861;&#38169;&#35823;&#65292;&#36824;&#21487;&#20197;&#26816;&#26597;&#20986;&#37027;&#20123;&#34429;&#28982;&#23436;&#20840;&#21512;&#20046;&#35821;&#27861;&#35201;&#27714;&#65292;&#20294;&#24456;&#21487;&#33021;&#26159;&#28508;&#22312;&#30340;&#12289;&#19981;&#26131;&#21457;&#29616;&#30340;&#38169;&#35823;&#65289;&#65292;&#23545;&#20854;&#20182;&#25216;&#26415;&#25105;&#20204;&#19981;&#26159;&#20063;&#22312;&#20351;&#29992;lint&#24037;&#20855;&#22043;&#12290;&#13;&#13;&#27604;&#22914;&#35828;&#23545;JavaScript&#20351;&#29992;lint&#24037;&#20855;&#12290;JavaScript&#21516;&#26679;&#20063;&#26159;&#27604;&#36739;&#28151;&#20081;&#12289;&#19981;&#20005;&#35880;&#30340;&#20363;&#23376;&#65292;&#20294;&#23427;&#38750;&#24120;&#24378;&#22823;&#65292;&#21407;&#22240;&#24688;&#24688;&#26159;&#23427;&#28151;&#20081;&#12289;&#19981;&#20005;&#35880;&#65292;&#32780;&#19988;&#26377;&#24456;&#22810;&#19981;&#21516;&#30340;&#32534;&#30721;&#26041;&#24335;&#12290;&#22312;JavaScript&#65292;&#20320;&#21487;&#20197;&#22312;&#27599;&#26465;&#35821;&#21477;&#26411;&#23614;&#21152;&#19978;&#20998;&#21495;&#65292;&#20294;&#19981;&#26159;&#24517;&#38656;&#30340;&#65292;&#22240;&#20026;JavaScript&#20250;&#33258;&#21160;&#25554;&#20837;&#20998;&#21495;&#8230;&#8230;&#26159;&#19981;&#26159;&#21548;&#36215;&#26469;&#26377;&#28857;&#19981;&#22909;&#25509;&#21463;&#65311;&#13;&#13;&#27491;&#22240;&#20026;&#22914;&#27492;&#65292;&#25165;&#26377;&#20102;&#20687;JSlint&#36825;&#26679;&#30340;&#24037;&#20855;&#65292;&#22312;&#36947;&#26684;&#25289;&#26031;&#183;&#20811;&#21171;&#20811;&#31119;&#24503;&#65288;Douglas Crockford&#65289;&#30340;&#32593;&#31449;jslint.org&#19978;&#38754;&#12290;&#26377;&#20010;&#32593;&#39029;&#19978;&#20889;&#30528;&#8220;JSlint&#21487;&#33021;&#20250;&#20260;&#23475;&#20320;&#30340;&#24863;&#24773;&#12290;&#8221;&#20294;&#36825;&#30830;&#23454;&#26159;&#20010;&#38750;&#24120;&#26834;&#30340;&#24037;&#20855;&#65292;&#23427;&#21487;&#20197;&#25226;JavaScript&#20195;&#30721;&#21464;&#24471;&#23436;&#32654;&#26080;&#29781;&#12290;&#22914;&#26524;&#20320;&#36890;&#36807;JSlint&#36816;&#34892;JavaScript&#65292;&#23427;&#20250;&#21578;&#35785;&#20320;&#8220;&#22909;&#65292;&#20320;&#30340;JavaScript&#20195;&#30721;&#26377;&#25928;&#65292;&#20294;&#20889;&#27861;&#19981;&#22949;&#12290;&#20320;&#36825;&#31181;&#32534;&#30721;&#39118;&#26684;&#21834;&#65292;&#25105;&#19981;&#21916;&#27426;&#12290;&#19981;&#36190;&#25104;&#20320;&#36825;&#26679;&#20889;&#12290;&#36825;&#26679;&#20889;&#19981;&#22909;&#12290;&#8221;&#29305;&#21035;&#26159;&#23545;&#22242;&#38431;&#65292;&#23545;&#20110;&#35201;&#20351;&#29992;&#32479;&#19968;&#30340;&#32534;&#30721;&#39118;&#26684;&#30340;&#22242;&#38431;&#65292;JSlint&#26159;&#38750;&#24120;&#26041;&#20415;&#30340;&#24037;&#20855;&#12290;&#13;&#13;&#25105;&#20010;&#20154;&#35748;&#20026;&#65292;&#19981;&#20165;&#23545;&#22242;&#38431;&#26469;&#35828;&#65292;&#23601;&#31639;&#26159;&#20320;&#33258;&#24049;&#20889;&#20195;&#30721;&#65292;&#20063;&#35201;&#22362;&#25345;&#19968;&#31181;&#35821;&#27861;&#39118;&#26684;&#12290;&#20174;&#27983;&#35272;&#22120;&#35299;&#26512;&#30340;&#35282;&#24230;&#35762;&#65292;&#19981;&#23384;&#22312;&#21738;&#31181;&#35821;&#27861;&#27604;&#21478;&#19968;&#31181;&#26356;&#22909;&#30340;&#38382;&#39064;&#65292;&#20294;&#25105;&#35748;&#20026;&#65292;&#20316;&#20026;&#19987;&#19994;&#20154;&#22763;&#65292;&#25105;&#20204;&#24517;&#39035;&#33021;&#22815;&#33258;&#20449;&#22320;&#35762;&#8220;&#36825;&#23601;&#26159;&#25105;&#30340;&#32534;&#30721;&#39118;&#26684;&#12290;&#8221;&#28982;&#32780;&#65292;&#25105;&#19981;&#35748;&#20026;&#35821;&#35328;&#37324;&#24212;&#35813;&#20869;&#32622;&#36825;&#31181;&#24320;&#20851;&#12290;&#20320;&#21487;&#20197;&#20351;&#29992;lint&#24037;&#20855;&#26469;&#32479;&#19968;&#32534;&#30721;&#39118;&#26684;&#12290;&#29616;&#22312;&#23601;&#26469;&#35828;&#35828;lint&#24037;&#20855;&#12290;&#22823;&#23478;&#21487;&#20197;&#30331;&#24405;htmllint.com&#65292;&#22312;&#20854;&#20013;&#36816;&#34892;&#20320;&#30340;HTML5&#25991;&#26723;&#65292;&#23427;&#20250;&#24110;&#20320;&#26816;&#26597;&#23646;&#24615;&#20540;&#26159;&#21542;&#21152;&#20102;&#24341;&#21495;&#65292;&#20803;&#32032;&#26159;&#21542;&#23567;&#20889;&#65292;&#20320;&#36824;&#21487;&#20197;&#36890;&#36807;&#21246;&#36873;&#22797;&#36873;&#26694;&#26469;&#35774;&#32622;&#20854;&#20182;&#26816;&#26597;&#39033;&#12290;&#13;&#13;&#20294;&#36825;&#19981;&#24847;&#21619;&#30528;&#25298;&#32477;&#31895;&#24515;&#22823;&#24847;&#30340;&#26631;&#35760;&#65292;&#20570;&#19981;&#20570;&#28165;&#29702;&#23436;&#20840;&#21462;&#20915;&#20110;&#20320;&#33258;&#24049;&#12290;&#25105;&#35828;&#36807;&#65292;&#22240;&#20026;&#27983;&#35272;&#22120;&#24517;&#39035;&#25903;&#25345;&#24050;&#26377;&#30340;&#20869;&#23481;&#65292;HTML5&#33258;&#28982;&#20063;&#19981;&#33021;&#20363;&#22806;&#12290;&#24402;&#26681;&#32467;&#24213;&#36824;&#26159;&#20271;&#26031;&#22612;&#23572;&#27861;&#21017;&#12290;&#25105;&#20204;&#22987;&#32456;&#31163;&#19981;&#24320;&#20271;&#26031;&#22612;&#23572;&#27861;&#21017;&#12290;&#13;&#13;### &#35299;&#20915;&#29616;&#23454;&#30340;&#38382;&#39064;&#13;&#13;HTML5&#30340;&#21478;&#19968;&#20010;&#35774;&#35745;&#21407;&#29702;&#26159;&#35299;&#20915;&#29616;&#23454;&#30340;&#38382;&#39064;&#12290;&#26174;&#32780;&#26131;&#35265;&#30340;&#26159;&#65292;&#35299;&#20915;&#21508;&#31181;&#38382;&#39064;&#30340;&#26684;&#24335;&#21644;&#35268;&#33539;&#24050;&#32463;&#27604;&#27604;&#30342;&#26159;&#20102;&#65292;&#20294;&#26159;&#22312;&#25105;&#30475;&#26469;&#65292;&#37027;&#20123;&#26684;&#24335;&#21644;&#35268;&#33539;&#35201;&#35299;&#20915;&#30340;&#37117;&#26159;&#29702;&#35770;&#38382;&#39064;&#65292;&#32780;&#38750;&#29616;&#23454;&#38382;&#39064;&#12290;&#36825;&#26465;&#35774;&#35745;&#21407;&#29702;&#25165;&#26159;&#30495;&#27491;&#35201;&#35299;&#20915;&#20170;&#22825;&#30340;&#20154;&#20204;&#25152;&#38754;&#20020;&#30340;&#29616;&#23454;&#38382;&#39064;&#12289;&#20196;&#20154;&#22836;&#30140;&#30340;&#38382;&#39064;&#12290;&#13;&#13;&#19979;&#38754;&#25105;&#26469;&#20030;&#20010;&#20363;&#23376;&#12290;&#30456;&#20449;&#36825;&#20010;&#20363;&#23376;&#26377;&#19981;&#23569;&#20154;&#37117;&#36935;&#21040;&#36807;&#12290;&#20551;&#35774;&#25105;&#20351;&#29992;HTML 4&#25110;XHTML 1&#65292;&#39029;&#38754;&#20013;&#24050;&#32463;&#26377;&#20102;&#19968;&#22359;&#20869;&#23481;&#65292;&#25105;&#24819;&#32473;&#25972;&#22359;&#20869;&#23481;&#21152;&#20010;&#38142;&#25509;&#65292;&#24590;&#20040;&#21150;&#65311;&#38382;&#39064;&#26159;&#36825;&#22359;&#20869;&#23481;&#37324;&#21253;&#21547;&#19968;&#20010;&#26631;&#39064;&#65292;&#19968;&#20010;&#27573;&#33853;&#65292;&#20063;&#35768;&#36824;&#26377;&#19968;&#24352;&#22270;&#29255;&#12290;&#22914;&#26524;&#25105;&#24819;&#32473;&#23427;&#20204;&#20840;&#37096;&#37117;&#21487;&#20197;&#28857;&#20987;&#65292;&#24517;&#39035;&#20351;&#29992;3&#20010;&#38142;&#25509;&#20803;&#32032;&#12290;&#20110;&#26159;&#65292;&#25105;&#24471;&#20808;&#25226;&#20809;&#26631;&#25918;&#22312;&#26631;&#39064;&#65288;&#27604;&#22914;&#35828;h2&#20803;&#32032;&#65289;&#20013;&#65292;&#20889;&#19968;&#20010;&#38142;&#25509;&#26631;&#31614;&#65292;&#28982;&#21518;&#20877;&#36873;&#20013;&#25152;&#26377;&#35201;&#21253;&#21547;&#21040;&#38142;&#25509;&#37324;&#38754;&#26469;&#30340;&#25991;&#26412;&#12290;&#25509;&#30528;&#65292;&#20877;&#25226;&#20809;&#26631;&#25918;&#22312;&#27573;&#33853;&#37324;&#65292;&#20889;&#19968;&#20010;&#38142;&#25509;&#26631;&#31614;&#65292;&#28982;&#21518;&#25226;&#27573;&#33853;&#20013;&#30340;&#25991;&#26412;&#25918;&#22312;&#38142;&#25509;&#37324;&#8230;&#8230;&#13;&#13;```html&#13;&#60;h2&#62;&#60;a href=&#34;/path/to/resource&#34;&#62;Headline text&#60;/a&#62;&#60;/h2&#62;&#13;&#60;p&#62;&#60;a href=&#34;/path/to/resource&#34;&#62;Paragraph text.&#60;/a&#62;&#60;/p&#62;</span><br></pre></td></tr></table></figure><p></p>
-<p>在HTML5中，我只要简单地把所有内容都包装在一个链接元素中就行了。</p>
-<p>```html<br><a href="/path/to/resource"></a></p>
-<h2>Headline text</h2>
-
-<p></p><p>Paragraph text.</p><br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#13;&#27809;&#38169;&#65292;&#38142;&#25509;&#21253;&#21547;&#30340;&#37117;&#26159;&#22359;&#32423;&#20803;&#32032;&#65292;&#20294;&#29616;&#22312;&#25105;&#21487;&#20197;&#29992;&#19968;&#20010;&#20803;&#32032;&#21253;&#21547;&#23427;&#20204;&#12290;&#36825;&#26679;&#22826;&#22909;&#20102;&#12290;&#22240;&#20026;&#25105;&#30896;&#21040;&#36807;&#31867;&#20284;&#30340;&#24773;&#24418;&#65292;&#24517;&#39035;&#32473;&#20960;&#20010;&#22359;&#32423;&#20803;&#32032;&#21152;&#19978;&#30456;&#21516;&#30340;&#38142;&#25509;&#65292;&#25152;&#26377;&#33021;&#36825;&#26679;&#20889;&#23601;&#22826;&#22909;&#20102;&#12290;&#20026;&#27492;&#65292;&#25105;&#23601;&#38750;&#24120;&#27426;&#36814;HTML5&#36825;&#20010;&#26032;&#26631;&#20934;&#12290;&#13;&#13;&#23427;&#35299;&#20915;&#20102;&#19968;&#20010;&#29616;&#23454;&#30340;&#38382;&#39064;&#12290;&#25105;&#25954;&#35828;&#22312;&#24231;&#19981;&#23569;&#26379;&#21451;&#37117;&#26366;&#36935;&#21040;&#36807;&#36825;&#20010;&#38382;&#39064;&#12290;&#13;&#13;&#37027;&#36825;&#21040;&#24213;&#35299;&#20915;&#30340;&#26159;&#20160;&#20040;&#38382;&#39064;&#21602;&#65311;&#27983;&#35272;&#22120;&#19981;&#24517;&#22240;&#27492;&#37325;&#26032;&#20889;&#20195;&#30721;&#26469;&#25903;&#25345;&#36825;&#31181;&#20889;&#27861;&#12290;&#36825;&#31181;&#20889;&#27861;&#20854;&#23454;&#26089;&#23601;&#24050;&#32463;&#23384;&#22312;&#20110;&#27983;&#35272;&#22120;&#20013;&#20102;&#65292;&#22240;&#20026;&#26089;&#23601;&#26377;&#20154;&#36825;&#26679;&#20889;&#20102;&#65292;&#24403;&#28982;&#20197;&#21069;&#36825;&#26679;&#20889;&#26159;&#19981;&#21512;&#20046;&#35268;&#33539;&#30340;&#12290;&#25152;&#20197;&#65292;&#35828;HTML5&#35299;&#20915;&#29616;&#23454;&#30340;&#38382;&#39064;&#65292;&#20854;&#26412;&#36136;&#36824;&#26159;&#8220;&#20320;&#37117;&#36825;&#26679;&#20889;&#20102;&#24456;&#22810;&#24180;&#20102;&#21543;&#65311;&#29616;&#22312;&#25105;&#20204;&#25226;&#26631;&#20934;&#25913;&#20102;&#65292;&#20801;&#35768;&#20320;&#36825;&#26679;&#20889;&#20102;&#12290;&#8221;&#13;&#13;### &#27714;&#30495;&#21153;&#23454;&#13;&#13;&#22312;&#25152;&#26377;&#35774;&#35745;&#21407;&#29702;&#20013;&#65292;&#36825;&#19968;&#26465;&#24656;&#24597;&#26159;&#26368;&#21709;&#20142;&#30340;&#20102;&#8212;&#8212;&#27714;&#30495;&#21153;&#23454;&#12290;&#19981;&#30693;&#36947;&#22823;&#23478;&#26377;&#27809;&#26377;&#22312;&#20844;&#21496;&#37324;&#24320;&#20250;&#26102;&#21548;&#21040;&#36807;&#36825;&#31181;&#21475;&#21495;&#65306;&#8220;&#24320;&#25299;&#36827;&#21462;&#65292;&#27714;&#30495;&#21153;&#23454;&#12290;&#8221;&#23454;&#38469;&#19978;&#65292;&#38500;&#20102;&#20316;&#20026;&#20225;&#19994;&#30340;&#21475;&#21495;&#65292;&#23427;&#36824;&#26159;&#19968;&#26465;&#38750;&#24120;&#37325;&#35201;&#30340;&#35774;&#35745;&#21407;&#29702;&#65292;&#22240;&#20026;&#27714;&#30495;&#21153;&#23454;&#23545;&#20110;HTML&#30340;&#21547;&#20041;&#26159;&#65306;&#22312;&#35299;&#20915;&#37027;&#20123;&#20196;&#20154;&#22836;&#30171;&#30340;&#38382;&#39064;&#20043;&#21069;&#65292;&#20808;&#30475;&#30475;&#20154;&#20204;&#20026;&#24212;&#23545;&#36825;&#20123;&#38382;&#39064;&#37117;&#24819;&#20986;&#20102;&#21738;&#20123;&#21150;&#27861;&#12290;&#38598;&#20013;&#31934;&#21147;&#21435;&#29702;&#35299;&#36825;&#20123;&#8220;&#27665;&#38388;&#30340;&#8221;&#35299;&#20915;&#26041;&#26696;&#25165;&#26159;&#24403;&#21153;&#20043;&#24613;&#12290;&#13;&#13;HTML5&#20013;&#26032;&#30340;&#35821;&#20041;&#20803;&#32032;&#23601;&#26159;&#36981;&#24490;&#27714;&#30495;&#21153;&#23454;&#21407;&#29702;&#30340;&#21453;&#26144;&#12290;&#26032;&#22686;&#30340;&#20803;&#32032;&#19981;&#31639;&#22810;&#65292;&#35848;&#19981;&#19978;&#26080;&#38480;&#30340;&#25193;&#23637;&#24615;&#65292;&#20294;&#21364;&#19981;&#22833;&#20026;&#19968;&#20214;&#22909;&#20107;&#12290;&#23613;&#31649;&#25968;&#37327;&#23624;&#25351;&#21487;&#25968;&#65292;&#20294;&#24847;&#20041;&#21364;&#38750;&#21516;&#19968;&#33324;&#12290;&#36825;&#20123;&#26032;&#20803;&#32032;&#28041;&#21450;&#22836;&#37096;&#65288;header&#65289;&#12289;&#33050;&#37096;&#65288;footer&#65289;&#12289;&#20998;&#21306;&#65288;section&#65289;&#12289;&#25991;&#31456;&#65288;article&#65289;&#8230;&#8230;&#65292;&#30456;&#20449;&#22823;&#23478;&#37117;&#19981;&#20250;&#35273;&#24471;&#38476;&#29983;&#12290;&#25105;&#30340;&#24847;&#24605;&#26159;&#35828;&#65292;&#21363;&#20415;&#20320;&#19981;&#20351;&#29992;HTML5&#65292;&#20063;&#24212;&#35813;&#29087;&#24713;&#36825;&#20123;&#31216;&#21628;&#65292;&#36825;&#20123;&#37117;&#26159;&#20320;&#26366;&#32463;&#20351;&#29992;&#36807;&#30340;&#31867;&#21517;&#65292;&#27604;&#22914;`class=&#8221;header&#8221;/&#8220;head&#8221;/&#8220;heading&#8221;`&#65292;&#25110;`class=&#8221;footer&#8221;/&#8220;foot&#8221;`&#12290;&#24403;&#28982;&#65292;&#20063;&#21487;&#33021;&#26159;ID&#65292;`id=&#8221;header&#8221;&#65292;id=&#8221;footer&#8221;`&#12290;&#36825;&#20123;&#19981;&#37117;&#26159;&#25105;&#20204;&#24050;&#32463;&#21496;&#31354;&#35265;&#24815;&#20102;&#30340;&#22043;&#12290;&#10;&#13;&#22909;&#65292;&#20030;&#20010;&#20363;&#23376;&#21543;&#65292;&#20551;&#35774;&#20320;&#20170;&#22825;&#20889;&#20102;&#19979;&#38754;&#36825;&#20010;&#25991;&#26723;&#12290;&#13;&#13;```html&#13;&#60;body&#62;&#13;    &#60;div id=&#34;header&#34;&#62;...&#60;/div&#62;&#13;    &#60;div id=&#34;navigation&#34;&#62;...&#60;/div&#62;&#13;    &#60;div id=&#34;main&#34;&#62;...&#60;/div&#62;&#13;    &#60;div id=&#34;sidebar&#34;&#62;...&#60;/div&#62;&#13;    &#60;div id=&#34;footer&#34;&#62;...&#60;/div&#62;&#13;&#60;/body&#62;</span><br></pre></td></tr></table></figure><p></p>
-<p>这里有一个div使用了id=”header”，另一个div使用了id=”navigation”，……。怎么样，都轻车熟路了吧？在HTML5中，这些元素都可以换掉。说起新增的语义元素，它们价值的一方面可以这样来体现：“嘿，看啊，这样多好，用HTML5新增的元素可以把这些div都替换掉。”</p>
-<p>```html</p>
-<p><body><br>    <header>…</header><br>    <nav>…</nav><br>    <div id="main">…</div><br>    <aside>…</aside><br>    <footer>…</footer><br></body><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#13;&#24403;&#28982;&#20102;&#65292;&#20320;&#21487;&#20197;&#36825;&#26679;&#20570;&#12290;&#22312;&#25991;&#26723;&#32423;&#21035;&#19978;&#20351;&#29992;&#36825;&#20123;&#20803;&#32032;&#27809;&#26377;&#38382;&#39064;&#12290;&#20294;&#26159;&#65292;&#20551;&#22914;&#26032;&#22686;&#36825;&#20123;&#20803;&#32032;&#30340;&#30446;&#30340;&#20165;&#20165;&#26159;&#20026;&#20102;&#21462;&#20195;&#21407;&#26469;&#30340;div&#65292;&#37027;&#23601;&#30495;&#26377;&#28857;&#22810;&#27492;&#19968;&#20030;&#20102;&#12290;&#13;&#13;&#34429;&#28982;&#22312;&#36825;&#20010;&#25991;&#26723;&#20013;&#65292;&#25105;&#20204;&#29992;&#36825;&#20123;&#26032;&#20803;&#32032;&#26469;&#26367;&#25442;&#30340;&#26159;ID&#65292;&#20294;&#22312;&#25105;&#20010;&#20154;&#30475;&#26469;&#65292;&#23558;&#23427;&#20204;&#20316;&#20026;&#31867;&#30340;&#26367;&#20195;&#21697;&#26356;&#26377;&#20215;&#20540;&#12290;&#20026;&#20160;&#20040;&#36825;&#20040;&#35828;&#21602;&#65311;&#22240;&#20026;&#36825;&#20123;&#20803;&#32032;&#22312;&#19968;&#20010;&#39029;&#38754;&#20013;&#19981;&#27490;&#21487;&#20197;&#20351;&#29992;&#19968;&#27425;&#65292;&#32780;&#26159;&#21487;&#20197;&#20351;&#29992;&#22810;&#27425;&#12290;&#27809;&#38169;&#65292;&#20320;&#21487;&#20197;&#20026;&#25991;&#26723;&#28155;&#21152;&#19968;&#20010;&#22836;&#37096;&#65288;header&#65289;&#65292;&#20877;&#28155;&#21152;&#19968;&#20010;&#33050;&#37096;&#65288;footer&#65289;&#65307;&#20294;&#25991;&#26723;&#20013;&#30340;&#27599;&#20010;&#20998;&#21306;&#65288;section&#65289;&#29031;&#26679;&#20063;&#37117;&#21487;&#20197;&#26377;&#19968;&#20010;&#22836;&#37096;&#21644;&#19968;&#20010;&#33050;&#37096;&#12290;&#32780;&#27599;&#20010;&#20998;&#21306;&#37324;&#36824;&#21487;&#20197;&#23884;&#22871;&#21478;&#19968;&#20010;&#20998;&#21306;&#65292;&#34987;&#23884;&#22871;&#30340;&#20998;&#21306;&#20173;&#28982;&#21487;&#20197;&#26377;&#33258;&#24049;&#30340;&#22836;&#37096;&#21644;&#33050;&#37096;&#65292;&#26159;&#36825;&#26679;&#21543;&#65311;&#13;&#13;&#36825;&#22235;&#20010;&#26032;&#20803;&#32032;&#65306;section&#12289;article&#12289;aside&#21644;nav&#65292;&#20043;&#25152;&#20197;&#35828;&#23427;&#20204;&#24378;&#22823;&#65292;&#21407;&#22240;&#22312;&#20110;&#23427;&#20204;&#20195;&#34920;&#20102;&#19968;&#31181;&#26032;&#30340;&#20869;&#23481;&#27169;&#22411;&#65292;&#19968;&#31181;HTML&#20013;&#21069;&#25152;&#26410;&#26377;&#30340;&#20869;&#23481;&#27169;&#22411;&#8212;&#8212;&#32473;&#20869;&#23481;&#20998;&#21306;&#12290;&#36804;&#20170;&#20026;&#27490;&#65292;&#25105;&#20204;&#19968;&#30452;&#37117;&#22312;&#29992;div&#26469;&#32452;&#32455;&#39029;&#38754;&#20013;&#30340;&#20869;&#23481;&#65292;&#20294;&#19982;&#20854;&#20182;&#31867;&#20284;&#30340;&#20803;&#32032;&#19968;&#26679;&#65292;div&#26412;&#36523;&#24182;&#27809;&#26377;&#35821;&#20041;&#12290;&#20294;section&#12289;article&#12289;aside&#21644;nav&#23454;&#38469;&#19978;&#26159;&#22312;&#26126;&#30830;&#22320;&#21578;&#35785;&#20320;&#8212;&#8212;&#36825;&#19968;&#22359;&#23601;&#20687;&#25991;&#26723;&#20013;&#30340;&#21478;&#19968;&#20010;&#25991;&#26723;&#19968;&#26679;&#12290;&#20301;&#20110;&#36825;&#20123;&#20803;&#32032;&#20013;&#30340;&#20219;&#20309;&#20869;&#23481;&#65292;&#37117;&#21487;&#20197;&#25317;&#26377;&#33258;&#24049;&#30340;&#27010;&#35201;&#12289;&#26631;&#39064;&#65292;&#33258;&#24049;&#30340;&#33050;&#37096;&#12290;&#13;&#13;&#20854;&#20013;&#26368;&#20026;&#36890;&#29992;&#30340;section&#65292;&#21487;&#20197;&#35828;&#26159;&#19982;&#20869;&#23481;&#26368;&#30456;&#20851;&#30340;&#19968;&#20010;&#12290;&#32780;article&#21017;&#26159;&#19968;&#31181;&#29305;&#27530;&#30340;section&#12290;Aside&#21602;&#65292;&#26159;&#19968;&#31181;&#29305;&#27530;&#30340;section&#12290;&#26368;&#21518;&#65292;Nav&#20063;&#26159;&#19968;&#31181;&#29305;&#27530;&#30340;section&#12290;&#13;&#22909;&#65292;&#21363;&#20415;&#26159;&#29616;&#22312;&#65292;&#20320;&#29031;&#26679;&#21487;&#20197;&#20351;&#29992;div&#21644;&#31867;&#26469;&#25551;&#36848;&#39029;&#38754;&#20013;&#19981;&#21516;&#30340;&#37096;&#20998;&#65292;&#23601;&#20687;&#19979;&#38754;&#36825;&#26679;&#65306;&#13;&#13;```html&#13;&#60;div class=&#34;item&#34;&#62;&#13;    &#60;h2&#62;...&#60;/h2&#62;&#13;    &#60;div class=&#34;meta&#34;&#62;...&#60;/div&#62;&#13;    &#60;div class=&#34;content&#34;&#62;...&#60;/div&#62;&#13;    &#60;div class=&#34;links&#34;&#62;...&#60;/div&#62;&#13;&#60;/div&#62;</span><br></pre></td></tr></table></figure></p>
-<p>其中包含可能是有关内容作者的元数据，而下面会给出一些链接，差不多就这样。在HTML5中，我完全可以说这块内容就是一个文档，通过对内容分区，使用section或article或aside，我可以说“这一块完全是可以独立存在的。”因此，我当然可以使用header和footer。</p>
-<p>```html</p>
-<p><section class="item"><br>    <header><h1>…</h1></header><br>    <footer class="meta">…</footer><br>    <div class="content">…</div><br>    <nav class="links">…</nav><br></section><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#13;&#35831;&#27880;&#24847;&#65292;&#21363;&#20415;&#26159;footer&#65292;&#20063;&#19981;&#19968;&#23450;&#38750;&#35201;&#20986;&#29616;&#22312;&#19979;&#38754;&#65292;&#19981;&#26159;&#21527;&#65311;&#36825;&#20960;&#20010;&#20803;&#32032;&#65292;header&#12289;footer&#12289;aside&#12289;nav&#65292;&#26368;&#37325;&#35201;&#30340;&#26159;&#23427;&#20204;&#30340;&#35821;&#20041;&#65307;&#36319;&#20301;&#32622;&#27809;&#26377;&#20851;&#31995;&#12290;&#19968;&#24819;&#21040;footer&#36825;&#20010;&#35789;&#65292;&#25105;&#20204;&#24635;&#20250;&#19981;&#30001;&#33258;&#20027;&#22320;&#24819;&#65292;&#8220;&#22114;&#65292;&#24212;&#35813;&#25918;&#22312;&#19979;&#38754;&#12290;&#8221;&#21516;&#26679;&#65292;&#25105;&#20204;&#25226;aside&#24819;&#35937;&#25104;&#19968;&#20010;&#20391;&#36793;&#26639;&#12290;&#21487;&#26159;&#65292;&#22914;&#26524;&#20320;&#30475;&#19968;&#30475;&#35268;&#33539;&#65292;&#23601;&#20250;&#21457;&#29616;&#36825;&#20123;&#20803;&#32032;&#21482;&#36319;&#20869;&#23481;&#26377;&#20851;&#12290;&#22240;&#27492;&#65292;&#25918;&#22312;footer&#20013;&#30340;&#20869;&#23481;&#20063;&#21487;&#20197;&#26159;&#32626;&#21517;&#65292;&#25991;&#31456;&#20316;&#32773;&#20043;&#31867;&#30340;&#65292;&#23427;&#21482;&#26159;&#20320;&#20351;&#29992;&#30340;&#19968;&#20010;&#20803;&#32032;&#12290;&#36825;&#20010;&#20803;&#32032;&#24182;&#27809;&#26377;&#35828;&#8220;&#24517;&#39035;&#25226;&#25105;&#25918;&#22312;&#25991;&#26723;&#25110;&#32773;&#20998;&#21306;&#30340;&#19979;&#38754;&#12290;&#8221;&#13;&#13;&#36825;&#37324;&#65292;&#35831;&#27880;&#24847;&#65292;&#26368;&#37325;&#35201;&#30340;&#36824;&#19981;&#26159;&#25105;&#29992;&#20960;&#20010;&#26032;&#20803;&#32032;&#26367;&#25442;&#20102;&#21407;&#26469;&#30340;div&#21152;&#31867;&#65292;&#32780;&#26159;&#25105;&#25226;&#21407;&#26469;&#30340;H2&#25442;&#25104;&#20102;H1&#8212;&#8212;&#38663;&#25788;&#21543;&#65292;&#25105;&#30475;&#21040;&#26377;&#20154;&#21457;&#25238;&#20102;&#12290;&#25105;&#30896;&#21040;&#36807;&#19981;&#23569;&#32844;&#19994;&#30340;Web&#24320;&#21457;&#20154;&#21592;&#65292;&#22810;&#24180;&#26469;&#20182;&#20204;&#19968;&#30452;&#35748;&#20026;&#35268;&#33539;&#37324;&#35828;&#19968;&#20010;&#25991;&#26723;&#20013;&#21482;&#33021;&#26377;&#19968;&#20010;H1&#12290;&#36824;&#26377;&#19968;&#20123;&#33258;&#35817;&#20026;&#19975;&#33021;&#30340;SEO&#31192;&#35776;&#21516;&#26679;&#35828;&#35201;&#36825;&#26679;&#12290;&#24456;&#22810;SEO&#30340;&#25216;&#24039;&#20854;&#23454;&#26159;&#24456;&#25945;&#26465;&#30340;&#12290;&#25152;&#35859;&#25945;&#26465;&#65292;&#24847;&#24605;&#23601;&#26159;&#19981;&#30456;&#20449;&#25968;&#25454;&#12290;&#36807;&#21435;&#65292;&#36825;&#31181;&#25945;&#26465;&#34920;&#29616;&#20026;&#8220;&#19981;&#34892;&#65292;&#39029;&#38754;&#20013;&#21253;&#21547;&#20004;&#20010;&#20197;&#19978;&#30340;H1&#65292;&#20320;&#23601;&#20250;&#27515;&#25481;&#30340;&#12290;&#8221;&#22312;HTML5&#20013;&#65292;&#21482;&#35201;&#20320;&#24314;&#31435;&#19968;&#20010;&#26032;&#30340;&#20869;&#23481;&#22359;&#65292;&#19981;&#31649;&#29992;section&#12289;article&#12289;aside&#12289;nav&#65292;&#36824;&#26159;&#21035;&#30340;&#20803;&#32032;&#65292;&#37117;&#21487;&#20197;&#22312;&#20854;&#20013;&#20351;&#29992;H1&#65292;&#32780;&#19981;&#24517;&#25285;&#24515;&#36825;&#20010;&#22359;&#37324;&#30340;&#26631;&#39064;&#22312;&#25972;&#20010;&#39029;&#38754;&#20013;&#24212;&#35813;&#25490;&#22312;&#20160;&#20040;&#32423;&#21035;&#65307;H2&#12289;H3&#65292;&#37117;&#27809;&#26377;&#38382;&#39064;&#12290;&#13;&#13;&#36825;&#20010;&#21464;&#21270;&#22826;&#21385;&#23475;&#20102;&#12290;&#24819;&#19968;&#24819;&#21543;&#65292;&#36825;&#20010;&#21464;&#21270;&#23545;&#20869;&#23481;&#31649;&#29702;&#26159;&#38761;&#21629;&#24615;&#30340;&#12290;&#22240;&#20026;&#29616;&#22312;&#65292;&#20320;&#21487;&#20197;&#25226;&#27599;&#20010;&#20869;&#23481;&#20998;&#21306;&#24819;&#35937;&#19968;&#20010;&#29420;&#31435;&#30340;&#12289;&#33021;&#22815;&#20174;&#39029;&#38754;&#20013;&#25343;&#20986;&#26469;&#30340;&#37096;&#20998;&#12290;&#27492;&#26102;&#65292;&#26681;&#25454;&#19978;&#19979;&#25991;&#19981;&#21516;&#65292;&#36825;&#20010;&#29420;&#31435;&#37096;&#20998;&#20013;&#30340;H1&#65292;&#22312;&#25972;&#20010;&#39029;&#38754;&#20013;&#27809;&#20934;&#20250;&#25198;&#28436;H2&#25110;H3&#30340;&#35282;&#33394;&#8212;&#8212;&#21462;&#20915;&#20110;&#23427;&#22312;&#25991;&#26723;&#20013;&#20986;&#29616;&#30340;&#20301;&#32622;&#12290;&#38754;&#23545;&#36825;&#20010;&#31361;&#22914;&#20854;&#26469;&#30340;&#21464;&#21270;&#65292;&#20063;&#35768;&#26377;&#20154;&#30340;&#33041;&#23376;&#20250;&#26242;&#26102;&#36716;&#19981;&#36807;&#24367;&#26469;&#12290;&#19981;&#35201;&#32039;&#65292;&#20294;&#25105;&#21487;&#20197;&#21578;&#35785;&#20320;&#65292;&#25105;&#35748;&#20026;&#36825;&#25165;&#26159;HTML5&#20013;&#36825;&#20123;&#26032;&#35821;&#20041;&#26631;&#35760;&#30340;&#30495;&#27491;&#20215;&#20540;&#25152;&#22312;&#12290;&#25442;&#21477;&#35805;&#35828;&#65292;&#25105;&#20204;&#29616;&#22312;&#26377;&#20102;&#29420;&#31435;&#30340;&#20803;&#32032;&#20102;&#65292;&#36825;&#20123;&#20803;&#32032;&#20013;&#30340;&#26631;&#39064;&#32423;&#21035;&#21487;&#20197;&#37325;&#26032;&#23450;&#20041;&#12290;&#13;&#13;&#25105;&#30340;&#25991;&#26723;&#20013;&#21487;&#33021;&#20250;&#21253;&#21547;&#19968;&#20010;&#20998;&#21306;&#65292;&#36825;&#20010;&#20998;&#21306;&#20013;&#21487;&#33021;&#20250;&#23884;&#22871;&#21478;&#19968;&#20010;&#20998;&#21306;&#65292;&#25110;&#32773;&#19968;&#31687;&#25991;&#31456;&#65292;&#28982;&#21518;&#25991;&#31456;&#20877;&#23884;&#22871;&#20998;&#21306;&#65292;&#20998;&#21306;&#20877;&#23884;&#22871;&#25991;&#31456;&#12289;&#23884;&#22871;&#20998;&#21306;&#65292;&#25991;&#31456;&#20877;&#23884;&#22871;&#25991;&#31456;&#12290;&#32780;&#19988;&#27599;&#20010;&#20998;&#21306;&#21644;&#25991;&#31456;&#37117;&#21487;&#20197;&#25317;&#26377;&#33258;&#24049;&#30340;H1&#21040;H6&#12290;&#20174;&#36825;&#20010;&#24847;&#20041;&#19978;&#35762;&#65292;H&#20803;&#32032;&#30495;&#21487;&#35859;&#8220;&#23376;&#23376;&#23385;&#23385;&#65292;&#26080;&#31351;&#21294;&#20063;&#8221;&#20102;&#12290;&#20294;&#26159;&#65292;&#22312;&#20320;&#22312;&#32534;&#20889;&#20869;&#23481;&#25110;&#32773;&#20869;&#23481;&#31649;&#29702;&#31995;&#32479;&#30340;&#26102;&#20505;&#65292;&#23427;&#20204;&#21448;&#37117;&#26159;&#29420;&#31435;&#30340;&#65292;&#23436;&#20840;&#29420;&#31435;&#30340;&#20869;&#23481;&#22359;&#12290;&#36825;&#25165;&#26159;&#30495;&#27491;&#30340;&#20215;&#20540;&#25152;&#22312;&#12290;&#13;&#23454;&#38469;&#19978;&#65292;&#36825;&#20010;&#28857;&#23376;&#24182;&#19981;HTML5&#24037;&#20316;&#32452;&#25293;&#33041;&#38376;&#24819;&#20986;&#26469;&#30340;&#65292;&#20063;&#19981;&#26159;W3C&#26368;&#36817;&#25165;&#25552;&#20986;&#26469;&#30340;&#12290;&#19979;&#38754;&#36825;&#20960;&#21477;&#35805;&#25688;&#33258;&#33922;&#22982;&#183;&#20271;&#32435;&#26031;-&#26446;1991&#24180;&#30340;&#19968;&#23553;&#37038;&#20214;&#65292;&#37038;&#20214;&#26159;&#21457;&#32473;&#20025;&#183;&#24247;&#32435;&#21033;&#65288;Dan Connolly&#65289;&#30340;&#12290;&#20182;&#22312;&#37038;&#20214;&#20013;&#35299;&#37322;&#20102;&#23545;HTML&#30340;&#29702;&#35299;&#65292;&#20182;&#35828;&#65306;&#8220;&#20320;&#30693;&#36947;&#8230;&#8230;&#30693;&#36947;&#25105;&#30340;&#24819;&#27861;&#65292;&#25105;&#35748;&#20026;H1&#12289;H2&#36825;&#26679;&#21333;&#35843;&#22320;&#25490;&#19979;&#21435;&#19981;&#22909;&#65292;&#25105;&#24076;&#26395;&#23427;&#25104;&#20026;&#19968;&#31181;&#21487;&#20197;&#23884;&#22871;&#30340;&#20803;&#32032;&#65292;&#25110;&#32773;&#35828;&#19968;&#20010;&#36890;&#29992;&#30340;H&#20803;&#32032;&#65292;&#25105;&#20204;&#21487;&#20197;&#22312;&#20854;&#20013;&#23884;&#22871;&#19981;&#21516;&#30340;&#23618;&#27425;&#12290;&#8221;&#20294;&#21518;&#26469;&#65292;&#25105;&#20204;&#27809;&#26377;&#30475;&#21040;&#36890;&#29992;&#30340;H&#20803;&#32032;&#65292;&#32780;&#26159;&#19968;&#30452;&#22312;&#20351;&#29992;H1&#21644;H2&#8212;&#8212;&#37027;&#26159;&#22240;&#20026;&#25105;&#20204;&#19968;&#30452;&#22312;&#25903;&#25345;&#24050;&#26377;&#30340;&#20869;&#23481;&#12290;20&#24180;&#21518;&#30340;&#20170;&#22825;&#65292;&#36825;&#20010;&#29702;&#24819;&#32456;&#20110;&#23454;&#29616;&#20102;&#12290;&#13;&#13;### &#24179;&#31283;&#36864;&#21270;&#10;&#13;&#19979;&#19968;&#26465;&#21407;&#29702;&#22823;&#23478;&#24212;&#35813;&#37117;&#24456;&#29087;&#24713;&#20102;&#65292;&#37027;&#23601;&#26159;&#24179;&#31283;&#36864;&#21270;&#12290;&#27605;&#31455;&#65292;&#25105;&#20204;&#24050;&#32463;&#36981;&#23432;&#36825;&#26465;&#35268;&#21017;&#22909;&#22810;&#24180;&#20102;&#12290;&#28176;&#36827;&#22686;&#24378;&#30340;&#21478;&#19968;&#38754;&#23601;&#26159;&#24179;&#31283;&#36864;&#21270;&#12290;&#13;&#13;&#26377;&#20851;HTML5&#36981;&#24490;&#36825;&#26465;&#21407;&#29702;&#30340;&#20363;&#23376;&#65292;&#23601;&#26159;&#20351;&#29992;type&#23646;&#24615;&#22686;&#24378;&#34920;&#21333;&#12290;&#19979;&#38754;&#21015;&#20986;&#20102;&#21487;&#20197;&#20026;type&#23646;&#24615;&#25351;&#23450;&#30340;&#26032;&#20540;&#65292;&#26377;number&#12289;search&#12289;range&#65292;&#31561;&#31561;&#12290;&#13;&#13;```html&#13;input type=&#34;number&#34;&#13;input type=&#34;search&#34;&#13;input type=&#34;range&#34;&#13;input type=&#34;email&#34;&#13;input type=&#34;date&#34;&#13;input type=&#34;url&#34;&#10;```&#13;&#26368;&#20851;&#38190;&#30340;&#38382;&#39064;&#22312;&#20110;&#27983;&#35272;&#22120;&#22312;&#30475;&#21040;&#36825;&#20123;&#26032;type&#20540;&#26102;&#20250;&#22914;&#20309;&#22788;&#29702;&#12290;&#29616;&#26377;&#30340;&#27983;&#35272;&#22120;&#65292;&#19981;&#26159;&#23558;&#26469;&#30340;&#27983;&#35272;&#22120;&#65292;&#29616;&#26377;&#30340;&#27983;&#35272;&#22120;&#26159;&#26080;&#27861;&#29702;&#35299;&#36825;&#20123;&#26032;type&#20540;&#30340;&#12290;&#20294;&#22312;&#23427;&#20204;&#30475;&#21040;&#33258;&#24049;&#19981;&#29702;&#35299;&#30340;type&#20540;&#26102;&#65292;&#20250;&#23558;type&#30340;&#20540;&#35299;&#37322;&#20026;text&#12290;&#13;&#13;&#26080;&#35770;&#20320;&#20889;&#30340;&#26159;input type=&#8221;foo&#8221;&#36824;&#26159;input type=&#8221;bar&#8221;&#65292;&#29616;&#26377;&#30340;&#20219;&#20309;&#27983;&#35272;&#22120;&#37117;&#20250;&#35828;&#65306;&#8220;&#21999;&#65292;&#20063;&#35768;&#20316;&#32773;&#30340;&#24847;&#24605;&#26159;text&#12290;&#8221;&#22240;&#32780;&#65292;&#20320;&#20174;&#29616;&#22312;&#24320;&#22987;&#23601;&#21487;&#20197;&#20351;&#29992;&#36825;&#20123;&#26032;&#20540;&#65292;&#32780;&#19988;&#20320;&#20063;&#21487;&#20197;&#25918;&#24515;&#65292;&#37027;&#20123;&#19981;&#29702;&#35299;&#23427;&#20204;&#30340;&#27983;&#35272;&#22120;&#20250;&#25226;&#26032;&#20540;&#30475;&#25104;type=&#8221;text&#8221;&#65292;&#32780;&#36825;&#30495;&#26159;&#19968;&#20010;&#27983;&#35272;&#22120;&#23454;&#36341;&#24179;&#31283;&#36864;&#21270;&#21407;&#29702;&#30340;&#22909;&#20363;&#23376;&#12290;&#13;&#13;&#27604;&#22914;&#35828;&#65292;&#20320;&#29616;&#22312;&#36755;&#20837;&#20102;type=&#8221;number&#8221;&#12290;&#20551;&#35774;&#20320;&#38656;&#35201;&#19968;&#20010;&#36755;&#20837;&#25968;&#20540;&#30340;&#25991;&#26412;&#26694;&#12290;&#37027;&#20040;&#20320;&#21487;&#20197;&#25226;&#36825;&#20010;input&#30340;type&#23646;&#24615;&#35774;&#32622;&#20026;number&#65292;&#28982;&#21518;&#29702;&#35299;&#23427;&#30340;&#27983;&#35272;&#22120;&#23601;&#20250;&#21576;&#29616;&#19968;&#20010;&#21487;&#29233;&#30340;&#23567;&#25511;&#20214;&#65292;&#20687;&#24102;&#23567;&#31661;&#22836;&#22270;&#26631;&#30340;&#24494;&#35843;&#25511;&#20214;&#20043;&#31867;&#30340;&#12290;&#23545;&#21543;&#65311;&#32780;&#22312;&#19981;&#29702;&#35299;&#23427;&#30340;&#27983;&#35272;&#22120;&#20013;&#65292;&#20320;&#20250;&#30475;&#21040;&#19968;&#20010;&#25991;&#26412;&#26694;&#65292;&#19968;&#20010;&#20320;&#20877;&#29087;&#24713;&#19981;&#36807;&#30340;&#25991;&#26412;&#26694;&#12290;&#26082;&#28982;&#22914;&#27492;&#65292;&#20026;&#20160;&#20040;&#19981;&#33021;&#35828;&#36755;&#20837;type=&#8221;number&#8221;&#23601;&#20250;&#24471;&#21040;&#19968;&#20010;&#24102;&#23567;&#31661;&#22836;&#22270;&#26631;&#30340;&#24494;&#35843;&#25511;&#20214;&#21602;&#65311;&#13;&#13;&#24403;&#28982;&#65292;&#20320;&#36824;&#21487;&#20197;&#35774;&#32622;&#26368;&#23567;&#21644;&#26368;&#22823;&#20540;&#23646;&#24615;&#65292;&#23427;&#20204;&#21516;&#26679;&#21487;&#20197;&#24179;&#31283;&#36864;&#21270;&#12290;&#36825;&#26159;&#38382;&#39064;&#30340;&#20851;&#38190;&#12290;&#13;&#13;&#20877;&#30475;input type=&#8221;search&#8221;&#12290;&#20320;&#20063;&#21487;&#20197;&#32771;&#34385;&#19968;&#19979;&#36825;&#31181;&#36755;&#20837;&#26694;&#65292;&#22240;&#20026;&#36825;&#31181;&#36755;&#20837;&#26694;&#22312;Safari&#20013;&#20250;&#34987;&#21576;&#29616;&#20026;&#19968;&#20010;&#31995;&#32479;&#32423;&#30340;&#25628;&#32034;&#25511;&#20214;&#65292;&#21491;&#36793;&#36824;&#26377;&#19968;&#20010;&#28857;&#20987;&#21363;&#21487;&#28165;&#38500;&#25628;&#32034;&#20851;&#38190;&#35789;&#30340;X&#12290;&#32780;&#22312;&#20854;&#20182;&#27983;&#35272;&#22120;&#20013;&#65292;&#20320;&#24471;&#21040;&#30340;&#21017;&#26159;&#19968;&#20010;&#25991;&#26412;&#26694;&#65292;&#23601;&#20687;&#20320;&#20889;&#30340;&#26159;input type=&#8221;text&#8221;&#19968;&#26679;&#65292;&#20063;&#23601;&#26159;&#20320;&#24050;&#32463;&#38750;&#24120;&#29087;&#24713;&#30340;&#25991;&#26412;&#26694;&#12290;&#37027;&#20026;&#20160;&#20040;&#36824;&#19981;&#20351;&#29992;input type=&#8221;search&#8221;&#21602;&#65311;&#23427;&#19981;&#20250;&#26377;&#20160;&#20040;&#21103;&#20316;&#29992;&#65292;&#27809;&#26377;&#65292;&#23545;&#19981;&#23545;&#65311;&#13;&#13;HTML5&#36824;&#20026;&#36755;&#20837;&#20803;&#32032;&#22686;&#21152;&#20102;&#26032;&#30340;&#23646;&#24615;&#65292;&#27604;&#22914;placeholder&#65288;&#21344;&#20301;&#31526;&#65289;&#12290;&#26377;&#20154;&#19981;&#30693;&#36947;&#36825;&#20010;&#23646;&#24615;&#30340;&#29992;&#22788;&#21527;&#65292;&#27809;&#26377;&#21543;&#65311;&#27809;&#38169;&#65292;&#23601;&#26159;&#29992;&#20110;&#22312;&#25991;&#26412;&#26694;&#20013;&#39044;&#20808;&#25918;&#19968;&#20123;&#25991;&#26412;&#12290;&#19981;&#23545;&#65292;&#19981;&#26159;&#26631;&#31614;&#65288;label&#65289;&#8212;&#8212;&#21344;&#20301;&#31526;&#21644;&#26631;&#31614;&#23436;&#20840;&#19981;&#26159;&#19968;&#22238;&#20107;&#12290;&#21344;&#20301;&#31526;&#23601;&#26159;&#25991;&#26412;&#26694;&#21487;&#20197;&#25509;&#21463;&#30340;&#31034;&#20363;&#20869;&#23481;&#65292;&#19968;&#33324;&#39068;&#33394;&#26159;&#28784;&#33394;&#30340;&#12290;&#21482;&#35201;&#20320;&#19968;&#28857;&#20987;&#25991;&#26412;&#26694;&#65292;&#23427;&#23601;&#28040;&#22833;&#20102;&#12290;&#22914;&#26524;&#20320;&#25226;&#24050;&#32463;&#36755;&#20837;&#30340;&#20869;&#23481;&#20840;&#37096;&#21024;&#38500;&#65292;&#28982;&#21518;&#21333;&#20987;&#20102;&#25991;&#26412;&#26694;&#22806;&#37096;&#65292;&#23427;&#21448;&#20250;&#20986;&#29616;&#12290;&#13;&#13;&#20351;&#29992;JavaScript&#32534;&#20889;&#19968;&#20123;&#20195;&#30721;&#24403;&#28982;&#20063;&#21487;&#20197;&#23454;&#29616;&#36825;&#20010;&#21151;&#33021;&#65292;&#20294;HTML5&#21482;&#29992;&#19968;&#20010;placeholder&#23646;&#24615;&#23601;&#24110;&#25105;&#20204;&#35299;&#20915;&#20102;&#38382;&#39064;&#12290;&#13;&#13;&#24403;&#28982;&#65292;&#23545;&#20110;&#19981;&#25903;&#25345;&#36825;&#20010;&#23646;&#24615;&#30340;&#27983;&#35272;&#22120;&#65292;&#20320;&#36824;&#26159;&#21487;&#20197;&#20351;&#29992;JavaScript&#26469;&#23454;&#29616;&#21344;&#20301;&#31526;&#21151;&#33021;&#12290;&#36890;&#36807;JavaScript&#26469;&#27979;&#35797;&#27983;&#35272;&#22120;&#25903;&#19981;&#25903;&#25345;&#35813;&#23646;&#24615;&#20063;&#38750;&#24120;&#31616;&#21333;&#12290;&#22914;&#26524;&#25903;&#25345;&#65292;&#21518;&#36864;&#19968;&#27493;&#65292;&#25226;&#36335;&#35753;&#24320;&#65292;&#20048;&#20139;&#20854;&#25104;&#21363;&#21487;&#12290;&#22914;&#26524;&#19981;&#25903;&#25345;&#65292;&#21487;&#20197;&#20877;&#35753;&#20320;&#30340;JavaScript&#26469;&#27169;&#25311;&#36825;&#20010;&#21151;&#33021;&#12290;&#13;&#13;&#29616;&#22312;&#65292;&#25105;&#19981;&#24471;&#19981;&#25552;&#21040;&#21478;&#19968;&#20010;&#35805;&#39064;&#20102;&#65306;HTML5&#23545;Flash&#12290;&#20063;&#35768;&#20320;&#26089;&#21548;&#35828;&#36807;&#20102;&#65292;&#25110;&#32773;&#22312;&#21738;&#37324;&#30475;&#21040;&#20102;&#36825;&#26041;&#38754;&#30340;&#35752;&#35770;&#12290;&#35828;&#23454;&#35805;&#65292;&#25105;&#19968;&#28857;&#20063;&#19981;&#26126;&#30333;&#12290;&#25105;&#25630;&#19981;&#25026;&#20154;&#20204;&#24590;&#20040;&#20250;&#20165;&#20165;&#20973;&#33258;&#24049;&#30340;&#25512;&#27979;&#26469;&#23637;&#24320;&#20105;&#35770;&#12290;&#13;&#39318;&#20808;&#65292;&#20182;&#20204;&#25152;&#35828;&#30340;HTML5&#23545;Flash&#65292;&#24182;&#19981;&#26159;&#25351;&#30340;HTML5&#65292;&#20063;&#19981;&#26159;&#25351;&#30340;Flash&#12290;&#32780;&#26159;&#25351;HTML5&#30340;&#19968;&#20010;&#23376;&#38598;&#21644;Flash&#30340;&#19968;&#20010;&#23376;&#38598;&#12290;&#20855;&#20307;&#26469;&#35828;&#65292;&#20182;&#20204;&#25351;&#30340;&#26159;&#35270;&#39057;&#12290;&#22240;&#27492;&#65292;&#19981;&#31649;&#20320;&#22312;&#21738;&#37324;&#21548;&#21040;&#21035;&#20154;&#35828;&#8220;HTML5&#23545;Flash&#8221;&#65292;&#37027;&#24456;&#21487;&#33021;&#35828;&#30340;&#21482;&#26159;HTML5&#35270;&#39057;&#23545;Flash&#35270;&#39057;&#12290;&#13;&#13;&#20854;&#27425;&#65292;&#19968;&#35828;HTML5&#23545;Flash&#65292;&#23601;&#22909;&#20687;&#20320;&#24517;&#39035;&#24471;&#20316;&#20986;&#36873;&#25321;&#19968;&#26679;&#65306;&#20320;&#31449;&#22312;&#21738;&#19968;&#36793;&#65311;&#23454;&#38469;&#19978;&#19981;&#26159;&#36825;&#26679;&#30340;&#12290;HTML5&#35268;&#33539;&#30340;&#35774;&#35745;&#33021;&#22815;&#35753;&#20320;&#20570;&#21040;&#40060;&#21644;&#29066;&#25484;&#20860;&#24471;&#12290;&#13;&#13;&#22909;&#65292;&#19979;&#38754;&#23601;&#26469;&#30475;&#30475;&#36825;&#20010;&#26032;&#30340;video&#20803;&#32032;&#65307;&#30495;&#26159;&#38750;&#24120;&#36148;&#24515;&#30340;&#19968;&#20010;&#20803;&#32032;&#65292;&#32780;&#19988;&#35774;&#35745;&#21448;&#31616;&#21333;&#65292;&#21448;&#23454;&#29992;&#12290;&#19968;&#20010;&#24320;&#22987;&#30340;video&#20803;&#32032;&#65292;&#21152;&#19968;&#20010;&#32467;&#26463;&#30340;video&#20803;&#32032;&#65292;&#20013;&#38388;&#21487;&#20197;&#25918;&#21518;&#22791;&#20869;&#23481;&#12290;&#27880;&#24847;&#65292;&#26159;&#21518;&#22791;&#20869;&#23481;&#65292;&#19981;&#26159;&#20445;&#35777;&#21487;&#35775;&#38382;&#24615;&#30340;&#20869;&#23481;&#65292;&#26159;&#21518;&#22791;&#20869;&#23481;&#12290;&#19979;&#38754;&#23601;&#26159;&#38024;&#23545;&#19981;&#25903;&#25345;video&#20803;&#32032;&#30340;&#27983;&#35272;&#22120;&#20889;&#30340;&#20195;&#30721;&#65306;&#13;&#13;```html&#13;&#60;video src=&#34;movie.mp4&#34;&#62;&#13;    &#60;!-- &#21518;&#22791;&#20869;&#23481; --&#62;&#13;&#60;/video&#62;</span><br></pre></td></tr></table></figure></p>
-<p>那么，在后备内容里面放些什么东西呢？好，你可以放Flash影片。这样，HTML5的视频与Flash的视频就可以协同起来了。你不用作出选择。</p>
-<p>```html</p>
-<p><video src="movie.mp4"><br>    <object data="movie.swf"><br>    <!-- 后备内容 --><br>    </object><br></video><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#13;&#24403;&#28982;&#65292;&#20320;&#30340;&#20195;&#30721;&#23454;&#38469;&#19978;&#24182;&#27809;&#26377;&#36825;&#20040;&#31616;&#21333;&#12290;&#22240;&#20026;&#36825;&#37324;&#25105;&#20351;&#29992;&#20102;H264&#65292;&#37096;&#20998;&#27983;&#35272;&#22120;&#25903;&#25345;&#36825;&#31181;&#35270;&#39057;&#26684;&#24335;&#12290;&#20294;&#26377;&#30340;&#27983;&#35272;&#22120;&#19981;&#25903;&#25345;&#12290;&#13;&#13;&#23545;&#19981;&#36215;&#65292;&#35831;&#19981;&#35201;&#36319;&#25105;&#35848;&#35270;&#39057;&#26684;&#24335;&#65292;&#25105;&#19968;&#21548;&#23601;&#24515;&#28902;&#12290;&#19981;&#26159;&#22240;&#20026;&#25216;&#26415;&#12290;&#25216;&#26415;&#20498;&#26080;&#25152;&#35859;&#65292;&#20851;&#38190;&#26159;&#20250;&#29301;&#25199;&#21040;&#19968;&#22823;&#22534;&#19987;&#21033;&#36824;&#26377;&#24459;&#24072;&#12289;&#30693;&#35782;&#20135;&#26435;&#31561;&#31561;&#65292;&#36825;&#20123;&#37117;&#26159;Web&#30340;&#22825;&#25932;&#65292;&#23545;&#25105;&#24314;&#32593;&#31449;&#19968;&#28857;&#22909;&#22788;&#37117;&#27809;&#26377;&#12290;&#10;&#10;&#21487;&#20320;&#23454;&#38469;&#19978;&#35201;&#20570;&#30340;&#65292;&#20165;&#20165;&#23601;&#26159;&#25226;&#21518;&#22791;&#20869;&#23481;&#25918;&#22312;&#37027;&#32780;&#24050;&#65292;&#21518;&#22791;&#20869;&#23481;&#21487;&#20197;&#21253;&#21547;&#22810;&#31181;&#35270;&#39057;&#26684;&#24335;&#12290;&#22914;&#26524;&#24895;&#24847;&#30340;&#35805;&#65292;&#21487;&#20197;&#20351;&#29992;source&#20803;&#32032;&#32780;&#38750;src&#23646;&#24615;&#26469;&#25351;&#23450;&#19981;&#21516;&#30340;&#35270;&#39057;&#26684;&#24335;&#12290;&#13;&#13;```html&#13;&#60;video&#62;&#13;    &#60;source src=&#34;movie.mp4&#34;&#62;&#13;    &#60;source src=&#34;movie.ogv&#34;&#62;&#13;    &#60;object data=&#34;movie.swf&#34;&#62;&#13;        &#60;a href=&#34;movie.mp4&#34;&#62;download&#60;/a&#62;&#13;    &#60;/object&#62;&#13;&#60;/video&#62;</span><br></pre></td></tr></table></figure></p>
-<p>上面的代码中包含了4个不同的层次。</p>
-<ol>
-<li>如果浏览器支持video元素，也支持H264，没什么好说的，用第一个视频。</li>
-<li>如果浏览器支持video元素，支持Ogg，那么用第二个视频。</li>
-<li>如果浏览器不支持video元素，那么就要试试Flash影片了。</li>
-<li>如果浏览器不支持video元素，也不支持Flash，我还给出了下载链接。</li>
-</ol>
-<p>不错，一开始就能考虑这么周到很难得啊。有了这几个层次，已经够完善了。</p>
-<p>总之，我是建议你各种技术要兼顾，无论是HTML5，还是Flash，一个也不能少。如果只使用video元素提供视频，难免搬起石头砸自己的脚，我个人认为。而如果只提供Flash影片，情况也好不到哪去，性质是一样的。所以还是应该两者兼顾。</p>
-<p>为什么要兼顾这两种技术呢？假设你需要面向某些不支持Flash的手持设备——只是举个例子——提供视频，你当然希望手持设备的用户能够看到视频了，不是吗？</p>
-<p>至于为什么要使用不同的格式，为什么Flash视频和音频如此成功，我想可以归结为另一个设计原理，即梅特卡夫定律(Metcalfe’s Law)：</p>
-<blockquote>
-<p>网络价值同网络用户数量的平方成正比。</p>
-</blockquote>
-<p>梅特卡夫的这个定律虽然是针对电话网提出来的，但在很多领域里也是适用的。使用网络的用户越多，网络的价值也就越大。人人都上Facebook，还不是因为人人都上Facebook嘛。虽然Facebook真正的价值不在于此，但只有人人都上才会让它的变得如此有价值。</p>
-<p>梅特卡夫定律也适用于传真机。如果只有一个人购买了传真机，当然没有什么用处。但如果其他人也陆续购买了传真机，那么他的投资会就得到回报。</p>
-<p>当然，面对竞争性的视频格式和不同的编码方式，你感觉不到梅特卡夫定律的作用，我也很讨厌以不同的方式来编码视频，但只向浏览器发送用一种方式编码的视频是行不通的。而这也正是Flash在视频/音频领域如此成功的原因。你只要把Flash影片发送给浏览器就好了，然后安装了插件的浏览器都能正常播放。本质上讲，Flash利用了梅特卡夫定律。</p>
-<h3 id="u6700_u7EC8_u7528_u6237_u4F18_u5148"><a href="#u6700_u7EC8_u7528_u6237_u4F18_u5148" class="headerlink" title="最终用户优先"></a>最终用户优先</h3><p>今天我要讲的最后一个设计原理，也是我个人最推崇的一个，但没有要展示的代码示例。这个原理更有哲学的味道，即最终用户优先。</p>
-<p>这个设计原理本质上是一种解决冲突的机制。换句话说，当你面临一个要解决的问题时，如果W3C给出了一种解决方案，而WHATWG给出了另一种解决方案，一个人这么想，另一个人那么想……这时候，有人站出来说：“对这个问题我们这样来解决。”</p>
-<blockquote>
-<p>一旦遇到冲突，最终用户优先，其次是作者，其次是实现者，其次标准制定者，最后才是理论上的完满。</p>
-</blockquote>
-<p>理论上的完满，大致是指尽可能创建出最完美的格式。标准制定者，指的是工作组、W3C，等等。实现者，指的是浏览器厂商。作者，就是我们这些开发人员，对吧？看看我们在这个链条里面的位置多靠上啊！我们的地位仅次于最终用户——事情本来就该这个样子。用户是第一位的。而我们的声音在标准制定过程中也同样非常非常重要。</p>
-<p>Hixie（即Ian Hickson， Acid2、Acid3的作者及维护者，HTML5、CSS 2.1规范的制定者）经常说，在有人建议了某个特性，而HTML5工作组为此争论不下时，如果有浏览器厂商说“我们不会支持这个特性，不会在我们的浏览器中实现这个特性”，那么这个特性就不会写进规范。因为即使是把特性写进规范，如果没有厂商实现，规范不过是一纸空文，对不对？实现者可以拒绝实现规范。</p>
-<p>而根据最终用户优先的原理，我们在链条中的位置高于实现者，假如我们发现了规范中的某些地方有问题，我们想“这样规定我们不能同意，我们不支持实现这个特性”，那么就等于把相应的特性给否定了，规范里就得删除，因为我们的声音具有更高的权重。我觉得这样挺好！本质上是我们拥有了更大的发言权，对吧？我认为开发人员就应该拥有更多的发言权。</p>
-<p>我觉得这应该是最重要的一条设计原理了，因为它承认了你的权利，无论是设计一种格式，还是设计软件，这条原理保证了你的发言权。而这条原理也正道出了事物运行的本质。难道还不够明显吗？用户的权利大于作者，作者的权利大于实现者，实现者的权利大于标准制定者。然而，反观其他规范，比如XHTML2，你就会发现完全相反的做法。把追求理论的完满放在第一位，而把用户——需要忍受严格错误处理带来的各种麻烦的用户——放在了链条的最底端。我并没有说这种做法就是错误的，但我认为这是一种完全不同的思维方式。</p>
-<p>因此，我认为无论你做什么，不管是构建像HTML5这样的格式，还是构建一个网站，亦或一个内容管理系统，明确你的设计原理都至关重要。</p>
-<blockquote>
-<p>软件，就像所有技术一样，具有天然的政治性。代码必然会反映作者的选择、偏见和期望。</p>
-</blockquote>
-<p>下面我们讲一个例子。Drupal社区曾联系马克·博尔顿（Mark Boulton）和丽莎·雷贺特（Leisa Reichilt）设计Drupal的界面。他们计划遵循一些设计原理。为此，他们并没有纸上谈兵，而是经过了一段时间的思考和酝酿，提出指导将来工作的4个设计原理：</p>
-<blockquote>
-<p>简化最常见的任务，让不常见的任务不至于太麻烦。</p>
-<p>只为80%设计。</p>
-<p>给内容创建者最大的权利。</p>
-<p>默认设置智能化。</p>
-</blockquote>
-<p>实际上，我在跟马克谈到这个问题时，马克说主要还是那两个，即“只为80%设计。给内容创建者最大的权利。”这就很不错了，至少它表明了立场，“我们认为内容创建者比这个项目中的任何人都重要。”在制定设计原理时，很多人花了很多时间都抓不住重点，因为他们想取悦所有人。关键在于我们不是要取悦所有人，而是要明确哪些人最重要。他们认为内容创建者是最重要的。</p>
-<p>另一条设计原理，只为80%设计，其实是一条常见的设计原理，也是一种通用模式，即帕累托原理（Pareto principle）。</p>
-<p>帕累托是意大利经济学家，他提出这个比例，80/20，说的是世界上20%的人口拥有80%的财富。这个比例又暗合了自然界各个领域的幂律分布现象。总之，无论你是编写软件，还是制造什么东西，都是一样的，即20%的努力可以触及80%的用例。最后20%的用例则需要付出80%甚至更多的努力。因此，有时候据此确定只为80%设计是很合理的，因为我们知道为此只要付出20%的努力即可。</p>
-<p>再比如，微格式同样也利用了帕累托原理，只处理常见用例，而没有考虑少数情形。他们知道自己不会让所有人都满意；而他们的目标也不是让所有人都满意。他们遵循的设计原理很多，也都非常有价值，但最吸引人的莫过于下面这条了：</p>
-<blockquote>
-<p>首先为人类设计，其次为机器设计。</p>
-</blockquote>
-<p>同样，你我都会觉得这是一条再明显不过的道理，但现实中仍然有不少例子违反了这条原理：容易让机器理解（解析）比容易让用户理解更重要。</p>
-<p>所以，我认为平常多看一看别人推崇的设计原理，有助于做好自己手头的工作。你可以把自己认为有道理的设计原理贴在墙上。当然，你可以维护一个URL，把自己认为有价值的设计原理分享出来，就像Mozilla基金会那样，对不对，以下是Mozilla的设计原理：</p>
-<blockquote>
-<p>Internet作为一种公共资源，其运作效率取决于互通性（协议、数据格式、内容）、变革及全球范围内的协作。</p>
-<p>基于透明社区的流程有助于增进协作、义务和信任。</p>
-</blockquote>
-<p>我觉得像这样的设计原理都非常好。而有了设计原理，我认为才更有希望设计出真正有价值的产品。设计原理是Web发展背后的驱动力，也是通过HTML5反映出来的某种思维方式。我想，下面这条原理你绝对不会陌生：</p>
-<blockquote>
-<p>大多数人的意见和运行的代码。【1】</p>
-</blockquote>
-<p>对不对？这句话经常在我脑际回响，它囊括了Web的真谛，触及了HTML5的灵魂。</p>
-<p>也许我该把这条原理打印出来贴到办公室的墙上，让它时刻提醒我，这就是Web的设计原理：大多数人的意见和运行的代码。</p>
-<p>我想，今天的演讲就到这里了。如果大家有什么想法可以在twitter上通过@adactio找到我。有时候我也会在自己的博客，adactio.com上写写有关这个主题的文章。最后，可能还要顺便给我自己做个广告，我刚出了一本书，希望大家关注。</p>
-<p>非常感谢大家。<br>[全文完]</p>
-<p>【1】 1992年，大卫·克拉克（David Clark）教授在IETF会议上总结了这样一句话“We reject: kings, presidents, and voting. We believe in: rough consensus and running code”（我们拒绝国王、总统和投票，我们相信大多数人的意见和运行的代码）。这就是广为流传的“互联网哲学”（Internet Philosophy）。——译者注</p>
-  
-	</div>
-		<footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/前端/">前端</a>
-</div>
+          <p><img src="foo" alt="bar"></p>
+          <p>
+          </p>
+          <p class="foo">Hello world</p>
+          <p>
+            <img src="foo" alt="bar">
+          </p>
+          <p class="foo">Hello world</p>
 
 
-</div>
+          <p><img src="foo" alt="bar"></p>
+          <p>
+          </p>
+          <p class="foo">Hello world</p><br>
+          <figure class="highlight plain">
+            <table>
+              <tr>
+                <td class="gutter"><pre><span class="line">1</span><br></pre></td>
+                <td class="code"><pre><span class="line">&#13;&#22909;&#20102;&#65292;&#30475;&#21040;&#36825;&#20960;&#27573;&#20195;&#30721;&#65292;&#24656;&#24597;&#26377;&#20154;&#20250;&#35828;&#8220;&#19981;&#23545;&#19981;&#23545;&#19981;&#23545;&#12290;&#20854;&#20013;&#21482;&#26377;&#19968;&#20010;&#26159;&#23545;&#30340;&#65292;&#21478;&#22806;&#19977;&#20010;&#8212;&#8212;&#35828;&#19981;&#22909;&#12290;&#8221;&#19981;&#23545;&#65292;&#24212;&#35813;&#32473;&#23646;&#24615;&#20540;&#21152;&#24341;&#21495;&#65281;&#25308;&#25176;&#65292;&#25105;&#20204;&#21487;&#26159;&#19968;&#30452;&#37117;&#32473;&#23646;&#24615;&#20540;&#21152;&#24341;&#21495;&#30340;&#65281;&#20803;&#32032;&#21517;&#22823;&#20889;&#23545;&#21527;&#65311;&#36825;&#31181;&#20570;&#27861;10&#24180;&#19981;&#26159;&#23601;&#34987;&#25243;&#24323;&#20102;&#21527;&#65311;&#13;&#13;&#30475;&#21040;HTML5&#21516;&#26102;&#20801;&#35768;&#36825;&#20123;&#20889;&#27861;&#65292;&#25105;&#24515;&#37324;&#24525;&#19981;&#20303;&#19968;&#38453;&#38453;&#24819;&#21520;&#12290;&#25105;&#20889;&#20102;10&#24180;&#30340;XHTML 1.0&#65292;&#24050;&#32463;&#38750;&#24120;&#36866;&#24212;&#20005;&#26684;&#30340;&#35821;&#27861;&#20102;&#12290;&#20294;&#20320;&#24517;&#39035;&#26126;&#30333;&#65292;&#31449;&#22312;&#27983;&#35272;&#22120;&#30340;&#35282;&#24230;&#19978;&#65292;&#36825;&#20123;&#20889;&#27861;&#23454;&#38469;&#19978;&#37117;&#26159;&#19968;&#26679;&#30340;&#12290;&#30830;&#23454;&#27809;&#26377;&#20160;&#20040;&#38382;&#39064;&#12290;&#13;&#13;&#36824;&#26377;&#35841;&#20063;&#24863;&#21040;&#19981;&#33298;&#26381;&#20102;&#21527;&#65311;&#26377;&#35841;&#30475;&#21040;&#36825;&#20123;&#20043;&#21518;&#24819;&#8220;&#22114;&#65292;&#36825;&#19981;&#26159;&#20081;&#20889;&#22043;&#65292;&#36825;&#26679;&#20570;&#19981;&#23545;&#8221;&#65311;&#21482;&#26377;&#25105;&#36825;&#26679;&#24819;&#21527;&#65311;&#36824;&#26377;&#21035;&#20154;&#21527;&#65311;&#13;&#13;&#20294;&#26159;&#65292;HTML5&#24517;&#39035;&#25903;&#25345;&#24050;&#32463;&#23384;&#22312;&#30340;&#20869;&#23481;&#65292;&#32780;&#24050;&#26377;&#30340;&#20869;&#23481;&#23601;&#26159;&#36825;&#20010;&#26679;&#23376;&#30340;&#12290;&#19981;&#26159;&#21527;&#65311;&#26681;&#25454;&#20271;&#26031;&#22612;&#23572;&#27861;&#21017;&#65292;&#27983;&#35272;&#22120;&#27809;&#26377;&#21035;&#30340;&#36873;&#25321;&#12290;&#13;&#13;&#26377;&#20154;&#21487;&#33021;&#20250;&#35828;&#8220;&#36825;&#26679;&#19981;&#34892;&#12290;&#25105;&#35273;&#24471;&#35821;&#35328;&#26412;&#36523;&#24212;&#35813;&#25552;&#20379;&#19968;&#31181;&#24320;&#20851;&#65292;&#35753;&#20316;&#32773;&#33021;&#22815;&#34920;&#26126;&#33258;&#24049;&#24819;&#20570;&#20160;&#20040;&#12290;&#8221;&#27604;&#22914;&#35828;&#65292;&#24819;&#20351;&#29992;&#26576;&#31181;&#29305;&#23450;&#30340;&#35821;&#27861;&#65292;&#20687;XHTML&#65292;&#32780;&#19981;&#26159;&#20351;&#29992;&#20854;&#20182;&#35821;&#27861;&#12290;&#25105;&#29702;&#35299;&#36825;&#20123;&#20154;&#30340;&#24819;&#27861;&#12290;&#20294;&#25105;&#19981;&#36190;&#25104;&#22312;&#35821;&#35328;&#37324;&#35774;&#32622;&#24320;&#20851;&#12290;&#22240;&#20026;&#25105;&#20204;&#35752;&#35770;&#30340;&#21482;&#26159;&#32534;&#30721;&#39118;&#26684;&#25110;&#32773;&#20889;&#20316;&#39118;&#26684;&#65292;&#36319;&#21738;&#31181;&#35821;&#27861;&#27491;&#30830;&#26080;&#20851;&#12290;&#23545;&#20110;&#20687;&#25105;&#20204;&#36825;&#26679;&#30340;&#19987;&#19994;&#20154;&#22763;&#65292;&#25105;&#35748;&#20026;&#21487;&#20197;&#20351;&#29992;lint&#24037;&#20855;&#65288;&#19968;&#31181;&#36719;&#20214;&#36136;&#37327;&#20445;&#35777;&#24037;&#20855;&#65292;&#25110;&#32773;&#35828;&#26159;&#19968;&#31181;&#26356;&#21152;&#20005;&#26684;&#30340;&#32534;&#35793;&#22120;&#12290;&#23427;&#19981;&#20165;&#21487;&#20197;&#35937;&#26222;&#36890;&#32534;&#35793;&#22120;&#37027;&#26679;&#26816;&#26597;&#20986;&#19968;&#33324;&#30340;&#35821;&#27861;&#38169;&#35823;&#65292;&#36824;&#21487;&#20197;&#26816;&#26597;&#20986;&#37027;&#20123;&#34429;&#28982;&#23436;&#20840;&#21512;&#20046;&#35821;&#27861;&#35201;&#27714;&#65292;&#20294;&#24456;&#21487;&#33021;&#26159;&#28508;&#22312;&#30340;&#12289;&#19981;&#26131;&#21457;&#29616;&#30340;&#38169;&#35823;&#65289;&#65292;&#23545;&#20854;&#20182;&#25216;&#26415;&#25105;&#20204;&#19981;&#26159;&#20063;&#22312;&#20351;&#29992;lint&#24037;&#20855;&#22043;&#12290;&#13;&#13;&#27604;&#22914;&#35828;&#23545;JavaScript&#20351;&#29992;lint&#24037;&#20855;&#12290;JavaScript&#21516;&#26679;&#20063;&#26159;&#27604;&#36739;&#28151;&#20081;&#12289;&#19981;&#20005;&#35880;&#30340;&#20363;&#23376;&#65292;&#20294;&#23427;&#38750;&#24120;&#24378;&#22823;&#65292;&#21407;&#22240;&#24688;&#24688;&#26159;&#23427;&#28151;&#20081;&#12289;&#19981;&#20005;&#35880;&#65292;&#32780;&#19988;&#26377;&#24456;&#22810;&#19981;&#21516;&#30340;&#32534;&#30721;&#26041;&#24335;&#12290;&#22312;JavaScript&#65292;&#20320;&#21487;&#20197;&#22312;&#27599;&#26465;&#35821;&#21477;&#26411;&#23614;&#21152;&#19978;&#20998;&#21495;&#65292;&#20294;&#19981;&#26159;&#24517;&#38656;&#30340;&#65292;&#22240;&#20026;JavaScript&#20250;&#33258;&#21160;&#25554;&#20837;&#20998;&#21495;&#8230;&#8230;&#26159;&#19981;&#26159;&#21548;&#36215;&#26469;&#26377;&#28857;&#19981;&#22909;&#25509;&#21463;&#65311;&#13;&#13;&#27491;&#22240;&#20026;&#22914;&#27492;&#65292;&#25165;&#26377;&#20102;&#20687;JSlint&#36825;&#26679;&#30340;&#24037;&#20855;&#65292;&#22312;&#36947;&#26684;&#25289;&#26031;&#183;&#20811;&#21171;&#20811;&#31119;&#24503;&#65288;Douglas Crockford&#65289;&#30340;&#32593;&#31449;jslint.org&#19978;&#38754;&#12290;&#26377;&#20010;&#32593;&#39029;&#19978;&#20889;&#30528;&#8220;JSlint&#21487;&#33021;&#20250;&#20260;&#23475;&#20320;&#30340;&#24863;&#24773;&#12290;&#8221;&#20294;&#36825;&#30830;&#23454;&#26159;&#20010;&#38750;&#24120;&#26834;&#30340;&#24037;&#20855;&#65292;&#23427;&#21487;&#20197;&#25226;JavaScript&#20195;&#30721;&#21464;&#24471;&#23436;&#32654;&#26080;&#29781;&#12290;&#22914;&#26524;&#20320;&#36890;&#36807;JSlint&#36816;&#34892;JavaScript&#65292;&#23427;&#20250;&#21578;&#35785;&#20320;&#8220;&#22909;&#65292;&#20320;&#30340;JavaScript&#20195;&#30721;&#26377;&#25928;&#65292;&#20294;&#20889;&#27861;&#19981;&#22949;&#12290;&#20320;&#36825;&#31181;&#32534;&#30721;&#39118;&#26684;&#21834;&#65292;&#25105;&#19981;&#21916;&#27426;&#12290;&#19981;&#36190;&#25104;&#20320;&#36825;&#26679;&#20889;&#12290;&#36825;&#26679;&#20889;&#19981;&#22909;&#12290;&#8221;&#29305;&#21035;&#26159;&#23545;&#22242;&#38431;&#65292;&#23545;&#20110;&#35201;&#20351;&#29992;&#32479;&#19968;&#30340;&#32534;&#30721;&#39118;&#26684;&#30340;&#22242;&#38431;&#65292;JSlint&#26159;&#38750;&#24120;&#26041;&#20415;&#30340;&#24037;&#20855;&#12290;&#13;&#13;&#25105;&#20010;&#20154;&#35748;&#20026;&#65292;&#19981;&#20165;&#23545;&#22242;&#38431;&#26469;&#35828;&#65292;&#23601;&#31639;&#26159;&#20320;&#33258;&#24049;&#20889;&#20195;&#30721;&#65292;&#20063;&#35201;&#22362;&#25345;&#19968;&#31181;&#35821;&#27861;&#39118;&#26684;&#12290;&#20174;&#27983;&#35272;&#22120;&#35299;&#26512;&#30340;&#35282;&#24230;&#35762;&#65292;&#19981;&#23384;&#22312;&#21738;&#31181;&#35821;&#27861;&#27604;&#21478;&#19968;&#31181;&#26356;&#22909;&#30340;&#38382;&#39064;&#65292;&#20294;&#25105;&#35748;&#20026;&#65292;&#20316;&#20026;&#19987;&#19994;&#20154;&#22763;&#65292;&#25105;&#20204;&#24517;&#39035;&#33021;&#22815;&#33258;&#20449;&#22320;&#35762;&#8220;&#36825;&#23601;&#26159;&#25105;&#30340;&#32534;&#30721;&#39118;&#26684;&#12290;&#8221;&#28982;&#32780;&#65292;&#25105;&#19981;&#35748;&#20026;&#35821;&#35328;&#37324;&#24212;&#35813;&#20869;&#32622;&#36825;&#31181;&#24320;&#20851;&#12290;&#20320;&#21487;&#20197;&#20351;&#29992;lint&#24037;&#20855;&#26469;&#32479;&#19968;&#32534;&#30721;&#39118;&#26684;&#12290;&#29616;&#22312;&#23601;&#26469;&#35828;&#35828;lint&#24037;&#20855;&#12290;&#22823;&#23478;&#21487;&#20197;&#30331;&#24405;htmllint.com&#65292;&#22312;&#20854;&#20013;&#36816;&#34892;&#20320;&#30340;HTML5&#25991;&#26723;&#65292;&#23427;&#20250;&#24110;&#20320;&#26816;&#26597;&#23646;&#24615;&#20540;&#26159;&#21542;&#21152;&#20102;&#24341;&#21495;&#65292;&#20803;&#32032;&#26159;&#21542;&#23567;&#20889;&#65292;&#20320;&#36824;&#21487;&#20197;&#36890;&#36807;&#21246;&#36873;&#22797;&#36873;&#26694;&#26469;&#35774;&#32622;&#20854;&#20182;&#26816;&#26597;&#39033;&#12290;&#13;&#13;&#20294;&#36825;&#19981;&#24847;&#21619;&#30528;&#25298;&#32477;&#31895;&#24515;&#22823;&#24847;&#30340;&#26631;&#35760;&#65292;&#20570;&#19981;&#20570;&#28165;&#29702;&#23436;&#20840;&#21462;&#20915;&#20110;&#20320;&#33258;&#24049;&#12290;&#25105;&#35828;&#36807;&#65292;&#22240;&#20026;&#27983;&#35272;&#22120;&#24517;&#39035;&#25903;&#25345;&#24050;&#26377;&#30340;&#20869;&#23481;&#65292;HTML5&#33258;&#28982;&#20063;&#19981;&#33021;&#20363;&#22806;&#12290;&#24402;&#26681;&#32467;&#24213;&#36824;&#26159;&#20271;&#26031;&#22612;&#23572;&#27861;&#21017;&#12290;&#25105;&#20204;&#22987;&#32456;&#31163;&#19981;&#24320;&#20271;&#26031;&#22612;&#23572;&#27861;&#21017;&#12290;&#13;&#13;### &#35299;&#20915;&#29616;&#23454;&#30340;&#38382;&#39064;&#13;&#13;HTML5&#30340;&#21478;&#19968;&#20010;&#35774;&#35745;&#21407;&#29702;&#26159;&#35299;&#20915;&#29616;&#23454;&#30340;&#38382;&#39064;&#12290;&#26174;&#32780;&#26131;&#35265;&#30340;&#26159;&#65292;&#35299;&#20915;&#21508;&#31181;&#38382;&#39064;&#30340;&#26684;&#24335;&#21644;&#35268;&#33539;&#24050;&#32463;&#27604;&#27604;&#30342;&#26159;&#20102;&#65292;&#20294;&#26159;&#22312;&#25105;&#30475;&#26469;&#65292;&#37027;&#20123;&#26684;&#24335;&#21644;&#35268;&#33539;&#35201;&#35299;&#20915;&#30340;&#37117;&#26159;&#29702;&#35770;&#38382;&#39064;&#65292;&#32780;&#38750;&#29616;&#23454;&#38382;&#39064;&#12290;&#36825;&#26465;&#35774;&#35745;&#21407;&#29702;&#25165;&#26159;&#30495;&#27491;&#35201;&#35299;&#20915;&#20170;&#22825;&#30340;&#20154;&#20204;&#25152;&#38754;&#20020;&#30340;&#29616;&#23454;&#38382;&#39064;&#12289;&#20196;&#20154;&#22836;&#30140;&#30340;&#38382;&#39064;&#12290;&#13;&#13;&#19979;&#38754;&#25105;&#26469;&#20030;&#20010;&#20363;&#23376;&#12290;&#30456;&#20449;&#36825;&#20010;&#20363;&#23376;&#26377;&#19981;&#23569;&#20154;&#37117;&#36935;&#21040;&#36807;&#12290;&#20551;&#35774;&#25105;&#20351;&#29992;HTML 4&#25110;XHTML 1&#65292;&#39029;&#38754;&#20013;&#24050;&#32463;&#26377;&#20102;&#19968;&#22359;&#20869;&#23481;&#65292;&#25105;&#24819;&#32473;&#25972;&#22359;&#20869;&#23481;&#21152;&#20010;&#38142;&#25509;&#65292;&#24590;&#20040;&#21150;&#65311;&#38382;&#39064;&#26159;&#36825;&#22359;&#20869;&#23481;&#37324;&#21253;&#21547;&#19968;&#20010;&#26631;&#39064;&#65292;&#19968;&#20010;&#27573;&#33853;&#65292;&#20063;&#35768;&#36824;&#26377;&#19968;&#24352;&#22270;&#29255;&#12290;&#22914;&#26524;&#25105;&#24819;&#32473;&#23427;&#20204;&#20840;&#37096;&#37117;&#21487;&#20197;&#28857;&#20987;&#65292;&#24517;&#39035;&#20351;&#29992;3&#20010;&#38142;&#25509;&#20803;&#32032;&#12290;&#20110;&#26159;&#65292;&#25105;&#24471;&#20808;&#25226;&#20809;&#26631;&#25918;&#22312;&#26631;&#39064;&#65288;&#27604;&#22914;&#35828;h2&#20803;&#32032;&#65289;&#20013;&#65292;&#20889;&#19968;&#20010;&#38142;&#25509;&#26631;&#31614;&#65292;&#28982;&#21518;&#20877;&#36873;&#20013;&#25152;&#26377;&#35201;&#21253;&#21547;&#21040;&#38142;&#25509;&#37324;&#38754;&#26469;&#30340;&#25991;&#26412;&#12290;&#25509;&#30528;&#65292;&#20877;&#25226;&#20809;&#26631;&#25918;&#22312;&#27573;&#33853;&#37324;&#65292;&#20889;&#19968;&#20010;&#38142;&#25509;&#26631;&#31614;&#65292;&#28982;&#21518;&#25226;&#27573;&#33853;&#20013;&#30340;&#25991;&#26412;&#25918;&#22312;&#38142;&#25509;&#37324;&#8230;&#8230;&#13;&#13;```html&#13;&#60;h2&#62;&#60;a href=&#34;/path/to/resource&#34;&#62;Headline text&#60;/a&#62;&#60;/h2&#62;&#13;&#60;p&#62;&#60;a href=&#34;/path/to/resource&#34;&#62;Paragraph text.&#60;/a&#62;&#60;/p&#62;</span><br></pre></td>
+              </tr>
+            </table>
+          </figure>
+          <p></p>
+          <p>在HTML5中，我只要简单地把所有内容都包装在一个链接元素中就行了。</p>
+          <p>```html<br>
+            <a href="/path/to/resource"></a>
+          </p>
+          <h2>Headline text</h2>
+
+          <p>
+          </p>
+          <p>Paragraph text.</p><br><br>
+          <figure class="highlight plain">
+            <table>
+              <tr>
+                <td class="gutter"><pre><span class="line">1</span><br></pre></td>
+                <td class="code"><pre><span class="line">&#13;&#27809;&#38169;&#65292;&#38142;&#25509;&#21253;&#21547;&#30340;&#37117;&#26159;&#22359;&#32423;&#20803;&#32032;&#65292;&#20294;&#29616;&#22312;&#25105;&#21487;&#20197;&#29992;&#19968;&#20010;&#20803;&#32032;&#21253;&#21547;&#23427;&#20204;&#12290;&#36825;&#26679;&#22826;&#22909;&#20102;&#12290;&#22240;&#20026;&#25105;&#30896;&#21040;&#36807;&#31867;&#20284;&#30340;&#24773;&#24418;&#65292;&#24517;&#39035;&#32473;&#20960;&#20010;&#22359;&#32423;&#20803;&#32032;&#21152;&#19978;&#30456;&#21516;&#30340;&#38142;&#25509;&#65292;&#25152;&#26377;&#33021;&#36825;&#26679;&#20889;&#23601;&#22826;&#22909;&#20102;&#12290;&#20026;&#27492;&#65292;&#25105;&#23601;&#38750;&#24120;&#27426;&#36814;HTML5&#36825;&#20010;&#26032;&#26631;&#20934;&#12290;&#13;&#13;&#23427;&#35299;&#20915;&#20102;&#19968;&#20010;&#29616;&#23454;&#30340;&#38382;&#39064;&#12290;&#25105;&#25954;&#35828;&#22312;&#24231;&#19981;&#23569;&#26379;&#21451;&#37117;&#26366;&#36935;&#21040;&#36807;&#36825;&#20010;&#38382;&#39064;&#12290;&#13;&#13;&#37027;&#36825;&#21040;&#24213;&#35299;&#20915;&#30340;&#26159;&#20160;&#20040;&#38382;&#39064;&#21602;&#65311;&#27983;&#35272;&#22120;&#19981;&#24517;&#22240;&#27492;&#37325;&#26032;&#20889;&#20195;&#30721;&#26469;&#25903;&#25345;&#36825;&#31181;&#20889;&#27861;&#12290;&#36825;&#31181;&#20889;&#27861;&#20854;&#23454;&#26089;&#23601;&#24050;&#32463;&#23384;&#22312;&#20110;&#27983;&#35272;&#22120;&#20013;&#20102;&#65292;&#22240;&#20026;&#26089;&#23601;&#26377;&#20154;&#36825;&#26679;&#20889;&#20102;&#65292;&#24403;&#28982;&#20197;&#21069;&#36825;&#26679;&#20889;&#26159;&#19981;&#21512;&#20046;&#35268;&#33539;&#30340;&#12290;&#25152;&#20197;&#65292;&#35828;HTML5&#35299;&#20915;&#29616;&#23454;&#30340;&#38382;&#39064;&#65292;&#20854;&#26412;&#36136;&#36824;&#26159;&#8220;&#20320;&#37117;&#36825;&#26679;&#20889;&#20102;&#24456;&#22810;&#24180;&#20102;&#21543;&#65311;&#29616;&#22312;&#25105;&#20204;&#25226;&#26631;&#20934;&#25913;&#20102;&#65292;&#20801;&#35768;&#20320;&#36825;&#26679;&#20889;&#20102;&#12290;&#8221;&#13;&#13;### &#27714;&#30495;&#21153;&#23454;&#13;&#13;&#22312;&#25152;&#26377;&#35774;&#35745;&#21407;&#29702;&#20013;&#65292;&#36825;&#19968;&#26465;&#24656;&#24597;&#26159;&#26368;&#21709;&#20142;&#30340;&#20102;&#8212;&#8212;&#27714;&#30495;&#21153;&#23454;&#12290;&#19981;&#30693;&#36947;&#22823;&#23478;&#26377;&#27809;&#26377;&#22312;&#20844;&#21496;&#37324;&#24320;&#20250;&#26102;&#21548;&#21040;&#36807;&#36825;&#31181;&#21475;&#21495;&#65306;&#8220;&#24320;&#25299;&#36827;&#21462;&#65292;&#27714;&#30495;&#21153;&#23454;&#12290;&#8221;&#23454;&#38469;&#19978;&#65292;&#38500;&#20102;&#20316;&#20026;&#20225;&#19994;&#30340;&#21475;&#21495;&#65292;&#23427;&#36824;&#26159;&#19968;&#26465;&#38750;&#24120;&#37325;&#35201;&#30340;&#35774;&#35745;&#21407;&#29702;&#65292;&#22240;&#20026;&#27714;&#30495;&#21153;&#23454;&#23545;&#20110;HTML&#30340;&#21547;&#20041;&#26159;&#65306;&#22312;&#35299;&#20915;&#37027;&#20123;&#20196;&#20154;&#22836;&#30171;&#30340;&#38382;&#39064;&#20043;&#21069;&#65292;&#20808;&#30475;&#30475;&#20154;&#20204;&#20026;&#24212;&#23545;&#36825;&#20123;&#38382;&#39064;&#37117;&#24819;&#20986;&#20102;&#21738;&#20123;&#21150;&#27861;&#12290;&#38598;&#20013;&#31934;&#21147;&#21435;&#29702;&#35299;&#36825;&#20123;&#8220;&#27665;&#38388;&#30340;&#8221;&#35299;&#20915;&#26041;&#26696;&#25165;&#26159;&#24403;&#21153;&#20043;&#24613;&#12290;&#13;&#13;HTML5&#20013;&#26032;&#30340;&#35821;&#20041;&#20803;&#32032;&#23601;&#26159;&#36981;&#24490;&#27714;&#30495;&#21153;&#23454;&#21407;&#29702;&#30340;&#21453;&#26144;&#12290;&#26032;&#22686;&#30340;&#20803;&#32032;&#19981;&#31639;&#22810;&#65292;&#35848;&#19981;&#19978;&#26080;&#38480;&#30340;&#25193;&#23637;&#24615;&#65292;&#20294;&#21364;&#19981;&#22833;&#20026;&#19968;&#20214;&#22909;&#20107;&#12290;&#23613;&#31649;&#25968;&#37327;&#23624;&#25351;&#21487;&#25968;&#65292;&#20294;&#24847;&#20041;&#21364;&#38750;&#21516;&#19968;&#33324;&#12290;&#36825;&#20123;&#26032;&#20803;&#32032;&#28041;&#21450;&#22836;&#37096;&#65288;header&#65289;&#12289;&#33050;&#37096;&#65288;footer&#65289;&#12289;&#20998;&#21306;&#65288;section&#65289;&#12289;&#25991;&#31456;&#65288;article&#65289;&#8230;&#8230;&#65292;&#30456;&#20449;&#22823;&#23478;&#37117;&#19981;&#20250;&#35273;&#24471;&#38476;&#29983;&#12290;&#25105;&#30340;&#24847;&#24605;&#26159;&#35828;&#65292;&#21363;&#20415;&#20320;&#19981;&#20351;&#29992;HTML5&#65292;&#20063;&#24212;&#35813;&#29087;&#24713;&#36825;&#20123;&#31216;&#21628;&#65292;&#36825;&#20123;&#37117;&#26159;&#20320;&#26366;&#32463;&#20351;&#29992;&#36807;&#30340;&#31867;&#21517;&#65292;&#27604;&#22914;`class=&#8221;header&#8221;/&#8220;head&#8221;/&#8220;heading&#8221;`&#65292;&#25110;`class=&#8221;footer&#8221;/&#8220;foot&#8221;`&#12290;&#24403;&#28982;&#65292;&#20063;&#21487;&#33021;&#26159;ID&#65292;`id=&#8221;header&#8221;&#65292;id=&#8221;footer&#8221;`&#12290;&#36825;&#20123;&#19981;&#37117;&#26159;&#25105;&#20204;&#24050;&#32463;&#21496;&#31354;&#35265;&#24815;&#20102;&#30340;&#22043;&#12290;&#10;&#13;&#22909;&#65292;&#20030;&#20010;&#20363;&#23376;&#21543;&#65292;&#20551;&#35774;&#20320;&#20170;&#22825;&#20889;&#20102;&#19979;&#38754;&#36825;&#20010;&#25991;&#26723;&#12290;&#13;&#13;```html&#13;&#60;body&#62;&#13;    &#60;div id=&#34;header&#34;&#62;...&#60;/div&#62;&#13;    &#60;div id=&#34;navigation&#34;&#62;...&#60;/div&#62;&#13;    &#60;div id=&#34;main&#34;&#62;...&#60;/div&#62;&#13;    &#60;div id=&#34;sidebar&#34;&#62;...&#60;/div&#62;&#13;    &#60;div id=&#34;footer&#34;&#62;...&#60;/div&#62;&#13;&#60;/body&#62;</span><br></pre></td>
+              </tr>
+            </table>
+          </figure>
+          <p></p>
+          <p>这里有一个div使用了id=”header”，另一个div使用了id=”navigation”，……。怎么样，都轻车熟路了吧？在HTML5中，这些元素都可以换掉。说起新增的语义元素，它们价值的一方面可以这样来体现：“嘿，看啊，这样多好，用HTML5新增的元素可以把这些div都替换掉。”</p>
+          <p>```html</p>
+          <p>
+
+            <body><br>
+              <header>…</header><br>
+              <nav>…</nav><br>
+              <div id="main">…</div><br>
+              <aside>…</aside><br>
+              <footer>…</footer><br></body><br>
+            <figure class="highlight plain">
+              <table>
+                <tr>
+                  <td class="gutter"><pre><span class="line">1</span><br></pre></td>
+                  <td class="code"><pre><span class="line">&#13;&#24403;&#28982;&#20102;&#65292;&#20320;&#21487;&#20197;&#36825;&#26679;&#20570;&#12290;&#22312;&#25991;&#26723;&#32423;&#21035;&#19978;&#20351;&#29992;&#36825;&#20123;&#20803;&#32032;&#27809;&#26377;&#38382;&#39064;&#12290;&#20294;&#26159;&#65292;&#20551;&#22914;&#26032;&#22686;&#36825;&#20123;&#20803;&#32032;&#30340;&#30446;&#30340;&#20165;&#20165;&#26159;&#20026;&#20102;&#21462;&#20195;&#21407;&#26469;&#30340;div&#65292;&#37027;&#23601;&#30495;&#26377;&#28857;&#22810;&#27492;&#19968;&#20030;&#20102;&#12290;&#13;&#13;&#34429;&#28982;&#22312;&#36825;&#20010;&#25991;&#26723;&#20013;&#65292;&#25105;&#20204;&#29992;&#36825;&#20123;&#26032;&#20803;&#32032;&#26469;&#26367;&#25442;&#30340;&#26159;ID&#65292;&#20294;&#22312;&#25105;&#20010;&#20154;&#30475;&#26469;&#65292;&#23558;&#23427;&#20204;&#20316;&#20026;&#31867;&#30340;&#26367;&#20195;&#21697;&#26356;&#26377;&#20215;&#20540;&#12290;&#20026;&#20160;&#20040;&#36825;&#20040;&#35828;&#21602;&#65311;&#22240;&#20026;&#36825;&#20123;&#20803;&#32032;&#22312;&#19968;&#20010;&#39029;&#38754;&#20013;&#19981;&#27490;&#21487;&#20197;&#20351;&#29992;&#19968;&#27425;&#65292;&#32780;&#26159;&#21487;&#20197;&#20351;&#29992;&#22810;&#27425;&#12290;&#27809;&#38169;&#65292;&#20320;&#21487;&#20197;&#20026;&#25991;&#26723;&#28155;&#21152;&#19968;&#20010;&#22836;&#37096;&#65288;header&#65289;&#65292;&#20877;&#28155;&#21152;&#19968;&#20010;&#33050;&#37096;&#65288;footer&#65289;&#65307;&#20294;&#25991;&#26723;&#20013;&#30340;&#27599;&#20010;&#20998;&#21306;&#65288;section&#65289;&#29031;&#26679;&#20063;&#37117;&#21487;&#20197;&#26377;&#19968;&#20010;&#22836;&#37096;&#21644;&#19968;&#20010;&#33050;&#37096;&#12290;&#32780;&#27599;&#20010;&#20998;&#21306;&#37324;&#36824;&#21487;&#20197;&#23884;&#22871;&#21478;&#19968;&#20010;&#20998;&#21306;&#65292;&#34987;&#23884;&#22871;&#30340;&#20998;&#21306;&#20173;&#28982;&#21487;&#20197;&#26377;&#33258;&#24049;&#30340;&#22836;&#37096;&#21644;&#33050;&#37096;&#65292;&#26159;&#36825;&#26679;&#21543;&#65311;&#13;&#13;&#36825;&#22235;&#20010;&#26032;&#20803;&#32032;&#65306;section&#12289;article&#12289;aside&#21644;nav&#65292;&#20043;&#25152;&#20197;&#35828;&#23427;&#20204;&#24378;&#22823;&#65292;&#21407;&#22240;&#22312;&#20110;&#23427;&#20204;&#20195;&#34920;&#20102;&#19968;&#31181;&#26032;&#30340;&#20869;&#23481;&#27169;&#22411;&#65292;&#19968;&#31181;HTML&#20013;&#21069;&#25152;&#26410;&#26377;&#30340;&#20869;&#23481;&#27169;&#22411;&#8212;&#8212;&#32473;&#20869;&#23481;&#20998;&#21306;&#12290;&#36804;&#20170;&#20026;&#27490;&#65292;&#25105;&#20204;&#19968;&#30452;&#37117;&#22312;&#29992;div&#26469;&#32452;&#32455;&#39029;&#38754;&#20013;&#30340;&#20869;&#23481;&#65292;&#20294;&#19982;&#20854;&#20182;&#31867;&#20284;&#30340;&#20803;&#32032;&#19968;&#26679;&#65292;div&#26412;&#36523;&#24182;&#27809;&#26377;&#35821;&#20041;&#12290;&#20294;section&#12289;article&#12289;aside&#21644;nav&#23454;&#38469;&#19978;&#26159;&#22312;&#26126;&#30830;&#22320;&#21578;&#35785;&#20320;&#8212;&#8212;&#36825;&#19968;&#22359;&#23601;&#20687;&#25991;&#26723;&#20013;&#30340;&#21478;&#19968;&#20010;&#25991;&#26723;&#19968;&#26679;&#12290;&#20301;&#20110;&#36825;&#20123;&#20803;&#32032;&#20013;&#30340;&#20219;&#20309;&#20869;&#23481;&#65292;&#37117;&#21487;&#20197;&#25317;&#26377;&#33258;&#24049;&#30340;&#27010;&#35201;&#12289;&#26631;&#39064;&#65292;&#33258;&#24049;&#30340;&#33050;&#37096;&#12290;&#13;&#13;&#20854;&#20013;&#26368;&#20026;&#36890;&#29992;&#30340;section&#65292;&#21487;&#20197;&#35828;&#26159;&#19982;&#20869;&#23481;&#26368;&#30456;&#20851;&#30340;&#19968;&#20010;&#12290;&#32780;article&#21017;&#26159;&#19968;&#31181;&#29305;&#27530;&#30340;section&#12290;Aside&#21602;&#65292;&#26159;&#19968;&#31181;&#29305;&#27530;&#30340;section&#12290;&#26368;&#21518;&#65292;Nav&#20063;&#26159;&#19968;&#31181;&#29305;&#27530;&#30340;section&#12290;&#13;&#22909;&#65292;&#21363;&#20415;&#26159;&#29616;&#22312;&#65292;&#20320;&#29031;&#26679;&#21487;&#20197;&#20351;&#29992;div&#21644;&#31867;&#26469;&#25551;&#36848;&#39029;&#38754;&#20013;&#19981;&#21516;&#30340;&#37096;&#20998;&#65292;&#23601;&#20687;&#19979;&#38754;&#36825;&#26679;&#65306;&#13;&#13;```html&#13;&#60;div class=&#34;item&#34;&#62;&#13;    &#60;h2&#62;...&#60;/h2&#62;&#13;    &#60;div class=&#34;meta&#34;&#62;...&#60;/div&#62;&#13;    &#60;div class=&#34;content&#34;&#62;...&#60;/div&#62;&#13;    &#60;div class=&#34;links&#34;&#62;...&#60;/div&#62;&#13;&#60;/div&#62;</span><br></pre></td>
+                </tr>
+              </table>
+            </figure>
+          </p>
+          <p>其中包含可能是有关内容作者的元数据，而下面会给出一些链接，差不多就这样。在HTML5中，我完全可以说这块内容就是一个文档，通过对内容分区，使用section或article或aside，我可以说“这一块完全是可以独立存在的。”因此，我当然可以使用header和footer。</p>
+          <p>```html</p>
+          <p>
+            <section class="item"><br>
+              <header>
+                <h1>…</h1></header><br>
+              <footer class="meta">…</footer><br>
+              <div class="content">…</div><br>
+              <nav class="links">…</nav><br></section><br>
+            <figure class="highlight plain">
+              <table>
+                <tr>
+                  <td class="gutter"><pre><span class="line">1</span><br></pre></td>
+                  <td class="code"><pre><span class="line">&#13;&#35831;&#27880;&#24847;&#65292;&#21363;&#20415;&#26159;footer&#65292;&#20063;&#19981;&#19968;&#23450;&#38750;&#35201;&#20986;&#29616;&#22312;&#19979;&#38754;&#65292;&#19981;&#26159;&#21527;&#65311;&#36825;&#20960;&#20010;&#20803;&#32032;&#65292;header&#12289;footer&#12289;aside&#12289;nav&#65292;&#26368;&#37325;&#35201;&#30340;&#26159;&#23427;&#20204;&#30340;&#35821;&#20041;&#65307;&#36319;&#20301;&#32622;&#27809;&#26377;&#20851;&#31995;&#12290;&#19968;&#24819;&#21040;footer&#36825;&#20010;&#35789;&#65292;&#25105;&#20204;&#24635;&#20250;&#19981;&#30001;&#33258;&#20027;&#22320;&#24819;&#65292;&#8220;&#22114;&#65292;&#24212;&#35813;&#25918;&#22312;&#19979;&#38754;&#12290;&#8221;&#21516;&#26679;&#65292;&#25105;&#20204;&#25226;aside&#24819;&#35937;&#25104;&#19968;&#20010;&#20391;&#36793;&#26639;&#12290;&#21487;&#26159;&#65292;&#22914;&#26524;&#20320;&#30475;&#19968;&#30475;&#35268;&#33539;&#65292;&#23601;&#20250;&#21457;&#29616;&#36825;&#20123;&#20803;&#32032;&#21482;&#36319;&#20869;&#23481;&#26377;&#20851;&#12290;&#22240;&#27492;&#65292;&#25918;&#22312;footer&#20013;&#30340;&#20869;&#23481;&#20063;&#21487;&#20197;&#26159;&#32626;&#21517;&#65292;&#25991;&#31456;&#20316;&#32773;&#20043;&#31867;&#30340;&#65292;&#23427;&#21482;&#26159;&#20320;&#20351;&#29992;&#30340;&#19968;&#20010;&#20803;&#32032;&#12290;&#36825;&#20010;&#20803;&#32032;&#24182;&#27809;&#26377;&#35828;&#8220;&#24517;&#39035;&#25226;&#25105;&#25918;&#22312;&#25991;&#26723;&#25110;&#32773;&#20998;&#21306;&#30340;&#19979;&#38754;&#12290;&#8221;&#13;&#13;&#36825;&#37324;&#65292;&#35831;&#27880;&#24847;&#65292;&#26368;&#37325;&#35201;&#30340;&#36824;&#19981;&#26159;&#25105;&#29992;&#20960;&#20010;&#26032;&#20803;&#32032;&#26367;&#25442;&#20102;&#21407;&#26469;&#30340;div&#21152;&#31867;&#65292;&#32780;&#26159;&#25105;&#25226;&#21407;&#26469;&#30340;H2&#25442;&#25104;&#20102;H1&#8212;&#8212;&#38663;&#25788;&#21543;&#65292;&#25105;&#30475;&#21040;&#26377;&#20154;&#21457;&#25238;&#20102;&#12290;&#25105;&#30896;&#21040;&#36807;&#19981;&#23569;&#32844;&#19994;&#30340;Web&#24320;&#21457;&#20154;&#21592;&#65292;&#22810;&#24180;&#26469;&#20182;&#20204;&#19968;&#30452;&#35748;&#20026;&#35268;&#33539;&#37324;&#35828;&#19968;&#20010;&#25991;&#26723;&#20013;&#21482;&#33021;&#26377;&#19968;&#20010;H1&#12290;&#36824;&#26377;&#19968;&#20123;&#33258;&#35817;&#20026;&#19975;&#33021;&#30340;SEO&#31192;&#35776;&#21516;&#26679;&#35828;&#35201;&#36825;&#26679;&#12290;&#24456;&#22810;SEO&#30340;&#25216;&#24039;&#20854;&#23454;&#26159;&#24456;&#25945;&#26465;&#30340;&#12290;&#25152;&#35859;&#25945;&#26465;&#65292;&#24847;&#24605;&#23601;&#26159;&#19981;&#30456;&#20449;&#25968;&#25454;&#12290;&#36807;&#21435;&#65292;&#36825;&#31181;&#25945;&#26465;&#34920;&#29616;&#20026;&#8220;&#19981;&#34892;&#65292;&#39029;&#38754;&#20013;&#21253;&#21547;&#20004;&#20010;&#20197;&#19978;&#30340;H1&#65292;&#20320;&#23601;&#20250;&#27515;&#25481;&#30340;&#12290;&#8221;&#22312;HTML5&#20013;&#65292;&#21482;&#35201;&#20320;&#24314;&#31435;&#19968;&#20010;&#26032;&#30340;&#20869;&#23481;&#22359;&#65292;&#19981;&#31649;&#29992;section&#12289;article&#12289;aside&#12289;nav&#65292;&#36824;&#26159;&#21035;&#30340;&#20803;&#32032;&#65292;&#37117;&#21487;&#20197;&#22312;&#20854;&#20013;&#20351;&#29992;H1&#65292;&#32780;&#19981;&#24517;&#25285;&#24515;&#36825;&#20010;&#22359;&#37324;&#30340;&#26631;&#39064;&#22312;&#25972;&#20010;&#39029;&#38754;&#20013;&#24212;&#35813;&#25490;&#22312;&#20160;&#20040;&#32423;&#21035;&#65307;H2&#12289;H3&#65292;&#37117;&#27809;&#26377;&#38382;&#39064;&#12290;&#13;&#13;&#36825;&#20010;&#21464;&#21270;&#22826;&#21385;&#23475;&#20102;&#12290;&#24819;&#19968;&#24819;&#21543;&#65292;&#36825;&#20010;&#21464;&#21270;&#23545;&#20869;&#23481;&#31649;&#29702;&#26159;&#38761;&#21629;&#24615;&#30340;&#12290;&#22240;&#20026;&#29616;&#22312;&#65292;&#20320;&#21487;&#20197;&#25226;&#27599;&#20010;&#20869;&#23481;&#20998;&#21306;&#24819;&#35937;&#19968;&#20010;&#29420;&#31435;&#30340;&#12289;&#33021;&#22815;&#20174;&#39029;&#38754;&#20013;&#25343;&#20986;&#26469;&#30340;&#37096;&#20998;&#12290;&#27492;&#26102;&#65292;&#26681;&#25454;&#19978;&#19979;&#25991;&#19981;&#21516;&#65292;&#36825;&#20010;&#29420;&#31435;&#37096;&#20998;&#20013;&#30340;H1&#65292;&#22312;&#25972;&#20010;&#39029;&#38754;&#20013;&#27809;&#20934;&#20250;&#25198;&#28436;H2&#25110;H3&#30340;&#35282;&#33394;&#8212;&#8212;&#21462;&#20915;&#20110;&#23427;&#22312;&#25991;&#26723;&#20013;&#20986;&#29616;&#30340;&#20301;&#32622;&#12290;&#38754;&#23545;&#36825;&#20010;&#31361;&#22914;&#20854;&#26469;&#30340;&#21464;&#21270;&#65292;&#20063;&#35768;&#26377;&#20154;&#30340;&#33041;&#23376;&#20250;&#26242;&#26102;&#36716;&#19981;&#36807;&#24367;&#26469;&#12290;&#19981;&#35201;&#32039;&#65292;&#20294;&#25105;&#21487;&#20197;&#21578;&#35785;&#20320;&#65292;&#25105;&#35748;&#20026;&#36825;&#25165;&#26159;HTML5&#20013;&#36825;&#20123;&#26032;&#35821;&#20041;&#26631;&#35760;&#30340;&#30495;&#27491;&#20215;&#20540;&#25152;&#22312;&#12290;&#25442;&#21477;&#35805;&#35828;&#65292;&#25105;&#20204;&#29616;&#22312;&#26377;&#20102;&#29420;&#31435;&#30340;&#20803;&#32032;&#20102;&#65292;&#36825;&#20123;&#20803;&#32032;&#20013;&#30340;&#26631;&#39064;&#32423;&#21035;&#21487;&#20197;&#37325;&#26032;&#23450;&#20041;&#12290;&#13;&#13;&#25105;&#30340;&#25991;&#26723;&#20013;&#21487;&#33021;&#20250;&#21253;&#21547;&#19968;&#20010;&#20998;&#21306;&#65292;&#36825;&#20010;&#20998;&#21306;&#20013;&#21487;&#33021;&#20250;&#23884;&#22871;&#21478;&#19968;&#20010;&#20998;&#21306;&#65292;&#25110;&#32773;&#19968;&#31687;&#25991;&#31456;&#65292;&#28982;&#21518;&#25991;&#31456;&#20877;&#23884;&#22871;&#20998;&#21306;&#65292;&#20998;&#21306;&#20877;&#23884;&#22871;&#25991;&#31456;&#12289;&#23884;&#22871;&#20998;&#21306;&#65292;&#25991;&#31456;&#20877;&#23884;&#22871;&#25991;&#31456;&#12290;&#32780;&#19988;&#27599;&#20010;&#20998;&#21306;&#21644;&#25991;&#31456;&#37117;&#21487;&#20197;&#25317;&#26377;&#33258;&#24049;&#30340;H1&#21040;H6&#12290;&#20174;&#36825;&#20010;&#24847;&#20041;&#19978;&#35762;&#65292;H&#20803;&#32032;&#30495;&#21487;&#35859;&#8220;&#23376;&#23376;&#23385;&#23385;&#65292;&#26080;&#31351;&#21294;&#20063;&#8221;&#20102;&#12290;&#20294;&#26159;&#65292;&#22312;&#20320;&#22312;&#32534;&#20889;&#20869;&#23481;&#25110;&#32773;&#20869;&#23481;&#31649;&#29702;&#31995;&#32479;&#30340;&#26102;&#20505;&#65292;&#23427;&#20204;&#21448;&#37117;&#26159;&#29420;&#31435;&#30340;&#65292;&#23436;&#20840;&#29420;&#31435;&#30340;&#20869;&#23481;&#22359;&#12290;&#36825;&#25165;&#26159;&#30495;&#27491;&#30340;&#20215;&#20540;&#25152;&#22312;&#12290;&#13;&#23454;&#38469;&#19978;&#65292;&#36825;&#20010;&#28857;&#23376;&#24182;&#19981;HTML5&#24037;&#20316;&#32452;&#25293;&#33041;&#38376;&#24819;&#20986;&#26469;&#30340;&#65292;&#20063;&#19981;&#26159;W3C&#26368;&#36817;&#25165;&#25552;&#20986;&#26469;&#30340;&#12290;&#19979;&#38754;&#36825;&#20960;&#21477;&#35805;&#25688;&#33258;&#33922;&#22982;&#183;&#20271;&#32435;&#26031;-&#26446;1991&#24180;&#30340;&#19968;&#23553;&#37038;&#20214;&#65292;&#37038;&#20214;&#26159;&#21457;&#32473;&#20025;&#183;&#24247;&#32435;&#21033;&#65288;Dan Connolly&#65289;&#30340;&#12290;&#20182;&#22312;&#37038;&#20214;&#20013;&#35299;&#37322;&#20102;&#23545;HTML&#30340;&#29702;&#35299;&#65292;&#20182;&#35828;&#65306;&#8220;&#20320;&#30693;&#36947;&#8230;&#8230;&#30693;&#36947;&#25105;&#30340;&#24819;&#27861;&#65292;&#25105;&#35748;&#20026;H1&#12289;H2&#36825;&#26679;&#21333;&#35843;&#22320;&#25490;&#19979;&#21435;&#19981;&#22909;&#65292;&#25105;&#24076;&#26395;&#23427;&#25104;&#20026;&#19968;&#31181;&#21487;&#20197;&#23884;&#22871;&#30340;&#20803;&#32032;&#65292;&#25110;&#32773;&#35828;&#19968;&#20010;&#36890;&#29992;&#30340;H&#20803;&#32032;&#65292;&#25105;&#20204;&#21487;&#20197;&#22312;&#20854;&#20013;&#23884;&#22871;&#19981;&#21516;&#30340;&#23618;&#27425;&#12290;&#8221;&#20294;&#21518;&#26469;&#65292;&#25105;&#20204;&#27809;&#26377;&#30475;&#21040;&#36890;&#29992;&#30340;H&#20803;&#32032;&#65292;&#32780;&#26159;&#19968;&#30452;&#22312;&#20351;&#29992;H1&#21644;H2&#8212;&#8212;&#37027;&#26159;&#22240;&#20026;&#25105;&#20204;&#19968;&#30452;&#22312;&#25903;&#25345;&#24050;&#26377;&#30340;&#20869;&#23481;&#12290;20&#24180;&#21518;&#30340;&#20170;&#22825;&#65292;&#36825;&#20010;&#29702;&#24819;&#32456;&#20110;&#23454;&#29616;&#20102;&#12290;&#13;&#13;### &#24179;&#31283;&#36864;&#21270;&#10;&#13;&#19979;&#19968;&#26465;&#21407;&#29702;&#22823;&#23478;&#24212;&#35813;&#37117;&#24456;&#29087;&#24713;&#20102;&#65292;&#37027;&#23601;&#26159;&#24179;&#31283;&#36864;&#21270;&#12290;&#27605;&#31455;&#65292;&#25105;&#20204;&#24050;&#32463;&#36981;&#23432;&#36825;&#26465;&#35268;&#21017;&#22909;&#22810;&#24180;&#20102;&#12290;&#28176;&#36827;&#22686;&#24378;&#30340;&#21478;&#19968;&#38754;&#23601;&#26159;&#24179;&#31283;&#36864;&#21270;&#12290;&#13;&#13;&#26377;&#20851;HTML5&#36981;&#24490;&#36825;&#26465;&#21407;&#29702;&#30340;&#20363;&#23376;&#65292;&#23601;&#26159;&#20351;&#29992;type&#23646;&#24615;&#22686;&#24378;&#34920;&#21333;&#12290;&#19979;&#38754;&#21015;&#20986;&#20102;&#21487;&#20197;&#20026;type&#23646;&#24615;&#25351;&#23450;&#30340;&#26032;&#20540;&#65292;&#26377;number&#12289;search&#12289;range&#65292;&#31561;&#31561;&#12290;&#13;&#13;```html&#13;input type=&#34;number&#34;&#13;input type=&#34;search&#34;&#13;input type=&#34;range&#34;&#13;input type=&#34;email&#34;&#13;input type=&#34;date&#34;&#13;input type=&#34;url&#34;&#10;```&#13;&#26368;&#20851;&#38190;&#30340;&#38382;&#39064;&#22312;&#20110;&#27983;&#35272;&#22120;&#22312;&#30475;&#21040;&#36825;&#20123;&#26032;type&#20540;&#26102;&#20250;&#22914;&#20309;&#22788;&#29702;&#12290;&#29616;&#26377;&#30340;&#27983;&#35272;&#22120;&#65292;&#19981;&#26159;&#23558;&#26469;&#30340;&#27983;&#35272;&#22120;&#65292;&#29616;&#26377;&#30340;&#27983;&#35272;&#22120;&#26159;&#26080;&#27861;&#29702;&#35299;&#36825;&#20123;&#26032;type&#20540;&#30340;&#12290;&#20294;&#22312;&#23427;&#20204;&#30475;&#21040;&#33258;&#24049;&#19981;&#29702;&#35299;&#30340;type&#20540;&#26102;&#65292;&#20250;&#23558;type&#30340;&#20540;&#35299;&#37322;&#20026;text&#12290;&#13;&#13;&#26080;&#35770;&#20320;&#20889;&#30340;&#26159;input type=&#8221;foo&#8221;&#36824;&#26159;input type=&#8221;bar&#8221;&#65292;&#29616;&#26377;&#30340;&#20219;&#20309;&#27983;&#35272;&#22120;&#37117;&#20250;&#35828;&#65306;&#8220;&#21999;&#65292;&#20063;&#35768;&#20316;&#32773;&#30340;&#24847;&#24605;&#26159;text&#12290;&#8221;&#22240;&#32780;&#65292;&#20320;&#20174;&#29616;&#22312;&#24320;&#22987;&#23601;&#21487;&#20197;&#20351;&#29992;&#36825;&#20123;&#26032;&#20540;&#65292;&#32780;&#19988;&#20320;&#20063;&#21487;&#20197;&#25918;&#24515;&#65292;&#37027;&#20123;&#19981;&#29702;&#35299;&#23427;&#20204;&#30340;&#27983;&#35272;&#22120;&#20250;&#25226;&#26032;&#20540;&#30475;&#25104;type=&#8221;text&#8221;&#65292;&#32780;&#36825;&#30495;&#26159;&#19968;&#20010;&#27983;&#35272;&#22120;&#23454;&#36341;&#24179;&#31283;&#36864;&#21270;&#21407;&#29702;&#30340;&#22909;&#20363;&#23376;&#12290;&#13;&#13;&#27604;&#22914;&#35828;&#65292;&#20320;&#29616;&#22312;&#36755;&#20837;&#20102;type=&#8221;number&#8221;&#12290;&#20551;&#35774;&#20320;&#38656;&#35201;&#19968;&#20010;&#36755;&#20837;&#25968;&#20540;&#30340;&#25991;&#26412;&#26694;&#12290;&#37027;&#20040;&#20320;&#21487;&#20197;&#25226;&#36825;&#20010;input&#30340;type&#23646;&#24615;&#35774;&#32622;&#20026;number&#65292;&#28982;&#21518;&#29702;&#35299;&#23427;&#30340;&#27983;&#35272;&#22120;&#23601;&#20250;&#21576;&#29616;&#19968;&#20010;&#21487;&#29233;&#30340;&#23567;&#25511;&#20214;&#65292;&#20687;&#24102;&#23567;&#31661;&#22836;&#22270;&#26631;&#30340;&#24494;&#35843;&#25511;&#20214;&#20043;&#31867;&#30340;&#12290;&#23545;&#21543;&#65311;&#32780;&#22312;&#19981;&#29702;&#35299;&#23427;&#30340;&#27983;&#35272;&#22120;&#20013;&#65292;&#20320;&#20250;&#30475;&#21040;&#19968;&#20010;&#25991;&#26412;&#26694;&#65292;&#19968;&#20010;&#20320;&#20877;&#29087;&#24713;&#19981;&#36807;&#30340;&#25991;&#26412;&#26694;&#12290;&#26082;&#28982;&#22914;&#27492;&#65292;&#20026;&#20160;&#20040;&#19981;&#33021;&#35828;&#36755;&#20837;type=&#8221;number&#8221;&#23601;&#20250;&#24471;&#21040;&#19968;&#20010;&#24102;&#23567;&#31661;&#22836;&#22270;&#26631;&#30340;&#24494;&#35843;&#25511;&#20214;&#21602;&#65311;&#13;&#13;&#24403;&#28982;&#65292;&#20320;&#36824;&#21487;&#20197;&#35774;&#32622;&#26368;&#23567;&#21644;&#26368;&#22823;&#20540;&#23646;&#24615;&#65292;&#23427;&#20204;&#21516;&#26679;&#21487;&#20197;&#24179;&#31283;&#36864;&#21270;&#12290;&#36825;&#26159;&#38382;&#39064;&#30340;&#20851;&#38190;&#12290;&#13;&#13;&#20877;&#30475;input type=&#8221;search&#8221;&#12290;&#20320;&#20063;&#21487;&#20197;&#32771;&#34385;&#19968;&#19979;&#36825;&#31181;&#36755;&#20837;&#26694;&#65292;&#22240;&#20026;&#36825;&#31181;&#36755;&#20837;&#26694;&#22312;Safari&#20013;&#20250;&#34987;&#21576;&#29616;&#20026;&#19968;&#20010;&#31995;&#32479;&#32423;&#30340;&#25628;&#32034;&#25511;&#20214;&#65292;&#21491;&#36793;&#36824;&#26377;&#19968;&#20010;&#28857;&#20987;&#21363;&#21487;&#28165;&#38500;&#25628;&#32034;&#20851;&#38190;&#35789;&#30340;X&#12290;&#32780;&#22312;&#20854;&#20182;&#27983;&#35272;&#22120;&#20013;&#65292;&#20320;&#24471;&#21040;&#30340;&#21017;&#26159;&#19968;&#20010;&#25991;&#26412;&#26694;&#65292;&#23601;&#20687;&#20320;&#20889;&#30340;&#26159;input type=&#8221;text&#8221;&#19968;&#26679;&#65292;&#20063;&#23601;&#26159;&#20320;&#24050;&#32463;&#38750;&#24120;&#29087;&#24713;&#30340;&#25991;&#26412;&#26694;&#12290;&#37027;&#20026;&#20160;&#20040;&#36824;&#19981;&#20351;&#29992;input type=&#8221;search&#8221;&#21602;&#65311;&#23427;&#19981;&#20250;&#26377;&#20160;&#20040;&#21103;&#20316;&#29992;&#65292;&#27809;&#26377;&#65292;&#23545;&#19981;&#23545;&#65311;&#13;&#13;HTML5&#36824;&#20026;&#36755;&#20837;&#20803;&#32032;&#22686;&#21152;&#20102;&#26032;&#30340;&#23646;&#24615;&#65292;&#27604;&#22914;placeholder&#65288;&#21344;&#20301;&#31526;&#65289;&#12290;&#26377;&#20154;&#19981;&#30693;&#36947;&#36825;&#20010;&#23646;&#24615;&#30340;&#29992;&#22788;&#21527;&#65292;&#27809;&#26377;&#21543;&#65311;&#27809;&#38169;&#65292;&#23601;&#26159;&#29992;&#20110;&#22312;&#25991;&#26412;&#26694;&#20013;&#39044;&#20808;&#25918;&#19968;&#20123;&#25991;&#26412;&#12290;&#19981;&#23545;&#65292;&#19981;&#26159;&#26631;&#31614;&#65288;label&#65289;&#8212;&#8212;&#21344;&#20301;&#31526;&#21644;&#26631;&#31614;&#23436;&#20840;&#19981;&#26159;&#19968;&#22238;&#20107;&#12290;&#21344;&#20301;&#31526;&#23601;&#26159;&#25991;&#26412;&#26694;&#21487;&#20197;&#25509;&#21463;&#30340;&#31034;&#20363;&#20869;&#23481;&#65292;&#19968;&#33324;&#39068;&#33394;&#26159;&#28784;&#33394;&#30340;&#12290;&#21482;&#35201;&#20320;&#19968;&#28857;&#20987;&#25991;&#26412;&#26694;&#65292;&#23427;&#23601;&#28040;&#22833;&#20102;&#12290;&#22914;&#26524;&#20320;&#25226;&#24050;&#32463;&#36755;&#20837;&#30340;&#20869;&#23481;&#20840;&#37096;&#21024;&#38500;&#65292;&#28982;&#21518;&#21333;&#20987;&#20102;&#25991;&#26412;&#26694;&#22806;&#37096;&#65292;&#23427;&#21448;&#20250;&#20986;&#29616;&#12290;&#13;&#13;&#20351;&#29992;JavaScript&#32534;&#20889;&#19968;&#20123;&#20195;&#30721;&#24403;&#28982;&#20063;&#21487;&#20197;&#23454;&#29616;&#36825;&#20010;&#21151;&#33021;&#65292;&#20294;HTML5&#21482;&#29992;&#19968;&#20010;placeholder&#23646;&#24615;&#23601;&#24110;&#25105;&#20204;&#35299;&#20915;&#20102;&#38382;&#39064;&#12290;&#13;&#13;&#24403;&#28982;&#65292;&#23545;&#20110;&#19981;&#25903;&#25345;&#36825;&#20010;&#23646;&#24615;&#30340;&#27983;&#35272;&#22120;&#65292;&#20320;&#36824;&#26159;&#21487;&#20197;&#20351;&#29992;JavaScript&#26469;&#23454;&#29616;&#21344;&#20301;&#31526;&#21151;&#33021;&#12290;&#36890;&#36807;JavaScript&#26469;&#27979;&#35797;&#27983;&#35272;&#22120;&#25903;&#19981;&#25903;&#25345;&#35813;&#23646;&#24615;&#20063;&#38750;&#24120;&#31616;&#21333;&#12290;&#22914;&#26524;&#25903;&#25345;&#65292;&#21518;&#36864;&#19968;&#27493;&#65292;&#25226;&#36335;&#35753;&#24320;&#65292;&#20048;&#20139;&#20854;&#25104;&#21363;&#21487;&#12290;&#22914;&#26524;&#19981;&#25903;&#25345;&#65292;&#21487;&#20197;&#20877;&#35753;&#20320;&#30340;JavaScript&#26469;&#27169;&#25311;&#36825;&#20010;&#21151;&#33021;&#12290;&#13;&#13;&#29616;&#22312;&#65292;&#25105;&#19981;&#24471;&#19981;&#25552;&#21040;&#21478;&#19968;&#20010;&#35805;&#39064;&#20102;&#65306;HTML5&#23545;Flash&#12290;&#20063;&#35768;&#20320;&#26089;&#21548;&#35828;&#36807;&#20102;&#65292;&#25110;&#32773;&#22312;&#21738;&#37324;&#30475;&#21040;&#20102;&#36825;&#26041;&#38754;&#30340;&#35752;&#35770;&#12290;&#35828;&#23454;&#35805;&#65292;&#25105;&#19968;&#28857;&#20063;&#19981;&#26126;&#30333;&#12290;&#25105;&#25630;&#19981;&#25026;&#20154;&#20204;&#24590;&#20040;&#20250;&#20165;&#20165;&#20973;&#33258;&#24049;&#30340;&#25512;&#27979;&#26469;&#23637;&#24320;&#20105;&#35770;&#12290;&#13;&#39318;&#20808;&#65292;&#20182;&#20204;&#25152;&#35828;&#30340;HTML5&#23545;Flash&#65292;&#24182;&#19981;&#26159;&#25351;&#30340;HTML5&#65292;&#20063;&#19981;&#26159;&#25351;&#30340;Flash&#12290;&#32780;&#26159;&#25351;HTML5&#30340;&#19968;&#20010;&#23376;&#38598;&#21644;Flash&#30340;&#19968;&#20010;&#23376;&#38598;&#12290;&#20855;&#20307;&#26469;&#35828;&#65292;&#20182;&#20204;&#25351;&#30340;&#26159;&#35270;&#39057;&#12290;&#22240;&#27492;&#65292;&#19981;&#31649;&#20320;&#22312;&#21738;&#37324;&#21548;&#21040;&#21035;&#20154;&#35828;&#8220;HTML5&#23545;Flash&#8221;&#65292;&#37027;&#24456;&#21487;&#33021;&#35828;&#30340;&#21482;&#26159;HTML5&#35270;&#39057;&#23545;Flash&#35270;&#39057;&#12290;&#13;&#13;&#20854;&#27425;&#65292;&#19968;&#35828;HTML5&#23545;Flash&#65292;&#23601;&#22909;&#20687;&#20320;&#24517;&#39035;&#24471;&#20316;&#20986;&#36873;&#25321;&#19968;&#26679;&#65306;&#20320;&#31449;&#22312;&#21738;&#19968;&#36793;&#65311;&#23454;&#38469;&#19978;&#19981;&#26159;&#36825;&#26679;&#30340;&#12290;HTML5&#35268;&#33539;&#30340;&#35774;&#35745;&#33021;&#22815;&#35753;&#20320;&#20570;&#21040;&#40060;&#21644;&#29066;&#25484;&#20860;&#24471;&#12290;&#13;&#13;&#22909;&#65292;&#19979;&#38754;&#23601;&#26469;&#30475;&#30475;&#36825;&#20010;&#26032;&#30340;video&#20803;&#32032;&#65307;&#30495;&#26159;&#38750;&#24120;&#36148;&#24515;&#30340;&#19968;&#20010;&#20803;&#32032;&#65292;&#32780;&#19988;&#35774;&#35745;&#21448;&#31616;&#21333;&#65292;&#21448;&#23454;&#29992;&#12290;&#19968;&#20010;&#24320;&#22987;&#30340;video&#20803;&#32032;&#65292;&#21152;&#19968;&#20010;&#32467;&#26463;&#30340;video&#20803;&#32032;&#65292;&#20013;&#38388;&#21487;&#20197;&#25918;&#21518;&#22791;&#20869;&#23481;&#12290;&#27880;&#24847;&#65292;&#26159;&#21518;&#22791;&#20869;&#23481;&#65292;&#19981;&#26159;&#20445;&#35777;&#21487;&#35775;&#38382;&#24615;&#30340;&#20869;&#23481;&#65292;&#26159;&#21518;&#22791;&#20869;&#23481;&#12290;&#19979;&#38754;&#23601;&#26159;&#38024;&#23545;&#19981;&#25903;&#25345;video&#20803;&#32032;&#30340;&#27983;&#35272;&#22120;&#20889;&#30340;&#20195;&#30721;&#65306;&#13;&#13;```html&#13;&#60;video src=&#34;movie.mp4&#34;&#62;&#13;    &#60;!-- &#21518;&#22791;&#20869;&#23481; --&#62;&#13;&#60;/video&#62;</span><br></pre></td>
+                </tr>
+              </table>
+            </figure>
+          </p>
+          <p>那么，在后备内容里面放些什么东西呢？好，你可以放Flash影片。这样，HTML5的视频与Flash的视频就可以协同起来了。你不用作出选择。</p>
+          <p>```html</p>
+          <p><video src="movie.mp4"><br>    <object data="movie.swf"><br>    <!-- 后备内容 --><br>    </object><br></video><br>
+            <figure class="highlight plain">
+              <table>
+                <tr>
+                  <td class="gutter"><pre><span class="line">1</span><br></pre></td>
+                  <td class="code"><pre><span class="line">&#13;&#24403;&#28982;&#65292;&#20320;&#30340;&#20195;&#30721;&#23454;&#38469;&#19978;&#24182;&#27809;&#26377;&#36825;&#20040;&#31616;&#21333;&#12290;&#22240;&#20026;&#36825;&#37324;&#25105;&#20351;&#29992;&#20102;H264&#65292;&#37096;&#20998;&#27983;&#35272;&#22120;&#25903;&#25345;&#36825;&#31181;&#35270;&#39057;&#26684;&#24335;&#12290;&#20294;&#26377;&#30340;&#27983;&#35272;&#22120;&#19981;&#25903;&#25345;&#12290;&#13;&#13;&#23545;&#19981;&#36215;&#65292;&#35831;&#19981;&#35201;&#36319;&#25105;&#35848;&#35270;&#39057;&#26684;&#24335;&#65292;&#25105;&#19968;&#21548;&#23601;&#24515;&#28902;&#12290;&#19981;&#26159;&#22240;&#20026;&#25216;&#26415;&#12290;&#25216;&#26415;&#20498;&#26080;&#25152;&#35859;&#65292;&#20851;&#38190;&#26159;&#20250;&#29301;&#25199;&#21040;&#19968;&#22823;&#22534;&#19987;&#21033;&#36824;&#26377;&#24459;&#24072;&#12289;&#30693;&#35782;&#20135;&#26435;&#31561;&#31561;&#65292;&#36825;&#20123;&#37117;&#26159;Web&#30340;&#22825;&#25932;&#65292;&#23545;&#25105;&#24314;&#32593;&#31449;&#19968;&#28857;&#22909;&#22788;&#37117;&#27809;&#26377;&#12290;&#10;&#10;&#21487;&#20320;&#23454;&#38469;&#19978;&#35201;&#20570;&#30340;&#65292;&#20165;&#20165;&#23601;&#26159;&#25226;&#21518;&#22791;&#20869;&#23481;&#25918;&#22312;&#37027;&#32780;&#24050;&#65292;&#21518;&#22791;&#20869;&#23481;&#21487;&#20197;&#21253;&#21547;&#22810;&#31181;&#35270;&#39057;&#26684;&#24335;&#12290;&#22914;&#26524;&#24895;&#24847;&#30340;&#35805;&#65292;&#21487;&#20197;&#20351;&#29992;source&#20803;&#32032;&#32780;&#38750;src&#23646;&#24615;&#26469;&#25351;&#23450;&#19981;&#21516;&#30340;&#35270;&#39057;&#26684;&#24335;&#12290;&#13;&#13;```html&#13;&#60;video&#62;&#13;    &#60;source src=&#34;movie.mp4&#34;&#62;&#13;    &#60;source src=&#34;movie.ogv&#34;&#62;&#13;    &#60;object data=&#34;movie.swf&#34;&#62;&#13;        &#60;a href=&#34;movie.mp4&#34;&#62;download&#60;/a&#62;&#13;    &#60;/object&#62;&#13;&#60;/video&#62;</span><br></pre></td>
+                </tr>
+              </table>
+            </figure>
+          </p>
+          <p>上面的代码中包含了4个不同的层次。</p>
+          <ol>
+            <li>如果浏览器支持video元素，也支持H264，没什么好说的，用第一个视频。</li>
+            <li>如果浏览器支持video元素，支持Ogg，那么用第二个视频。</li>
+            <li>如果浏览器不支持video元素，那么就要试试Flash影片了。</li>
+            <li>如果浏览器不支持video元素，也不支持Flash，我还给出了下载链接。</li>
+          </ol>
+          <p>不错，一开始就能考虑这么周到很难得啊。有了这几个层次，已经够完善了。</p>
+          <p>总之，我是建议你各种技术要兼顾，无论是HTML5，还是Flash，一个也不能少。如果只使用video元素提供视频，难免搬起石头砸自己的脚，我个人认为。而如果只提供Flash影片，情况也好不到哪去，性质是一样的。所以还是应该两者兼顾。</p>
+          <p>为什么要兼顾这两种技术呢？假设你需要面向某些不支持Flash的手持设备——只是举个例子——提供视频，你当然希望手持设备的用户能够看到视频了，不是吗？</p>
+          <p>至于为什么要使用不同的格式，为什么Flash视频和音频如此成功，我想可以归结为另一个设计原理，即梅特卡夫定律(Metcalfe’s Law)：</p>
+          <blockquote>
+            <p>网络价值同网络用户数量的平方成正比。</p>
+          </blockquote>
+          <p>梅特卡夫的这个定律虽然是针对电话网提出来的，但在很多领域里也是适用的。使用网络的用户越多，网络的价值也就越大。人人都上Facebook，还不是因为人人都上Facebook嘛。虽然Facebook真正的价值不在于此，但只有人人都上才会让它的变得如此有价值。</p>
+          <p>梅特卡夫定律也适用于传真机。如果只有一个人购买了传真机，当然没有什么用处。但如果其他人也陆续购买了传真机，那么他的投资会就得到回报。</p>
+          <p>当然，面对竞争性的视频格式和不同的编码方式，你感觉不到梅特卡夫定律的作用，我也很讨厌以不同的方式来编码视频，但只向浏览器发送用一种方式编码的视频是行不通的。而这也正是Flash在视频/音频领域如此成功的原因。你只要把Flash影片发送给浏览器就好了，然后安装了插件的浏览器都能正常播放。本质上讲，Flash利用了梅特卡夫定律。</p>
+          <h3 id="u6700_u7EC8_u7528_u6237_u4F18_u5148"><a href="#u6700_u7EC8_u7528_u6237_u4F18_u5148" class="headerlink" title="最终用户优先"></a>最终用户优先</h3>
+          <p>今天我要讲的最后一个设计原理，也是我个人最推崇的一个，但没有要展示的代码示例。这个原理更有哲学的味道，即最终用户优先。</p>
+          <p>这个设计原理本质上是一种解决冲突的机制。换句话说，当你面临一个要解决的问题时，如果W3C给出了一种解决方案，而WHATWG给出了另一种解决方案，一个人这么想，另一个人那么想……这时候，有人站出来说：“对这个问题我们这样来解决。”</p>
+          <blockquote>
+            <p>一旦遇到冲突，最终用户优先，其次是作者，其次是实现者，其次标准制定者，最后才是理论上的完满。</p>
+          </blockquote>
+          <p>理论上的完满，大致是指尽可能创建出最完美的格式。标准制定者，指的是工作组、W3C，等等。实现者，指的是浏览器厂商。作者，就是我们这些开发人员，对吧？看看我们在这个链条里面的位置多靠上啊！我们的地位仅次于最终用户——事情本来就该这个样子。用户是第一位的。而我们的声音在标准制定过程中也同样非常非常重要。</p>
+          <p>Hixie（即Ian Hickson， Acid2、Acid3的作者及维护者，HTML5、CSS 2.1规范的制定者）经常说，在有人建议了某个特性，而HTML5工作组为此争论不下时，如果有浏览器厂商说“我们不会支持这个特性，不会在我们的浏览器中实现这个特性”，那么这个特性就不会写进规范。因为即使是把特性写进规范，如果没有厂商实现，规范不过是一纸空文，对不对？实现者可以拒绝实现规范。</p>
+          <p>而根据最终用户优先的原理，我们在链条中的位置高于实现者，假如我们发现了规范中的某些地方有问题，我们想“这样规定我们不能同意，我们不支持实现这个特性”，那么就等于把相应的特性给否定了，规范里就得删除，因为我们的声音具有更高的权重。我觉得这样挺好！本质上是我们拥有了更大的发言权，对吧？我认为开发人员就应该拥有更多的发言权。</p>
+          <p>我觉得这应该是最重要的一条设计原理了，因为它承认了你的权利，无论是设计一种格式，还是设计软件，这条原理保证了你的发言权。而这条原理也正道出了事物运行的本质。难道还不够明显吗？用户的权利大于作者，作者的权利大于实现者，实现者的权利大于标准制定者。然而，反观其他规范，比如XHTML2，你就会发现完全相反的做法。把追求理论的完满放在第一位，而把用户——需要忍受严格错误处理带来的各种麻烦的用户——放在了链条的最底端。我并没有说这种做法就是错误的，但我认为这是一种完全不同的思维方式。</p>
+          <p>因此，我认为无论你做什么，不管是构建像HTML5这样的格式，还是构建一个网站，亦或一个内容管理系统，明确你的设计原理都至关重要。</p>
+          <blockquote>
+            <p>软件，就像所有技术一样，具有天然的政治性。代码必然会反映作者的选择、偏见和期望。</p>
+          </blockquote>
+          <p>下面我们讲一个例子。Drupal社区曾联系马克·博尔顿（Mark Boulton）和丽莎·雷贺特（Leisa Reichilt）设计Drupal的界面。他们计划遵循一些设计原理。为此，他们并没有纸上谈兵，而是经过了一段时间的思考和酝酿，提出指导将来工作的4个设计原理：</p>
+          <blockquote>
+            <p>简化最常见的任务，让不常见的任务不至于太麻烦。</p>
+            <p>只为80%设计。</p>
+            <p>给内容创建者最大的权利。</p>
+            <p>默认设置智能化。</p>
+          </blockquote>
+          <p>实际上，我在跟马克谈到这个问题时，马克说主要还是那两个，即“只为80%设计。给内容创建者最大的权利。”这就很不错了，至少它表明了立场，“我们认为内容创建者比这个项目中的任何人都重要。”在制定设计原理时，很多人花了很多时间都抓不住重点，因为他们想取悦所有人。关键在于我们不是要取悦所有人，而是要明确哪些人最重要。他们认为内容创建者是最重要的。</p>
+          <p>另一条设计原理，只为80%设计，其实是一条常见的设计原理，也是一种通用模式，即帕累托原理（Pareto principle）。</p>
+          <p>帕累托是意大利经济学家，他提出这个比例，80/20，说的是世界上20%的人口拥有80%的财富。这个比例又暗合了自然界各个领域的幂律分布现象。总之，无论你是编写软件，还是制造什么东西，都是一样的，即20%的努力可以触及80%的用例。最后20%的用例则需要付出80%甚至更多的努力。因此，有时候据此确定只为80%设计是很合理的，因为我们知道为此只要付出20%的努力即可。</p>
+          <p>再比如，微格式同样也利用了帕累托原理，只处理常见用例，而没有考虑少数情形。他们知道自己不会让所有人都满意；而他们的目标也不是让所有人都满意。他们遵循的设计原理很多，也都非常有价值，但最吸引人的莫过于下面这条了：</p>
+          <blockquote>
+            <p>首先为人类设计，其次为机器设计。</p>
+          </blockquote>
+          <p>同样，你我都会觉得这是一条再明显不过的道理，但现实中仍然有不少例子违反了这条原理：容易让机器理解（解析）比容易让用户理解更重要。</p>
+          <p>所以，我认为平常多看一看别人推崇的设计原理，有助于做好自己手头的工作。你可以把自己认为有道理的设计原理贴在墙上。当然，你可以维护一个URL，把自己认为有价值的设计原理分享出来，就像Mozilla基金会那样，对不对，以下是Mozilla的设计原理：</p>
+          <blockquote>
+            <p>Internet作为一种公共资源，其运作效率取决于互通性（协议、数据格式、内容）、变革及全球范围内的协作。</p>
+            <p>基于透明社区的流程有助于增进协作、义务和信任。</p>
+          </blockquote>
+          <p>我觉得像这样的设计原理都非常好。而有了设计原理，我认为才更有希望设计出真正有价值的产品。设计原理是Web发展背后的驱动力，也是通过HTML5反映出来的某种思维方式。我想，下面这条原理你绝对不会陌生：</p>
+          <blockquote>
+            <p>大多数人的意见和运行的代码。【1】</p>
+          </blockquote>
+          <p>对不对？这句话经常在我脑际回响，它囊括了Web的真谛，触及了HTML5的灵魂。</p>
+          <p>也许我该把这条原理打印出来贴到办公室的墙上，让它时刻提醒我，这就是Web的设计原理：大多数人的意见和运行的代码。</p>
+          <p>我想，今天的演讲就到这里了。如果大家有什么想法可以在twitter上通过@adactio找到我。有时候我也会在自己的博客，adactio.com上写写有关这个主题的文章。最后，可能还要顺便给我自己做个广告，我刚出了一本书，希望大家关注。</p>
+          <p>非常感谢大家。<br>[全文完]</p>
+          <p>【1】 1992年，大卫·克拉克（David Clark）教授在IETF会议上总结了这样一句话“We reject: kings, presidents, and voting. We believe in: rough consensus and running code”（我们拒绝国王、总统和投票，我们相信大多数人的意见和运行的代码）。这就是广为流传的“互联网哲学”（Internet Philosophy）。——译者注</p>
+        </div>
+        <footer class="article-footer clearfix">
+          <div class="article-catetags">
+
+            <div class="article-categories">
+              <span></span>
+              <a class="article-category-link" href="/categories/前端/">前端</a>
+            </div>
 
 
+          </div>
 
-	<div class="article-share" id="share">
-	
-	  <div data-url="http://starding.github.io/2016/03/19/html5-design-principle/" data-title="html5设计原理 | 小狐濡尾" data-tsina="null" class="share clearfix">
-	  </div>
-	
-	</div>
+          <div class="article-share" id="share">
+
+            <div data-url="http://starding.github.io/2016/03/19/html5-design-principle/" data-title="html5设计原理 | 小狐濡尾" data-tsina="null" class="share clearfix">
+            </div>
+
+          </div>
 
 
-</footer>
+        </footer>
+      </article>
+      <nav class="article-nav clearfix">
 
-   	       
-	</article>
-	
-<nav class="article-nav clearfix">
- 
- <div class="prev" >
- <a href="/2016/03/19/model-dialog/" title="什么是模态框">
-  <strong>上一篇：</strong><br/>
-  <span>
+        <div class="prev">
+          <a href="/2016/03/19/model-dialog/" title="什么是模态框">
+            <strong>上一篇：</strong><br/>
+            <span>
   什么是模态框</span>
-</a>
-</div>
+          </a>
+        </div>
 
 
-<div class="next">
-<a href="/2016/03/18/why-should-we-ask-why/"  title="在计算机学习中，为什么我们应该问为什么">
- <strong>下一篇：</strong><br/> 
- <span>在计算机学习中，为什么我们应该问为什么
+        <div class="next">
+          <a href="/2016/03/18/why-should-we-ask-why/" title="在计算机学习中，为什么我们应该问为什么">
+            <strong>下一篇：</strong><br/>
+            <span>在计算机学习中，为什么我们应该问为什么
 </span>
-</a>
-</div>
+          </a>
+        </div>
 
-</nav>
-
-	
-<section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/03/19/html5-design-principle/" data-title="html5设计原理" data-url="http://starding.github.io/2016/03/19/html5-design-principle/"></div>
-</section>
-
-
-</div>  
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
-
-  <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目录</strong>
- 
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#html5_u8BBE_u8BA1_u539F_u7406"><span class="toc-number">1.</span> <span class="toc-text">html5设计原理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u524D_u8A00"><span class="toc-number">1.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u6B63_u6587"><span class="toc-number">1.2.</span> <span class="toc-text">正文</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HTML5_u8BBE_u8BA1_u539F_u7406"><span class="toc-number">1.2.1.</span> <span class="toc-text">HTML5设计原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u8BBE_u8BA1_u539F_u7406"><span class="toc-number">1.2.2.</span> <span class="toc-text">设计原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTML"><span class="toc-number">1.2.3.</span> <span class="toc-text">HTML</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTML5"><span class="toc-number">1.2.4.</span> <span class="toc-text">HTML5</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u907F_u514D_u4E0D_u5FC5_u8981_u7684_u590D_u6742_u6027"><span class="toc-number">1.2.5.</span> <span class="toc-text">避免不必要的复杂性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u652F_u6301_u5DF2_u6709_u7684_u5185_u5BB9"><span class="toc-number">1.2.6.</span> <span class="toc-text">支持已有的内容</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.3.</span> <span class="toc-text">Headline text</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">…</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u6700_u7EC8_u7528_u6237_u4F18_u5148"><span class="toc-number">2.0.1.</span> <span class="toc-text">最终用户优先</span></a></li></ol></li></ol></li></ol>
- 
-  </div>
-
-<div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
-<aside class="clearfix">
-
-  
-<div class="github-card">
-<p class="asidetitle">Github 名片</p>
-<div class="github-card" data-github="starding" data-width="220" data-height="119" data-theme="medium">
-<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
-</div>
-  </div>
-
-
-
-  
-
-<div class="doubanshow">
-<p class="asidetitle">豆瓣秀</p>
-<div>
-<script type="text/javascript" src="http://www.douban.com/service/badge/58816601/?show=collection&amp;n=12&amp;columns=3&amp;hidelogo=yes&amp;hideself=yes&amp;cat=book|movie" ></script>
-</div>
-</div>
-
-
-  
-<div class="categorieslist">
-	<p class="asidetitle">分类</p>
-		<ul>
-		
-		  
-			<li><a href="/categories/computer-philosophy/" title="computer philosophy">computer philosophy<sup>2</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/docker/" title="docker">docker<sup>4</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/javascript/" title="javascript">javascript<sup>1</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/open-questions/" title="open-questions">open-questions<sup>1</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/python/" title="python">python<sup>4</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/vim/" title="vim">vim<sup>1</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/前端/" title="前端">前端<sup>4</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/科学史与科学哲学/" title="科学史与科学哲学">科学史与科学哲学<sup>1</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/问题/" title="问题">问题<sup>1</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/随笔/" title="随笔">随笔<sup>4</sup></a></li>
-		  
-		
-		</ul>
-</div>
-
-
-  
-<div class="tagslist">
-	<p class="asidetitle">标签</p>
-		<ul class="clearfix">
-		
-			
-				<li><a href="/tags/python/" title="python">python<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/docker/" title="docker">docker<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/前端/" title="前端">前端<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/随笔/" title="随笔">随笔<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/javascript/" title="javascript">javascript<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/django/" title="django">django<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/open-questions/" title="open-questions">open-questions<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/三体/" title="三体">三体<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/vim/" title="vim">vim<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/科学史/" title="科学史">科学史<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/computer/" title="computer">computer<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/社会达尔文主义/" title="社会达尔文主义">社会达尔文主义<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/科学哲学/" title="科学哲学">科学哲学<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/行尸走肉/" title="行尸走肉">行尸走肉<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/gitlab/" title="gitlab">gitlab<sup>1</sup></a></li>
-			
-		
-		</ul>
-</div>
-
-
-  <div class="linkslist">
-  <p class="asidetitle">友情链接</p>
-    <ul>
-        
-          <li>
-            
-            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
-            
-          </li>
-        
-          <li>
-            
-            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
-            
-          </li>
-        
-    </ul>
-</div>
-
-  <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
-</div>
-
-</aside>
-</div>
+      </nav>
+      <section id="comments" class="comment">
+        <div class="ds-thread" data-thread-key="2016/03/19/html5-design-principle/" data-title="html5设计原理" data-url="http://starding.github.io/2016/03/19/html5-design-principle/"></div>
+      </section>
     </div>
-    <footer><div id="footer" >
-	
-	<div class="line">
-		<span></span>
-		<div class="author"></div>
-	</div>
-	
-	
-	<section class="info">
-		<p> Hello ,I&#39;m Starding. <br/>
-			This is my blog,believe it or not.</p>
-	</section>
-	 
-	<div class="social-font" class="clearfix">
-		
-		
-		<a href="https://github.com/starding" target="_blank" class="icon-github" title="github"></a>
-		
-		
-		
-		
-		
-		
-		<a href="https://www.douban.com/people/58816601" target="_blank" class="icon-douban" title="豆瓣"></a>
-		
-		
-		<a href="http://www.zhihu.com/people/starstarding" target="_blank" class="icon-zhihu" title="知乎"></a>
-		
-		
-		
-		<a href="mailto:starding@buaa.edu.cn" target="_blank" class="icon-email" title="Email Me"></a>
-		
-	</div>
-			
-		
+    <div class="openaside">
+      <a class="navbutton" href="#" title="显示侧边栏"></a>
+    </div>
 
-		<p class="copyright">
-		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
-		
-		<a href="/about" target="_blank" title="starding">starding</a>
-		
-		
-		</p>
-</div>
-</footer>
-    <script src="/js/jquery-2.0.3.min.js"></script>
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
-<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+    <div id="toc" class="toc-aside">
+      <strong class="toc-title">文章目录</strong>
 
-<script type="text/javascript">
-$(document).ready(function(){ 
-  $('.navbar').click(function(){
-    $('header nav').toggleClass('shownav');
-  });
-  var myWidth = 0;
-  function getSize(){
-    if( typeof( window.innerWidth ) == 'number' ) {
-      myWidth = window.innerWidth;
-    } else if( document.documentElement && document.documentElement.clientWidth) {
-      myWidth = document.documentElement.clientWidth;
-    };
-  };
-  var m = $('#main'),
-      a = $('#asidepart'),
-      c = $('.closeaside'),
-      o = $('.openaside');
-  c.click(function(){
-    a.addClass('fadeOut').css('display', 'none');
-    o.css('display', 'block').addClass('fadeIn');
-    m.addClass('moveMain');
-  });
-  o.click(function(){
-    o.css('display', 'none').removeClass('beforeFadeIn');
-    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
-    m.removeClass('moveMain');
-  });
-  $(window).scroll(function(){
-    o.css("top",Math.max(80,260-$(this).scrollTop()));
-  });
-  
-  $(window).resize(function(){
-    getSize(); 
-    if (myWidth >= 1024) {
-      $('header nav').removeClass('shownav');
-    }else{
-      m.removeClass('moveMain');
-      a.css('display', 'block').removeClass('fadeOut');
-      o.css('display', 'none');
-      
-      $('#toc.toc-aside').css('display', 'none');
-        
-    }
-  });
-});
-</script>
+      <ol class="toc">
+        <li class="toc-item toc-level-1"><a class="toc-link" href="#html5_u8BBE_u8BA1_u539F_u7406"><span class="toc-number">1.</span> <span class="toc-text">html5设计原理</span></a>
+          <ol class="toc-child">
+            <li class="toc-item toc-level-2"><a class="toc-link" href="#u524D_u8A00"><span class="toc-number">1.1.</span> <span class="toc-text">前言</span></a></li>
+            <li class="toc-item toc-level-2"><a class="toc-link" href="#u6B63_u6587"><span class="toc-number">1.2.</span> <span class="toc-text">正文</span></a>
+              <ol class="toc-child">
+                <li class="toc-item toc-level-3"><a class="toc-link" href="#HTML5_u8BBE_u8BA1_u539F_u7406"><span class="toc-number">1.2.1.</span> <span class="toc-text">HTML5设计原理</span></a></li>
+                <li class="toc-item toc-level-3"><a class="toc-link" href="#u8BBE_u8BA1_u539F_u7406"><span class="toc-number">1.2.2.</span> <span class="toc-text">设计原理</span></a></li>
+                <li class="toc-item toc-level-3"><a class="toc-link" href="#HTML"><span class="toc-number">1.2.3.</span> <span class="toc-text">HTML</span></a></li>
+                <li class="toc-item toc-level-3"><a class="toc-link" href="#HTML5"><span class="toc-number">1.2.4.</span> <span class="toc-text">HTML5</span></a></li>
+                <li class="toc-item toc-level-3"><a class="toc-link" href="#u907F_u514D_u4E0D_u5FC5_u8981_u7684_u590D_u6742_u6027"><span class="toc-number">1.2.5.</span> <span class="toc-text">避免不必要的复杂性</span></a></li>
+                <li class="toc-item toc-level-3"><a class="toc-link" href="#u652F_u6301_u5DF2_u6709_u7684_u5185_u5BB9"><span class="toc-number">1.2.6.</span> <span class="toc-text">支持已有的内容</span></a></li>
+              </ol>
+            </li>
+            <li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.3.</span> <span class="toc-text">Headline text</span></a></li>
+          </ol>
+        </li>
+        <li class="toc-item toc-level-1"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">…</span></a>
+          <ol class="toc-child">
+            <li class="toc-item toc-level-3"><a class="toc-link" href="#u6700_u7EC8_u7528_u6237_u4F18_u5148"><span class="toc-number">2.0.1.</span> <span class="toc-text">最终用户优先</span></a></li>
+          </ol>
+        </li>
+      </ol>
+      </li>
+      </ol>
 
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var ai = $('.article-content>iframe'),
-      ae = $('.article-content>embed'),
-      t  = $('#toc'),
-      ta = $('#toc.toc-aside'),
-      o  = $('.openaside'),
-      c  = $('.closeaside');
-  if(ai.length>0){
-    ai.wrap('<div class="video-container" />');
-  };
-  if(ae.length>0){
-   ae.wrap('<div class="video-container" />');
-  };
-  c.click(function(){
-    ta.css('display', 'block').addClass('fadeIn');
-  });
-  o.click(function(){
-    ta.css('display', 'none');
-  });
-  $(window).scroll(function(){
-    ta.css("top",Math.max(140,320-$(this).scrollTop()));
-  });
-});
-</script>
+    </div>
+
+    <div id="asidepart">
+      <div class="closeaside">
+        <a class="closebutton" href="#" title="隐藏侧边栏"></a>
+      </div>
+      <aside class="clearfix">
+
+        <div class="github-card">
+          <p class="asidetitle">Github 名片</p>
+          <div class="github-card" data-github="starding" data-width="220" data-height="119" data-theme="medium">
+            <script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
+          </div>
+        </div>
+
+        <div class="doubanshow">
+          <p class="asidetitle">豆瓣秀</p>
+          <div>
+            <script type="text/javascript" src="http://www.douban.com/service/badge/58816601/?show=collection&amp;n=12&amp;columns=3&amp;hidelogo=yes&amp;hideself=yes&amp;cat=book|movie"></script>
+          </div>
+        </div>
+
+        <div class="categorieslist">
+          <p class="asidetitle">分类</p>
+          <ul>
 
 
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var $this = $('.share'),
-      url = $this.attr('data-url'),
-      encodedUrl = encodeURIComponent(url),
-      title = $this.attr('data-title'),
-      tsina = $this.attr('data-tsina'),
-      description = $this.attr('description');
-  var html = [
-  '<div class="hoverqrcode clearfix"></div>',
-  '<a class="overlay" id="qrcode"></a>',
-  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
-  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
-  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
-  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
-  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
-  '<span title="Share to"></span>'
-  ].join('');
-  $this.append(html);
+            <li><a href="/categories/computer-philosophy/" title="computer philosophy">computer philosophy<sup>2</sup></a></li>
 
-  $('.hoverqrcode').hide();
 
-  var myWidth = 0;
-  function updatehoverqrcode(){
-    if( typeof( window.innerWidth ) == 'number' ) {
-      myWidth = window.innerWidth;
-    } else if( document.documentElement && document.documentElement.clientWidth) {
-      myWidth = document.documentElement.clientWidth;
-    };
-    var qrsize = myWidth > 1024 ? 200:100;
-    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
-    var p = $('.article-share-qrcode').position();
-    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
-                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
-                          .qrcode(options);
-  };
-  $(window).resize(function(){
-    $('.hoverqrcode').hide();
-  });
-  $('.article-share-qrcode').click(function(){
-    updatehoverqrcode();
-    $('.hoverqrcode').toggle();
-  });
-  $('.article-share-qrcode').hover(function(){}, function(){
+
+            <li><a href="/categories/docker/" title="docker">docker<sup>4</sup></a></li>
+
+
+
+            <li><a href="/categories/javascript/" title="javascript">javascript<sup>1</sup></a></li>
+
+
+
+            <li><a href="/categories/open-questions/" title="open-questions">open-questions<sup>1</sup></a></li>
+
+
+
+            <li><a href="/categories/python/" title="python">python<sup>4</sup></a></li>
+
+
+
+            <li><a href="/categories/vim/" title="vim">vim<sup>1</sup></a></li>
+
+
+
+            <li><a href="/categories/前端/" title="前端">前端<sup>4</sup></a></li>
+
+
+
+            <li><a href="/categories/科学史与科学哲学/" title="科学史与科学哲学">科学史与科学哲学<sup>1</sup></a></li>
+
+
+
+            <li><a href="/categories/问题/" title="问题">问题<sup>1</sup></a></li>
+
+
+
+            <li><a href="/categories/随笔/" title="随笔">随笔<sup>4</sup></a></li>
+
+
+          </ul>
+        </div>
+
+        <div class="tagslist">
+          <p class="asidetitle">标签</p>
+          <ul class="clearfix">
+
+
+            <li><a href="/tags/python/" title="python">python<sup>4</sup></a></li>
+
+
+
+            <li><a href="/tags/docker/" title="docker">docker<sup>4</sup></a></li>
+
+
+
+            <li><a href="/tags/前端/" title="前端">前端<sup>3</sup></a></li>
+
+
+
+            <li><a href="/tags/随笔/" title="随笔">随笔<sup>2</sup></a></li>
+
+
+
+            <li><a href="/tags/javascript/" title="javascript">javascript<sup>1</sup></a></li>
+
+
+
+            <li><a href="/tags/django/" title="django">django<sup>1</sup></a></li>
+
+
+
+            <li><a href="/tags/open-questions/" title="open-questions">open-questions<sup>1</sup></a></li>
+
+
+
+            <li><a href="/tags/三体/" title="三体">三体<sup>1</sup></a></li>
+
+
+
+            <li><a href="/tags/vim/" title="vim">vim<sup>1</sup></a></li>
+
+
+
+            <li><a href="/tags/科学史/" title="科学史">科学史<sup>1</sup></a></li>
+
+
+
+            <li><a href="/tags/computer/" title="computer">computer<sup>1</sup></a></li>
+
+
+
+            <li><a href="/tags/社会达尔文主义/" title="社会达尔文主义">社会达尔文主义<sup>1</sup></a></li>
+
+
+
+            <li><a href="/tags/科学哲学/" title="科学哲学">科学哲学<sup>1</sup></a></li>
+
+
+
+            <li><a href="/tags/行尸走肉/" title="行尸走肉">行尸走肉<sup>1</sup></a></li>
+
+
+
+            <li><a href="/tags/gitlab/" title="gitlab">gitlab<sup>1</sup></a></li>
+
+
+          </ul>
+        </div>
+
+        <div class="linkslist">
+          <p class="asidetitle">友情链接</p>
+          <ul>
+
+            <li>
+
+              <a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+
+            </li>
+
+            <li>
+
+              <a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+
+            </li>
+
+          </ul>
+        </div>
+
+        <div class="rsspart">
+          <a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+        </div>
+
+      </aside>
+    </div>
+  </div>
+  <footer>
+    <div id="footer">
+
+      <div class="line">
+        <span></span>
+        <div class="author"></div>
+      </div>
+
+
+      <section class="info">
+        <p> Hello ,I&#39;m Starding. <br/> This is my blog,believe it or not.</p>
+      </section>
+
+      <div class="social-font" class="clearfix">
+
+
+        <a href="https://github.com/starding" target="_blank" class="icon-github" title="github"></a>
+
+
+
+
+
+
+        <a href="https://www.douban.com/people/58816601" target="_blank" class="icon-douban" title="豆瓣"></a>
+
+
+        <a href="http://www.zhihu.com/people/starstarding" target="_blank" class="icon-zhihu" title="知乎"></a>
+
+
+
+        <a href="mailto:starding@buaa.edu.cn" target="_blank" class="icon-email" title="Email Me"></a>
+
+      </div>
+
+
+
+      <p class="copyright">
+        Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016
+
+        <a href="/about" target="_blank" title="starding">starding</a>
+
+
+      </p>
+    </div>
+  </footer>
+  <script src="/js/jquery-2.0.3.min.js"></script>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+  <script src="/js/gallery.js"></script>
+  <script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.navbar').click(function() {
+        $('header nav').toggleClass('shownav');
+      });
+      var myWidth = 0;
+
+      function getSize() {
+        if (typeof(window.innerWidth) == 'number') {
+          myWidth = window.innerWidth;
+        } else if (document.documentElement && document.documentElement.clientWidth) {
+          myWidth = document.documentElement.clientWidth;
+        };
+      };
+      var m = $('#main'),
+        a = $('#asidepart'),
+        c = $('.closeaside'),
+        o = $('.openaside');
+      c.click(function() {
+        a.addClass('fadeOut').css('display', 'none');
+        o.css('display', 'block').addClass('fadeIn');
+        m.addClass('moveMain');
+      });
+      o.click(function() {
+        o.css('display', 'none').removeClass('beforeFadeIn');
+        a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');
+        m.removeClass('moveMain');
+      });
+      $(window).scroll(function() {
+        o.css("top", Math.max(80, 260 - $(this).scrollTop()));
+      });
+
+      $(window).resize(function() {
+        getSize();
+        if (myWidth >= 1024) {
+          $('header nav').removeClass('shownav');
+        } else {
+          m.removeClass('moveMain');
+          a.css('display', 'block').removeClass('fadeOut');
+          o.css('display', 'none');
+
+          $('#toc.toc-aside').css('display', 'none');
+
+        }
+      });
+    });
+  </script>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      var ai = $('.article-content>iframe'),
+        ae = $('.article-content>embed'),
+        t = $('#toc'),
+        ta = $('#toc.toc-aside'),
+        o = $('.openaside'),
+        c = $('.closeaside');
+      if (ai.length > 0) {
+        ai.wrap('<div class="video-container" />');
+      };
+      if (ae.length > 0) {
+        ae.wrap('<div class="video-container" />');
+      };
+      c.click(function() {
+        ta.css('display', 'block').addClass('fadeIn');
+      });
+      o.click(function() {
+        ta.css('display', 'none');
+      });
+      $(window).scroll(function() {
+        ta.css("top", Math.max(140, 320 - $(this).scrollTop()));
+      });
+    });
+  </script>
+
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      var $this = $('.share'),
+        url = $this.attr('data-url'),
+        encodedUrl = encodeURIComponent(url),
+        title = $this.attr('data-title'),
+        tsina = $this.attr('data-tsina'),
+        description = $this.attr('description');
+      var html = [
+        '<div class="hoverqrcode clearfix"></div>',
+        '<a class="overlay" id="qrcode"></a>',
+        '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+        '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+        '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+        '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title + '" class="article-share-renren" target="_blank" title="人人"></a>',
+        '<a href="http://service.weibo.com/share/share.php?title=' + title + '&url=' + encodedUrl + '&ralateUid=' + tsina + '&searchPic=true&style=number' + '" class="article-share-weibo" target="_blank" title="微博"></a>',
+        '<span title="Share to"></span>'
+      ].join('');
+      $this.append(html);
+
       $('.hoverqrcode').hide();
-  });
-});   
-</script>
 
+      var myWidth = 0;
 
-
-<script type="text/javascript">
-  var duoshuoQuery = {short_name:"starding"};
-  (function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = '//static.duoshuo.com/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0] 
-    || document.getElementsByTagName('body')[0]).appendChild(ds);
-  })();
-</script> 
-
-
-
-
-
-
-
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){ 
-  $('.article-content').each(function(i){
-    $(this).find('img').each(function(){
-      if ($(this).parent().hasClass('fancybox')) return;
-      var alt = this.alt;
-      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
-      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+      function updatehoverqrcode() {
+        if (typeof(window.innerWidth) == 'number') {
+          myWidth = window.innerWidth;
+        } else if (document.documentElement && document.documentElement.clientWidth) {
+          myWidth = document.documentElement.clientWidth;
+        };
+        var qrsize = myWidth > 1024 ? 200 : 100;
+        var options = {
+          render: 'image',
+          size: qrsize,
+          fill: '#2ca6cb',
+          text: url,
+          radius: 0.5,
+          quiet: 1
+        };
+        var p = $('.article-share-qrcode').position();
+        $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+          .css('left', p.left - qrsize / 2 + 20).css('top', p.top - qrsize - 10)
+          .qrcode(options);
+      };
+      $(window).resize(function() {
+        $('.hoverqrcode').hide();
+      });
+      $('.article-share-qrcode').click(function() {
+        updatehoverqrcode();
+        $('.hoverqrcode').toggle();
+      });
+      $('.article-share-qrcode').hover(function() {}, function() {
+        $('.hoverqrcode').hide();
+      });
     });
-    $(this).find('.fancybox').each(function(){
-      $(this).attr('rel', 'article' + i);
-    });
-  });
-  if($.fancybox){
-    $('.fancybox').fancybox();
-  }
-}); 
-</script>
+  </script>
 
 
 
-<!-- Analytics Begin -->
-
-<script type="text/javascript">
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-ga('create', 'UA-72215789-1', 'auto');  
-ga('send', 'pageview');
-</script>
-
-
-
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?01f9e8011679173931cf24fe647483cf";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
+  <script type="text/javascript">
+    var duoshuoQuery = {
+      short_name: "starding"
+    };
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';
+      ds.async = true;
+      ds.src = '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
 
 
 
-<!-- Analytics End -->
 
-<!-- Totop Begin -->
 
-	<div id="totop">
-	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
-	</div>
-	<script src="/js/totop.js"></script>
 
-<!-- Totop End -->
 
-<!-- MathJax Begin -->
-<!-- mathjax config similar to math.stackexchange -->
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      processEscapes: true
-    }
-  });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.article-content').each(function(i) {
+        $(this).find('img').each(function() {
+          if ($(this).parent().hasClass('fancybox')) return;
+          var alt = this.alt;
+          if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+          $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+        });
+        $(this).find('.fancybox').each(function() {
+          $(this).attr('rel', 'article' + i);
+        });
+      });
+      if ($.fancybox) {
+        $('.fancybox').fancybox();
       }
     });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for(i=0; i < all.length; i += 1) {
-            all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-    });
-</script>
-
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
+  </script>
 
 
-<!-- MathJax End -->
 
-<!-- Tiny_search Begin -->
+  <!-- Analytics Begin -->
+  <script type="text/javascript">
+    (function(i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function() {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-72215789-1', 'auto');
+    ga('send', 'pageview');
+  </script>
 
-<!-- Tiny_search End -->
 
-  </body>
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?01f9e8011679173931cf24fe647483cf";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  <!-- Analytics End -->
+
+  <!-- Totop Begin -->
+  <div id="totop">
+    <a title="返回顶部"><img src="/img/scrollup.png" /></a>
+  </div>
+  <script src="/js/totop.js"></script>
+  <!-- Totop End -->
+
+  <!-- MathJax Begin -->
+  <!-- mathjax config similar to math.stackexchange -->
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({ tex2jax: { skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] } });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() { var all = MathJax.Hub.getAllJax(), i; for(i=0; i
+    < all.length; i +=1 ) { all[i].SourceElement().parentNode.className +=' has-jax' ; } }); </script>
+
+      <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+      </script>
+      <!-- MathJax End -->
+
+      <!-- Tiny_search Begin -->
+
+      <!-- Tiny_search End -->
+</body>
+
 </html>
