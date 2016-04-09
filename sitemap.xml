@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://starding.github.io/2016/01/19/learn-javascript-follow-definitive-guide/</loc>
+    <lastmod>2016-04-09T06:49:44.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://starding.github.io/2016/04/04/an-overdesign-record/</loc>
     <lastmod>2016-04-04T15:28:13.000Z</lastmod>
   </url>
@@ -69,11 +74,6 @@
   <url>
     <loc>http://starding.github.io/2016/01/07/docker-a-metaphor/</loc>
     <lastmod>2016-02-27T15:40:31.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://starding.github.io/2016/01/19/learn-javascript-follow-definitive-guide/</loc>
-    <lastmod>2016-02-24T06:11:03.000Z</lastmod>
   </url>
   
   <url>

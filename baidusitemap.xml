@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>http://starding.github.io/2016/01/19/learn-javascript-follow-definitive-guide/</loc>
+    <lastmod>2016-04-09T06:49:44.000Z</lastmod>
+    <data>
+        <display>
+        <title>javascript犀牛书（第六版）核心</title>
+        <pubTime>2016-01-18T16:14:52.000Z</pubTime>
+        
+        <tag>javascript</tag>
+         
+        <tag>前端</tag>
+         
+         
+           
+             
+              <breadCrumb title="javascript" url="http://starding.github.io/categories/javascript/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://starding.github.io/2016/04/04/an-overdesign-record/</loc>
     <lastmod>2016-04-04T15:28:13.000Z</lastmod>
     <data>
@@ -250,28 +272,6 @@
            
              
               <breadCrumb title="docker" url="http://starding.github.io/categories/docker/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://starding.github.io/2016/01/19/learn-javascript-follow-definitive-guide/</loc>
-    <lastmod>2016-02-24T06:11:03.000Z</lastmod>
-    <data>
-        <display>
-        <title>javascript犀牛书（第六版）学习笔记</title>
-        <pubTime>2016-01-18T16:14:52.000Z</pubTime>
-        
-        <tag>javascript</tag>
-         
-        <tag>前端</tag>
-         
-         
-           
-             
-              <breadCrumb title="javascript" url="http://starding.github.io/categories/javascript/"/>
           
         </display>
     </data>
