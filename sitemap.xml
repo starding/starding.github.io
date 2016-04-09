@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://starding.github.io/about/index.html</loc>
+    <lastmod>2016-04-09T07:00:21.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://starding.github.io/2016/01/19/learn-javascript-follow-definitive-guide/</loc>
     <lastmod>2016-04-09T06:56:05.000Z</lastmod>
   </url>
@@ -64,11 +69,6 @@
   <url>
     <loc>http://starding.github.io/2016/02/26/metaphor/</loc>
     <lastmod>2016-02-29T07:07:00.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://starding.github.io/about/index.html</loc>
-    <lastmod>2016-02-29T03:07:21.000Z</lastmod>
   </url>
   
   <url>
