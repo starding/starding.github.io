@@ -4,7 +4,7 @@
   <subtitle><![CDATA[未济]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://starding.github.io/"/>
-  <updated>2016-04-04T15:28:13.000Z</updated>
+  <updated>2016-04-19T06:28:41.000Z</updated>
   <id>http://starding.github.io/</id>
   
   <author>
@@ -13,6 +13,76 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[那些差劲的产品使用体验]]></title>
+    <link href="http://starding.github.io/2016/04/12/the-elements-of-user-experience/"/>
+    <id>http://starding.github.io/2016/04/12/the-elements-of-user-experience/</id>
+    <published>2016-04-12T09:07:28.000Z</published>
+    <updated>2016-04-19T06:28:41.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="iOS_u521D_u4F53_u9A8C"><a href="#iOS_u521D_u4F53_u9A8C" class="headerlink" title="iOS初体验"></a>iOS初体验</h2>
+<p>最近服役了三年的nexus终于老态龙钟，光荣退伍了。纠结于android的多种多样，最终直接选了iphone。但是一上手就感觉有几个地方特别的别扭，这里面自然</p>
+<h3 id="u9E21_u808B_u7684_u4E0B_u62C9_u83DC_u5355"><a href="#u9E21_u808B_u7684_u4E0B_u62C9_u83DC_u5355" class="headerlink" title="鸡肋的下拉菜单"></a>鸡肋的下拉菜单</h3>
+<p>对比Android强大的下拉菜单，iOS的下拉菜单仅用于消息通知或是近期使用的软件功能，而将一部分设置放在了从底部向上拉的菜单中，即便是这些设置也是不完整的，比如wifi设置，只能设定开关，而不能由此作为入口进一步设置wifi。如果想设置wifi需要去设置页中去找。</p>
+<p>再来看Android的下拉菜单设置，不管是wifi还是手电筒等功能，都无比的实用与方便，而且使用频率很高。</p>
+<h3 id="u6349_u6025_u7684_u95F9_u949F_u8BBE_u7F6E"><a href="#u6349_u6025_u7684_u95F9_u949F_u8BBE_u7F6E" class="headerlink" title="捉急的闹钟设置"></a>捉急的闹钟设置</h3>
+<p>这个就更明显了，android的闹钟设置一步到位。而iOS的闹钟设置页面，要先点击左上角的编辑，进入编辑页，再点击时间才能选择。一步能完成的功能愣是给拆成了好几个步骤。用的时候简直无比纠结。</p>
+<h3 id="u96BE_u4EE5_u6349_u6478_u7684_u8F93_u5165_u6CD5_u548C_u5168_u5C40_u8D4B_u503C_u7C98_u8D34"><a href="#u96BE_u4EE5_u6349_u6478_u7684_u8F93_u5165_u6CD5_u548C_u5168_u5C40_u8D4B_u503C_u7C98_u8D34" class="headerlink" title="难以捉摸的输入法和全局赋值粘贴"></a>难以捉摸的输入法和全局赋值粘贴</h3>
+<p>九宫格输入法中的各个按键占比无比蛋疼，主要区域占比不够，而一个大大的确认按钮放在了右侧，占据了n多面积。</p>
+<p>再者是输入法和全局复制粘贴的表现简直匪夷所思，它们的各种表现简直难以寻找规律。感觉一会儿是这样，一会儿是那样。</p>
+<h3 id="u6CA1_u6709_u5145_u5206_u5229_u7528_u89E6_u5C4F_u4F18_u52BF_u7684_u77ED_u4FE1_u754C_u9762"><a href="#u6CA1_u6709_u5145_u5206_u5229_u7528_u89E6_u5C4F_u4F18_u52BF_u7684_u77ED_u4FE1_u754C_u9762" class="headerlink" title="没有充分利用触屏优势的短信界面"></a>没有充分利用触屏优势的短信界面</h3>
+<p>ios短信界面的编辑功能，仍然是左上角有一个编辑按钮，点击之后才能进行编辑。而触摸短信只能进入短信详情，长触摸则没有响应动作。</p>
+<p>「编辑按钮」这个功能在iOS中随处可见，诸如上面提到的闹钟编辑。这和Android有很大的区别，在Android中，长触摸一般都表示对触摸项的编辑功能。而iOS则没有为长触摸指定动作。这样就又多出一步。实在是没有充分利用触屏本身的交互优势。</p>
+<h2 id="u53A8_u623F_u91CC_u7684_u9171_u6CB9_u74F6"><a href="#u53A8_u623F_u91CC_u7684_u9171_u6CB9_u74F6" class="headerlink" title="厨房里的酱油瓶"></a>厨房里的酱油瓶</h2>
+<p>有一种酱油叫海天，有着一个无比蛋疼的封口设计。打开瓶盖，拉开拉环，倒出香醇的酱油后，你会发现，瓶盖合不上了！酱油这种长期使用产品，不清楚这种汽水拉环一样的一次性设计是为了什么。</p>
+<p>而对比厨房里的另一瓶调料——白醋，就明显看出设计上的差距。白醋有一个方便拧开的大瓶盖，为了方便控制倒醋时的流速，还在内部加了一个控制流速的狭缝，可谓方便至极。</p>
+<p>【待添加】</p>]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="iOS_u521D_u4F53_u9A8C"><a href="#iOS_u521D_u4F53_u9A8C" class="headerlink" title="iOS初体验"></a>iOS初体验</h2>
+<p>最近服役了三年的nexus终于老态龙钟，光荣退]]>
+    </summary>
+    
+      <category term="产品体验" scheme="http://starding.github.io/categories/%E4%BA%A7%E5%93%81%E4%BD%93%E9%AA%8C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[从教堂中的钟楼说起]]></title>
+    <link href="http://starding.github.io/2016/04/09/horologe-in-church/"/>
+    <id>http://starding.github.io/2016/04/09/horologe-in-church/</id>
+    <published>2016-04-09T14:21:45.000Z</published>
+    <updated>2016-04-13T03:10:44.000Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+  <p>现代工业时代的关键不是蒸汽机，而是时钟。<br>——刘易斯·芒福德</p>
+</blockquote>
+<h2 id="u51FB_u6E83_u725B_u987F_u7684_u949F_u8868_u5320"><a href="#u51FB_u6E83_u725B_u987F_u7684_u949F_u8868_u5320" class="headerlink" title="击溃牛顿的钟表匠"></a>击溃牛顿的钟表匠</h2>
+<p>曾经无意中看到罗辑思维中有一期节目叫《击溃牛顿的钟表匠》。主要讲述了一位钟表匠制造出高精度的钟表，使得航海事业中准确定位成为可能，极大的促进了航海事业的发展。</p>
+<p>实际上，关于钟表的故事不仅仅是这些。定位经度，促进航海事业的发展固然是人类历史上的大事，但是相比于钟表在公元10世纪~20世纪所起的作用来说，仍然只是冰山一角。只不过因为钟表所造成的其他影响，对于我们而言几乎是「透明的」。在技术哲学发展之后，才慢慢揭开它的神秘面纱。</p>
+<p>本文就从钟楼建筑开始，来简单介绍一下时间的代言人——钟表还有其他哪些故事。</p>
+<h2 id="u968F_u5904_u53EF_u89C1_u7684_u949F_u697C"><a href="#u968F_u5904_u53EF_u89C1_u7684_u949F_u697C" class="headerlink" title="随处可见的钟楼"></a>随处可见的钟楼</h2>
+<p>直到今天，我们仍然可以在一些比较古老的大城市看到钟楼，大学和教堂里一直矗立着它们的身影。甚至在一些新兴的城市里，也都会在一些关键的地方立起一座钟楼，随时提醒人们现在的时间。</p>
+<p>钟楼是一种公共的计时工具，它在13世纪末~14世纪初前后出现，并且迅速成为教堂，大学中的必备建筑。在寺院或者大学中，要求人们严格按照时间来安排自己的日常活动，比如寺院中的祈祷，礼拜，用餐等活动都有着严格的规律与秩序。</p>
+<p>事实上，如果说钟楼这种产物是人类聚集成城市，有了安排生活，协调活动需求的产物的话。早在钟楼出现之前的公元10世纪前后，寺院就已经具备了一些计时工具。相传10世纪末的一名叫戈伯特（Gerbert）的僧侣就发明了机械水钟。因为规律，秩序，守时这些生活要求，几乎是教堂寺院的天然生活要求，并且随着时间的发展不断强化。（参考刘易斯·芒福德《技术与文明》）</p>
+<p>机械钟楼的出现，使得计时工具不在受到自然天气状况的影响。水流会结冰，日月星辰会被掩盖，机械钟则完全没有这些缺点，可以较为可靠的运行在各种自然状况下。于是很快被教堂寺院，以及后来出现的大学采用。</p>
+<h2 id="u949F_u697C_u7684_u610F_u4E49_u548C_u949F_u697C_u7684_u6D88_u5931"><a href="#u949F_u697C_u7684_u610F_u4E49_u548C_u949F_u697C_u7684_u6D88_u5931" class="headerlink" title="钟楼的意义和钟楼的消失"></a>钟楼的意义和钟楼的消失</h2>
+<p>如前文所述，钟楼是一种公共的计时工具，它天生就带有自己的规范——规律、秩序、守时、将看不见摸不着的时间量化。</p>
+<p>钟楼可以大范围的协调，约束人类的生产和生活。使各类活动有秩序的进行。在教堂寺院中，可能所带来的影响就是严格的祈祷，礼拜，产生一种宗教意义上的行为规范。但出了教堂，到了城市中之后，这种守时，秩序的钟表规范。协调了人类的生产活动，将时间观念逐渐带入人类世界。</p>
+<p>这种时间观念一是会提高人类生产活动的效率（在「效率的概念」产生之前，「效率」本身就已经开始存在，并且被有意识或无意识的加强了），这同时也会反过来继续促进钟表事业的发展。</p>
+<p>像钟楼这种重型的计时工具，一般在一大片区域内才有一座，并不是十分方便。而制种工艺的不断改善尤其是15世纪的发条发明之后，钟表的小型化开始有了技术基础，并且体积随之开始减小，小式的座钟开始进入房屋之中。随着制钟工艺的愈加精确以及成本的降低，这种计时工具开始走向普及。</p>
+<h2 id="u65F6_u95F4_u9769_u547D"><a href="#u65F6_u95F4_u9769_u547D" class="headerlink" title="时间革命"></a>时间革命</h2>
+<p>有一些历史研究者认为，在工业革命之前，其实已经发生了另一场革命，也就是所谓的「时间观念革命」或者叫「效率革命」。正是这场革命造成的变化，成为了工业革命的基石。</p>
+<p>而时间革命的发源，基本上可以从钟表彻底融入人类生活开始。</p>
+<p>【待续】</p>]]></content>
+    <summary type="html">
+    <![CDATA[<blockquote>
+  <p>现代工业时代的关键不是蒸汽机，而是时钟。<br>——刘易斯·芒福德</p>
+</blockquote>
+<h2 id="u51FB_u6E83_u725B_u987F_u7684_u949F_u8868_u5320"><a href="#u51]]>
+    </summary>
+    
+      <category term="技术哲学" scheme="http://starding.github.io/categories/%E6%8A%80%E6%9C%AF%E5%93%B2%E5%AD%A6/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[记一些过度设计]]></title>
@@ -563,16 +633,13 @@
     <link href="http://starding.github.io/2016/03/13/my-front-end-route/"/>
     <id>http://starding.github.io/2016/03/13/my-front-end-route/</id>
     <published>2016-03-13T14:25:05.000Z</published>
-    <updated>2016-03-25T07:43:51.000Z</updated>
+    <updated>2016-04-20T07:56:55.000Z</updated>
     <content type="html"><![CDATA[<p>主要记录一下前端学习的路线</p>
 <h2 id="u524D_u7AEF_u8D44_u6E90_u6536_u96C6"><a href="#u524D_u7AEF_u8D44_u6E90_u6536_u96C6" class="headerlink" title="前端资源收集"></a>前端资源收集</h2>
 <p><a href="http://ued.taobao.org/blog/" target="_blank" rel="external">淘宝网ued官方博客</a><br><a href="http://www.zhangxinxu.com/" target="_blank" rel="external">张鑫旭的博客</a></p>
 <h2 id="u96F6_u6563_u8BB0_u5F55"><a href="#u96F6_u6563_u8BB0_u5F55" class="headerlink" title="零散记录"></a>零散记录</h2>
 <h3 id="u56FE_u7247_u7684_width__u548C_height__u5C5E_u6027"><a href="#u56FE_u7247_u7684_width__u548C_height__u5C5E_u6027" class="headerlink" title="图片的 width 和 height 属性"></a>图片的 <code>width</code> 和 <code>height</code> 属性</h3>
 <ol>
-  <li>为图像指定 height 和 width 属性是一个好习惯。如果设置了这些属性，就可以在页面加载时为图像预留空间。如果没有这些属性，浏览器就无法了解图像的尺寸，也就无法为图像保留合适的空间，因此当图像加载时，页面的布局就会发生变化。</li>
-  <li>不要通过 height 和 width 属性来缩放图像。如果通过 height 和 width 属性来缩小图像，那么用户就必须下载大容量的图像（即使图像在页面上看上去很小）。正确的做法是，在网页上使用图像之前，应该通过软件把图像处理为合适的尺寸。</li>
-  <li>使用 height 和 width 属性的另外一种技巧，是可以非常容易地实现对页面区域的填充，同时还可以改善文档的性能。比如切图时常用的，切出1px宽度的纯色线，然后平铺填充。（还有一种用法是使用背景图重复）</li>
   <li>height 和 width 实用百分数相对单位时，相对的是父元素宽度计算。 如果不指定，默认值就是图片本身的宽高，如果图片加载失败，会显示alt属性值，或者浏览器自带的加载失败效果。</li>
   <li>虽然 <img> 标签的 height 和 width 属性能够改善性能并让你实现一些小技巧，但在使用它们时还是有一些棘手的负面效果。即使用户已经关掉了自动下载图像的功能，浏览器还是要把为图像预留的空间以指定的尺寸显示出来。而这样留给读者的通常是一个空的框架，里面有一个毫无意义的图标，表示这是放置图像的位置。这时页面将看上去非常糟糕，就像根本没有完成一样，并且大部分内容都毫无用处。如果不用这些指定的尺寸，则浏览器将只是在文本中放置一个图像图标，这样显示中至少还有一些文字可以阅读。对于这个问题我们还没有解决方案，只能强调一点，就是去使用
     alt 属性和一些描述性文字，这样读者至少知道这里缺少的是什么东西。我们还是建议您使用这些尺寸属性，因为我们鼓励一切能够改善网络性能的行为</li>
@@ -590,6 +657,18 @@
 <p><a href="http://ued.taobao.org/blog/2012/08/inline-block/" target="_blank" rel="external">inline-block 前世今生</a> </p>
 <p><a href="https://www.w3.org/TR/CSS2/visuren.html#display-prop" target="_blank" rel="external">w3c: the ‘display’ property</a></p>
 <p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/vertical-align" target="_blank" rel="external">mozilla: vertical-align</a></p>
+<h3 id="rem_u4F7F_u7528"><a href="#rem_u4F7F_u7528" class="headerlink" title="rem使用"></a>rem使用</h3>
+<p>今天在chrome中实验rem相对单位，刚开始的实验代码为：</p>
+<figure class="highlight html">
+  <table>
+    <tr>
+      <td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td>
+      <td class="code"><pre><span class="line"><span class="doctype">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">meta</span> <span class="attribute">charset</span>=<span class="value">"utf-8"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">title</span>&gt;</span>test rem<span class="tag">&lt;/<span class="title">title</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="tag">&lt;<span class="title">style</span> <span class="attribute">type</span>=<span class="value">"text/css"</span>&gt;</span><span class="css"></span><br><span class="line">		<span class="tag">html</span><span class="rules">&#123;</span><br><span class="line"></span><br><span class="line">			<span class="rule"><span class="attribute">font-size</span>:<span class="value"> <span class="number">62.5%</span></span></span>;  // 这里的表现有点奇怪</span><br><span class="line">		&#125;</span></span><br><span class="line">		<span class="tag">body</span><span class="rules">&#123;</span><br><span class="line">			<span class="rule"><span class="attribute">font-size</span>:<span class="value"> <span class="number">1.2rem</span></span></span>;</span><br><span class="line">		&#125;</span></span><br><span class="line">		<span class="tag">div</span><span class="rules">&#123;</span><br><span class="line">			<span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">300px</span></span></span>;</span><br><span class="line">			<span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">300px</span></span></span>;</span><br><span class="line">			<span class="rule"><span class="attribute">background-color</span>:<span class="value"> red</span></span>;</span><br><span class="line">			<span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">1rem</span></span></span>;</span><br><span class="line">		&#125;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	</span><span class="tag">&lt;/<span class="title">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">p</span>&gt;</span>测试字体大小<span class="tag">&lt;/<span class="title">p</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></span><br></pre></td>
+    </tr>
+  </table>
+</figure>
+<p>但是这个时候，font-size并不是10px，之前在网上看到将root元素的font-size设置为10px，方便后文计算。但是在这里似乎并没有起到效果。</p>
+<p>原因是因为chrome默认所允许的最小字体为12px，如果设定值小于此值，就会被重置成12px。这个时候，<code>1rem=12px</code>，关于chrome最小字体限制，参考博客<a href="https://banri.me/web/webkit-text-size-adjust.html" target="_blank" rel="external">Banri’s<br>Chrome取消-webkit-text-size-adjust后的那些事</a></p>
 <h2 id="u4F7F_u7528_u8FC7_u7684_u5DE5_u5177"><a href="#u4F7F_u7528_u8FC7_u7684_u5DE5_u5177" class="headerlink" title="使用过的工具"></a>使用过的工具</h2>
 <ul>
   <li>reactjs react router</li>
@@ -1725,119 +1804,6 @@
       <category term="行尸走肉" scheme="http://starding.github.io/tags/%E8%A1%8C%E5%B0%B8%E8%B5%B0%E8%82%89/"/>
     
       <category term="随笔" scheme="http://starding.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[科学史上的东方与西方]]></title>
-    <link href="http://starding.github.io/2016/01/07/science-in-east-and-west/"/>
-    <id>http://starding.github.io/2016/01/07/science-in-east-and-west/</id>
-    <published>2016-01-07T07:48:31.000Z</published>
-    <updated>2016-01-07T07:52:54.000Z</updated>
-    <content type="html"><![CDATA[<p>此文是我在知乎的<a href="http://www.zhihu.com/question/21867922/answer/35898434" target="_blank" rel="external">第一个科学史答案</a></p>
-<h1 id="u4E00_uFF1A_u79D1_u5B66_u53F2_u4E0A_u7684_u300E_u79D1_u5B66_u300F"><a href="#u4E00_uFF1A_u79D1_u5B66_u53F2_u4E0A_u7684_u300E_u79D1_u5B66_u300F" class="headerlink" title="一：科学史上的『科学』"></a>一：科学史上的『科学』</h1>
-<p>科学史中所研究的科学范围，是超出我们日常生活中所提到的科学的，在科学史研究中，研究的是更广义意义上的科学，一般包括以下几种：</p>
-<ol>
-  <li>古希腊的理性科学</li>
-  <li>近代科学革命产生的数理-实验科学</li>
-  <li>更为广泛意义上的博物学</li>
-  <li>更广泛的包括技术系统的科学</li>
-</ol>
-<p>题主所说的“西方科学史”的主线是：<br>古希腊——罗马——中世纪——文艺复兴——科学革命——现在。</p>
-<p>以下叙述中的“科学”也是广义化的，但西方科学发展中的主线与支线，大家一看便知，一个非常重要的线索就是文明的类型与科学的类型这对关系。</p>
-<h1 id="u4E8C_3A_u79D1_u5B66_u53F2_u4E0A_u7684_u4E1C_u65B9_u4E0E_u897F_u65B9"><a href="#u4E8C_3A_u79D1_u5B66_u53F2_u4E0A_u7684_u4E1C_u65B9_u4E0E_u897F_u65B9" class="headerlink" title="二:科学史上的东方与西方"></a>二:科学史上的东方与西方</h1>
-<p>追溯到科学发展的源头去看，科学史上有两种比较典型的科学类型：东方的「实用型科学」与古希腊的「理性型科学」，而承载这两种科学类型的文明类型，也有两种类型：水利型文明和非水利型文明。</p>
-<h2 id="u6C34_u5229_u578B_u6587_u660E_u4E0E_u5B9E_u7528_u578B_u79D1_u5B66_3A"><a href="#u6C34_u5229_u578B_u6587_u660E_u4E0E_u5B9E_u7528_u578B_u79D1_u5B66_3A" class="headerlink" title="水利型文明与实用型科学:"></a>水利型文明与实用型科学:</h2>
-<p>代表是四大古文明，即两河流域的美索不达米亚文明，尼罗河流域的埃及文明，印度河恒河流域的印度文明，以及长江，黄河流域的中国文明。这几个文明都是近水而生，人们聚集在发达的水系旁边进行农业生产，当农业与人口都开始繁荣后，多余粮食的分配，水资源的分配，水利工程的建造和维护，排水，泄洪等都需要有组织的协作，而用水过程中出现的争执也需要权威来调节，这就应运而生了比较核心的管理组织，也就是集权政治的原型。在这种文明环境中，国家的正常运行，人民的生活是管理阶层首先要考虑的事，相应的，被管理阶层所把持的科学也偏向于实用，多集中于水利（农业灌溉必不可少），天文（农业生产，平时生活，预测王朝命运等都需要天文），医学。</p>
-<h2 id="u975E_u6C34_u5229_u6587_u660E_u4E0E_u5E0C_u814A_u7406_u6027_u79D1_u5B66_uFF1A"><a href="#u975E_u6C34_u5229_u6587_u660E_u4E0E_u5E0C_u814A_u7406_u6027_u79D1_u5B66_uFF1A" class="headerlink" title="非水利文明与希腊理性科学："></a>非水利文明与希腊理性科学：</h2>
-<p>希腊在地理位置上处于地中海沿岸，境内多山，没有大河，也没有大面积富饶的冲积平原，农业灌溉更加依靠雨水而不是与江河有关的水利，希腊人民靠本土条件难以为继，逐渐发展出了比较好的航海和商业。同时，希腊距离美索不达米亚和埃及这些文明不近也不远，便于交流而且不会被完全同化。另一方面，山脉把希腊的政治文明分割成多个小邦国，各个邦国之间形成合作竞争的关系。在此环境下，希腊人发展出了民主城邦制和奴隶制度，保证了闲暇阶层的出现，自由民主的环境也使得政治辩论成为常态，这都培养了希腊人的理性精神。希腊的闲暇阶层不同于东方的管理者，需要极力去维护一个集权大国的正常运行，而是更加注重于对政治合法性等这些内容进行思考。这些条件使得希腊成为科学史上的一朵奇葩，希腊人善于辩论，对事物有着一种寻根究底的热情，超越世俗的学术精神，比如希腊的天文学不同于东方的实用性天文学，它是一种数理行星天文学，是为了解释自然，而不是为了农业，占星等实用目的。用自然自身解释自然，不再求助于神等外物，从泰勒斯的“水是万物之源”，到柏拉图的“理念论”，再到亚里士多德的综合自然哲学，清晰的体现出理性科学出现的过程，这也是现代科学最古老的源头。</p>
-<h1 id="u4E09_uFF1A_u4E24_u79CD_u79D1_u5B66_u7C7B_u578B_u7684_u53D1_u5C55"><a href="#u4E09_uFF1A_u4E24_u79CD_u79D1_u5B66_u7C7B_u578B_u7684_u53D1_u5C55" class="headerlink" title="三：两种科学类型的发展"></a>三：两种科学类型的发展</h1>
-<h2 id="u5E0C_u814A_u7406_u6027_u79D1_u5B66_u7684_u7EE7_u627F_u53CA_u53D1_u5C55_uFF1A"><a href="#u5E0C_u814A_u7406_u6027_u79D1_u5B66_u7684_u7EE7_u627F_u53CA_u53D1_u5C55_uFF1A" class="headerlink" title="希腊理性科学的继承及发展："></a>希腊理性科学的继承及发展：</h2>
-<p>希腊发展出了非功利的，比较系统的，有内在发展逻辑的理性科学传统，比如托勒密的《天文学大成》，欧几里得的《几何原本》，更为重要的是柏拉图和亚里士多德开创的理性的范式：柏拉图的理念论和亚氏自然哲学，他们虽然不同，但都是有内在逻辑的理性系统。希腊-罗马文明灭亡之后，这种理性融入到了基督教的教义之中，形成了前期的教父哲学和后期的经院哲学。希腊的文化同时被移植到伊斯兰世界中去，十字军东征之后，便开始在欧洲复兴，经历了航海时代，宗教改革，文艺复兴之后，希腊的这种理性科学的主线便在哥白尼身上连接了起来。紧接着就是近代的科学革命了。要注意的是，这个时候是十六十七世纪，资本主义对科学的发展有作用，但是还远没有到工业革命时的那么大的影响，在这中间主要的动力作用还理性科学内在的发展逻辑，宗教精神在其中也有不小的推动作用（宗教在近代科学产生过程中的作用，也是非常重要的，但讨论又需要大量篇幅了，答主题目中所说的“宗教的严格拘束”不太公平）。</p>
-<h2 id="u4E1C_u65B9_u6C34_u5229_u6587_u660E_u5B9E_u7528_u578B_u79D1_u5B66_u7684_u53D1_u5C55_uFF1A"><a href="#u4E1C_u65B9_u6C34_u5229_u6587_u660E_u5B9E_u7528_u578B_u79D1_u5B66_u7684_u53D1_u5C55_uFF1A" class="headerlink" title="东方水利文明实用型科学的发展："></a>东方水利文明实用型科学的发展：</h2>
-<p>实用型科学并没有它内在的发展逻辑，它的发展是根据外部环境的需要，一旦外部环境没有了需求时，它也就失去了发展的动力。这在中国历史上表现的非常明显，中国是非常典型的水利文明，集权的政治，官方掌控的科学都是其特点，这种由外部需求推动的科学与外部需要结合的非常紧密，长期来看就表现出科学技术发展的离散性，形不成系统。而且中国这种高度集权的国家，一旦形成了相应的治国文化后，这种文化对超越而无用的学术具有很强的限制作用（宗教还是文化，这是个问题）。中国在两千年的历史中，科学技术（取技术系统与博物学）其实一直都是非常强的，到了明代，达到了最高点。到了这个时候，外部的需求基本被满足，除非产生社会结构的变革（像资本主义与城市那样），或者是科学本身产生像希腊理性科学那样的结构，科学技术的发展就很难前进了。但是二者都是困难的，前者是封建势力不断扼杀资本主义的萌芽，后者是中国的政治文化已经固定，形成很强的束缚了。这个时候，也刚好是西方开始抓住希腊理性之线开始复兴的时候，从此中国在技术上也开始落后了。</p>
-<h1 id="u56DB_uFF1A_u603B_u7ED3"><a href="#u56DB_uFF1A_u603B_u7ED3" class="headerlink" title="四：总结"></a>四：总结</h1>
-<p>总之，以一种辉格史的角度来看的话，宏观上西方科学发展的逻辑还是比较清晰的，主线的就是希腊这根理性之线，旁支就是伊斯兰地区在中世纪时期对希腊学术的移植以及再移植，然而伊斯兰世界始终也是典型的东方文明，即使移植了希腊学术，对近代科学产生有着极其重要的影响，但最终也没能成功成为近代科学的策源地。</p>
-<p>亚里士多德认为自由的学术有三个条件：</p>
-<ol>
-  <li>闲暇的阶层</li>
-  <li>批判传统</li>
-  <li>对世界的惊异</li>
-</ol>
-<p>结合科学史可以看到，无论是古希腊，还是近代欧洲，都比较符合这些条件，而集权的国家则难以满足。注意这里没有强调“民主”，只是强调学术发展应有一个相对自由的环境，集权国家在脱去蒙昧之后，也是能创造出相似的条件的</p>]]></content>
-    <summary type="html">
-    <![CDATA[<p>此文是我在知乎的<a href="http://www.zhihu.com/question/21867922/answer/35898434" target="_blank" rel="external">第一个科学史答案</a></p>
-<h1 id="u4E00_uF]]>
-    </summary>
-    
-      <category term="科学史" scheme="http://starding.github.io/tags/%E7%A7%91%E5%AD%A6%E5%8F%B2/"/>
-    
-      <category term="随笔" scheme="http://starding.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[django中使用原生sql]]></title>
-    <link href="http://starding.github.io/2016/01/07/raw-sql-in-django/"/>
-    <id>http://starding.github.io/2016/01/07/raw-sql-in-django/</id>
-    <published>2016-01-07T07:29:46.000Z</published>
-    <updated>2016-01-08T11:33:34.000Z</updated>
-    <content type="html"><![CDATA[<h2 id="orm_u5E76_u975E_u4E07_u80FD"><a href="#orm_u5E76_u975E_u4E07_u80FD" class="headerlink" title="orm并非万能"></a>orm并非万能</h2>
-<p>从功能集上讲，django的orm只是sql的一个子集。也就是说很多使用sql能实现的功能，django orm是无法完成的，更不用说sql甚至是图灵完备的了。比如，直到1.8中，django才逐渐实现了case，when，if这些控制流。而这些内容在一些特殊类型的表操作中非常常见，比如说报表管理。</p>
-<p>好在django提供了使用原生sql的接口，这样就能通过原生sql来实现一些复杂的功能。</p>
-<h2 id="sql_u63A7_u5236_u6D41_u4E4BCASE_WHEN_u4E00_u4E2A_u4F8B_u5B50"><a href="#sql_u63A7_u5236_u6D41_u4E4BCASE_WHEN_u4E00_u4E2A_u4F8B_u5B50" class="headerlink" title="sql控制流之CASE WHEN一个例子"></a>sql控制流之CASE WHEN一个例子</h2>
-<p>现有一张档案信息表archives：</p>
-<p><img src="http://7xpxcb.com1.z0.glb.clouddn.com/starding48482-ddc55e26121f44aa.png" alt="mysql-demo"></p>
-<p>字段说明：</p>
-<ul>
-  <li>number 档案号</li>
-  <li>type 档案类型</li>
-  <li>status 档案状态</li>
-  <li>company 公司</li>
-  <li>branch_company 分公司</li>
-</ul>
-<p><strong>需求是计算出表中同一type，同一分公司下的档案总数，和status=01的档案数，以及它占档案总数的比值。</strong></p>
-<p>当然，使用编程语言也可以实现这个功能，但是会比较复杂。这个时候可以使用case when语句来精确控制表中同一字段下，不同内容的选择。</p>
-<figure class="highlight sql">
-  <table>
-    <tr>
-      <td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td>
-      <td class="code"><pre><span class="line"><span class="operator"><span class="keyword">SELECT</span> </span><br><span class="line">      <span class="keyword">COUNT</span>(<span class="keyword">CASE</span> <span class="keyword">WHEN</span> <span class="keyword">status</span>=<span class="string">'01'</span> <span class="keyword">THEN</span> <span class="keyword">status</span> <span class="keyword">END</span>) status_01,</span><br><span class="line">      <span class="keyword">COUNT</span>(*) total,</span><br><span class="line">      <span class="keyword">CONCAT</span>(<span class="keyword">FORMAT</span>(<span class="keyword">COUNT</span>(<span class="keyword">CASE</span> <span class="keyword">WHEN</span> <span class="keyword">status</span>=<span class="string">'01'</span> <span class="keyword">THEN</span> <span class="keyword">status</span> <span class="keyword">END</span>)/</span><br><span class="line">      <span class="keyword">COUNT</span>(*)*<span class="number">100</span>, <span class="number">2</span>), <span class="string">'%'</span>)</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">      archives</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span></span><br><span class="line">      <span class="keyword">status</span>, subbranch_company</span></span><br></pre></td>
-    </tr>
-  </table>
-</figure>
-<p>这样就可以解决上面提出的问题，因为这个表是临时杜撰的，结果这里就不贴了。</p>
-<h2 id="u5728_u4E0A_u8FF0_u57FA_u7840_u4E0A_u5B9E_u73B0_u94FE_u5F0F_u67E5_u8BE2"><a href="#u5728_u4E0A_u8FF0_u57FA_u7840_u4E0A_u5B9E_u73B0_u94FE_u5F0F_u67E5_u8BE2" class="headerlink" title="在上述基础上实现链式查询"></a>在上述基础上实现链式查询</h2>
-<p>在django的orm中，一个非常好用的功能就是使用链式查询，你可以不断连接filter等方法来过滤出想要的内容。</p>
-<p>这在一些特定的场景中特别有用。比如在上面的表中，我有时候想要某个分公司或中支公司下的数据，有时候又想要单一类型下的数据。如果针对每一种条件组合分别写相应地sql查询的话，会非常复杂，而且有时候组合会特别多。而链式查询比较完美的解决了这个问题。<br>而为了让原生sql也能有个简单的链式查询，我们需要不断连接where中的条件子句。为此可以写一个简单的类来实现它：</p>
-<figure class="highlight python">
-  <table>
-    <tr>
-      <td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td>
-      <td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GenQuerySQL</span><span class="params">(object)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, table)</span>:</span></span><br><span class="line">        self.table = table</span><br><span class="line">        self.group_by_fields = <span class="string">" "</span></span><br><span class="line">        self.where_conditions = <span class="string">" 1=1 "</span></span><br><span class="line">        self.fields = <span class="string">" "</span></span><br><span class="line">        self.order_by_fields = <span class="string">""</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">where</span><span class="params">(self, where_condition)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> where_condition:</span><br><span class="line">            self.where_conditions += <span class="string">" and "</span> + where_condition</span><br><span class="line">        <span class="keyword">return</span> self</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">add_field</span><span class="params">(self, fields)</span>:</span></span><br><span class="line">        self.fields += <span class="string">" "</span> + fields</span><br><span class="line">        <span class="keyword">return</span> self</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">group_by</span><span class="params">(self, group_by_field)</span>:</span></span><br><span class="line">        self.group_by_fields = group_by_field</span><br><span class="line">        <span class="keyword">return</span> self</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">order_by</span><span class="params">(self, order_by_field)</span>:</span></span><br><span class="line">        self.order_by_fields = order_by_field</span><br><span class="line">        <span class="keyword">return</span> self</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">sql</span><span class="params">(self)</span>:</span></span><br><span class="line">       SQL = <span class="string">'SELECT '</span> + self.fields + <span class="string">' FROM '</span> + self.table + <span class="string">' WHERE '</span> + self.where_conditions + <span class="string">' GROUP BY '</span> + self.group_by_fields + <span class="string">' ORDER BY '</span> + self.order_by_fields +  <span class="string">";"</span></span><br><span class="line">       <span class="keyword">return</span> SQL</span><br></pre></td>
-    </tr>
-  </table>
-</figure>
-<p>这个类可以简单的模拟链式查询的功能，可以这样使用它：</p>
-<figure class="highlight python">
-  <table>
-    <tr>
-      <td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td>
-      <td class="code"><pre><span class="line">archive_statistics = GenQuerySQL(SOME_TABLE)</span><br><span class="line">raw_sql = archive_statistics.add_field(fields).where(where_condition).group_by(group_by_fields).order_by(order_by_fields).sql()</span><br></pre></td>
-    </tr>
-  </table>
-</figure>
-<p>其中.where可以多次连接。当然也可以使用另一种方式：先把where语句根据条件构造完毕，最终再拼接成sql语句。其思想是一样的：先过滤条件，最终再查询数据库。</p>]]></content>
-    <summary type="html">
-    <![CDATA[<h2 id="orm_u5E76_u975E_u4E07_u80FD"><a href="#orm_u5E76_u975E_u4E07_u80FD" class="headerlink" title="orm并非万能"></a>orm并非万能</h2>
-<p>从功能集上讲，dj]]>
-    </summary>
-    
-      <category term="django" scheme="http://starding.github.io/tags/django/"/>
-    
-      <category term="python" scheme="http://starding.github.io/tags/python/"/>
-    
-      <category term="python" scheme="http://starding.github.io/categories/python/"/>
     
   </entry>
   

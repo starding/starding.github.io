@@ -3,6 +3,62 @@
 
 
     
+  <url>
+    <loc>http://starding.github.io/2016/03/13/my-front-end-route/</loc>
+    <lastmod>2016-04-20T07:56:55.000Z</lastmod>
+    <data>
+        <display>
+        <title>前端记录</title>
+        <pubTime>2016-03-13T14:25:05.000Z</pubTime>
+        
+        <tag>前端</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端" url="http://starding.github.io/categories/%E5%89%8D%E7%AB%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://starding.github.io/2016/04/12/the-elements-of-user-experience/</loc>
+    <lastmod>2016-04-19T06:28:41.000Z</lastmod>
+    <data>
+        <display>
+        <title>那些差劲的产品使用体验</title>
+        <pubTime>2016-04-12T09:07:28.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="产品体验" url="http://starding.github.io/categories/%E4%BA%A7%E5%93%81%E4%BD%93%E9%AA%8C/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://starding.github.io/2016/04/09/horologe-in-church/</loc>
+    <lastmod>2016-04-13T03:10:44.000Z</lastmod>
+    <data>
+        <display>
+        <title>从教堂中的钟楼说起</title>
+        <pubTime>2016-04-09T14:21:45.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="技术哲学" url="http://starding.github.io/categories/%E6%8A%80%E6%9C%AF%E5%93%B2%E5%AD%A6/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
     
   <url>
     <loc>http://starding.github.io/2016/01/19/learn-javascript-follow-definitive-guide/</loc>
@@ -56,26 +112,6 @@
            
              
               <breadCrumb title="数学" url="http://starding.github.io/categories/%E6%95%B0%E5%AD%A6/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://starding.github.io/2016/03/13/my-front-end-route/</loc>
-    <lastmod>2016-03-25T07:43:51.000Z</lastmod>
-    <data>
-        <display>
-        <title>前端记录</title>
-        <pubTime>2016-03-13T14:25:05.000Z</pubTime>
-        
-        <tag>前端</tag>
-         
-         
-           
-             
-              <breadCrumb title="前端" url="http://starding.github.io/categories/%E5%89%8D%E7%AB%AF/"/>
           
         </display>
     </data>

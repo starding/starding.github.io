@@ -17,8 +17,8 @@
 零散记录
 图片的 width 和 height 属性
 
-  为图像指定 height 和 width 属性是一个好习惯。如果设置了这些属性，就可以在页面加载时为图像预留空间。如果没有这些属性，浏览器就无法了解图像的尺寸，也就无法为图像保留合适的空间，因此当图像加载时，页面的布局就会发生变化。
-  不要通过 height 和">
+  height 和 width 实用百分数相对单位时，相对的是父元素宽度计算。 如果不指定，默认值就是图片本身的宽高，如果图片加载失败，会显示alt属性值，或者浏览器自带的加载失败效果。
+  虽然  标签的 height 和 width 属性能够改善性能并让你实现一">
   <meta property="og:type" content="article">
   <meta property="og:title" content="前端记录">
   <meta property="og:url" content="http://starding.github.io/2016/03/13/my-front-end-route/index.html">
@@ -29,9 +29,9 @@
 零散记录
 图片的 width 和 height 属性
 
-  为图像指定 height 和 width 属性是一个好习惯。如果设置了这些属性，就可以在页面加载时为图像预留空间。如果没有这些属性，浏览器就无法了解图像的尺寸，也就无法为图像保留合适的空间，因此当图像加载时，页面的布局就会发生变化。
-  不要通过 height 和">
-  <meta property="og:updated_time" content="2016-03-25T07:43:51.000Z">
+  height 和 width 实用百分数相对单位时，相对的是父元素宽度计算。 如果不指定，默认值就是图片本身的宽高，如果图片加载失败，会显示alt属性值，或者浏览器自带的加载失败效果。
+  虽然  标签的 height 和 width 属性能够改善性能并让你实现一">
+  <meta property="og:updated_time" content="2016-04-20T07:56:55.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="前端记录">
   <meta name="twitter:description" content="主要记录一下前端学习的路线
@@ -40,8 +40,8 @@
 零散记录
 图片的 width 和 height 属性
 
-  为图像指定 height 和 width 属性是一个好习惯。如果设置了这些属性，就可以在页面加载时为图像预留空间。如果没有这些属性，浏览器就无法了解图像的尺寸，也就无法为图像保留合适的空间，因此当图像加载时，页面的布局就会发生变化。
-  不要通过 height 和">
+  height 和 width 实用百分数相对单位时，相对的是父元素宽度计算。 如果不指定，默认值就是图片本身的宽高，如果图片加载失败，会显示alt属性值，或者浏览器自带的加载失败效果。
+  虽然  标签的 height 和 width 属性能够改善性能并让你实现一">
 
 
   <link rel="alternative" href="/atom.xml" title="小狐濡尾" type="application/atom+xml">
@@ -126,6 +126,7 @@
                 <ol class="toc-child">
                   <li class="toc-item toc-level-3"><a class="toc-link" href="#u56FE_u7247_u7684_width__u548C_height__u5C5E_u6027"><span class="toc-number">2.1.</span> <span class="toc-text">图片的 width 和 height 属性</span></a></li>
                   <li class="toc-item toc-level-3"><a class="toc-link" href="#display_3A_inline-block"><span class="toc-number">2.2.</span> <span class="toc-text">display: inline-block</span></a></li>
+                  <li class="toc-item toc-level-3"><a class="toc-link" href="#rem_u4F7F_u7528"><span class="toc-number">2.3.</span> <span class="toc-text">rem使用</span></a></li>
                 </ol>
               </li>
               <li class="toc-item toc-level-2"><a class="toc-link" href="#u4F7F_u7528_u8FC7_u7684_u5DE5_u5177"><span class="toc-number">3.</span> <span class="toc-text">使用过的工具</span></a></li>
@@ -139,9 +140,6 @@
           <h2 id="u96F6_u6563_u8BB0_u5F55"><a href="#u96F6_u6563_u8BB0_u5F55" class="headerlink" title="零散记录"></a>零散记录</h2>
           <h3 id="u56FE_u7247_u7684_width__u548C_height__u5C5E_u6027"><a href="#u56FE_u7247_u7684_width__u548C_height__u5C5E_u6027" class="headerlink" title="图片的 width 和 height 属性"></a>图片的 <code>width</code> 和 <code>height</code> 属性</h3>
           <ol>
-            <li>为图像指定 height 和 width 属性是一个好习惯。如果设置了这些属性，就可以在页面加载时为图像预留空间。如果没有这些属性，浏览器就无法了解图像的尺寸，也就无法为图像保留合适的空间，因此当图像加载时，页面的布局就会发生变化。</li>
-            <li>不要通过 height 和 width 属性来缩放图像。如果通过 height 和 width 属性来缩小图像，那么用户就必须下载大容量的图像（即使图像在页面上看上去很小）。正确的做法是，在网页上使用图像之前，应该通过软件把图像处理为合适的尺寸。</li>
-            <li>使用 height 和 width 属性的另外一种技巧，是可以非常容易地实现对页面区域的填充，同时还可以改善文档的性能。比如切图时常用的，切出1px宽度的纯色线，然后平铺填充。（还有一种用法是使用背景图重复）</li>
             <li>height 和 width 实用百分数相对单位时，相对的是父元素宽度计算。 如果不指定，默认值就是图片本身的宽高，如果图片加载失败，会显示alt属性值，或者浏览器自带的加载失败效果。</li>
             <li>虽然 <img> 标签的 height 和 width 属性能够改善性能并让你实现一些小技巧，但在使用它们时还是有一些棘手的负面效果。即使用户已经关掉了自动下载图像的功能，浏览器还是要把为图像预留的空间以指定的尺寸显示出来。而这样留给读者的通常是一个空的框架，里面有一个毫无意义的图标，表示这是放置图像的位置。这时页面将看上去非常糟糕，就像根本没有完成一样，并且大部分内容都毫无用处。如果不用这些指定的尺寸，则浏览器将只是在文本中放置一个图像图标，这样显示中至少还有一些文字可以阅读。对于这个问题我们还没有解决方案，只能强调一点，就是去使用
               alt 属性和一些描述性文字，这样读者至少知道这里缺少的是什么东西。我们还是建议您使用这些尺寸属性，因为我们鼓励一切能够改善网络性能的行为</li>
@@ -159,6 +157,18 @@
           <p><a href="http://ued.taobao.org/blog/2012/08/inline-block/" target="_blank" rel="external">inline-block 前世今生</a> </p>
           <p><a href="https://www.w3.org/TR/CSS2/visuren.html#display-prop" target="_blank" rel="external">w3c: the ‘display’ property</a></p>
           <p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/vertical-align" target="_blank" rel="external">mozilla: vertical-align</a></p>
+          <h3 id="rem_u4F7F_u7528"><a href="#rem_u4F7F_u7528" class="headerlink" title="rem使用"></a>rem使用</h3>
+          <p>今天在chrome中实验rem相对单位，刚开始的实验代码为：</p>
+          <figure class="highlight html">
+            <table>
+              <tr>
+                <td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td>
+                <td class="code"><pre><span class="line"><span class="doctype">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">meta</span> <span class="attribute">charset</span>=<span class="value">"utf-8"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">title</span>&gt;</span>test rem<span class="tag">&lt;/<span class="title">title</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="tag">&lt;<span class="title">style</span> <span class="attribute">type</span>=<span class="value">"text/css"</span>&gt;</span><span class="css"></span><br><span class="line">		<span class="tag">html</span><span class="rules">&#123;</span><br><span class="line"></span><br><span class="line">			<span class="rule"><span class="attribute">font-size</span>:<span class="value"> <span class="number">62.5%</span></span></span>;  // 这里的表现有点奇怪</span><br><span class="line">		&#125;</span></span><br><span class="line">		<span class="tag">body</span><span class="rules">&#123;</span><br><span class="line">			<span class="rule"><span class="attribute">font-size</span>:<span class="value"> <span class="number">1.2rem</span></span></span>;</span><br><span class="line">		&#125;</span></span><br><span class="line">		<span class="tag">div</span><span class="rules">&#123;</span><br><span class="line">			<span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">300px</span></span></span>;</span><br><span class="line">			<span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">300px</span></span></span>;</span><br><span class="line">			<span class="rule"><span class="attribute">background-color</span>:<span class="value"> red</span></span>;</span><br><span class="line">			<span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">1rem</span></span></span>;</span><br><span class="line">		&#125;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	</span><span class="tag">&lt;/<span class="title">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">p</span>&gt;</span>测试字体大小<span class="tag">&lt;/<span class="title">p</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></span><br></pre></td>
+              </tr>
+            </table>
+          </figure>
+          <p>但是这个时候，font-size并不是10px，之前在网上看到将root元素的font-size设置为10px，方便后文计算。但是在这里似乎并没有起到效果。</p>
+          <p>原因是因为chrome默认所允许的最小字体为12px，如果设定值小于此值，就会被重置成12px。这个时候，<code>1rem=12px</code>，关于chrome最小字体限制，参考博客<a href="https://banri.me/web/webkit-text-size-adjust.html" target="_blank" rel="external">Banri’s<br>Chrome取消-webkit-text-size-adjust后的那些事</a></p>
           <h2 id="u4F7F_u7528_u8FC7_u7684_u5DE5_u5177"><a href="#u4F7F_u7528_u8FC7_u7684_u5DE5_u5177" class="headerlink" title="使用过的工具"></a>使用过的工具</h2>
           <ul>
             <li>reactjs react router</li>
@@ -230,6 +240,7 @@
           <ol class="toc-child">
             <li class="toc-item toc-level-3"><a class="toc-link" href="#u56FE_u7247_u7684_width__u548C_height__u5C5E_u6027"><span class="toc-number">2.1.</span> <span class="toc-text">图片的 width 和 height 属性</span></a></li>
             <li class="toc-item toc-level-3"><a class="toc-link" href="#display_3A_inline-block"><span class="toc-number">2.2.</span> <span class="toc-text">display: inline-block</span></a></li>
+            <li class="toc-item toc-level-3"><a class="toc-link" href="#rem_u4F7F_u7528"><span class="toc-number">2.3.</span> <span class="toc-text">rem使用</span></a></li>
           </ol>
         </li>
         <li class="toc-item toc-level-2"><a class="toc-link" href="#u4F7F_u7528_u8FC7_u7684_u5DE5_u5177"><span class="toc-number">3.</span> <span class="toc-text">使用过的工具</span></a></li>
@@ -286,11 +297,19 @@
 
 
 
+            <li><a href="/categories/产品体验/" title="产品体验">产品体验<sup>1</sup></a></li>
+
+
+
             <li><a href="/categories/前端/" title="前端">前端<sup>4</sup></a></li>
 
 
 
             <li><a href="/categories/工程/" title="工程">工程<sup>1</sup></a></li>
+
+
+
+            <li><a href="/categories/技术哲学/" title="技术哲学">技术哲学<sup>1</sup></a></li>
 
 
 
