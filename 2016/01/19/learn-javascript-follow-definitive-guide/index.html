@@ -41,7 +41,7 @@
     变量类型
     strict模式
     词法作用域、函">
-  <meta property="og:updated_time" content="2016-04-09T06:56:05.000Z">
+  <meta property="og:updated_time" content="2016-04-21T10:09:20.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="javascript犀牛书（第六版）">
   <meta name="twitter:description" content="记录阅读《javascript权威指南》中，个人认为比较核心或是比较容易混乱的地方。同时会加入在阅读过程中参阅的一些优秀的扩展文章。
@@ -164,7 +164,9 @@
                 <li class="toc-item toc-level-3"><a class="toc-link" href="#u53D8_u91CF_u58F0_u660E_u63D0_u524D_u548C_u53D8_u91CF_u53EF_u914D_u7F6E_u6027"><span class="toc-number"></span> <span class="toc-text">变量声明提前和变量可配置性</span></a></li>
                 <li class="toc-item toc-level-3"><a class="toc-link" href="#eval__u8FD0_u7B97_u7B26"><span class="toc-number"></span> <span class="toc-text">eval 运算符</span></a></li>
                 <li class="toc-item toc-level-3"><a class="toc-link" href="#u6807_u7B7E_u8BED_u53E5"><span class="toc-number"></span> <span class="toc-text">标签语句</span></a></li>
-                <li class="toc-item toc-level-3"><a class="toc-link" href="#throw/try/catch/finally__u8BED_u53E5"><span class="toc-number"></span> <span class="toc-text">throw/try/catch/finally 语句</span></a>
+                <li class="toc-item toc-level-3"><a class="toc-link" href="#throw/try/catch/finally__u8BED_u53E5"><span class="toc-number"></span> <span class="toc-text">throw/try/catch/finally 语句</span></a></li>
+                <li class="toc-item toc-level-3"><a class="toc-link" href="#u51FD_u6570_u540D"><span class="toc-number"></span> <span class="toc-text">函数名</span></a></li>
+                <li class="toc-item toc-level-3"><a class="toc-link" href="#this__u5F15_u7528_u4E22_u5931"><span class="toc-number"></span> <span class="toc-text">this 引用丢失</span></a>
 
           </div>
 
@@ -277,6 +279,25 @@
               </tr>
             </table>
           </figure>
+          <h3 id="u51FD_u6570_u540D"><a href="#u51FD_u6570_u540D" class="headerlink" title="函数名"></a>函数名</h3>
+          <figure class="highlight javascript">
+            <table>
+              <tr>
+                <td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td>
+                <td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 直接声明函数是具有函数名的</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">foo.name  <span class="comment">// 函数名为foo</span></span><br><span class="line"><span class="keyword">var</span> bar = foo</span><br><span class="line">bar.name  <span class="comment">// 将函数赋值给一个变量，只是让变量指向了函数结构，并不会改变函数结构本身</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 函数表达式生成的是匿名函数</span></span><br><span class="line"><span class="keyword">var</span> foo = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">foo.name <span class="comment">// "" (空字符串)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 函数名称只存在于函数自身结构内，被传递时不会改变这个结构</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"><span class="keyword">var</span> o =&#123;</span><br><span class="line">    a: <span class="string">'a'</span>,</span><br><span class="line">    bar: foo</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">o.bar.name <span class="comment">// foo</span></span><br></pre></td>
+              </tr>
+            </table>
+          </figure>
+          <h3 id="this__u5F15_u7528_u4E22_u5931"><a href="#this__u5F15_u7528_u4E22_u5931" class="headerlink" title="this 引用丢失"></a>this 引用丢失</h3>
+          <figure class="highlight javascript">
+            <table>
+              <tr>
+                <td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td>
+                <td class="code"><pre><span class="line"><span class="comment">// 函数被多次传递时可能发生</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.a);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    a: <span class="number">2</span>,</span><br><span class="line">    foo: foo</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> bar = obj.foo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a=<span class="string">"oops, global"</span>;</span><br><span class="line"></span><br><span class="line">bar(); <span class="comment">//"oops, global"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 回调函数中可能发生（异步）</span></span><br><span class="line"><span class="comment">// 代码同上</span></span><br><span class="line">setTimeout(obj.foo, <span class="number">100</span>); <span class="comment">// "oops, global"</span></span><br></pre></td>
+              </tr>
+            </table>
+          </figure>
+          <p>如上所示，当处于方法中的</p>
         </div>
         <footer class="article-footer clearfix">
           <div class="article-catetags">
@@ -364,7 +385,9 @@
           <li class="toc-item toc-level-3"><a class="toc-link" href="#u53D8_u91CF_u58F0_u660E_u63D0_u524D_u548C_u53D8_u91CF_u53EF_u914D_u7F6E_u6027"><span class="toc-number"></span> <span class="toc-text">变量声明提前和变量可配置性</span></a></li>
           <li class="toc-item toc-level-3"><a class="toc-link" href="#eval__u8FD0_u7B97_u7B26"><span class="toc-number"></span> <span class="toc-text">eval 运算符</span></a></li>
           <li class="toc-item toc-level-3"><a class="toc-link" href="#u6807_u7B7E_u8BED_u53E5"><span class="toc-number"></span> <span class="toc-text">标签语句</span></a></li>
-          <li class="toc-item toc-level-3"><a class="toc-link" href="#throw/try/catch/finally__u8BED_u53E5"><span class="toc-number"></span> <span class="toc-text">throw/try/catch/finally 语句</span></a>
+          <li class="toc-item toc-level-3"><a class="toc-link" href="#throw/try/catch/finally__u8BED_u53E5"><span class="toc-number"></span> <span class="toc-text">throw/try/catch/finally 语句</span></a></li>
+          <li class="toc-item toc-level-3"><a class="toc-link" href="#u51FD_u6570_u540D"><span class="toc-number"></span> <span class="toc-text">函数名</span></a></li>
+          <li class="toc-item toc-level-3"><a class="toc-link" href="#this__u5F15_u7528_u4E22_u5931"><span class="toc-number"></span> <span class="toc-text">this 引用丢失</span></a>
 
     </div>
 
@@ -567,7 +590,13 @@
 
 
       <p class="copyright">
-        Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016
+        Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 本站总访问量
+
+
+        <span id="busuanzi_value_site_pv"></span>次 本站访客数
+        <span id="busuanzi_value_site_uv"></span>人次 本文总阅读量
+        <span id="busuanzi_value_page_pv"></span>次
+
 
         <a href="/about" target="_blank" title="starding">starding</a>
 
@@ -816,6 +845,9 @@
       <!-- Tiny_search Begin -->
 
       <!-- Tiny_search End -->
+
+      <!--不蒜子-->
+      <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 </body>
 
 </html>
