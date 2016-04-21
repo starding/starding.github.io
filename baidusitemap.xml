@@ -5,7 +5,7 @@
     
   <url>
     <loc>http://starding.github.io/2016/03/13/my-front-end-route/</loc>
-    <lastmod>2016-04-20T07:56:55.000Z</lastmod>
+    <lastmod>2016-04-21T03:10:24.000Z</lastmod>
     <data>
         <display>
         <title>前端记录</title>
@@ -25,7 +25,7 @@
     
   <url>
     <loc>http://starding.github.io/2016/04/12/the-elements-of-user-experience/</loc>
-    <lastmod>2016-04-19T06:28:41.000Z</lastmod>
+    <lastmod>2016-04-21T03:10:02.000Z</lastmod>
     <data>
         <display>
         <title>那些差劲的产品使用体验</title>
@@ -35,6 +35,24 @@
            
              
               <breadCrumb title="产品体验" url="http://starding.github.io/categories/%E4%BA%A7%E5%93%81%E4%BD%93%E9%AA%8C/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://starding.github.io/2016/04/20/standardization/</loc>
+    <lastmod>2016-04-21T03:08:32.000Z</lastmod>
+    <data>
+        <display>
+        <title>板砖，石头，Web标准，W3C</title>
+        <pubTime>2016-04-20T14:00:34.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="技术哲学" url="http://starding.github.io/categories/%E6%8A%80%E6%9C%AF%E5%93%B2%E5%AD%A6/"/>
           
         </display>
     </data>

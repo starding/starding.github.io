@@ -4,7 +4,7 @@
   <subtitle><![CDATA[未济]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://starding.github.io/"/>
-  <updated>2016-04-19T06:28:41.000Z</updated>
+  <updated>2016-04-21T03:08:32.000Z</updated>
   <id>http://starding.github.io/</id>
   
   <author>
@@ -15,13 +15,55 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[板砖，石头，Web标准，W3C]]></title>
+    <link href="http://starding.github.io/2016/04/20/standardization/"/>
+    <id>http://starding.github.io/2016/04/20/standardization/</id>
+    <published>2016-04-20T14:00:34.000Z</published>
+    <updated>2016-04-21T03:08:32.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="u7816_u5934_u4E0E_u77F3_u5934"><a href="#u7816_u5934_u4E0E_u77F3_u5934" class="headerlink" title="砖头与石头"></a>砖头与石头</h2>
+<p>板砖这种神器，大街小巷，犄角疙瘩，几乎只要有人居住的地方就可以看到它的存在。<br>当然石头虽然不像砖头那样随处可见，但是也地位不凡，各种建筑材料，雕塑，石碑等等也都能见到它的身影。</p>
+<p>如果对于板砖与石头这两种寻常不过的事物，我问它们的差别是什么，可能有人会发笑，板砖与石头简直风马牛不相及，除了组成成分有某些交集，都在建筑上有一些应用之外，其他几乎毫无共同点，至于讨论它们的差别，似乎更是毫无意义。</p>
+<p>当然上面答案是没什么大问题的，但它并不是一个好的思路或者说看待问题的视角，下面我们来看看从一个特定角度来看看砖头和石头有何区别。</p>
+<h2 id="u6709_u4EC0_u4E48_u533A_u522B"><a href="#u6709_u4EC0_u4E48_u533A_u522B" class="headerlink" title="有什么区别"></a>有什么区别</h2>
+<p>第一个区别：<strong>板砖是人造的，石头是天然的</strong></p>
+<p>乍一看这个区别，似乎没啥大毛病，但似乎也没什么让人「哦，就是这样」的感觉。我们会往下追问，然后呢，这又咋地？</p>
+<p>第二个区别：<strong>板砖符合特定的规格，石头则基本无定形</strong></p>
+<p>板砖既然是人造的，那肯定要合乎某种预设目的。砖头用来建造房子，而未经加工的天然石头形状奇奇怪怪，在建筑上不堪大用，但这个区别似乎也是正确的废话。</p>
+<p>那再来看第三个区别：<strong>板砖是工业标准化的体现，石头则是自然的无序体现</strong></p>
+<p>这似乎有点意思了，因为顺着这个思路一看，我们能发现很多东西，那就是板砖不再是板砖本身，它还是工业化进程上的一部分。正是这种工业标准化，让砖头可以更容易，更经济的生产出来，以及组织起来，并且更好的服务于工业本身。</p>
+<p>小小的一块板砖，基本上浓缩了工业的最重要的特质。对比来看石头，各种无规则的形状，也就是凑合着垒个墙什么的，如果你想让石头发挥更大的作用，那还得像砖头那样去处理它，让它更容易的与周围的环境交互。</p>
+<p>因此从上述视角来看，虽然板砖与石头自身有一些差别，但更大的差别不是在它们自身，而是把他们放在群体之中时，所体现出的差别。</p>
+<h2 id="u8FD9_u53C8_u5982_u4F55_u5462"><a href="#u8FD9_u53C8_u5982_u4F55_u5462" class="headerlink" title="这又如何呢"></a>这又如何呢</h2>
+<p>可能你认为上边说的没错，但这又说明啥呢，它似乎并不能对我们的生活产生什么影响，我们或许说不清楚板砖和石头的区别，但我们已经按照正确的方式使用它们了。</p>
+<p>当然板砖和石头的差别，即使深入追究也非常有趣，但更有趣的是它们之间的差别蕴含的工业标准化与非标准化之间的差别。这种「工业标准化」的思路，已经在工业时代之后随处可见了——符合特定规则的内存，硬盘，机箱，可以让我们很容易的组装起一台个人计算机。如果你开车去国外旅游，车轱辘掉了或者螺丝掉了，都可以随时再买上一打，而不需要从自己国家去取。对比来说，你可以设想一下非标准化时的场景下，如果你在自己家乡定制了一辆车，开出去之后半路坏掉的话，会遇到怎样尴尬的场景。</p>
+<p>事实上，所有的工业标准化，其意义都是相似的：一些标准化让事物更好的融入群体之中，一些标准化让事物超越空间，时间和特定的人得以存在。</p>
+<p>所谓融入群体，就如上面的板砖；所谓超越空间时间存在，是指不同区域，不同时间的人，都能约定俗称的使用同一种规格，而不必担心它们的兼容性；所谓超越特定的人存在，也就是标准化之后的事物，它们的制作工艺，他们的维护，再生产，不必依赖于某一个特定的人或者群体，麦当劳和中国菜就是很好的例子，中国菜依赖于个人经验，难以量化和标准化，如果某些大厨挂了，那很可能就再也吃不到与他做的同样好吃的菜式了。但是麦当劳不同，只要有量化的配方以及标准化的生产，谁跪了似乎都无所谓。</p>
+<p>标准化如此常见，以至于它变得透明起来，消失在我们的视野中，成为一种「消失的存在」。</p>
+<h2 id="Web_u6807_u51C6"><a href="#Web_u6807_u51C6" class="headerlink" title="Web标准"></a>Web标准</h2>
+<p>最近又看到一个经典的前端面试题：「你是如何理解web标准以及W3C的」，其实这个问题的思路跟上面基本是一致的：工业标准化能带来什么，Web标准化就能带来什么。</p>
+<p>关于web标准的细节，这里不做讨论。Web标准当然很好，它为内容，表现，行为提供了良好的可实践标准，并且可以据此建立起高可用，易理解，适应性强的web系统结构。</p>
+<h2 id="W3C"><a href="#W3C" class="headerlink" title="W3C"></a>W3C</h2>
+<p>标准的意义是在标准被普及，被遵守后体现出来的。遵守的人越多，产生的好处越大，最终建立一个运行在互联网上的一个个标准的Web系统。由于每一个Web系统都是标准的，那它们不仅对于人类是友好的，对于各种处理这些Web系统的更高层的系统（比如说搜索引擎）也将是友好的。</p>
+<p>关于互联网有一个经验公式，互联网的价值和组成它的节点数量的平方成正比。对于Web标准化也是类似的。根据Web标准本身可以建立起一个个结构清晰的web系统，而这些标准的web系统又联合起来组成一个更大的标准系统，这就使得各类工作更容易进行，以及在此基础上做更多的事情，产生更大的价值。这个时候就类似于之前说的板砖，或者更早博客中提到的集装箱了。</p>
+<p>Web标准的自身的意义并不是最重要的，很可能存在比当前web标准更好的标准。一个易于普及的良好定义的标准，比一个更优秀的但是难以普及的标准，可以产生更大的价值。类似的例子再历史上比比皆是。</p>
+<p>至于W3C（万维网协会），则是Web标准化进程的领头羊，负责制定，推广Web标准，不仅要保证当前标准自身是好的，还要协调不同的厂商，让标准是更容易接受，普及的，可谓任重道远。</p>]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="u7816_u5934_u4E0E_u77F3_u5934"><a href="#u7816_u5934_u4E0E_u77F3_u5934" class="headerlink" title="砖头与石头"></a>砖头与石头</h2>
+<p>板砖这种神器，大街]]>
+    </summary>
+    
+      <category term="技术哲学" scheme="http://starding.github.io/categories/%E6%8A%80%E6%9C%AF%E5%93%B2%E5%AD%A6/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[那些差劲的产品使用体验]]></title>
     <link href="http://starding.github.io/2016/04/12/the-elements-of-user-experience/"/>
     <id>http://starding.github.io/2016/04/12/the-elements-of-user-experience/</id>
     <published>2016-04-12T09:07:28.000Z</published>
-    <updated>2016-04-19T06:28:41.000Z</updated>
+    <updated>2016-04-21T03:10:02.000Z</updated>
     <content type="html"><![CDATA[<h2 id="iOS_u521D_u4F53_u9A8C"><a href="#iOS_u521D_u4F53_u9A8C" class="headerlink" title="iOS初体验"></a>iOS初体验</h2>
-<p>最近服役了三年的nexus终于老态龙钟，光荣退伍了。纠结于android的多种多样，最终直接选了iphone。但是一上手就感觉有几个地方特别的别扭，这里面自然</p>
+<p>最近服役了三年的nexus终于老态龙钟，光荣退伍了。纠结于android的多种多样，最终直接选了iphone。一上手就感觉有几个地方特别的别扭，这里面自然有一些不同系统之前切换带来的生疏感，但是有些地方明显是设计有问题。</p>
 <h3 id="u9E21_u808B_u7684_u4E0B_u62C9_u83DC_u5355"><a href="#u9E21_u808B_u7684_u4E0B_u62C9_u83DC_u5355" class="headerlink" title="鸡肋的下拉菜单"></a>鸡肋的下拉菜单</h3>
 <p>对比Android强大的下拉菜单，iOS的下拉菜单仅用于消息通知或是近期使用的软件功能，而将一部分设置放在了从底部向上拉的菜单中，即便是这些设置也是不完整的，比如wifi设置，只能设定开关，而不能由此作为入口进一步设置wifi。如果想设置wifi需要去设置页中去找。</p>
 <p>再来看Android的下拉菜单设置，不管是wifi还是手电筒等功能，都无比的实用与方便，而且使用频率很高。</p>
@@ -633,18 +675,16 @@
     <link href="http://starding.github.io/2016/03/13/my-front-end-route/"/>
     <id>http://starding.github.io/2016/03/13/my-front-end-route/</id>
     <published>2016-03-13T14:25:05.000Z</published>
-    <updated>2016-04-20T07:56:55.000Z</updated>
-    <content type="html"><![CDATA[<p>主要记录一下前端学习的路线</p>
-<h2 id="u524D_u7AEF_u8D44_u6E90_u6536_u96C6"><a href="#u524D_u7AEF_u8D44_u6E90_u6536_u96C6" class="headerlink" title="前端资源收集"></a>前端资源收集</h2>
-<p><a href="http://ued.taobao.org/blog/" target="_blank" rel="external">淘宝网ued官方博客</a><br><a href="http://www.zhangxinxu.com/" target="_blank" rel="external">张鑫旭的博客</a></p>
-<h2 id="u96F6_u6563_u8BB0_u5F55"><a href="#u96F6_u6563_u8BB0_u5F55" class="headerlink" title="零散记录"></a>零散记录</h2>
-<h3 id="u56FE_u7247_u7684_width__u548C_height__u5C5E_u6027"><a href="#u56FE_u7247_u7684_width__u548C_height__u5C5E_u6027" class="headerlink" title="图片的 width 和 height 属性"></a>图片的 <code>width</code> 和 <code>height</code> 属性</h3>
+    <updated>2016-04-21T03:10:24.000Z</updated>
+    <content type="html"><![CDATA[<p>主要记录一下前端学习中遇到的容易混淆的地方，个人感觉在html，css和javascript中。当属css最令人难以捉摸，由于浏览器默认样式或是限制，css继承，层叠规则等的存在，综合作用之下，很多时候都觉得css效果与预期不一致。因此css的内容或许会更多一些。</p>
+<p>仅仅是零散的记录，暂时没有整理成单独文章的精力。以后或许会把一些可以扩展的地方扩展成文章式的内容。</p>
+<h2 id="CSS_u4E2D_u7684_u7591_u60D1"><a href="#CSS_u4E2D_u7684_u7591_u60D1" class="headerlink" title="CSS中的疑惑"></a>CSS中的疑惑</h2>
+<h3 id="width__u548C_height"><a href="#width__u548C_height" class="headerlink" title="width 和 height"></a><code>width</code> 和 <code>height</code></h3>
+<p>定义元素「内容区」的宽度，默认值为auto 无继承性。浏览器会计算出实际的宽度。</p>
 <ol>
-  <li>height 和 width 实用百分数相对单位时，相对的是父元素宽度计算。 如果不指定，默认值就是图片本身的宽高，如果图片加载失败，会显示alt属性值，或者浏览器自带的加载失败效果。</li>
-  <li>虽然 <img> 标签的 height 和 width 属性能够改善性能并让你实现一些小技巧，但在使用它们时还是有一些棘手的负面效果。即使用户已经关掉了自动下载图像的功能，浏览器还是要把为图像预留的空间以指定的尺寸显示出来。而这样留给读者的通常是一个空的框架，里面有一个毫无意义的图标，表示这是放置图像的位置。这时页面将看上去非常糟糕，就像根本没有完成一样，并且大部分内容都毫无用处。如果不用这些指定的尺寸，则浏览器将只是在文本中放置一个图像图标，这样显示中至少还有一些文字可以阅读。对于这个问题我们还没有解决方案，只能强调一点，就是去使用
-    alt 属性和一些描述性文字，这样读者至少知道这里缺少的是什么东西。我们还是建议您使用这些尺寸属性，因为我们鼓励一切能够改善网络性能的行为</li>
+  <li>height 和 width 实用百分数相对单位时，相对的是父元素宽度计算（父元素的宽度同理）。 如果不指定，默认值就是图片本身的宽高，如果图片加载失败，会显示alt属性值，或者浏览器自带的加载失败效果。</li>
 </ol>
-<h3 id="display_3A_inline-block"><a href="#display_3A_inline-block" class="headerlink" title="display: inline-block"></a>display: inline-block</h3>
+<h3 id="inline-block_u7684_u8868_u73B0"><a href="#inline-block_u7684_u8868_u73B0" class="headerlink" title="inline-block的表现"></a>inline-block的表现</h3>
 <blockquote>
   <p>This value causes an element to generate an inline-level block container. The inside of an inline-block is formatted as a block box, and the element itself is formatted as an atomic inline-level box.</p>
   <p>大致意思就是：inline-block 后的元素创建了一个行级的块容器，该元素内部（内容）被格式化成一个块元素，同时元素本身则被格式化成一个行内元素。</p>
@@ -668,7 +708,34 @@
   </table>
 </figure>
 <p>但是这个时候，font-size并不是10px，之前在网上看到将root元素的font-size设置为10px，方便后文计算。但是在这里似乎并没有起到效果。</p>
-<p>原因是因为chrome默认所允许的最小字体为12px，如果设定值小于此值，就会被重置成12px。这个时候，<code>1rem=12px</code>，关于chrome最小字体限制，参考博客<a href="https://banri.me/web/webkit-text-size-adjust.html" target="_blank" rel="external">Banri’s<br>Chrome取消-webkit-text-size-adjust后的那些事</a></p>
+<p>原因是因为chrome默认所允许的最小字体为12px，如果设定值小于此值，就会被重置成12px。这个时候，<code>1rem=12px</code>，关于chrome最小字体限制，</p>
+<p>参考： <a href="https://banri.me/web/webkit-text-size-adjust.html" target="_blank" rel="external">Banri’s<br>Chrome取消-webkit-text-size-adjust后的那些事</a></p>
+<h3 id="u5757_u7EA7_u5143_u7D20_u548C_u884C_u5185_u5143_u7D20"><a href="#u5757_u7EA7_u5143_u7D20_u548C_u884C_u5185_u5143_u7D20" class="headerlink" title="块级元素和行内元素"></a>块级元素和行内元素</h3>
+<ul>
+  <li>块级元素（block level element）
+    <ul>
+      <li>独占一行</li>
+      <li>可设置 width，height</li>
+      <li>默认</li>
+    </ul>
+  </li>
+  <li>内联元素（inline element）
+    <ul>
+      <li>设置width height 无效</li>
+    </ul>
+  </li>
+</ul>
+<p>参考： <a href="http://geekplux.com/2014/04/25/several_core_concepts_of_css.html" target="_blank" rel="external">CSS 最核心的几个概念</a></p>
+<h3 id="u5404_u79CD_u5C45_u4E2D_u65B9_u6CD5_u7684_u4F7F_u7528_u573A_u666F"><a href="#u5404_u79CD_u5C45_u4E2D_u65B9_u6CD5_u7684_u4F7F_u7528_u573A_u666F" class="headerlink" title="各种居中方法的使用场景"></a>各种居中方法的使用场景</h3>
+<figure class="highlight">
+  <table>
+    <tr>
+      <td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td>
+      <td class="code"><pre><span class="line">// 水平居中</span><br><span class="line"></span><br><span class="line">// 使用margin水平居中元素的时候，</span><br><span class="line">// 需要指定要居中元素的width值（与父元素的宽度无关）</span><br><span class="line">// 显然这里只适用于块级元素</span><br><span class="line">// 居中被设置该属性的元素自身，不是子元素，也不是父元素 </span><br><span class="line">margin: 0, auto;   </span><br><span class="line"></span><br><span class="line">// </span><br><span class="line"></span><br><span class="line">text-align： center</span><br></pre></td>
+    </tr>
+  </table>
+</figure>
+<h3 id="u5982_u679C_u5185_u90E8_u76D2_u5927_u5C0F_u8D85_u51FA_u4E86_u5916_u90E8_u76D2_u6240_u80FD_u5305_u542B_u7684_u5927_u5C0F_u65F6_u8868_u73B0_u4F1A_u5982_u4F55"><a href="#u5982_u679C_u5185_u90E8_u76D2_u5927_u5C0F_u8D85_u51FA_u4E86_u5916_u90E8_u76D2_u6240_u80FD_u5305_u542B_u7684_u5927_u5C0F_u65F6_u8868_u73B0_u4F1A_u5982_u4F55" class="headerlink" title="如果内部盒大小超出了外部盒所能包含的大小时表现会如何"></a>如果内部盒大小超出了外部盒所能包含的大小时表现会如何</h3>
 <h2 id="u4F7F_u7528_u8FC7_u7684_u5DE5_u5177"><a href="#u4F7F_u7528_u8FC7_u7684_u5DE5_u5177" class="headerlink" title="使用过的工具"></a>使用过的工具</h2>
 <ul>
   <li>reactjs react router</li>
@@ -677,8 +744,8 @@
   <li>fixed-data-table （react组件）</li>
 </ul>]]></content>
     <summary type="html">
-    <![CDATA[<p>主要记录一下前端学习的路线</p>
-<h2 id="u524D_u7AEF_u8D44_u6E90_u6536_u96C6"><a href="#u524D_u7AEF_u8D44_u6E90_u6536_u96C6" class="headerlink" title="前]]>
+    <![CDATA[<p>主要记录一下前端学习中遇到的容易混淆的地方，个人感觉在html，css和javascript中。当属css最令人难以捉摸，由于浏览器默认样式或是限制，css继承，层叠规则等的存在，综合作用之下，很多时候都觉得css效果与预期不一致。因此css的内容或许会更多一些。</p>
+]]>
     </summary>
     
       <category term="前端" scheme="http://starding.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
@@ -1765,45 +1832,6 @@
       <category term="前端" scheme="http://starding.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
     
       <category term="前端" scheme="http://starding.github.io/categories/%E5%89%8D%E7%AB%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[《三体》，《行尸走肉》与社会达尔文主义]]></title>
-    <link href="http://starding.github.io/2016/01/07/three-body-walking-dead-Darwin/"/>
-    <id>http://starding.github.io/2016/01/07/three-body-walking-dead-Darwin/</id>
-    <published>2016-01-07T07:55:11.000Z</published>
-    <updated>2016-02-29T14:34:32.000Z</updated>
-    <content type="html"><![CDATA[<p>看大刘的《三体》，已经是几年前的事情了。除了宏观的叙事和一些经典场景，已忘的七七八八。刚开始看《行尸走肉》时，还以为是个单纯的丧尸剧，但随着剧情的不断深入，发现它描述了更多的东西。在某些重要的方面，比如场景的设定上，是非常相似的。不过是一个把达尔文主义推广到整个宇宙，建立了较为极端的达尔文性质的宇宙社会学。另一个则是将人类放入一个充满死亡的世界，以小团体进行黑暗森林式的生存，让自人类开始出现以来，数百万年形成的世界秩序重新洗牌，重新审视人类这一物种，同样渗透着浓厚的达尔文思想。</p>
-<h1 id="1_uFF1A_u300A_u4E09_u4F53_u300B_u4E0E_u300A_u884C_u5C38_u8D70_u8089_u300B_u7684_u57FA_u672C_u8BBE_u5B9A"><a href="#1_uFF1A_u300A_u4E09_u4F53_u300B_u4E0E_u300A_u884C_u5C38_u8D70_u8089_u300B_u7684_u57FA_u672C_u8BBE_u5B9A" class="headerlink" title="1：《三体》与《行尸走肉》的基本设定"></a>1：《三体》与《行尸走肉》的基本设定</h1>
-<p>二者的设定都充满了浓厚的达尔文色彩，非常强调生存竞争。</p>
-<p>首先看进化论的基础：特定环境中，资源是有限的，仅能支持一定数量的生命体，而生命的数量是不断增长，为了争夺有限的生存资源必须进行生存斗争，获胜的将存活下来，而失败的遭到淘汰。</p>
-<p>《三体》设定：大刘将上述思想扩展到整个宇宙，在宇宙层面设定了一种类似的社会学，即宇宙整体资源也是有限的，宇宙中生存着各种各样的文明，而且越是高层次的文明，所需求的资源越多，同时，各文明的最高标准是”生存是文明的第一需要“，要想生存。大刘在这样一个宇宙中来演绎文明的生存策略。</p>
-<p>《行尸走肉》设定：利用一场突如其来的病毒，打乱既有的世界秩序，将幸存的人类放入一个周围充满危险的，生存资源有限的行尸世界中，来展现末世人类的生存之道。</p>
-<h1 id="2-_u300A_u4E09_u4F53_u300B_u4E0E_u300A_u884C_u5C38_u8D70_u8089_u300B_u4E2D_u7684_u7B56_u7565"><a href="#2-_u300A_u4E09_u4F53_u300B_u4E0E_u300A_u884C_u5C38_u8D70_u8089_u300B_u4E2D_u7684_u7B56_u7565" class="headerlink" title="2.《三体》与《行尸走肉》中的策略"></a>2.《三体》与《行尸走肉》中的策略</h1>
-<p>《三体》：无论是三体人的智子干扰，或是歌者的二向箔抹杀，所采取的都是完全的黑暗森林式策略，没有合作，也没有博弈。毁灭你，与你何干，直截了当。这可以说是把生存竞争推到了极致。在豆瓣上，长期霸占《三体》区评论第一位的文章《信卢瑟，永世不得超生》【1】 所吐槽的卢瑟(loser)思维，正是这种被极致化的生存竞争思维。</p>
-<p>《行尸走肉》：加入了更多的元素。主角末世前的职业为警察：原世界秩序，规则的最好代表。包括人性与道德的考察：警察，士兵，医生，教师，牧师，平民，孩子等作为不同类型人群的代表，有着不同的人物展现。家庭式的，社区式的，陷阱式的等各种生存策略都一一考察。</p>
-<h1 id="3-_u300A_u4E09_u4F53_u300B_u4E0E_u300A_u884C_u5C38_u8D70_u8089_u300B_u7684_u79E9_u5E8F"><a href="#3-_u300A_u4E09_u4F53_u300B_u4E0E_u300A_u884C_u5C38_u8D70_u8089_u300B_u7684_u79E9_u5E8F" class="headerlink" title="3.《三体》与《行尸走肉》的秩序"></a>3.《三体》与《行尸走肉》的秩序</h1>
-<p>如今，除了一些原教旨主义者，很少有人会认为像《圣经》这样的文献是在直接描述自然真理了，最多是对自然做出一些隐喻。但认为其描述了道德与人性真理的说法仍然很有影响，尽管这一说法被达尔文进化论挑战。而中国虽然是礼仪之邦，不同时期有对道德的不同定义，但对定义本身缺乏深究，没有道德做哲学上寻根究底的传统。道德的本质是什么，世界秩序的本质又是什么，一直以来就是非常艰深的问题。</p>
-<p>个人认为（应该不是我脑补过度）《三体》以文革为背景开始整个叙事，所要突出的正是文革时期那种满含猜疑的紧张气氛，以及当时道德秩序的混乱：仅需一场政治运动，便足以煽动无数人将数千年文明所谓道德人性推入深渊。文革中的一大主题就是如何生存下去，而且这仅仅是人类自身内部。将这些脆弱的存在推广到整个宇宙中的不同文明之间，并加以放大，黑暗森林并非不可想象。丧失理性会颠覆道德与人性，完全的理性同样也会。大刘展现了这样一种可能的残酷，道德什么的太靠不住，靠的住的是严格游戏规则，执剑者逻辑明白规则，程心（个人认为圣母程心就是道德与人性的代言人）不明白或者说不愿明白。失去人性失去很多，失去兽性，失去一切，大刘采用了不同的方式强调了这一点【2】。</p>
-<p>《行尸走肉》将故事放在地球范围内，明显更为详细的对不同类型的人群进行了各式各样的考察。按剧情的发展来看，人类与行尸之间的冲突虽然一直是重要背景，但这一背景逐渐被弱化，人类与人类的冲突则逐渐被突出出来。数万年前人类逐渐开始产生社会形态，并利用语言，技术等进行自我规训，最终基本完成自我驯化，形成了一个压抑自己的意义世界【3】，个人认为这可以称作是道德和世界秩序的技术成因。但这种秩序是人类的特定阶段以及相应的特定的环境结合产生的，而末世结束了旧时秩序，同时结束的还有相应的社会和自然条件。在新的环境下，已经高度进化了的现代人，又该如何生存，能否重建一种不同的世界秩序，道德的标准又会发生什么变化？瑞克一行人在经历了众多情况之后，逐渐摆脱了原世界秩序的影响，在以警察为首的这一行人身上，还能看到生存之外的东西以及他们心理的摇摆不定，但是生存竞争已经在他们小组的意识中渗透的越来越深了，不知道采取何种策略才能更好的生存下去，但肯定不同于三体中的黑暗森林。</p>
-<h1 id="4-_u8FBE_u5C14_u6587_u601D_u60F3_u4E0E_u793E_u4F1A_u5B66"><a href="#4-_u8FBE_u5C14_u6587_u601D_u60F3_u4E0E_u793E_u4F1A_u5B66" class="headerlink" title="4.达尔文思想与社会学"></a>4.达尔文思想与社会学</h1>
-<p>达尔文的生存竞争思想在社会学中是很有地位的，并且以此发展出一种社会达尔文主义，而且达尔文思想在社会学中的应用会产生出一些逻辑清晰的，特别诱人的类似于科学中的那种分析方式（像《三体》这样就属一种）。但是达尔文自身过于强调了生存竞争的作用，忽视了生存竞争之外的现象，在社会中应用时也难以处理复杂的社会现象。另外，达尔文思想只是“演化”，而不是“进化”。</p>
-<p> <strong>hexo对脚注的支持似乎很不好，暂时以标注的形式写出</strong></p>
-<p>【1】: 详情见:<a href="http://book.douban.com/review/6146948/?start=800#comments" target="_blank" rel="external">信卢瑟，永世不得超生</a>,个人对这篇文章并不认同。我不认同的并不是其批评没有指中《三体》的要害。恰恰相反，此文对《三体》中的核心假定之一的批评相当到位：《三体》中的确采用了极致甚至很极端的生存竞争原则。个人不认同的是此文对科幻小说这一题材的误解：科幻小说一个常见手法是假定一个背景，然后以此展开，演绎出一个自洽的世界。大刘既然假定生存是文明的第一需要，那么以此写出的小说必定是这个样子。当然你可以假定生存不是文明的第一需要，来描述一个相对和谐的宇宙，但那将是另一个故事了。类似的例子有经典的以“如果冰的密度比水大”为主题的科幻小说，在这种反事实条件假定下，你不能指责科幻作家的假定存在问题，应该关注的是在这种假定下，作者所展现的世界是不是自洽，以及其展现达到了多深的层次。</p>
-<p>【2】: 刘慈欣在新书《刘慈欣谈科幻》中透漏，他是一个科学主义者和技术崇拜者。其所架构的世界很多时候钢铁般坚硬和冷酷，缺少人性的关怀。个人认为这是一种缺点，但也是一种优点。</p>
-<p>【3】: 此处参考吴国盛《技术哲学讲演录》，文中对技术哲学做了讲演式的概括介绍，人类的自我规训是其中一个重要内容。</p>]]></content>
-    <summary type="html">
-    <![CDATA[<p>看大刘的《三体》，已经是几年前的事情了。除了宏观的叙事和一些经典场景，已忘的七七八八。刚开始看《行尸走肉》时，还以为是个单纯的丧尸剧，但随着剧情的不断深入，发现它描述了更多的东西。在某些重要的方面，比如场景的设定上，是非常相似的。不过是一个把达尔文主义推广到整个宇宙，建立了]]>
-    </summary>
-    
-      <category term="三体" scheme="http://starding.github.io/tags/%E4%B8%89%E4%BD%93/"/>
-    
-      <category term="社会达尔文主义" scheme="http://starding.github.io/tags/%E7%A4%BE%E4%BC%9A%E8%BE%BE%E5%B0%94%E6%96%87%E4%B8%BB%E4%B9%89/"/>
-    
-      <category term="行尸走肉" scheme="http://starding.github.io/tags/%E8%A1%8C%E5%B0%B8%E8%B5%B0%E8%82%89/"/>
-    
-      <category term="随笔" scheme="http://starding.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
