@@ -4,19 +4,17 @@
 
     
   <url>
-    <loc>http://starding.github.io/2016/03/13/my-front-end-route/</loc>
-    <lastmod>2016-04-21T03:10:24.000Z</lastmod>
+    <loc>http://starding.github.io/2016/02/25/questions-record/</loc>
+    <lastmod>2016-04-21T03:36:14.000Z</lastmod>
     <data>
         <display>
-        <title>前端记录</title>
-        <pubTime>2016-03-13T14:25:05.000Z</pubTime>
+        <title>问题记录</title>
+        <pubTime>2016-02-25T02:54:31.000Z</pubTime>
         
-        <tag>前端</tag>
-         
          
            
              
-              <breadCrumb title="前端" url="http://starding.github.io/categories/%E5%89%8D%E7%AB%AF/"/>
+              <breadCrumb title="问题" url="http://starding.github.io/categories/%E9%97%AE%E9%A2%98/"/>
           
         </display>
     </data>
@@ -211,26 +209,6 @@
 
     
   <url>
-    <loc>http://starding.github.io/2016/01/14/learn-vim/</loc>
-    <lastmod>2016-03-13T09:48:22.000Z</lastmod>
-    <data>
-        <display>
-        <title>vim学习</title>
-        <pubTime>2016-01-14T15:21:24.000Z</pubTime>
-        
-        <tag>vim</tag>
-         
-         
-           
-             
-              <breadCrumb title="vim" url="http://starding.github.io/categories/vim/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://starding.github.io/2016/01/18/gitlab-migrate/</loc>
     <lastmod>2016-03-04T03:38:36.000Z</lastmod>
     <data>
@@ -246,24 +224,6 @@
            
              
               <breadCrumb title="docker" url="http://starding.github.io/categories/docker/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://starding.github.io/2016/02/25/questions-record/</loc>
-    <lastmod>2016-03-03T06:02:26.000Z</lastmod>
-    <data>
-        <display>
-        <title>问题记录</title>
-        <pubTime>2016-02-25T02:54:31.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="问题" url="http://starding.github.io/categories/%E9%97%AE%E9%A2%98/"/>
           
         </display>
     </data>

@@ -12,36 +12,33 @@
 
 
   <meta name="description" content="Meta: 本文章用来记录平时遇到的问题以及相应的解决方案
+杂项
 linux crontab +  django command 定时执行命令
 问题场景
 在做一个档案管理系统时，有一个需要定时从DB2数据库中取出数据，处理之后，存入mysql中的任务。这意味着需要在django中单独跑一个脚本，这个脚本使用django的环境。
 解决方案
-django提供了一种用户自定义命令来实现这个功能：
-
-  Wri">
+django提供了一种用户自定义命令来实现这个功能：">
   <meta property="og:type" content="article">
   <meta property="og:title" content="问题记录">
   <meta property="og:url" content="http://starding.github.io/2016/02/25/questions-record/index.html">
   <meta property="og:site_name" content="小狐濡尾">
   <meta property="og:description" content="Meta: 本文章用来记录平时遇到的问题以及相应的解决方案
+杂项
 linux crontab +  django command 定时执行命令
 问题场景
 在做一个档案管理系统时，有一个需要定时从DB2数据库中取出数据，处理之后，存入mysql中的任务。这意味着需要在django中单独跑一个脚本，这个脚本使用django的环境。
 解决方案
-django提供了一种用户自定义命令来实现这个功能：
-
-  Wri">
-  <meta property="og:updated_time" content="2016-03-03T06:02:26.000Z">
+django提供了一种用户自定义命令来实现这个功能：">
+  <meta property="og:updated_time" content="2016-04-21T03:36:14.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="问题记录">
   <meta name="twitter:description" content="Meta: 本文章用来记录平时遇到的问题以及相应的解决方案
+杂项
 linux crontab +  django command 定时执行命令
 问题场景
 在做一个档案管理系统时，有一个需要定时从DB2数据库中取出数据，处理之后，存入mysql中的任务。这意味着需要在django中单独跑一个脚本，这个脚本使用django的环境。
 解决方案
-django提供了一种用户自定义命令来实现这个功能：
-
-  Wri">
+django提供了一种用户自定义命令来实现这个功能：">
 
 
   <link rel="alternative" href="/atom.xml" title="小狐濡尾" type="application/atom+xml">
@@ -121,29 +118,50 @@ django提供了一种用户自定义命令来实现这个功能：
             <strong class="toc-title">文章目录</strong>
 
             <ol class="toc">
-              <li class="toc-item toc-level-3"><a class="toc-link" href="#linux_crontab_+_django_command__u5B9A_u65F6_u6267_u884C_u547D_u4EE4"><span class="toc-number">1.</span> <span class="toc-text">linux crontab +  django command 定时执行命令</span></a>
+              <li class="toc-item toc-level-2"><a class="toc-link" href="#u6742_u9879"><span class="toc-number">1.</span> <span class="toc-text">杂项</span></a>
                 <ol class="toc-child">
-                  <li class="toc-item toc-level-4"><a class="toc-link" href="#u95EE_u9898_u573A_u666F"><span class="toc-number">1.1.</span> <span class="toc-text">问题场景</span></a></li>
-                  <li class="toc-item toc-level-4"><a class="toc-link" href="#u89E3_u51B3_u65B9_u6848"><span class="toc-number">1.2.</span> <span class="toc-text">解决方案</span></a></li>
+                  <li class="toc-item toc-level-3"><a class="toc-link" href="#linux_crontab_+_django_command__u5B9A_u65F6_u6267_u884C_u547D_u4EE4"><span class="toc-number">1.1.</span> <span class="toc-text">linux crontab +  django command 定时执行命令</span></a>
+                    <ol class="toc-child">
+                      <li class="toc-item toc-level-4"><a class="toc-link" href="#u95EE_u9898_u573A_u666F"><span class="toc-number">1.1.1.</span> <span class="toc-text">问题场景</span></a></li>
+                      <li class="toc-item toc-level-4"><a class="toc-link" href="#u89E3_u51B3_u65B9_u6848"><span class="toc-number">1.1.2.</span> <span class="toc-text">解决方案</span></a></li>
+                    </ol>
+                  </li>
+                  <li class="toc-item toc-level-3"><a class="toc-link" href="#u5F80mysql_u4E2D_u5199_u5927_u91CF_u6570_u636E_u65F6_uFF0C_u51FA_u73B0_u9519_u8BEF_uFF1A2006__u2018mysql_server_has_gone_away_u2019"><span class="toc-number">1.2.</span> <span class="toc-text">往mysql中写大量数据时，出现错误：2006 ‘mysql server has gone away’</span></a>
+                    <ol class="toc-child">
+                      <li class="toc-item toc-level-4"><a class="toc-link" href="#u95EE_u9898_u573A_u666F-1"><span class="toc-number">1.2.1.</span> <span class="toc-text">问题场景</span></a></li>
+                      <li class="toc-item toc-level-4"><a class="toc-link" href="#u89E3_u51B3_u65B9_u6848-1"><span class="toc-number">1.2.2.</span> <span class="toc-text">解决方案</span></a></li>
+                    </ol>
+                  </li>
                 </ol>
               </li>
-              <li class="toc-item toc-level-3"><a class="toc-link" href="#u5F80mysql_u4E2D_u5199_u5927_u91CF_u6570_u636E_u65F6_uFF0C_u51FA_u73B0_u9519_u8BEF_uFF1A2006__u2018mysql_server_has_gone_away_u2019"><span class="toc-number">2.</span> <span class="toc-text">往mysql中写大量数据时，出现错误：2006 ‘mysql server has gone away’</span></a>
+              <li class="toc-item toc-level-2"><a class="toc-link" href="#vim_u5206_u5C4F_u4E0E_ctrl_p_u63D2_u4EF6"><span class="toc-number">2.</span> <span class="toc-text">vim分屏与 ctrl p插件</span></a></li>
+              <li class="toc-item toc-level-2"><a class="toc-link" href="#u57FA_u7840_u6B63_u5219_u8868_u8FBE_u5F0F"><span class="toc-number">3.</span> <span class="toc-text">基础正则表达式</span></a></li>
+              <li class="toc-item toc-level-2"><a class="toc-link" href="#u524D_u7AEF"><span class="toc-number">4.</span> <span class="toc-text">前端</span></a>
                 <ol class="toc-child">
-                  <li class="toc-item toc-level-4"><a class="toc-link" href="#u95EE_u9898_u573A_u666F-1"><span class="toc-number">2.1.</span> <span class="toc-text">问题场景</span></a></li>
-                  <li class="toc-item toc-level-4"><a class="toc-link" href="#u89E3_u51B3_u65B9_u6848-1"><span class="toc-number">2.2.</span> <span class="toc-text">解决方案</span></a></li>
+                  <li class="toc-item toc-level-3"><a class="toc-link" href="#CSS__u4F2A_u7C7B_u548C_u4F2A_u5143_u7D20_u533A_u522B"><span class="toc-number">4.1.</span> <span class="toc-text">CSS 伪类和伪元素区别</span></a>
+                    <ol class="toc-child">
+                      <li class="toc-item toc-level-4"><a class="toc-link" href="#u6982_u5FF5_u8FA8_u6790"><span class="toc-number">4.1.1.</span> <span class="toc-text">概念辨析</span></a></li>
+                    </ol>
+                  </li>
+                  <li class="toc-item toc-level-3"><a class="toc-link" href="#CSS_font-size__u76F8_u5BF9_u5927_u5C0F_u7EE7_u627F"><span class="toc-number">4.2.</span> <span class="toc-text">CSS font-size 相对大小继承</span></a></li>
                 </ol>
               </li>
-              <li class="toc-item toc-level-3"><a class="toc-link" href="#CSS__u4F2A_u7C7B_u548C_u4F2A_u5143_u7D20_u533A_u522B"><span class="toc-number">3.</span> <span class="toc-text">CSS 伪类和伪元素区别</span></a>
-                <ol class="toc-child">
-                  <li class="toc-item toc-level-4"><a class="toc-link" href="#u6982_u5FF5_u8FA8_u6790"><span class="toc-number">3.1.</span> <span class="toc-text">概念辨析</span></a></li>
-                </ol>
-              </li>
-              <li class="toc-item toc-level-3"><a class="toc-link" href="#CSS_font-size__u76F8_u5BF9_u5927_u5C0F_u7EE7_u627F"><span class="toc-number">4.</span> <span class="toc-text">CSS font-size 相对大小继承</span></a></li>
+            </ol>
+            </li>
+            <li class="toc-item toc-level-1"><a class="toc-link" href="#CSS"><span class="toc-number"></span> <span class="toc-text">CSS</span></a>
+              <ol class="toc-child">
+                <li class="toc-item toc-level-3"><a class="toc-link" href="#u5757_u7EA7_u5143_u7D20_u548C_u884C_u5185_u5143_u7D20"><span class="toc-number">0.1.</span> <span class="toc-text">块级元素和行内元素</span></a></li>
+                <li class="toc-item toc-level-3"><a class="toc-link" href="#u5404_u79CD_u5C45_u4E2D_u65B9_u6CD5_u7684_u4F7F_u7528_u573A_u666F"><span class="toc-number">0.2.</span> <span class="toc-text">各种居中方法的使用场景</span></a></li>
+                <li class="toc-item toc-level-3"><a class="toc-link" href="#u5982_u679C_u5185_u90E8_u76D2_u5927_u5C0F_u8D85_u51FA_u4E86_u5916_u90E8_u76D2_u6240_u80FD_u5305_u542B_u7684_u5927_u5C0F_u65F6_u8868_u73B0_u4F1A_u5982_u4F55"><span class="toc-number">0.3.</span> <span class="toc-text">如果内部盒大小超出了外部盒所能包含的大小时表现会如何</span></a></li>
+              </ol>
+            </li>
+            <li class="toc-item toc-level-2"><a class="toc-link" href="#u4F7F_u7528_u8FC7_u7684_u5DE5_u5177"><span class="toc-number">1.</span> <span class="toc-text">使用过的工具</span></a></li>
             </ol>
 
           </div>
 
           <p>Meta: 本文章用来记录平时遇到的问题以及相应的解决方案</p>
+          <h2 id="u6742_u9879"><a href="#u6742_u9879" class="headerlink" title="杂项"></a>杂项</h2>
           <h3 id="linux_crontab_+_django_command__u5B9A_u65F6_u6267_u884C_u547D_u4EE4"><a href="#linux_crontab_+_django_command__u5B9A_u65F6_u6267_u884C_u547D_u4EE4" class="headerlink" title="linux crontab +  django command 定时执行命令"></a>linux crontab +  django command 定时执行命令</h3>
           <h4 id="u95EE_u9898_u573A_u666F"><a href="#u95EE_u9898_u573A_u666F" class="headerlink" title="问题场景"></a>问题场景</h4>
           <p>在做一个档案管理系统时，有一个需要定时从DB2数据库中取出数据，处理之后，存入mysql中的任务。这意味着需要在django中单独跑一个脚本，这个脚本使用django的环境。</p>
@@ -170,6 +188,24 @@ django提供了一种用户自定义命令来实现这个功能：
             </table>
           </figure>
           <p>当然，也可以限制一下自己每次往mysql中写入数据的数量来解决这个问题。</p>
+          <h2 id="vim_u5206_u5C4F_u4E0E_ctrl_p_u63D2_u4EF6"><a href="#vim_u5206_u5C4F_u4E0E_ctrl_p_u63D2_u4EF6" class="headerlink" title="vim分屏与 ctrl p插件"></a>vim分屏与 <code>ctrl p</code>插件</h2>
+          <p>之前总是听说 <code>ctrl p</code> 插件如何如何好用。不过我开始试用的时候，确实没有体会到太强大的地方，知道后来发现vim的分屏功能。</p>
+          <p>试用vim分屏功能，加上ctrl p实现了不退出vim直接打开多个文件的功能，节省了大量在命令行下各种 <code>cd 目录</code> 的时间。</p>
+          <p>参考：<a href="http://coolshell.cn/articles/1679.html" target="_blank" rel="external">Vim的分屏功能</a></p>
+          <h2 id="u57FA_u7840_u6B63_u5219_u8868_u8FBE_u5F0F"><a href="#u57FA_u7840_u6B63_u5219_u8868_u8FBE_u5F0F" class="headerlink" title="基础正则表达式"></a>基础正则表达式</h2>
+          <p>有一次，我需要在一个包含很多行短文字的后面补上的空格，将每一行补成相同的宽度。<br>刚开始使用各种列编辑，块编辑尝试都没有用。难道必须写一个程序来专门处理这件事情？</p>
+          <p>后来发现正则表达式基本能满足这一要求：</p>
+          <figure class="highlight">
+            <table>
+              <tr>
+                <td class="gutter"><pre><span class="line">1</span><br></pre></td>
+                <td class="code"><pre><span class="line">%s/$/ n_spaces /g</span><br></pre></td>
+              </tr>
+            </table>
+          </figure>
+          <p>在vim中，$符有丰富的含义，这里指的是行尾前一个字符</p>
+          <h2 id="u524D_u7AEF"><a href="#u524D_u7AEF" class="headerlink" title="前端"></a>前端</h2>
+          <p>主要记录一下前端学习中遇到的容易混淆的地方，个人感觉在html，css和javascript中。当属css最令人难以捉摸，由于浏览器默认样式或是限制，css继承，层叠规则等的存在，综合作用之下，很多时候都觉得css效果与预期不一致。因此css的内容或许会更多一些。<br>仅仅是零散的记录，暂时没有整理成单独文章的精力。以后或许会把一些可以扩展的地方扩展成文章式的内容。</p>
           <h3 id="CSS__u4F2A_u7C7B_u548C_u4F2A_u5143_u7D20_u533A_u522B"><a href="#CSS__u4F2A_u7C7B_u548C_u4F2A_u5143_u7D20_u533A_u522B" class="headerlink" title="CSS 伪类和伪元素区别"></a>CSS 伪类和伪元素区别</h3>
           <p><strong>伪类：Pseudo-elements</strong></p>
           <p><strong>伪元素：Pseudo-classes</strong></p>
@@ -193,22 +229,54 @@ django提供了一种用户自定义命令来实现这个功能：
               </tr>
             </table>
           </figure>
-          <pre><code class="css"># <span class="selector-tag">CSS</span>
-<span class="selector-tag">p</span> {<span class="attribute">font-size</span>:.<span class="number">75em</span>;}
-<span class="selector-tag">strong</span> {<span class="attribute">font-size</span>:.<span class="number">75em</span>;}
-</code></pre>
-          <blockquote>
-            <p>摘自《css设计指南》</p>
-            <p>一般来说，em以浏览器默认值为基本单位，也就是<code>1em=16px</code>。如果你想使用 em,但又需要设定具体的像素大小,可以把 body 的 font-size 设定为 62.5%。这样,就等于把基准大小从 16 像素改为 10 像素(16×62.5%=10)。然后, em 与像素的对应关系就十分明确了,比如 1em 等于 10 像素,1.5em 等于 15 像素,2em 等于 20 像素,等等。</p>
-            <p>p 元素的文本为 12 像素(body 的 16 像素基准大小×.75=12px), strong 是 p 的子元素,它的文本相对大小会逐层复合,应该是 16px <em> 0.75</em> 0.75=9px。</p>
-          </blockquote>
-          <p><strong>注意与text-indent的区别</strong>: font-size 会叠加复合计算，text-indent则是后面的值覆盖前面的值</p>
-          <blockquote>
-            <p>text-indent 可以被子元素继承。如果你 在一个 div 上设定了 text-indent 属性,那么 div 中的所有段落都会继承该缩进值。然而,与 所有继承的 CSS 值一样,这个缩进值并不是祖先元素中设定的值,而是计算的值。下面举一个 例子说明。</p>
-            <p>假设有一个 400 像素宽的 div,包含的文本缩进 5%,则缩进的距离是 20 像素(400 的 5%)。 在这个 div 中有一个 200 像素宽的段落。作为子元素,它继承父元素的 text-indent 值,所以 它包含的文本也缩进。但继承的缩进值是多少呢?不是 5%,而是 20 像素。也就是说,子元素 继承的是根据父元素宽度计算得到的缩进值。结果,虽然段落只有父元素一半宽,但其中的文 本也会缩进 20 像素。这样可以确保无论段落多宽,它们的缩进距离都一样。当然,在子元素
-              上重新设定 text-indent 属性,可以覆盖继承的值.
-            </p>
-          </blockquote>
+          <p>```css</p>
+          <h1 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h1>
+          <p>p {font-size:.75em;}<br>strong {font-size:.75em;}<br>
+            <figure class="highlight plain">
+              <table>
+                <tr>
+                  <td class="gutter"><pre><span class="line">1</span><br></pre></td>
+                  <td class="code"><pre><span class="line">&#10;&#62; &#25688;&#33258;&#12298;css&#35774;&#35745;&#25351;&#21335;&#12299;&#10;&#10;&#62;&#19968;&#33324;&#26469;&#35828;&#65292;em&#20197;&#27983;&#35272;&#22120;&#40664;&#35748;&#20540;&#20026;&#22522;&#26412;&#21333;&#20301;&#65292;&#20063;&#23601;&#26159;`1em=16px`&#12290;&#22914;&#26524;&#20320;&#24819;&#20351;&#29992; em,&#20294;&#21448;&#38656;&#35201;&#35774;&#23450;&#20855;&#20307;&#30340;&#20687;&#32032;&#22823;&#23567;,&#21487;&#20197;&#25226; body &#30340; font-size &#35774;&#23450;&#20026; 62.5%&#12290;&#36825;&#26679;,&#23601;&#31561;&#20110;&#25226;&#22522;&#20934;&#22823;&#23567;&#20174; 16 &#20687;&#32032;&#25913;&#20026; 10 &#20687;&#32032;(16&#215;62.5%=10)&#12290;&#28982;&#21518;, em &#19982;&#20687;&#32032;&#30340;&#23545;&#24212;&#20851;&#31995;&#23601;&#21313;&#20998;&#26126;&#30830;&#20102;,&#27604;&#22914; 1em &#31561;&#20110; 10 &#20687;&#32032;,1.5em &#31561;&#20110; 15 &#20687;&#32032;,2em &#31561;&#20110; 20 &#20687;&#32032;,&#31561;&#31561;&#12290;&#10;&#13;&#62;p &#20803;&#32032;&#30340;&#25991;&#26412;&#20026; 12 &#20687;&#32032;(body &#30340; 16 &#20687;&#32032;&#22522;&#20934;&#22823;&#23567;&#215;.75=12px), strong &#26159; p &#30340;&#23376;&#20803;&#32032;,&#23427;&#30340;&#25991;&#26412;&#30456;&#23545;&#22823;&#23567;&#20250;&#36880;&#23618;&#22797;&#21512;,&#24212;&#35813;&#26159; 16px * 0.75* 0.75=9px&#12290;&#10;&#10;**&#27880;&#24847;&#19982;text-indent&#30340;&#21306;&#21035;**: font-size &#20250;&#21472;&#21152;&#22797;&#21512;&#35745;&#31639;&#65292;text-indent&#21017;&#26159;&#21518;&#38754;&#30340;&#20540;&#35206;&#30422;&#21069;&#38754;&#30340;&#20540;&#10;&#10;&#62;text-indent &#21487;&#20197;&#34987;&#23376;&#20803;&#32032;&#32487;&#25215;&#12290;&#22914;&#26524;&#20320; &#22312;&#19968;&#20010; div &#19978;&#35774;&#23450;&#20102; text-indent &#23646;&#24615;,&#37027;&#20040; div &#20013;&#30340;&#25152;&#26377;&#27573;&#33853;&#37117;&#20250;&#32487;&#25215;&#35813;&#32553;&#36827;&#20540;&#12290;&#28982;&#32780;,&#19982; &#25152;&#26377;&#32487;&#25215;&#30340; CSS &#20540;&#19968;&#26679;,&#36825;&#20010;&#32553;&#36827;&#20540;&#24182;&#19981;&#26159;&#31062;&#20808;&#20803;&#32032;&#20013;&#35774;&#23450;&#30340;&#20540;,&#32780;&#26159;&#35745;&#31639;&#30340;&#20540;&#12290;&#19979;&#38754;&#20030;&#19968;&#20010; &#20363;&#23376;&#35828;&#26126;&#12290;&#13;&#13;&#62;&#20551;&#35774;&#26377;&#19968;&#20010; 400 &#20687;&#32032;&#23485;&#30340; div,&#21253;&#21547;&#30340;&#25991;&#26412;&#32553;&#36827; 5%,&#21017;&#32553;&#36827;&#30340;&#36317;&#31163;&#26159; 20 &#20687;&#32032;(400 &#30340; 5%)&#12290; &#22312;&#36825;&#20010; div &#20013;&#26377;&#19968;&#20010; 200 &#20687;&#32032;&#23485;&#30340;&#27573;&#33853;&#12290;&#20316;&#20026;&#23376;&#20803;&#32032;,&#23427;&#32487;&#25215;&#29238;&#20803;&#32032;&#30340; text-indent &#20540;,&#25152;&#20197; &#23427;&#21253;&#21547;&#30340;&#25991;&#26412;&#20063;&#32553;&#36827;&#12290;&#20294;&#32487;&#25215;&#30340;&#32553;&#36827;&#20540;&#26159;&#22810;&#23569;&#21602;?&#19981;&#26159; 5%,&#32780;&#26159; 20 &#20687;&#32032;&#12290;&#20063;&#23601;&#26159;&#35828;,&#23376;&#20803;&#32032; &#32487;&#25215;&#30340;&#26159;&#26681;&#25454;&#29238;&#20803;&#32032;&#23485;&#24230;&#35745;&#31639;&#24471;&#21040;&#30340;&#32553;&#36827;&#20540;&#12290;&#32467;&#26524;,&#34429;&#28982;&#27573;&#33853;&#21482;&#26377;&#29238;&#20803;&#32032;&#19968;&#21322;&#23485;,&#20294;&#20854;&#20013;&#30340;&#25991; &#26412;&#20063;&#20250;&#32553;&#36827; 20 &#20687;&#32032;&#12290;&#36825;&#26679;&#21487;&#20197;&#30830;&#20445;&#26080;&#35770;&#27573;&#33853;&#22810;&#23485;,&#23427;&#20204;&#30340;&#32553;&#36827;&#36317;&#31163;&#37117;&#19968;&#26679;&#12290;&#24403;&#28982;,&#22312;&#23376;&#20803;&#32032; &#19978;&#37325;&#26032;&#35774;&#23450; text-indent &#23646;&#24615;,&#21487;&#20197;&#35206;&#30422;&#32487;&#25215;&#30340;&#20540;.&#10;&#13;                   &#13;                   &#10;&#10;&#10;### `width` &#21644; `height` &#10;&#10;&#23450;&#20041;&#20803;&#32032;&#12300;&#20869;&#23481;&#21306;&#12301;&#30340;&#23485;&#24230;&#65292;&#40664;&#35748;&#20540;&#20026;auto &#26080;&#32487;&#25215;&#24615;&#12290;&#27983;&#35272;&#22120;&#20250;&#35745;&#31639;&#20986;&#23454;&#38469;&#30340;&#23485;&#24230;&#12290;&#10;&#10;1. height &#21644; width &#23454;&#29992;&#30334;&#20998;&#25968;&#30456;&#23545;&#21333;&#20301;&#26102;&#65292;&#30456;&#23545;&#30340;&#26159;&#29238;&#20803;&#32032;&#23485;&#24230;&#35745;&#31639;&#65288;&#29238;&#20803;&#32032;&#30340;&#23485;&#24230;&#21516;&#29702;&#65289;&#12290; &#22914;&#26524;&#19981;&#25351;&#23450;&#65292;&#40664;&#35748;&#20540;&#23601;&#26159;&#22270;&#29255;&#26412;&#36523;&#30340;&#23485;&#39640;&#65292;&#22914;&#26524;&#22270;&#29255;&#21152;&#36733;&#22833;&#36133;&#65292;&#20250;&#26174;&#31034;alt&#23646;&#24615;&#20540;&#65292;&#25110;&#32773;&#27983;&#35272;&#22120;&#33258;&#24102;&#30340;&#21152;&#36733;&#22833;&#36133;&#25928;&#26524;&#12290;&#10;&#10;&#10;### inline-block&#30340;&#34920;&#29616;&#10;&#10;&#62; This value causes an element to generate an inline-level block container. The inside of an inline-block is formatted as a block box, and the element itself is formatted as an atomic inline-level box.&#10;&#10;&#62; &#22823;&#33268;&#24847;&#24605;&#23601;&#26159;&#65306;inline-block &#21518;&#30340;&#20803;&#32032;&#21019;&#24314;&#20102;&#19968;&#20010;&#34892;&#32423;&#30340;&#22359;&#23481;&#22120;&#65292;&#35813;&#20803;&#32032;&#20869;&#37096;&#65288;&#20869;&#23481;&#65289;&#34987;&#26684;&#24335;&#21270;&#25104;&#19968;&#20010;&#22359;&#20803;&#32032;&#65292;&#21516;&#26102;&#20803;&#32032;&#26412;&#36523;&#21017;&#34987;&#26684;&#24335;&#21270;&#25104;&#19968;&#20010;&#34892;&#20869;&#20803;&#32032;&#12290;&#10;&#10;&#62; &#30452;&#30333;&#19968;&#28857;&#30340;&#24847;&#24605;&#23601;&#26159;&#65306;inline-block &#30340;&#20803;&#32032;&#26082;&#20855;&#26377; block &#20803;&#32032;&#21487;&#20197;&#35774;&#32622;&#23485;&#39640;&#30340;&#29305;&#24615;&#65292;&#21516;&#26102;&#21448;&#20855;&#26377; inline &#20803;&#32032;&#40664;&#35748;&#19981;&#25442;&#34892;&#30340;&#29305;&#24615;&#12290;&#24403;&#28982;&#19981;&#20165;&#20165;&#26159;&#36825;&#20123;&#29305;&#24615;&#65292;&#27604;&#22914; inline-block &#20803;&#32032;&#20063;&#21487;&#20197;&#35774;&#32622; vertical-align &#23646;&#24615;&#12290;&#31616;&#32780;&#35328;&#20043;&#65306;&#10;&#10;&#62;inline-block &#21518;&#30340;&#20803;&#32032;&#23601;&#26159;&#19968;&#20010;&#26684;&#24335;&#21270;&#20026;&#34892;&#20869;&#20803;&#32032;&#30340;&#22359;&#23481;&#22120;( Block container )&#10;&#10;&#10;**&#30097;&#38382;&#65306;** &#10;&#10;inline-block&#30340;margin&#36793;&#36317;&#20250;&#25745;&#24320;&#29238;&#20803;&#32032;&#30340;&#39640;&#24230;&#65292;&#32780;&#26222;&#36890;&#30340;block&#30340;&#36793;&#36317;&#21017;&#20250;&#19982;&#29238;&#20803;&#32032;&#30340;margin&#36793;&#36317;&#37325;&#21512;&#65311;&#10;&#10;&#10;&#10;&#10;&#21442;&#32771;&#65306;&#10;&#10;[inline-block &#21069;&#19990;&#20170;&#29983;](http://ued.taobao.org/blog/2012/08/inline-block/)     &#10;&#10;[w3c: the &#39;display&#39; property](https://www.w3.org/TR/CSS2/visuren.html#display-prop)&#10;&#10;[mozilla: vertical-align](https://developer.mozilla.org/en-US/docs/Web/CSS/vertical-align)&#10;&#10;&#10;### rem&#20351;&#29992;&#10;&#10;&#20170;&#22825;&#22312;chrome&#20013;&#23454;&#39564;rem&#30456;&#23545;&#21333;&#20301;&#65292;&#21018;&#24320;&#22987;&#30340;&#23454;&#39564;&#20195;&#30721;&#20026;&#65306;&#10;&#10;```html&#10;&#60;!DOCTYPE html&#62;&#10;&#60;html&#62;&#10;&#60;head&#62;&#10;&#9;&#60;meta charset=&#34;utf-8&#34;&#62;&#10;&#9;&#60;title&#62;test rem&#60;/title&#62;&#10;&#10;&#9;&#60;style type=&#34;text/css&#34;&#62;&#10;&#9;&#9;html&#123;&#10;&#10;&#9;&#9;&#9;font-size: 62.5%;  // &#36825;&#37324;&#30340;&#34920;&#29616;&#26377;&#28857;&#22855;&#24618;&#10;&#9;&#9;&#125;&#10;&#9;&#9;body&#123;&#10;&#9;&#9;&#9;font-size: 1.2rem;&#10;&#9;&#9;&#125;&#10;&#9;&#9;div&#123;&#10;&#9;&#9;&#9;width: 300px;&#10;&#9;&#9;&#9;height: 300px;&#10;&#9;&#9;&#9;background-color: red;&#10;&#9;&#9;&#9;padding: 1rem;&#10;&#9;&#9;&#125;&#10;&#10;&#10;&#9;&#60;/style&#62;&#10;&#60;/head&#62;&#10;&#60;body&#62;&#10;&#9;&#60;p&#62;&#27979;&#35797;&#23383;&#20307;&#22823;&#23567;&#60;/p&#62;&#10;&#9;&#60;div&#62;&#60;/div&#62;&#10;&#10;&#60;/body&#62;&#10;&#60;/html&#62;</span><br></pre></td>
+                </tr>
+              </table>
+            </figure>
+          </p>
+          <p>但是这个时候，font-size并不是10px，之前在网上看到将root元素的font-size设置为10px，方便后文计算。但是在这里似乎并没有起到效果。</p>
+          <p>原因是因为chrome默认所允许的最小字体为12px，如果设定值小于此值，就会被重置成12px。这个时候，<code>1rem=12px</code>，关于chrome最小字体限制，</p>
+          <p>参考： <a href="https://banri.me/web/webkit-text-size-adjust.html" target="_blank" rel="external">Chrome取消-webkit-text-size-adjust后的那些事</a></p>
+          <h3 id="u5757_u7EA7_u5143_u7D20_u548C_u884C_u5185_u5143_u7D20"><a href="#u5757_u7EA7_u5143_u7D20_u548C_u884C_u5185_u5143_u7D20" class="headerlink" title="块级元素和行内元素"></a>块级元素和行内元素</h3>
+          <ul>
+            <li>块级元素（block level element）
+              <ul>
+                <li>独占一行</li>
+                <li>可设置 width，height</li>
+                <li>默认</li>
+              </ul>
+            </li>
+            <li>内联元素（inline element）
+              <ul>
+                <li>设置width height 无效</li>
+              </ul>
+            </li>
+          </ul>
+          <p>参考： <a href="http://geekplux.com/2014/04/25/several_core_concepts_of_css.html" target="_blank" rel="external">CSS 最核心的几个概念</a></p>
+          <h3 id="u5404_u79CD_u5C45_u4E2D_u65B9_u6CD5_u7684_u4F7F_u7528_u573A_u666F"><a href="#u5404_u79CD_u5C45_u4E2D_u65B9_u6CD5_u7684_u4F7F_u7528_u573A_u666F" class="headerlink" title="各种居中方法的使用场景"></a>各种居中方法的使用场景</h3>
+          <figure class="highlight">
+            <table>
+              <tr>
+                <td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td>
+                <td class="code"><pre><span class="line">// 水平居中</span><br><span class="line"></span><br><span class="line">// 使用margin水平居中元素的时候，</span><br><span class="line">// 需要指定要居中元素的width值（与父元素的宽度无关）</span><br><span class="line">// 显然这里只适用于块级元素</span><br><span class="line">// 居中被设置该属性的元素自身，不是子元素，也不是父元素 </span><br><span class="line">margin: 0, auto;   </span><br><span class="line"></span><br><span class="line">// </span><br><span class="line"></span><br><span class="line">text-align： center</span><br></pre></td>
+              </tr>
+            </table>
+          </figure>
+          <h3 id="u5982_u679C_u5185_u90E8_u76D2_u5927_u5C0F_u8D85_u51FA_u4E86_u5916_u90E8_u76D2_u6240_u80FD_u5305_u542B_u7684_u5927_u5C0F_u65F6_u8868_u73B0_u4F1A_u5982_u4F55"><a href="#u5982_u679C_u5185_u90E8_u76D2_u5927_u5C0F_u8D85_u51FA_u4E86_u5916_u90E8_u76D2_u6240_u80FD_u5305_u542B_u7684_u5927_u5C0F_u65F6_u8868_u73B0_u4F1A_u5982_u4F55" class="headerlink" title="如果内部盒大小超出了外部盒所能包含的大小时表现会如何"></a>如果内部盒大小超出了外部盒所能包含的大小时表现会如何</h3>
+          <h2 id="u4F7F_u7528_u8FC7_u7684_u5DE5_u5177"><a href="#u4F7F_u7528_u8FC7_u7684_u5DE5_u5177" class="headerlink" title="使用过的工具"></a>使用过的工具</h2>
+          <ul>
+            <li>reactjs react router</li>
+            <li>underscore</li>
+            <li>project-path （npm模块）</li>
+            <li>fixed-data-table （react组件）</li>
+          </ul>
         </div>
         <footer class="article-footer clearfix">
           <div class="article-catetags">
@@ -263,24 +331,44 @@ django提供了一种用户自定义命令来实现这个功能：
       <strong class="toc-title">文章目录</strong>
 
       <ol class="toc">
-        <li class="toc-item toc-level-3"><a class="toc-link" href="#linux_crontab_+_django_command__u5B9A_u65F6_u6267_u884C_u547D_u4EE4"><span class="toc-number">1.</span> <span class="toc-text">linux crontab +  django command 定时执行命令</span></a>
+        <li class="toc-item toc-level-2"><a class="toc-link" href="#u6742_u9879"><span class="toc-number">1.</span> <span class="toc-text">杂项</span></a>
           <ol class="toc-child">
-            <li class="toc-item toc-level-4"><a class="toc-link" href="#u95EE_u9898_u573A_u666F"><span class="toc-number">1.1.</span> <span class="toc-text">问题场景</span></a></li>
-            <li class="toc-item toc-level-4"><a class="toc-link" href="#u89E3_u51B3_u65B9_u6848"><span class="toc-number">1.2.</span> <span class="toc-text">解决方案</span></a></li>
+            <li class="toc-item toc-level-3"><a class="toc-link" href="#linux_crontab_+_django_command__u5B9A_u65F6_u6267_u884C_u547D_u4EE4"><span class="toc-number">1.1.</span> <span class="toc-text">linux crontab +  django command 定时执行命令</span></a>
+              <ol class="toc-child">
+                <li class="toc-item toc-level-4"><a class="toc-link" href="#u95EE_u9898_u573A_u666F"><span class="toc-number">1.1.1.</span> <span class="toc-text">问题场景</span></a></li>
+                <li class="toc-item toc-level-4"><a class="toc-link" href="#u89E3_u51B3_u65B9_u6848"><span class="toc-number">1.1.2.</span> <span class="toc-text">解决方案</span></a></li>
+              </ol>
+            </li>
+            <li class="toc-item toc-level-3"><a class="toc-link" href="#u5F80mysql_u4E2D_u5199_u5927_u91CF_u6570_u636E_u65F6_uFF0C_u51FA_u73B0_u9519_u8BEF_uFF1A2006__u2018mysql_server_has_gone_away_u2019"><span class="toc-number">1.2.</span> <span class="toc-text">往mysql中写大量数据时，出现错误：2006 ‘mysql server has gone away’</span></a>
+              <ol class="toc-child">
+                <li class="toc-item toc-level-4"><a class="toc-link" href="#u95EE_u9898_u573A_u666F-1"><span class="toc-number">1.2.1.</span> <span class="toc-text">问题场景</span></a></li>
+                <li class="toc-item toc-level-4"><a class="toc-link" href="#u89E3_u51B3_u65B9_u6848-1"><span class="toc-number">1.2.2.</span> <span class="toc-text">解决方案</span></a></li>
+              </ol>
+            </li>
           </ol>
         </li>
-        <li class="toc-item toc-level-3"><a class="toc-link" href="#u5F80mysql_u4E2D_u5199_u5927_u91CF_u6570_u636E_u65F6_uFF0C_u51FA_u73B0_u9519_u8BEF_uFF1A2006__u2018mysql_server_has_gone_away_u2019"><span class="toc-number">2.</span> <span class="toc-text">往mysql中写大量数据时，出现错误：2006 ‘mysql server has gone away’</span></a>
+        <li class="toc-item toc-level-2"><a class="toc-link" href="#vim_u5206_u5C4F_u4E0E_ctrl_p_u63D2_u4EF6"><span class="toc-number">2.</span> <span class="toc-text">vim分屏与 ctrl p插件</span></a></li>
+        <li class="toc-item toc-level-2"><a class="toc-link" href="#u57FA_u7840_u6B63_u5219_u8868_u8FBE_u5F0F"><span class="toc-number">3.</span> <span class="toc-text">基础正则表达式</span></a></li>
+        <li class="toc-item toc-level-2"><a class="toc-link" href="#u524D_u7AEF"><span class="toc-number">4.</span> <span class="toc-text">前端</span></a>
           <ol class="toc-child">
-            <li class="toc-item toc-level-4"><a class="toc-link" href="#u95EE_u9898_u573A_u666F-1"><span class="toc-number">2.1.</span> <span class="toc-text">问题场景</span></a></li>
-            <li class="toc-item toc-level-4"><a class="toc-link" href="#u89E3_u51B3_u65B9_u6848-1"><span class="toc-number">2.2.</span> <span class="toc-text">解决方案</span></a></li>
+            <li class="toc-item toc-level-3"><a class="toc-link" href="#CSS__u4F2A_u7C7B_u548C_u4F2A_u5143_u7D20_u533A_u522B"><span class="toc-number">4.1.</span> <span class="toc-text">CSS 伪类和伪元素区别</span></a>
+              <ol class="toc-child">
+                <li class="toc-item toc-level-4"><a class="toc-link" href="#u6982_u5FF5_u8FA8_u6790"><span class="toc-number">4.1.1.</span> <span class="toc-text">概念辨析</span></a></li>
+              </ol>
+            </li>
+            <li class="toc-item toc-level-3"><a class="toc-link" href="#CSS_font-size__u76F8_u5BF9_u5927_u5C0F_u7EE7_u627F"><span class="toc-number">4.2.</span> <span class="toc-text">CSS font-size 相对大小继承</span></a></li>
           </ol>
         </li>
-        <li class="toc-item toc-level-3"><a class="toc-link" href="#CSS__u4F2A_u7C7B_u548C_u4F2A_u5143_u7D20_u533A_u522B"><span class="toc-number">3.</span> <span class="toc-text">CSS 伪类和伪元素区别</span></a>
-          <ol class="toc-child">
-            <li class="toc-item toc-level-4"><a class="toc-link" href="#u6982_u5FF5_u8FA8_u6790"><span class="toc-number">3.1.</span> <span class="toc-text">概念辨析</span></a></li>
-          </ol>
-        </li>
-        <li class="toc-item toc-level-3"><a class="toc-link" href="#CSS_font-size__u76F8_u5BF9_u5927_u5C0F_u7EE7_u627F"><span class="toc-number">4.</span> <span class="toc-text">CSS font-size 相对大小继承</span></a></li>
+      </ol>
+      </li>
+      <li class="toc-item toc-level-1"><a class="toc-link" href="#CSS"><span class="toc-number"></span> <span class="toc-text">CSS</span></a>
+        <ol class="toc-child">
+          <li class="toc-item toc-level-3"><a class="toc-link" href="#u5757_u7EA7_u5143_u7D20_u548C_u884C_u5185_u5143_u7D20"><span class="toc-number">0.1.</span> <span class="toc-text">块级元素和行内元素</span></a></li>
+          <li class="toc-item toc-level-3"><a class="toc-link" href="#u5404_u79CD_u5C45_u4E2D_u65B9_u6CD5_u7684_u4F7F_u7528_u573A_u666F"><span class="toc-number">0.2.</span> <span class="toc-text">各种居中方法的使用场景</span></a></li>
+          <li class="toc-item toc-level-3"><a class="toc-link" href="#u5982_u679C_u5185_u90E8_u76D2_u5927_u5C0F_u8D85_u51FA_u4E86_u5916_u90E8_u76D2_u6240_u80FD_u5305_u542B_u7684_u5927_u5C0F_u65F6_u8868_u73B0_u4F1A_u5982_u4F55"><span class="toc-number">0.3.</span> <span class="toc-text">如果内部盒大小超出了外部盒所能包含的大小时表现会如何</span></a></li>
+        </ol>
+      </li>
+      <li class="toc-item toc-level-2"><a class="toc-link" href="#u4F7F_u7528_u8FC7_u7684_u5DE5_u5177"><span class="toc-number">1.</span> <span class="toc-text">使用过的工具</span></a></li>
       </ol>
 
     </div>
@@ -330,15 +418,11 @@ django提供了一种用户自定义命令来实现这个功能：
 
 
 
-            <li><a href="/categories/vim/" title="vim">vim<sup>1</sup></a></li>
-
-
-
             <li><a href="/categories/产品体验/" title="产品体验">产品体验<sup>1</sup></a></li>
 
 
 
-            <li><a href="/categories/前端/" title="前端">前端<sup>4</sup></a></li>
+            <li><a href="/categories/前端/" title="前端">前端<sup>3</sup></a></li>
 
 
 
@@ -381,7 +465,7 @@ django提供了一种用户自定义命令来实现这个功能：
 
 
 
-            <li><a href="/tags/前端/" title="前端">前端<sup>3</sup></a></li>
+            <li><a href="/tags/前端/" title="前端">前端<sup>2</sup></a></li>
 
 
 
@@ -389,7 +473,7 @@ django提供了一种用户自定义命令来实现这个功能：
 
 
 
-            <li><a href="/tags/javascript/" title="javascript">javascript<sup>1</sup></a></li>
+            <li><a href="/tags/科学史/" title="科学史">科学史<sup>1</sup></a></li>
 
 
 
@@ -405,11 +489,7 @@ django提供了一种用户自定义命令来实现这个功能：
 
 
 
-            <li><a href="/tags/vim/" title="vim">vim<sup>1</sup></a></li>
-
-
-
-            <li><a href="/tags/科学史/" title="科学史">科学史<sup>1</sup></a></li>
+            <li><a href="/tags/javascript/" title="javascript">javascript<sup>1</sup></a></li>
 
 
 

@@ -671,90 +671,6 @@
   </entry>
   
   <entry>
-    <title><![CDATA[前端记录]]></title>
-    <link href="http://starding.github.io/2016/03/13/my-front-end-route/"/>
-    <id>http://starding.github.io/2016/03/13/my-front-end-route/</id>
-    <published>2016-03-13T14:25:05.000Z</published>
-    <updated>2016-04-21T03:10:24.000Z</updated>
-    <content type="html"><![CDATA[<p>主要记录一下前端学习中遇到的容易混淆的地方，个人感觉在html，css和javascript中。当属css最令人难以捉摸，由于浏览器默认样式或是限制，css继承，层叠规则等的存在，综合作用之下，很多时候都觉得css效果与预期不一致。因此css的内容或许会更多一些。</p>
-<p>仅仅是零散的记录，暂时没有整理成单独文章的精力。以后或许会把一些可以扩展的地方扩展成文章式的内容。</p>
-<h2 id="CSS_u4E2D_u7684_u7591_u60D1"><a href="#CSS_u4E2D_u7684_u7591_u60D1" class="headerlink" title="CSS中的疑惑"></a>CSS中的疑惑</h2>
-<h3 id="width__u548C_height"><a href="#width__u548C_height" class="headerlink" title="width 和 height"></a><code>width</code> 和 <code>height</code></h3>
-<p>定义元素「内容区」的宽度，默认值为auto 无继承性。浏览器会计算出实际的宽度。</p>
-<ol>
-  <li>height 和 width 实用百分数相对单位时，相对的是父元素宽度计算（父元素的宽度同理）。 如果不指定，默认值就是图片本身的宽高，如果图片加载失败，会显示alt属性值，或者浏览器自带的加载失败效果。</li>
-</ol>
-<h3 id="inline-block_u7684_u8868_u73B0"><a href="#inline-block_u7684_u8868_u73B0" class="headerlink" title="inline-block的表现"></a>inline-block的表现</h3>
-<blockquote>
-  <p>This value causes an element to generate an inline-level block container. The inside of an inline-block is formatted as a block box, and the element itself is formatted as an atomic inline-level box.</p>
-  <p>大致意思就是：inline-block 后的元素创建了一个行级的块容器，该元素内部（内容）被格式化成一个块元素，同时元素本身则被格式化成一个行内元素。</p>
-  <p>直白一点的意思就是：inline-block 的元素既具有 block 元素可以设置宽高的特性，同时又具有 inline 元素默认不换行的特性。当然不仅仅是这些特性，比如 inline-block 元素也可以设置 vertical-align 属性。简而言之：</p>
-  <p>inline-block 后的元素就是一个格式化为行内元素的块容器( Block container )</p>
-</blockquote>
-<p><strong>疑问：</strong> </p>
-<p>inline-block的margin边距会撑开父元素的高度，而普通的block的边距则会与父元素的margin边距重合？</p>
-<p>参考：</p>
-<p><a href="http://ued.taobao.org/blog/2012/08/inline-block/" target="_blank" rel="external">inline-block 前世今生</a> </p>
-<p><a href="https://www.w3.org/TR/CSS2/visuren.html#display-prop" target="_blank" rel="external">w3c: the ‘display’ property</a></p>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/vertical-align" target="_blank" rel="external">mozilla: vertical-align</a></p>
-<h3 id="rem_u4F7F_u7528"><a href="#rem_u4F7F_u7528" class="headerlink" title="rem使用"></a>rem使用</h3>
-<p>今天在chrome中实验rem相对单位，刚开始的实验代码为：</p>
-<figure class="highlight html">
-  <table>
-    <tr>
-      <td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td>
-      <td class="code"><pre><span class="line"><span class="doctype">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">meta</span> <span class="attribute">charset</span>=<span class="value">"utf-8"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">title</span>&gt;</span>test rem<span class="tag">&lt;/<span class="title">title</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="tag">&lt;<span class="title">style</span> <span class="attribute">type</span>=<span class="value">"text/css"</span>&gt;</span><span class="css"></span><br><span class="line">		<span class="tag">html</span><span class="rules">&#123;</span><br><span class="line"></span><br><span class="line">			<span class="rule"><span class="attribute">font-size</span>:<span class="value"> <span class="number">62.5%</span></span></span>;  // 这里的表现有点奇怪</span><br><span class="line">		&#125;</span></span><br><span class="line">		<span class="tag">body</span><span class="rules">&#123;</span><br><span class="line">			<span class="rule"><span class="attribute">font-size</span>:<span class="value"> <span class="number">1.2rem</span></span></span>;</span><br><span class="line">		&#125;</span></span><br><span class="line">		<span class="tag">div</span><span class="rules">&#123;</span><br><span class="line">			<span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">300px</span></span></span>;</span><br><span class="line">			<span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">300px</span></span></span>;</span><br><span class="line">			<span class="rule"><span class="attribute">background-color</span>:<span class="value"> red</span></span>;</span><br><span class="line">			<span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">1rem</span></span></span>;</span><br><span class="line">		&#125;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	</span><span class="tag">&lt;/<span class="title">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">p</span>&gt;</span>测试字体大小<span class="tag">&lt;/<span class="title">p</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></span><br></pre></td>
-    </tr>
-  </table>
-</figure>
-<p>但是这个时候，font-size并不是10px，之前在网上看到将root元素的font-size设置为10px，方便后文计算。但是在这里似乎并没有起到效果。</p>
-<p>原因是因为chrome默认所允许的最小字体为12px，如果设定值小于此值，就会被重置成12px。这个时候，<code>1rem=12px</code>，关于chrome最小字体限制，</p>
-<p>参考： <a href="https://banri.me/web/webkit-text-size-adjust.html" target="_blank" rel="external">Banri’s<br>Chrome取消-webkit-text-size-adjust后的那些事</a></p>
-<h3 id="u5757_u7EA7_u5143_u7D20_u548C_u884C_u5185_u5143_u7D20"><a href="#u5757_u7EA7_u5143_u7D20_u548C_u884C_u5185_u5143_u7D20" class="headerlink" title="块级元素和行内元素"></a>块级元素和行内元素</h3>
-<ul>
-  <li>块级元素（block level element）
-    <ul>
-      <li>独占一行</li>
-      <li>可设置 width，height</li>
-      <li>默认</li>
-    </ul>
-  </li>
-  <li>内联元素（inline element）
-    <ul>
-      <li>设置width height 无效</li>
-    </ul>
-  </li>
-</ul>
-<p>参考： <a href="http://geekplux.com/2014/04/25/several_core_concepts_of_css.html" target="_blank" rel="external">CSS 最核心的几个概念</a></p>
-<h3 id="u5404_u79CD_u5C45_u4E2D_u65B9_u6CD5_u7684_u4F7F_u7528_u573A_u666F"><a href="#u5404_u79CD_u5C45_u4E2D_u65B9_u6CD5_u7684_u4F7F_u7528_u573A_u666F" class="headerlink" title="各种居中方法的使用场景"></a>各种居中方法的使用场景</h3>
-<figure class="highlight">
-  <table>
-    <tr>
-      <td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td>
-      <td class="code"><pre><span class="line">// 水平居中</span><br><span class="line"></span><br><span class="line">// 使用margin水平居中元素的时候，</span><br><span class="line">// 需要指定要居中元素的width值（与父元素的宽度无关）</span><br><span class="line">// 显然这里只适用于块级元素</span><br><span class="line">// 居中被设置该属性的元素自身，不是子元素，也不是父元素 </span><br><span class="line">margin: 0, auto;   </span><br><span class="line"></span><br><span class="line">// </span><br><span class="line"></span><br><span class="line">text-align： center</span><br></pre></td>
-    </tr>
-  </table>
-</figure>
-<h3 id="u5982_u679C_u5185_u90E8_u76D2_u5927_u5C0F_u8D85_u51FA_u4E86_u5916_u90E8_u76D2_u6240_u80FD_u5305_u542B_u7684_u5927_u5C0F_u65F6_u8868_u73B0_u4F1A_u5982_u4F55"><a href="#u5982_u679C_u5185_u90E8_u76D2_u5927_u5C0F_u8D85_u51FA_u4E86_u5916_u90E8_u76D2_u6240_u80FD_u5305_u542B_u7684_u5927_u5C0F_u65F6_u8868_u73B0_u4F1A_u5982_u4F55" class="headerlink" title="如果内部盒大小超出了外部盒所能包含的大小时表现会如何"></a>如果内部盒大小超出了外部盒所能包含的大小时表现会如何</h3>
-<h2 id="u4F7F_u7528_u8FC7_u7684_u5DE5_u5177"><a href="#u4F7F_u7528_u8FC7_u7684_u5DE5_u5177" class="headerlink" title="使用过的工具"></a>使用过的工具</h2>
-<ul>
-  <li>reactjs react router</li>
-  <li>underscore</li>
-  <li>project-path （npm模块）</li>
-  <li>fixed-data-table （react组件）</li>
-</ul>]]></content>
-    <summary type="html">
-    <![CDATA[<p>主要记录一下前端学习中遇到的容易混淆的地方，个人感觉在html，css和javascript中。当属css最令人难以捉摸，由于浏览器默认样式或是限制，css继承，层叠规则等的存在，综合作用之下，很多时候都觉得css效果与预期不一致。因此css的内容或许会更多一些。</p>
-]]>
-    </summary>
-    
-      <category term="前端" scheme="http://starding.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
-    
-      <category term="前端" scheme="http://starding.github.io/categories/%E5%89%8D%E7%AB%AF/"/>
-    
-  </entry>
-  
-  <entry>
     <title><![CDATA[隐喻]]></title>
     <link href="http://starding.github.io/2016/02/26/metaphor/"/>
     <id>http://starding.github.io/2016/02/26/metaphor/</id>
@@ -813,8 +729,9 @@
     <link href="http://starding.github.io/2016/02/25/questions-record/"/>
     <id>http://starding.github.io/2016/02/25/questions-record/</id>
     <published>2016-02-25T02:54:31.000Z</published>
-    <updated>2016-03-03T06:02:26.000Z</updated>
+    <updated>2016-04-21T03:36:14.000Z</updated>
     <content type="html"><![CDATA[<p>Meta: 本文章用来记录平时遇到的问题以及相应的解决方案</p>
+<h2 id="u6742_u9879"><a href="#u6742_u9879" class="headerlink" title="杂项"></a>杂项</h2>
 <h3 id="linux_crontab_+_django_command__u5B9A_u65F6_u6267_u884C_u547D_u4EE4"><a href="#linux_crontab_+_django_command__u5B9A_u65F6_u6267_u884C_u547D_u4EE4" class="headerlink" title="linux crontab +  django command 定时执行命令"></a>linux crontab +  django command 定时执行命令</h3>
 <h4 id="u95EE_u9898_u573A_u666F"><a href="#u95EE_u9898_u573A_u666F" class="headerlink" title="问题场景"></a>问题场景</h4>
 <p>在做一个档案管理系统时，有一个需要定时从DB2数据库中取出数据，处理之后，存入mysql中的任务。这意味着需要在django中单独跑一个脚本，这个脚本使用django的环境。</p>
@@ -841,6 +758,24 @@
   </table>
 </figure>
 <p>当然，也可以限制一下自己每次往mysql中写入数据的数量来解决这个问题。</p>
+<h2 id="vim_u5206_u5C4F_u4E0E_ctrl_p_u63D2_u4EF6"><a href="#vim_u5206_u5C4F_u4E0E_ctrl_p_u63D2_u4EF6" class="headerlink" title="vim分屏与 ctrl p插件"></a>vim分屏与 <code>ctrl p</code>插件</h2>
+<p>之前总是听说 <code>ctrl p</code> 插件如何如何好用。不过我开始试用的时候，确实没有体会到太强大的地方，知道后来发现vim的分屏功能。</p>
+<p>试用vim分屏功能，加上ctrl p实现了不退出vim直接打开多个文件的功能，节省了大量在命令行下各种 <code>cd 目录</code> 的时间。</p>
+<p>参考：<a href="http://coolshell.cn/articles/1679.html" target="_blank" rel="external">Vim的分屏功能</a></p>
+<h2 id="u57FA_u7840_u6B63_u5219_u8868_u8FBE_u5F0F"><a href="#u57FA_u7840_u6B63_u5219_u8868_u8FBE_u5F0F" class="headerlink" title="基础正则表达式"></a>基础正则表达式</h2>
+<p>有一次，我需要在一个包含很多行短文字的后面补上的空格，将每一行补成相同的宽度。<br>刚开始使用各种列编辑，块编辑尝试都没有用。难道必须写一个程序来专门处理这件事情？</p>
+<p>后来发现正则表达式基本能满足这一要求：</p>
+<figure class="highlight">
+  <table>
+    <tr>
+      <td class="gutter"><pre><span class="line">1</span><br></pre></td>
+      <td class="code"><pre><span class="line">%s/$/ n_spaces /g</span><br></pre></td>
+    </tr>
+  </table>
+</figure>
+<p>在vim中，$符有丰富的含义，这里指的是行尾前一个字符</p>
+<h2 id="u524D_u7AEF"><a href="#u524D_u7AEF" class="headerlink" title="前端"></a>前端</h2>
+<p>主要记录一下前端学习中遇到的容易混淆的地方，个人感觉在html，css和javascript中。当属css最令人难以捉摸，由于浏览器默认样式或是限制，css继承，层叠规则等的存在，综合作用之下，很多时候都觉得css效果与预期不一致。因此css的内容或许会更多一些。<br>仅仅是零散的记录，暂时没有整理成单独文章的精力。以后或许会把一些可以扩展的地方扩展成文章式的内容。</p>
 <h3 id="CSS__u4F2A_u7C7B_u548C_u4F2A_u5143_u7D20_u533A_u522B"><a href="#CSS__u4F2A_u7C7B_u548C_u4F2A_u5143_u7D20_u533A_u522B" class="headerlink" title="CSS 伪类和伪元素区别"></a>CSS 伪类和伪元素区别</h3>
 <p><strong>伪类：Pseudo-elements</strong></p>
 <p><strong>伪元素：Pseudo-classes</strong></p>
@@ -864,24 +799,58 @@
     </tr>
   </table>
 </figure>
-<pre><code class="css"># <span class="selector-tag">CSS</span>
-<span class="selector-tag">p</span> {<span class="attribute">font-size</span>:.<span class="number">75em</span>;}
-<span class="selector-tag">strong</span> {<span class="attribute">font-size</span>:.<span class="number">75em</span>;}
-</code></pre>
-<blockquote>
-  <p>摘自《css设计指南》</p>
-  <p>一般来说，em以浏览器默认值为基本单位，也就是<code>1em=16px</code>。如果你想使用 em,但又需要设定具体的像素大小,可以把 body 的 font-size 设定为 62.5%。这样,就等于把基准大小从 16 像素改为 10 像素(16×62.5%=10)。然后, em 与像素的对应关系就十分明确了,比如 1em 等于 10 像素,1.5em 等于 15 像素,2em 等于 20 像素,等等。</p>
-  <p>p 元素的文本为 12 像素(body 的 16 像素基准大小×.75=12px), strong 是 p 的子元素,它的文本相对大小会逐层复合,应该是 16px <em> 0.75</em> 0.75=9px。</p>
-</blockquote>
-<p><strong>注意与text-indent的区别</strong>: font-size 会叠加复合计算，text-indent则是后面的值覆盖前面的值</p>
-<blockquote>
-  <p>text-indent 可以被子元素继承。如果你 在一个 div 上设定了 text-indent 属性,那么 div 中的所有段落都会继承该缩进值。然而,与 所有继承的 CSS 值一样,这个缩进值并不是祖先元素中设定的值,而是计算的值。下面举一个 例子说明。</p>
-  <p>假设有一个 400 像素宽的 div,包含的文本缩进 5%,则缩进的距离是 20 像素(400 的 5%)。 在这个 div 中有一个 200 像素宽的段落。作为子元素,它继承父元素的 text-indent 值,所以 它包含的文本也缩进。但继承的缩进值是多少呢?不是 5%,而是 20 像素。也就是说,子元素 继承的是根据父元素宽度计算得到的缩进值。结果,虽然段落只有父元素一半宽,但其中的文 本也会缩进 20 像素。这样可以确保无论段落多宽,它们的缩进距离都一样。当然,在子元素 上重新设定 text-indent
-    属性,可以覆盖继承的值.</p>
-</blockquote>]]></content>
+<p>```css</p>
+<h1 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h1>
+<p>p {font-size:.75em;}<br>strong {font-size:.75em;}<br>
+  <figure class="highlight plain">
+    <table>
+      <tr>
+        <td class="gutter"><pre><span class="line">1</span><br></pre></td>
+        <td class="code"><pre><span class="line">&#10;&#62; &#25688;&#33258;&#12298;css&#35774;&#35745;&#25351;&#21335;&#12299;&#10;&#10;&#62;&#19968;&#33324;&#26469;&#35828;&#65292;em&#20197;&#27983;&#35272;&#22120;&#40664;&#35748;&#20540;&#20026;&#22522;&#26412;&#21333;&#20301;&#65292;&#20063;&#23601;&#26159;`1em=16px`&#12290;&#22914;&#26524;&#20320;&#24819;&#20351;&#29992; em,&#20294;&#21448;&#38656;&#35201;&#35774;&#23450;&#20855;&#20307;&#30340;&#20687;&#32032;&#22823;&#23567;,&#21487;&#20197;&#25226; body &#30340; font-size &#35774;&#23450;&#20026; 62.5%&#12290;&#36825;&#26679;,&#23601;&#31561;&#20110;&#25226;&#22522;&#20934;&#22823;&#23567;&#20174; 16 &#20687;&#32032;&#25913;&#20026; 10 &#20687;&#32032;(16&#215;62.5%=10)&#12290;&#28982;&#21518;, em &#19982;&#20687;&#32032;&#30340;&#23545;&#24212;&#20851;&#31995;&#23601;&#21313;&#20998;&#26126;&#30830;&#20102;,&#27604;&#22914; 1em &#31561;&#20110; 10 &#20687;&#32032;,1.5em &#31561;&#20110; 15 &#20687;&#32032;,2em &#31561;&#20110; 20 &#20687;&#32032;,&#31561;&#31561;&#12290;&#10;&#13;&#62;p &#20803;&#32032;&#30340;&#25991;&#26412;&#20026; 12 &#20687;&#32032;(body &#30340; 16 &#20687;&#32032;&#22522;&#20934;&#22823;&#23567;&#215;.75=12px), strong &#26159; p &#30340;&#23376;&#20803;&#32032;,&#23427;&#30340;&#25991;&#26412;&#30456;&#23545;&#22823;&#23567;&#20250;&#36880;&#23618;&#22797;&#21512;,&#24212;&#35813;&#26159; 16px * 0.75* 0.75=9px&#12290;&#10;&#10;**&#27880;&#24847;&#19982;text-indent&#30340;&#21306;&#21035;**: font-size &#20250;&#21472;&#21152;&#22797;&#21512;&#35745;&#31639;&#65292;text-indent&#21017;&#26159;&#21518;&#38754;&#30340;&#20540;&#35206;&#30422;&#21069;&#38754;&#30340;&#20540;&#10;&#10;&#62;text-indent &#21487;&#20197;&#34987;&#23376;&#20803;&#32032;&#32487;&#25215;&#12290;&#22914;&#26524;&#20320; &#22312;&#19968;&#20010; div &#19978;&#35774;&#23450;&#20102; text-indent &#23646;&#24615;,&#37027;&#20040; div &#20013;&#30340;&#25152;&#26377;&#27573;&#33853;&#37117;&#20250;&#32487;&#25215;&#35813;&#32553;&#36827;&#20540;&#12290;&#28982;&#32780;,&#19982; &#25152;&#26377;&#32487;&#25215;&#30340; CSS &#20540;&#19968;&#26679;,&#36825;&#20010;&#32553;&#36827;&#20540;&#24182;&#19981;&#26159;&#31062;&#20808;&#20803;&#32032;&#20013;&#35774;&#23450;&#30340;&#20540;,&#32780;&#26159;&#35745;&#31639;&#30340;&#20540;&#12290;&#19979;&#38754;&#20030;&#19968;&#20010; &#20363;&#23376;&#35828;&#26126;&#12290;&#13;&#13;&#62;&#20551;&#35774;&#26377;&#19968;&#20010; 400 &#20687;&#32032;&#23485;&#30340; div,&#21253;&#21547;&#30340;&#25991;&#26412;&#32553;&#36827; 5%,&#21017;&#32553;&#36827;&#30340;&#36317;&#31163;&#26159; 20 &#20687;&#32032;(400 &#30340; 5%)&#12290; &#22312;&#36825;&#20010; div &#20013;&#26377;&#19968;&#20010; 200 &#20687;&#32032;&#23485;&#30340;&#27573;&#33853;&#12290;&#20316;&#20026;&#23376;&#20803;&#32032;,&#23427;&#32487;&#25215;&#29238;&#20803;&#32032;&#30340; text-indent &#20540;,&#25152;&#20197; &#23427;&#21253;&#21547;&#30340;&#25991;&#26412;&#20063;&#32553;&#36827;&#12290;&#20294;&#32487;&#25215;&#30340;&#32553;&#36827;&#20540;&#26159;&#22810;&#23569;&#21602;?&#19981;&#26159; 5%,&#32780;&#26159; 20 &#20687;&#32032;&#12290;&#20063;&#23601;&#26159;&#35828;,&#23376;&#20803;&#32032; &#32487;&#25215;&#30340;&#26159;&#26681;&#25454;&#29238;&#20803;&#32032;&#23485;&#24230;&#35745;&#31639;&#24471;&#21040;&#30340;&#32553;&#36827;&#20540;&#12290;&#32467;&#26524;,&#34429;&#28982;&#27573;&#33853;&#21482;&#26377;&#29238;&#20803;&#32032;&#19968;&#21322;&#23485;,&#20294;&#20854;&#20013;&#30340;&#25991; &#26412;&#20063;&#20250;&#32553;&#36827; 20 &#20687;&#32032;&#12290;&#36825;&#26679;&#21487;&#20197;&#30830;&#20445;&#26080;&#35770;&#27573;&#33853;&#22810;&#23485;,&#23427;&#20204;&#30340;&#32553;&#36827;&#36317;&#31163;&#37117;&#19968;&#26679;&#12290;&#24403;&#28982;,&#22312;&#23376;&#20803;&#32032; &#19978;&#37325;&#26032;&#35774;&#23450; text-indent &#23646;&#24615;,&#21487;&#20197;&#35206;&#30422;&#32487;&#25215;&#30340;&#20540;.&#10;&#13;                   &#13;                   &#10;&#10;&#10;### `width` &#21644; `height` &#10;&#10;&#23450;&#20041;&#20803;&#32032;&#12300;&#20869;&#23481;&#21306;&#12301;&#30340;&#23485;&#24230;&#65292;&#40664;&#35748;&#20540;&#20026;auto &#26080;&#32487;&#25215;&#24615;&#12290;&#27983;&#35272;&#22120;&#20250;&#35745;&#31639;&#20986;&#23454;&#38469;&#30340;&#23485;&#24230;&#12290;&#10;&#10;1. height &#21644; width &#23454;&#29992;&#30334;&#20998;&#25968;&#30456;&#23545;&#21333;&#20301;&#26102;&#65292;&#30456;&#23545;&#30340;&#26159;&#29238;&#20803;&#32032;&#23485;&#24230;&#35745;&#31639;&#65288;&#29238;&#20803;&#32032;&#30340;&#23485;&#24230;&#21516;&#29702;&#65289;&#12290; &#22914;&#26524;&#19981;&#25351;&#23450;&#65292;&#40664;&#35748;&#20540;&#23601;&#26159;&#22270;&#29255;&#26412;&#36523;&#30340;&#23485;&#39640;&#65292;&#22914;&#26524;&#22270;&#29255;&#21152;&#36733;&#22833;&#36133;&#65292;&#20250;&#26174;&#31034;alt&#23646;&#24615;&#20540;&#65292;&#25110;&#32773;&#27983;&#35272;&#22120;&#33258;&#24102;&#30340;&#21152;&#36733;&#22833;&#36133;&#25928;&#26524;&#12290;&#10;&#10;&#10;### inline-block&#30340;&#34920;&#29616;&#10;&#10;&#62; This value causes an element to generate an inline-level block container. The inside of an inline-block is formatted as a block box, and the element itself is formatted as an atomic inline-level box.&#10;&#10;&#62; &#22823;&#33268;&#24847;&#24605;&#23601;&#26159;&#65306;inline-block &#21518;&#30340;&#20803;&#32032;&#21019;&#24314;&#20102;&#19968;&#20010;&#34892;&#32423;&#30340;&#22359;&#23481;&#22120;&#65292;&#35813;&#20803;&#32032;&#20869;&#37096;&#65288;&#20869;&#23481;&#65289;&#34987;&#26684;&#24335;&#21270;&#25104;&#19968;&#20010;&#22359;&#20803;&#32032;&#65292;&#21516;&#26102;&#20803;&#32032;&#26412;&#36523;&#21017;&#34987;&#26684;&#24335;&#21270;&#25104;&#19968;&#20010;&#34892;&#20869;&#20803;&#32032;&#12290;&#10;&#10;&#62; &#30452;&#30333;&#19968;&#28857;&#30340;&#24847;&#24605;&#23601;&#26159;&#65306;inline-block &#30340;&#20803;&#32032;&#26082;&#20855;&#26377; block &#20803;&#32032;&#21487;&#20197;&#35774;&#32622;&#23485;&#39640;&#30340;&#29305;&#24615;&#65292;&#21516;&#26102;&#21448;&#20855;&#26377; inline &#20803;&#32032;&#40664;&#35748;&#19981;&#25442;&#34892;&#30340;&#29305;&#24615;&#12290;&#24403;&#28982;&#19981;&#20165;&#20165;&#26159;&#36825;&#20123;&#29305;&#24615;&#65292;&#27604;&#22914; inline-block &#20803;&#32032;&#20063;&#21487;&#20197;&#35774;&#32622; vertical-align &#23646;&#24615;&#12290;&#31616;&#32780;&#35328;&#20043;&#65306;&#10;&#10;&#62;inline-block &#21518;&#30340;&#20803;&#32032;&#23601;&#26159;&#19968;&#20010;&#26684;&#24335;&#21270;&#20026;&#34892;&#20869;&#20803;&#32032;&#30340;&#22359;&#23481;&#22120;( Block container )&#10;&#10;&#10;**&#30097;&#38382;&#65306;** &#10;&#10;inline-block&#30340;margin&#36793;&#36317;&#20250;&#25745;&#24320;&#29238;&#20803;&#32032;&#30340;&#39640;&#24230;&#65292;&#32780;&#26222;&#36890;&#30340;block&#30340;&#36793;&#36317;&#21017;&#20250;&#19982;&#29238;&#20803;&#32032;&#30340;margin&#36793;&#36317;&#37325;&#21512;&#65311;&#10;&#10;&#10;&#10;&#10;&#21442;&#32771;&#65306;&#10;&#10;[inline-block &#21069;&#19990;&#20170;&#29983;](http://ued.taobao.org/blog/2012/08/inline-block/)     &#10;&#10;[w3c: the &#39;display&#39; property](https://www.w3.org/TR/CSS2/visuren.html#display-prop)&#10;&#10;[mozilla: vertical-align](https://developer.mozilla.org/en-US/docs/Web/CSS/vertical-align)&#10;&#10;&#10;### rem&#20351;&#29992;&#10;&#10;&#20170;&#22825;&#22312;chrome&#20013;&#23454;&#39564;rem&#30456;&#23545;&#21333;&#20301;&#65292;&#21018;&#24320;&#22987;&#30340;&#23454;&#39564;&#20195;&#30721;&#20026;&#65306;&#10;&#10;```html&#10;&#60;!DOCTYPE html&#62;&#10;&#60;html&#62;&#10;&#60;head&#62;&#10;&#9;&#60;meta charset=&#34;utf-8&#34;&#62;&#10;&#9;&#60;title&#62;test rem&#60;/title&#62;&#10;&#10;&#9;&#60;style type=&#34;text/css&#34;&#62;&#10;&#9;&#9;html&#123;&#10;&#10;&#9;&#9;&#9;font-size: 62.5%;  // &#36825;&#37324;&#30340;&#34920;&#29616;&#26377;&#28857;&#22855;&#24618;&#10;&#9;&#9;&#125;&#10;&#9;&#9;body&#123;&#10;&#9;&#9;&#9;font-size: 1.2rem;&#10;&#9;&#9;&#125;&#10;&#9;&#9;div&#123;&#10;&#9;&#9;&#9;width: 300px;&#10;&#9;&#9;&#9;height: 300px;&#10;&#9;&#9;&#9;background-color: red;&#10;&#9;&#9;&#9;padding: 1rem;&#10;&#9;&#9;&#125;&#10;&#10;&#10;&#9;&#60;/style&#62;&#10;&#60;/head&#62;&#10;&#60;body&#62;&#10;&#9;&#60;p&#62;&#27979;&#35797;&#23383;&#20307;&#22823;&#23567;&#60;/p&#62;&#10;&#9;&#60;div&#62;&#60;/div&#62;&#10;&#10;&#60;/body&#62;&#10;&#60;/html&#62;</span><br></pre></td>
+      </tr>
+    </table>
+  </figure>
+</p>
+<p>但是这个时候，font-size并不是10px，之前在网上看到将root元素的font-size设置为10px，方便后文计算。但是在这里似乎并没有起到效果。</p>
+<p>原因是因为chrome默认所允许的最小字体为12px，如果设定值小于此值，就会被重置成12px。这个时候，<code>1rem=12px</code>，关于chrome最小字体限制，</p>
+<p>参考： <a href="https://banri.me/web/webkit-text-size-adjust.html" target="_blank" rel="external">Chrome取消-webkit-text-size-adjust后的那些事</a></p>
+<h3 id="u5757_u7EA7_u5143_u7D20_u548C_u884C_u5185_u5143_u7D20"><a href="#u5757_u7EA7_u5143_u7D20_u548C_u884C_u5185_u5143_u7D20" class="headerlink" title="块级元素和行内元素"></a>块级元素和行内元素</h3>
+<ul>
+  <li>块级元素（block level element）
+    <ul>
+      <li>独占一行</li>
+      <li>可设置 width，height</li>
+      <li>默认</li>
+    </ul>
+  </li>
+  <li>内联元素（inline element）
+    <ul>
+      <li>设置width height 无效</li>
+    </ul>
+  </li>
+</ul>
+<p>参考： <a href="http://geekplux.com/2014/04/25/several_core_concepts_of_css.html" target="_blank" rel="external">CSS 最核心的几个概念</a></p>
+<h3 id="u5404_u79CD_u5C45_u4E2D_u65B9_u6CD5_u7684_u4F7F_u7528_u573A_u666F"><a href="#u5404_u79CD_u5C45_u4E2D_u65B9_u6CD5_u7684_u4F7F_u7528_u573A_u666F" class="headerlink" title="各种居中方法的使用场景"></a>各种居中方法的使用场景</h3>
+<figure class="highlight">
+  <table>
+    <tr>
+      <td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td>
+      <td class="code"><pre><span class="line">// 水平居中</span><br><span class="line"></span><br><span class="line">// 使用margin水平居中元素的时候，</span><br><span class="line">// 需要指定要居中元素的width值（与父元素的宽度无关）</span><br><span class="line">// 显然这里只适用于块级元素</span><br><span class="line">// 居中被设置该属性的元素自身，不是子元素，也不是父元素 </span><br><span class="line">margin: 0, auto;   </span><br><span class="line"></span><br><span class="line">// </span><br><span class="line"></span><br><span class="line">text-align： center</span><br></pre></td>
+    </tr>
+  </table>
+</figure>
+<h3 id="u5982_u679C_u5185_u90E8_u76D2_u5927_u5C0F_u8D85_u51FA_u4E86_u5916_u90E8_u76D2_u6240_u80FD_u5305_u542B_u7684_u5927_u5C0F_u65F6_u8868_u73B0_u4F1A_u5982_u4F55"><a href="#u5982_u679C_u5185_u90E8_u76D2_u5927_u5C0F_u8D85_u51FA_u4E86_u5916_u90E8_u76D2_u6240_u80FD_u5305_u542B_u7684_u5927_u5C0F_u65F6_u8868_u73B0_u4F1A_u5982_u4F55" class="headerlink" title="如果内部盒大小超出了外部盒所能包含的大小时表现会如何"></a>如果内部盒大小超出了外部盒所能包含的大小时表现会如何</h3>
+<h2 id="u4F7F_u7528_u8FC7_u7684_u5DE5_u5177"><a href="#u4F7F_u7528_u8FC7_u7684_u5DE5_u5177" class="headerlink" title="使用过的工具"></a>使用过的工具</h2>
+<ul>
+  <li>reactjs react router</li>
+  <li>underscore</li>
+  <li>project-path （npm模块）</li>
+  <li>fixed-data-table （react组件）</li>
+</ul>]]></content>
     <summary type="html">
     <![CDATA[<p>Meta: 本文章用来记录平时遇到的问题以及相应的解决方案</p>
-<h3 id="linux_crontab_+_django_command__u5B9A_u65F6_u6267_u884C_u547D_u4EE4"><a href="#linux_crontab_+_]]>
+<h2 id="u6742_u9879"><a href="#u6742_u9879" class="headerlink" title="杂项"></a>杂项</h2>
+<h3 id="linux_cro]]>
     </summary>
     
       <category term="问题" scheme="http://starding.github.io/categories/%E9%97%AE%E9%A2%98/"/>
@@ -1395,40 +1364,6 @@
   </entry>
   
   <entry>
-    <title><![CDATA[vim学习]]></title>
-    <link href="http://starding.github.io/2016/01/14/learn-vim/"/>
-    <id>http://starding.github.io/2016/01/14/learn-vim/</id>
-    <published>2016-01-14T15:21:24.000Z</published>
-    <updated>2016-03-13T09:48:22.000Z</updated>
-    <content type="html"><![CDATA[<p>记录用到的一些vim使用方法，积累够一定数量再整理</p>
-<h2 id="vim_u5206_u5C4F_u4E0E_ctrl_p_u63D2_u4EF6"><a href="#vim_u5206_u5C4F_u4E0E_ctrl_p_u63D2_u4EF6" class="headerlink" title="vim分屏与 ctrl p插件"></a>vim分屏与 <code>ctrl p</code>插件</h2>
-<p>之前总是听说 <code>ctrl p</code> 插件如何如何好用。不过我开始试用的时候，确实没有体会到太强大的地方，知道后来发现vim的分屏功能。</p>
-<p>试用vim分屏功能，加上ctrl p实现了不退出vim直接打开多个文件的功能，节省了大量在命令行下各种 <code>cd 目录</code> 的时间。</p>
-<p>参考：<a href="http://coolshell.cn/articles/1679.html" target="_blank" rel="external">Vim的分屏功能</a></p>
-<h2 id="u57FA_u7840_u6B63_u5219_u8868_u8FBE_u5F0F"><a href="#u57FA_u7840_u6B63_u5219_u8868_u8FBE_u5F0F" class="headerlink" title="基础正则表达式"></a>基础正则表达式</h2>
-<p>有一次，我需要在一个包含很多行短文字的后面补上的空格，将每一行补成相同的宽度。<br>刚开始使用各种列编辑，块编辑尝试都没有用。难道必须写一个程序来专门处理这件事情？</p>
-<p>后来发现正则表达式基本能满足这一要求：</p>
-<figure class="highlight">
-  <table>
-    <tr>
-      <td class="gutter"><pre><span class="line">1</span><br></pre></td>
-      <td class="code"><pre><span class="line">%s/$/ n_spaces /g</span><br></pre></td>
-    </tr>
-  </table>
-</figure>
-<p>在vim中，$符有丰富的含义，这里值指的是行尾前一个字符</p>]]></content>
-    <summary type="html">
-    <![CDATA[<p>记录用到的一些vim使用方法，积累够一定数量再整理</p>
-<h2 id="vim_u5206_u5C4F_u4E0E_ctrl_p_u63D2_u4EF6"><a href="#vim_u5206_u5C4F_u4E0E_ctrl_p_u63D2_u4EF6" class]]>
-    </summary>
-    
-      <category term="vim" scheme="http://starding.github.io/tags/vim/"/>
-    
-      <category term="vim" scheme="http://starding.github.io/categories/vim/"/>
-    
-  </entry>
-  
-  <entry>
     <title><![CDATA[从快播案看技术中性论的地位]]></title>
     <link href="http://starding.github.io/2016/01/11/kuaibo-technological-neutrality/"/>
     <id>http://starding.github.io/2016/01/11/kuaibo-technological-neutrality/</id>
@@ -1832,6 +1767,93 @@
       <category term="前端" scheme="http://starding.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
     
       <category term="前端" scheme="http://starding.github.io/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[《三体》，《行尸走肉》与社会达尔文主义]]></title>
+    <link href="http://starding.github.io/2016/01/07/three-body-walking-dead-Darwin/"/>
+    <id>http://starding.github.io/2016/01/07/three-body-walking-dead-Darwin/</id>
+    <published>2016-01-07T07:55:11.000Z</published>
+    <updated>2016-02-29T14:34:32.000Z</updated>
+    <content type="html"><![CDATA[<p>看大刘的《三体》，已经是几年前的事情了。除了宏观的叙事和一些经典场景，已忘的七七八八。刚开始看《行尸走肉》时，还以为是个单纯的丧尸剧，但随着剧情的不断深入，发现它描述了更多的东西。在某些重要的方面，比如场景的设定上，是非常相似的。不过是一个把达尔文主义推广到整个宇宙，建立了较为极端的达尔文性质的宇宙社会学。另一个则是将人类放入一个充满死亡的世界，以小团体进行黑暗森林式的生存，让自人类开始出现以来，数百万年形成的世界秩序重新洗牌，重新审视人类这一物种，同样渗透着浓厚的达尔文思想。</p>
+<h1 id="1_uFF1A_u300A_u4E09_u4F53_u300B_u4E0E_u300A_u884C_u5C38_u8D70_u8089_u300B_u7684_u57FA_u672C_u8BBE_u5B9A"><a href="#1_uFF1A_u300A_u4E09_u4F53_u300B_u4E0E_u300A_u884C_u5C38_u8D70_u8089_u300B_u7684_u57FA_u672C_u8BBE_u5B9A" class="headerlink" title="1：《三体》与《行尸走肉》的基本设定"></a>1：《三体》与《行尸走肉》的基本设定</h1>
+<p>二者的设定都充满了浓厚的达尔文色彩，非常强调生存竞争。</p>
+<p>首先看进化论的基础：特定环境中，资源是有限的，仅能支持一定数量的生命体，而生命的数量是不断增长，为了争夺有限的生存资源必须进行生存斗争，获胜的将存活下来，而失败的遭到淘汰。</p>
+<p>《三体》设定：大刘将上述思想扩展到整个宇宙，在宇宙层面设定了一种类似的社会学，即宇宙整体资源也是有限的，宇宙中生存着各种各样的文明，而且越是高层次的文明，所需求的资源越多，同时，各文明的最高标准是”生存是文明的第一需要“，要想生存。大刘在这样一个宇宙中来演绎文明的生存策略。</p>
+<p>《行尸走肉》设定：利用一场突如其来的病毒，打乱既有的世界秩序，将幸存的人类放入一个周围充满危险的，生存资源有限的行尸世界中，来展现末世人类的生存之道。</p>
+<h1 id="2-_u300A_u4E09_u4F53_u300B_u4E0E_u300A_u884C_u5C38_u8D70_u8089_u300B_u4E2D_u7684_u7B56_u7565"><a href="#2-_u300A_u4E09_u4F53_u300B_u4E0E_u300A_u884C_u5C38_u8D70_u8089_u300B_u4E2D_u7684_u7B56_u7565" class="headerlink" title="2.《三体》与《行尸走肉》中的策略"></a>2.《三体》与《行尸走肉》中的策略</h1>
+<p>《三体》：无论是三体人的智子干扰，或是歌者的二向箔抹杀，所采取的都是完全的黑暗森林式策略，没有合作，也没有博弈。毁灭你，与你何干，直截了当。这可以说是把生存竞争推到了极致。在豆瓣上，长期霸占《三体》区评论第一位的文章《信卢瑟，永世不得超生》【1】 所吐槽的卢瑟(loser)思维，正是这种被极致化的生存竞争思维。</p>
+<p>《行尸走肉》：加入了更多的元素。主角末世前的职业为警察：原世界秩序，规则的最好代表。包括人性与道德的考察：警察，士兵，医生，教师，牧师，平民，孩子等作为不同类型人群的代表，有着不同的人物展现。家庭式的，社区式的，陷阱式的等各种生存策略都一一考察。</p>
+<h1 id="3-_u300A_u4E09_u4F53_u300B_u4E0E_u300A_u884C_u5C38_u8D70_u8089_u300B_u7684_u79E9_u5E8F"><a href="#3-_u300A_u4E09_u4F53_u300B_u4E0E_u300A_u884C_u5C38_u8D70_u8089_u300B_u7684_u79E9_u5E8F" class="headerlink" title="3.《三体》与《行尸走肉》的秩序"></a>3.《三体》与《行尸走肉》的秩序</h1>
+<p>如今，除了一些原教旨主义者，很少有人会认为像《圣经》这样的文献是在直接描述自然真理了，最多是对自然做出一些隐喻。但认为其描述了道德与人性真理的说法仍然很有影响，尽管这一说法被达尔文进化论挑战。而中国虽然是礼仪之邦，不同时期有对道德的不同定义，但对定义本身缺乏深究，没有道德做哲学上寻根究底的传统。道德的本质是什么，世界秩序的本质又是什么，一直以来就是非常艰深的问题。</p>
+<p>个人认为（应该不是我脑补过度）《三体》以文革为背景开始整个叙事，所要突出的正是文革时期那种满含猜疑的紧张气氛，以及当时道德秩序的混乱：仅需一场政治运动，便足以煽动无数人将数千年文明所谓道德人性推入深渊。文革中的一大主题就是如何生存下去，而且这仅仅是人类自身内部。将这些脆弱的存在推广到整个宇宙中的不同文明之间，并加以放大，黑暗森林并非不可想象。丧失理性会颠覆道德与人性，完全的理性同样也会。大刘展现了这样一种可能的残酷，道德什么的太靠不住，靠的住的是严格游戏规则，执剑者逻辑明白规则，程心（个人认为圣母程心就是道德与人性的代言人）不明白或者说不愿明白。失去人性失去很多，失去兽性，失去一切，大刘采用了不同的方式强调了这一点【2】。</p>
+<p>《行尸走肉》将故事放在地球范围内，明显更为详细的对不同类型的人群进行了各式各样的考察。按剧情的发展来看，人类与行尸之间的冲突虽然一直是重要背景，但这一背景逐渐被弱化，人类与人类的冲突则逐渐被突出出来。数万年前人类逐渐开始产生社会形态，并利用语言，技术等进行自我规训，最终基本完成自我驯化，形成了一个压抑自己的意义世界【3】，个人认为这可以称作是道德和世界秩序的技术成因。但这种秩序是人类的特定阶段以及相应的特定的环境结合产生的，而末世结束了旧时秩序，同时结束的还有相应的社会和自然条件。在新的环境下，已经高度进化了的现代人，又该如何生存，能否重建一种不同的世界秩序，道德的标准又会发生什么变化？瑞克一行人在经历了众多情况之后，逐渐摆脱了原世界秩序的影响，在以警察为首的这一行人身上，还能看到生存之外的东西以及他们心理的摇摆不定，但是生存竞争已经在他们小组的意识中渗透的越来越深了，不知道采取何种策略才能更好的生存下去，但肯定不同于三体中的黑暗森林。</p>
+<h1 id="4-_u8FBE_u5C14_u6587_u601D_u60F3_u4E0E_u793E_u4F1A_u5B66"><a href="#4-_u8FBE_u5C14_u6587_u601D_u60F3_u4E0E_u793E_u4F1A_u5B66" class="headerlink" title="4.达尔文思想与社会学"></a>4.达尔文思想与社会学</h1>
+<p>达尔文的生存竞争思想在社会学中是很有地位的，并且以此发展出一种社会达尔文主义，而且达尔文思想在社会学中的应用会产生出一些逻辑清晰的，特别诱人的类似于科学中的那种分析方式（像《三体》这样就属一种）。但是达尔文自身过于强调了生存竞争的作用，忽视了生存竞争之外的现象，在社会中应用时也难以处理复杂的社会现象。另外，达尔文思想只是“演化”，而不是“进化”。</p>
+<p> <strong>hexo对脚注的支持似乎很不好，暂时以标注的形式写出</strong></p>
+<p>【1】: 详情见:<a href="http://book.douban.com/review/6146948/?start=800#comments" target="_blank" rel="external">信卢瑟，永世不得超生</a>,个人对这篇文章并不认同。我不认同的并不是其批评没有指中《三体》的要害。恰恰相反，此文对《三体》中的核心假定之一的批评相当到位：《三体》中的确采用了极致甚至很极端的生存竞争原则。个人不认同的是此文对科幻小说这一题材的误解：科幻小说一个常见手法是假定一个背景，然后以此展开，演绎出一个自洽的世界。大刘既然假定生存是文明的第一需要，那么以此写出的小说必定是这个样子。当然你可以假定生存不是文明的第一需要，来描述一个相对和谐的宇宙，但那将是另一个故事了。类似的例子有经典的以“如果冰的密度比水大”为主题的科幻小说，在这种反事实条件假定下，你不能指责科幻作家的假定存在问题，应该关注的是在这种假定下，作者所展现的世界是不是自洽，以及其展现达到了多深的层次。</p>
+<p>【2】: 刘慈欣在新书《刘慈欣谈科幻》中透漏，他是一个科学主义者和技术崇拜者。其所架构的世界很多时候钢铁般坚硬和冷酷，缺少人性的关怀。个人认为这是一种缺点，但也是一种优点。</p>
+<p>【3】: 此处参考吴国盛《技术哲学讲演录》，文中对技术哲学做了讲演式的概括介绍，人类的自我规训是其中一个重要内容。</p>]]></content>
+    <summary type="html">
+    <![CDATA[<p>看大刘的《三体》，已经是几年前的事情了。除了宏观的叙事和一些经典场景，已忘的七七八八。刚开始看《行尸走肉》时，还以为是个单纯的丧尸剧，但随着剧情的不断深入，发现它描述了更多的东西。在某些重要的方面，比如场景的设定上，是非常相似的。不过是一个把达尔文主义推广到整个宇宙，建立了]]>
+    </summary>
+    
+      <category term="三体" scheme="http://starding.github.io/tags/%E4%B8%89%E4%BD%93/"/>
+    
+      <category term="社会达尔文主义" scheme="http://starding.github.io/tags/%E7%A4%BE%E4%BC%9A%E8%BE%BE%E5%B0%94%E6%96%87%E4%B8%BB%E4%B9%89/"/>
+    
+      <category term="行尸走肉" scheme="http://starding.github.io/tags/%E8%A1%8C%E5%B0%B8%E8%B5%B0%E8%82%89/"/>
+    
+      <category term="随笔" scheme="http://starding.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[科学史上的东方与西方]]></title>
+    <link href="http://starding.github.io/2016/01/07/science-in-east-and-west/"/>
+    <id>http://starding.github.io/2016/01/07/science-in-east-and-west/</id>
+    <published>2016-01-07T07:48:31.000Z</published>
+    <updated>2016-01-07T07:52:54.000Z</updated>
+    <content type="html"><![CDATA[<p>此文是我在知乎的<a href="http://www.zhihu.com/question/21867922/answer/35898434" target="_blank" rel="external">第一个科学史答案</a></p>
+<h1 id="u4E00_uFF1A_u79D1_u5B66_u53F2_u4E0A_u7684_u300E_u79D1_u5B66_u300F"><a href="#u4E00_uFF1A_u79D1_u5B66_u53F2_u4E0A_u7684_u300E_u79D1_u5B66_u300F" class="headerlink" title="一：科学史上的『科学』"></a>一：科学史上的『科学』</h1>
+<p>科学史中所研究的科学范围，是超出我们日常生活中所提到的科学的，在科学史研究中，研究的是更广义意义上的科学，一般包括以下几种：</p>
+<ol>
+  <li>古希腊的理性科学</li>
+  <li>近代科学革命产生的数理-实验科学</li>
+  <li>更为广泛意义上的博物学</li>
+  <li>更广泛的包括技术系统的科学</li>
+</ol>
+<p>题主所说的“西方科学史”的主线是：<br>古希腊——罗马——中世纪——文艺复兴——科学革命——现在。</p>
+<p>以下叙述中的“科学”也是广义化的，但西方科学发展中的主线与支线，大家一看便知，一个非常重要的线索就是文明的类型与科学的类型这对关系。</p>
+<h1 id="u4E8C_3A_u79D1_u5B66_u53F2_u4E0A_u7684_u4E1C_u65B9_u4E0E_u897F_u65B9"><a href="#u4E8C_3A_u79D1_u5B66_u53F2_u4E0A_u7684_u4E1C_u65B9_u4E0E_u897F_u65B9" class="headerlink" title="二:科学史上的东方与西方"></a>二:科学史上的东方与西方</h1>
+<p>追溯到科学发展的源头去看，科学史上有两种比较典型的科学类型：东方的「实用型科学」与古希腊的「理性型科学」，而承载这两种科学类型的文明类型，也有两种类型：水利型文明和非水利型文明。</p>
+<h2 id="u6C34_u5229_u578B_u6587_u660E_u4E0E_u5B9E_u7528_u578B_u79D1_u5B66_3A"><a href="#u6C34_u5229_u578B_u6587_u660E_u4E0E_u5B9E_u7528_u578B_u79D1_u5B66_3A" class="headerlink" title="水利型文明与实用型科学:"></a>水利型文明与实用型科学:</h2>
+<p>代表是四大古文明，即两河流域的美索不达米亚文明，尼罗河流域的埃及文明，印度河恒河流域的印度文明，以及长江，黄河流域的中国文明。这几个文明都是近水而生，人们聚集在发达的水系旁边进行农业生产，当农业与人口都开始繁荣后，多余粮食的分配，水资源的分配，水利工程的建造和维护，排水，泄洪等都需要有组织的协作，而用水过程中出现的争执也需要权威来调节，这就应运而生了比较核心的管理组织，也就是集权政治的原型。在这种文明环境中，国家的正常运行，人民的生活是管理阶层首先要考虑的事，相应的，被管理阶层所把持的科学也偏向于实用，多集中于水利（农业灌溉必不可少），天文（农业生产，平时生活，预测王朝命运等都需要天文），医学。</p>
+<h2 id="u975E_u6C34_u5229_u6587_u660E_u4E0E_u5E0C_u814A_u7406_u6027_u79D1_u5B66_uFF1A"><a href="#u975E_u6C34_u5229_u6587_u660E_u4E0E_u5E0C_u814A_u7406_u6027_u79D1_u5B66_uFF1A" class="headerlink" title="非水利文明与希腊理性科学："></a>非水利文明与希腊理性科学：</h2>
+<p>希腊在地理位置上处于地中海沿岸，境内多山，没有大河，也没有大面积富饶的冲积平原，农业灌溉更加依靠雨水而不是与江河有关的水利，希腊人民靠本土条件难以为继，逐渐发展出了比较好的航海和商业。同时，希腊距离美索不达米亚和埃及这些文明不近也不远，便于交流而且不会被完全同化。另一方面，山脉把希腊的政治文明分割成多个小邦国，各个邦国之间形成合作竞争的关系。在此环境下，希腊人发展出了民主城邦制和奴隶制度，保证了闲暇阶层的出现，自由民主的环境也使得政治辩论成为常态，这都培养了希腊人的理性精神。希腊的闲暇阶层不同于东方的管理者，需要极力去维护一个集权大国的正常运行，而是更加注重于对政治合法性等这些内容进行思考。这些条件使得希腊成为科学史上的一朵奇葩，希腊人善于辩论，对事物有着一种寻根究底的热情，超越世俗的学术精神，比如希腊的天文学不同于东方的实用性天文学，它是一种数理行星天文学，是为了解释自然，而不是为了农业，占星等实用目的。用自然自身解释自然，不再求助于神等外物，从泰勒斯的“水是万物之源”，到柏拉图的“理念论”，再到亚里士多德的综合自然哲学，清晰的体现出理性科学出现的过程，这也是现代科学最古老的源头。</p>
+<h1 id="u4E09_uFF1A_u4E24_u79CD_u79D1_u5B66_u7C7B_u578B_u7684_u53D1_u5C55"><a href="#u4E09_uFF1A_u4E24_u79CD_u79D1_u5B66_u7C7B_u578B_u7684_u53D1_u5C55" class="headerlink" title="三：两种科学类型的发展"></a>三：两种科学类型的发展</h1>
+<h2 id="u5E0C_u814A_u7406_u6027_u79D1_u5B66_u7684_u7EE7_u627F_u53CA_u53D1_u5C55_uFF1A"><a href="#u5E0C_u814A_u7406_u6027_u79D1_u5B66_u7684_u7EE7_u627F_u53CA_u53D1_u5C55_uFF1A" class="headerlink" title="希腊理性科学的继承及发展："></a>希腊理性科学的继承及发展：</h2>
+<p>希腊发展出了非功利的，比较系统的，有内在发展逻辑的理性科学传统，比如托勒密的《天文学大成》，欧几里得的《几何原本》，更为重要的是柏拉图和亚里士多德开创的理性的范式：柏拉图的理念论和亚氏自然哲学，他们虽然不同，但都是有内在逻辑的理性系统。希腊-罗马文明灭亡之后，这种理性融入到了基督教的教义之中，形成了前期的教父哲学和后期的经院哲学。希腊的文化同时被移植到伊斯兰世界中去，十字军东征之后，便开始在欧洲复兴，经历了航海时代，宗教改革，文艺复兴之后，希腊的这种理性科学的主线便在哥白尼身上连接了起来。紧接着就是近代的科学革命了。要注意的是，这个时候是十六十七世纪，资本主义对科学的发展有作用，但是还远没有到工业革命时的那么大的影响，在这中间主要的动力作用还理性科学内在的发展逻辑，宗教精神在其中也有不小的推动作用（宗教在近代科学产生过程中的作用，也是非常重要的，但讨论又需要大量篇幅了，答主题目中所说的“宗教的严格拘束”不太公平）。</p>
+<h2 id="u4E1C_u65B9_u6C34_u5229_u6587_u660E_u5B9E_u7528_u578B_u79D1_u5B66_u7684_u53D1_u5C55_uFF1A"><a href="#u4E1C_u65B9_u6C34_u5229_u6587_u660E_u5B9E_u7528_u578B_u79D1_u5B66_u7684_u53D1_u5C55_uFF1A" class="headerlink" title="东方水利文明实用型科学的发展："></a>东方水利文明实用型科学的发展：</h2>
+<p>实用型科学并没有它内在的发展逻辑，它的发展是根据外部环境的需要，一旦外部环境没有了需求时，它也就失去了发展的动力。这在中国历史上表现的非常明显，中国是非常典型的水利文明，集权的政治，官方掌控的科学都是其特点，这种由外部需求推动的科学与外部需要结合的非常紧密，长期来看就表现出科学技术发展的离散性，形不成系统。而且中国这种高度集权的国家，一旦形成了相应的治国文化后，这种文化对超越而无用的学术具有很强的限制作用（宗教还是文化，这是个问题）。中国在两千年的历史中，科学技术（取技术系统与博物学）其实一直都是非常强的，到了明代，达到了最高点。到了这个时候，外部的需求基本被满足，除非产生社会结构的变革（像资本主义与城市那样），或者是科学本身产生像希腊理性科学那样的结构，科学技术的发展就很难前进了。但是二者都是困难的，前者是封建势力不断扼杀资本主义的萌芽，后者是中国的政治文化已经固定，形成很强的束缚了。这个时候，也刚好是西方开始抓住希腊理性之线开始复兴的时候，从此中国在技术上也开始落后了。</p>
+<h1 id="u56DB_uFF1A_u603B_u7ED3"><a href="#u56DB_uFF1A_u603B_u7ED3" class="headerlink" title="四：总结"></a>四：总结</h1>
+<p>总之，以一种辉格史的角度来看的话，宏观上西方科学发展的逻辑还是比较清晰的，主线的就是希腊这根理性之线，旁支就是伊斯兰地区在中世纪时期对希腊学术的移植以及再移植，然而伊斯兰世界始终也是典型的东方文明，即使移植了希腊学术，对近代科学产生有着极其重要的影响，但最终也没能成功成为近代科学的策源地。</p>
+<p>亚里士多德认为自由的学术有三个条件：</p>
+<ol>
+  <li>闲暇的阶层</li>
+  <li>批判传统</li>
+  <li>对世界的惊异</li>
+</ol>
+<p>结合科学史可以看到，无论是古希腊，还是近代欧洲，都比较符合这些条件，而集权的国家则难以满足。注意这里没有强调“民主”，只是强调学术发展应有一个相对自由的环境，集权国家在脱去蒙昧之后，也是能创造出相似的条件的</p>]]></content>
+    <summary type="html">
+    <![CDATA[<p>此文是我在知乎的<a href="http://www.zhihu.com/question/21867922/answer/35898434" target="_blank" rel="external">第一个科学史答案</a></p>
+<h1 id="u4E00_uF]]>
+    </summary>
+    
+      <category term="科学史" scheme="http://starding.github.io/tags/%E7%A7%91%E5%AD%A6%E5%8F%B2/"/>
+    
+      <category term="随笔" scheme="http://starding.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
