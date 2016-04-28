@@ -1,0 +1,745 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+
+  <title>什么是 Javascript Event Loop | 小狐濡尾</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+
+  <meta name="author" content="starding">
+
+
+
+  <meta name="description" content="本文为翻译文章，原文
+引言
+如果你像我一样热爱JavaScript。没错，它不是完美的语言，但是这个世界上哪有「完美的语言」这种存在？所以尽管Javascript有这样或那样的缺陷，我仍然喜欢web编程以及JavaScript给予我的编写连接这个世界的应用的能力。
+但是JavaScript是有深度的——它有一个复杂的内部机制，你需要花费一定的时间去理解。其中一个有深度的地方就是Event Loop">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="什么是 Javascript Event Loop">
+  <meta property="og:url" content="http://starding.github.io/2016/04/26/javascript-event-loop/index.html">
+  <meta property="og:site_name" content="小狐濡尾">
+  <meta property="og:description" content="本文为翻译文章，原文
+引言
+如果你像我一样热爱JavaScript。没错，它不是完美的语言，但是这个世界上哪有「完美的语言」这种存在？所以尽管Javascript有这样或那样的缺陷，我仍然喜欢web编程以及JavaScript给予我的编写连接这个世界的应用的能力。
+但是JavaScript是有深度的——它有一个复杂的内部机制，你需要花费一定的时间去理解。其中一个有深度的地方就是Event Loop">
+  <meta property="og:image" content="http://altitudelabs.com/blog/content/images/2014/Jul/1-u51csgcFDi7SYoxnFljJ6w.png">
+  <meta property="og:image" content="http://altitudelabs.com/blog/content/images/2014/Jul/1-QY4CM881bCmS908GSwlJiA.png">
+  <meta property="og:image" content="http://altitudelabs.com/blog/content/images/2014/Jul/1-pnI4YwJpXzt1mt1leOGl2Q.png">
+  <meta property="og:image" content="http://altitudelabs.com/blog/content/images/2014/Jul/1-AKybdhXXHbkvL6Eg4pNxDQ.png">
+  <meta property="og:image" content="http://altitudelabs.com/blog/content/images/2014/Jul/1-Wx7x-aKIq2o7DmWlejRpeQ.png">
+  <meta property="og:image" content="http://altitudelabs.com/blog/content/images/2014/Jul/1-iYM4rq0n0VqSptkCXaiesw.png">
+  <meta property="og:image" content="http://altitudelabs.com/blog/content/images/2014/Jul/1-s7d9UjolRGGjqFtfK0wZ8w.png">
+  <meta property="og:image" content="http://altitudelabs.com/blog/content/images/2014/Jul/1-XdKOatkDmsr-ft3nYs5wdQ.png">
+  <meta property="og:image" content="http://altitudelabs.com/blog/content/images/2014/Jul/1-f2g4OgjfB7WXfWuOJUTY5Q.png">
+  <meta property="og:image" content="http://altitudelabs.com/blog/content/images/2014/Jul/1-wLH1GZRlFvc0ZDawOB1XAQ.png">
+  <meta property="og:image" content="http://altitudelabs.com/blog/content/images/2014/Jul/1-0oy202Rt-94BDKOxKURVtw.png">
+  <meta property="og:image" content="http://altitudelabs.com/blog/content/images/2014/Jul/1-MmPtbaLvP54DuH-jHAjEXg.png">
+  <meta property="og:updated_time" content="2016-04-28T15:55:48.000Z">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="什么是 Javascript Event Loop">
+  <meta name="twitter:description" content="本文为翻译文章，原文
+引言
+如果你像我一样热爱JavaScript。没错，它不是完美的语言，但是这个世界上哪有「完美的语言」这种存在？所以尽管Javascript有这样或那样的缺陷，我仍然喜欢web编程以及JavaScript给予我的编写连接这个世界的应用的能力。
+但是JavaScript是有深度的——它有一个复杂的内部机制，你需要花费一定的时间去理解。其中一个有深度的地方就是Event Loop">
+
+
+  <link rel="alternative" href="/atom.xml" title="小狐濡尾" type="application/atom+xml">
+
+
+  <link rel="icon" href="/img/my_favicon.ico">
+
+
+  <link rel="apple-touch-icon" href="/img/jacman.jpg">
+  <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+<body>
+  <header>
+    <div>
+
+      <div id="imglogo">
+        <a href="/"><img src="/img/my_white_logo.png" alt="小狐濡尾" title="小狐濡尾" /></a>
+      </div>
+
+      <div id="textlogo">
+        <h1 class="site-name"><a href="/" title="小狐濡尾">小狐濡尾</a></h1>
+        <h2 class="blog-motto">未济</h2>
+      </div>
+      <div class="navbar">
+        <a class="navbutton navmobile" href="#" title="菜单">
+        </a>
+      </div>
+      <nav class="animated">
+        <ul>
+          <ul>
+
+            <li><a href="/">主页 | Home</a></li>
+
+            <li><a href="/index">索引 | Index</a></li>
+
+            <li><a href="/archives">归档 | Archives</a></li>
+
+            <li><a href="/about">简介 | About</a></li>
+
+            <li>
+
+              <form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+                <label>Search</label>
+                <input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+                <input type="hidden" name="q" value="site:starding.github.io">
+              </form>
+
+            </li>
+          </ul>
+      </nav>
+    </div>
+  </header>
+  <div id="container">
+    <div id="main" class="post" itemscope itemprop="blogPost">
+
+      <article itemprop="articleBody">
+        <header class="article-info clearfix">
+          <h1 itemprop="name">
+    
+      <a href="/2016/04/26/javascript-event-loop/" title="什么是 Javascript Event Loop" itemprop="url">什么是 Javascript Event Loop</a>
+  </h1>
+          <p class="article-author">By
+
+            <a href="/about" title="starding" target="_blank" itemprop="author">starding</a>
+
+            <p class="article-time">
+              <time datetime="2016-04-26T09:32:53.000Z" itemprop="datePublished"> 发表于 2016-04-26</time>
+
+            </p>
+        </header>
+        <div class="article-content">
+
+          <div id="toc" class="toc-article">
+            <strong class="toc-title">文章目录</strong>
+
+            <ol class="toc">
+              <li class="toc-item toc-level-2"><a class="toc-link" href="#u5F15_u8A00"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a></li>
+              <li class="toc-item toc-level-2"><a class="toc-link" href="#u6D4F_u89C8_u5668_u4E2D_u7684JavaScript"><span class="toc-number">2.</span> <span class="toc-text">浏览器中的JavaScript</span></a></li>
+              <li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript__u5F15_u64CE"><span class="toc-number">3.</span> <span class="toc-text">JavaScript 引擎</span></a></li>
+              <li class="toc-item toc-level-2"><a class="toc-link" href="#OK_uFF0C_u4F46_u662F_u8FD9_u6839Event_Loop_u6709_u6BDB_u7EBF_u5173_u7CFB_uFF1F"><span class="toc-number">4.</span> <span class="toc-text">OK，但是这根Event Loop有毛线关系？</span></a></li>
+              <li class="toc-item toc-level-2"><a class="toc-link" href="#u603B_u7ED3"><span class="toc-number">5.</span> <span class="toc-text">总结</span></a></li>
+            </ol>
+
+          </div>
+
+          <p>本文为翻译文章，<a href="http://altitudelabs.com/blog/what-is-the-javascript-event-loop/" target="_blank" rel="external">原文</a></p>
+          <h2 id="u5F15_u8A00"><a href="#u5F15_u8A00" class="headerlink" title="引言"></a>引言</h2>
+          <p>如果你像我一样热爱JavaScript。没错，它不是完美的语言，但是这个世界上哪有「完美的语言」这种存在？所以尽管Javascript有这样或那样的缺陷，我仍然喜欢web编程以及JavaScript给予我的编写连接这个世界的应用的能力。</p>
+          <p>但是JavaScript是有深度的——它有一个复杂的内部机制，你需要花费一定的时间去理解。其中一个有深度的地方就是Event Loop。当然，即便是在对JavaScript的Event Loop没有精确理解的情况下，也能在很长时间内，正常使用javascript进行编程。然而，我希望本篇博客能带你走入Event Loop的世界，让你意识到这玩意儿并不是那么难以理解。</p>
+          <h2 id="u6D4F_u89C8_u5668_u4E2D_u7684JavaScript"><a href="#u6D4F_u89C8_u5668_u4E2D_u7684JavaScript" class="headerlink" title="浏览器中的JavaScript"></a>浏览器中的JavaScript</h2>
+          <p>当我们思考JavaScript的时候，我们通常会默认一个语境前提——web浏览器——这使得大多数人都是在客户端编写JavaScript代码。事实上，意识到运行任何web应用实际上包含一些列技术，像JavasCript引擎（如Chrome的V8引擎），一堆Web API（如DOM），还有时间轮询（Event Loop）和事件队列（Event Queue）。</p>
+          <p>看到上面这些内容之后，你可能会想：『艹，这下看起来更复杂了…』——或许的确是这样——但是你很快就会看到，上面这些技术的核心思想真的没有那么复杂，甚至你可能发现，实现它们会非常容易。</p>
+          <p>在深入研究 event loop 之前，我们需要对JavaScript引擎和它的工作原理有一些基本的理解。</p>
+          <h2 id="JavaScript__u5F15_u64CE"><a href="#JavaScript__u5F15_u64CE" class="headerlink" title="JavaScript 引擎"></a>JavaScript 引擎</h2>
+          <p>目前不同的JavaScript引擎实现有好几种，但是当前最流行的实现版本是Google Chrome的 V8 引擎（这个引擎不受限于浏览器端，在服务器端的Nodejs使用的也是它）。说了这么多，那JavaScript引擎到底是干啥的？其实很简单——它的工作就是遍历Web应用中的每一行JavaScript代码，并且逐个执行（process one at a time）。你没有看错——就是逐个执行，这意味着JavaScript是单线程的。这一特点的主要影响是，如果你执行一行需要非常非常长的时间才能返回结果的代码，这之后的代码都会被阻塞掉。我们当然不想写出这么阻塞的代码——特别是在浏览器中。想象一下你正在查看一个Web网页并且垫底了某个按钮…它就这么耗在了那里。你试着点击其他的按钮，然而并没有什么卵用，啥作用都没起。这种蛋疼的局面只能归罪于点击按钮的时候触发了某些代码的执行（假设没有bug的话），但是这些代码阻塞在了那里。</p>
+          <p>另一方面，JavaScript引擎如何知道一次只执行一行代码的？它使用了一个调用栈（call stack）。你可以把调用栈想象成一个叠罗汉活动——第一个叠罗汉的只能最后一个下来，对应的是最后一个叠罗汉的第一个下来（原文用乘电梯作比喻，个人认为不是很形象，改成了叠罗汉）。</p>
+          <p>下面来看一个例子：</p>
+          <figure class="highlight javascript">
+            <table>
+              <tr>
+                <td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td>
+                <td class="code"><pre><span class="line"><span class="comment">/* Within main.js */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> firstFunction = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;  </span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"I'm first!"</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> secondFunction = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;  </span><br><span class="line">  firstFunction();</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"I'm second!"</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">secondFunction();</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Results:</span><br><span class="line"> * =&gt; I'm first!</span><br><span class="line"> * =&gt; I'm second!</span><br><span class="line"> */</span></span><br></pre></td>
+              </tr>
+            </table>
+          </figure>
+          <p>下面是执行代码中，调用栈中发生的一系列事件：</p>
+          <ul>
+            <li>Main.js 首先被执行</li>
+          </ul>
+          <p><img src="http://altitudelabs.com/blog/content/images/2014/Jul/1-u51csgcFDi7SYoxnFljJ6w.png" alt="初始状态"></p>
+          <ul>
+            <li>secondFunction 被调用</li>
+          </ul>
+          <p><img src="http://altitudelabs.com/blog/content/images/2014/Jul/1-QY4CM881bCmS908GSwlJiA.png" alt="secondFunction 被调用之后"></p>
+          <ul>
+            <li>调用secondFunction的时候，内部函数firstFunction也被调用：</li>
+          </ul>
+          <p><img src="http://altitudelabs.com/blog/content/images/2014/Jul/1-pnI4YwJpXzt1mt1leOGl2Q.png" alt="firstFunction被调用之后"></p>
+          <ul>
+            <li>执行firstFunction的时候，会输出”I’m first!”,并且由于在firstFunction中，没有其他代码要执行，整个firstFunction的执行到此结束，被移出调用栈：</li>
+          </ul>
+          <p><img src="http://altitudelabs.com/blog/content/images/2014/Jul/1-AKybdhXXHbkvL6Eg4pNxDQ.png" alt="当firstFunction 返回之后"></p>
+          <ul>
+            <li>firstFunction执行结束返回之后，secondFunction继续执行，输出”I’m second!”。一旦输出完毕之后，secondFunction函数中，也没有其他代码要执行，整个secondFunction函数执行完毕，被移出调用栈：</li>
+          </ul>
+          <p><img src="http://altitudelabs.com/blog/content/images/2014/Jul/1-Wx7x-aKIq2o7DmWlejRpeQ.png" alt="当secondFunction返回之后"></p>
+          <ul>
+            <li>最后，由于main.js中没有其他代码要执行，main.js也被移出调用栈：</li>
+          </ul>
+          <p><img src="http://altitudelabs.com/blog/content/images/2014/Jul/1-iYM4rq0n0VqSptkCXaiesw.png" alt="当main.js返回之后"></p>
+          <h2 id="OK_uFF0C_u4F46_u662F_u8FD9_u6839Event_Loop_u6709_u6BDB_u7EBF_u5173_u7CFB_uFF1F"><a href="#OK_uFF0C_u4F46_u662F_u8FD9_u6839Event_Loop_u6709_u6BDB_u7EBF_u5173_u7CFB_uFF1F" class="headerlink" title="OK，但是这根Event Loop有毛线关系？"></a>OK，但是这根Event Loop有毛线关系？</h2>
+          <p>现在你已经明白JavaScript引擎中的调用栈是如何工作的了，让我们回到之前的代码阻塞的思路上来。当然，你已经意识到应该避免出现这些阻塞，但是该怎么做？幸运的是，JavaScript提供了一种机制，它基于异步回调函数（asynchronous callback function）的方式来实现。这个概念看起来有些吓人，不过不用担心——所谓异步函数和你在JavaScript中使用的普通函数没有什么两样，只不过是加了一些它会在之后执行（而不是立即）执行的手段。如果你使用过Javascript的setTimeout函数，你其实已经使用过异步回调函数的概念了。下面来看一个例子：</p>
+          <figure class="highlight javascript">
+            <table>
+              <tr>
+                <td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td>
+                <td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/* Within main.js */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> firstFunction = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;  </span><br><span class="line"> <span class="built_in">console</span>.log(<span class="string">"I'm first!"</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> secondFunction = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;  </span><br><span class="line"> setTimeout(firstFunction, <span class="number">5000</span>);</span><br><span class="line"> <span class="built_in">console</span>.log(<span class="string">"I'm second!"</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">secondFunction();</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Results:</span><br><span class="line"> * =&gt; I'm second!</span><br><span class="line"> * (And 5 seconds later)</span><br><span class="line"> * =&gt; I'm first!</span><br><span class="line"> */</span></span><br></pre></td>
+              </tr>
+            </table>
+          </figure>
+          <p>下面是调用栈中的一系列活动（我们省去了前面的函数加入调用栈的过程，直接来看setTimeout函数）：</p>
+          <ul>
+            <li>当secondFunction 被推入调用栈之后，setTimeout 函数被调用，而且也被压入调用栈中：</li>
+          </ul>
+          <p><img src="http://altitudelabs.com/blog/content/images/2014/Jul/1-s7d9UjolRGGjqFtfK0wZ8w.png" alt="在setTimeout函数执行之前"></p>
+          <ul>
+            <li>当setTimeout函数被执行的时候，发生了一些比较特殊的事——浏览器把setTimeout的回调函数（在本例中是firstFunction）存入一个Event Table中。可以将Event Table想象成一个电话注册本：调用栈会告诉event table注册一些特定的函数，并且在指定事件发生时会调用他们。当这些指定事件发生时，event table仅仅是简单地把要调用的函数移入Event Queue中去。event queue的美妙之处在于它提供了一个简单等待区域，函数在此区域内等待被移入调用栈进行调用。</li>
+          </ul>
+          <p>你或许会问：『究竟什么情况下，event queue中的函数才会被移入调用栈中？』。实际上，JavaScript 遵从一个简单的法则：存在一个监控进程不断检查调用栈是否为空，当调用栈为空的时候，检查事件队列（event queue）中是否有待调用的函数。如果事件队列中存在待调用的函数，队列头部的函数被移入调用栈执行。如果事件队列为空，监控进程就保持轮询状态。<br>瞧，我刚才描述的内容就是臭名昭著的Event Loop（事件轮询）了!</p>
+          <ul>
+            <li>现在回到我们之前的setTimeout的例子。执行setTimeout函数的过程中，引擎将它的回调函数（在本例中为firstFunction）添加到 event table中，同时注册触发事件为5秒延迟。</li>
+          </ul>
+          <p><img src="http://altitudelabs.com/blog/content/images/2014/Jul/1-XdKOatkDmsr-ft3nYs5wdQ.png" alt="当setTimeout函数被执行之后"></p>
+          <ul>
+            <li>下面是另一个让你觉得「啊哈，是这样！」的时刻——注意到一旦回调函数被移入event table之后，没有代码在阻塞了！浏览器在执行后面的任何代码之前，并不会在那里傻等5秒了——它直接执行secondFunction函数中setTimeout函数后面的代码，在这里是console.log语句。</li>
+          </ul>
+          <p><img src="http://altitudelabs.com/blog/content/images/2014/Jul/1-f2g4OgjfB7WXfWuOJUTY5Q.png" alt="secondFunction执行完毕之后"></p>
+          <ul>
+            <li>在后台，event table 一直监控是否有指定的事件发生，如果有将触发把对应的函数移入事件队列（event queque）的动作。在上面的例子中，secondFunction到这里已经执行完毕，于此同时main.js到这里也执行完成了。</li>
+          </ul>
+          <p><img src="http://altitudelabs.com/blog/content/images/2014/Jul/1-wLH1GZRlFvc0ZDawOB1XAQ.png" alt="当main.js执行完成之后"></p>
+          <ul>
+            <li>大约算来，在回调函数放入event table后5秒钟，event table会把firstFunction移入事件队列中。</li>
+          </ul>
+          <p><img src="http://altitudelabs.com/blog/content/images/2014/Jul/1-0oy202Rt-94BDKOxKURVtw.png" alt="main.js执行结束后约5秒钟"></p>
+          <ul>
+            <li>一旦 firstFunction执行完毕之后，我们会回到调用栈为空的状态，这个时候event table，event queue也都为空。</li>
+          </ul>
+          <p><img src="http://altitudelabs.com/blog/content/images/2014/Jul/1-MmPtbaLvP54DuH-jHAjEXg.png" alt="当firstFunction执行完毕之后"></p>
+          <h2 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a>总结</h2>
+          <p>我承认我上面的解释掩盖了JavaScript引擎中，以及event table，event queue和event loop中非常多的实际实现细节。但是，对于大部分人来说，我们仅仅需要对JavaScript执行异步函数时发生的事情有一个笼统的认识。我希望上面的解释能帮助你明晰背后的机制，并且满足平常的web开发工作。</p>
+        </div>
+        <footer class="article-footer clearfix">
+          <div class="article-catetags">
+
+            <div class="article-categories">
+              <span></span>
+              <a class="article-category-link" href="/categories/javascript/">javascript</a>
+            </div>
+
+
+            <div class="article-tags">
+
+              <span></span> <a href="/tags/javascript/">javascript</a>
+            </div>
+
+          </div>
+
+          <div class="article-share" id="share">
+
+            <div data-url="http://starding.github.io/2016/04/26/javascript-event-loop/" data-title="什么是 Javascript Event Loop | 小狐濡尾" data-tsina="null" class="share clearfix">
+            </div>
+
+          </div>
+
+
+        </footer>
+      </article>
+      <nav class="article-nav clearfix">
+
+        <div class="prev">
+          <a href="/2016/04/26/topological-sort/" title="topological-sort">
+            <strong>上一篇：</strong><br/>
+            <span>
+  topological-sort</span>
+          </a>
+        </div>
+
+
+        <div class="next">
+          <a href="/2016/04/20/standardization/" title="板砖，石头，Web标准，W3C">
+            <strong>下一篇：</strong><br/>
+            <span>板砖，石头，Web标准，W3C
+</span>
+          </a>
+        </div>
+
+      </nav>
+      <section id="comments" class="comment">
+        <div class="ds-thread" data-thread-key="2016/04/26/javascript-event-loop/" data-title="什么是 Javascript Event Loop" data-url="http://starding.github.io/2016/04/26/javascript-event-loop/"></div>
+      </section>
+    </div>
+    <div class="openaside">
+      <a class="navbutton" href="#" title="显示侧边栏"></a>
+    </div>
+
+    <div id="toc" class="toc-aside">
+      <strong class="toc-title">文章目录</strong>
+
+      <ol class="toc">
+        <li class="toc-item toc-level-2"><a class="toc-link" href="#u5F15_u8A00"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a></li>
+        <li class="toc-item toc-level-2"><a class="toc-link" href="#u6D4F_u89C8_u5668_u4E2D_u7684JavaScript"><span class="toc-number">2.</span> <span class="toc-text">浏览器中的JavaScript</span></a></li>
+        <li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript__u5F15_u64CE"><span class="toc-number">3.</span> <span class="toc-text">JavaScript 引擎</span></a></li>
+        <li class="toc-item toc-level-2"><a class="toc-link" href="#OK_uFF0C_u4F46_u662F_u8FD9_u6839Event_Loop_u6709_u6BDB_u7EBF_u5173_u7CFB_uFF1F"><span class="toc-number">4.</span> <span class="toc-text">OK，但是这根Event Loop有毛线关系？</span></a></li>
+        <li class="toc-item toc-level-2"><a class="toc-link" href="#u603B_u7ED3"><span class="toc-number">5.</span> <span class="toc-text">总结</span></a></li>
+      </ol>
+
+    </div>
+
+    <div id="asidepart">
+      <div class="closeaside">
+        <a class="closebutton" href="#" title="隐藏侧边栏"></a>
+      </div>
+      <aside class="clearfix">
+
+        <div class="github-card">
+          <p class="asidetitle">Github 名片</p>
+          <div class="github-card" data-github="starding" data-width="220" data-height="119" data-theme="medium">
+            <script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
+          </div>
+        </div>
+
+        <div class="doubanshow">
+          <p class="asidetitle">豆瓣秀</p>
+          <div>
+            <script type="text/javascript" src="http://www.douban.com/service/badge/58816601/?show=collection&amp;n=12&amp;columns=3&amp;hidelogo=yes&amp;hideself=yes&amp;cat=book|movie"></script>
+          </div>
+        </div>
+
+        <div class="categorieslist">
+          <p class="asidetitle">分类</p>
+          <ul>
+
+
+            <li><a href="/categories/computer-philosophy/" title="computer philosophy">computer philosophy<sup>2</sup></a></li>
+
+
+
+            <li><a href="/categories/docker/" title="docker">docker<sup>4</sup></a></li>
+
+
+
+            <li><a href="/categories/javascript/" title="javascript">javascript<sup>2</sup></a></li>
+
+
+
+            <li><a href="/categories/open-questions/" title="open-questions">open-questions<sup>1</sup></a></li>
+
+
+
+            <li><a href="/categories/python/" title="python">python<sup>4</sup></a></li>
+
+
+
+            <li><a href="/categories/产品体验/" title="产品体验">产品体验<sup>1</sup></a></li>
+
+
+
+            <li><a href="/categories/前端/" title="前端">前端<sup>3</sup></a></li>
+
+
+
+            <li><a href="/categories/工程/" title="工程">工程<sup>1</sup></a></li>
+
+
+
+            <li><a href="/categories/技术哲学/" title="技术哲学">技术哲学<sup>2</sup></a></li>
+
+
+
+            <li><a href="/categories/数学/" title="数学">数学<sup>1</sup></a></li>
+
+
+
+            <li><a href="/categories/科学史与科学哲学/" title="科学史与科学哲学">科学史与科学哲学<sup>1</sup></a></li>
+
+
+
+            <li><a href="/categories/问题/" title="问题">问题<sup>1</sup></a></li>
+
+
+
+            <li><a href="/categories/随笔/" title="随笔">随笔<sup>4</sup></a></li>
+
+
+          </ul>
+        </div>
+
+        <div class="tagslist">
+          <p class="asidetitle">标签</p>
+          <ul class="clearfix">
+
+
+            <li><a href="/tags/python/" title="python">python<sup>4</sup></a></li>
+
+
+
+            <li><a href="/tags/docker/" title="docker">docker<sup>4</sup></a></li>
+
+
+
+            <li><a href="/tags/前端/" title="前端">前端<sup>2</sup></a></li>
+
+
+
+            <li><a href="/tags/随笔/" title="随笔">随笔<sup>2</sup></a></li>
+
+
+
+            <li><a href="/tags/javascript/" title="javascript">javascript<sup>2</sup></a></li>
+
+
+
+            <li><a href="/tags/django/" title="django">django<sup>1</sup></a></li>
+
+
+
+            <li><a href="/tags/open-questions/" title="open-questions">open-questions<sup>1</sup></a></li>
+
+
+
+            <li><a href="/tags/三体/" title="三体">三体<sup>1</sup></a></li>
+
+
+
+            <li><a href="/tags/科学史/" title="科学史">科学史<sup>1</sup></a></li>
+
+
+
+            <li><a href="/tags/computer/" title="computer">computer<sup>1</sup></a></li>
+
+
+
+            <li><a href="/tags/社会达尔文主义/" title="社会达尔文主义">社会达尔文主义<sup>1</sup></a></li>
+
+
+
+            <li><a href="/tags/科学哲学/" title="科学哲学">科学哲学<sup>1</sup></a></li>
+
+
+
+            <li><a href="/tags/行尸走肉/" title="行尸走肉">行尸走肉<sup>1</sup></a></li>
+
+
+
+            <li><a href="/tags/gitlab/" title="gitlab">gitlab<sup>1</sup></a></li>
+
+
+          </ul>
+        </div>
+
+        <div class="linkslist">
+          <p class="asidetitle">友情链接</p>
+          <ul>
+
+            <li>
+
+              <a href="http://phiphicake.blogspot.com" target="_blank" title=" 一个有趣的哲学博客">哲学鸡蛋糕</a>
+
+            </li>
+
+          </ul>
+        </div>
+
+        <div class="rsspart">
+          <a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+        </div>
+
+      </aside>
+    </div>
+  </div>
+  <footer>
+    <div id="footer">
+
+      <div class="line">
+        <span></span>
+        <div class="author"></div>
+      </div>
+
+
+      <section class="info">
+        <p> Hello ,I&#39;m Starding. <br/> This is my blog,believe it or not.</p>
+      </section>
+
+      <div class="social-font" class="clearfix">
+
+
+        <a href="https://github.com/starding" target="_blank" class="icon-github" title="github"></a>
+
+
+
+
+
+
+        <a href="https://www.douban.com/people/58816601" target="_blank" class="icon-douban" title="豆瓣"></a>
+
+
+        <a href="http://www.zhihu.com/people/starstarding" target="_blank" class="icon-zhihu" title="知乎"></a>
+
+
+
+        <a href="mailto:starding@buaa.edu.cn" target="_blank" class="icon-email" title="Email Me"></a>
+
+      </div>
+
+
+
+      <p class="copyright">
+        Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016
+
+
+        <a href="/about" target="_blank" title="starding">starding</a>
+
+
+        <br> 本站总访问量
+        <span id="busuanzi_value_site_pv"></span>次 本站访客数
+        <span id="busuanzi_value_site_uv"></span>人次 本文总阅读量
+        <span id="busuanzi_value_page_pv"></span>次
+      </p>
+    </div>
+  </footer>
+  <script src="/js/jquery-2.0.3.min.js"></script>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+  <script src="/js/gallery.js"></script>
+  <script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.navbar').click(function() {
+        $('header nav').toggleClass('shownav');
+      });
+      var myWidth = 0;
+
+      function getSize() {
+        if (typeof(window.innerWidth) == 'number') {
+          myWidth = window.innerWidth;
+        } else if (document.documentElement && document.documentElement.clientWidth) {
+          myWidth = document.documentElement.clientWidth;
+        };
+      };
+      var m = $('#main'),
+        a = $('#asidepart'),
+        c = $('.closeaside'),
+        o = $('.openaside');
+      c.click(function() {
+        a.addClass('fadeOut').css('display', 'none');
+        o.css('display', 'block').addClass('fadeIn');
+        m.addClass('moveMain');
+      });
+      o.click(function() {
+        o.css('display', 'none').removeClass('beforeFadeIn');
+        a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');
+        m.removeClass('moveMain');
+      });
+      $(window).scroll(function() {
+        o.css("top", Math.max(80, 260 - $(this).scrollTop()));
+      });
+
+      $(window).resize(function() {
+        getSize();
+        if (myWidth >= 1024) {
+          $('header nav').removeClass('shownav');
+        } else {
+          m.removeClass('moveMain');
+          a.css('display', 'block').removeClass('fadeOut');
+          o.css('display', 'none');
+
+          $('#toc.toc-aside').css('display', 'none');
+
+        }
+      });
+    });
+  </script>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      var ai = $('.article-content>iframe'),
+        ae = $('.article-content>embed'),
+        t = $('#toc'),
+        ta = $('#toc.toc-aside'),
+        o = $('.openaside'),
+        c = $('.closeaside');
+      if (ai.length > 0) {
+        ai.wrap('<div class="video-container" />');
+      };
+      if (ae.length > 0) {
+        ae.wrap('<div class="video-container" />');
+      };
+      c.click(function() {
+        ta.css('display', 'block').addClass('fadeIn');
+      });
+      o.click(function() {
+        ta.css('display', 'none');
+      });
+      $(window).scroll(function() {
+        ta.css("top", Math.max(140, 320 - $(this).scrollTop()));
+      });
+    });
+  </script>
+
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      var $this = $('.share'),
+        url = $this.attr('data-url'),
+        encodedUrl = encodeURIComponent(url),
+        title = $this.attr('data-title'),
+        tsina = $this.attr('data-tsina'),
+        description = $this.attr('description');
+      var html = [
+        '<div class="hoverqrcode clearfix"></div>',
+        '<a class="overlay" id="qrcode"></a>',
+        '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+        '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+        '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+        '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title + '" class="article-share-renren" target="_blank" title="人人"></a>',
+        '<a href="http://service.weibo.com/share/share.php?title=' + title + '&url=' + encodedUrl + '&ralateUid=' + tsina + '&searchPic=true&style=number' + '" class="article-share-weibo" target="_blank" title="微博"></a>',
+        '<span title="Share to"></span>'
+      ].join('');
+      $this.append(html);
+
+      $('.hoverqrcode').hide();
+
+      var myWidth = 0;
+
+      function updatehoverqrcode() {
+        if (typeof(window.innerWidth) == 'number') {
+          myWidth = window.innerWidth;
+        } else if (document.documentElement && document.documentElement.clientWidth) {
+          myWidth = document.documentElement.clientWidth;
+        };
+        var qrsize = myWidth > 1024 ? 200 : 100;
+        var options = {
+          render: 'image',
+          size: qrsize,
+          fill: '#2ca6cb',
+          text: url,
+          radius: 0.5,
+          quiet: 1
+        };
+        var p = $('.article-share-qrcode').position();
+        $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+          .css('left', p.left - qrsize / 2 + 20).css('top', p.top - qrsize - 10)
+          .qrcode(options);
+      };
+      $(window).resize(function() {
+        $('.hoverqrcode').hide();
+      });
+      $('.article-share-qrcode').click(function() {
+        updatehoverqrcode();
+        $('.hoverqrcode').toggle();
+      });
+      $('.article-share-qrcode').hover(function() {}, function() {
+        $('.hoverqrcode').hide();
+      });
+    });
+  </script>
+
+
+
+  <script type="text/javascript">
+    var duoshuoQuery = {
+      short_name: "starding"
+    };
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';
+      ds.async = true;
+      ds.src = '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.article-content').each(function(i) {
+        $(this).find('img').each(function() {
+          if ($(this).parent().hasClass('fancybox')) return;
+          var alt = this.alt;
+          if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+          $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+        });
+        $(this).find('.fancybox').each(function() {
+          $(this).attr('rel', 'article' + i);
+        });
+      });
+      if ($.fancybox) {
+        $('.fancybox').fancybox();
+      }
+    });
+  </script>
+
+
+
+  <!-- Analytics Begin -->
+  <script type="text/javascript">
+    (function(i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function() {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-72215789-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?01f9e8011679173931cf24fe647483cf";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  <!-- Analytics End -->
+
+  <!-- Totop Begin -->
+  <div id="totop">
+    <a title="返回顶部"><img src="/img/scrollup.png" /></a>
+  </div>
+  <script src="/js/totop.js"></script>
+  <!-- Totop End -->
+
+  <!-- MathJax Begin -->
+  <!-- mathjax config similar to math.stackexchange -->
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({ tex2jax: { skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] } });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() { var all = MathJax.Hub.getAllJax(), i; for(i=0; i
+    < all.length; i +=1 ) { all[i].SourceElement().parentNode.className +=' has-jax' ; } }); </script>
+
+      <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+      </script>
+      <!-- MathJax End -->
+
+      <!-- Tiny_search Begin -->
+
+      <!-- Tiny_search End -->
+
+      <!--不蒜子-->
+      <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</body>
+
+</html>
