@@ -35,7 +35,7 @@
   <meta property="og:image" content="http://altitudelabs.com/blog/content/images/2014/Jul/1-wLH1GZRlFvc0ZDawOB1XAQ.png">
   <meta property="og:image" content="http://altitudelabs.com/blog/content/images/2014/Jul/1-0oy202Rt-94BDKOxKURVtw.png">
   <meta property="og:image" content="http://altitudelabs.com/blog/content/images/2014/Jul/1-MmPtbaLvP54DuH-jHAjEXg.png">
-  <meta property="og:updated_time" content="2016-04-28T15:55:48.000Z">
+  <meta property="og:updated_time" content="2016-04-28T15:58:06.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="什么是 Javascript Event Loop">
   <meta name="twitter:description" content="本文为翻译文章，原文
@@ -126,6 +126,7 @@
               <li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript__u5F15_u64CE"><span class="toc-number">3.</span> <span class="toc-text">JavaScript 引擎</span></a></li>
               <li class="toc-item toc-level-2"><a class="toc-link" href="#OK_uFF0C_u4F46_u662F_u8FD9_u6839Event_Loop_u6709_u6BDB_u7EBF_u5173_u7CFB_uFF1F"><span class="toc-number">4.</span> <span class="toc-text">OK，但是这根Event Loop有毛线关系？</span></a></li>
               <li class="toc-item toc-level-2"><a class="toc-link" href="#u603B_u7ED3"><span class="toc-number">5.</span> <span class="toc-text">总结</span></a></li>
+              <li class="toc-item toc-level-2"><a class="toc-link" href="#u8BD1_u6CE8"><span class="toc-number">6.</span> <span class="toc-text">译注</span></a></li>
             </ol>
 
           </div>
@@ -216,6 +217,8 @@
           <p><img src="http://altitudelabs.com/blog/content/images/2014/Jul/1-MmPtbaLvP54DuH-jHAjEXg.png" alt="当firstFunction执行完毕之后"></p>
           <h2 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a>总结</h2>
           <p>我承认我上面的解释掩盖了JavaScript引擎中，以及event table，event queue和event loop中非常多的实际实现细节。但是，对于大部分人来说，我们仅仅需要对JavaScript执行异步函数时发生的事情有一个笼统的认识。我希望上面的解释能帮助你明晰背后的机制，并且满足平常的web开发工作。</p>
+          <h2 id="u8BD1_u6CE8"><a href="#u8BD1_u6CE8" class="headerlink" title="译注"></a>译注</h2>
+          <p>问题：setTimeout中设置的时间是准确的吗？</p>
         </div>
         <footer class="article-footer clearfix">
           <div class="article-catetags">
@@ -280,6 +283,7 @@
         <li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript__u5F15_u64CE"><span class="toc-number">3.</span> <span class="toc-text">JavaScript 引擎</span></a></li>
         <li class="toc-item toc-level-2"><a class="toc-link" href="#OK_uFF0C_u4F46_u662F_u8FD9_u6839Event_Loop_u6709_u6BDB_u7EBF_u5173_u7CFB_uFF1F"><span class="toc-number">4.</span> <span class="toc-text">OK，但是这根Event Loop有毛线关系？</span></a></li>
         <li class="toc-item toc-level-2"><a class="toc-link" href="#u603B_u7ED3"><span class="toc-number">5.</span> <span class="toc-text">总结</span></a></li>
+        <li class="toc-item toc-level-2"><a class="toc-link" href="#u8BD1_u6CE8"><span class="toc-number">6.</span> <span class="toc-text">译注</span></a></li>
       </ol>
 
     </div>

@@ -32,7 +32,7 @@
     <link href="http://starding.github.io/2016/04/26/javascript-event-loop/"/>
     <id>http://starding.github.io/2016/04/26/javascript-event-loop/</id>
     <published>2016-04-26T09:32:53.000Z</published>
-    <updated>2016-04-28T15:55:48.000Z</updated>
+    <updated>2016-04-28T15:58:06.000Z</updated>
     <content type="html"><![CDATA[<p>本文为翻译文章，<a href="http://altitudelabs.com/blog/what-is-the-javascript-event-loop/" target="_blank" rel="external">原文</a></p>
 <h2 id="u5F15_u8A00"><a href="#u5F15_u8A00" class="headerlink" title="引言"></a>引言</h2>
 <p>如果你像我一样热爱JavaScript。没错，它不是完美的语言，但是这个世界上哪有「完美的语言」这种存在？所以尽管Javascript有这样或那样的缺陷，我仍然喜欢web编程以及JavaScript给予我的编写连接这个世界的应用的能力。</p>
@@ -118,7 +118,9 @@
 </ul>
 <p><img src="http://altitudelabs.com/blog/content/images/2014/Jul/1-MmPtbaLvP54DuH-jHAjEXg.png" alt="当firstFunction执行完毕之后"></p>
 <h2 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a>总结</h2>
-<p>我承认我上面的解释掩盖了JavaScript引擎中，以及event table，event queue和event loop中非常多的实际实现细节。但是，对于大部分人来说，我们仅仅需要对JavaScript执行异步函数时发生的事情有一个笼统的认识。我希望上面的解释能帮助你明晰背后的机制，并且满足平常的web开发工作。</p>]]></content>
+<p>我承认我上面的解释掩盖了JavaScript引擎中，以及event table，event queue和event loop中非常多的实际实现细节。但是，对于大部分人来说，我们仅仅需要对JavaScript执行异步函数时发生的事情有一个笼统的认识。我希望上面的解释能帮助你明晰背后的机制，并且满足平常的web开发工作。</p>
+<h2 id="u8BD1_u6CE8"><a href="#u8BD1_u6CE8" class="headerlink" title="译注"></a>译注</h2>
+<p>问题：setTimeout中设置的时间是准确的吗？</p>]]></content>
     <summary type="html">
     <![CDATA[<p>本文为翻译文章，<a href="http://altitudelabs.com/blog/what-is-the-javascript-event-loop/" target="_blank" rel="external">原文</a></p>
 <h2 id="u5F15]]>
