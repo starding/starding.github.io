@@ -4,7 +4,7 @@
   <subtitle><![CDATA[未济]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://starding.github.io/"/>
-  <updated>2016-04-29T06:18:27.000Z</updated>
+  <updated>2016-04-29T08:25:50.000Z</updated>
   <id>http://starding.github.io/</id>
   
   <author>
@@ -15,29 +15,34 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title><![CDATA[拓扑排序]]></title>
+    <title><![CDATA[常用算法]]></title>
     <link href="http://starding.github.io/2016/04/26/topological-sort/"/>
     <id>http://starding.github.io/2016/04/26/topological-sort/</id>
     <published>2016-04-26T09:34:05.000Z</published>
-    <updated>2016-04-29T06:18:27.000Z</updated>
-    <content type="html"><![CDATA[<p>刚听到「拓扑排序」这个概念的时候，我直接懵了，脑袋中过滤一遍，完全没有发现跟这个概念相关的知识。本科的时候学过图的算法，但主要集中于图的连通性，生成树，深搜，广搜等内容，似乎并没有什么「拓扑排序」。</p>
+    <updated>2016-04-29T08:25:50.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="u62D3_u6251_u6392_u5E8F"><a href="#u62D3_u6251_u6392_u5E8F" class="headerlink" title="拓扑排序"></a>拓扑排序</h2>
+<p>刚听到「拓扑排序」这个概念的时候，我直接懵了，脑袋中过滤一遍，完全没有发现跟这个概念相关的知识。本科的时候学过图的算法，但主要集中于图的连通性，生成树，深搜，广搜等内容，似乎并没有什么「拓扑排序」。</p>
 <p>当我了解到它的基本内容以及应用场景之后，才发现原来的确是有这个东西，只不过是没有明确的认识到这个概念和它的重要性。</p>
-<h2 id="JavasCript_u4E2D_u7684_u6A21_u5757_u4F9D_u8D56_u5173_u7CFB"><a href="#JavasCript_u4E2D_u7684_u6A21_u5757_u4F9D_u8D56_u5173_u7CFB" class="headerlink" title="JavasCript中的模块依赖关系"></a>JavasCript中的模块依赖关系</h2>
+<h3 id="JavasCript_u4E2D_u7684_u6A21_u5757_u4F9D_u8D56_u5173_u7CFB"><a href="#JavasCript_u4E2D_u7684_u6A21_u5757_u4F9D_u8D56_u5173_u7CFB" class="headerlink" title="JavasCript中的模块依赖关系"></a>JavasCript中的模块依赖关系</h3>
 <p>在写JavaScript的时候，我们应该都遇到过标题中的概念，比如有一个模块A，它依赖于模块B, C, D； 模块B又依赖于 C, E, F；模块C依赖于D, E, F, G。</p>
 <p>换一种表示方式就是：</p>
 <figure class="highlight javascript">
   <table>
     <tr>
-      <td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td>
-      <td class="code"><pre><span class="line"><span class="comment">// 模块: &#123;依赖模块&#125;</span></span><br><span class="line">A: &#123;B, C, D&#125;</span><br><span class="line">B: &#123;C, E, F&#125;</span><br><span class="line">C: &#123;D, E, F, G&#125;</span><br><span class="line">D: &#123;&#125;</span><br><span class="line">E: &#123;&#125;</span><br><span class="line">F: &#123;&#125;</span><br><span class="line">G: &#123;&#125;</span><br></pre></td>
+      <td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td>
+      <td class="code"><pre><span class="line"><span class="comment">// 模块: &#123;依赖模块&#125;</span></span><br><span class="line">A: &#123;B, C, D&#125;</span><br><span class="line">B: &#123;C, E &#125;</span><br><span class="line">C: &#123;D, E&#125;</span><br><span class="line">D: &#123;E&#125;</span><br><span class="line">E: &#123;&#125;</span><br></pre></td>
     </tr>
   </table>
 </figure>
 <p>如果要求用程序计算出存在依赖的模块系统中，每一个模块的依赖，最终输出的结果如图所示，那么该如何去考虑？</p>
-<h2 id="u7B2C_u4E00_u79CD_u65B9_u5F0F_uFF0C_u56FE_u7684_u904D_u5386"><a href="#u7B2C_u4E00_u79CD_u65B9_u5F0F_uFF0C_u56FE_u7684_u904D_u5386" class="headerlink" title="第一种方式，图的遍历"></a>第一种方式，图的遍历</h2>]]></content>
+<h3 id="u76F4_u63A5_u904D_u5386_u5BF9_u5E94_u7684_u56FE"><a href="#u76F4_u63A5_u904D_u5386_u5BF9_u5E94_u7684_u56FE" class="headerlink" title="直接遍历对应的图"></a>直接遍历对应的图</h3>
+<p>很明显的一点是需要把模块依赖关系转换成图数据结构，在了解到拓扑排序的概念之前，我下意识的想法是图建立起来之后，直接选取一个点，比如A点，开始循环遍历，将A能到达的路径都加入进来，然和合并成一个A的依赖关系。可以用dfs或者bfs优化。</p>
+<h3 id="u62D3_u6251_u6392_u5E8F-1"><a href="#u62D3_u6251_u6392_u5E8F-1" class="headerlink" title="拓扑排序"></a>拓扑排序</h3>
+<p>直接参考<a href="http://songlee24.github.io/2015/05/07/topological-sorting/" target="_blank" rel="external">拓扑排序（Topological Sorting）</a></p>
+<h2 id="u5806_u6570_u636E_u7ED3_u6784"><a href="#u5806_u6570_u636E_u7ED3_u6784" class="headerlink" title="堆数据结构"></a>堆数据结构</h2>]]></content>
     <summary type="html">
-    <![CDATA[<p>刚听到「拓扑排序」这个概念的时候，我直接懵了，脑袋中过滤一遍，完全没有发现跟这个概念相关的知识。本科的时候学过图的算法，但主要集中于图的连通性，生成树，深搜，广搜等内容，似乎并没有什么「拓扑排序」。</p>
-<p>当我了解到它的基本内容以及应用场景之后，才发现原来的确是有这]]>
+    <![CDATA[<h2 id="u62D3_u6251_u6392_u5E8F"><a href="#u62D3_u6251_u6392_u5E8F" class="headerlink" title="拓扑排序"></a>拓扑排序</h2>
+<p>刚听到「拓扑排序」这个概念的时候，我直接懵了，]]>
     </summary>
     
       <category term="算法" scheme="http://starding.github.io/categories/%E7%AE%97%E6%B3%95/"/>
