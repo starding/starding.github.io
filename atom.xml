@@ -4,7 +4,7 @@
   <subtitle><![CDATA[未济]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://starding.github.io/"/>
-  <updated>2016-04-26T09:34:05.000Z</updated>
+  <updated>2016-04-29T06:18:27.000Z</updated>
   <id>http://starding.github.io/</id>
   
   <author>
@@ -15,15 +15,32 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title><![CDATA[topological-sort]]></title>
+    <title><![CDATA[拓扑排序]]></title>
     <link href="http://starding.github.io/2016/04/26/topological-sort/"/>
     <id>http://starding.github.io/2016/04/26/topological-sort/</id>
     <published>2016-04-26T09:34:05.000Z</published>
-    <updated>2016-04-26T09:34:05.000Z</updated>
-    <content type="html"></content>
+    <updated>2016-04-29T06:18:27.000Z</updated>
+    <content type="html"><![CDATA[<p>刚听到「拓扑排序」这个概念的时候，我直接懵了，脑袋中过滤一遍，完全没有发现跟这个概念相关的知识。本科的时候学过图的算法，但主要集中于图的连通性，生成树，深搜，广搜等内容，似乎并没有什么「拓扑排序」。</p>
+<p>当我了解到它的基本内容以及应用场景之后，才发现原来的确是有这个东西，只不过是没有明确的认识到这个概念和它的重要性。</p>
+<h2 id="JavasCript_u4E2D_u7684_u6A21_u5757_u4F9D_u8D56_u5173_u7CFB"><a href="#JavasCript_u4E2D_u7684_u6A21_u5757_u4F9D_u8D56_u5173_u7CFB" class="headerlink" title="JavasCript中的模块依赖关系"></a>JavasCript中的模块依赖关系</h2>
+<p>在写JavaScript的时候，我们应该都遇到过标题中的概念，比如有一个模块A，它依赖于模块B, C, D； 模块B又依赖于 C, E, F；模块C依赖于D, E, F, G。</p>
+<p>换一种表示方式就是：</p>
+<figure class="highlight javascript">
+  <table>
+    <tr>
+      <td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td>
+      <td class="code"><pre><span class="line"><span class="comment">// 模块: &#123;依赖模块&#125;</span></span><br><span class="line">A: &#123;B, C, D&#125;</span><br><span class="line">B: &#123;C, E, F&#125;</span><br><span class="line">C: &#123;D, E, F, G&#125;</span><br><span class="line">D: &#123;&#125;</span><br><span class="line">E: &#123;&#125;</span><br><span class="line">F: &#123;&#125;</span><br><span class="line">G: &#123;&#125;</span><br></pre></td>
+    </tr>
+  </table>
+</figure>
+<p>如果要求用程序计算出存在依赖的模块系统中，每一个模块的依赖，最终输出的结果如图所示，那么该如何去考虑？</p>
+<h2 id="u7B2C_u4E00_u79CD_u65B9_u5F0F_uFF0C_u56FE_u7684_u904D_u5386"><a href="#u7B2C_u4E00_u79CD_u65B9_u5F0F_uFF0C_u56FE_u7684_u904D_u5386" class="headerlink" title="第一种方式，图的遍历"></a>第一种方式，图的遍历</h2>]]></content>
     <summary type="html">
-    
+    <![CDATA[<p>刚听到「拓扑排序」这个概念的时候，我直接懵了，脑袋中过滤一遍，完全没有发现跟这个概念相关的知识。本科的时候学过图的算法，但主要集中于图的连通性，生成树，深搜，广搜等内容，似乎并没有什么「拓扑排序」。</p>
+<p>当我了解到它的基本内容以及应用场景之后，才发现原来的确是有这]]>
     </summary>
+    
+      <category term="算法" scheme="http://starding.github.io/categories/%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
@@ -133,11 +150,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[板砖，石头，Web标准，W3C]]></title>
+    <title><![CDATA[板砖，石头与Web标准，W3C]]></title>
     <link href="http://starding.github.io/2016/04/20/standardization/"/>
     <id>http://starding.github.io/2016/04/20/standardization/</id>
     <published>2016-04-20T14:00:34.000Z</published>
-    <updated>2016-04-21T03:08:32.000Z</updated>
+    <updated>2016-04-29T03:16:17.000Z</updated>
     <content type="html"><![CDATA[<h2 id="u7816_u5934_u4E0E_u77F3_u5934"><a href="#u7816_u5934_u4E0E_u77F3_u5934" class="headerlink" title="砖头与石头"></a>砖头与石头</h2>
 <p>板砖这种神器，大街小巷，犄角疙瘩，几乎只要有人居住的地方就可以看到它的存在。<br>当然石头虽然不像砖头那样随处可见，但是也地位不凡，各种建筑材料，雕塑，石碑等等也都能见到它的身影。</p>
 <p>如果对于板砖与石头这两种寻常不过的事物，我问它们的差别是什么，可能有人会发笑，板砖与石头简直风马牛不相及，除了组成成分有某些交集，都在建筑上有一些应用之外，其他几乎毫无共同点，至于讨论它们的差别，似乎更是毫无意义。</p>
@@ -175,11 +192,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[从教堂中的钟楼说起]]></title>
+    <title><![CDATA[钟楼与时间革命]]></title>
     <link href="http://starding.github.io/2016/04/09/horologe-in-church/"/>
     <id>http://starding.github.io/2016/04/09/horologe-in-church/</id>
     <published>2016-04-09T14:21:45.000Z</published>
-    <updated>2016-04-13T03:10:44.000Z</updated>
+    <updated>2016-04-29T06:16:13.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
   <p>现代工业时代的关键不是蒸汽机，而是时钟。<br>——刘易斯·芒福德</p>
 </blockquote>
@@ -198,9 +215,13 @@
 <p>这种时间观念一是会提高人类生产活动的效率（在「效率的概念」产生之前，「效率」本身就已经开始存在，并且被有意识或无意识的加强了），这同时也会反过来继续促进钟表事业的发展。</p>
 <p>像钟楼这种重型的计时工具，一般在一大片区域内才有一座，并不是十分方便。而制种工艺的不断改善尤其是15世纪的发条发明之后，钟表的小型化开始有了技术基础，并且体积随之开始减小，小式的座钟开始进入房屋之中。随着制钟工艺的愈加精确以及成本的降低，这种计时工具开始走向普及。</p>
 <h2 id="u65F6_u95F4_u9769_u547D"><a href="#u65F6_u95F4_u9769_u547D" class="headerlink" title="时间革命"></a>时间革命</h2>
-<p>有一些历史研究者认为，在工业革命之前，其实已经发生了另一场革命，也就是所谓的「时间观念革命」或者叫「效率革命」。正是这场革命造成的变化，成为了工业革命的基石。</p>
-<p>而时间革命的发源，基本上可以从钟表彻底融入人类生活开始。</p>
-<p>【待续】</p>]]></content>
+<p>有一些历史研究者认为，在工业革命之前的几个世纪中，其实已经悄然进行着另一场革命，也就是所谓的「时间观念革命」或者叫「效率革命」。正是这场革命造成的变化，成为了工业革命的基石。</p>
+<p>时间革命的发源，基本上可以从钟表彻底融入人类生活开始。当人们开始摆脱原始的「相对时间观念」，也即摆脱那种全靠日月星辰，季节变换来感知时间变换的手段，进而采用一种人造的，机械的手段来计时时，时间革命就开始了。时间不再是事物的发展变换，而是独立出来，成为了一种可以衡量量化的东西。</p>
+<p>人们开始按照钟表给时间划分刻度，而且越来越精确。时分秒这些时间单位的引进，让人们清晰的感受到「时间」的流逝，以及时间在日常生活，商业活动中所起到的重要作用。随着商业的发展，在一定的时间内产生更多的资源成为了一种绝对的追求。这个时候，「效率」的思想已经有了萌芽。</p>
+<p>人们不断通过各种手段来提高效率，改进生产流程，改革生产管理，采用新技术等等。正是在这样的环境下，工业革命有了发芽的土壤。</p>
+<h2 id="u65F6_u95F4_u5C31_u662F_u91D1_u94B1"><a href="#u65F6_u95F4_u5C31_u662F_u91D1_u94B1" class="headerlink" title="时间就是金钱"></a>时间就是金钱</h2>
+<p>到了今天，「时间就是金钱」已经成为一个口头隐喻了。在我们的文化中，时间已经成为了一种宝贵的商品，是我们达成目标所需的有限资源。人们按小时，星期来计算薪酬，更精确的按照分钟来计算话费等等。我们已经把许多金钱方面的词汇概念用于时间的表达上，时间成了一种可以花费，浪费，预算，投资，节省或挥霍的东西。总而言之，时间的观念重新构建了我们日常基本生活中的行为以及对这个世界的认知。</p>
+<p>这一切的一切都是从钟楼等这类人造的，独立于自然因素的计时工具开始的。</p>]]></content>
     <summary type="html">
     <![CDATA[<blockquote>
   <p>现代工业时代的关键不是蒸汽机，而是时钟。<br>——刘易斯·芒福德</p>

@@ -2,6 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://starding.github.io/2016/04/26/topological-sort/</loc>
+    <lastmod>2016-04-29T06:18:27.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://starding.github.io/2016/04/09/horologe-in-church/</loc>
+    <lastmod>2016-04-29T06:16:13.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://starding.github.io/2016/04/20/standardization/</loc>
+    <lastmod>2016-04-29T03:16:17.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://starding.github.io/2016/02/25/questions-record/</loc>
     <lastmod>2016-04-29T02:23:44.000Z</lastmod>
   </url>
@@ -12,23 +27,8 @@
   </url>
   
   <url>
-    <loc>http://starding.github.io/2016/04/26/topological-sort/</loc>
-    <lastmod>2016-04-26T09:34:05.000Z</lastmod>
-  </url>
-  
-  <url>
     <loc>http://starding.github.io/2016/01/19/learn-javascript-follow-definitive-guide/</loc>
     <lastmod>2016-04-21T11:56:20.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://starding.github.io/2016/04/20/standardization/</loc>
-    <lastmod>2016-04-21T03:08:32.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://starding.github.io/2016/04/09/horologe-in-church/</loc>
-    <lastmod>2016-04-13T03:10:44.000Z</lastmod>
   </url>
   
   <url>
