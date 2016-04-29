@@ -29,7 +29,7 @@ linux crontab +  django command 定时执行命令
 在做一个档案管理系统时，有一个需要定时从DB2数据库中取出数据，处理之后，存入mysql中的任务。这意味着需要在django中单独跑一个脚本，这个脚本使用django的环境。
 解决方案
 django提供了一种用户自定义命令来实现这个功能：">
-  <meta property="og:updated_time" content="2016-04-21T03:56:46.000Z">
+  <meta property="og:updated_time" content="2016-04-29T02:23:44.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="问题记录">
   <meta name="twitter:description" content="Meta: 本文章用来记录平时遇到的问题以及相应的解决方案
@@ -153,6 +153,25 @@ django提供了一种用户自定义命令来实现这个功能：">
                 </ol>
               </li>
               <li class="toc-item toc-level-2"><a class="toc-link" href="#u4F7F_u7528_u8FC7_u7684_u5DE5_u5177"><span class="toc-number">3.</span> <span class="toc-text">使用过的工具</span></a></li>
+              <li class="toc-item toc-level-2"><a class="toc-link" href="#u7A0B_u5E8F_u4E2D_u7684_u8FC7_u5EA6_u8BBE_u8BA1"><span class="toc-number">4.</span> <span class="toc-text">程序中的过度设计</span></a>
+                <ol class="toc-child">
+                  <li class="toc-item toc-level-3"><a class="toc-link" href="#u4EC0_u4E48_u662F_u7A0B_u5E8F_u4E2D_u7684_u8FC7_u5EA6_u8BBE_u8BA1"><span class="toc-number">4.1.</span> <span class="toc-text">什么是程序中的过度设计</span></a></li>
+                  <li class="toc-item toc-level-3"><a class="toc-link" href="#u6211_u9047_u5230_u7684_u8FC7_u5EA6_u8BBE_u8BA1"><span class="toc-number">4.2.</span> <span class="toc-text">我遇到的过度设计</span></a></li>
+                </ol>
+              </li>
+              <li class="toc-item toc-level-2"><a class="toc-link" href="#u4EA7_u54C1_u4F53_u9A8C"><span class="toc-number">5.</span> <span class="toc-text">产品体验</span></a>
+                <ol class="toc-child">
+                  <li class="toc-item toc-level-3"><a class="toc-link" href="#iOS_u521D_u4F53_u9A8C"><span class="toc-number">5.1.</span> <span class="toc-text">iOS初体验</span></a>
+                    <ol class="toc-child">
+                      <li class="toc-item toc-level-4"><a class="toc-link" href="#u9E21_u808B_u7684_u4E0B_u62C9_u83DC_u5355"><span class="toc-number">5.1.1.</span> <span class="toc-text">鸡肋的下拉菜单</span></a></li>
+                      <li class="toc-item toc-level-4"><a class="toc-link" href="#u6349_u6025_u7684_u95F9_u949F_u8BBE_u7F6E"><span class="toc-number">5.1.2.</span> <span class="toc-text">捉急的闹钟设置</span></a></li>
+                      <li class="toc-item toc-level-4"><a class="toc-link" href="#u96BE_u4EE5_u6349_u6478_u7684_u8F93_u5165_u6CD5_u548C_u5168_u5C40_u8D4B_u503C_u7C98_u8D34"><span class="toc-number">5.1.3.</span> <span class="toc-text">难以捉摸的输入法和全局赋值粘贴</span></a></li>
+                      <li class="toc-item toc-level-4"><a class="toc-link" href="#u6CA1_u6709_u5145_u5206_u5229_u7528_u89E6_u5C4F_u4F18_u52BF_u7684_u77ED_u4FE1_u754C_u9762"><span class="toc-number">5.1.4.</span> <span class="toc-text">没有充分利用触屏优势的短信界面</span></a></li>
+                    </ol>
+                  </li>
+                  <li class="toc-item toc-level-3"><a class="toc-link" href="#u53A8_u623F_u91CC_u7684_u9171_u6CB9_u74F6"><span class="toc-number">5.2.</span> <span class="toc-text">厨房里的酱油瓶</span></a></li>
+                </ol>
+              </li>
             </ol>
 
           </div>
@@ -288,6 +307,31 @@ django提供了一种用户自定义命令来实现这个功能：">
             <li>project-path （npm模块）</li>
             <li>fixed-data-table （react组件）</li>
           </ul>
+          <h2 id="u7A0B_u5E8F_u4E2D_u7684_u8FC7_u5EA6_u8BBE_u8BA1"><a href="#u7A0B_u5E8F_u4E2D_u7684_u8FC7_u5EA6_u8BBE_u8BA1" class="headerlink" title="程序中的过度设计"></a>程序中的过度设计</h2>
+          <h3 id="u4EC0_u4E48_u662F_u7A0B_u5E8F_u4E2D_u7684_u8FC7_u5EA6_u8BBE_u8BA1"><a href="#u4EC0_u4E48_u662F_u7A0B_u5E8F_u4E2D_u7684_u8FC7_u5EA6_u8BBE_u8BA1" class="headerlink" title="什么是程序中的过度设计"></a>什么是程序中的过度设计</h3>
+          <p>所谓过度设计或者过度工程，顾名思义就是在编写代码的时候，过多的假想了一些本来不存在的场景，并且在这些假想的场景中做出对应的设计，比如处处考虑将来可能出现的变动等等。而实际上，这个时候代码离考虑这些还有很远的距离。</p>
+          <h3 id="u6211_u9047_u5230_u7684_u8FC7_u5EA6_u8BBE_u8BA1"><a href="#u6211_u9047_u5230_u7684_u8FC7_u5EA6_u8BBE_u8BA1" class="headerlink" title="我遇到的过度设计"></a>我遇到的过度设计</h3>
+          <p>在之前开发产品的时候，实际上在有些地方过度强调了将来可能面临的风险或变动，比如产品中的图片采用qiniu云存储，刚开始存储的统一都是url，但是这时候工程师假想了一个场景：「如果将来七牛的域名改变了，或者将来不适用七牛了怎么办？」然后将原来的统一url改为key，但是发现实际的改写操作并不是一件容易的事情，最后只好作罢。</p>
+          <p>另一件事情则是产品中的过度设计，在我们开发一个产品的时候，产品经理给出的产品原型变动了无数次，最后的一些变动甚至改变了最基本的数据信息，导致之前写的代码完全失效。而这个产品正是一个需要快速迭代的产品，直到现在第一版还没有做出来。其实这个例子不能算是过度设计，姑且写在这里吧。</p>
+          <p>不清楚经常强调mvp(minimum viable product,最小化可行产品)的我们，为何在做自己的产品的时候，却完全不予考虑了。</p>
+          <p>当然对于编程经验还不够丰富的我来说，考虑这些还为时尚早，暂且先记录下来，以待将来反思。</p>
+          <h2 id="u4EA7_u54C1_u4F53_u9A8C"><a href="#u4EA7_u54C1_u4F53_u9A8C" class="headerlink" title="产品体验"></a>产品体验</h2>
+          <h3 id="iOS_u521D_u4F53_u9A8C"><a href="#iOS_u521D_u4F53_u9A8C" class="headerlink" title="iOS初体验"></a>iOS初体验</h3>
+          <p>最近服役了三年的nexus终于老态龙钟，光荣退伍了。纠结于android的多种多样，最终直接选了iphone。一上手就感觉有几个地方特别的别扭，这里面自然有一些不同系统之前切换带来的生疏感，但是有些地方明显是设计有问题。</p>
+          <h4 id="u9E21_u808B_u7684_u4E0B_u62C9_u83DC_u5355"><a href="#u9E21_u808B_u7684_u4E0B_u62C9_u83DC_u5355" class="headerlink" title="鸡肋的下拉菜单"></a>鸡肋的下拉菜单</h4>
+          <p>对比Android强大的下拉菜单，iOS的下拉菜单仅用于消息通知或是近期使用的软件功能，而将一部分设置放在了从底部向上拉的菜单中，即便是这些设置也是不完整的，比如wifi设置，只能设定开关，而不能由此作为入口进一步设置wifi。如果想设置wifi需要去设置页中去找。</p>
+          <p>再来看Android的下拉菜单设置，不管是wifi还是手电筒等功能，都无比的实用与方便，而且使用频率很高。</p>
+          <h4 id="u6349_u6025_u7684_u95F9_u949F_u8BBE_u7F6E"><a href="#u6349_u6025_u7684_u95F9_u949F_u8BBE_u7F6E" class="headerlink" title="捉急的闹钟设置"></a>捉急的闹钟设置</h4>
+          <p>这个就更明显了，android的闹钟设置一步到位。而iOS的闹钟设置页面，要先点击左上角的编辑，进入编辑页，再点击时间才能选择。一步能完成的功能愣是给拆成了好几个步骤。用的时候简直无比纠结。</p>
+          <h4 id="u96BE_u4EE5_u6349_u6478_u7684_u8F93_u5165_u6CD5_u548C_u5168_u5C40_u8D4B_u503C_u7C98_u8D34"><a href="#u96BE_u4EE5_u6349_u6478_u7684_u8F93_u5165_u6CD5_u548C_u5168_u5C40_u8D4B_u503C_u7C98_u8D34" class="headerlink" title="难以捉摸的输入法和全局赋值粘贴"></a>难以捉摸的输入法和全局赋值粘贴</h4>
+          <p>九宫格输入法中的各个按键占比无比蛋疼，主要区域占比不够，而一个大大的确认按钮放在了右侧，占据了n多面积。</p>
+          <p>再者是输入法和全局复制粘贴的表现简直匪夷所思，它们的各种表现简直难以寻找规律。感觉一会儿是这样，一会儿是那样。</p>
+          <h4 id="u6CA1_u6709_u5145_u5206_u5229_u7528_u89E6_u5C4F_u4F18_u52BF_u7684_u77ED_u4FE1_u754C_u9762"><a href="#u6CA1_u6709_u5145_u5206_u5229_u7528_u89E6_u5C4F_u4F18_u52BF_u7684_u77ED_u4FE1_u754C_u9762" class="headerlink" title="没有充分利用触屏优势的短信界面"></a>没有充分利用触屏优势的短信界面</h4>
+          <p>ios短信界面的编辑功能，仍然是左上角有一个编辑按钮，点击之后才能进行编辑。而触摸短信只能进入短信详情，长触摸则没有响应动作。</p>
+          <p>「编辑按钮」这个功能在iOS中随处可见，诸如上面提到的闹钟编辑。这和Android有很大的区别，在Android中，长触摸一般都表示对触摸项的编辑功能。而iOS则没有为长触摸指定动作。这样就又多出一步。实在是没有充分利用触屏本身的交互优势。</p>
+          <h3 id="u53A8_u623F_u91CC_u7684_u9171_u6CB9_u74F6"><a href="#u53A8_u623F_u91CC_u7684_u9171_u6CB9_u74F6" class="headerlink" title="厨房里的酱油瓶"></a>厨房里的酱油瓶</h3>
+          <p>有一种酱油叫海天，有着一个无比蛋疼的封口设计。打开瓶盖，拉开拉环，倒出香醇的酱油后，你会发现，瓶盖合不上了！酱油这种长期使用产品，不清楚这种汽水拉环一样的一次性设计是为了什么。</p>
+          <p>而对比厨房里的另一瓶调料——白醋，就明显看出设计上的差距。白醋有一个方便拧开的大瓶盖，为了方便控制倒醋时的流速，还在内部加了一个控制流速的狭缝，可谓方便至极。</p>
         </div>
         <footer class="article-footer clearfix">
           <div class="article-catetags">
@@ -377,6 +421,25 @@ django提供了一种用户自定义命令来实现这个功能：">
           </ol>
         </li>
         <li class="toc-item toc-level-2"><a class="toc-link" href="#u4F7F_u7528_u8FC7_u7684_u5DE5_u5177"><span class="toc-number">3.</span> <span class="toc-text">使用过的工具</span></a></li>
+        <li class="toc-item toc-level-2"><a class="toc-link" href="#u7A0B_u5E8F_u4E2D_u7684_u8FC7_u5EA6_u8BBE_u8BA1"><span class="toc-number">4.</span> <span class="toc-text">程序中的过度设计</span></a>
+          <ol class="toc-child">
+            <li class="toc-item toc-level-3"><a class="toc-link" href="#u4EC0_u4E48_u662F_u7A0B_u5E8F_u4E2D_u7684_u8FC7_u5EA6_u8BBE_u8BA1"><span class="toc-number">4.1.</span> <span class="toc-text">什么是程序中的过度设计</span></a></li>
+            <li class="toc-item toc-level-3"><a class="toc-link" href="#u6211_u9047_u5230_u7684_u8FC7_u5EA6_u8BBE_u8BA1"><span class="toc-number">4.2.</span> <span class="toc-text">我遇到的过度设计</span></a></li>
+          </ol>
+        </li>
+        <li class="toc-item toc-level-2"><a class="toc-link" href="#u4EA7_u54C1_u4F53_u9A8C"><span class="toc-number">5.</span> <span class="toc-text">产品体验</span></a>
+          <ol class="toc-child">
+            <li class="toc-item toc-level-3"><a class="toc-link" href="#iOS_u521D_u4F53_u9A8C"><span class="toc-number">5.1.</span> <span class="toc-text">iOS初体验</span></a>
+              <ol class="toc-child">
+                <li class="toc-item toc-level-4"><a class="toc-link" href="#u9E21_u808B_u7684_u4E0B_u62C9_u83DC_u5355"><span class="toc-number">5.1.1.</span> <span class="toc-text">鸡肋的下拉菜单</span></a></li>
+                <li class="toc-item toc-level-4"><a class="toc-link" href="#u6349_u6025_u7684_u95F9_u949F_u8BBE_u7F6E"><span class="toc-number">5.1.2.</span> <span class="toc-text">捉急的闹钟设置</span></a></li>
+                <li class="toc-item toc-level-4"><a class="toc-link" href="#u96BE_u4EE5_u6349_u6478_u7684_u8F93_u5165_u6CD5_u548C_u5168_u5C40_u8D4B_u503C_u7C98_u8D34"><span class="toc-number">5.1.3.</span> <span class="toc-text">难以捉摸的输入法和全局赋值粘贴</span></a></li>
+                <li class="toc-item toc-level-4"><a class="toc-link" href="#u6CA1_u6709_u5145_u5206_u5229_u7528_u89E6_u5C4F_u4F18_u52BF_u7684_u77ED_u4FE1_u754C_u9762"><span class="toc-number">5.1.4.</span> <span class="toc-text">没有充分利用触屏优势的短信界面</span></a></li>
+              </ol>
+            </li>
+            <li class="toc-item toc-level-3"><a class="toc-link" href="#u53A8_u623F_u91CC_u7684_u9171_u6CB9_u74F6"><span class="toc-number">5.2.</span> <span class="toc-text">厨房里的酱油瓶</span></a></li>
+          </ol>
+        </li>
       </ol>
 
     </div>
@@ -426,15 +489,7 @@ django提供了一种用户自定义命令来实现这个功能：">
 
 
 
-            <li><a href="/categories/产品体验/" title="产品体验">产品体验<sup>1</sup></a></li>
-
-
-
             <li><a href="/categories/前端/" title="前端">前端<sup>3</sup></a></li>
-
-
-
-            <li><a href="/categories/工程/" title="工程">工程<sup>1</sup></a></li>
 
 
 
