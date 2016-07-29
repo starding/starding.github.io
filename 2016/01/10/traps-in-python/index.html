@@ -1,644 +1,564 @@
-<!DOCTYPE HTML>
-<html lang="zh-CN">
 
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-
-  <title>那些年我在python中扑过的街 | 小狐濡尾</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
-
-  <meta name="author" content="starding">
-
-
-
-  <meta name="description" content="前事不忘，后事之师。 ——《战国策·赵策一》
-
-python中的模块导入
-包导入
-这个比较简单，一个例子带过吧，但刚开始确实扑街了…
-
   
+    <title>那些年我在python中扑过的街 | 小狐濡尾</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
-      12345678910111213
-      #文件结构：packages├── __init__.py└── my_module.py# 这种是包导入import packages# 后续是从__init__.py中定义的属性中获取">
-  <meta property="og:type" content="article">
-  <meta property="og:title" content="那些年我在python中扑过的街">
-  <meta property="og:url" content="http://starding.github.io/2016/01/10/traps-in-python/index.html">
-  <meta property="og:site_name" content="小狐濡尾">
-  <meta property="og:description" content="前事不忘，后事之师。 ——《战国策·赵策一》
-
-python中的模块导入
-包导入
-这个比较简单，一个例子带过吧，但刚开始确实扑街了…
-
-  
+    <meta name="author" content="starding">
     
-      12345678910111213
-      #文件结构：packages├── __init__.py└── my_module.py# 这种是包导入import packages# 后续是从__init__.py中定义的属性中获取">
-  <meta property="og:updated_time" content="2016-03-17T07:12:54.000Z">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="那些年我在python中扑过的街">
-  <meta name="twitter:description" content="前事不忘，后事之师。 ——《战国策·赵策一》
 
-python中的模块导入
-包导入
-这个比较简单，一个例子带过吧，但刚开始确实扑街了…
-
-  
     
-      12345678910111213
-      #文件结构：packages├── __init__.py└── my_module.py# 这种是包导入import packages# 后续是从__init__.py中定义的属性中获取">
+    <meta name="description" content="前事不忘，后事之师。       ——《战国策·赵策一》
 
+python中的模块导入包导入这个比较简单，一个例子带过吧，但刚开始确实扑街了…
+12345678910111213#文件结构：packages├── __init__.py└── my_module.py# 这种是包导入import packages# 后续是从__init__.py中定义的属性中获取的packages.some_mo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="那些年我在python中扑过的街">
+<meta property="og:url" content="http://starding.github.io/2016/01/10/traps-in-python/index.html">
+<meta property="og:site_name" content="小狐濡尾">
+<meta property="og:description" content="前事不忘，后事之师。       ——《战国策·赵策一》
 
-  <link rel="alternative" href="/atom.xml" title="小狐濡尾" type="application/atom+xml">
+python中的模块导入包导入这个比较简单，一个例子带过吧，但刚开始确实扑街了…
+12345678910111213#文件结构：packages├── __init__.py└── my_module.py# 这种是包导入import packages# 后续是从__init__.py中定义的属性中获取的packages.some_mo">
+<meta property="og:updated_time" content="2016-03-17T07:12:54.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="那些年我在python中扑过的街">
+<meta name="twitter:description" content="前事不忘，后事之师。       ——《战国策·赵策一》
 
+python中的模块导入包导入这个比较简单，一个例子带过吧，但刚开始确实扑街了…
+12345678910111213#文件结构：packages├── __init__.py└── my_module.py# 这种是包导入import packages# 后续是从__init__.py中定义的属性中获取的packages.some_mo">
 
-  <link rel="icon" href="/img/my_favicon.ico">
-
-
-  <link rel="apple-touch-icon" href="/img/jacman.jpg">
-  <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
-
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
+    
+    <link rel="alternative" href="/atom.xml" title="小狐濡尾" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/my_favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<body>
-  <header>
-    <div>
-
-      <div id="imglogo">
-        <a href="/"><img src="/img/my_white_logo.png" alt="小狐濡尾" title="小狐濡尾" /></a>
-      </div>
-
-      <div id="textlogo">
-        <h1 class="site-name"><a href="/" title="小狐濡尾">小狐濡尾</a></h1>
-        <h2 class="blog-motto">未济</h2>
-      </div>
-      <div class="navbar">
-        <a class="navbutton navmobile" href="#" title="菜单">
-        </a>
-      </div>
-      <nav class="animated">
-        <ul>
-          <ul>
-
-            <li><a href="/">主页 | Home</a></li>
-
-            <li><a href="/index">索引 | Index</a></li>
-
-            <li><a href="/archives">归档 | Archives</a></li>
-
-            <li><a href="/about">简介 | About</a></li>
-
-            <li>
-
-              <form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
-                <label>Search</label>
-                <input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
-                <input type="hidden" name="q" value="site:starding.github.io">
-              </form>
-
-            </li>
-          </ul>
-      </nav>
-    </div>
-  </header>
-  <div id="container">
-    <div id="main" class="post" itemscope itemprop="blogPost">
-
-      <article itemprop="articleBody">
-        <header class="article-info clearfix">
-          <h1 itemprop="name">
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/my_white_logo.png" alt="小狐濡尾" title="小狐濡尾"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="小狐濡尾">小狐濡尾</a></h1>
+				<h2 class="blog-motto">未济</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页 | Home</a></li>
+					
+						<li><a href="/index">索引 | Index</a></li>
+					
+						<li><a href="/archives">归档 | Archives</a></li>
+					
+						<li><a href="/about">简介 | About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:starding.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
     
       <a href="/2016/01/10/traps-in-python/" title="那些年我在python中扑过的街" itemprop="url">那些年我在python中扑过的街</a>
   </h1>
-          <p class="article-author">By
-
-            <a href="/about" title="starding" target="_blank" itemprop="author">starding</a>
-
-            <p class="article-time">
-              <time datetime="2016-01-10T11:22:10.000Z" itemprop="datePublished"> 发表于 2016-01-10</time>
-
-            </p>
-        </header>
-        <div class="article-content">
-
-          <div id="toc" class="toc-article">
-            <strong class="toc-title">文章目录</strong>
-
-            <ol class="toc">
-              <li class="toc-item toc-level-2"><a class="toc-link" href="#python_u4E2D_u7684_u6A21_u5757_u5BFC_u5165"><span class="toc-number">1.</span> <span class="toc-text">python中的模块导入</span></a>
-                <ol class="toc-child">
-                  <li class="toc-item toc-level-3"><a class="toc-link" href="#u5305_u5BFC_u5165"><span class="toc-number">1.1.</span> <span class="toc-text">包导入</span></a></li>
-                  <li class="toc-item toc-level-3"><a class="toc-link" href="#u6A21_u5757_u5BFC_u5165_u641C_u7D22_u8DEF_u5F84"><span class="toc-number">1.2.</span> <span class="toc-text">模块导入搜索路径</span></a></li>
-                </ol>
-              </li>
-              <li class="toc-item toc-level-2"><a class="toc-link" href="#try-except-finally_u4E2D_u8BED_u53E5_u6267_u884C_u987A_u5E8F"><span class="toc-number">2.</span> <span class="toc-text">try-except-finally中语句执行顺序</span></a></li>
-              <li class="toc-item toc-level-2"><a class="toc-link" href="#u5B57_u5178_u63A8_u5BFC_u7684_u9650_u5236"><span class="toc-number">3.</span> <span class="toc-text">字典推导的限制</span></a></li>
-            </ol>
-
-          </div>
-
-          <blockquote>
-            <p>前事不忘，后事之师。 ——《战国策·赵策一》</p>
-          </blockquote>
-          <h2 id="python_u4E2D_u7684_u6A21_u5757_u5BFC_u5165"><a href="#python_u4E2D_u7684_u6A21_u5757_u5BFC_u5165" class="headerlink" title="python中的模块导入"></a>python中的模块导入</h2>
-          <h3 id="u5305_u5BFC_u5165"><a href="#u5305_u5BFC_u5165" class="headerlink" title="包导入"></a>包导入</h3>
-          <p>这个比较简单，一个例子带过吧，但刚开始确实扑街了…</p>
-          <figure class="highlight python">
-            <table>
-              <tr>
-                <td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td>
-                <td class="code"><pre><span class="line"><span class="comment">#文件结构：</span></span><br><span class="line">packages</span><br><span class="line">├── __init__.py</span><br><span class="line">└── my_module.py</span><br><span class="line"></span><br><span class="line"><span class="comment"># 这种是包导入</span></span><br><span class="line"><span class="keyword">import</span> packages</span><br><span class="line"><span class="comment"># 后续是从__init__.py中定义的属性中获取的</span></span><br><span class="line">packages.some_module.some_method</span><br><span class="line"></span><br><span class="line"><span class="comment"># 这种是把包当做搜索路径上的一环</span></span><br><span class="line"><span class="keyword">from</span> packages <span class="keyword">import</span> some_module</span><br><span class="line">some_module.some_method</span><br></pre></td>
-              </tr>
-            </table>
-          </figure>
-          <h3 id="u6A21_u5757_u5BFC_u5165_u641C_u7D22_u8DEF_u5F84"><a href="#u6A21_u5757_u5BFC_u5165_u641C_u7D22_u8DEF_u5F84" class="headerlink" title="模块导入搜索路径"></a>模块导入搜索路径</h3>
-          <p>例如下面的使用场景：</p>
-          <figure class="highlight python">
-            <table>
-              <tr>
-                <td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td>
-                <td class="code"><pre><span class="line"><span class="comment"># django中有一个common app，并且已经添加到已安装app列表中</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># common app文件结构</span></span><br><span class="line">common</span><br><span class="line">├── __init__.py</span><br><span class="line">├── common.py</span><br><span class="line">├── others.py</span><br><span class="line">└── somethings.py</span><br><span class="line"></span><br><span class="line"><span class="comment"># somethings.py中存在导入语句</span></span><br><span class="line"><span class="keyword">from</span> common.others <span class="keyword">import</span> some_func   <span class="comment"># 会报错</span></span><br></pre></td>
-              </tr>
-            </table>
-          </figure>
-          <p>在上面的代码示例中，由于common的名称相同，以及搜索路径默认是先从当前执行代码所在目录开始搜索，所以 common 文件 会在common 包之前被搜索到，造成搜索路径上的覆盖。而一旦搜索到common时，就会去common文件中查找some_func， 但是无法找到，这样就会报错。</p>
-          <h2 id="try-except-finally_u4E2D_u8BED_u53E5_u6267_u884C_u987A_u5E8F"><a href="#try-except-finally_u4E2D_u8BED_u53E5_u6267_u884C_u987A_u5E8F" class="headerlink" title="try-except-finally中语句执行顺序"></a>try-except-finally中语句执行顺序</h2>
-          <p>在python的异常处理中，无论try语句中是否有异常抛出，finally语句总会被执行。由于这个特性，finally语句经常被用来做一些清理工作，例如关闭文件，数据库等等。</p>
-          <p>如果当try-except-finally中出现异常，并且未被妥善处理时，python会先把发生的异常暂存，当finally中的动作执行完毕之后，把保存的异常返回给上级。try-except-finally中的语句执行顺序，决定了它会有一些潜在的陷阱。</p>
-          <p>看以下例子：</p>
-          <figure class="highlight python">
-            <table>
-              <tr>
-                <td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td>
-                <td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">finallyTest</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'start------'</span></span><br><span class="line">    <span class="keyword">while</span>  <span class="keyword">True</span>:</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            <span class="keyword">print</span> <span class="string">"running------"</span></span><br><span class="line">            <span class="keyword">raise</span> IndexError(<span class="string">"r"</span>)   <span class="comment">#抛出异IndexError异常</span></span><br><span class="line">        <span class="keyword">except</span> NameError <span class="keyword">as</span> e:</span><br><span class="line">            <span class="keyword">print</span> <span class="string">'NameError happended &#123;0&#125;'</span>.format(str(e))</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">finally</span>:</span><br><span class="line">            <span class="keyword">print</span> <span class="string">'finally executed'</span></span><br><span class="line">            <span class="keyword">break</span> <span class="comment">#finally语句中有break语句</span></span><br><span class="line">            </span><br><span class="line"><span class="comment"># 执行测试函数</span></span><br><span class="line">FinallyTest()</span><br><span class="line"></span><br><span class="line"><span class="comment">#输出结果为：</span></span><br><span class="line">start------</span><br><span class="line">running------</span><br><span class="line"><span class="keyword">finally</span> executed</span><br></pre></td>
-              </tr>
-            </table>
-          </figure>
-          <p>在上面的例子中，在try语句中，raise出了一个IndexError异常，而且except语句也没有捕获这个错误。按照平常的理解，这个错误会向上级（也就是调用这个函数的程序）传递，在本例中会传递到解释器，并引发一个IndexError错误。但是整个函数执行完之后并没有异常出现。</p>
-          <p>原因就在于在当try块中发生异常的时候，如果在except语句中找不到对应的异常处理，异常将会被「临时保存起来」。当finally执行完毕的时候，临时保存的异常将会「再次被抛出」，但如果finally语句中产生了新的异常或者执行了return或者break语句，那么临时保存的异常将会被丢失，从而导致「异常屏蔽」。</p>
-          <p>另外一个稍微复杂一些例子：</p>
-          <figure class="highlight python">
-            <table>
-              <tr>
-                <td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td>
-                <td class="code"><pre><span class="line"><span class="keyword">import</span> logging</span><br><span class="line"></span><br><span class="line">logger = logging.Logger(__name__)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">returnTest</span><span class="params">(a)</span>:</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">if</span> a == <span class="keyword">False</span>:</span><br><span class="line">            <span class="keyword">raise</span> ValueError(<span class="string">"data can not be False"</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> a  </span><br><span class="line">    <span class="keyword">except</span> ValueError <span class="keyword">as</span> e:</span><br><span class="line">        logger.exception(<span class="string">"exception!, &#123;detail&#125;"</span>).fomat(detail)</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"return exception in except statement"</span> </span><br><span class="line">    <span class="keyword">finally</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"return in finally statement"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> returnTest(<span class="keyword">False</span>)</span><br><span class="line"><span class="keyword">print</span> returnTest(<span class="keyword">True</span>)</span><br></pre></td>
-              </tr>
-            </table>
-          </figure>
-          <p>按照平常理解，第一个print语句会触发错误，然后进入except语句打印异常，而同时finally部分中的语句必然会执行，所以这里会返回一个’return in finally statement’值。第二个则会返回True。实际上则不然，返回值竟然都是’return in finally statement’。</p>
-          <p>原因是和上面的例子中是一样的，无论是try复合语句中，还是except复合语句中的return/break语句，这种会产生程序跳转的语句会先被保存起来。然后再去执行finally中的语句，而一旦finally中出现了跳转语句，就会直接跳转了，这样早成的结果就是上面保存状态的消失。</p>
-          <h2 id="u5B57_u5178_u63A8_u5BFC_u7684_u9650_u5236"><a href="#u5B57_u5178_u63A8_u5BFC_u7684_u9650_u5236" class="headerlink" title="字典推导的限制"></a>字典推导的限制</h2>
-          <p>在做一个项目的时候，遇到一个需要多次请求数据库的操作，详细情况就是，有一些公司，这些公司本身有名字，公司代号这样的组织，如果每次都从数据库中取公司信息，会有性能问题。于是就采用用字典缓存下来，于是想使用字典推导。发现推导时只能生成单元素，之前我没有留意过这一点，在此记录一下。</p>
-          <figure class="highlight python">
-            <table>
-              <tr>
-                <td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td>
-                <td class="code"><pre><span class="line"><span class="comment"># 这样是可以的</span></span><br><span class="line">&gt;&gt;&gt;&#123;model.key: model.value <span class="keyword">for</span> Modle <span class="keyword">in</span> models &#125;</span><br><span class="line"><span class="comment"># 结果就是个普通的字典</span></span><br><span class="line">&gt;&gt;&gt;&#123;key1: value1, key2: value2, ...&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 但是想要下面这样使用是不支持的</span></span><br><span class="line">&gt;&gt;&gt;&#123;model.key1: model.value1, moedel.key2: model.value2 <span class="keyword">for</span> model <span class="keyword">in</span> models&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 折中的办法是将上面的value值换成一个字典，或者是使用列表推导再封装一层列表</span></span><br><span class="line">&gt;&gt;&gt;&#123;model.key1: &#123;models.key1: models.value1, model.key2: model.value2, ...&#125; <span class="keyword">for</span> model <span class="keyword">in</span> models&#125;</span><br></pre></td>
-              </tr>
-            </table>
-          </figure>
-          <p>补充一下实际的例子，其中branch相关的是分公司信息，subbranch相关的是中支公司信息，目的是构造一个，分公司名称为key值，分公司的主键，编号，以及该分公司辖下的中支公司为value值的字典，其中的中支公司也是一个字典：以中支公司名称为key值，中支公司的其他信息为value值。这样就构成了一个公司数据的二阶字典缓存列表。</p>
-          <figure class="highlight python">
-            <table>
-              <tr>
-                <td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td>
-                <td class="code"><pre><span class="line">companys_by_name = &#123;</span><br><span class="line">        branch.name: &#123;</span><br><span class="line">            <span class="string">"pk"</span>: branch.pk,</span><br><span class="line">            <span class="string">"number"</span>: branch.number,</span><br><span class="line">            <span class="string">"subbranch"</span>: &#123;</span><br><span class="line">                subbranch.name: &#123;<span class="string">"pk"</span>:subbranch.pk, <span class="string">"number"</span>:subbranch.number&#125; <span class="keyword">for</span> subbranch <span class="keyword">in</span> SubbranchCompany.objects.filter(branch_company=branch)</span><br><span class="line">            &#125; <span class="keyword">for</span> branch <span class="keyword">in</span> BranchCompany.objects.all()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 详细含义如下，其中中支公司是分工司辖下的公司</span></span><br><span class="line">公司信息字典 = &#123;</span><br><span class="line">     分公司名字:&#123;</span><br><span class="line">        <span class="string">"主键"</span>: 当前迭代分公司主键，</span><br><span class="line">        <span class="string">"公司号"</span>: 当前迭代公司公司号，</span><br><span class="line">        <span class="string">"中支公司"</span>:&#123;</span><br><span class="line">            中支公司名字:&#123;</span><br><span class="line">                <span class="string">"主键"</span>: 当前迭代中支公司主键,</span><br><span class="line">                <span class="string">"中支公司号"</span>: 当前迭代中支公司号,</span><br><span class="line">            &#125; <span class="keyword">for</span> 中支公司 <span class="keyword">in</span> 当期迭代分公司下中支公司集合</span><br><span class="line">        &#125;</span><br><span class="line">     &#125; <span class="keyword">for</span> 分公司 <span class="keyword">in</span> 分公司集合</span><br><span class="line">&#125;</span><br></pre></td>
-              </tr>
-            </table>
-          </figure>
-        </div>
-        <footer class="article-footer clearfix">
-          <div class="article-catetags">
-
-            <div class="article-categories">
-              <span></span>
-              <a class="article-category-link" href="/categories/python/">python</a>
-            </div>
-
-
-            <div class="article-tags">
-
-              <span></span> <a href="/tags/python/">python</a>
-            </div>
-
-          </div>
-
-          <div class="article-share" id="share">
-
-            <div data-url="http://starding.github.io/2016/01/10/traps-in-python/" data-title="那些年我在python中扑过的街 | 小狐濡尾" data-tsina="null" class="share clearfix">
-            </div>
-
-          </div>
-
-
-        </footer>
-      </article>
-      <nav class="article-nav clearfix">
-
-        <div class="prev">
-          <a href="/2016/01/11/kuaibo-technological-neutrality/" title="从快播案看技术中性论的地位">
-            <strong>上一篇：</strong><br/>
-            <span>
-  从快播案看技术中性论的地位</span>
-          </a>
-        </div>
-
-
-        <div class="next">
-          <a href="/2016/01/10/open-questions/" title="Open Questions">
-            <strong>下一篇：</strong><br/>
-            <span>Open Questions
-</span>
-          </a>
-        </div>
-
-      </nav>
-      <section id="comments" class="comment">
-        <div class="ds-thread" data-thread-key="2016/01/10/traps-in-python/" data-title="那些年我在python中扑过的街" data-url="http://starding.github.io/2016/01/10/traps-in-python/"></div>
-      </section>
-    </div>
-    <div class="openaside">
-      <a class="navbutton" href="#" title="显示侧边栏"></a>
-    </div>
-
-    <div id="toc" class="toc-aside">
-      <strong class="toc-title">文章目录</strong>
-
-      <ol class="toc">
-        <li class="toc-item toc-level-2"><a class="toc-link" href="#python_u4E2D_u7684_u6A21_u5757_u5BFC_u5165"><span class="toc-number">1.</span> <span class="toc-text">python中的模块导入</span></a>
-          <ol class="toc-child">
-            <li class="toc-item toc-level-3"><a class="toc-link" href="#u5305_u5BFC_u5165"><span class="toc-number">1.1.</span> <span class="toc-text">包导入</span></a></li>
-            <li class="toc-item toc-level-3"><a class="toc-link" href="#u6A21_u5757_u5BFC_u5165_u641C_u7D22_u8DEF_u5F84"><span class="toc-number">1.2.</span> <span class="toc-text">模块导入搜索路径</span></a></li>
-          </ol>
-        </li>
-        <li class="toc-item toc-level-2"><a class="toc-link" href="#try-except-finally_u4E2D_u8BED_u53E5_u6267_u884C_u987A_u5E8F"><span class="toc-number">2.</span> <span class="toc-text">try-except-finally中语句执行顺序</span></a></li>
-        <li class="toc-item toc-level-2"><a class="toc-link" href="#u5B57_u5178_u63A8_u5BFC_u7684_u9650_u5236"><span class="toc-number">3.</span> <span class="toc-text">字典推导的限制</span></a></li>
-      </ol>
-
-    </div>
-
-    <div id="asidepart">
-      <div class="closeaside">
-        <a class="closebutton" href="#" title="隐藏侧边栏"></a>
-      </div>
-      <aside class="clearfix">
-
-        <div class="github-card">
-          <p class="asidetitle">Github 名片</p>
-          <div class="github-card" data-github="starding" data-width="220" data-height="119" data-theme="medium">
-            <script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
-          </div>
-        </div>
-
-        <div class="doubanshow">
-          <p class="asidetitle">豆瓣秀</p>
-          <div>
-            <script type="text/javascript" src="http://www.douban.com/service/badge/58816601/?show=collection&amp;n=12&amp;columns=3&amp;hidelogo=yes&amp;hideself=yes&amp;cat=book|movie"></script>
-          </div>
-        </div>
-
-        <div class="categorieslist">
-          <p class="asidetitle">分类</p>
-          <ul>
-
-
-            <li><a href="/categories/computer-philosophy/" title="computer philosophy">computer philosophy<sup>2</sup></a></li>
-
-
-
-            <li><a href="/categories/docker/" title="docker">docker<sup>4</sup></a></li>
-
-
-
-            <li><a href="/categories/javascript/" title="javascript">javascript<sup>2</sup></a></li>
-
-
-
-            <li><a href="/categories/open-questions/" title="open-questions">open-questions<sup>1</sup></a></li>
-
-
-
-            <li><a href="/categories/python/" title="python">python<sup>4</sup></a></li>
-
-
-
-            <li><a href="/categories/前端/" title="前端">前端<sup>3</sup></a></li>
-
-
-
-            <li><a href="/categories/技术哲学/" title="技术哲学">技术哲学<sup>2</sup></a></li>
-
-
-
-            <li><a href="/categories/数学/" title="数学">数学<sup>1</sup></a></li>
-
-
-
-            <li><a href="/categories/科学史与科学哲学/" title="科学史与科学哲学">科学史与科学哲学<sup>1</sup></a></li>
-
-
-
-            <li><a href="/categories/算法/" title="算法">算法<sup>1</sup></a></li>
-
-
-
-            <li><a href="/categories/问题/" title="问题">问题<sup>1</sup></a></li>
-
-
-
-            <li><a href="/categories/随笔/" title="随笔">随笔<sup>4</sup></a></li>
-
-
-          </ul>
-        </div>
-
-        <div class="tagslist">
-          <p class="asidetitle">标签</p>
-          <ul class="clearfix">
-
-
-            <li><a href="/tags/python/" title="python">python<sup>4</sup></a></li>
-
-
-
-            <li><a href="/tags/docker/" title="docker">docker<sup>4</sup></a></li>
-
-
-
-            <li><a href="/tags/前端/" title="前端">前端<sup>2</sup></a></li>
-
-
-
-            <li><a href="/tags/随笔/" title="随笔">随笔<sup>2</sup></a></li>
-
-
-
-            <li><a href="/tags/javascript/" title="javascript">javascript<sup>2</sup></a></li>
-
-
-
-            <li><a href="/tags/django/" title="django">django<sup>1</sup></a></li>
-
-
-
-            <li><a href="/tags/open-questions/" title="open-questions">open-questions<sup>1</sup></a></li>
-
-
-
-            <li><a href="/tags/三体/" title="三体">三体<sup>1</sup></a></li>
-
-
-
-            <li><a href="/tags/科学史/" title="科学史">科学史<sup>1</sup></a></li>
-
-
-
-            <li><a href="/tags/computer/" title="computer">computer<sup>1</sup></a></li>
-
-
-
-            <li><a href="/tags/社会达尔文主义/" title="社会达尔文主义">社会达尔文主义<sup>1</sup></a></li>
-
-
-
-            <li><a href="/tags/科学哲学/" title="科学哲学">科学哲学<sup>1</sup></a></li>
-
-
-
-            <li><a href="/tags/行尸走肉/" title="行尸走肉">行尸走肉<sup>1</sup></a></li>
-
-
-
-            <li><a href="/tags/gitlab/" title="gitlab">gitlab<sup>1</sup></a></li>
-
-
-          </ul>
-        </div>
-
-        <div class="linkslist">
-          <p class="asidetitle">友情链接</p>
-          <ul>
-
-            <li>
-
-              <a href="http://phiphicake.blogspot.com" target="_blank" title=" 一个有趣的哲学博客">哲学鸡蛋糕</a>
-
-            </li>
-
-          </ul>
-        </div>
-
-        <div class="rsspart">
-          <a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
-        </div>
-
-      </aside>
-    </div>
+  <p class="article-author">By
+       
+		<a href="/about" title="starding" target="_blank" itemprop="author">starding</a>
+		
+  <p class="article-time">
+    <time datetime="2016-01-10T11:22:10.000Z" itemprop="datePublished"> 发表于 2016-01-10</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#python中的模块导入"><span class="toc-number">1.</span> <span class="toc-text">python中的模块导入</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#包导入"><span class="toc-number">1.1.</span> <span class="toc-text">包导入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模块导入搜索路径"><span class="toc-number">1.2.</span> <span class="toc-text">模块导入搜索路径</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#try-except-finally中语句执行顺序"><span class="toc-number">2.</span> <span class="toc-text">try-except-finally中语句执行顺序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字典推导的限制"><span class="toc-number">3.</span> <span class="toc-text">字典推导的限制</span></a></li></ol>
+		
+		</div>
+		
+		<blockquote>
+<p>前事不忘，后事之师。       ——《战国策·赵策一》</p>
+</blockquote>
+<h2 id="python中的模块导入"><a href="#python中的模块导入" class="headerlink" title="python中的模块导入"></a>python中的模块导入</h2><h3 id="包导入"><a href="#包导入" class="headerlink" title="包导入"></a>包导入</h3><p>这个比较简单，一个例子带过吧，但刚开始确实扑街了…</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#文件结构：</span></div><div class="line">packages</div><div class="line">├── __init__.py</div><div class="line">└── my_module.py</div><div class="line"></div><div class="line"><span class="comment"># 这种是包导入</span></div><div class="line"><span class="keyword">import</span> packages</div><div class="line"><span class="comment"># 后续是从__init__.py中定义的属性中获取的</span></div><div class="line">packages.some_module.some_method</div><div class="line"></div><div class="line"><span class="comment"># 这种是把包当做搜索路径上的一环</span></div><div class="line"><span class="keyword">from</span> packages <span class="keyword">import</span> some_module</div><div class="line">some_module.some_method</div></pre></td></tr></table></figure>
+<h3 id="模块导入搜索路径"><a href="#模块导入搜索路径" class="headerlink" title="模块导入搜索路径"></a>模块导入搜索路径</h3><p>例如下面的使用场景：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># django中有一个common app，并且已经添加到已安装app列表中</span></div><div class="line"></div><div class="line"><span class="comment"># common app文件结构</span></div><div class="line">common</div><div class="line">├── __init__.py</div><div class="line">├── common.py</div><div class="line">├── others.py</div><div class="line">└── somethings.py</div><div class="line"></div><div class="line"><span class="comment"># somethings.py中存在导入语句</span></div><div class="line"><span class="keyword">from</span> common.others <span class="keyword">import</span> some_func   <span class="comment"># 会报错</span></div></pre></td></tr></table></figure>
+<p>在上面的代码示例中，由于common的名称相同，以及搜索路径默认是先从当前执行代码所在目录开始搜索，所以 common 文件 会在common 包之前被搜索到，造成搜索路径上的覆盖。而一旦搜索到common时，就会去common文件中查找some_func， 但是无法找到，这样就会报错。</p>
+<h2 id="try-except-finally中语句执行顺序"><a href="#try-except-finally中语句执行顺序" class="headerlink" title="try-except-finally中语句执行顺序"></a>try-except-finally中语句执行顺序</h2><p>在python的异常处理中，无论try语句中是否有异常抛出，finally语句总会被执行。由于这个特性，finally语句经常被用来做一些清理工作，例如关闭文件，数据库等等。</p>
+<p>如果当try-except-finally中出现异常，并且未被妥善处理时，python会先把发生的异常暂存，当finally中的动作执行完毕之后，把保存的异常返回给上级。try-except-finally中的语句执行顺序，决定了它会有一些潜在的陷阱。</p>
+<p>看以下例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">finallyTest</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">print</span> <span class="string">'start------'</span></div><div class="line">    <span class="keyword">while</span>  <span class="keyword">True</span>:</div><div class="line">        <span class="keyword">try</span>:</div><div class="line">            <span class="keyword">print</span> <span class="string">"running------"</span></div><div class="line">            <span class="keyword">raise</span> IndexError(<span class="string">"r"</span>)   <span class="comment">#抛出异IndexError异常</span></div><div class="line">        <span class="keyword">except</span> NameError <span class="keyword">as</span> e:</div><div class="line">            <span class="keyword">print</span> <span class="string">'NameError happended &#123;0&#125;'</span>.format(str(e))</div><div class="line">            <span class="keyword">break</span></div><div class="line">        <span class="keyword">finally</span>:</div><div class="line">            <span class="keyword">print</span> <span class="string">'finally executed'</span></div><div class="line">            <span class="keyword">break</span> <span class="comment">#finally语句中有break语句</span></div><div class="line">            </div><div class="line"><span class="comment"># 执行测试函数</span></div><div class="line">FinallyTest()</div><div class="line"></div><div class="line"><span class="comment">#输出结果为：</span></div><div class="line">start------</div><div class="line">running------</div><div class="line"><span class="keyword">finally</span> executed</div></pre></td></tr></table></figure>
+<p>在上面的例子中，在try语句中，raise出了一个IndexError异常，而且except语句也没有捕获这个错误。按照平常的理解，这个错误会向上级（也就是调用这个函数的程序）传递，在本例中会传递到解释器，并引发一个IndexError错误。但是整个函数执行完之后并没有异常出现。</p>
+<p>原因就在于在当try块中发生异常的时候，如果在except语句中找不到对应的异常处理，异常将会被「临时保存起来」。当finally执行完毕的时候，临时保存的异常将会「再次被抛出」，但如果finally语句中产生了新的异常或者执行了return或者break语句，那么临时保存的异常将会被丢失，从而导致「异常屏蔽」。</p>
+<p>另外一个稍微复杂一些例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> logging</div><div class="line"></div><div class="line">logger = logging.Logger(__name__)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">returnTest</span><span class="params">(a)</span>:</span></div><div class="line">    <span class="keyword">try</span>:</div><div class="line">        <span class="keyword">if</span> a == <span class="keyword">False</span>:</div><div class="line">            <span class="keyword">raise</span> ValueError(<span class="string">"data can not be False"</span>)</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">return</span> a  </div><div class="line">    <span class="keyword">except</span> ValueError <span class="keyword">as</span> e:</div><div class="line">        logger.exception(<span class="string">"exception!, &#123;detail&#125;"</span>).fomat(detail)</div><div class="line">        <span class="keyword">return</span> <span class="string">"return exception in except statement"</span> </div><div class="line">    <span class="keyword">finally</span>:</div><div class="line">        <span class="keyword">return</span> <span class="string">"return in finally statement"</span></div><div class="line"></div><div class="line"><span class="keyword">print</span> returnTest(<span class="keyword">False</span>)</div><div class="line"><span class="keyword">print</span> returnTest(<span class="keyword">True</span>)</div></pre></td></tr></table></figure>
+<p>按照平常理解，第一个print语句会触发错误，然后进入except语句打印异常，而同时finally部分中的语句必然会执行，所以这里会返回一个’return in finally statement’值。第二个则会返回True。实际上则不然，返回值竟然都是’return in finally statement’。</p>
+<p>原因是和上面的例子中是一样的，无论是try复合语句中，还是except复合语句中的return/break语句，这种会产生程序跳转的语句会先被保存起来。然后再去执行finally中的语句，而一旦finally中出现了跳转语句，就会直接跳转了，这样早成的结果就是上面保存状态的消失。</p>
+<h2 id="字典推导的限制"><a href="#字典推导的限制" class="headerlink" title="字典推导的限制"></a>字典推导的限制</h2><p>在做一个项目的时候，遇到一个需要多次请求数据库的操作，详细情况就是，有一些公司，这些公司本身有名字，公司代号这样的组织，如果每次都从数据库中取公司信息，会有性能问题。于是就采用用字典缓存下来，于是想使用字典推导。发现推导时只能生成单元素，之前我没有留意过这一点，在此记录一下。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 这样是可以的</span></div><div class="line">&gt;&gt;&gt;&#123;model.key: model.value <span class="keyword">for</span> Modle <span class="keyword">in</span> models &#125;</div><div class="line"><span class="comment"># 结果就是个普通的字典</span></div><div class="line">&gt;&gt;&gt;&#123;key1: value1, key2: value2, ...&#125;</div><div class="line"></div><div class="line"><span class="comment"># 但是想要下面这样使用是不支持的</span></div><div class="line">&gt;&gt;&gt;&#123;model.key1: model.value1, moedel.key2: model.value2 <span class="keyword">for</span> model <span class="keyword">in</span> models&#125;</div><div class="line"></div><div class="line"><span class="comment"># 折中的办法是将上面的value值换成一个字典，或者是使用列表推导再封装一层列表</span></div><div class="line">&gt;&gt;&gt;&#123;model.key1: &#123;models.key1: models.value1, model.key2: model.value2, ...&#125; <span class="keyword">for</span> model <span class="keyword">in</span> models&#125;</div></pre></td></tr></table></figure>
+<p>补充一下实际的例子，其中branch相关的是分公司信息，subbranch相关的是中支公司信息，目的是构造一个，分公司名称为key值，分公司的主键，编号，以及该分公司辖下的中支公司为value值的字典，其中的中支公司也是一个字典：以中支公司名称为key值，中支公司的其他信息为value值。这样就构成了一个公司数据的二阶字典缓存列表。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">companys_by_name = &#123;</div><div class="line">        branch.name: &#123;</div><div class="line">            <span class="string">"pk"</span>: branch.pk,</div><div class="line">            <span class="string">"number"</span>: branch.number,</div><div class="line">            <span class="string">"subbranch"</span>: &#123;</div><div class="line">                subbranch.name: &#123;<span class="string">"pk"</span>:subbranch.pk, <span class="string">"number"</span>:subbranch.number&#125; <span class="keyword">for</span> subbranch <span class="keyword">in</span> SubbranchCompany.objects.filter(branch_company=branch)</div><div class="line">            &#125; <span class="keyword">for</span> branch <span class="keyword">in</span> BranchCompany.objects.all()</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment"># 详细含义如下，其中中支公司是分工司辖下的公司</span></div><div class="line">公司信息字典 = &#123;</div><div class="line">     分公司名字:&#123;</div><div class="line">        <span class="string">"主键"</span>: 当前迭代分公司主键，</div><div class="line">        <span class="string">"公司号"</span>: 当前迭代公司公司号，</div><div class="line">        <span class="string">"中支公司"</span>:&#123;</div><div class="line">            中支公司名字:&#123;</div><div class="line">                <span class="string">"主键"</span>: 当前迭代中支公司主键,</div><div class="line">                <span class="string">"中支公司号"</span>: 当前迭代中支公司号,</div><div class="line">            &#125; <span class="keyword">for</span> 中支公司 <span class="keyword">in</span> 当期迭代分公司下中支公司集合</div><div class="line">        &#125;</div><div class="line">     &#125; <span class="keyword">for</span> 分公司 <span class="keyword">in</span> 分公司集合</div><div class="line">&#125;</div></pre></td></tr></table></figure>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/python/">python</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/python/">python</a>
   </div>
-  <footer>
-    <div id="footer">
 
-      <div class="line">
-        <span></span>
-        <div class="author"></div>
-      </div>
-
-
-      <section class="info">
-        <p> Hello ,I&#39;m Starding. <br/> This is my blog,believe it or not.</p>
-      </section>
-
-      <div class="social-font" class="clearfix">
-
-
-        <a href="https://github.com/starding" target="_blank" class="icon-github" title="github"></a>
+</div>
 
 
 
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://starding.github.io/2016/01/10/traps-in-python/" data-title="那些年我在python中扑过的街 | 小狐濡尾" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/01/11/kuaibo-technological-neutrality/" title="从快播案看技术中性论的地位">
+  <strong>上一篇：</strong><br/>
+  <span>
+  从快播案看技术中性论的地位</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016/01/10/open-questions/"  title="Open Questions">
+ <strong>下一篇：</strong><br/> 
+ <span>Open Questions
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/01/10/traps-in-python/" data-title="那些年我在python中扑过的街" data-url="http://starding.github.io/2016/01/10/traps-in-python/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#python中的模块导入"><span class="toc-number">1.</span> <span class="toc-text">python中的模块导入</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#包导入"><span class="toc-number">1.1.</span> <span class="toc-text">包导入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模块导入搜索路径"><span class="toc-number">1.2.</span> <span class="toc-text">模块导入搜索路径</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#try-except-finally中语句执行顺序"><span class="toc-number">2.</span> <span class="toc-text">try-except-finally中语句执行顺序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字典推导的限制"><span class="toc-number">3.</span> <span class="toc-text">字典推导的限制</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="starding" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
 
 
 
-        <a href="https://www.douban.com/people/58816601" target="_blank" class="icon-douban" title="豆瓣"></a>
+  
+
+<div class="doubanshow">
+<p class="asidetitle">豆瓣秀</p>
+<div>
+<script type="text/javascript" src="http://www.douban.com/service/badge/58816601/?show=collection&amp;n=12&amp;columns=3&amp;hidelogo=yes&amp;hideself=yes&amp;cat=book|movie" ></script>
+</div>
+</div>
 
 
-        <a href="http://www.zhihu.com/people/starstarding" target="_blank" class="icon-zhihu" title="知乎"></a>
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/computer-philosophy/" title="computer philosophy">computer philosophy<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/docker/" title="docker">docker<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/javascript/" title="javascript">javascript<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/open-questions/" title="open-questions">open-questions<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/python/" title="python">python<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/前端/" title="前端">前端<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/技术哲学/" title="技术哲学">技术哲学<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/数学/" title="数学">数学<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/科学史与科学哲学/" title="科学史与科学哲学">科学史与科学哲学<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/算法/" title="算法">算法<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/问题/" title="问题">问题<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/随笔/" title="随笔">随笔<sup>4</sup></a></li>
+		  
+		
+		</ul>
+</div>
 
 
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/python/" title="python">python<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/docker/" title="docker">docker<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/前端/" title="前端">前端<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/随笔/" title="随笔">随笔<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/javascript/" title="javascript">javascript<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/科学哲学/" title="科学哲学">科学哲学<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/computer/" title="computer">computer<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/gitlab/" title="gitlab">gitlab<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/open-questions/" title="open-questions">open-questions<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/django/" title="django">django<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/科学史/" title="科学史">科学史<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/三体/" title="三体">三体<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/行尸走肉/" title="行尸走肉">行尸走肉<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/社会达尔文主义/" title="社会达尔文主义">社会达尔文主义<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
 
-        <a href="mailto:starding@buaa.edu.cn" target="_blank" class="icon-email" title="Email Me"></a>
 
-      </div>
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://phiphicake.blogspot.com" target="_blank" title=" 一个有趣的哲学博客">哲学鸡蛋糕</a>
+            
+          </li>
+        
+    </ul>
+</div>
 
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
 
-
-      <p class="copyright">
-        Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016
-
-
-        <a href="/about" target="_blank" title="starding">starding</a>
-
-
-        <br> 本站总访问量
-        <span id="busuanzi_value_site_pv"></span>次 本站访客数
-        <span id="busuanzi_value_site_uv"></span>人次 本文总阅读量
-        <span id="busuanzi_value_page_pv"></span>次
-      </p>
+</aside>
+</div>
     </div>
-  </footer>
-  <script src="/js/jquery-2.0.3.min.js"></script>
-  <script src="/js/jquery.imagesloaded.min.js"></script>
-  <script src="/js/gallery.js"></script>
-  <script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Starding. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/starding" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		<a href="https://www.douban.com/people/58816601" target="_blank" class="icon-douban" title="豆瓣"></a>
+		
+		
+		<a href="http://www.zhihu.com/people/starstarding" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		
+		<a href="mailto:starding@buaa.edu.cn" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
 
-  <script type="text/javascript">
-    $(document).ready(function() {
-      $('.navbar').click(function() {
-        $('header nav').toggleClass('shownav');
-      });
-      var myWidth = 0;
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
 
-      function getSize() {
-        if (typeof(window.innerWidth) == 'number') {
-          myWidth = window.innerWidth;
-        } else if (document.documentElement && document.documentElement.clientWidth) {
-          myWidth = document.documentElement.clientWidth;
-        };
-      };
-      var m = $('#main'),
-        a = $('#asidepart'),
-        c = $('.closeaside'),
-        o = $('.openaside');
-      c.click(function() {
-        a.addClass('fadeOut').css('display', 'none');
-        o.css('display', 'block').addClass('fadeIn');
-        m.addClass('moveMain');
-      });
-      o.click(function() {
-        o.css('display', 'none').removeClass('beforeFadeIn');
-        a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');
-        m.removeClass('moveMain');
-      });
-      $(window).scroll(function() {
-        o.css("top", Math.max(80, 260 - $(this).scrollTop()));
-      });
+		
+		<a href="/about" target="_blank" title="starding">starding</a>
+		
 
-      $(window).resize(function() {
-        getSize();
-        if (myWidth >= 1024) {
-          $('header nav').removeClass('shownav');
-        } else {
-          m.removeClass('moveMain');
-          a.css('display', 'block').removeClass('fadeOut');
-          o.css('display', 'none');
+	    <br>	
+        本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        本站访客数<span id="busuanzi_value_site_uv"></span>人次
+        本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
 
-          $('#toc.toc-aside').css('display', 'none');
-
-        }
-      });
-    });
-  </script>
-
-  <script type="text/javascript">
-    $(document).ready(function() {
-      var ai = $('.article-content>iframe'),
-        ae = $('.article-content>embed'),
-        t = $('#toc'),
-        ta = $('#toc.toc-aside'),
-        o = $('.openaside'),
-        c = $('.closeaside');
-      if (ai.length > 0) {
-        ai.wrap('<div class="video-container" />');
-      };
-      if (ae.length > 0) {
-        ae.wrap('<div class="video-container" />');
-      };
-      c.click(function() {
-        ta.css('display', 'block').addClass('fadeIn');
-      });
-      o.click(function() {
-        ta.css('display', 'none');
-      });
-      $(window).scroll(function() {
-        ta.css("top", Math.max(140, 320 - $(this).scrollTop()));
-      });
-    });
-  </script>
-
-
-  <script type="text/javascript">
-    $(document).ready(function() {
-      var $this = $('.share'),
-        url = $this.attr('data-url'),
-        encodedUrl = encodeURIComponent(url),
-        title = $this.attr('data-title'),
-        tsina = $this.attr('data-tsina'),
-        description = $this.attr('description');
-      var html = [
-        '<div class="hoverqrcode clearfix"></div>',
-        '<a class="overlay" id="qrcode"></a>',
-        '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
-        '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
-        '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
-        '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title + '" class="article-share-renren" target="_blank" title="人人"></a>',
-        '<a href="http://service.weibo.com/share/share.php?title=' + title + '&url=' + encodedUrl + '&ralateUid=' + tsina + '&searchPic=true&style=number' + '" class="article-share-weibo" target="_blank" title="微博"></a>',
-        '<span title="Share to"></span>'
-      ].join('');
-      $this.append(html);
-
-      $('.hoverqrcode').hide();
-
-      var myWidth = 0;
-
-      function updatehoverqrcode() {
-        if (typeof(window.innerWidth) == 'number') {
-          myWidth = window.innerWidth;
-        } else if (document.documentElement && document.documentElement.clientWidth) {
-          myWidth = document.documentElement.clientWidth;
-        };
-        var qrsize = myWidth > 1024 ? 200 : 100;
-        var options = {
-          render: 'image',
-          size: qrsize,
-          fill: '#2ca6cb',
-          text: url,
-          radius: 0.5,
-          quiet: 1
-        };
-        var p = $('.article-share-qrcode').position();
-        $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
-          .css('left', p.left - qrsize / 2 + 20).css('top', p.top - qrsize - 10)
-          .qrcode(options);
-      };
-      $(window).resize(function() {
-        $('.hoverqrcode').hide();
-      });
-      $('.article-share-qrcode').click(function() {
-        updatehoverqrcode();
-        $('.hoverqrcode').toggle();
-      });
-      $('.article-share-qrcode').hover(function() {}, function() {
-        $('.hoverqrcode').hide();
-      });
-    });
-  </script>
-
-
-
-  <script type="text/javascript">
-    var duoshuoQuery = {
-      short_name: "starding"
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
     };
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';
-      ds.async = true;
-      ds.src = '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"starding"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
 
 
 
@@ -646,91 +566,106 @@ python中的模块导入
 
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
-  <script type="text/javascript">
-    $(document).ready(function() {
-      $('.article-content').each(function(i) {
-        $(this).find('img').each(function() {
-          if ($(this).parent().hasClass('fancybox')) return;
-          var alt = this.alt;
-          if (alt) $(this).after('<span class="caption">' + alt + '</span>');
-          $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
-        });
-        $(this).find('.fancybox').each(function() {
-          $(this).attr('rel', 'article' + i);
-        });
-      });
-      if ($.fancybox) {
-        $('.fancybox').fancybox();
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-72215789-1', 'auto');  
+ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?01f9e8011679173931cf24fe647483cf";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
       }
     });
-  </script>
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 
 
+<!-- MathJax End -->
 
-  <!-- Analytics Begin -->
-  <script type="text/javascript">
-    (function(i, s, o, g, r, a, m) {
-      i['GoogleAnalyticsObject'] = r;
-      i[r] = i[r] || function() {
-        (i[r].q = i[r].q || []).push(arguments)
-      }, i[r].l = 1 * new Date();
-      a = s.createElement(o),
-        m = s.getElementsByTagName(o)[0];
-      a.async = 1;
-      a.src = g;
-      m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-    ga('create', 'UA-72215789-1', 'auto');
-    ga('send', 'pageview');
-  </script>
+<!-- Tiny_search Begin -->
 
+<!-- Tiny_search End -->
 
+<!--不蒜子-->
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
-  <script>
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "//hm.baidu.com/hm.js?01f9e8011679173931cf24fe647483cf";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
-  <!-- Analytics End -->
-
-  <!-- Totop Begin -->
-  <div id="totop">
-    <a title="返回顶部"><img src="/img/scrollup.png" /></a>
-  </div>
-  <script src="/js/totop.js"></script>
-  <!-- Totop End -->
-
-  <!-- MathJax Begin -->
-  <!-- mathjax config similar to math.stackexchange -->
-
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
-  </script>
-
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({ tex2jax: { skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] } });
-  </script>
-
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() { var all = MathJax.Hub.getAllJax(), i; for(i=0; i
-    < all.length; i +=1 ) { all[i].SourceElement().parentNode.className +=' has-jax' ; } }); </script>
-
-      <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-      </script>
-      <!-- MathJax End -->
-
-      <!-- Tiny_search Begin -->
-
-      <!-- Tiny_search End -->
-
-      <!--不蒜子-->
-      <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-</body>
-
+  </body>
 </html>

@@ -1,755 +1,644 @@
-<!DOCTYPE HTML>
-<html lang="zh-CN">
 
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
+  
+    <title>javascript犀牛书（第六版） | 小狐濡尾</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="starding">
+    
 
-  <title>javascript犀牛书（第六版） | 小狐濡尾</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
-
-  <meta name="author" content="starding">
-
-
-
-  <meta name="description" content="记录阅读《javascript权威指南》中，个人认为比较核心或是比较容易混乱的地方。同时会加入在阅读过程中参阅的一些优秀的扩展文章。
+    
+    <meta name="description" content="记录阅读《javascript权威指南》中，个人认为比较核心或是比较容易混乱的地方。同时会加入在阅读过程中参阅的一些优秀的扩展文章。
 更新记录
 
-  2016-01-18 更新到try-except-finally语句
-  2016-04-07 文章改名。将文章结构分为核心和模糊点
+2016-01-18 更新到try-except-finally语句
+2016-04-07 文章改名。将文章结构分为核心和模糊点
 
 我认为书中的核心部分
 
-  语言核心部分
-  
-    变量类型
-    strict模式
-    词法作用域、函">
-  <meta property="og:type" content="article">
-  <meta property="og:title" content="javascript犀牛书（第六版）">
-  <meta property="og:url" content="http://starding.github.io/2016/01/19/learn-javascript-follow-definitive-guide/index.html">
-  <meta property="og:site_name" content="小狐濡尾">
-  <meta property="og:description" content="记录阅读《javascript权威指南》中，个人认为比较核心或是比较容易混乱的地方。同时会加入在阅读过程中参阅的一些优秀的扩展文章。
+语言核心部分
+变量类型
+strict模式
+词法作用域、函数，闭包、this、call、apply、">
+<meta property="og:type" content="article">
+<meta property="og:title" content="javascript犀牛书（第六版）">
+<meta property="og:url" content="http://starding.github.io/2016/01/19/learn-javascript-follow-definitive-guide/index.html">
+<meta property="og:site_name" content="小狐濡尾">
+<meta property="og:description" content="记录阅读《javascript权威指南》中，个人认为比较核心或是比较容易混乱的地方。同时会加入在阅读过程中参阅的一些优秀的扩展文章。
 更新记录
 
-  2016-01-18 更新到try-except-finally语句
-  2016-04-07 文章改名。将文章结构分为核心和模糊点
+2016-01-18 更新到try-except-finally语句
+2016-04-07 文章改名。将文章结构分为核心和模糊点
 
 我认为书中的核心部分
 
-  语言核心部分
-  
-    变量类型
-    strict模式
-    词法作用域、函">
-  <meta property="og:updated_time" content="2016-04-21T11:56:20.000Z">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="javascript犀牛书（第六版）">
-  <meta name="twitter:description" content="记录阅读《javascript权威指南》中，个人认为比较核心或是比较容易混乱的地方。同时会加入在阅读过程中参阅的一些优秀的扩展文章。
+语言核心部分
+变量类型
+strict模式
+词法作用域、函数，闭包、this、call、apply、">
+<meta property="og:updated_time" content="2016-04-21T11:56:20.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="javascript犀牛书（第六版）">
+<meta name="twitter:description" content="记录阅读《javascript权威指南》中，个人认为比较核心或是比较容易混乱的地方。同时会加入在阅读过程中参阅的一些优秀的扩展文章。
 更新记录
 
-  2016-01-18 更新到try-except-finally语句
-  2016-04-07 文章改名。将文章结构分为核心和模糊点
+2016-01-18 更新到try-except-finally语句
+2016-04-07 文章改名。将文章结构分为核心和模糊点
 
 我认为书中的核心部分
 
-  语言核心部分
-  
-    变量类型
-    strict模式
-    词法作用域、函">
+语言核心部分
+变量类型
+strict模式
+词法作用域、函数，闭包、this、call、apply、">
 
-
-  <link rel="alternative" href="/atom.xml" title="小狐濡尾" type="application/atom+xml">
-
-
-  <link rel="icon" href="/img/my_favicon.ico">
-
-
-  <link rel="apple-touch-icon" href="/img/jacman.jpg">
-  <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
-
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
+    
+    <link rel="alternative" href="/atom.xml" title="小狐濡尾" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/my_favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<body>
-  <header>
-    <div>
-
-      <div id="imglogo">
-        <a href="/"><img src="/img/my_white_logo.png" alt="小狐濡尾" title="小狐濡尾" /></a>
-      </div>
-
-      <div id="textlogo">
-        <h1 class="site-name"><a href="/" title="小狐濡尾">小狐濡尾</a></h1>
-        <h2 class="blog-motto">未济</h2>
-      </div>
-      <div class="navbar">
-        <a class="navbutton navmobile" href="#" title="菜单">
-        </a>
-      </div>
-      <nav class="animated">
-        <ul>
-          <ul>
-
-            <li><a href="/">主页 | Home</a></li>
-
-            <li><a href="/index">索引 | Index</a></li>
-
-            <li><a href="/archives">归档 | Archives</a></li>
-
-            <li><a href="/about">简介 | About</a></li>
-
-            <li>
-
-              <form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
-                <label>Search</label>
-                <input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
-                <input type="hidden" name="q" value="site:starding.github.io">
-              </form>
-
-            </li>
-          </ul>
-      </nav>
-    </div>
-  </header>
-  <div id="container">
-    <div id="main" class="post" itemscope itemprop="blogPost">
-
-      <article itemprop="articleBody">
-        <header class="article-info clearfix">
-          <h1 itemprop="name">
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/my_white_logo.png" alt="小狐濡尾" title="小狐濡尾"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="小狐濡尾">小狐濡尾</a></h1>
+				<h2 class="blog-motto">未济</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页 | Home</a></li>
+					
+						<li><a href="/index">索引 | Index</a></li>
+					
+						<li><a href="/archives">归档 | Archives</a></li>
+					
+						<li><a href="/about">简介 | About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:starding.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
     
       <a href="/2016/01/19/learn-javascript-follow-definitive-guide/" title="javascript犀牛书（第六版）" itemprop="url">javascript犀牛书（第六版）</a>
   </h1>
-          <p class="article-author">By
-
-            <a href="/about" title="starding" target="_blank" itemprop="author">starding</a>
-
-            <p class="article-time">
-              <time datetime="2016-01-18T16:14:52.000Z" itemprop="datePublished"> 发表于 2016-01-19</time>
-
-            </p>
-        </header>
-        <div class="article-content">
-
-          <div id="toc" class="toc-article">
-            <strong class="toc-title">文章目录</strong>
-
-            <ol class="toc">
-              <li class="toc-item toc-level-4"><a class="toc-link" href="#u8BED_u8A00_u6838_u5FC3_u90E8_u5206"><span class="toc-number">1.</span> <span class="toc-text">语言核心部分</span></a></li>
-            </ol>
-            </li>
-            </ol>
-            </li>
-            </ol>
-            </li>
-            <li class="toc-item toc-level-1"><a class="toc-link" href="#u6838_u5FC3_u90E8_u5206"><span class="toc-number"></span> <span class="toc-text">核心部分</span></a>
-              <ol class="toc-child">
-                <li class="toc-item toc-level-2"><a class="toc-link" href="#u8BED_u8A00_u6838_u5FC3"><span class="toc-number"></span> <span class="toc-text">语言核心</span></a>
-                  <ol class="toc-child">
-                    <li class="toc-item toc-level-3"><a class="toc-link" href="#u53D8_u91CF_u53CA_u53D8_u91CF_u7C7B_u578B"><span class="toc-number"></span> <span class="toc-text">变量及变量类型</span></a>
-                      <ol class="toc-child">
-                        <li class="toc-item toc-level-4"><a class="toc-link" href="#u539F_u59CB_u7C7B_u578B"><span class="toc-number">1.</span> <span class="toc-text">原始类型</span></a></li>
-                        <li class="toc-item toc-level-4"><a class="toc-link" href="#u5BF9_u8C61_u7C7B_u578B"><span class="toc-number">2.</span> <span class="toc-text">对象类型</span></a></li>
-                      </ol>
-                    </li>
-                    <li class="toc-item toc-level-3"><a class="toc-link" href="#u4E25_u683C_u6A21_u5F0F_uFF1Ause_strict"><span class="toc-number"></span> <span class="toc-text">严格模式：use strict</span></a></li>
-                  </ol>
-                </li>
-              </ol>
-            </li>
-            <li class="toc-item toc-level-1"><a class="toc-link" href="#u6A21_u7CCA_u70B9"><span class="toc-number"></span> <span class="toc-text">模糊点</span></a>
-              <ol class="toc-child">
-                <li class="toc-item toc-level-3"><a class="toc-link" href="#u5305_u88C5_u5BF9_u8C61"><span class="toc-number"></span> <span class="toc-text">包装对象</span></a></li>
-                <li class="toc-item toc-level-3"><a class="toc-link" href="#u53D8_u91CF_u58F0_u660E_u63D0_u524D_u548C_u53D8_u91CF_u53EF_u914D_u7F6E_u6027"><span class="toc-number"></span> <span class="toc-text">变量声明提前和变量可配置性</span></a></li>
-                <li class="toc-item toc-level-3"><a class="toc-link" href="#eval__u8FD0_u7B97_u7B26"><span class="toc-number"></span> <span class="toc-text">eval 运算符</span></a></li>
-                <li class="toc-item toc-level-3"><a class="toc-link" href="#u6807_u7B7E_u8BED_u53E5"><span class="toc-number"></span> <span class="toc-text">标签语句</span></a></li>
-                <li class="toc-item toc-level-3"><a class="toc-link" href="#throw/try/catch/finally__u8BED_u53E5"><span class="toc-number"></span> <span class="toc-text">throw/try/catch/finally 语句</span></a></li>
-                <li class="toc-item toc-level-3"><a class="toc-link" href="#u51FD_u6570_u540D"><span class="toc-number"></span> <span class="toc-text">函数名</span></a></li>
-                <li class="toc-item toc-level-3"><a class="toc-link" href="#this__u5F15_u7528_u4E22_u5931"><span class="toc-number"></span> <span class="toc-text">this 引用丢失</span></a>
-
-          </div>
-
-          <p>记录阅读《javascript权威指南》中，个人认为比较核心或是比较容易混乱的地方。<br>同时会加入在阅读过程中参阅的一些优秀的扩展文章。</p>
-          <p><strong>更新记录</strong></p>
-          <blockquote>
-            <p>2016-01-18 更新到try-except-finally语句</p>
-            <p>2016-04-07 文章改名。将文章结构分为核心和模糊点</p>
-          </blockquote>
-          <p><strong>我认为书中的核心部分</strong></p>
-          <blockquote>
-            <h4 id="u8BED_u8A00_u6838_u5FC3_u90E8_u5206"><a href="#u8BED_u8A00_u6838_u5FC3_u90E8_u5206" class="headerlink" title="语言核心部分"></a>语言核心部分</h4>
-            <ol>
-              <li>变量类型</li>
-              <li>strict模式</li>
-              <li>词法作用域、函数，闭包、this、call、apply、bind</li>
-              <li>原型系统</li>
-            </ol>
-          </blockquote>
-          <h1 id="u6838_u5FC3_u90E8_u5206"><a href="#u6838_u5FC3_u90E8_u5206" class="headerlink" title="核心部分"></a>核心部分</h1>
-          <h2 id="u8BED_u8A00_u6838_u5FC3"><a href="#u8BED_u8A00_u6838_u5FC3" class="headerlink" title="语言核心"></a>语言核心</h2>
-          <h3 id="u53D8_u91CF_u53CA_u53D8_u91CF_u7C7B_u578B"><a href="#u53D8_u91CF_u53CA_u53D8_u91CF_u7C7B_u578B" class="headerlink" title="变量及变量类型"></a>变量及变量类型</h3>
-          <p>javascript中的变量本身没有类型，给一个变量赋值时，其实是这个变量引用了这个值。这根python中是一致的。</p>
-          <p>他们都区别于C语言等固定类型的变量，在C语言中，当声明一个变量时，需要指定它的类型，这个变量其实就是一个固定大小的空间，直接用于存放变量的值。数组也是一样，一个数组只能存储同样类型的值，C语言需要根据类型决定如何分配内存大小，比如int是4个字节。</p>
-          <p>而javascript和Python中，无需声明变量类型。变量只是对数据的引用，而类型是数据本身决定的，这个变量引用了什么类型，这个变量就是什么类型，javascript中的数据类型分为两类（貌似是借鉴了java）:</p>
-          <h4 id="u539F_u59CB_u7C7B_u578B"><a href="#u539F_u59CB_u7C7B_u578B" class="headerlink" title="原始类型"></a>原始类型</h4>
-          <ul>
-            <li>原始类型 primitive type（5种）
-              <ul>
-                <li>数字</li>
-                <li>字符串</li>
-                <li>布尔值</li>
-                <li>null</li>
-                <li>undefined</li>
-              </ul>
-            </li>
-          </ul>
-          <p><strong>注意：</strong>原始类型不是对象，但你可能会见过 APrimitiveType.method的调用形式，这是因为数字，字符串，布尔值存在 <strong>「包装对象」</strong> 这个概念。</p>
-          <h4 id="u5BF9_u8C61_u7C7B_u578B"><a href="#u5BF9_u8C61_u7C7B_u578B" class="headerlink" title="对象类型"></a>对象类型</h4>
-          <ul>
-            <li>对象类型（object）（除了5种原始类型的数据类型，都是对象类型）
-              <ul>
-                <li>普通对象（名值对对象）</li>
-                <li>数组</li>
-                <li>函数
-                  <ul>
-                    <li>javascript可以将function对象当做普通对象对待</li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-          </ul>
-          <h3 id="u4E25_u683C_u6A21_u5F0F_uFF1Ause_strict"><a href="#u4E25_u683C_u6A21_u5F0F_uFF1Ause_strict" class="headerlink" title="严格模式：use strict"></a>严格模式：use strict</h3>
-          <p>如果你了解一些javascript的历史，就会清楚javascript是 Brendan Eich花了十天时间设计出来的，主要参考了Scheme， Self，C，Java 等语言。虽然有现成的语言可以借鉴，但是在如此短的时间内，想要完成一个非常严格的设计是不太现实的。因此Javascript本身在设计之初就带有一些隐藏的缺陷。再加上浏览器大战时的迅速推广，这些缺陷没有足够的时间得到修正，便开始成为标准。所以使得这些缺陷一直保留了下来。</p>
-          <p>关于这些缺陷，可以简单参考阮一峰的文章: <a href="http://www.ruanyifeng.com/blog/2011/06/10_design_defects_in_javascript.html" target="_blank" rel="external">javascript的十个设计缺陷</a>，以及书籍：《javascript: the good parts》</p>
-          <p>use strict其实是ECMAscript 5 中加入的指令，非常接近于语句，但又有所区分：不包含关键字，只是个字符串字面量，而且只能出现在特定的位置。</p>
-          <p>use strict的目的是使其后的代码使用js的「严格模式」执行，它是js的一个子集，修正了一些语言的重要缺陷，并提供健壮的查错功能和增强的安全机制。严格模式与非严格模式有一些重要的区别。</p>
-          <ul>
-            <li>严格模式中不能使用with语句</li>
-            <li>严格模式中<strong>变量</strong>都要先var声明（非严格模式不声明使用会给全局对象添加一个新属性）</li>
-            <li>严格模式中，函数调用时this值为undefined，而不是全局对象。</li>
-          </ul>
-          <h1 id="u6A21_u7CCA_u70B9"><a href="#u6A21_u7CCA_u70B9" class="headerlink" title="模糊点"></a>模糊点</h1>
-          <h3 id="u5305_u88C5_u5BF9_u8C61"><a href="#u5305_u88C5_u5BF9_u8C61" class="headerlink" title="包装对象"></a>包装对象</h3>
-          <p>原始类型不是对象，但你可能会见过 APrimitiveType.method的调用形式，这是因为数字，字符串，布尔值存在 <strong>「包装对象」</strong> 这个概念。也就是说，档使用上面的.运算时，javascript会自动调用 new String(s) | new Number(s) | new Boolean(s) 的方式将这三种基本类型临时转换为对象，并继承相应类型的方法。</p>
-          <figure class="highlight javascript">
-            <table>
-              <tr>
-                <td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td>
-                <td class="code"><pre><span class="line"><span class="comment">//一个经典的例子</span></span><br><span class="line"><span class="keyword">var</span> s = <span class="string">"test"</span>;</span><br><span class="line">s.len = <span class="number">4</span>;  <span class="comment">//因为点运算，这里会临时建立一个string对象，但是随即又销毁了</span></span><br><span class="line"><span class="keyword">var</span> t = s.len; <span class="comment">//这里也会创建一个string对象，但是已经不是上面那个了，故undefined</span></span><br></pre></td>
-              </tr>
-            </table>
-          </figure>
-          <ul>
-            <li>
-              <p>null和undefined没有包装对象</p>
-            </li>
-            <li>
-              <p>可以使用构造函数显式地构造包装对象。</p>
-            </li>
-          </ul>
-          <h3 id="u53D8_u91CF_u58F0_u660E_u63D0_u524D_u548C_u53D8_u91CF_u53EF_u914D_u7F6E_u6027"><a href="#u53D8_u91CF_u58F0_u660E_u63D0_u524D_u548C_u53D8_u91CF_u53EF_u914D_u7F6E_u6027" class="headerlink" title="变量声明提前和变量可配置性"></a>变量声明提前和变量可配置性</h3>
-          <ul>
-            <li>声明提前
-              <ul>
-                <li>指的是var声明变量时，会提前到其所在作用域的顶部</li>
-              </ul>
-            </li>
-            <li>可配置性
-              <ul>
-                <li>全局变量是全局对象的属性，但局部变量没有此规定</li>
-                <li>var声明的全局变量是不可配置的，无法通过delete运算符删除</li>
-              </ul>
-            </li>
-          </ul>
-          <h3 id="eval__u8FD0_u7B97_u7B26"><a href="#eval__u8FD0_u7B97_u7B26" class="headerlink" title="eval 运算符"></a>eval 运算符</h3>
-          <p>eval()实际上是个函数，但它早已被当成运算符看待。ECMAscript会尽量约束eval()的表现，使其看起来像个表达式。</p>
-          <p>这是因为如果将eval当做普通的函数对待，不做任何限制的话，会有很多缺点。一是因为eval()会动态的执行代码段，破坏原来的代码结构，解释器难以优化。二是因为如果eval是普通的函数，那么它就可以被赋值给其他的变量名，比如 g = eval, 这样导致任何使用g的地方，也会产生上述问题，导致javascript的代码优化变得困难，性能堪忧。</p>
-          <p>综上所述，如果eval的表现行为像一个运算符的话，就不会有上述这么严重的问题。所以在ECMAscript语法中不断的约束它，让其表现更接近为运算符。</p>
-          <h3 id="u6807_u7B7E_u8BED_u53E5"><a href="#u6807_u7B7E_u8BED_u53E5" class="headerlink" title="标签语句"></a>标签语句</h3>
-          <p>主要用于配合continue和break使用，来实现更灵活一些的跳转。</p>
-          <h3 id="throw/try/catch/finally__u8BED_u53E5"><a href="#throw/try/catch/finally__u8BED_u53E5" class="headerlink" title="throw/try/catch/finally 语句"></a>throw/try/catch/finally 语句</h3>
-          <p>之前写过一篇<a href="http://starding.github.io/2016/01/10/traps-in-python/">那些年我在python中扑过的街</a>，在其中提到过python中，try/except/finally中容易进的坑。</p>
-          <p>这个坑在javascript中也是同样的，就像那篇文章里说的那样，因为finally的设计目的就是无论如何都会执行，那么一旦finally中出现了跳转语句，其他语句中的返回内容就会被忽略。</p>
-          <figure class="highlight javascript">
-            <table>
-              <tr>
-                <td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td>
-                <td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">finallyTest</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> x = <span class="string">'catch'</span>, y = <span class="string">'except'</span>, z = <span class="string">'finally'</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        k = x + y;</span><br><span class="line">        a = b;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"here is try------------"</span>);</span><br><span class="line">    &#125; <span class="keyword">catch</span>(e) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"here is catch----------"</span>);</span><br><span class="line">        <span class="keyword">return</span> x;</span><br><span class="line">    &#125; <span class="keyword">finally</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"here is finally---------"</span>);</span><br><span class="line">        <span class="keyword">return</span> z;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//执行</span></span><br><span class="line">finallyTest()</span><br><span class="line"></span><br><span class="line"><span class="comment">//返回值</span></span><br><span class="line">here is <span class="keyword">catch</span>----------</span><br><span class="line">here is <span class="keyword">finally</span>---------</span><br><span class="line"><span class="string">'finally'</span></span><br></pre></td>
-              </tr>
-            </table>
-          </figure>
-          <h3 id="u51FD_u6570_u540D"><a href="#u51FD_u6570_u540D" class="headerlink" title="函数名"></a>函数名</h3>
-          <figure class="highlight javascript">
-            <table>
-              <tr>
-                <td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td>
-                <td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 直接声明函数是具有函数名的</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">foo.name  <span class="comment">// 函数名为foo</span></span><br><span class="line"><span class="keyword">var</span> bar = foo</span><br><span class="line">bar.name  <span class="comment">// 将函数赋值给一个变量，只是让变量指向了函数结构，并不会改变函数结构本身</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 函数表达式生成的是匿名函数</span></span><br><span class="line"><span class="keyword">var</span> foo = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">foo.name <span class="comment">// "" (空字符串)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 函数名称只存在于函数自身结构内，被传递时不会改变这个结构</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"><span class="keyword">var</span> o =&#123;</span><br><span class="line">    a: <span class="string">'a'</span>,</span><br><span class="line">    bar: foo</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">o.bar.name <span class="comment">// foo</span></span><br></pre></td>
-              </tr>
-            </table>
-          </figure>
-          <h3 id="this__u5F15_u7528_u4E22_u5931"><a href="#this__u5F15_u7528_u4E22_u5931" class="headerlink" title="this 引用丢失"></a>this 引用丢失</h3>
-          <figure class="highlight javascript">
-            <table>
-              <tr>
-                <td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td>
-                <td class="code"><pre><span class="line"><span class="comment">// 函数被多次传递时可能发生</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.a);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    a: <span class="number">2</span>,</span><br><span class="line">    foo: foo</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> bar = obj.foo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a=<span class="string">"oops, global"</span>;</span><br><span class="line"></span><br><span class="line">bar(); <span class="comment">//"oops, global"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 回调函数中可能发生（异步）</span></span><br><span class="line"><span class="comment">// 代码同上</span></span><br><span class="line">setTimeout(obj.foo, <span class="number">100</span>); <span class="comment">// "oops, global"</span></span><br></pre></td>
-              </tr>
-            </table>
-          </figure>
-        </div>
-        <footer class="article-footer clearfix">
-          <div class="article-catetags">
-
-            <div class="article-categories">
-              <span></span>
-              <a class="article-category-link" href="/categories/javascript/">javascript</a>
-            </div>
-
-
-            <div class="article-tags">
-
-              <span></span> <a href="/tags/javascript/">javascript</a><a href="/tags/前端/">前端</a>
-            </div>
-
-          </div>
-
-          <div class="article-share" id="share">
-
-            <div data-url="http://starding.github.io/2016/01/19/learn-javascript-follow-definitive-guide/" data-title="javascript犀牛书（第六版） | 小狐濡尾" data-tsina="null" class="share clearfix">
-            </div>
-
-          </div>
-
-
-        </footer>
-      </article>
-      <nav class="article-nav clearfix">
-
-        <div class="prev">
-          <a href="/2016/02/25/questions-record/" title="问题记录">
-            <strong>上一篇：</strong><br/>
-            <span>
-  问题记录</span>
-          </a>
-        </div>
-
-
-        <div class="next">
-          <a href="/2016/01/18/gitlab-migrate/" title="docker-gitlab数据迁移">
-            <strong>下一篇：</strong><br/>
-            <span>docker-gitlab数据迁移
-</span>
-          </a>
-        </div>
-
-      </nav>
-      <section id="comments" class="comment">
-        <div class="ds-thread" data-thread-key="2016/01/19/learn-javascript-follow-definitive-guide/" data-title="javascript犀牛书（第六版）" data-url="http://starding.github.io/2016/01/19/learn-javascript-follow-definitive-guide/"></div>
-      </section>
-    </div>
-    <div class="openaside">
-      <a class="navbutton" href="#" title="显示侧边栏"></a>
-    </div>
-
-    <div id="toc" class="toc-aside">
-      <strong class="toc-title">文章目录</strong>
-
-      <ol class="toc">
-        <li class="toc-item toc-level-4"><a class="toc-link" href="#u8BED_u8A00_u6838_u5FC3_u90E8_u5206"><span class="toc-number">1.</span> <span class="toc-text">语言核心部分</span></a></li>
-      </ol>
-      </li>
-      </ol>
-      </li>
-      </ol>
-      </li>
-      <li class="toc-item toc-level-1"><a class="toc-link" href="#u6838_u5FC3_u90E8_u5206"><span class="toc-number"></span> <span class="toc-text">核心部分</span></a>
-        <ol class="toc-child">
-          <li class="toc-item toc-level-2"><a class="toc-link" href="#u8BED_u8A00_u6838_u5FC3"><span class="toc-number"></span> <span class="toc-text">语言核心</span></a>
-            <ol class="toc-child">
-              <li class="toc-item toc-level-3"><a class="toc-link" href="#u53D8_u91CF_u53CA_u53D8_u91CF_u7C7B_u578B"><span class="toc-number"></span> <span class="toc-text">变量及变量类型</span></a>
-                <ol class="toc-child">
-                  <li class="toc-item toc-level-4"><a class="toc-link" href="#u539F_u59CB_u7C7B_u578B"><span class="toc-number">1.</span> <span class="toc-text">原始类型</span></a></li>
-                  <li class="toc-item toc-level-4"><a class="toc-link" href="#u5BF9_u8C61_u7C7B_u578B"><span class="toc-number">2.</span> <span class="toc-text">对象类型</span></a></li>
-                </ol>
-              </li>
-              <li class="toc-item toc-level-3"><a class="toc-link" href="#u4E25_u683C_u6A21_u5F0F_uFF1Ause_strict"><span class="toc-number"></span> <span class="toc-text">严格模式：use strict</span></a></li>
-            </ol>
-          </li>
-        </ol>
-      </li>
-      <li class="toc-item toc-level-1"><a class="toc-link" href="#u6A21_u7CCA_u70B9"><span class="toc-number"></span> <span class="toc-text">模糊点</span></a>
-        <ol class="toc-child">
-          <li class="toc-item toc-level-3"><a class="toc-link" href="#u5305_u88C5_u5BF9_u8C61"><span class="toc-number"></span> <span class="toc-text">包装对象</span></a></li>
-          <li class="toc-item toc-level-3"><a class="toc-link" href="#u53D8_u91CF_u58F0_u660E_u63D0_u524D_u548C_u53D8_u91CF_u53EF_u914D_u7F6E_u6027"><span class="toc-number"></span> <span class="toc-text">变量声明提前和变量可配置性</span></a></li>
-          <li class="toc-item toc-level-3"><a class="toc-link" href="#eval__u8FD0_u7B97_u7B26"><span class="toc-number"></span> <span class="toc-text">eval 运算符</span></a></li>
-          <li class="toc-item toc-level-3"><a class="toc-link" href="#u6807_u7B7E_u8BED_u53E5"><span class="toc-number"></span> <span class="toc-text">标签语句</span></a></li>
-          <li class="toc-item toc-level-3"><a class="toc-link" href="#throw/try/catch/finally__u8BED_u53E5"><span class="toc-number"></span> <span class="toc-text">throw/try/catch/finally 语句</span></a></li>
-          <li class="toc-item toc-level-3"><a class="toc-link" href="#u51FD_u6570_u540D"><span class="toc-number"></span> <span class="toc-text">函数名</span></a></li>
-          <li class="toc-item toc-level-3"><a class="toc-link" href="#this__u5F15_u7528_u4E22_u5931"><span class="toc-number"></span> <span class="toc-text">this 引用丢失</span></a>
-
-    </div>
-
-    <div id="asidepart">
-      <div class="closeaside">
-        <a class="closebutton" href="#" title="隐藏侧边栏"></a>
-      </div>
-      <aside class="clearfix">
-
-        <div class="github-card">
-          <p class="asidetitle">Github 名片</p>
-          <div class="github-card" data-github="starding" data-width="220" data-height="119" data-theme="medium">
-            <script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
-          </div>
-        </div>
-
-        <div class="doubanshow">
-          <p class="asidetitle">豆瓣秀</p>
-          <div>
-            <script type="text/javascript" src="http://www.douban.com/service/badge/58816601/?show=collection&amp;n=12&amp;columns=3&amp;hidelogo=yes&amp;hideself=yes&amp;cat=book|movie"></script>
-          </div>
-        </div>
-
-        <div class="categorieslist">
-          <p class="asidetitle">分类</p>
-          <ul>
-
-
-            <li><a href="/categories/computer-philosophy/" title="computer philosophy">computer philosophy<sup>2</sup></a></li>
-
-
-
-            <li><a href="/categories/docker/" title="docker">docker<sup>4</sup></a></li>
-
-
-
-            <li><a href="/categories/javascript/" title="javascript">javascript<sup>2</sup></a></li>
-
-
-
-            <li><a href="/categories/open-questions/" title="open-questions">open-questions<sup>1</sup></a></li>
-
-
-
-            <li><a href="/categories/python/" title="python">python<sup>4</sup></a></li>
-
-
-
-            <li><a href="/categories/前端/" title="前端">前端<sup>3</sup></a></li>
-
-
-
-            <li><a href="/categories/技术哲学/" title="技术哲学">技术哲学<sup>2</sup></a></li>
-
-
-
-            <li><a href="/categories/数学/" title="数学">数学<sup>1</sup></a></li>
-
-
-
-            <li><a href="/categories/科学史与科学哲学/" title="科学史与科学哲学">科学史与科学哲学<sup>1</sup></a></li>
-
-
-
-            <li><a href="/categories/算法/" title="算法">算法<sup>1</sup></a></li>
-
-
-
-            <li><a href="/categories/问题/" title="问题">问题<sup>1</sup></a></li>
-
-
-
-            <li><a href="/categories/随笔/" title="随笔">随笔<sup>4</sup></a></li>
-
-
-          </ul>
-        </div>
-
-        <div class="tagslist">
-          <p class="asidetitle">标签</p>
-          <ul class="clearfix">
-
-
-            <li><a href="/tags/python/" title="python">python<sup>4</sup></a></li>
-
-
-
-            <li><a href="/tags/docker/" title="docker">docker<sup>4</sup></a></li>
-
-
-
-            <li><a href="/tags/前端/" title="前端">前端<sup>2</sup></a></li>
-
-
-
-            <li><a href="/tags/随笔/" title="随笔">随笔<sup>2</sup></a></li>
-
-
-
-            <li><a href="/tags/javascript/" title="javascript">javascript<sup>2</sup></a></li>
-
-
-
-            <li><a href="/tags/django/" title="django">django<sup>1</sup></a></li>
-
-
-
-            <li><a href="/tags/open-questions/" title="open-questions">open-questions<sup>1</sup></a></li>
-
-
-
-            <li><a href="/tags/三体/" title="三体">三体<sup>1</sup></a></li>
-
-
-
-            <li><a href="/tags/科学史/" title="科学史">科学史<sup>1</sup></a></li>
-
-
-
-            <li><a href="/tags/computer/" title="computer">computer<sup>1</sup></a></li>
-
-
-
-            <li><a href="/tags/社会达尔文主义/" title="社会达尔文主义">社会达尔文主义<sup>1</sup></a></li>
-
-
-
-            <li><a href="/tags/科学哲学/" title="科学哲学">科学哲学<sup>1</sup></a></li>
-
-
-
-            <li><a href="/tags/行尸走肉/" title="行尸走肉">行尸走肉<sup>1</sup></a></li>
-
-
-
-            <li><a href="/tags/gitlab/" title="gitlab">gitlab<sup>1</sup></a></li>
-
-
-          </ul>
-        </div>
-
-        <div class="linkslist">
-          <p class="asidetitle">友情链接</p>
-          <ul>
-
-            <li>
-
-              <a href="http://phiphicake.blogspot.com" target="_blank" title=" 一个有趣的哲学博客">哲学鸡蛋糕</a>
-
-            </li>
-
-          </ul>
-        </div>
-
-        <div class="rsspart">
-          <a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
-        </div>
-
-      </aside>
-    </div>
+  <p class="article-author">By
+       
+		<a href="/about" title="starding" target="_blank" itemprop="author">starding</a>
+		
+  <p class="article-time">
+    <time datetime="2016-01-18T16:14:52.000Z" itemprop="datePublished"> 发表于 2016-01-19</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#语言核心部分"><span class="toc-number">1.</span> <span class="toc-text">语言核心部分</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#核心部分"><span class="toc-number"></span> <span class="toc-text">核心部分</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#语言核心"><span class="toc-number"></span> <span class="toc-text">语言核心</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#变量及变量类型"><span class="toc-number"></span> <span class="toc-text">变量及变量类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#原始类型"><span class="toc-number">1.</span> <span class="toc-text">原始类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#对象类型"><span class="toc-number">2.</span> <span class="toc-text">对象类型</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#严格模式：use-strict"><span class="toc-number"></span> <span class="toc-text">严格模式：use strict</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#模糊点"><span class="toc-number"></span> <span class="toc-text">模糊点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#包装对象"><span class="toc-number"></span> <span class="toc-text">包装对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#变量声明提前和变量可配置性"><span class="toc-number"></span> <span class="toc-text">变量声明提前和变量可配置性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#eval-运算符"><span class="toc-number"></span> <span class="toc-text">eval 运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#标签语句"><span class="toc-number"></span> <span class="toc-text">标签语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#throw-try-catch-finally-语句"><span class="toc-number"></span> <span class="toc-text">throw/try/catch/finally 语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#函数名"><span class="toc-number"></span> <span class="toc-text">函数名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#this-引用丢失"><span class="toc-number"></span> <span class="toc-text">this 引用丢失</span></a>
+		
+		</div>
+		
+		<p>记录阅读《javascript权威指南》中，个人认为比较核心或是比较容易混乱的地方。<br>同时会加入在阅读过程中参阅的一些优秀的扩展文章。</p>
+<p><strong>更新记录</strong></p>
+<blockquote>
+<p>2016-01-18 更新到try-except-finally语句</p>
+<p>2016-04-07 文章改名。将文章结构分为核心和模糊点</p>
+</blockquote>
+<p><strong>我认为书中的核心部分</strong></p>
+<blockquote>
+<h4 id="语言核心部分"><a href="#语言核心部分" class="headerlink" title="语言核心部分"></a>语言核心部分</h4><ol>
+<li>变量类型</li>
+<li>strict模式</li>
+<li>词法作用域、函数，闭包、this、call、apply、bind</li>
+<li>原型系统</li>
+</ol>
+</blockquote>
+<h1 id="核心部分"><a href="#核心部分" class="headerlink" title="核心部分"></a>核心部分</h1><h2 id="语言核心"><a href="#语言核心" class="headerlink" title="语言核心"></a>语言核心</h2><h3 id="变量及变量类型"><a href="#变量及变量类型" class="headerlink" title="变量及变量类型"></a>变量及变量类型</h3><p>javascript中的变量本身没有类型，给一个变量赋值时，其实是这个变量引用了这个值。这根python中是一致的。</p>
+<p>他们都区别于C语言等固定类型的变量，在C语言中，当声明一个变量时，需要指定它的类型，这个变量其实就是一个固定大小的空间，直接用于存放变量的值。数组也是一样，一个数组只能存储同样类型的值，C语言需要根据类型决定如何分配内存大小，比如int是4个字节。</p>
+<p>而javascript和Python中，无需声明变量类型。变量只是对数据的引用，而类型是数据本身决定的，这个变量引用了什么类型，这个变量就是什么类型，javascript中的数据类型分为两类（貌似是借鉴了java）:</p>
+<h4 id="原始类型"><a href="#原始类型" class="headerlink" title="原始类型"></a>原始类型</h4><ul>
+<li>原始类型 primitive type（5种）<ul>
+<li>数字</li>
+<li>字符串</li>
+<li>布尔值</li>
+<li>null</li>
+<li>undefined</li>
+</ul>
+</li>
+</ul>
+<p><strong>注意：</strong>原始类型不是对象，但你可能会见过 APrimitiveType.method的调用形式，这是因为数字，字符串，布尔值存在 <strong>「包装对象」</strong> 这个概念。</p>
+<h4 id="对象类型"><a href="#对象类型" class="headerlink" title="对象类型"></a>对象类型</h4><ul>
+<li>对象类型（object）（除了5种原始类型的数据类型，都是对象类型）<ul>
+<li>普通对象（名值对对象）</li>
+<li>数组</li>
+<li>函数<ul>
+<li>javascript可以将function对象当做普通对象对待</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="严格模式：use-strict"><a href="#严格模式：use-strict" class="headerlink" title="严格模式：use strict"></a>严格模式：use strict</h3><p>如果你了解一些javascript的历史，就会清楚javascript是 Brendan Eich花了十天时间设计出来的，主要参考了Scheme， Self，C，Java 等语言。虽然有现成的语言可以借鉴，但是在如此短的时间内，想要完成一个非常严格的设计是不太现实的。因此Javascript本身在设计之初就带有一些隐藏的缺陷。再加上浏览器大战时的迅速推广，这些缺陷没有足够的时间得到修正，便开始成为标准。所以使得这些缺陷一直保留了下来。</p>
+<p>关于这些缺陷，可以简单参考阮一峰的文章: <a href="http://www.ruanyifeng.com/blog/2011/06/10_design_defects_in_javascript.html" target="_blank" rel="external">javascript的十个设计缺陷</a>，以及书籍：《javascript: the good parts》</p>
+<p>use strict其实是ECMAscript 5 中加入的指令，非常接近于语句，但又有所区分：不包含关键字，只是个字符串字面量，而且只能出现在特定的位置。</p>
+<p>use strict的目的是使其后的代码使用js的「严格模式」执行，它是js的一个子集，修正了一些语言的重要缺陷，并提供健壮的查错功能和增强的安全机制。严格模式与非严格模式有一些重要的区别。</p>
+<ul>
+<li>严格模式中不能使用with语句</li>
+<li>严格模式中<strong>变量</strong>都要先var声明（非严格模式不声明使用会给全局对象添加一个新属性）</li>
+<li>严格模式中，函数调用时this值为undefined，而不是全局对象。</li>
+</ul>
+<h1 id="模糊点"><a href="#模糊点" class="headerlink" title="模糊点"></a>模糊点</h1><h3 id="包装对象"><a href="#包装对象" class="headerlink" title="包装对象"></a>包装对象</h3><p>原始类型不是对象，但你可能会见过 APrimitiveType.method的调用形式，这是因为数字，字符串，布尔值存在 <strong>「包装对象」</strong> 这个概念。也就是说，档使用上面的.运算时，javascript会自动调用 new String(s) | new Number(s) | new Boolean(s) 的方式将这三种基本类型临时转换为对象，并继承相应类型的方法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//一个经典的例子</span></div><div class="line"><span class="keyword">var</span> s = <span class="string">"test"</span>;</div><div class="line">s.len = <span class="number">4</span>;  <span class="comment">//因为点运算，这里会临时建立一个string对象，但是随即又销毁了</span></div><div class="line"><span class="keyword">var</span> t = s.len; <span class="comment">//这里也会创建一个string对象，但是已经不是上面那个了，故undefined</span></div></pre></td></tr></table></figure>
+<ul>
+<li><p>null和undefined没有包装对象</p>
+</li>
+<li><p>可以使用构造函数显式地构造包装对象。</p>
+</li>
+</ul>
+<h3 id="变量声明提前和变量可配置性"><a href="#变量声明提前和变量可配置性" class="headerlink" title="变量声明提前和变量可配置性"></a>变量声明提前和变量可配置性</h3><ul>
+<li>声明提前<ul>
+<li>指的是var声明变量时，会提前到其所在作用域的顶部</li>
+</ul>
+</li>
+<li>可配置性<ul>
+<li>全局变量是全局对象的属性，但局部变量没有此规定</li>
+<li>var声明的全局变量是不可配置的，无法通过delete运算符删除</li>
+</ul>
+</li>
+</ul>
+<h3 id="eval-运算符"><a href="#eval-运算符" class="headerlink" title="eval 运算符"></a>eval 运算符</h3><p>eval()实际上是个函数，但它早已被当成运算符看待。ECMAscript会尽量约束eval()的表现，使其看起来像个表达式。</p>
+<p>这是因为如果将eval当做普通的函数对待，不做任何限制的话，会有很多缺点。一是因为eval()会动态的执行代码段，破坏原来的代码结构，解释器难以优化。二是因为如果eval是普通的函数，那么它就可以被赋值给其他的变量名，比如 g = eval, 这样导致任何使用g的地方，也会产生上述问题，导致javascript的代码优化变得困难，性能堪忧。</p>
+<p>综上所述，如果eval的表现行为像一个运算符的话，就不会有上述这么严重的问题。所以在ECMAscript语法中不断的约束它，让其表现更接近为运算符。</p>
+<h3 id="标签语句"><a href="#标签语句" class="headerlink" title="标签语句"></a>标签语句</h3><p>主要用于配合continue和break使用，来实现更灵活一些的跳转。</p>
+<h3 id="throw-try-catch-finally-语句"><a href="#throw-try-catch-finally-语句" class="headerlink" title="throw/try/catch/finally 语句"></a>throw/try/catch/finally 语句</h3><p>之前写过一篇<a href="http://starding.github.io/2016/01/10/traps-in-python/">那些年我在python中扑过的街</a>，在其中提到过python中，try/except/finally中容易进的坑。</p>
+<p>这个坑在javascript中也是同样的，就像那篇文章里说的那样，因为finally的设计目的就是无论如何都会执行，那么一旦finally中出现了跳转语句，其他语句中的返回内容就会被忽略。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">finallyTest</span>(<span class="params"></span>)</span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> x = <span class="string">'catch'</span>, y = <span class="string">'except'</span>, z = <span class="string">'finally'</span>;</div><div class="line"></div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">        k = x + y;</div><div class="line">        a = b;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">"here is try------------"</span>);</div><div class="line">    &#125; <span class="keyword">catch</span>(e) &#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">"here is catch----------"</span>);</div><div class="line">        <span class="keyword">return</span> x;</div><div class="line">    &#125; <span class="keyword">finally</span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">"here is finally---------"</span>);</div><div class="line">        <span class="keyword">return</span> z;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//执行</span></div><div class="line">finallyTest()</div><div class="line"></div><div class="line"><span class="comment">//返回值</span></div><div class="line">here is <span class="keyword">catch</span>----------</div><div class="line">here is <span class="keyword">finally</span>---------</div><div class="line"><span class="string">'finally'</span></div></pre></td></tr></table></figure>
+<h3 id="函数名"><a href="#函数名" class="headerlink" title="函数名"></a>函数名</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">// 直接声明函数是具有函数名的</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;&#125;</div><div class="line">foo.name  <span class="comment">// 函数名为foo</span></div><div class="line"><span class="keyword">var</span> bar = foo</div><div class="line">bar.name  <span class="comment">// 将函数赋值给一个变量，只是让变量指向了函数结构，并不会改变函数结构本身</span></div><div class="line"></div><div class="line"><span class="comment">// 函数表达式生成的是匿名函数</span></div><div class="line"><span class="keyword">var</span> foo = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;</div><div class="line">foo.name <span class="comment">// "" (空字符串)</span></div><div class="line"></div><div class="line"><span class="comment">// 函数名称只存在于函数自身结构内，被传递时不会改变这个结构</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;&#125;</div><div class="line"><span class="keyword">var</span> o =&#123;</div><div class="line">    a: <span class="string">'a'</span>,</div><div class="line">    bar: foo</div><div class="line">&#125;;</div><div class="line"></div><div class="line">o.bar.name <span class="comment">// foo</span></div></pre></td></tr></table></figure>
+<h3 id="this-引用丢失"><a href="#this-引用丢失" class="headerlink" title="this 引用丢失"></a>this 引用丢失</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 函数被多次传递时可能发生</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.a);</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">    a: <span class="number">2</span>,</div><div class="line">    foo: foo</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> bar = obj.foo;</div><div class="line"></div><div class="line"><span class="keyword">var</span> a=<span class="string">"oops, global"</span>;</div><div class="line"></div><div class="line">bar(); <span class="comment">//"oops, global"</span></div><div class="line"></div><div class="line"><span class="comment">// 回调函数中可能发生（异步）</span></div><div class="line"><span class="comment">// 代码同上</span></div><div class="line">setTimeout(obj.foo, <span class="number">100</span>); <span class="comment">// "oops, global"</span></div></pre></td></tr></table></figure>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/javascript/">javascript</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/javascript/">javascript</a><a href="/tags/前端/">前端</a>
   </div>
-  <footer>
-    <div id="footer">
 
-      <div class="line">
-        <span></span>
-        <div class="author"></div>
-      </div>
-
-
-      <section class="info">
-        <p> Hello ,I&#39;m Starding. <br/> This is my blog,believe it or not.</p>
-      </section>
-
-      <div class="social-font" class="clearfix">
-
-
-        <a href="https://github.com/starding" target="_blank" class="icon-github" title="github"></a>
+</div>
 
 
 
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://starding.github.io/2016/01/19/learn-javascript-follow-definitive-guide/" data-title="javascript犀牛书（第六版） | 小狐濡尾" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/02/25/questions-record/" title="问题记录">
+  <strong>上一篇：</strong><br/>
+  <span>
+  问题记录</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016/01/18/gitlab-migrate/"  title="docker-gitlab数据迁移">
+ <strong>下一篇：</strong><br/> 
+ <span>docker-gitlab数据迁移
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/01/19/learn-javascript-follow-definitive-guide/" data-title="javascript犀牛书（第六版）" data-url="http://starding.github.io/2016/01/19/learn-javascript-follow-definitive-guide/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#语言核心部分"><span class="toc-number">1.</span> <span class="toc-text">语言核心部分</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#核心部分"><span class="toc-number"></span> <span class="toc-text">核心部分</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#语言核心"><span class="toc-number"></span> <span class="toc-text">语言核心</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#变量及变量类型"><span class="toc-number"></span> <span class="toc-text">变量及变量类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#原始类型"><span class="toc-number">1.</span> <span class="toc-text">原始类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#对象类型"><span class="toc-number">2.</span> <span class="toc-text">对象类型</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#严格模式：use-strict"><span class="toc-number"></span> <span class="toc-text">严格模式：use strict</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#模糊点"><span class="toc-number"></span> <span class="toc-text">模糊点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#包装对象"><span class="toc-number"></span> <span class="toc-text">包装对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#变量声明提前和变量可配置性"><span class="toc-number"></span> <span class="toc-text">变量声明提前和变量可配置性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#eval-运算符"><span class="toc-number"></span> <span class="toc-text">eval 运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#标签语句"><span class="toc-number"></span> <span class="toc-text">标签语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#throw-try-catch-finally-语句"><span class="toc-number"></span> <span class="toc-text">throw/try/catch/finally 语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#函数名"><span class="toc-number"></span> <span class="toc-text">函数名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#this-引用丢失"><span class="toc-number"></span> <span class="toc-text">this 引用丢失</span></a>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="starding" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
 
 
 
-        <a href="https://www.douban.com/people/58816601" target="_blank" class="icon-douban" title="豆瓣"></a>
+  
+
+<div class="doubanshow">
+<p class="asidetitle">豆瓣秀</p>
+<div>
+<script type="text/javascript" src="http://www.douban.com/service/badge/58816601/?show=collection&amp;n=12&amp;columns=3&amp;hidelogo=yes&amp;hideself=yes&amp;cat=book|movie" ></script>
+</div>
+</div>
 
 
-        <a href="http://www.zhihu.com/people/starstarding" target="_blank" class="icon-zhihu" title="知乎"></a>
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/computer-philosophy/" title="computer philosophy">computer philosophy<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/docker/" title="docker">docker<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/javascript/" title="javascript">javascript<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/open-questions/" title="open-questions">open-questions<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/python/" title="python">python<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/前端/" title="前端">前端<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/技术哲学/" title="技术哲学">技术哲学<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/数学/" title="数学">数学<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/科学史与科学哲学/" title="科学史与科学哲学">科学史与科学哲学<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/算法/" title="算法">算法<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/问题/" title="问题">问题<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/随笔/" title="随笔">随笔<sup>4</sup></a></li>
+		  
+		
+		</ul>
+</div>
 
 
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/python/" title="python">python<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/docker/" title="docker">docker<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/前端/" title="前端">前端<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/随笔/" title="随笔">随笔<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/javascript/" title="javascript">javascript<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/科学哲学/" title="科学哲学">科学哲学<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/computer/" title="computer">computer<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/gitlab/" title="gitlab">gitlab<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/open-questions/" title="open-questions">open-questions<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/django/" title="django">django<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/科学史/" title="科学史">科学史<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/三体/" title="三体">三体<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/行尸走肉/" title="行尸走肉">行尸走肉<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/社会达尔文主义/" title="社会达尔文主义">社会达尔文主义<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
 
-        <a href="mailto:starding@buaa.edu.cn" target="_blank" class="icon-email" title="Email Me"></a>
 
-      </div>
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://phiphicake.blogspot.com" target="_blank" title=" 一个有趣的哲学博客">哲学鸡蛋糕</a>
+            
+          </li>
+        
+    </ul>
+</div>
 
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
 
-
-      <p class="copyright">
-        Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016
-
-
-        <a href="/about" target="_blank" title="starding">starding</a>
-
-
-        <br> 本站总访问量
-        <span id="busuanzi_value_site_pv"></span>次 本站访客数
-        <span id="busuanzi_value_site_uv"></span>人次 本文总阅读量
-        <span id="busuanzi_value_page_pv"></span>次
-      </p>
+</aside>
+</div>
     </div>
-  </footer>
-  <script src="/js/jquery-2.0.3.min.js"></script>
-  <script src="/js/jquery.imagesloaded.min.js"></script>
-  <script src="/js/gallery.js"></script>
-  <script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Starding. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/starding" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		<a href="https://www.douban.com/people/58816601" target="_blank" class="icon-douban" title="豆瓣"></a>
+		
+		
+		<a href="http://www.zhihu.com/people/starstarding" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		
+		<a href="mailto:starding@buaa.edu.cn" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
 
-  <script type="text/javascript">
-    $(document).ready(function() {
-      $('.navbar').click(function() {
-        $('header nav').toggleClass('shownav');
-      });
-      var myWidth = 0;
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
 
-      function getSize() {
-        if (typeof(window.innerWidth) == 'number') {
-          myWidth = window.innerWidth;
-        } else if (document.documentElement && document.documentElement.clientWidth) {
-          myWidth = document.documentElement.clientWidth;
-        };
-      };
-      var m = $('#main'),
-        a = $('#asidepart'),
-        c = $('.closeaside'),
-        o = $('.openaside');
-      c.click(function() {
-        a.addClass('fadeOut').css('display', 'none');
-        o.css('display', 'block').addClass('fadeIn');
-        m.addClass('moveMain');
-      });
-      o.click(function() {
-        o.css('display', 'none').removeClass('beforeFadeIn');
-        a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');
-        m.removeClass('moveMain');
-      });
-      $(window).scroll(function() {
-        o.css("top", Math.max(80, 260 - $(this).scrollTop()));
-      });
+		
+		<a href="/about" target="_blank" title="starding">starding</a>
+		
 
-      $(window).resize(function() {
-        getSize();
-        if (myWidth >= 1024) {
-          $('header nav').removeClass('shownav');
-        } else {
-          m.removeClass('moveMain');
-          a.css('display', 'block').removeClass('fadeOut');
-          o.css('display', 'none');
+	    <br>	
+        本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        本站访客数<span id="busuanzi_value_site_uv"></span>人次
+        本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
 
-          $('#toc.toc-aside').css('display', 'none');
-
-        }
-      });
-    });
-  </script>
-
-  <script type="text/javascript">
-    $(document).ready(function() {
-      var ai = $('.article-content>iframe'),
-        ae = $('.article-content>embed'),
-        t = $('#toc'),
-        ta = $('#toc.toc-aside'),
-        o = $('.openaside'),
-        c = $('.closeaside');
-      if (ai.length > 0) {
-        ai.wrap('<div class="video-container" />');
-      };
-      if (ae.length > 0) {
-        ae.wrap('<div class="video-container" />');
-      };
-      c.click(function() {
-        ta.css('display', 'block').addClass('fadeIn');
-      });
-      o.click(function() {
-        ta.css('display', 'none');
-      });
-      $(window).scroll(function() {
-        ta.css("top", Math.max(140, 320 - $(this).scrollTop()));
-      });
-    });
-  </script>
-
-
-  <script type="text/javascript">
-    $(document).ready(function() {
-      var $this = $('.share'),
-        url = $this.attr('data-url'),
-        encodedUrl = encodeURIComponent(url),
-        title = $this.attr('data-title'),
-        tsina = $this.attr('data-tsina'),
-        description = $this.attr('description');
-      var html = [
-        '<div class="hoverqrcode clearfix"></div>',
-        '<a class="overlay" id="qrcode"></a>',
-        '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
-        '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
-        '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
-        '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title + '" class="article-share-renren" target="_blank" title="人人"></a>',
-        '<a href="http://service.weibo.com/share/share.php?title=' + title + '&url=' + encodedUrl + '&ralateUid=' + tsina + '&searchPic=true&style=number' + '" class="article-share-weibo" target="_blank" title="微博"></a>',
-        '<span title="Share to"></span>'
-      ].join('');
-      $this.append(html);
-
-      $('.hoverqrcode').hide();
-
-      var myWidth = 0;
-
-      function updatehoverqrcode() {
-        if (typeof(window.innerWidth) == 'number') {
-          myWidth = window.innerWidth;
-        } else if (document.documentElement && document.documentElement.clientWidth) {
-          myWidth = document.documentElement.clientWidth;
-        };
-        var qrsize = myWidth > 1024 ? 200 : 100;
-        var options = {
-          render: 'image',
-          size: qrsize,
-          fill: '#2ca6cb',
-          text: url,
-          radius: 0.5,
-          quiet: 1
-        };
-        var p = $('.article-share-qrcode').position();
-        $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
-          .css('left', p.left - qrsize / 2 + 20).css('top', p.top - qrsize - 10)
-          .qrcode(options);
-      };
-      $(window).resize(function() {
-        $('.hoverqrcode').hide();
-      });
-      $('.article-share-qrcode').click(function() {
-        updatehoverqrcode();
-        $('.hoverqrcode').toggle();
-      });
-      $('.article-share-qrcode').hover(function() {}, function() {
-        $('.hoverqrcode').hide();
-      });
-    });
-  </script>
-
-
-
-  <script type="text/javascript">
-    var duoshuoQuery = {
-      short_name: "starding"
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
     };
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';
-      ds.async = true;
-      ds.src = '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"starding"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
 
 
 
@@ -757,91 +646,106 @@
 
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
-  <script type="text/javascript">
-    $(document).ready(function() {
-      $('.article-content').each(function(i) {
-        $(this).find('img').each(function() {
-          if ($(this).parent().hasClass('fancybox')) return;
-          var alt = this.alt;
-          if (alt) $(this).after('<span class="caption">' + alt + '</span>');
-          $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
-        });
-        $(this).find('.fancybox').each(function() {
-          $(this).attr('rel', 'article' + i);
-        });
-      });
-      if ($.fancybox) {
-        $('.fancybox').fancybox();
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-72215789-1', 'auto');  
+ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?01f9e8011679173931cf24fe647483cf";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
       }
     });
-  </script>
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 
 
+<!-- MathJax End -->
 
-  <!-- Analytics Begin -->
-  <script type="text/javascript">
-    (function(i, s, o, g, r, a, m) {
-      i['GoogleAnalyticsObject'] = r;
-      i[r] = i[r] || function() {
-        (i[r].q = i[r].q || []).push(arguments)
-      }, i[r].l = 1 * new Date();
-      a = s.createElement(o),
-        m = s.getElementsByTagName(o)[0];
-      a.async = 1;
-      a.src = g;
-      m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-    ga('create', 'UA-72215789-1', 'auto');
-    ga('send', 'pageview');
-  </script>
+<!-- Tiny_search Begin -->
 
+<!-- Tiny_search End -->
 
+<!--不蒜子-->
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
-  <script>
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "//hm.baidu.com/hm.js?01f9e8011679173931cf24fe647483cf";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
-  <!-- Analytics End -->
-
-  <!-- Totop Begin -->
-  <div id="totop">
-    <a title="返回顶部"><img src="/img/scrollup.png" /></a>
-  </div>
-  <script src="/js/totop.js"></script>
-  <!-- Totop End -->
-
-  <!-- MathJax Begin -->
-  <!-- mathjax config similar to math.stackexchange -->
-
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
-  </script>
-
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({ tex2jax: { skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] } });
-  </script>
-
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() { var all = MathJax.Hub.getAllJax(), i; for(i=0; i
-    < all.length; i +=1 ) { all[i].SourceElement().parentNode.className +=' has-jax' ; } }); </script>
-
-      <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-      </script>
-      <!-- MathJax End -->
-
-      <!-- Tiny_search Begin -->
-
-      <!-- Tiny_search End -->
-
-      <!--不蒜子-->
-      <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-</body>
-
+  </body>
 </html>

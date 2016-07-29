@@ -1,791 +1,587 @@
-<!DOCTYPE HTML>
-<html lang="zh-CN">
 
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
+  
+    <title>docker-gitlab数据迁移 | 小狐濡尾</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="starding">
+    
 
-  <title>docker-gitlab数据迁移 | 小狐濡尾</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="description" content="问题来源：docker的file system神坑我们的gitlab是使用docker部署的，方便快捷。
+但是后来服务器上的某个应用出现了内存泄露，没想到重启服务器之后整个docker就跪了，启动容器时总是遇到一系列比较底层的filesystem unkown错误，而且报错细节不止一种。调查之后，发现是docker使用的 devicemapper 出现了bug，而且查看docker官方的githu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="docker-gitlab数据迁移">
+<meta property="og:url" content="http://starding.github.io/2016/01/18/gitlab-migrate/index.html">
+<meta property="og:site_name" content="小狐濡尾">
+<meta property="og:description" content="问题来源：docker的file system神坑我们的gitlab是使用docker部署的，方便快捷。
+但是后来服务器上的某个应用出现了内存泄露，没想到重启服务器之后整个docker就跪了，启动容器时总是遇到一系列比较底层的filesystem unkown错误，而且报错细节不止一种。调查之后，发现是docker使用的 devicemapper 出现了bug，而且查看docker官方的githu">
+<meta property="og:updated_time" content="2016-03-04T03:38:36.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="docker-gitlab数据迁移">
+<meta name="twitter:description" content="问题来源：docker的file system神坑我们的gitlab是使用docker部署的，方便快捷。
+但是后来服务器上的某个应用出现了内存泄露，没想到重启服务器之后整个docker就跪了，启动容器时总是遇到一系列比较底层的filesystem unkown错误，而且报错细节不止一种。调查之后，发现是docker使用的 devicemapper 出现了bug，而且查看docker官方的githu">
 
-  <meta name="author" content="starding">
-
-
-
-  <meta name="description" content="问题来源：docker的file system神坑
-我们的gitlab是使用docker部署的，方便快捷。
-但是后来服务器上的某个应用出现了内存泄露，没想到重启服务器之后整个docker就跪了，启动容器时总是遇到一系列比较底层的filesystem unkown错误，而且报错细节不止一种。调查之后，发现是docker使用的 devicemapper 出现了bug，而且查看docker官方的gith">
-  <meta property="og:type" content="article">
-  <meta property="og:title" content="docker-gitlab数据迁移">
-  <meta property="og:url" content="http://starding.github.io/2016/01/18/gitlab-migrate/index.html">
-  <meta property="og:site_name" content="小狐濡尾">
-  <meta property="og:description" content="问题来源：docker的file system神坑
-我们的gitlab是使用docker部署的，方便快捷。
-但是后来服务器上的某个应用出现了内存泄露，没想到重启服务器之后整个docker就跪了，启动容器时总是遇到一系列比较底层的filesystem unkown错误，而且报错细节不止一种。调查之后，发现是docker使用的 devicemapper 出现了bug，而且查看docker官方的gith">
-  <meta property="og:updated_time" content="2016-03-04T03:38:36.000Z">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="docker-gitlab数据迁移">
-  <meta name="twitter:description" content="问题来源：docker的file system神坑
-我们的gitlab是使用docker部署的，方便快捷。
-但是后来服务器上的某个应用出现了内存泄露，没想到重启服务器之后整个docker就跪了，启动容器时总是遇到一系列比较底层的filesystem unkown错误，而且报错细节不止一种。调查之后，发现是docker使用的 devicemapper 出现了bug，而且查看docker官方的gith">
-
-
-  <link rel="alternative" href="/atom.xml" title="小狐濡尾" type="application/atom+xml">
-
-
-  <link rel="icon" href="/img/my_favicon.ico">
-
-
-  <link rel="apple-touch-icon" href="/img/jacman.jpg">
-  <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
-
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
+    
+    <link rel="alternative" href="/atom.xml" title="小狐濡尾" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/my_favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<body>
-  <header>
-    <div>
-
-      <div id="imglogo">
-        <a href="/"><img src="/img/my_white_logo.png" alt="小狐濡尾" title="小狐濡尾" /></a>
-      </div>
-
-      <div id="textlogo">
-        <h1 class="site-name"><a href="/" title="小狐濡尾">小狐濡尾</a></h1>
-        <h2 class="blog-motto">未济</h2>
-      </div>
-      <div class="navbar">
-        <a class="navbutton navmobile" href="#" title="菜单">
-        </a>
-      </div>
-      <nav class="animated">
-        <ul>
-          <ul>
-
-            <li><a href="/">主页 | Home</a></li>
-
-            <li><a href="/index">索引 | Index</a></li>
-
-            <li><a href="/archives">归档 | Archives</a></li>
-
-            <li><a href="/about">简介 | About</a></li>
-
-            <li>
-
-              <form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
-                <label>Search</label>
-                <input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
-                <input type="hidden" name="q" value="site:starding.github.io">
-              </form>
-
-            </li>
-          </ul>
-      </nav>
-    </div>
-  </header>
-  <div id="container">
-    <div id="main" class="post" itemscope itemprop="blogPost">
-
-      <article itemprop="articleBody">
-        <header class="article-info clearfix">
-          <h1 itemprop="name">
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/my_white_logo.png" alt="小狐濡尾" title="小狐濡尾"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="小狐濡尾">小狐濡尾</a></h1>
+				<h2 class="blog-motto">未济</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页 | Home</a></li>
+					
+						<li><a href="/index">索引 | Index</a></li>
+					
+						<li><a href="/archives">归档 | Archives</a></li>
+					
+						<li><a href="/about">简介 | About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:starding.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
     
       <a href="/2016/01/18/gitlab-migrate/" title="docker-gitlab数据迁移" itemprop="url">docker-gitlab数据迁移</a>
   </h1>
-          <p class="article-author">By
-
-            <a href="/about" title="starding" target="_blank" itemprop="author">starding</a>
-
-            <p class="article-time">
-              <time datetime="2016-01-18T08:04:04.000Z" itemprop="datePublished"> 发表于 2016-01-18</time>
-
-            </p>
-        </header>
-        <div class="article-content">
-
-          <div id="toc" class="toc-article">
-            <strong class="toc-title">文章目录</strong>
-
-            <ol class="toc">
-              <li class="toc-item toc-level-2"><a class="toc-link" href="#u95EE_u9898_u6765_u6E90_uFF1Adocker_u7684file_system_u795E_u5751"><span class="toc-number">1.</span> <span class="toc-text">问题来源：docker的file system神坑</span></a></li>
-              <li class="toc-item toc-level-2"><a class="toc-link" href="#gitlab_u6570_u636E_u8FC1_u79FB"><span class="toc-number">2.</span> <span class="toc-text">gitlab数据迁移</span></a>
-                <ol class="toc-child">
-                  <li class="toc-item toc-level-3"><a class="toc-link" href="#u9047_u5230_u7684_u95EE_u9898"><span class="toc-number">2.1.</span> <span class="toc-text">遇到的问题</span></a></li>
-                  <li class="toc-item toc-level-3"><a class="toc-link" href="#u6700_u7EC8_u7684_u89E3_u51B3_u529E_u6CD5"><span class="toc-number">2.2.</span> <span class="toc-text">最终的解决办法</span></a></li>
-                </ol>
-              </li>
-              <li class="toc-item toc-level-2"><a class="toc-link" href="#u9644_u5F55_uFF1A_u4E0B_u9762_u662F_u539F_u6587_uFF08_u5DF2_u7FFB_u8BD1_uFF09"><span class="toc-number">3.</span> <span class="toc-text">附录：下面是原文（已翻译）</span></a></li>
-              <li class="toc-item toc-level-2"><a class="toc-link" href="#1-_u505C_u6B62Gitlab_u5BB9_u5668"><span class="toc-number">4.</span> <span class="toc-text">1.停止Gitlab容器</span></a></li>
-              <li class="toc-item toc-level-2"><a class="toc-link" href="#2-_u5907_u4EFD_u6240_u6709Docker_Volumes__28_u6240_u6709_u7684gitlab_u6587_u4EF6_29"><span class="toc-number">5.</span> <span class="toc-text">2.备份所有Docker Volumes (所有的gitlab文件)</span></a></li>
-              <li class="toc-item toc-level-2"><a class="toc-link" href="#3-_u5907_u4EFDgitlab_u955C_u50CF_uFF08_u53EF_u9009_uFF09"><span class="toc-number">6.</span> <span class="toc-text">3.备份gitlab镜像（可选）</span></a></li>
-              <li class="toc-item toc-level-2">
-                <a class="toc-link" href="#4-_u5220_u9664gitlab_u5BB9_u5668_28__u8BD1_u6CE8__uFF1A_u5982_u679C_u4F60_u662F_u628A_u6570_u636E_u8FC1_u5230_u5176_u4ED6_u670D_u52A1_u5668_u7684docker_gitlab_u5B9E_u4F8B_u4E0B_u7684_u8BDD_uFF0C_u672C_u6B65_u9AA4_u53EF_u9009_29"><span class="toc-number">7.</span> <span class="toc-text">4.删除gitlab容器( 译注 ：如果你是把数据迁到其他服务器的docker gitlab实例下的话，本步骤可选)</span></a>
-              </li>
-              <li class="toc-item toc-level-2"><a class="toc-link" href="#5-_u62C9_u53D6_u6700_u65B0_u7684gitlab_u955C_u50CF"><span class="toc-number">8.</span> <span class="toc-text">5.拉取最新的gitlab镜像</span></a></li>
-              <li class="toc-item toc-level-2"><a class="toc-link" href="#6-_u62C9_u53D6_u5B8C_u6BD5_u540E_uFF0C_u521B_u5EFA_u5E76_u8FD0_u884C_u5BB9_u5668"><span class="toc-number">9.</span> <span class="toc-text">6.拉取完毕后，创建并运行容器</span></a></li>
-              <li class="toc-item toc-level-2"><a class="toc-link" href="#7-_u5BB9_u5668_u542F_u52A8_u540E_uFF0C_u89C2_u5BDF_u8FD0_u884C_u65E5_u5FD7_3A"><span class="toc-number">10.</span> <span class="toc-text">7.容器启动后，观察运行日志:</span></a></li>
-              <li class="toc-item toc-level-2"><a class="toc-link" href="#8-_u7136_u540E_u6211_u4EEC_u9700_u8981_u68C0_u67E5_u6570_u636E_u5E93_u8FC1_u79FB_u662F_u5426_u6210_u529F_u4EE5_u53CA_u907F_u514D_233255_u95EE_u9898_u3002"><span class="toc-number">11.</span> <span class="toc-text">8.然后我们需要检查数据库迁移是否成功以及避免#3255问题。</span></a></li>
-              <li class="toc-item toc-level-2"><a class="toc-link" href="#9-_u7EE7_u7EED_u5728_u5BB9_u5668_u5185_u90E8_u7684bash_shell_u4E0A_uFF0C_u91CD_u65B0_u914D_u7F6Egitlab_3A"><span class="toc-number">12.</span> <span class="toc-text">9.继续在容器内部的bash shell上，重新配置gitlab:</span></a></li>
-              <li class="toc-item toc-level-2"><a class="toc-link" href="#10-_u5982_u679C_u4E00_u5207_u6B63_u5E38_2C__u6267_u884C_u4E0B_u9762_u7684_u547D_u4EE4_3A"><span class="toc-number">13.</span> <span class="toc-text">10.如果一切正常, 执行下面的命令:</span></a></li>
-              <li class="toc-item toc-level-2"><a class="toc-link" href="#11-_u6700_u540E_uFF0C_u6E05_u9664Redis_u7684_u7F13_u5B58"><span class="toc-number">14.</span> <span class="toc-text">11.最后，清除Redis的缓存</span></a></li>
-              <li class="toc-item toc-level-2"><a class="toc-link" href="#12-_u8BBF_u95EE_u6D4B_u8BD5"><span class="toc-number">15.</span> <span class="toc-text">12.访问测试</span></a></li>
-            </ol>
-
-          </div>
-
-          <h2 id="u95EE_u9898_u6765_u6E90_uFF1Adocker_u7684file_system_u795E_u5751"><a href="#u95EE_u9898_u6765_u6E90_uFF1Adocker_u7684file_system_u795E_u5751" class="headerlink" title="问题来源：docker的file system神坑"></a>问题来源：docker的file system神坑</h2>
-          <p>我们的gitlab是使用docker部署的，方便快捷。</p>
-          <p>但是后来服务器上的某个应用出现了内存泄露，没想到重启服务器之后整个docker就跪了，启动容器时总是遇到一系列比较底层的filesystem unkown错误，而且报错细节不止一种。调查之后，发现是docker使用的 devicemapper 出现了bug，而且查看docker官方的github，有不少人遇到这个bug，讨论话题在此：<a href="https://github.com/docker/docker/issues/4036" target="_blank" rel="external">docker fails to mount the block device for the container on devicemapper</a>，感觉掉到一个深不见底的神坑里了。</p>
-          <p>stackoverflow或github上给出的解决办法是：关掉docker，删除/var/lib/docker中的所有内容，然后重启gilab。我觉得可能是另一个神坑，没敢往里跳。于是选择慢慢研究这个问题，先在另外一台服务器上重新部署一下gitlab，并且把数据迁移过去就行了。</p>
-          <h2 id="gitlab_u6570_u636E_u8FC1_u79FB"><a href="#gitlab_u6570_u636E_u8FC1_u79FB" class="headerlink" title="gitlab数据迁移"></a>gitlab数据迁移</h2>
-          <p>原以为迁移会很简单，没想到也有不少坑等着跳。</p>
-          <p>先把原服务器上的gitlab的volumes备份了一下，直接把备份好的volumes文件拷贝到新服务器上，按照原来的方法挂载，启动。</p>
-          <h3 id="u9047_u5230_u7684_u95EE_u9898"><a href="#u9047_u5230_u7684_u95EE_u9898" class="headerlink" title="遇到的问题"></a>遇到的问题</h3>
-          <ol>
-            <li>首先发现是redis啥啥没有权限，于是google了一番，把权限都改了。</li>
-          </ol>
-          <ol>
-            <li>
-              <p>然后出了一个<a href="https://gitlab.com/gitlab-org/gitlab-ce/commit/ff98c631c1004247656677568989e5ed68fc88f3" target="_blank" rel="external">unfoudmethod错误</a>。调查是数据库没有migrate的造成的。</p>
-            </li>
-            <li>
-              <p>还有一个隐藏的坑是gitlab的版本问题。类似的关键服务应用，尽量不要使用latest作为版本号，不然出了问题，还得去找自己使用的究竟是什么版本，如果找不到…准备拼人品吧。</p>
-            </li>
-          </ol>
-          <h3 id="u6700_u7EC8_u7684_u89E3_u51B3_u529E_u6CD5"><a href="#u6700_u7EC8_u7684_u89E3_u51B3_u529E_u6CD5" class="headerlink" title="最终的解决办法"></a>最终的解决办法</h3>
-          <p>感觉这么一个一个坑的跳太二了，后来发现原来已经有人把坑都填好了：<a href="https://cmanios.wordpress.com/2015/12/04/migrate-a-gitlab-docker-container-from-version-8-0-4-to-8-2-0/" target="_blank" rel="external">Migrate a Gitlab Docker container from version 8.0.4 to 8.2.0
+  <p class="article-author">By
+       
+		<a href="/about" title="starding" target="_blank" itemprop="author">starding</a>
+		
+  <p class="article-time">
+    <time datetime="2016-01-18T08:04:04.000Z" itemprop="datePublished"> 发表于 2016-01-18</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#问题来源：docker的file-system神坑"><span class="toc-number">1.</span> <span class="toc-text">问题来源：docker的file system神坑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#gitlab数据迁移"><span class="toc-number">2.</span> <span class="toc-text">gitlab数据迁移</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#遇到的问题"><span class="toc-number">2.1.</span> <span class="toc-text">遇到的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#最终的解决办法"><span class="toc-number">2.2.</span> <span class="toc-text">最终的解决办法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#附录：下面是原文（已翻译）"><span class="toc-number">3.</span> <span class="toc-text">附录：下面是原文（已翻译）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-停止Gitlab容器"><span class="toc-number">4.</span> <span class="toc-text">1.停止Gitlab容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-备份所有Docker-Volumes-所有的gitlab文件"><span class="toc-number">5.</span> <span class="toc-text">2.备份所有Docker Volumes (所有的gitlab文件)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-备份gitlab镜像（可选）"><span class="toc-number">6.</span> <span class="toc-text">3.备份gitlab镜像（可选）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-删除gitlab容器-译注-：如果你是把数据迁到其他服务器的docker-gitlab实例下的话，本步骤可选"><span class="toc-number">7.</span> <span class="toc-text">4.删除gitlab容器( 译注 ：如果你是把数据迁到其他服务器的docker gitlab实例下的话，本步骤可选)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-拉取最新的gitlab镜像"><span class="toc-number">8.</span> <span class="toc-text">5.拉取最新的gitlab镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-拉取完毕后，创建并运行容器"><span class="toc-number">9.</span> <span class="toc-text">6.拉取完毕后，创建并运行容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-容器启动后，观察运行日志"><span class="toc-number">10.</span> <span class="toc-text">7.容器启动后，观察运行日志:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-然后我们需要检查数据库迁移是否成功以及避免-3255问题。"><span class="toc-number">11.</span> <span class="toc-text">8.然后我们需要检查数据库迁移是否成功以及避免#3255问题。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-继续在容器内部的bash-shell上，重新配置gitlab"><span class="toc-number">12.</span> <span class="toc-text">9.继续在容器内部的bash shell上，重新配置gitlab:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-如果一切正常-执行下面的命令"><span class="toc-number">13.</span> <span class="toc-text">10.如果一切正常, 执行下面的命令:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-最后，清除Redis的缓存"><span class="toc-number">14.</span> <span class="toc-text">11.最后，清除Redis的缓存</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-访问测试"><span class="toc-number">15.</span> <span class="toc-text">12.访问测试</span></a></li></ol>
+		
+		</div>
+		
+		<h2 id="问题来源：docker的file-system神坑"><a href="#问题来源：docker的file-system神坑" class="headerlink" title="问题来源：docker的file system神坑"></a>问题来源：docker的file system神坑</h2><p>我们的gitlab是使用docker部署的，方便快捷。</p>
+<p>但是后来服务器上的某个应用出现了内存泄露，没想到重启服务器之后整个docker就跪了，启动容器时总是遇到一系列比较底层的filesystem unkown错误，而且报错细节不止一种。调查之后，发现是docker使用的 devicemapper 出现了bug，而且查看docker官方的github，有不少人遇到这个bug，讨论话题在此：<a href="https://github.com/docker/docker/issues/4036" target="_blank" rel="external">docker fails to mount the block device for the container on devicemapper</a>，感觉掉到一个深不见底的神坑里了。</p>
+<p>stackoverflow或github上给出的解决办法是：关掉docker，删除/var/lib/docker中的所有内容，然后重启gilab。我觉得可能是另一个神坑，没敢往里跳。于是选择慢慢研究这个问题，先在另外一台服务器上重新部署一下gitlab，并且把数据迁移过去就行了。</p>
+<h2 id="gitlab数据迁移"><a href="#gitlab数据迁移" class="headerlink" title="gitlab数据迁移"></a>gitlab数据迁移</h2><p>原以为迁移会很简单，没想到也有不少坑等着跳。</p>
+<p>先把原服务器上的gitlab的volumes备份了一下，直接把备份好的volumes文件拷贝到新服务器上，按照原来的方法挂载，启动。</p>
+<h3 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h3><ol>
+<li>首先发现是redis啥啥没有权限，于是google了一番，把权限都改了。</li>
+</ol>
+<ol>
+<li><p>然后出了一个<a href="https://gitlab.com/gitlab-org/gitlab-ce/commit/ff98c631c1004247656677568989e5ed68fc88f3" target="_blank" rel="external">unfoudmethod错误</a>。调查是数据库没有migrate的造成的。</p>
+</li>
+<li><p>还有一个隐藏的坑是gitlab的版本问题。类似的关键服务应用，尽量不要使用latest作为版本号，不然出了问题，还得去找自己使用的究竟是什么版本，如果找不到…准备拼人品吧。</p>
+</li>
+</ol>
+<h3 id="最终的解决办法"><a href="#最终的解决办法" class="headerlink" title="最终的解决办法"></a>最终的解决办法</h3><p>感觉这么一个一个坑的跳太二了，后来发现原来已经有人把坑都填好了：<a href="https://cmanios.wordpress.com/2015/12/04/migrate-a-gitlab-docker-container-from-version-8-0-4-to-8-2-0/" target="_blank" rel="external">Migrate a Gitlab Docker container from version 8.0.4 to 8.2.0
 </a></p>
-          <h2 id="u9644_u5F55_uFF1A_u4E0B_u9762_u662F_u539F_u6587_uFF08_u5DF2_u7FFB_u8BD1_uFF09"><a href="#u9644_u5F55_uFF1A_u4E0B_u9762_u662F_u539F_u6587_uFF08_u5DF2_u7FFB_u8BD1_uFF09" class="headerlink" title="附录：下面是原文（已翻译）"></a>附录：下面是原文（已翻译）</h2>
-          <p>前几天，我需要将docker部署的gitlab实例从 8.04 版迁移到 8.2.0版本。我完全是按照Gitlab Docker 镜像文档中的步骤进行的，但是出了一堆问题，简直日了狗。不过谢天谢地，在经过数小时的搜索挣扎之后，我终于搞定了。</p>
-          <p>在本教程中，假定 Gitlab的volumes存储在 <code>/home/bob/docker-data/gitlab</code> 目录中(当然，你需要根据你的实际目录结构来适当改写本教程)。然后下面是我成功迁移gitlab时遵循的所有步骤:</p>
-          <h2 id="1-_u505C_u6B62Gitlab_u5BB9_u5668"><a href="#1-_u505C_u6B62Gitlab_u5BB9_u5668" class="headerlink" title="1.停止Gitlab容器"></a>1.停止Gitlab容器</h2>
-          <figure class="highlight docker">
-            <table>
-              <tr>
-                <td class="gutter"><pre><span class="line">1</span><br></pre></td>
-                <td class="code"><pre><span class="line">docker stop gitlab</span><br></pre></td>
-              </tr>
-            </table>
-          </figure>
-          <h2 id="2-_u5907_u4EFD_u6240_u6709Docker_Volumes__28_u6240_u6709_u7684gitlab_u6587_u4EF6_29"><a href="#2-_u5907_u4EFD_u6240_u6709Docker_Volumes__28_u6240_u6709_u7684gitlab_u6587_u4EF6_29" class="headerlink" title="2.备份所有Docker Volumes (所有的gitlab文件)"></a>2.备份所有Docker Volumes (所有的gitlab文件)</h2>
-          <figure class="highlight bash">
-            <table>
-              <tr>
-                <td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td>
-                <td class="code"><pre><span class="line">backupDate=$(date +<span class="string">"%Y%m%d%H%M%S"</span>) \</span><br><span class="line">  &amp;&amp; <span class="built_in">cd</span> /home/bob/docker-data/ \</span><br><span class="line">  &amp;&amp; sudo tar zvcf gitlab-data-<span class="variable">$&#123;backupDate&#125;</span>.tar.gz gitlab/</span><br></pre></td>
-              </tr>
-            </table>
-          </figure>
-          <h2 id="3-_u5907_u4EFDgitlab_u955C_u50CF_uFF08_u53EF_u9009_uFF09"><a href="#3-_u5907_u4EFDgitlab_u955C_u50CF_uFF08_u53EF_u9009_uFF09" class="headerlink" title="3.备份gitlab镜像（可选）"></a>3.备份gitlab镜像（可选）</h2>
-          <figure class="highlight plain">
-            <table>
-              <tr>
-                <td class="gutter"><pre><span class="line">1</span><br></pre></td>
-                <td class="code"><pre><span class="line">docker save -o /home/bob/gitlab-ce-image.tar gitlab/gitlab-ce:latest</span><br></pre></td>
-              </tr>
-            </table>
-          </figure>
-          <h2 id="4-_u5220_u9664gitlab_u5BB9_u5668_28__u8BD1_u6CE8__uFF1A_u5982_u679C_u4F60_u662F_u628A_u6570_u636E_u8FC1_u5230_u5176_u4ED6_u670D_u52A1_u5668_u7684docker_gitlab_u5B9E_u4F8B_u4E0B_u7684_u8BDD_uFF0C_u672C_u6B65_u9AA4_u53EF_u9009_29"><a href="#4-_u5220_u9664gitlab_u5BB9_u5668_28__u8BD1_u6CE8__uFF1A_u5982_u679C_u4F60_u662F_u628A_u6570_u636E_u8FC1_u5230_u5176_u4ED6_u670D_u52A1_u5668_u7684docker_gitlab_u5B9E_u4F8B_u4E0B_u7684_u8BDD_uFF0C_u672C_u6B65_u9AA4_u53EF_u9009_29" class="headerlink" title="4.删除gitlab容器( 译注 ：如果你是把数据迁到其他服务器的docker gitlab实例下的话，本步骤可选)"></a>4.删除gitlab容器( <strong>译注</strong> ：如果你是把数据迁到其他服务器的docker gitlab实例下的话，本步骤可选)</h2>
-          <figure class="highlight plain">
-            <table>
-              <tr>
-                <td class="gutter"><pre><span class="line">1</span><br></pre></td>
-                <td class="code"><pre><span class="line">docker rm gitlab</span><br></pre></td>
-              </tr>
-            </table>
-          </figure>
-          <h2 id="5-_u62C9_u53D6_u6700_u65B0_u7684gitlab_u955C_u50CF"><a href="#5-_u62C9_u53D6_u6700_u65B0_u7684gitlab_u955C_u50CF" class="headerlink" title="5.拉取最新的gitlab镜像"></a>5.拉取最新的gitlab镜像</h2>
-          <figure class="highlight plain">
-            <table>
-              <tr>
-                <td class="gutter"><pre><span class="line">1</span><br></pre></td>
-                <td class="code"><pre><span class="line">sudo docker pull gitlab/gitlab-ce:latest</span><br></pre></td>
-              </tr>
-            </table>
-          </figure>
-          <h2 id="6-_u62C9_u53D6_u5B8C_u6BD5_u540E_uFF0C_u521B_u5EFA_u5E76_u8FD0_u884C_u5BB9_u5668"><a href="#6-_u62C9_u53D6_u5B8C_u6BD5_u540E_uFF0C_u521B_u5EFA_u5E76_u8FD0_u884C_u5BB9_u5668" class="headerlink" title="6.拉取完毕后，创建并运行容器"></a>6.拉取完毕后，创建并运行容器</h2>
-          <figure class="highlight docker">
-            <table>
-              <tr>
-                <td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td>
-                <td class="code"><pre><span class="line">docker <span class="built_ins">run</span> -d \</span><br><span class="line">  --hostname 192.168.1.1 \</span><br><span class="line">  --publish 8443:443 --publish 8082:80 --publish 2224:22 \</span><br><span class="line">  --name gitlab \</span><br><span class="line">  --restart always \</span><br><span class="line">  --<span class="built_ins">volume</span> /etc/localtime:/etc/localtime \</span><br><span class="line">  --<span class="built_ins">volume</span> /home/bob/docker-data/gitlab/config:/etc/gitlab \</span><br><span class="line">  --<span class="built_ins">volume</span> /home/bob/docker-data/gitlab/logs:/var/log/gitlab \</span><br><span class="line">  --<span class="built_ins">volume</span> /home/bob/docker-data/gitlab/data:/var/opt/gitlab \</span><br><span class="line">  gitlab/gitlab-ce:latest</span><br></pre></td>
-              </tr>
-            </table>
-          </figure>
-          <h2 id="7-_u5BB9_u5668_u542F_u52A8_u540E_uFF0C_u89C2_u5BDF_u8FD0_u884C_u65E5_u5FD7_3A"><a href="#7-_u5BB9_u5668_u542F_u52A8_u540E_uFF0C_u89C2_u5BDF_u8FD0_u884C_u65E5_u5FD7_3A" class="headerlink" title="7.容器启动后，观察运行日志:"></a>7.容器启动后，观察运行日志:</h2>
-          <figure class="highlight plain">
-            <table>
-              <tr>
-                <td class="gutter"><pre><span class="line">1</span><br></pre></td>
-                <td class="code"><pre><span class="line">docker logs -f --tail 10 gitlab</span><br></pre></td>
-              </tr>
-            </table>
-          </figure>
-          <p><strong>日志内容</strong></p>
-          <figure class="highlight plain">
-            <table>
-              <tr>
-                <td class="gutter"><pre><span class="line">1</span><br></pre></td>
-                <td class="code"><pre><span class="line">[2015-11-26T15:12:26+02:00] INFO: Retrying execution of execute[create gitlab database user], 19 attempt(s) left&#10;[2015-11-26T15:12:28+02:00] INFO: Retrying execution of execute[create gitlab database user], 18 attempt(s) left&#10;... (some lines omitted) ...&#10;[2015-11-26T15:13:09+02:00] INFO: Retrying execution of execute[create gitlab database user], 0 attempt(s) left&#10; &#10; &#10;Error executing action `run` on resource &#39;execute[create gitlab database user]&#39;&#10; &#10; &#10;Mixlib::ShellOut::ShellCommandFailed&#10; &#10;Expected process to exit with [0], but received &#39;2&#39;&#10;---- Begin output of /opt/gitlab/embedded/bin/psql --port 5432 -h /var/opt/gitlab/postgresql -d template1 -c &#34;CREATE USER gitlab&#34; ----&#10;STDOUT: &#10;STDERR: psql: could not connect to server: No such file or directory&#10;Is the server running locally and accepting&#10;connections on Unix domain socket &#34;/var/opt/gitlab/postgresql/.s.PGSQL.5432&#34;?&#10;---- End output of /opt/gitlab/embedded/bin/psql --port 5432 -h /var/opt/gitlab/postgresql -d template1 -c &#34;CREATE USER gitlab&#34; ----&#10;Ran /opt/gitlab/embedded/bin/psql --port 5432 -h /var/opt/gitlab/postgresql -d template1 -c &#34;CREATE USER gitlab&#34; returned 2&#10; &#10;Resource Declaration:&#10; &#10;# In /opt/gitlab/embedded/cookbooks/cache/cookbooks/gitlab/recipes/postgresql.rb&#10; &#10;153:   execute &#34;create #&#123;sql_user&#125; database user&#34; do&#10;154:     command &#34;#&#123;bin_dir&#125;/psql --port #&#123;pg_port&#125; -h #&#123;postgresql_socket_dir&#125; -d template1 -c \&#34;CREATE USER #&#123;sql_user&#125;\&#34;&#34;&#10;155:     user postgresql_user&#10;156:     # Added retries to give the service time to start on slower systems&#10;157:     retries 20&#10;158:     not_if &#123; !pg_helper.is_running? || pg_helper.user_exists?(sql_user) &#125;&#10;159:   end&#10;160: &#10; &#10;Compiled Resource:&#10; &#10;# Declared in /opt/gitlab/embedded/cookbooks/cache/cookbooks/gitlab/recipes/postgresql.rb:153:in `block in from_file&#39;&#10; &#10;execute(&#34;create gitlab database user&#34;) do&#10;action [:run]&#10;retries 20&#10;retry_delay 2&#10;default_guard_interpreter :execute&#10;command &#34;/opt/gitlab/embedded/bin/psql --port 5432 -h /var/opt/gitlab/postgresql -d template1 -c \&#34;CREATE USER gitlab\&#34;&#34;&#10;backup 5&#10;returns 0&#10;user &#34;gitlab-psql&#34;&#10;declared_type :execute&#10;cookbook_name &#34;gitlab&#34;&#10;recipe_name &#34;postgresql&#34;&#10;not_if &#123; #code block &#125;&#10;end</span><br></pre></td>
-              </tr>
-            </table>
-          </figure>
-          <p>有两个已知的权限问题，在 <a href="http://doc.gitlab.com/omnibus/docker/" target="_blank" rel="external">official documentation</a> 和 <a href="https://github.com/gitlabhq/gitlabhq/issues/9611" target="_blank" rel="external">#9611</a> 中描述. 为了解决这两个问题, 执行:</p>
-          <figure class="highlight docker">
-            <table>
-              <tr>
-                <td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td>
-                <td class="code"><pre><span class="line">docker exec -it gitlab update-permissions</span><br><span class="line">docker exec gitlab chown -R gitlab-redis /var/opt/gitlab/redis</span><br></pre></td>
-              </tr>
-            </table>
-          </figure>
-          <p>然后重启gitlab容器:</p>
-          <figure class="highlight plain">
-            <table>
-              <tr>
-                <td class="gutter"><pre><span class="line">1</span><br></pre></td>
-                <td class="code"><pre><span class="line">docker restart gitlab</span><br></pre></td>
-              </tr>
-            </table>
-          </figure>
-          <h2 id="8-_u7136_u540E_u6211_u4EEC_u9700_u8981_u68C0_u67E5_u6570_u636E_u5E93_u8FC1_u79FB_u662F_u5426_u6210_u529F_u4EE5_u53CA_u907F_u514D_233255_u95EE_u9898_u3002"><a href="#8-_u7136_u540E_u6211_u4EEC_u9700_u8981_u68C0_u67E5_u6570_u636E_u5E93_u8FC1_u79FB_u662F_u5426_u6210_u529F_u4EE5_u53CA_u907F_u514D_233255_u95EE_u9898_u3002" class="headerlink" title="8.然后我们需要检查数据库迁移是否成功以及避免#3255问题。"></a>8.然后我们需要检查数据库迁移是否成功以及避免#3255问题。</h2>
-          <p>登录到gitlab容器中的shell：</p>
-          <figure class="highlight plain">
-            <table>
-              <tr>
-                <td class="gutter"><pre><span class="line">1</span><br></pre></td>
-                <td class="code"><pre><span class="line">docker exec -t -i gitlab /bin/bash</span><br></pre></td>
-              </tr>
-            </table>
-          </figure>
-          <p>检查数据库迁移状况:</p>
-          <figure class="highlight plain">
-            <table>
-              <tr>
-                <td class="gutter"><pre><span class="line">1</span><br></pre></td>
-                <td class="code"><pre><span class="line">sudo gitlab-rake db:migrate:status</span><br></pre></td>
-              </tr>
-            </table>
-          </figure>
-          <p>如果所有状态都显示为up状态，是没问题的。如果发现down状态，类似下面这样：</p>
-          <figure class="highlight plain">
-            <table>
-              <tr>
-                <td class="gutter"><pre><span class="line">1</span><br></pre></td>
-                <td class="code"><pre><span class="line">up     20150920161119  Add line code to sent notification&#10;down    20150924125150  Add project id to ci commit&#10;down    20150924125436  Migrate project id for ci commits</span><br></pre></td>
-              </tr>
-            </table>
-          </figure>
-          <p>就必须重新手动执行数据库migration命令：</p>
-          <figure class="highlight plain">
-            <table>
-              <tr>
-                <td class="gutter"><pre><span class="line">1</span><br></pre></td>
-                <td class="code"><pre><span class="line">sudo gitlab-rake db:migrate</span><br></pre></td>
-              </tr>
-            </table>
-          </figure>
-          <p>当执行结束时，重新检查数据库migrate状态，确保所有状态都为up：</p>
-          <figure class="highlight plain">
-            <table>
-              <tr>
-                <td class="gutter"><pre><span class="line">1</span><br></pre></td>
-                <td class="code"><pre><span class="line">sudo gitlab-rake db:migrate:status</span><br></pre></td>
-              </tr>
-            </table>
-          </figure>
-          <h2 id="9-_u7EE7_u7EED_u5728_u5BB9_u5668_u5185_u90E8_u7684bash_shell_u4E0A_uFF0C_u91CD_u65B0_u914D_u7F6Egitlab_3A"><a href="#9-_u7EE7_u7EED_u5728_u5BB9_u5668_u5185_u90E8_u7684bash_shell_u4E0A_uFF0C_u91CD_u65B0_u914D_u7F6Egitlab_3A" class="headerlink" title="9.继续在容器内部的bash shell上，重新配置gitlab:"></a>9.继续在容器内部的bash shell上，重新配置gitlab:</h2>
-          <figure class="highlight plain">
-            <table>
-              <tr>
-                <td class="gutter"><pre><span class="line">1</span><br></pre></td>
-                <td class="code"><pre><span class="line">sudo gitlab-ctl reconfigure</span><br></pre></td>
-              </tr>
-            </table>
-          </figure>
-          <p>然后检查是不是所有内容都正常运行：</p>
-          <figure class="highlight plain">
-            <table>
-              <tr>
-                <td class="gutter"><pre><span class="line">1</span><br></pre></td>
-                <td class="code"><pre><span class="line">sudo gitlab-rake gitlab:check</span><br></pre></td>
-              </tr>
-            </table>
-          </figure>
-          <h2 id="10-_u5982_u679C_u4E00_u5207_u6B63_u5E38_2C__u6267_u884C_u4E0B_u9762_u7684_u547D_u4EE4_3A"><a href="#10-_u5982_u679C_u4E00_u5207_u6B63_u5E38_2C__u6267_u884C_u4E0B_u9762_u7684_u547D_u4EE4_3A" class="headerlink" title="10.如果一切正常, 执行下面的命令:"></a>10.如果一切正常, 执行下面的命令:</h2>
-          <figure class="highlight plain">
-            <table>
-              <tr>
-                <td class="gutter"><pre><span class="line">1</span><br></pre></td>
-                <td class="code"><pre><span class="line">sudo gitlab-rake gitlab:env:info RAILS_ENV=production</span><br></pre></td>
-              </tr>
-            </table>
-          </figure>
-          <p>会返回类似下面这样的结果:</p>
-          <figure class="highlight plain">
-            <table>
-              <tr>
-                <td class="gutter"><pre><span class="line">1</span><br></pre></td>
-                <td class="code"><pre><span class="line">System information&#10;System:   Ubuntu 14.04&#10;Current User: git&#10;Using RVM:  no&#10;Ruby Version: 2.1.7p400&#10;Gem Version:  2.2.5&#10;Bundler Version:1.10.6&#10;Rake Version: 10.4.2&#10;Sidekiq Version:3.3.0&#10; &#10;GitLab information&#10;Version:  8.2.0&#10;Revision: d6bcf44&#10;Directory:  /opt/gitlab/embedded/service/gitlab-rails&#10;DB Adapter: postgresql&#10;URL:    http://192.168.1.1:8082&#10;HTTP Clone URL: http://192.168.1.1:8082/some-group/some-project.git&#10;SSH Clone URL:  git@192.168.1.1:some-group/some-project.git&#10;Using LDAP: yes&#10;Using Omniauth: no&#10; &#10;GitLab Shell&#10;Version:  2.6.7&#10;Repositories: /var/opt/gitlab/git-data/repositories&#10;Hooks:    /opt/gitlab/embedded/service/gitlab-shell/hooks/&#10;Git:    /opt/gitlab/embedded/bin/git</span><br></pre></td>
-              </tr>
-            </table>
-          </figure>
-          <h2 id="11-_u6700_u540E_uFF0C_u6E05_u9664Redis_u7684_u7F13_u5B58"><a href="#11-_u6700_u540E_uFF0C_u6E05_u9664Redis_u7684_u7F13_u5B58" class="headerlink" title="11.最后，清除Redis的缓存"></a>11.最后，清除Redis的缓存</h2>
-          <p>不然可能会遇到这个问题： <a href="https://gitlab.com/gitlab-org/gitlab-ce/issues/3619" target="_blank" rel="external">#3619</a> 或这个问题 <a href="https://gitlab.com/gitlab-org/gitlab-ce/issues/3609" target="_blank" rel="external">#3609</a>:</p>
-          <figure class="highlight plain">
-            <table>
-              <tr>
-                <td class="gutter"><pre><span class="line">1</span><br></pre></td>
-                <td class="code"><pre><span class="line">sudo gitlab-rake cache:clear</span><br></pre></td>
-              </tr>
-            </table>
-          </figure>
-          <h2 id="12-_u8BBF_u95EE_u6D4B_u8BD5"><a href="#12-_u8BBF_u95EE_u6D4B_u8BD5" class="headerlink" title="12.访问测试"></a>12.访问测试</h2>
-          <p>完成上述步骤之后，访问 <a href="http://localhost:8082" target="_blank" rel="external">http://localhost:8082</a> 应该能正常登陆</p>
-        </div>
-        <footer class="article-footer clearfix">
-          <div class="article-catetags">
-
-            <div class="article-categories">
-              <span></span>
-              <a class="article-category-link" href="/categories/docker/">docker</a>
-            </div>
-
-
-            <div class="article-tags">
-
-              <span></span> <a href="/tags/docker/">docker</a><a href="/tags/gitlab/">gitlab</a>
-            </div>
-
-          </div>
-
-          <div class="article-share" id="share">
-
-            <div data-url="http://starding.github.io/2016/01/18/gitlab-migrate/" data-title="docker-gitlab数据迁移 | 小狐濡尾" data-tsina="null" class="share clearfix">
-            </div>
-
-          </div>
-
-
-        </footer>
-      </article>
-      <nav class="article-nav clearfix">
-
-        <div class="prev">
-          <a href="/2016/01/19/learn-javascript-follow-definitive-guide/" title="javascript犀牛书（第六版）">
-            <strong>上一篇：</strong><br/>
-            <span>
-  javascript犀牛书（第六版）</span>
-          </a>
-        </div>
-
-
-        <div class="next">
-          <a href="/2016/01/15/learn-in-computer-sciense/" title="计算机领域中的概念辨析">
-            <strong>下一篇：</strong><br/>
-            <span>计算机领域中的概念辨析
-</span>
-          </a>
-        </div>
-
-      </nav>
-      <section id="comments" class="comment">
-        <div class="ds-thread" data-thread-key="2016/01/18/gitlab-migrate/" data-title="docker-gitlab数据迁移" data-url="http://starding.github.io/2016/01/18/gitlab-migrate/"></div>
-      </section>
-    </div>
-    <div class="openaside">
-      <a class="navbutton" href="#" title="显示侧边栏"></a>
-    </div>
-
-    <div id="toc" class="toc-aside">
-      <strong class="toc-title">文章目录</strong>
-
-      <ol class="toc">
-        <li class="toc-item toc-level-2"><a class="toc-link" href="#u95EE_u9898_u6765_u6E90_uFF1Adocker_u7684file_system_u795E_u5751"><span class="toc-number">1.</span> <span class="toc-text">问题来源：docker的file system神坑</span></a></li>
-        <li class="toc-item toc-level-2"><a class="toc-link" href="#gitlab_u6570_u636E_u8FC1_u79FB"><span class="toc-number">2.</span> <span class="toc-text">gitlab数据迁移</span></a>
-          <ol class="toc-child">
-            <li class="toc-item toc-level-3"><a class="toc-link" href="#u9047_u5230_u7684_u95EE_u9898"><span class="toc-number">2.1.</span> <span class="toc-text">遇到的问题</span></a></li>
-            <li class="toc-item toc-level-3"><a class="toc-link" href="#u6700_u7EC8_u7684_u89E3_u51B3_u529E_u6CD5"><span class="toc-number">2.2.</span> <span class="toc-text">最终的解决办法</span></a></li>
-          </ol>
-        </li>
-        <li class="toc-item toc-level-2"><a class="toc-link" href="#u9644_u5F55_uFF1A_u4E0B_u9762_u662F_u539F_u6587_uFF08_u5DF2_u7FFB_u8BD1_uFF09"><span class="toc-number">3.</span> <span class="toc-text">附录：下面是原文（已翻译）</span></a></li>
-        <li class="toc-item toc-level-2"><a class="toc-link" href="#1-_u505C_u6B62Gitlab_u5BB9_u5668"><span class="toc-number">4.</span> <span class="toc-text">1.停止Gitlab容器</span></a></li>
-        <li class="toc-item toc-level-2"><a class="toc-link" href="#2-_u5907_u4EFD_u6240_u6709Docker_Volumes__28_u6240_u6709_u7684gitlab_u6587_u4EF6_29"><span class="toc-number">5.</span> <span class="toc-text">2.备份所有Docker Volumes (所有的gitlab文件)</span></a></li>
-        <li class="toc-item toc-level-2"><a class="toc-link" href="#3-_u5907_u4EFDgitlab_u955C_u50CF_uFF08_u53EF_u9009_uFF09"><span class="toc-number">6.</span> <span class="toc-text">3.备份gitlab镜像（可选）</span></a></li>
-        <li class="toc-item toc-level-2">
-          <a class="toc-link" href="#4-_u5220_u9664gitlab_u5BB9_u5668_28__u8BD1_u6CE8__uFF1A_u5982_u679C_u4F60_u662F_u628A_u6570_u636E_u8FC1_u5230_u5176_u4ED6_u670D_u52A1_u5668_u7684docker_gitlab_u5B9E_u4F8B_u4E0B_u7684_u8BDD_uFF0C_u672C_u6B65_u9AA4_u53EF_u9009_29"><span class="toc-number">7.</span> <span class="toc-text">4.删除gitlab容器( 译注 ：如果你是把数据迁到其他服务器的docker gitlab实例下的话，本步骤可选)</span></a>
-        </li>
-        <li class="toc-item toc-level-2"><a class="toc-link" href="#5-_u62C9_u53D6_u6700_u65B0_u7684gitlab_u955C_u50CF"><span class="toc-number">8.</span> <span class="toc-text">5.拉取最新的gitlab镜像</span></a></li>
-        <li class="toc-item toc-level-2"><a class="toc-link" href="#6-_u62C9_u53D6_u5B8C_u6BD5_u540E_uFF0C_u521B_u5EFA_u5E76_u8FD0_u884C_u5BB9_u5668"><span class="toc-number">9.</span> <span class="toc-text">6.拉取完毕后，创建并运行容器</span></a></li>
-        <li class="toc-item toc-level-2"><a class="toc-link" href="#7-_u5BB9_u5668_u542F_u52A8_u540E_uFF0C_u89C2_u5BDF_u8FD0_u884C_u65E5_u5FD7_3A"><span class="toc-number">10.</span> <span class="toc-text">7.容器启动后，观察运行日志:</span></a></li>
-        <li class="toc-item toc-level-2"><a class="toc-link" href="#8-_u7136_u540E_u6211_u4EEC_u9700_u8981_u68C0_u67E5_u6570_u636E_u5E93_u8FC1_u79FB_u662F_u5426_u6210_u529F_u4EE5_u53CA_u907F_u514D_233255_u95EE_u9898_u3002"><span class="toc-number">11.</span> <span class="toc-text">8.然后我们需要检查数据库迁移是否成功以及避免#3255问题。</span></a></li>
-        <li class="toc-item toc-level-2"><a class="toc-link" href="#9-_u7EE7_u7EED_u5728_u5BB9_u5668_u5185_u90E8_u7684bash_shell_u4E0A_uFF0C_u91CD_u65B0_u914D_u7F6Egitlab_3A"><span class="toc-number">12.</span> <span class="toc-text">9.继续在容器内部的bash shell上，重新配置gitlab:</span></a></li>
-        <li class="toc-item toc-level-2"><a class="toc-link" href="#10-_u5982_u679C_u4E00_u5207_u6B63_u5E38_2C__u6267_u884C_u4E0B_u9762_u7684_u547D_u4EE4_3A"><span class="toc-number">13.</span> <span class="toc-text">10.如果一切正常, 执行下面的命令:</span></a></li>
-        <li class="toc-item toc-level-2"><a class="toc-link" href="#11-_u6700_u540E_uFF0C_u6E05_u9664Redis_u7684_u7F13_u5B58"><span class="toc-number">14.</span> <span class="toc-text">11.最后，清除Redis的缓存</span></a></li>
-        <li class="toc-item toc-level-2"><a class="toc-link" href="#12-_u8BBF_u95EE_u6D4B_u8BD5"><span class="toc-number">15.</span> <span class="toc-text">12.访问测试</span></a></li>
-      </ol>
-
-    </div>
-
-    <div id="asidepart">
-      <div class="closeaside">
-        <a class="closebutton" href="#" title="隐藏侧边栏"></a>
-      </div>
-      <aside class="clearfix">
-
-        <div class="github-card">
-          <p class="asidetitle">Github 名片</p>
-          <div class="github-card" data-github="starding" data-width="220" data-height="119" data-theme="medium">
-            <script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
-          </div>
-        </div>
-
-        <div class="doubanshow">
-          <p class="asidetitle">豆瓣秀</p>
-          <div>
-            <script type="text/javascript" src="http://www.douban.com/service/badge/58816601/?show=collection&amp;n=12&amp;columns=3&amp;hidelogo=yes&amp;hideself=yes&amp;cat=book|movie"></script>
-          </div>
-        </div>
-
-        <div class="categorieslist">
-          <p class="asidetitle">分类</p>
-          <ul>
-
-
-            <li><a href="/categories/computer-philosophy/" title="computer philosophy">computer philosophy<sup>2</sup></a></li>
-
-
-
-            <li><a href="/categories/docker/" title="docker">docker<sup>4</sup></a></li>
-
-
-
-            <li><a href="/categories/javascript/" title="javascript">javascript<sup>2</sup></a></li>
-
-
-
-            <li><a href="/categories/open-questions/" title="open-questions">open-questions<sup>1</sup></a></li>
-
-
-
-            <li><a href="/categories/python/" title="python">python<sup>4</sup></a></li>
-
-
-
-            <li><a href="/categories/前端/" title="前端">前端<sup>3</sup></a></li>
-
-
-
-            <li><a href="/categories/技术哲学/" title="技术哲学">技术哲学<sup>2</sup></a></li>
-
-
-
-            <li><a href="/categories/数学/" title="数学">数学<sup>1</sup></a></li>
-
-
-
-            <li><a href="/categories/科学史与科学哲学/" title="科学史与科学哲学">科学史与科学哲学<sup>1</sup></a></li>
-
-
-
-            <li><a href="/categories/算法/" title="算法">算法<sup>1</sup></a></li>
-
-
-
-            <li><a href="/categories/问题/" title="问题">问题<sup>1</sup></a></li>
-
-
-
-            <li><a href="/categories/随笔/" title="随笔">随笔<sup>4</sup></a></li>
-
-
-          </ul>
-        </div>
-
-        <div class="tagslist">
-          <p class="asidetitle">标签</p>
-          <ul class="clearfix">
-
-
-            <li><a href="/tags/python/" title="python">python<sup>4</sup></a></li>
-
-
-
-            <li><a href="/tags/docker/" title="docker">docker<sup>4</sup></a></li>
-
-
-
-            <li><a href="/tags/前端/" title="前端">前端<sup>2</sup></a></li>
-
-
-
-            <li><a href="/tags/随笔/" title="随笔">随笔<sup>2</sup></a></li>
-
-
-
-            <li><a href="/tags/javascript/" title="javascript">javascript<sup>2</sup></a></li>
-
-
-
-            <li><a href="/tags/django/" title="django">django<sup>1</sup></a></li>
-
-
-
-            <li><a href="/tags/open-questions/" title="open-questions">open-questions<sup>1</sup></a></li>
-
-
-
-            <li><a href="/tags/三体/" title="三体">三体<sup>1</sup></a></li>
-
-
-
-            <li><a href="/tags/科学史/" title="科学史">科学史<sup>1</sup></a></li>
-
-
-
-            <li><a href="/tags/computer/" title="computer">computer<sup>1</sup></a></li>
-
-
-
-            <li><a href="/tags/社会达尔文主义/" title="社会达尔文主义">社会达尔文主义<sup>1</sup></a></li>
-
-
-
-            <li><a href="/tags/科学哲学/" title="科学哲学">科学哲学<sup>1</sup></a></li>
-
-
-
-            <li><a href="/tags/行尸走肉/" title="行尸走肉">行尸走肉<sup>1</sup></a></li>
-
-
-
-            <li><a href="/tags/gitlab/" title="gitlab">gitlab<sup>1</sup></a></li>
-
-
-          </ul>
-        </div>
-
-        <div class="linkslist">
-          <p class="asidetitle">友情链接</p>
-          <ul>
-
-            <li>
-
-              <a href="http://phiphicake.blogspot.com" target="_blank" title=" 一个有趣的哲学博客">哲学鸡蛋糕</a>
-
-            </li>
-
-          </ul>
-        </div>
-
-        <div class="rsspart">
-          <a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
-        </div>
-
-      </aside>
-    </div>
+<h2 id="附录：下面是原文（已翻译）"><a href="#附录：下面是原文（已翻译）" class="headerlink" title="附录：下面是原文（已翻译）"></a>附录：下面是原文（已翻译）</h2><p>前几天，我需要将docker部署的gitlab实例从 8.04 版迁移到 8.2.0版本。我完全是按照Gitlab Docker 镜像文档中的步骤进行的，但是出了一堆问题，简直日了狗。不过谢天谢地，在经过数小时的搜索挣扎之后，我终于搞定了。</p>
+<p>在本教程中，假定 Gitlab的volumes存储在 <code>/home/bob/docker-data/gitlab</code> 目录中(当然，你需要根据你的实际目录结构来适当改写本教程)。然后下面是我成功迁移gitlab时遵循的所有步骤:</p>
+<h2 id="1-停止Gitlab容器"><a href="#1-停止Gitlab容器" class="headerlink" title="1.停止Gitlab容器"></a>1.停止Gitlab容器</h2><figure class="highlight docker"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker stop gitlab</div></pre></td></tr></table></figure>
+<h2 id="2-备份所有Docker-Volumes-所有的gitlab文件"><a href="#2-备份所有Docker-Volumes-所有的gitlab文件" class="headerlink" title="2.备份所有Docker Volumes (所有的gitlab文件)"></a>2.备份所有Docker Volumes (所有的gitlab文件)</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">backupDate=$(date +<span class="string">"%Y%m%d%H%M%S"</span>) \</div><div class="line">  &amp;&amp; <span class="built_in">cd</span> /home/bob/docker-data/ \</div><div class="line">  &amp;&amp; sudo tar zvcf gitlab-data-<span class="variable">$&#123;backupDate&#125;</span>.tar.gz gitlab/</div></pre></td></tr></table></figure>
+<h2 id="3-备份gitlab镜像（可选）"><a href="#3-备份gitlab镜像（可选）" class="headerlink" title="3.备份gitlab镜像（可选）"></a>3.备份gitlab镜像（可选）</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker save -o /home/bob/gitlab-ce-image.tar gitlab/gitlab-ce:latest</div></pre></td></tr></table></figure>
+<h2 id="4-删除gitlab容器-译注-：如果你是把数据迁到其他服务器的docker-gitlab实例下的话，本步骤可选"><a href="#4-删除gitlab容器-译注-：如果你是把数据迁到其他服务器的docker-gitlab实例下的话，本步骤可选" class="headerlink" title="4.删除gitlab容器( 译注 ：如果你是把数据迁到其他服务器的docker gitlab实例下的话，本步骤可选)"></a>4.删除gitlab容器( <strong>译注</strong> ：如果你是把数据迁到其他服务器的docker gitlab实例下的话，本步骤可选)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker rm gitlab</div></pre></td></tr></table></figure>
+<h2 id="5-拉取最新的gitlab镜像"><a href="#5-拉取最新的gitlab镜像" class="headerlink" title="5.拉取最新的gitlab镜像"></a>5.拉取最新的gitlab镜像</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo docker pull gitlab/gitlab-ce:latest</div></pre></td></tr></table></figure>
+<h2 id="6-拉取完毕后，创建并运行容器"><a href="#6-拉取完毕后，创建并运行容器" class="headerlink" title="6.拉取完毕后，创建并运行容器"></a>6.拉取完毕后，创建并运行容器</h2><figure class="highlight docker"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">docker <span class="keyword">run</span> -d \</div><div class="line">  --hostname 192.168.1.1 \</div><div class="line">  --publish 8443:443 --publish 8082:80 --publish 2224:22 \</div><div class="line">  --name gitlab \</div><div class="line">  --restart always \</div><div class="line">  --<span class="keyword">volume</span> /etc/localtime:/etc/localtime \</div><div class="line">  --<span class="keyword">volume</span> /home/bob/docker-data/gitlab/config:/etc/gitlab \</div><div class="line">  --<span class="keyword">volume</span> /home/bob/docker-data/gitlab/logs:/var/log/gitlab \</div><div class="line">  --<span class="keyword">volume</span> /home/bob/docker-data/gitlab/data:/var/opt/gitlab \</div><div class="line">  gitlab/gitlab-ce:latest</div></pre></td></tr></table></figure>
+<h2 id="7-容器启动后，观察运行日志"><a href="#7-容器启动后，观察运行日志" class="headerlink" title="7.容器启动后，观察运行日志:"></a>7.容器启动后，观察运行日志:</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker logs -f --tail 10 gitlab</div></pre></td></tr></table></figure>
+<p><strong>日志内容</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line">[2015-11-26T15:12:26+02:00] INFO: Retrying execution of execute[create gitlab database user], 19 attempt(s) left</div><div class="line">[2015-11-26T15:12:28+02:00] INFO: Retrying execution of execute[create gitlab database user], 18 attempt(s) left</div><div class="line">... (some lines omitted) ...</div><div class="line">[2015-11-26T15:13:09+02:00] INFO: Retrying execution of execute[create gitlab database user], 0 attempt(s) left</div><div class="line"> </div><div class="line"> </div><div class="line">Error executing action `run` on resource &apos;execute[create gitlab database user]&apos;</div><div class="line"> </div><div class="line"> </div><div class="line">Mixlib::ShellOut::ShellCommandFailed</div><div class="line"> </div><div class="line">Expected process to exit with [0], but received &apos;2&apos;</div><div class="line">---- Begin output of /opt/gitlab/embedded/bin/psql --port 5432 -h /var/opt/gitlab/postgresql -d template1 -c &quot;CREATE USER gitlab&quot; ----</div><div class="line">STDOUT: </div><div class="line">STDERR: psql: could not connect to server: No such file or directory</div><div class="line">Is the server running locally and accepting</div><div class="line">connections on Unix domain socket &quot;/var/opt/gitlab/postgresql/.s.PGSQL.5432&quot;?</div><div class="line">---- End output of /opt/gitlab/embedded/bin/psql --port 5432 -h /var/opt/gitlab/postgresql -d template1 -c &quot;CREATE USER gitlab&quot; ----</div><div class="line">Ran /opt/gitlab/embedded/bin/psql --port 5432 -h /var/opt/gitlab/postgresql -d template1 -c &quot;CREATE USER gitlab&quot; returned 2</div><div class="line"> </div><div class="line">Resource Declaration:</div><div class="line"> </div><div class="line"># In /opt/gitlab/embedded/cookbooks/cache/cookbooks/gitlab/recipes/postgresql.rb</div><div class="line"> </div><div class="line">153:   execute &quot;create #&#123;sql_user&#125; database user&quot; do</div><div class="line">154:     command &quot;#&#123;bin_dir&#125;/psql --port #&#123;pg_port&#125; -h #&#123;postgresql_socket_dir&#125; -d template1 -c \&quot;CREATE USER #&#123;sql_user&#125;\&quot;&quot;</div><div class="line">155:     user postgresql_user</div><div class="line">156:     # Added retries to give the service time to start on slower systems</div><div class="line">157:     retries 20</div><div class="line">158:     not_if &#123; !pg_helper.is_running? || pg_helper.user_exists?(sql_user) &#125;</div><div class="line">159:   end</div><div class="line">160: </div><div class="line"> </div><div class="line">Compiled Resource:</div><div class="line"> </div><div class="line"># Declared in /opt/gitlab/embedded/cookbooks/cache/cookbooks/gitlab/recipes/postgresql.rb:153:in `block in from_file&apos;</div><div class="line"> </div><div class="line">execute(&quot;create gitlab database user&quot;) do</div><div class="line">action [:run]</div><div class="line">retries 20</div><div class="line">retry_delay 2</div><div class="line">default_guard_interpreter :execute</div><div class="line">command &quot;/opt/gitlab/embedded/bin/psql --port 5432 -h /var/opt/gitlab/postgresql -d template1 -c \&quot;CREATE USER gitlab\&quot;&quot;</div><div class="line">backup 5</div><div class="line">returns 0</div><div class="line">user &quot;gitlab-psql&quot;</div><div class="line">declared_type :execute</div><div class="line">cookbook_name &quot;gitlab&quot;</div><div class="line">recipe_name &quot;postgresql&quot;</div><div class="line">not_if &#123; #code block &#125;</div><div class="line">end</div></pre></td></tr></table></figure>
+<p>有两个已知的权限问题，在 <a href="http://doc.gitlab.com/omnibus/docker/" target="_blank" rel="external">official documentation</a> 和 <a href="https://github.com/gitlabhq/gitlabhq/issues/9611" target="_blank" rel="external">#9611</a> 中描述. 为了解决这两个问题, 执行:</p>
+<figure class="highlight docker"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">docker exec -it gitlab update-permissions</div><div class="line">docker exec gitlab chown -R gitlab-redis /var/opt/gitlab/redis</div></pre></td></tr></table></figure>
+<p>然后重启gitlab容器:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker restart gitlab</div></pre></td></tr></table></figure>
+<h2 id="8-然后我们需要检查数据库迁移是否成功以及避免-3255问题。"><a href="#8-然后我们需要检查数据库迁移是否成功以及避免-3255问题。" class="headerlink" title="8.然后我们需要检查数据库迁移是否成功以及避免#3255问题。"></a>8.然后我们需要检查数据库迁移是否成功以及避免#3255问题。</h2><p>登录到gitlab容器中的shell：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker exec -t -i gitlab /bin/bash</div></pre></td></tr></table></figure>
+<p>检查数据库迁移状况:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo gitlab-rake db:migrate:status</div></pre></td></tr></table></figure>
+<p>如果所有状态都显示为up状态，是没问题的。如果发现down状态，类似下面这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">up     20150920161119  Add line code to sent notification</div><div class="line">down    20150924125150  Add project id to ci commit</div><div class="line">down    20150924125436  Migrate project id for ci commits</div></pre></td></tr></table></figure>
+<p>就必须重新手动执行数据库migration命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo gitlab-rake db:migrate</div></pre></td></tr></table></figure>
+<p>当执行结束时，重新检查数据库migrate状态，确保所有状态都为up：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo gitlab-rake db:migrate:status</div></pre></td></tr></table></figure>
+<h2 id="9-继续在容器内部的bash-shell上，重新配置gitlab"><a href="#9-继续在容器内部的bash-shell上，重新配置gitlab" class="headerlink" title="9.继续在容器内部的bash shell上，重新配置gitlab:"></a>9.继续在容器内部的bash shell上，重新配置gitlab:</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo gitlab-ctl reconfigure</div></pre></td></tr></table></figure>
+<p>然后检查是不是所有内容都正常运行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo gitlab-rake gitlab:check</div></pre></td></tr></table></figure>
+<h2 id="10-如果一切正常-执行下面的命令"><a href="#10-如果一切正常-执行下面的命令" class="headerlink" title="10.如果一切正常, 执行下面的命令:"></a>10.如果一切正常, 执行下面的命令:</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo gitlab-rake gitlab:env:info RAILS_ENV=production</div></pre></td></tr></table></figure>
+<p>会返回类似下面这样的结果:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">System information</div><div class="line">System:   Ubuntu 14.04</div><div class="line">Current User: git</div><div class="line">Using RVM:  no</div><div class="line">Ruby Version: 2.1.7p400</div><div class="line">Gem Version:  2.2.5</div><div class="line">Bundler Version:1.10.6</div><div class="line">Rake Version: 10.4.2</div><div class="line">Sidekiq Version:3.3.0</div><div class="line"> </div><div class="line">GitLab information</div><div class="line">Version:  8.2.0</div><div class="line">Revision: d6bcf44</div><div class="line">Directory:  /opt/gitlab/embedded/service/gitlab-rails</div><div class="line">DB Adapter: postgresql</div><div class="line">URL:    http://192.168.1.1:8082</div><div class="line">HTTP Clone URL: http://192.168.1.1:8082/some-group/some-project.git</div><div class="line">SSH Clone URL:  git@192.168.1.1:some-group/some-project.git</div><div class="line">Using LDAP: yes</div><div class="line">Using Omniauth: no</div><div class="line"> </div><div class="line">GitLab Shell</div><div class="line">Version:  2.6.7</div><div class="line">Repositories: /var/opt/gitlab/git-data/repositories</div><div class="line">Hooks:    /opt/gitlab/embedded/service/gitlab-shell/hooks/</div><div class="line">Git:    /opt/gitlab/embedded/bin/git</div></pre></td></tr></table></figure>
+<h2 id="11-最后，清除Redis的缓存"><a href="#11-最后，清除Redis的缓存" class="headerlink" title="11.最后，清除Redis的缓存"></a>11.最后，清除Redis的缓存</h2><p>不然可能会遇到这个问题： <a href="https://gitlab.com/gitlab-org/gitlab-ce/issues/3619" target="_blank" rel="external">#3619</a> 或这个问题  <a href="https://gitlab.com/gitlab-org/gitlab-ce/issues/3609" target="_blank" rel="external">#3609</a>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo gitlab-rake cache:clear</div></pre></td></tr></table></figure>
+<h2 id="12-访问测试"><a href="#12-访问测试" class="headerlink" title="12.访问测试"></a>12.访问测试</h2><p>完成上述步骤之后，访问 <a href="http://localhost:8082" target="_blank" rel="external">http://localhost:8082</a> 应该能正常登陆</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/docker/">docker</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/docker/">docker</a><a href="/tags/gitlab/">gitlab</a>
   </div>
-  <footer>
-    <div id="footer">
 
-      <div class="line">
-        <span></span>
-        <div class="author"></div>
-      </div>
-
-
-      <section class="info">
-        <p> Hello ,I&#39;m Starding. <br/> This is my blog,believe it or not.</p>
-      </section>
-
-      <div class="social-font" class="clearfix">
-
-
-        <a href="https://github.com/starding" target="_blank" class="icon-github" title="github"></a>
+</div>
 
 
 
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://starding.github.io/2016/01/18/gitlab-migrate/" data-title="docker-gitlab数据迁移 | 小狐濡尾" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/01/19/learn-javascript-follow-definitive-guide/" title="javascript犀牛书（第六版）">
+  <strong>上一篇：</strong><br/>
+  <span>
+  javascript犀牛书（第六版）</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016/01/15/learn-in-computer-sciense/"  title="计算机领域中的概念辨析">
+ <strong>下一篇：</strong><br/> 
+ <span>计算机领域中的概念辨析
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/01/18/gitlab-migrate/" data-title="docker-gitlab数据迁移" data-url="http://starding.github.io/2016/01/18/gitlab-migrate/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#问题来源：docker的file-system神坑"><span class="toc-number">1.</span> <span class="toc-text">问题来源：docker的file system神坑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#gitlab数据迁移"><span class="toc-number">2.</span> <span class="toc-text">gitlab数据迁移</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#遇到的问题"><span class="toc-number">2.1.</span> <span class="toc-text">遇到的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#最终的解决办法"><span class="toc-number">2.2.</span> <span class="toc-text">最终的解决办法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#附录：下面是原文（已翻译）"><span class="toc-number">3.</span> <span class="toc-text">附录：下面是原文（已翻译）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-停止Gitlab容器"><span class="toc-number">4.</span> <span class="toc-text">1.停止Gitlab容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-备份所有Docker-Volumes-所有的gitlab文件"><span class="toc-number">5.</span> <span class="toc-text">2.备份所有Docker Volumes (所有的gitlab文件)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-备份gitlab镜像（可选）"><span class="toc-number">6.</span> <span class="toc-text">3.备份gitlab镜像（可选）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-删除gitlab容器-译注-：如果你是把数据迁到其他服务器的docker-gitlab实例下的话，本步骤可选"><span class="toc-number">7.</span> <span class="toc-text">4.删除gitlab容器( 译注 ：如果你是把数据迁到其他服务器的docker gitlab实例下的话，本步骤可选)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-拉取最新的gitlab镜像"><span class="toc-number">8.</span> <span class="toc-text">5.拉取最新的gitlab镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-拉取完毕后，创建并运行容器"><span class="toc-number">9.</span> <span class="toc-text">6.拉取完毕后，创建并运行容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-容器启动后，观察运行日志"><span class="toc-number">10.</span> <span class="toc-text">7.容器启动后，观察运行日志:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-然后我们需要检查数据库迁移是否成功以及避免-3255问题。"><span class="toc-number">11.</span> <span class="toc-text">8.然后我们需要检查数据库迁移是否成功以及避免#3255问题。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-继续在容器内部的bash-shell上，重新配置gitlab"><span class="toc-number">12.</span> <span class="toc-text">9.继续在容器内部的bash shell上，重新配置gitlab:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-如果一切正常-执行下面的命令"><span class="toc-number">13.</span> <span class="toc-text">10.如果一切正常, 执行下面的命令:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-最后，清除Redis的缓存"><span class="toc-number">14.</span> <span class="toc-text">11.最后，清除Redis的缓存</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-访问测试"><span class="toc-number">15.</span> <span class="toc-text">12.访问测试</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="starding" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
 
 
 
-        <a href="https://www.douban.com/people/58816601" target="_blank" class="icon-douban" title="豆瓣"></a>
+  
+
+<div class="doubanshow">
+<p class="asidetitle">豆瓣秀</p>
+<div>
+<script type="text/javascript" src="http://www.douban.com/service/badge/58816601/?show=collection&amp;n=12&amp;columns=3&amp;hidelogo=yes&amp;hideself=yes&amp;cat=book|movie" ></script>
+</div>
+</div>
 
 
-        <a href="http://www.zhihu.com/people/starstarding" target="_blank" class="icon-zhihu" title="知乎"></a>
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/computer-philosophy/" title="computer philosophy">computer philosophy<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/docker/" title="docker">docker<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/javascript/" title="javascript">javascript<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/open-questions/" title="open-questions">open-questions<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/python/" title="python">python<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/前端/" title="前端">前端<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/技术哲学/" title="技术哲学">技术哲学<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/数学/" title="数学">数学<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/科学史与科学哲学/" title="科学史与科学哲学">科学史与科学哲学<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/算法/" title="算法">算法<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/问题/" title="问题">问题<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/随笔/" title="随笔">随笔<sup>4</sup></a></li>
+		  
+		
+		</ul>
+</div>
 
 
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/python/" title="python">python<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/docker/" title="docker">docker<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/前端/" title="前端">前端<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/随笔/" title="随笔">随笔<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/javascript/" title="javascript">javascript<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/科学哲学/" title="科学哲学">科学哲学<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/computer/" title="computer">computer<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/gitlab/" title="gitlab">gitlab<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/open-questions/" title="open-questions">open-questions<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/django/" title="django">django<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/科学史/" title="科学史">科学史<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/三体/" title="三体">三体<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/行尸走肉/" title="行尸走肉">行尸走肉<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/社会达尔文主义/" title="社会达尔文主义">社会达尔文主义<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
 
-        <a href="mailto:starding@buaa.edu.cn" target="_blank" class="icon-email" title="Email Me"></a>
 
-      </div>
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://phiphicake.blogspot.com" target="_blank" title=" 一个有趣的哲学博客">哲学鸡蛋糕</a>
+            
+          </li>
+        
+    </ul>
+</div>
 
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
 
-
-      <p class="copyright">
-        Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016
-
-
-        <a href="/about" target="_blank" title="starding">starding</a>
-
-
-        <br> 本站总访问量
-        <span id="busuanzi_value_site_pv"></span>次 本站访客数
-        <span id="busuanzi_value_site_uv"></span>人次 本文总阅读量
-        <span id="busuanzi_value_page_pv"></span>次
-      </p>
+</aside>
+</div>
     </div>
-  </footer>
-  <script src="/js/jquery-2.0.3.min.js"></script>
-  <script src="/js/jquery.imagesloaded.min.js"></script>
-  <script src="/js/gallery.js"></script>
-  <script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Starding. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/starding" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		<a href="https://www.douban.com/people/58816601" target="_blank" class="icon-douban" title="豆瓣"></a>
+		
+		
+		<a href="http://www.zhihu.com/people/starstarding" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		
+		<a href="mailto:starding@buaa.edu.cn" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
 
-  <script type="text/javascript">
-    $(document).ready(function() {
-      $('.navbar').click(function() {
-        $('header nav').toggleClass('shownav');
-      });
-      var myWidth = 0;
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
 
-      function getSize() {
-        if (typeof(window.innerWidth) == 'number') {
-          myWidth = window.innerWidth;
-        } else if (document.documentElement && document.documentElement.clientWidth) {
-          myWidth = document.documentElement.clientWidth;
-        };
-      };
-      var m = $('#main'),
-        a = $('#asidepart'),
-        c = $('.closeaside'),
-        o = $('.openaside');
-      c.click(function() {
-        a.addClass('fadeOut').css('display', 'none');
-        o.css('display', 'block').addClass('fadeIn');
-        m.addClass('moveMain');
-      });
-      o.click(function() {
-        o.css('display', 'none').removeClass('beforeFadeIn');
-        a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');
-        m.removeClass('moveMain');
-      });
-      $(window).scroll(function() {
-        o.css("top", Math.max(80, 260 - $(this).scrollTop()));
-      });
+		
+		<a href="/about" target="_blank" title="starding">starding</a>
+		
 
-      $(window).resize(function() {
-        getSize();
-        if (myWidth >= 1024) {
-          $('header nav').removeClass('shownav');
-        } else {
-          m.removeClass('moveMain');
-          a.css('display', 'block').removeClass('fadeOut');
-          o.css('display', 'none');
+	    <br>	
+        本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        本站访客数<span id="busuanzi_value_site_uv"></span>人次
+        本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
 
-          $('#toc.toc-aside').css('display', 'none');
-
-        }
-      });
-    });
-  </script>
-
-  <script type="text/javascript">
-    $(document).ready(function() {
-      var ai = $('.article-content>iframe'),
-        ae = $('.article-content>embed'),
-        t = $('#toc'),
-        ta = $('#toc.toc-aside'),
-        o = $('.openaside'),
-        c = $('.closeaside');
-      if (ai.length > 0) {
-        ai.wrap('<div class="video-container" />');
-      };
-      if (ae.length > 0) {
-        ae.wrap('<div class="video-container" />');
-      };
-      c.click(function() {
-        ta.css('display', 'block').addClass('fadeIn');
-      });
-      o.click(function() {
-        ta.css('display', 'none');
-      });
-      $(window).scroll(function() {
-        ta.css("top", Math.max(140, 320 - $(this).scrollTop()));
-      });
-    });
-  </script>
-
-
-  <script type="text/javascript">
-    $(document).ready(function() {
-      var $this = $('.share'),
-        url = $this.attr('data-url'),
-        encodedUrl = encodeURIComponent(url),
-        title = $this.attr('data-title'),
-        tsina = $this.attr('data-tsina'),
-        description = $this.attr('description');
-      var html = [
-        '<div class="hoverqrcode clearfix"></div>',
-        '<a class="overlay" id="qrcode"></a>',
-        '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
-        '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
-        '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
-        '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title + '" class="article-share-renren" target="_blank" title="人人"></a>',
-        '<a href="http://service.weibo.com/share/share.php?title=' + title + '&url=' + encodedUrl + '&ralateUid=' + tsina + '&searchPic=true&style=number' + '" class="article-share-weibo" target="_blank" title="微博"></a>',
-        '<span title="Share to"></span>'
-      ].join('');
-      $this.append(html);
-
-      $('.hoverqrcode').hide();
-
-      var myWidth = 0;
-
-      function updatehoverqrcode() {
-        if (typeof(window.innerWidth) == 'number') {
-          myWidth = window.innerWidth;
-        } else if (document.documentElement && document.documentElement.clientWidth) {
-          myWidth = document.documentElement.clientWidth;
-        };
-        var qrsize = myWidth > 1024 ? 200 : 100;
-        var options = {
-          render: 'image',
-          size: qrsize,
-          fill: '#2ca6cb',
-          text: url,
-          radius: 0.5,
-          quiet: 1
-        };
-        var p = $('.article-share-qrcode').position();
-        $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
-          .css('left', p.left - qrsize / 2 + 20).css('top', p.top - qrsize - 10)
-          .qrcode(options);
-      };
-      $(window).resize(function() {
-        $('.hoverqrcode').hide();
-      });
-      $('.article-share-qrcode').click(function() {
-        updatehoverqrcode();
-        $('.hoverqrcode').toggle();
-      });
-      $('.article-share-qrcode').hover(function() {}, function() {
-        $('.hoverqrcode').hide();
-      });
-    });
-  </script>
-
-
-
-  <script type="text/javascript">
-    var duoshuoQuery = {
-      short_name: "starding"
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
     };
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';
-      ds.async = true;
-      ds.src = '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"starding"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
 
 
 
@@ -793,91 +589,106 @@
 
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
-  <script type="text/javascript">
-    $(document).ready(function() {
-      $('.article-content').each(function(i) {
-        $(this).find('img').each(function() {
-          if ($(this).parent().hasClass('fancybox')) return;
-          var alt = this.alt;
-          if (alt) $(this).after('<span class="caption">' + alt + '</span>');
-          $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
-        });
-        $(this).find('.fancybox').each(function() {
-          $(this).attr('rel', 'article' + i);
-        });
-      });
-      if ($.fancybox) {
-        $('.fancybox').fancybox();
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-72215789-1', 'auto');  
+ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?01f9e8011679173931cf24fe647483cf";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
       }
     });
-  </script>
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 
 
+<!-- MathJax End -->
 
-  <!-- Analytics Begin -->
-  <script type="text/javascript">
-    (function(i, s, o, g, r, a, m) {
-      i['GoogleAnalyticsObject'] = r;
-      i[r] = i[r] || function() {
-        (i[r].q = i[r].q || []).push(arguments)
-      }, i[r].l = 1 * new Date();
-      a = s.createElement(o),
-        m = s.getElementsByTagName(o)[0];
-      a.async = 1;
-      a.src = g;
-      m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-    ga('create', 'UA-72215789-1', 'auto');
-    ga('send', 'pageview');
-  </script>
+<!-- Tiny_search Begin -->
 
+<!-- Tiny_search End -->
 
+<!--不蒜子-->
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
-  <script>
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "//hm.baidu.com/hm.js?01f9e8011679173931cf24fe647483cf";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
-  <!-- Analytics End -->
-
-  <!-- Totop Begin -->
-  <div id="totop">
-    <a title="返回顶部"><img src="/img/scrollup.png" /></a>
-  </div>
-  <script src="/js/totop.js"></script>
-  <!-- Totop End -->
-
-  <!-- MathJax Begin -->
-  <!-- mathjax config similar to math.stackexchange -->
-
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
-  </script>
-
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({ tex2jax: { skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] } });
-  </script>
-
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() { var all = MathJax.Hub.getAllJax(), i; for(i=0; i
-    < all.length; i +=1 ) { all[i].SourceElement().parentNode.className +=' has-jax' ; } }); </script>
-
-      <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-      </script>
-      <!-- MathJax End -->
-
-      <!-- Tiny_search Begin -->
-
-      <!-- Tiny_search End -->
-
-      <!--不蒜子-->
-      <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-</body>
-
+  </body>
 </html>

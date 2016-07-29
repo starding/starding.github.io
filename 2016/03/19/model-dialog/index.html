@@ -1,596 +1,563 @@
-<!DOCTYPE HTML>
-<html lang="zh-CN">
 
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
+  
+    <title>什么是模态框 | 小狐濡尾</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="starding">
+    
 
-  <title>什么是模态框 | 小狐濡尾</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="description" content="什么是模态框（modal dialog）问题来源在学习前端的时候，我遇到一个让人费解的词：「模态框」，它对应一种特殊的弹出式窗口。而且一时之间很难说清楚到底特殊在什么地方，以及这样的弹窗与其他类型窗体的核心区别在哪里。与「对话框」，「面板」这些比较直白的词汇不同，「模态」这个词处处透漏着一种玄乎的感觉，很难直观的感受到它到底是个啥，又想要通过这个词来表达什么，你会不自觉的感到困惑：啥叫模态？
+在计">
+<meta property="og:type" content="article">
+<meta property="og:title" content="什么是模态框">
+<meta property="og:url" content="http://starding.github.io/2016/03/19/model-dialog/index.html">
+<meta property="og:site_name" content="小狐濡尾">
+<meta property="og:description" content="什么是模态框（modal dialog）问题来源在学习前端的时候，我遇到一个让人费解的词：「模态框」，它对应一种特殊的弹出式窗口。而且一时之间很难说清楚到底特殊在什么地方，以及这样的弹窗与其他类型窗体的核心区别在哪里。与「对话框」，「面板」这些比较直白的词汇不同，「模态」这个词处处透漏着一种玄乎的感觉，很难直观的感受到它到底是个啥，又想要通过这个词来表达什么，你会不自觉的感到困惑：啥叫模态？
+在计">
+<meta property="og:updated_time" content="2016-03-19T12:49:58.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="什么是模态框">
+<meta name="twitter:description" content="什么是模态框（modal dialog）问题来源在学习前端的时候，我遇到一个让人费解的词：「模态框」，它对应一种特殊的弹出式窗口。而且一时之间很难说清楚到底特殊在什么地方，以及这样的弹窗与其他类型窗体的核心区别在哪里。与「对话框」，「面板」这些比较直白的词汇不同，「模态」这个词处处透漏着一种玄乎的感觉，很难直观的感受到它到底是个啥，又想要通过这个词来表达什么，你会不自觉的感到困惑：啥叫模态？
+在计">
 
-  <meta name="author" content="starding">
-
-
-
-  <meta name="description" content="什么是模态框（modal dialog）
-问题来源
-在学习前端的时候，我遇到一个让人费解的词：「模态框」，它对应一种特殊的弹出式窗口。而且一时之间很难说清楚到底特殊在什么地方，以及这样的弹窗与其他类型窗体的核心区别在哪里。与「对话框」，「面板」这些比较直白的词汇不同，「模态」这个词处处透漏着一种玄乎的感觉，很难直观的感受到它到底是个啥，又想要通过这个词来表达什么，你会不自觉的感到困惑：啥叫模态？">
-  <meta property="og:type" content="article">
-  <meta property="og:title" content="什么是模态框">
-  <meta property="og:url" content="http://starding.github.io/2016/03/19/model-dialog/index.html">
-  <meta property="og:site_name" content="小狐濡尾">
-  <meta property="og:description" content="什么是模态框（modal dialog）
-问题来源
-在学习前端的时候，我遇到一个让人费解的词：「模态框」，它对应一种特殊的弹出式窗口。而且一时之间很难说清楚到底特殊在什么地方，以及这样的弹窗与其他类型窗体的核心区别在哪里。与「对话框」，「面板」这些比较直白的词汇不同，「模态」这个词处处透漏着一种玄乎的感觉，很难直观的感受到它到底是个啥，又想要通过这个词来表达什么，你会不自觉的感到困惑：啥叫模态？">
-  <meta property="og:updated_time" content="2016-03-19T12:49:58.000Z">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="什么是模态框">
-  <meta name="twitter:description" content="什么是模态框（modal dialog）
-问题来源
-在学习前端的时候，我遇到一个让人费解的词：「模态框」，它对应一种特殊的弹出式窗口。而且一时之间很难说清楚到底特殊在什么地方，以及这样的弹窗与其他类型窗体的核心区别在哪里。与「对话框」，「面板」这些比较直白的词汇不同，「模态」这个词处处透漏着一种玄乎的感觉，很难直观的感受到它到底是个啥，又想要通过这个词来表达什么，你会不自觉的感到困惑：啥叫模态？">
-
-
-  <link rel="alternative" href="/atom.xml" title="小狐濡尾" type="application/atom+xml">
-
-
-  <link rel="icon" href="/img/my_favicon.ico">
-
-
-  <link rel="apple-touch-icon" href="/img/jacman.jpg">
-  <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
-
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
+    
+    <link rel="alternative" href="/atom.xml" title="小狐濡尾" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/my_favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<body>
-  <header>
-    <div>
-
-      <div id="imglogo">
-        <a href="/"><img src="/img/my_white_logo.png" alt="小狐濡尾" title="小狐濡尾" /></a>
-      </div>
-
-      <div id="textlogo">
-        <h1 class="site-name"><a href="/" title="小狐濡尾">小狐濡尾</a></h1>
-        <h2 class="blog-motto">未济</h2>
-      </div>
-      <div class="navbar">
-        <a class="navbutton navmobile" href="#" title="菜单">
-        </a>
-      </div>
-      <nav class="animated">
-        <ul>
-          <ul>
-
-            <li><a href="/">主页 | Home</a></li>
-
-            <li><a href="/index">索引 | Index</a></li>
-
-            <li><a href="/archives">归档 | Archives</a></li>
-
-            <li><a href="/about">简介 | About</a></li>
-
-            <li>
-
-              <form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
-                <label>Search</label>
-                <input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
-                <input type="hidden" name="q" value="site:starding.github.io">
-              </form>
-
-            </li>
-          </ul>
-      </nav>
-    </div>
-  </header>
-  <div id="container">
-    <div id="main" class="post" itemscope itemprop="blogPost">
-
-      <article itemprop="articleBody">
-        <header class="article-info clearfix">
-          <h1 itemprop="name">
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/my_white_logo.png" alt="小狐濡尾" title="小狐濡尾"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="小狐濡尾">小狐濡尾</a></h1>
+				<h2 class="blog-motto">未济</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页 | Home</a></li>
+					
+						<li><a href="/index">索引 | Index</a></li>
+					
+						<li><a href="/archives">归档 | Archives</a></li>
+					
+						<li><a href="/about">简介 | About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:starding.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
     
       <a href="/2016/03/19/model-dialog/" title="什么是模态框" itemprop="url">什么是模态框</a>
   </h1>
-          <p class="article-author">By
+  <p class="article-author">By
+       
+		<a href="/about" title="starding" target="_blank" itemprop="author">starding</a>
+		
+  <p class="article-time">
+    <time datetime="2016-03-19T05:19:32.000Z" itemprop="datePublished"> 发表于 2016-03-19</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#什么是模态框（modal-dialog）"><span class="toc-number">1.</span> <span class="toc-text">什么是模态框（modal dialog）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#问题来源"><span class="toc-number">1.1.</span> <span class="toc-text">问题来源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是「模态」？"><span class="toc-number">1.2.</span> <span class="toc-text">什么是「模态」？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是「模态框」"><span class="toc-number">1.3.</span> <span class="toc-text">什么是「模态框」</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#model-window"><span class="toc-number">1.3.1.</span> <span class="toc-text">model window</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#「非模态」"><span class="toc-number">1.4.</span> <span class="toc-text">「非模态」</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<h1 id="什么是模态框（modal-dialog）"><a href="#什么是模态框（modal-dialog）" class="headerlink" title="什么是模态框（modal dialog）"></a>什么是模态框（modal dialog）</h1><h2 id="问题来源"><a href="#问题来源" class="headerlink" title="问题来源"></a>问题来源</h2><p>在学习前端的时候，我遇到一个让人费解的词：「模态框」，它对应一种特殊的弹出式窗口。而且一时之间很难说清楚到底特殊在什么地方，以及这样的弹窗与其他类型窗体的核心区别在哪里。与「对话框」，「面板」这些比较直白的词汇不同，「模态」这个词处处透漏着一种玄乎的感觉，很难直观的感受到它到底是个啥，又想要通过这个词来表达什么，你会不自觉的感到困惑：啥叫模态？</p>
+<p>在计算机领域的词汇中，我一直抱有这样一种信念：如果一个词汇显得玄乎，那它背后肯定隐藏着更多的东西，或许是某些<a href="http://metaphor.space/2016/02/26/metaphor/" target="_blank" rel="external">隐喻</a>，或许是一些更深层次的设计原理等等。无论如何，都值得去好好调查一番这些词汇背后的含义，可能这些小小的词汇就成了通往一个个饶有趣味的世界的门径。</p>
+<h2 id="什么是「模态」？"><a href="#什么是「模态」？" class="headerlink" title="什么是「模态」？"></a>什么是「模态」？</h2><p>要理解模态框的含义，除了先用眼睛看看这个词汇对应的东西到底是个啥（可以找bootstrap的模态框组件体验）之外，最应该干的事情，就是先搞明白「模态」的含义了。</p>
+<p><strong>模态，英文词汇叫modal</strong></p>
+<p>先看看「模态」的字典解释：模式的，情态的，形式的。</p>
+<p>再看看使用这个词汇组合出来的一些让人莫名其妙的专业词汇。</p>
+<ul>
+<li>模态分析</li>
+<li>模态矩阵</li>
+<li>模态逻辑</li>
+<li>模态框</li>
+</ul>
+<p>我们可以猜想一下这个词汇的引入情景，或者说从英文词汇modal翻译成汉语的情形：想要表达一种特定状态下的内容，那该怎么翻译比较好呢？我们知道「模型」这个词有「一种事物的固定抽象」的含义，那么它可以表达一种「固定模式的含义」，而「状态」一词，可以表示事物在某种情形下的表现。这两者结合一下，「模态」这个词便呼之欲出了。当然，实际的翻译和词汇创造肯定远远比上面描述的情况复杂，但核心思想是一致的，也即：如何信达雅的表示出一个事物的概念。</p>
+<p>经过这样的分析，我们可以说算是对「模态」这个词稍有了解了，它指的是<strong>某种特定的状态</strong>。</p>
+<p>这个时候再来看看上面那些专业词汇，就比较容易理解了，也就是说他们都有一种<strong>「研究某些特定状态下的事物」</strong>的意思。</p>
+<h2 id="什么是「模态框」"><a href="#什么是「模态框」" class="headerlink" title="什么是「模态框」"></a>什么是「模态框」</h2><p>有了上面的词汇理解基础，我们可以继续往下说模态框的概念了。从字面意思上来看，它指的应当是「某种特定状态下的窗体」。</p>
+<p>当然，仅仅这样来看，可能仍然有些难以理解。这是因为我们缺了另外一些东西造成的，缺少的就是「模态框」这个东西使用的语境，只有加入这些内容才能让我们的理解完整。</p>
+<p>那么模态框使用的语境是什么？当然，这个词是在软件领域产生的，我们可以先看看普通的软件使用流程。在使用软件的时候，我们一般都会按照自己的思路一步步操作，比如我们在使用一个购物系统，我们会按照我们对这个软件的固有理解来执行自己脑中的流程：选购商品，加入购物车，下单付款等等。这些流程可以说是我们使用软件时的一种<strong>「正常状态」</strong>。</p>
+<p>「模态框」这种『特定状态下的窗体』正是相对于上面叙述的这种「正常状态」来说的。模态框是出于一种特定状态下的窗体，<strong>它会把我们从正常状态中中断出来，将关注点放在这个特定状态的处理上。</strong>可以看看模态框的实际表现：当模态框出现的时候，它会屏蔽掉所有其他操作，用户可关注的范围只限于当前的模态框内部，除非你特意去关闭这个模态框，结束这种中断，回到原先正常的流程中去。</p>
+<p>上面所描述的就是模态框的核心思想。其实准确地说，模态框是一个UI设计领域的概念，维基百科的定义是：</p>
+<blockquote>
+<h3 id="model-window"><a href="#model-window" class="headerlink" title="model window"></a>model window</h3><p>In user interface design, a modal window is a graphical control element subordinate to an application’s main window which creates a mode where the main window can’t be used. The modal window is a child window that requires users to interact with it before it can return to operating the parent application, thus preventing the workflow on the application main window. Modal windows are often called heavy windows or modal dialogs because the window is often used to display a dialog box.</p>
+<p>Modal windows are commonly used in GUI systems to command user awareness and to display emergency states, although they have been argued to be ineffective for that use. Modal windows are prone to produce mode errors.</p>
+</blockquote>
+<p>当然模态框这种设计理念，暗含着一种强制性的思路。它强制用户的关注点从正常思维流中抽出来，来关注模态框内的内容，有些强制思考的意味。这种设计理念一般用在比较危险的操作的提示上。</p>
+<p>但是对模态框的批评也是多种多样，主要是批评这种强制性的设计思路，以及它是否应被更好的方案代替等等，更有些观点宣称模态框是「邪恶的」。关于这些批评，可以参考下面一些资料：</p>
+<ul>
+<li><a href="http://stackoverflow.com/questions/361493/why-are-modal-dialog-boxes-evil" target="_blank" rel="external">Why are modal dialog boxes evil?</a></li>
+<li><a href="http://alistapart.com/article/neveruseawarning" target="_blank" rel="external">Never Use a Warning When you Mean Undo</a></li>
+</ul>
+<h2 id="「非模态」"><a href="#「非模态」" class="headerlink" title="「非模态」"></a>「非模态」</h2><p>有模态的概念，当然也有非模态的概念，关于非模态概念，本文暂时按下不表。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
 
-            <a href="/about" title="starding" target="_blank" itemprop="author">starding</a>
-
-            <p class="article-time">
-              <time datetime="2016-03-19T05:19:32.000Z" itemprop="datePublished"> 发表于 2016-03-19</time>
-
-            </p>
-        </header>
-        <div class="article-content">
-
-          <div id="toc" class="toc-article">
-            <strong class="toc-title">文章目录</strong>
-
-            <ol class="toc">
-              <li class="toc-item toc-level-1"><a class="toc-link" href="#u4EC0_u4E48_u662F_u6A21_u6001_u6846_uFF08modal_dialog_uFF09"><span class="toc-number">1.</span> <span class="toc-text">什么是模态框（modal dialog）</span></a>
-                <ol class="toc-child">
-                  <li class="toc-item toc-level-2"><a class="toc-link" href="#u95EE_u9898_u6765_u6E90"><span class="toc-number">1.1.</span> <span class="toc-text">问题来源</span></a></li>
-                  <li class="toc-item toc-level-2"><a class="toc-link" href="#u4EC0_u4E48_u662F_u300C_u6A21_u6001_u300D_uFF1F"><span class="toc-number">1.2.</span> <span class="toc-text">什么是「模态」？</span></a></li>
-                  <li class="toc-item toc-level-2"><a class="toc-link" href="#u4EC0_u4E48_u662F_u300C_u6A21_u6001_u6846_u300D"><span class="toc-number">1.3.</span> <span class="toc-text">什么是「模态框」</span></a>
-                    <ol class="toc-child">
-                      <li class="toc-item toc-level-3"><a class="toc-link" href="#model_window"><span class="toc-number">1.3.1.</span> <span class="toc-text">model window</span></a></li>
-                    </ol>
-                  </li>
-                  <li class="toc-item toc-level-2"><a class="toc-link" href="#u300C_u975E_u6A21_u6001_u300D"><span class="toc-number">1.4.</span> <span class="toc-text">「非模态」</span></a></li>
-                </ol>
-              </li>
-            </ol>
-
-          </div>
-
-          <h1 id="u4EC0_u4E48_u662F_u6A21_u6001_u6846_uFF08modal_dialog_uFF09"><a href="#u4EC0_u4E48_u662F_u6A21_u6001_u6846_uFF08modal_dialog_uFF09" class="headerlink" title="什么是模态框（modal dialog）"></a>什么是模态框（modal dialog）</h1>
-          <h2 id="u95EE_u9898_u6765_u6E90"><a href="#u95EE_u9898_u6765_u6E90" class="headerlink" title="问题来源"></a>问题来源</h2>
-          <p>在学习前端的时候，我遇到一个让人费解的词：「模态框」，它对应一种特殊的弹出式窗口。而且一时之间很难说清楚到底特殊在什么地方，以及这样的弹窗与其他类型窗体的核心区别在哪里。与「对话框」，「面板」这些比较直白的词汇不同，「模态」这个词处处透漏着一种玄乎的感觉，很难直观的感受到它到底是个啥，又想要通过这个词来表达什么，你会不自觉的感到困惑：啥叫模态？</p>
-          <p>在计算机领域的词汇中，我一直抱有这样一种信念：如果一个词汇显得玄乎，那它背后肯定隐藏着更多的东西，或许是某些<a href="http://metaphor.space/2016/02/26/metaphor/" target="_blank" rel="external">隐喻</a>，或许是一些更深层次的设计原理等等。无论如何，都值得去好好调查一番这些词汇背后的含义，可能这些小小的词汇就成了通往一个个饶有趣味的世界的门径。</p>
-          <h2 id="u4EC0_u4E48_u662F_u300C_u6A21_u6001_u300D_uFF1F"><a href="#u4EC0_u4E48_u662F_u300C_u6A21_u6001_u300D_uFF1F" class="headerlink" title="什么是「模态」？"></a>什么是「模态」？</h2>
-          <p>要理解模态框的含义，除了先用眼睛看看这个词汇对应的东西到底是个啥（可以找bootstrap的模态框组件体验）之外，最应该干的事情，就是先搞明白「模态」的含义了。</p>
-          <p><strong>模态，英文词汇叫modal</strong></p>
-          <p>先看看「模态」的字典解释：模式的，情态的，形式的。</p>
-          <p>再看看使用这个词汇组合出来的一些让人莫名其妙的专业词汇。</p>
-          <ul>
-            <li>模态分析</li>
-            <li>模态矩阵</li>
-            <li>模态逻辑</li>
-            <li>模态框</li>
-          </ul>
-          <p>我们可以猜想一下这个词汇的引入情景，或者说从英文词汇modal翻译成汉语的情形：想要表达一种特定状态下的内容，那该怎么翻译比较好呢？我们知道「模型」这个词有「一种事物的固定抽象」的含义，那么它可以表达一种「固定模式的含义」，而「状态」一词，可以表示事物在某种情形下的表现。这两者结合一下，「模态」这个词便呼之欲出了。当然，实际的翻译和词汇创造肯定远远比上面描述的情况复杂，但核心思想是一致的，也即：如何信达雅的表示出一个事物的概念。</p>
-          <p>经过这样的分析，我们可以说算是对「模态」这个词稍有了解了，它指的是<strong>某种特定的状态</strong>。</p>
-          <p>这个时候再来看看上面那些专业词汇，就比较容易理解了，也就是说他们都有一种<strong>「研究某些特定状态下的事物」</strong>的意思。</p>
-          <h2 id="u4EC0_u4E48_u662F_u300C_u6A21_u6001_u6846_u300D"><a href="#u4EC0_u4E48_u662F_u300C_u6A21_u6001_u6846_u300D" class="headerlink" title="什么是「模态框」"></a>什么是「模态框」</h2>
-          <p>有了上面的词汇理解基础，我们可以继续往下说模态框的概念了。从字面意思上来看，它指的应当是「某种特定状态下的窗体」。</p>
-          <p>当然，仅仅这样来看，可能仍然有些难以理解。这是因为我们缺了另外一些东西造成的，缺少的就是「模态框」这个东西使用的语境，只有加入这些内容才能让我们的理解完整。</p>
-          <p>那么模态框使用的语境是什么？当然，这个词是在软件领域产生的，我们可以先看看普通的软件使用流程。在使用软件的时候，我们一般都会按照自己的思路一步步操作，比如我们在使用一个购物系统，我们会按照我们对这个软件的固有理解来执行自己脑中的流程：选购商品，加入购物车，下单付款等等。这些流程可以说是我们使用软件时的一种<strong>「正常状态」</strong>。</p>
-          <p>「模态框」这种『特定状态下的窗体』正是相对于上面叙述的这种「正常状态」来说的。模态框是出于一种特定状态下的窗体，<strong>它会把我们从正常状态中中断出来，将关注点放在这个特定状态的处理上。</strong>可以看看模态框的实际表现：当模态框出现的时候，它会屏蔽掉所有其他操作，用户可关注的范围只限于当前的模态框内部，除非你特意去关闭这个模态框，结束这种中断，回到原先正常的流程中去。</p>
-          <p>上面所描述的就是模态框的核心思想。其实准确地说，模态框是一个UI设计领域的概念，维基百科的定义是：</p>
-          <blockquote>
-            <h3 id="model_window"><a href="#model_window" class="headerlink" title="model window"></a>model window</h3>
-            <p>In user interface design, a modal window is a graphical control element subordinate to an application’s main window which creates a mode where the main window can’t be used. The modal window is a child window that requires users to interact
-              with it before it can return to operating the parent application, thus preventing the workflow on the application main window. Modal windows are often called heavy windows or modal dialogs because the window is often used to display a dialog
-              box.</p>
-            <p>Modal windows are commonly used in GUI systems to command user awareness and to display emergency states, although they have been argued to be ineffective for that use. Modal windows are prone to produce mode errors.</p>
-          </blockquote>
-          <p>当然模态框这种设计理念，暗含着一种强制性的思路。它强制用户的关注点从正常思维流中抽出来，来关注模态框内的内容，有些强制思考的意味。这种设计理念一般用在比较危险的操作的提示上。</p>
-          <p>但是对模态框的批评也是多种多样，主要是批评这种强制性的设计思路，以及它是否应被更好的方案代替等等，更有些观点宣称模态框是「邪恶的」。关于这些批评，可以参考下面一些资料：</p>
-          <ul>
-            <li><a href="http://stackoverflow.com/questions/361493/why-are-modal-dialog-boxes-evil" target="_blank" rel="external">Why are modal dialog boxes evil?</a></li>
-            <li><a href="http://alistapart.com/article/neveruseawarning" target="_blank" rel="external">Never Use a Warning When you Mean Undo</a></li>
-          </ul>
-          <h2 id="u300C_u975E_u6A21_u6001_u300D"><a href="#u300C_u975E_u6A21_u6001_u300D" class="headerlink" title="「非模态」"></a>「非模态」</h2>
-          <p>有模态的概念，当然也有非模态的概念，关于非模态概念，本文暂时按下不表。</p>
-        </div>
-        <footer class="article-footer clearfix">
-          <div class="article-catetags">
-
-            <div class="article-categories">
-              <span></span>
-              <a class="article-category-link" href="/categories/前端/">前端</a>
-            </div>
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/前端/">前端</a>
+</div>
 
 
-          </div>
-
-          <div class="article-share" id="share">
-
-            <div data-url="http://starding.github.io/2016/03/19/model-dialog/" data-title="什么是模态框 | 小狐濡尾" data-tsina="null" class="share clearfix">
-            </div>
-
-          </div>
+</div>
 
 
-        </footer>
-      </article>
-      <nav class="article-nav clearfix">
 
-        <div class="prev">
-          <a href="/2016/04/04/somethings-about-ellipse/" title="关于圆锥曲线光学性质的有趣解释(证明与原因)">
-            <strong>上一篇：</strong><br/>
-            <span>
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://starding.github.io/2016/03/19/model-dialog/" data-title="什么是模态框 | 小狐濡尾" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/04/04/somethings-about-ellipse/" title="关于圆锥曲线光学性质的有趣解释(证明与原因)">
+  <strong>上一篇：</strong><br/>
+  <span>
   关于圆锥曲线光学性质的有趣解释(证明与原因)</span>
-          </a>
-        </div>
+</a>
+</div>
 
 
-        <div class="next">
-          <a href="/2016/03/19/html5-design-principle/" title="html5设计原理">
-            <strong>下一篇：</strong><br/>
-            <span>html5设计原理
+<div class="next">
+<a href="/2016/03/19/html5-design-principle/"  title="html5设计原理">
+ <strong>下一篇：</strong><br/> 
+ <span>html5设计原理
 </span>
-          </a>
-        </div>
+</a>
+</div>
 
-      </nav>
-      <section id="comments" class="comment">
-        <div class="ds-thread" data-thread-key="2016/03/19/model-dialog/" data-title="什么是模态框" data-url="http://starding.github.io/2016/03/19/model-dialog/"></div>
-      </section>
-    </div>
-    <div class="openaside">
-      <a class="navbutton" href="#" title="显示侧边栏"></a>
-    </div>
+</nav>
 
-    <div id="toc" class="toc-aside">
-      <strong class="toc-title">文章目录</strong>
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/03/19/model-dialog/" data-title="什么是模态框" data-url="http://starding.github.io/2016/03/19/model-dialog/"></div>
+</section>
 
-      <ol class="toc">
-        <li class="toc-item toc-level-1"><a class="toc-link" href="#u4EC0_u4E48_u662F_u6A21_u6001_u6846_uFF08modal_dialog_uFF09"><span class="toc-number">1.</span> <span class="toc-text">什么是模态框（modal dialog）</span></a>
-          <ol class="toc-child">
-            <li class="toc-item toc-level-2"><a class="toc-link" href="#u95EE_u9898_u6765_u6E90"><span class="toc-number">1.1.</span> <span class="toc-text">问题来源</span></a></li>
-            <li class="toc-item toc-level-2"><a class="toc-link" href="#u4EC0_u4E48_u662F_u300C_u6A21_u6001_u300D_uFF1F"><span class="toc-number">1.2.</span> <span class="toc-text">什么是「模态」？</span></a></li>
-            <li class="toc-item toc-level-2"><a class="toc-link" href="#u4EC0_u4E48_u662F_u300C_u6A21_u6001_u6846_u300D"><span class="toc-number">1.3.</span> <span class="toc-text">什么是「模态框」</span></a>
-              <ol class="toc-child">
-                <li class="toc-item toc-level-3"><a class="toc-link" href="#model_window"><span class="toc-number">1.3.1.</span> <span class="toc-text">model window</span></a></li>
-              </ol>
-            </li>
-            <li class="toc-item toc-level-2"><a class="toc-link" href="#u300C_u975E_u6A21_u6001_u300D"><span class="toc-number">1.4.</span> <span class="toc-text">「非模态」</span></a></li>
-          </ol>
-        </li>
-      </ol>
 
-    </div>
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
 
-    <div id="asidepart">
-      <div class="closeaside">
-        <a class="closebutton" href="#" title="隐藏侧边栏"></a>
-      </div>
-      <aside class="clearfix">
-
-        <div class="github-card">
-          <p class="asidetitle">Github 名片</p>
-          <div class="github-card" data-github="starding" data-width="220" data-height="119" data-theme="medium">
-            <script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
-          </div>
-        </div>
-
-        <div class="doubanshow">
-          <p class="asidetitle">豆瓣秀</p>
-          <div>
-            <script type="text/javascript" src="http://www.douban.com/service/badge/58816601/?show=collection&amp;n=12&amp;columns=3&amp;hidelogo=yes&amp;hideself=yes&amp;cat=book|movie"></script>
-          </div>
-        </div>
-
-        <div class="categorieslist">
-          <p class="asidetitle">分类</p>
-          <ul>
-
-
-            <li><a href="/categories/computer-philosophy/" title="computer philosophy">computer philosophy<sup>2</sup></a></li>
-
-
-
-            <li><a href="/categories/docker/" title="docker">docker<sup>4</sup></a></li>
-
-
-
-            <li><a href="/categories/javascript/" title="javascript">javascript<sup>2</sup></a></li>
-
-
-
-            <li><a href="/categories/open-questions/" title="open-questions">open-questions<sup>1</sup></a></li>
-
-
-
-            <li><a href="/categories/python/" title="python">python<sup>4</sup></a></li>
-
-
-
-            <li><a href="/categories/前端/" title="前端">前端<sup>3</sup></a></li>
-
-
-
-            <li><a href="/categories/技术哲学/" title="技术哲学">技术哲学<sup>2</sup></a></li>
-
-
-
-            <li><a href="/categories/数学/" title="数学">数学<sup>1</sup></a></li>
-
-
-
-            <li><a href="/categories/科学史与科学哲学/" title="科学史与科学哲学">科学史与科学哲学<sup>1</sup></a></li>
-
-
-
-            <li><a href="/categories/算法/" title="算法">算法<sup>1</sup></a></li>
-
-
-
-            <li><a href="/categories/问题/" title="问题">问题<sup>1</sup></a></li>
-
-
-
-            <li><a href="/categories/随笔/" title="随笔">随笔<sup>4</sup></a></li>
-
-
-          </ul>
-        </div>
-
-        <div class="tagslist">
-          <p class="asidetitle">标签</p>
-          <ul class="clearfix">
-
-
-            <li><a href="/tags/python/" title="python">python<sup>4</sup></a></li>
-
-
-
-            <li><a href="/tags/docker/" title="docker">docker<sup>4</sup></a></li>
-
-
-
-            <li><a href="/tags/前端/" title="前端">前端<sup>2</sup></a></li>
-
-
-
-            <li><a href="/tags/随笔/" title="随笔">随笔<sup>2</sup></a></li>
-
-
-
-            <li><a href="/tags/javascript/" title="javascript">javascript<sup>2</sup></a></li>
-
-
-
-            <li><a href="/tags/django/" title="django">django<sup>1</sup></a></li>
-
-
-
-            <li><a href="/tags/open-questions/" title="open-questions">open-questions<sup>1</sup></a></li>
-
-
-
-            <li><a href="/tags/三体/" title="三体">三体<sup>1</sup></a></li>
-
-
-
-            <li><a href="/tags/科学史/" title="科学史">科学史<sup>1</sup></a></li>
-
-
-
-            <li><a href="/tags/computer/" title="computer">computer<sup>1</sup></a></li>
-
-
-
-            <li><a href="/tags/社会达尔文主义/" title="社会达尔文主义">社会达尔文主义<sup>1</sup></a></li>
-
-
-
-            <li><a href="/tags/科学哲学/" title="科学哲学">科学哲学<sup>1</sup></a></li>
-
-
-
-            <li><a href="/tags/行尸走肉/" title="行尸走肉">行尸走肉<sup>1</sup></a></li>
-
-
-
-            <li><a href="/tags/gitlab/" title="gitlab">gitlab<sup>1</sup></a></li>
-
-
-          </ul>
-        </div>
-
-        <div class="linkslist">
-          <p class="asidetitle">友情链接</p>
-          <ul>
-
-            <li>
-
-              <a href="http://phiphicake.blogspot.com" target="_blank" title=" 一个有趣的哲学博客">哲学鸡蛋糕</a>
-
-            </li>
-
-          </ul>
-        </div>
-
-        <div class="rsspart">
-          <a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
-        </div>
-
-      </aside>
-    </div>
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#什么是模态框（modal-dialog）"><span class="toc-number">1.</span> <span class="toc-text">什么是模态框（modal dialog）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#问题来源"><span class="toc-number">1.1.</span> <span class="toc-text">问题来源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是「模态」？"><span class="toc-number">1.2.</span> <span class="toc-text">什么是「模态」？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是「模态框」"><span class="toc-number">1.3.</span> <span class="toc-text">什么是「模态框」</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#model-window"><span class="toc-number">1.3.1.</span> <span class="toc-text">model window</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#「非模态」"><span class="toc-number">1.4.</span> <span class="toc-text">「非模态」</span></a></li></ol></li></ol>
+ 
   </div>
-  <footer>
-    <div id="footer">
 
-      <div class="line">
-        <span></span>
-        <div class="author"></div>
-      </div>
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
 
-
-      <section class="info">
-        <p> Hello ,I&#39;m Starding. <br/> This is my blog,believe it or not.</p>
-      </section>
-
-      <div class="social-font" class="clearfix">
-
-
-        <a href="https://github.com/starding" target="_blank" class="icon-github" title="github"></a>
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="starding" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
 
 
 
+  
+
+<div class="doubanshow">
+<p class="asidetitle">豆瓣秀</p>
+<div>
+<script type="text/javascript" src="http://www.douban.com/service/badge/58816601/?show=collection&amp;n=12&amp;columns=3&amp;hidelogo=yes&amp;hideself=yes&amp;cat=book|movie" ></script>
+</div>
+</div>
 
 
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/computer-philosophy/" title="computer philosophy">computer philosophy<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/docker/" title="docker">docker<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/javascript/" title="javascript">javascript<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/open-questions/" title="open-questions">open-questions<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/python/" title="python">python<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/前端/" title="前端">前端<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/技术哲学/" title="技术哲学">技术哲学<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/数学/" title="数学">数学<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/科学史与科学哲学/" title="科学史与科学哲学">科学史与科学哲学<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/算法/" title="算法">算法<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/问题/" title="问题">问题<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/随笔/" title="随笔">随笔<sup>4</sup></a></li>
+		  
+		
+		</ul>
+</div>
 
-        <a href="https://www.douban.com/people/58816601" target="_blank" class="icon-douban" title="豆瓣"></a>
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/python/" title="python">python<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/docker/" title="docker">docker<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/前端/" title="前端">前端<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/随笔/" title="随笔">随笔<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/javascript/" title="javascript">javascript<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/科学哲学/" title="科学哲学">科学哲学<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/computer/" title="computer">computer<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/gitlab/" title="gitlab">gitlab<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/open-questions/" title="open-questions">open-questions<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/django/" title="django">django<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/科学史/" title="科学史">科学史<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/三体/" title="三体">三体<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/行尸走肉/" title="行尸走肉">行尸走肉<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/社会达尔文主义/" title="社会达尔文主义">社会达尔文主义<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
 
 
-        <a href="http://www.zhihu.com/people/starstarding" target="_blank" class="icon-zhihu" title="知乎"></a>
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://phiphicake.blogspot.com" target="_blank" title=" 一个有趣的哲学博客">哲学鸡蛋糕</a>
+            
+          </li>
+        
+    </ul>
+</div>
 
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
 
-
-        <a href="mailto:starding@buaa.edu.cn" target="_blank" class="icon-email" title="Email Me"></a>
-
-      </div>
-
-
-
-      <p class="copyright">
-        Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016
-
-
-        <a href="/about" target="_blank" title="starding">starding</a>
-
-
-        <br> 本站总访问量
-        <span id="busuanzi_value_site_pv"></span>次 本站访客数
-        <span id="busuanzi_value_site_uv"></span>人次 本文总阅读量
-        <span id="busuanzi_value_page_pv"></span>次
-      </p>
+</aside>
+</div>
     </div>
-  </footer>
-  <script src="/js/jquery-2.0.3.min.js"></script>
-  <script src="/js/jquery.imagesloaded.min.js"></script>
-  <script src="/js/gallery.js"></script>
-  <script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Starding. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/starding" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		<a href="https://www.douban.com/people/58816601" target="_blank" class="icon-douban" title="豆瓣"></a>
+		
+		
+		<a href="http://www.zhihu.com/people/starstarding" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		
+		<a href="mailto:starding@buaa.edu.cn" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
 
-  <script type="text/javascript">
-    $(document).ready(function() {
-      $('.navbar').click(function() {
-        $('header nav').toggleClass('shownav');
-      });
-      var myWidth = 0;
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
 
-      function getSize() {
-        if (typeof(window.innerWidth) == 'number') {
-          myWidth = window.innerWidth;
-        } else if (document.documentElement && document.documentElement.clientWidth) {
-          myWidth = document.documentElement.clientWidth;
-        };
-      };
-      var m = $('#main'),
-        a = $('#asidepart'),
-        c = $('.closeaside'),
-        o = $('.openaside');
-      c.click(function() {
-        a.addClass('fadeOut').css('display', 'none');
-        o.css('display', 'block').addClass('fadeIn');
-        m.addClass('moveMain');
-      });
-      o.click(function() {
-        o.css('display', 'none').removeClass('beforeFadeIn');
-        a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');
-        m.removeClass('moveMain');
-      });
-      $(window).scroll(function() {
-        o.css("top", Math.max(80, 260 - $(this).scrollTop()));
-      });
+		
+		<a href="/about" target="_blank" title="starding">starding</a>
+		
 
-      $(window).resize(function() {
-        getSize();
-        if (myWidth >= 1024) {
-          $('header nav').removeClass('shownav');
-        } else {
-          m.removeClass('moveMain');
-          a.css('display', 'block').removeClass('fadeOut');
-          o.css('display', 'none');
+	    <br>	
+        本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        本站访客数<span id="busuanzi_value_site_uv"></span>人次
+        本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
 
-          $('#toc.toc-aside').css('display', 'none');
-
-        }
-      });
-    });
-  </script>
-
-  <script type="text/javascript">
-    $(document).ready(function() {
-      var ai = $('.article-content>iframe'),
-        ae = $('.article-content>embed'),
-        t = $('#toc'),
-        ta = $('#toc.toc-aside'),
-        o = $('.openaside'),
-        c = $('.closeaside');
-      if (ai.length > 0) {
-        ai.wrap('<div class="video-container" />');
-      };
-      if (ae.length > 0) {
-        ae.wrap('<div class="video-container" />');
-      };
-      c.click(function() {
-        ta.css('display', 'block').addClass('fadeIn');
-      });
-      o.click(function() {
-        ta.css('display', 'none');
-      });
-      $(window).scroll(function() {
-        ta.css("top", Math.max(140, 320 - $(this).scrollTop()));
-      });
-    });
-  </script>
-
-
-  <script type="text/javascript">
-    $(document).ready(function() {
-      var $this = $('.share'),
-        url = $this.attr('data-url'),
-        encodedUrl = encodeURIComponent(url),
-        title = $this.attr('data-title'),
-        tsina = $this.attr('data-tsina'),
-        description = $this.attr('description');
-      var html = [
-        '<div class="hoverqrcode clearfix"></div>',
-        '<a class="overlay" id="qrcode"></a>',
-        '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
-        '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
-        '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
-        '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title + '" class="article-share-renren" target="_blank" title="人人"></a>',
-        '<a href="http://service.weibo.com/share/share.php?title=' + title + '&url=' + encodedUrl + '&ralateUid=' + tsina + '&searchPic=true&style=number' + '" class="article-share-weibo" target="_blank" title="微博"></a>',
-        '<span title="Share to"></span>'
-      ].join('');
-      $this.append(html);
-
-      $('.hoverqrcode').hide();
-
-      var myWidth = 0;
-
-      function updatehoverqrcode() {
-        if (typeof(window.innerWidth) == 'number') {
-          myWidth = window.innerWidth;
-        } else if (document.documentElement && document.documentElement.clientWidth) {
-          myWidth = document.documentElement.clientWidth;
-        };
-        var qrsize = myWidth > 1024 ? 200 : 100;
-        var options = {
-          render: 'image',
-          size: qrsize,
-          fill: '#2ca6cb',
-          text: url,
-          radius: 0.5,
-          quiet: 1
-        };
-        var p = $('.article-share-qrcode').position();
-        $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
-          .css('left', p.left - qrsize / 2 + 20).css('top', p.top - qrsize - 10)
-          .qrcode(options);
-      };
-      $(window).resize(function() {
-        $('.hoverqrcode').hide();
-      });
-      $('.article-share-qrcode').click(function() {
-        updatehoverqrcode();
-        $('.hoverqrcode').toggle();
-      });
-      $('.article-share-qrcode').hover(function() {}, function() {
-        $('.hoverqrcode').hide();
-      });
-    });
-  </script>
-
-
-
-  <script type="text/javascript">
-    var duoshuoQuery = {
-      short_name: "starding"
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
     };
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';
-      ds.async = true;
-      ds.src = '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"starding"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
 
 
 
@@ -598,91 +565,106 @@
 
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
-  <script type="text/javascript">
-    $(document).ready(function() {
-      $('.article-content').each(function(i) {
-        $(this).find('img').each(function() {
-          if ($(this).parent().hasClass('fancybox')) return;
-          var alt = this.alt;
-          if (alt) $(this).after('<span class="caption">' + alt + '</span>');
-          $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
-        });
-        $(this).find('.fancybox').each(function() {
-          $(this).attr('rel', 'article' + i);
-        });
-      });
-      if ($.fancybox) {
-        $('.fancybox').fancybox();
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-72215789-1', 'auto');  
+ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?01f9e8011679173931cf24fe647483cf";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
       }
     });
-  </script>
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 
 
+<!-- MathJax End -->
 
-  <!-- Analytics Begin -->
-  <script type="text/javascript">
-    (function(i, s, o, g, r, a, m) {
-      i['GoogleAnalyticsObject'] = r;
-      i[r] = i[r] || function() {
-        (i[r].q = i[r].q || []).push(arguments)
-      }, i[r].l = 1 * new Date();
-      a = s.createElement(o),
-        m = s.getElementsByTagName(o)[0];
-      a.async = 1;
-      a.src = g;
-      m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-    ga('create', 'UA-72215789-1', 'auto');
-    ga('send', 'pageview');
-  </script>
+<!-- Tiny_search Begin -->
 
+<!-- Tiny_search End -->
 
+<!--不蒜子-->
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
-  <script>
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "//hm.baidu.com/hm.js?01f9e8011679173931cf24fe647483cf";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
-  <!-- Analytics End -->
-
-  <!-- Totop Begin -->
-  <div id="totop">
-    <a title="返回顶部"><img src="/img/scrollup.png" /></a>
-  </div>
-  <script src="/js/totop.js"></script>
-  <!-- Totop End -->
-
-  <!-- MathJax Begin -->
-  <!-- mathjax config similar to math.stackexchange -->
-
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
-  </script>
-
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({ tex2jax: { skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] } });
-  </script>
-
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() { var all = MathJax.Hub.getAllJax(), i; for(i=0; i
-    < all.length; i +=1 ) { all[i].SourceElement().parentNode.className +=' has-jax' ; } }); </script>
-
-      <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-      </script>
-      <!-- MathJax End -->
-
-      <!-- Tiny_search Begin -->
-
-      <!-- Tiny_search End -->
-
-      <!--不蒜子-->
-      <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-</body>
-
+  </body>
 </html>

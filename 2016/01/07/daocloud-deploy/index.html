@@ -1,808 +1,638 @@
-<!DOCTYPE HTML>
-<html lang="zh-CN">
 
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
+  
+    <title>使用daocloud持续集成应用 | 小狐濡尾</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="starding">
+    
 
-  <title>使用daocloud持续集成应用 | 小狐濡尾</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
-
-  <meta name="author" content="starding">
-
-
-
-  <meta name="description" content="写在前面的话
-来自维基百科的：货殖崇拜编程
+    
+    <meta name="description" content="写在前面的话来自维基百科的：货殖崇拜编程
 为因GFW屏蔽访问不了维基百科的同学准备的：
 
-  货物崇拜编程（Cargo Cult Programming）是一种计算机程序设计中的反模式，其特征为不明就里地、仪式性地使用代码或程序架构。货物崇拜编程通常是程序员既没理解他要解决的bug、也没理解表面上的解决方案的典型表现。
-  这个名词有时也指不熟练的或没经验的程序员从某处拷贝代码到另一处，却不太清">
-  <meta property="og:type" content="article">
-  <meta property="og:title" content="使用daocloud持续集成应用">
-  <meta property="og:url" content="http://starding.github.io/2016/01/07/daocloud-deploy/index.html">
-  <meta property="og:site_name" content="小狐濡尾">
-  <meta property="og:description" content="写在前面的话
-来自维基百科的：货殖崇拜编程
+货物崇拜编程（Cargo Cult Programming）是一种计算机程序设计中的反模式，其特征为不明就里地、仪式性地使用代码或程序架构。货物崇拜编程通常是程序员既没理解他要解决的bug、也没理解表面上的解决方案的典型表现。
+这个名词有时也指不熟练的或没经验的程序员从某处拷贝代码到另一处，却不太清楚其代码是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用daocloud持续集成应用">
+<meta property="og:url" content="http://starding.github.io/2016/01/07/daocloud-deploy/index.html">
+<meta property="og:site_name" content="小狐濡尾">
+<meta property="og:description" content="写在前面的话来自维基百科的：货殖崇拜编程
 为因GFW屏蔽访问不了维基百科的同学准备的：
 
-  货物崇拜编程（Cargo Cult Programming）是一种计算机程序设计中的反模式，其特征为不明就里地、仪式性地使用代码或程序架构。货物崇拜编程通常是程序员既没理解他要解决的bug、也没理解表面上的解决方案的典型表现。
-  这个名词有时也指不熟练的或没经验的程序员从某处拷贝代码到另一处，却不太清">
-  <meta property="og:updated_time" content="2016-01-25T12:20:35.000Z">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="使用daocloud持续集成应用">
-  <meta name="twitter:description" content="写在前面的话
-来自维基百科的：货殖崇拜编程
+货物崇拜编程（Cargo Cult Programming）是一种计算机程序设计中的反模式，其特征为不明就里地、仪式性地使用代码或程序架构。货物崇拜编程通常是程序员既没理解他要解决的bug、也没理解表面上的解决方案的典型表现。
+这个名词有时也指不熟练的或没经验的程序员从某处拷贝代码到另一处，却不太清楚其代码是">
+<meta property="og:updated_time" content="2016-01-25T12:20:35.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用daocloud持续集成应用">
+<meta name="twitter:description" content="写在前面的话来自维基百科的：货殖崇拜编程
 为因GFW屏蔽访问不了维基百科的同学准备的：
 
-  货物崇拜编程（Cargo Cult Programming）是一种计算机程序设计中的反模式，其特征为不明就里地、仪式性地使用代码或程序架构。货物崇拜编程通常是程序员既没理解他要解决的bug、也没理解表面上的解决方案的典型表现。
-  这个名词有时也指不熟练的或没经验的程序员从某处拷贝代码到另一处，却不太清">
+货物崇拜编程（Cargo Cult Programming）是一种计算机程序设计中的反模式，其特征为不明就里地、仪式性地使用代码或程序架构。货物崇拜编程通常是程序员既没理解他要解决的bug、也没理解表面上的解决方案的典型表现。
+这个名词有时也指不熟练的或没经验的程序员从某处拷贝代码到另一处，却不太清楚其代码是">
 
-
-  <link rel="alternative" href="/atom.xml" title="小狐濡尾" type="application/atom+xml">
-
-
-  <link rel="icon" href="/img/my_favicon.ico">
-
-
-  <link rel="apple-touch-icon" href="/img/jacman.jpg">
-  <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
-
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
+    
+    <link rel="alternative" href="/atom.xml" title="小狐濡尾" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/my_favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<body>
-  <header>
-    <div>
-
-      <div id="imglogo">
-        <a href="/"><img src="/img/my_white_logo.png" alt="小狐濡尾" title="小狐濡尾" /></a>
-      </div>
-
-      <div id="textlogo">
-        <h1 class="site-name"><a href="/" title="小狐濡尾">小狐濡尾</a></h1>
-        <h2 class="blog-motto">未济</h2>
-      </div>
-      <div class="navbar">
-        <a class="navbutton navmobile" href="#" title="菜单">
-        </a>
-      </div>
-      <nav class="animated">
-        <ul>
-          <ul>
-
-            <li><a href="/">主页 | Home</a></li>
-
-            <li><a href="/index">索引 | Index</a></li>
-
-            <li><a href="/archives">归档 | Archives</a></li>
-
-            <li><a href="/about">简介 | About</a></li>
-
-            <li>
-
-              <form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
-                <label>Search</label>
-                <input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
-                <input type="hidden" name="q" value="site:starding.github.io">
-              </form>
-
-            </li>
-          </ul>
-      </nav>
-    </div>
-  </header>
-  <div id="container">
-    <div id="main" class="post" itemscope itemprop="blogPost">
-
-      <article itemprop="articleBody">
-        <header class="article-info clearfix">
-          <h1 itemprop="name">
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/my_white_logo.png" alt="小狐濡尾" title="小狐濡尾"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="小狐濡尾">小狐濡尾</a></h1>
+				<h2 class="blog-motto">未济</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页 | Home</a></li>
+					
+						<li><a href="/index">索引 | Index</a></li>
+					
+						<li><a href="/archives">归档 | Archives</a></li>
+					
+						<li><a href="/about">简介 | About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:starding.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
     
       <a href="/2016/01/07/daocloud-deploy/" title="使用daocloud持续集成应用" itemprop="url">使用daocloud持续集成应用</a>
   </h1>
-          <p class="article-author">By
-
-            <a href="/about" title="starding" target="_blank" itemprop="author">starding</a>
-
-            <p class="article-time">
-              <time datetime="2016-01-07T07:24:25.000Z" itemprop="datePublished"> 发表于 2016-01-07</time>
-
-            </p>
-        </header>
-        <div class="article-content">
-
-          <div id="toc" class="toc-article">
-            <strong class="toc-title">文章目录</strong>
-
-            <ol class="toc">
-              <li class="toc-item toc-level-1"><a class="toc-link" href="#u5199_u5728_u524D_u9762_u7684_u8BDD"><span class="toc-number">1.</span> <span class="toc-text">写在前面的话</span></a></li>
-              <li class="toc-item toc-level-1"><a class="toc-link" href="#daocloud_u4ECB_u7ECD"><span class="toc-number">2.</span> <span class="toc-text">daocloud介绍</span></a></li>
-              <li class="toc-item toc-level-1"><a class="toc-link" href="#u6301_u7EED_u96C6_u6210_u7B80_u5355_u7684html5_u5E94_u7528"><span class="toc-number">3.</span> <span class="toc-text">持续集成简单的html5应用</span></a>
-                <ol class="toc-child">
-                  <li class="toc-item toc-level-2"><a class="toc-link" href="#u672C_u5C0F_u8282_u4F7F_u7528_u573A_u666F"><span class="toc-number">3.1.</span> <span class="toc-text">本小节使用场景</span></a></li>
-                  <li class="toc-item toc-level-2"><a class="toc-link" href="#u4EC0_u4E48_u662F_u300C_u7B80_u5355_u7684html5_u5E94_u7528_u300D"><span class="toc-number">3.2.</span> <span class="toc-text">什么是「简单的html5应用」</span></a></li>
-                  <li class="toc-item toc-level-2"><a class="toc-link" href="#u90E8_u7F72_u5927_u81F4_u89E3_u51B3_u65B9_u6848"><span class="toc-number">3.3.</span> <span class="toc-text">部署大致解决方案</span></a></li>
-                  <li class="toc-item toc-level-2"><a class="toc-link" href="#u6784_u5EFA_u5E94_u7528_u524D_u7684_u51C6_u5907"><span class="toc-number">3.4.</span> <span class="toc-text">构建应用前的准备</span></a>
-                    <ol class="toc-child">
-                      <li class="toc-item toc-level-3"><a class="toc-link" href="#u5E94_u7528_u76EE_u5F55_u7ED3_u6784"><span class="toc-number">3.4.1.</span> <span class="toc-text">应用目录结构</span></a></li>
-                      <li class="toc-item toc-level-3"><a class="toc-link" href="#u521B_u5EFADockerfile_u6587_u4EF6"><span class="toc-number">3.4.2.</span> <span class="toc-text">创建Dockerfile文件</span></a></li>
-                      <li class="toc-item toc-level-3"><a class="toc-link" href="#u914D_u7F6E_u5728docker_u4E2D_u4F7F_u7528_u7684nginx_u914D_u7F6E_u6587_u4EF6_u3002"><span class="toc-number">3.4.3.</span> <span class="toc-text">配置在docker中使用的nginx配置文件。</span></a></li>
-                    </ol>
-                  </li>
-                  <li class="toc-item toc-level-2"><a class="toc-link" href="#u4F7F_u7528daocloud_u8FDB_u884C_u6301_u7EED_u6784_u5EFA_u955C_u50CF_u4EE5_u53CA_u53D1_u5E03"><span class="toc-number">3.5.</span> <span class="toc-text">使用daocloud进行持续构建镜像以及发布</span></a></li>
-                  <li class="toc-item toc-level-2"><a class="toc-link" href="#u53D1_u5E03_u5B8C_u6210_u4E4B_u540E_u9700_u8981_u505A_u7684_u5DE5_u4F5C"><span class="toc-number">3.6.</span> <span class="toc-text">发布完成之后需要做的工作</span></a></li>
-                </ol>
-              </li>
-              <li class="toc-item toc-level-1"><a class="toc-link" href="#u6301_u7EED_u96C6_u6210_u4F9D_u8D56_u5916_u90E8_u670D_u52A1_u7684_u5E94_u7528"><span class="toc-number">4.</span> <span class="toc-text">持续集成依赖外部服务的应用</span></a>
-                <ol class="toc-child">
-                  <li class="toc-item toc-level-2"><a class="toc-link" href="#u672C_u6587_u9002_u7528_u7684_u573A_u666F"><span class="toc-number">4.1.</span> <span class="toc-text">本文适用的场景</span></a></li>
-                  <li class="toc-item toc-level-2"><a class="toc-link" href="#u4F9D_u8D56_u5916_u90E8_u670D_u52A1_u7684_u5E94_u7528"><span class="toc-number">4.2.</span> <span class="toc-text">依赖外部服务的应用</span></a></li>
-                  <li class="toc-item toc-level-2"><a class="toc-link" href="#u6784_u5EFA_u524D_u7684_u51C6_u5907"><span class="toc-number">4.3.</span> <span class="toc-text">构建前的准备</span></a>
-                    <ol class="toc-child">
-                      <li class="toc-item toc-level-3"><a class="toc-link" href="#u9879_u76EE_u7ED3_u6784"><span class="toc-number">4.3.1.</span> <span class="toc-text">项目结构</span></a></li>
-                      <li class="toc-item toc-level-3"><a class="toc-link" href="#Dockerfile_u6587_u4EF6_u7F16_u5199"><span class="toc-number">4.3.2.</span> <span class="toc-text">Dockerfile文件编写</span></a></li>
-                      <li class="toc-item toc-level-3"><a class="toc-link" href="#Makefile_u6587_u4EF6_u7F16_u5199"><span class="toc-number">4.3.3.</span> <span class="toc-text">Makefile文件编写</span></a></li>
-                      <li class="toc-item toc-level-3"><a class="toc-link" href="#u9759_u6001_u6587_u4EF6_u652F_u6301"><span class="toc-number">4.3.4.</span> <span class="toc-text">静态文件支持</span></a></li>
-                      <li class="toc-item toc-level-3"><a class="toc-link" href="#u901A_u8FC7_u73AF_u5883_u53D8_u91CF_u6765_u8FDE_u63A5_u670D_u52A1"><span class="toc-number">4.3.5.</span> <span class="toc-text">通过环境变量来连接服务</span></a></li>
-                    </ol>
-                  </li>
-                  <li class="toc-item toc-level-2"><a class="toc-link" href="#u4F7F_u7528daocloud_u90E8_u7F72_u6784_u5EFA_u597D_u7684taikang_u9879_u76EE"><span class="toc-number">4.4.</span> <span class="toc-text">使用daocloud部署构建好的taikang项目</span></a></li>
-                </ol>
-              </li>
-            </ol>
-
-          </div>
-
-          <h1 id="u5199_u5728_u524D_u9762_u7684_u8BDD"><a href="#u5199_u5728_u524D_u9762_u7684_u8BDD" class="headerlink" title="写在前面的话"></a>写在前面的话</h1>
-          <p>来自维基百科的：<a href="https://zh.wikipedia.org/wiki/货物崇拜编程" target="_blank" rel="external">货殖崇拜编程</a></p>
-          <p>为因GFW屏蔽访问不了维基百科的同学准备的：</p>
-          <blockquote>
-            <p>货物崇拜编程（Cargo Cult Programming）是一种计算机程序设计中的反模式，其特征为不明就里地、仪式性地使用代码或程序架构。货物崇拜编程通常是程序员既没理解他要解决的bug、也没理解表面上的解决方案的典型表现。</p>
-            <p>这个名词有时也指不熟练的或没经验的程序员从某处拷贝代码到另一处，却不太清楚其代码是如何工作的，或者不清楚在新的地方是否需要这段代码。也可以指不正确或过份的应用设计模式、代码风格或编程方法，却对其原理不明就里。</p>
-            <p>货物崇拜编程来源于“货物崇拜”这个词。其衍生词还有“货物崇拜软件工程”。</p>
-          </blockquote>
-          <p>在阅读任何教程类的文章时，都不要有编程上的货殖崇拜，有些内容是需要你根据自己的实际情况修改一些内容的,需要你理解它，如果不理解某些内容，就需要先熟悉一下相关的知识。</p>
-          <h1 id="daocloud_u4ECB_u7ECD"><a href="#daocloud_u4ECB_u7ECD" class="headerlink" title="daocloud介绍"></a>daocloud介绍</h1>
-          <p> <a href="https://daocloud.io" target="_blank" rel="external">daocloud</a>提供基于docker进行持续集成的服务，使用它可以很方便的完成项目的自动化构建以及持续发布等功能。</p>
-          <p>当然，如果要使用daocloud持续化集成应用，首先你需要注册一个daocloud账号。如果你效力于某个公司的话，还要通知该公司把你的账号拉到公司用户组里，这样才能使用该公司的资源。</p>
-          <h1 id="u6301_u7EED_u96C6_u6210_u7B80_u5355_u7684html5_u5E94_u7528"><a href="#u6301_u7EED_u96C6_u6210_u7B80_u5355_u7684html5_u5E94_u7528" class="headerlink" title="持续集成简单的html5应用"></a>持续集成简单的html5应用</h1>
-          <h2 id="u672C_u5C0F_u8282_u4F7F_u7528_u573A_u666F"><a href="#u672C_u5C0F_u8282_u4F7F_u7528_u573A_u666F" class="headerlink" title="本小节使用场景"></a>本小节使用场景</h2>
-          <ul>
-            <li>拥有自己的主机</li>
-            <li>将主机添加到了daocloud上</li>
-            <li>只使用daocloud的自动构建和部署功能</li>
-            <li>镜像也要部署到自己的主机上。</li>
-          </ul>
-          <h2 id="u4EC0_u4E48_u662F_u300C_u7B80_u5355_u7684html5_u5E94_u7528_u300D"><a href="#u4EC0_u4E48_u662F_u300C_u7B80_u5355_u7684html5_u5E94_u7528_u300D" class="headerlink" title="什么是「简单的html5应用」"></a>什么是「简单的html5应用」</h2>
-          <p>只有前端页面，并且使用nginx提供服务。</p>
-          <h2 id="u90E8_u7F72_u5927_u81F4_u89E3_u51B3_u65B9_u6848"><a href="#u90E8_u7F72_u5927_u81F4_u89E3_u51B3_u65B9_u6848" class="headerlink" title="部署大致解决方案"></a>部署大致解决方案</h2>
-          <p>本文假设一个使用场景：拥有自己的主机，并且绑定到了daocloud上，然后想通过daocloud进行持续化地部署到自己的主机上。如果想要部署一个纯前端项目，需要把nginx集成进去，然后使用nginx来提供服务。</p>
-          <h2 id="u6784_u5EFA_u5E94_u7528_u524D_u7684_u51C6_u5907"><a href="#u6784_u5EFA_u5E94_u7528_u524D_u7684_u51C6_u5907" class="headerlink" title="构建应用前的准备"></a>构建应用前的准备</h2>
-          <h3 id="u5E94_u7528_u76EE_u5F55_u7ED3_u6784"><a href="#u5E94_u7528_u76EE_u5F55_u7ED3_u6784" class="headerlink" title="应用目录结构"></a>应用目录结构</h3>
-          <p>因为daocloud是基于daocker的，在使用daocloud之前，我们需要按照docker的规范，把自己的项目改成支持打包成镜像的应用，对于html5项目来说，就是添加Dockerfile文件和配置好所需要的nginx配置文件。比如我有一个应用叫jinli，其目录结构为(你的目录结构和这个可能也不一样)：</p>
-          <figure class="highlight plain">
-            <table>
-              <tr>
-                <td class="gutter"><pre><span class="line">1</span><br></pre></td>
-                <td class="code"><pre><span class="line">jinli/  # &#39033;&#30446;&#26681;&#30446;&#24405;&#10;&#9500;&#9472;&#9472; jinli/  # &#20855;&#20307;&#30340;&#24212;&#29992;&#30446;&#24405;&#10;&#9474;&#160;&#160; &#9500;&#9472;&#9472; images/ # &#22270;&#29255;&#10;&#9474;&#160;&#160; &#9500;&#9472;&#9472; index.html  # &#40664;&#35748;&#30340;&#26816;&#32034;html&#10;&#9474;&#160;&#160; &#9500;&#9472;&#9472; scripts/  #  js&#25991;&#20214;&#22841;&#10;&#9474;&#160;&#160; &#9492;&#9472;&#9472; styles/    # &#23384;&#25918;css&#30340;&#25991;&#20214;&#22841;&#10;&#9500;&#9472;&#9472; Dockerfile   # Dockerfile&#10;&#9500;&#9472;&#9472; jinli.conf   # &#26412;&#24212;&#29992;&#30340;nginx&#37197;&#32622;&#25991;&#20214;&#10;&#9492;&#9472;&#9472; log/  # log&#25991;&#20214;</span><br></pre></td>
-              </tr>
-            </table>
-          </figure>
-          <p>在这个目录结构中，和docker镜像构建是就是Dockerfile这个文件，jinli.conf是个将要一起打包放入docker镜像中的文件，其他的都是应用本身的文件。</p>
-          <h3 id="u521B_u5EFADockerfile_u6587_u4EF6"><a href="#u521B_u5EFADockerfile_u6587_u4EF6" class="headerlink" title="创建Dockerfile文件"></a>创建Dockerfile文件</h3>
-          <p><strong>Dockerfile</strong>，就是一个daocker的规则文件，就像make的Makefile一样。Dockerfile描述了将自己的应用构建成docker镜像的过程。<br>在本例中，Dockerfile的内容如下：</p>
-          <figure class="highlight docker">
-            <table>
-              <tr>
-                <td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td>
-                <td class="code"><pre><span class="line"><span class="comment"># 选择nginx服务</span></span><br><span class="line"><span class="built_in">FROM</span> nginx:<span class="number">1.9</span>.<span class="number">5</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># copy代码</span></span><br><span class="line"><span class="built_in">COPY</span> <span class="bash">. /src</span><br><span class="line"></span></span><br><span class="line"><span class="comment"># 添加nginx配置文件</span></span><br><span class="line"><span class="built_in">COPY</span> <span class="bash">jinli.conf /etc/nginx/conf.d/</span><br><span class="line"></span></span><br><span class="line"><span class="comment"># 去掉默认的nginx配置文件</span></span><br><span class="line"><span class="built_in">RUN</span> <span class="bash">rm /etc/nginx/conf.d/default.conf</span></span><br></pre></td>
-              </tr>
-            </table>
-          </figure>
-          <p>Dockerfile解释：</p>
-          <ul>
-            <li>首先，想象将要构建的docker镜像包含一个linux操作系统。</li>
-            <li><code>FROM nginx:1.9.5</code> 的意思就是，将1.9.5版本的nginx服务集成到自己的镜像中（其实操作系统就是在这一步引入的，nginx本身也是一个镜像，它是建立在一个linux操作系统之上的，拉取nginx的时候，会连把nginx连带其附着的linx系统整个一起拉下来）。</li>
-            <li><code>COPY . /src</code> 的意思是将当前目录下的代码复制到镜像中（的操作系统中）的 /src目录下</li>
-            <li><code>COPY jinli.conf /etc/nginx/conf.d/</code> 的意思是，将当前目录下写好的nginx配置文件，复制到镜像（的操作系统）中的相应目录下。</li>
-            <li>删掉原来默认的nginx配置（因为默认配置文件会占用掉localhost，不知道有没有更好的解决办法）</li>
-          </ul>
-          <h3 id="u914D_u7F6E_u5728docker_u4E2D_u4F7F_u7528_u7684nginx_u914D_u7F6E_u6587_u4EF6_u3002"><a href="#u914D_u7F6E_u5728docker_u4E2D_u4F7F_u7528_u7684nginx_u914D_u7F6E_u6587_u4EF6_u3002" class="headerlink" title="配置在docker中使用的nginx配置文件。"></a>配置在docker中使用的nginx配置文件。</h3>
-          <p>本示例中，nginx配置文件命名为jinli.conf。把它打包到镜像中，来给html5应用提供服务，这与平时直接在服务器上部署没有什么很大的差别，需要注意的就是：</p>
-          <ul>
-            <li>server_name 为 localhost，因为这个server_name是在docker容器内部使用的。</li>
-            <li>location 中的root文件夹是docker容器中的地址，不是宿主机的地址</li>
-          </ul>
-          <figure class="highlight nginx">
-            <table>
-              <tr>
-                <td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td>
-                <td class="code"><pre><span class="line"><span class="title">server</span> &#123;</span><br><span class="line">    <span class="title">listen</span> <span class="number">80</span>;</span><br><span class="line">    <span class="title">server_name</span> localhost;</span><br><span class="line">    <span class="title">access_log</span> /src/log/jinli.access.log;</span><br><span class="line">    <span class="title">error_log</span> /src/log/jinli.<span class="built_in">error</span>.log;</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 这里你还可以选择根据需要配一些gzip等选项</span></span><br><span class="line"></span><br><span class="line">    <span class="title">location</span> / &#123;</span><br><span class="line">    <span class="title">root</span> /src/jinli/;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td>
-              </tr>
-            </table>
-          </figure>
-          <p>然后将应用提交到github上，比如具体为：xiaohuruwei/jinli.git</p>
-          <p>以上已经包含全部必须的材料了，下面进入daocloud环节。</p>
-          <h2 id="u4F7F_u7528daocloud_u8FDB_u884C_u6301_u7EED_u6784_u5EFA_u955C_u50CF_u4EE5_u53CA_u53D1_u5E03"><a href="#u4F7F_u7528daocloud_u8FDB_u884C_u6301_u7EED_u6784_u5EFA_u955C_u50CF_u4EE5_u53CA_u53D1_u5E03" class="headerlink" title="使用daocloud进行持续构建镜像以及发布"></a>使用daocloud进行持续构建镜像以及发布</h2>
-          <p>因为前面的步骤已经构建好了一个支持docker的代码版本，而且不需要外联像mysql这样的外部服务，因此可以直接将其当做一个单应用的镜像来构建。</p>
-          <p>在这方面，daocloud已经有了完善的<a href="http://docs.daocloud.io/" target="_blank" rel="external">文档</a>，可以直接参考其中的创建新项目章节，以及持续集成章节。</p>
-          <ul>
-            <li>第四节<a href="http://docs.daocloud.io/ci-on-daocloud" target="_blank" rel="external">创建新项目</a>，根据具体情况选择要绑定需要的git源</li>
-            <li>第五节<a href="http://docs.daocloud.io/ci-image-build" target="_blank" rel="external">持续集成和镜像构建</a>,在简单的html部署中，不需要了解daocloud.yml的写法</li>
-            <li>第九节中的<a href="http://docs.daocloud.io/app-deploy-mgmt/deploy-to-cluster" target="_blank" rel="external">向自由主机集群上发布应用</a></li>
-          </ul>
-          <p>在上面的过程中，核心部分如下：</p>
-          <ul>
-            <li>绑定git源</li>
-            <li>选择要部署的git仓库，并构建成镜像</li>
-            <li>部署到<strong>自有主机</strong>上</li>
-            <li>将后续自动持续部署的设置打开
-              <ul>
-                <li>在「代码构建」具体项目的「设置」中，将持续集成打开，设置好镜像和持续集成的触发规则，比如：在向docker-support分支提交代码时，就触发自动持续集成。</li>
-                <li>在「应用列表」中的「发布」设置中，将自动发布打开。</li>
-              </ul>
-            </li>
-          </ul>
-          <h2 id="u53D1_u5E03_u5B8C_u6210_u4E4B_u540E_u9700_u8981_u505A_u7684_u5DE5_u4F5C"><a href="#u53D1_u5E03_u5B8C_u6210_u4E4B_u540E_u9700_u8981_u505A_u7684_u5DE5_u4F5C" class="headerlink" title="发布完成之后需要做的工作"></a>发布完成之后需要做的工作</h2>
-          <p>发布完成之后，可以在daocloud上看到所创建的容器的具体信息。包括映射到宿主机上的端口号等等，点击端口号后可以看到该应用的访问地址，打开可以测试是否部署成功了</p>
-          <p>为方便后面的叙述，这里假设映射出的端口号为8888。因为是发布到自己的主机上，所以还需要自己配置域名以及nginx反向代理来对外提供访问服务。假设有一个域名已经绑定在了自己的主机上，这里假设为xiaohuruwei.com.</p>
-          <p>登陆自己的主机，并配置nginx文件，如果是使用apt-get一类的包管理工具安装的，那么应该是在/etc/nginx/conf.d/目录下添加 jinli.conf:</p>
-          <figure class="highlight nginx">
-            <table>
-              <tr>
-                <td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td>
-                <td class="code"><pre><span class="line"><span class="title">server</span> &#123;</span><br><span class="line">    <span class="title">listen</span> <span class="number">80</span>;</span><br><span class="line">    <span class="title">server_name</span> xiaohuruwei.com;</span><br><span class="line">    <span class="title">access_log</span> /var/log/nginx/jinli.access.log;</span><br><span class="line">    <span class="title">error_log</span> /var/log/nginx/jinli.<span class="built_in">error</span>.log;</span><br><span class="line">    <span class="title">client_max_body_size</span> <span class="number">200m</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 可以根据需要设置其他配置项</span></span><br><span class="line"></span><br><span class="line">    <span class="title">location</span> / &#123;</span><br><span class="line">        <span class="title">proxy_set_header</span> Host <span class="variable">$host</span>;</span><br><span class="line">        <span class="title">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">        <span class="title">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line"></span><br><span class="line">        <span class="title">proxy_pass</span> <span class="url">http://127.0.0.1:8888</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td>
-              </tr>
-            </table>
-          </figure>
-          <p>然后访问xiaohuruwei.com就可以看到内容了</p>
-          <p>另外，需要在使用daocloud的时候，将自动构建和持续发布都打开，这样下次使用时，只需要往github推代码时，触发了你设定的更新规则，就会持续构建镜像并发布了。</p>
-          <hr>
-          <h1 id="u6301_u7EED_u96C6_u6210_u4F9D_u8D56_u5916_u90E8_u670D_u52A1_u7684_u5E94_u7528"><a href="#u6301_u7EED_u96C6_u6210_u4F9D_u8D56_u5916_u90E8_u670D_u52A1_u7684_u5E94_u7528" class="headerlink" title="持续集成依赖外部服务的应用"></a>持续集成依赖外部服务的应用</h1>
-          <p>以django应用为例</p>
-          <h2 id="u672C_u6587_u9002_u7528_u7684_u573A_u666F"><a href="#u672C_u6587_u9002_u7528_u7684_u573A_u666F" class="headerlink" title="本文适用的场景"></a>本文适用的场景</h2>
-          <ul>
-            <li>拥有自己的主机</li>
-            <li>将主机添加到了daocloud上</li>
-            <li>只使用daocloud的自动构建和部署功能</li>
-            <li><strong>所依赖的外部服务已经（以daocke容器）存在于自己的主机上</strong>，镜像也要部署在自己的主机上。在部署的同时连接主机上已经存在的外部服务（如mysql，redis等）。</li>
-          </ul>
-          <h2 id="u4F9D_u8D56_u5916_u90E8_u670D_u52A1_u7684_u5E94_u7528"><a href="#u4F9D_u8D56_u5916_u90E8_u670D_u52A1_u7684_u5E94_u7528" class="headerlink" title="依赖外部服务的应用"></a>依赖外部服务的应用</h2>
-          <p>在docker领域中，如果一个docker镜像自身需要其他镜像来提供服务，就说这个镜像是带外部服务的。</p>
-          <p>以一个简单的django应用为例，如果这个django应用自身无法完成任务，而需要mysql或者其他数据库作为数据的持久化服务，那么这个django应用就是依赖外部服务的。</p>
-          <h2 id="u6784_u5EFA_u524D_u7684_u51C6_u5907"><a href="#u6784_u5EFA_u524D_u7684_u51C6_u5907" class="headerlink" title="构建前的准备"></a>构建前的准备</h2>
-          <p>准备同html5接近，因为需要连接外部服务，而且因为uwsig服务默认不支持静态文件的处理，所以多了一些对原代码的改造。</p>
-          <h3 id="u9879_u76EE_u7ED3_u6784"><a href="#u9879_u76EE_u7ED3_u6784" class="headerlink" title="项目结构"></a>项目结构</h3>
-          <p>首先是django应用的目录，比如有一个应用叫taikang，目录结构如下：</p>
-          <figure class="highlight plain">
-            <table>
-              <tr>
-                <td class="gutter"><pre><span class="line">1</span><br></pre></td>
-                <td class="code"><pre><span class="line">taikang&#9;# &#39033;&#30446;&#26681;&#30446;&#24405;&#9;&#10;&#9500;&#9472;&#9472; Dockerfile&#9;# Dockerfile&#25991;&#20214;&#10;&#9500;&#9472;&#9472; logs&#9;&#10;&#9500;&#9472;&#9472; manage.py&#10;&#9500;&#9472;&#9472; Makefile&#9;# makefile&#25991;&#20214;&#10;&#9500;&#9472;&#9472; requirements.txt&#9;# &#24212;&#29992;&#20381;&#36182;&#30340;python&#24211;&#10;&#9500;&#9472;&#9472; templates&#10;&#9492;&#9472;&#9472; taikang&#9;&#9;# &#24212;&#29992;&#30446;&#24405;&#10;&#9;&#9500;&#9472;&#9472; __init__.py&#10;&#9;&#9500;&#9472;&#9472; models.py&#10;&#9;&#9500;&#9472;&#9472; settings.py   # django&#30340;&#37197;&#32622;&#25991;&#20214;&#10;&#9;&#9500;&#9472;&#9472; urls.py&#10;&#9;&#9500;&#9472;&#9472; views.py&#10;&#9;&#9492;&#9472;&#9472; wsgi.py</span><br></pre></td>
-              </tr>
-            </table>
-          </figure>
-          <h3 id="Dockerfile_u6587_u4EF6_u7F16_u5199"><a href="#Dockerfile_u6587_u4EF6_u7F16_u5199" class="headerlink" title="Dockerfile文件编写"></a>Dockerfile文件编写</h3>
-          <p>Dockerfile文件的含义和html5部署中是完全相同的，这里为：</p>
-          <figure class="highlight docker">
-            <table>
-              <tr>
-                <td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td>
-                <td class="code"><pre><span class="line"><span class="comment"># 使用python2.7.10版本作为基础服务</span></span><br><span class="line"><span class="built_in">from</span> python:<span class="number">2.7</span>.<span class="number">10</span></span><br><span class="line"></span><br><span class="line">将当前项目中的内容全<span class="built_ins">copy</span>到镜像中的 /src 目录下</span><br><span class="line"><span class="built_in">COPY</span> <span class="bash">. /src</span><br><span class="line"></span></span><br><span class="line"><span class="comment"># 安装django应用依赖的库，这里设置为豆瓣的pypi源</span></span><br><span class="line"><span class="built_in">RUN</span> <span class="bash"><span class="built_in">cd</span> /src; pip install -r  requirements.txt -i http://pypi.douban.com/simple --trusted-host pypi.douban.com</span><br><span class="line"></span></span><br><span class="line"><span class="comment"># 镜像暴露出8000端口</span></span><br><span class="line"><span class="built_in">EXPOSE</span> <span class="number">8000</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置工作目录为代码所在目录</span></span><br><span class="line"><span class="built_in">WORKDIR</span>  <span class="bash">/src</span><br><span class="line"></span></span><br><span class="line"><span class="comment"># 设置应用启动命令</span></span><br><span class="line"><span class="built_in">CMD</span> <span class="bash">[<span class="string">"make"</span>, <span class="string">"start-uwsgi"</span>]</span></span><br></pre></td>
-              </tr>
-            </table>
-          </figure>
-          <h3 id="Makefile_u6587_u4EF6_u7F16_u5199"><a href="#Makefile_u6587_u4EF6_u7F16_u5199" class="headerlink" title="Makefile文件编写"></a>Makefile文件编写</h3>
-          <p>可以注意到，上述最后的启动命令中使用了make命令，这也是前面目录结构中Makefile文件的作用所在。有关makefile的知识，这里不再详述.<br>总之可以让你更方便的管理应用，这里直接贴出makefile文件：</p>
-          <figure class="highlight makefile">
-            <table>
-              <tr>
-                <td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td>
-                <td class="code"><pre><span class="line"><span class="comment"># uwsig启动的host和端口 </span></span><br><span class="line"><span class="constant">host</span>:=0.0.0.0</span><br><span class="line"><span class="constant">port</span>:=8000</span><br><span class="line"></span><br><span class="line"><span class="comment"># debug的时候直接使用django自带的服务启动</span></span><br><span class="line"><span class="title">debug:</span></span><br><span class="line">    ./manage.py runserver $(host):$(port)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动uwsgi服务</span></span><br><span class="line">start-uwsgi:</span><br><span class="line">    uwsgi --socket $(host):$(port) \</span><br><span class="line">        --chdir $(shell pwd) \</span><br><span class="line">        --wsgi-file taikang/wsgi.py \</span><br><span class="line">        --master \</span><br><span class="line">        --process 4 \</span><br><span class="line">        --pidfile $(shell pwd)/uwsgi.pid</span><br><span class="line"></span><br><span class="line"><span class="comment"># 停止uwsgi服务</span></span><br><span class="line">stop-uwsgi:</span><br><span class="line">    uwsgi --stop uwsgi.pid</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重载uwsgi服务</span></span><br><span class="line">reload-uwsgi:</span><br><span class="line">    uwsgi --reload uwsgi.pid</span><br><span class="line"></span><br><span class="line"><span class="comment"># 收集静态文件</span></span><br><span class="line"><span class="title">collectstatic:</span></span><br><span class="line">    ./manage.py collectstatic --noinput</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="phony"><span class="keyword">.PHONY</span>: debug \</span></span><br><span class="line">    collectstatic \</span><br><span class="line">    reload-uwsgi \</span><br><span class="line">    start-uwsgi \</span><br><span class="line">    stop-uwsgi</span><br></pre></td>
-              </tr>
-            </table>
-          </figure>
-          <h3 id="u9759_u6001_u6587_u4EF6_u652F_u6301"><a href="#u9759_u6001_u6587_u4EF6_u652F_u6301" class="headerlink" title="静态文件支持"></a>静态文件支持</h3>
-          <p>在uwsgi提供服务时，静态文件需要单独进行处理，目前推荐使用django的<a href="https://github.com/evansd/whitenoise" target="_blank" rel="external">whitenoise库</a> 。可以方便的提供静态文件服务，仅仅需要几行配置。</p>
-          <h3 id="u901A_u8FC7_u73AF_u5883_u53D8_u91CF_u6765_u8FDE_u63A5_u670D_u52A1"><a href="#u901A_u8FC7_u73AF_u5883_u53D8_u91CF_u6765_u8FDE_u63A5_u670D_u52A1" class="headerlink" title="通过环境变量来连接服务"></a>通过环境变量来连接服务</h3>
-          <p>在使用docker部署项目，当需要连接外部的服务时，一般通过link + 环境变量的参数进行。而为了支持环境变量的形式，我们的django应用也要做一些相应的改变。具体就是修改settings.py中的配置。</p>
-          <p>修改settings.py文件，以mysql为例：</p>
-          <figure class="highlight python">
-            <table>
-              <tr>
-                <td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td>
-                <td class="code"><pre><span class="line"><span class="comment"># 原来的mysql配置文件</span></span><br><span class="line"><span class="comment">#DATABASES = &#123;</span></span><br><span class="line"><span class="comment">#    'default': &#123;</span></span><br><span class="line"><span class="comment">#        'ENGINE': 'django.db.backends.mysql',</span></span><br><span class="line"><span class="comment">#        'NAME': 'starding_taikang',</span></span><br><span class="line"><span class="comment">#        'USER': 'root',</span></span><br><span class="line"><span class="comment">#        'PASSWORD': 'your_password_here',</span></span><br><span class="line"><span class="comment">#        'HOST': 'localhost',</span></span><br><span class="line"><span class="comment">#        'PORT': '3306'</span></span><br><span class="line"><span class="comment">#    &#125;</span></span><br><span class="line"><span class="comment">#&#125;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 通过获取环境变量的形式来获取服务</span></span><br><span class="line"><span class="keyword">import</span> os  <span class="comment"># 导入os库</span></span><br><span class="line">mysql_name = os.environ.get(<span class="string">'MYSQL_INSTANCE_NAME'</span>) <span class="keyword">or</span> <span class="string">"taikang"</span>  <span class="comment"># 获取数据库名称</span></span><br><span class="line">mysql_user = os.environ.get(<span class="string">'MYSQL_USERNAME'</span>) <span class="keyword">or</span> <span class="string">"root"</span>  <span class="comment"># 获取mysql用户名</span></span><br><span class="line">mysql_password = os.environ.get(<span class="string">'MYSQL_PASSWORD'</span>) <span class="keyword">or</span> <span class="string">"your_password"</span>  <span class="comment"># 获取密码</span></span><br><span class="line">mysql_host = os.environ.get(<span class="string">'MYSQL_ADDR'</span>) <span class="keyword">or</span> <span class="string">"127.0.0.1"</span>  <span class="comment"># 获取服务地址</span></span><br><span class="line">mysql_port = <span class="string">"3306"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 直接使用上面的变量代替字符串</span></span><br><span class="line">DATABASES = &#123;</span><br><span class="line">   <span class="string">'default'</span>: &#123;</span><br><span class="line">       <span class="string">'ENGINE'</span>: <span class="string">'django.db.backends.mysql'</span>,</span><br><span class="line">       <span class="string">'NAME'</span>: mysql_name,</span><br><span class="line">       <span class="string">'USER'</span>: mysql_user,</span><br><span class="line">       <span class="string">'PASSWORD'</span>: mysql_password,</span><br><span class="line">       <span class="string">'HOST'</span>: mysql_host,</span><br><span class="line">       <span class="string">'PORT'</span>: mysql_port</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td>
-              </tr>
-            </table>
-          </figure>
-          <h2 id="u4F7F_u7528daocloud_u90E8_u7F72_u6784_u5EFA_u597D_u7684taikang_u9879_u76EE"><a href="#u4F7F_u7528daocloud_u90E8_u7F72_u6784_u5EFA_u597D_u7684taikang_u9879_u76EE" class="headerlink" title="使用daocloud部署构建好的taikang项目"></a>使用daocloud部署构建好的taikang项目</h2>
-          <p>步骤基本同html5部署，假设你完成镜像构建之后，产生的镜像地址为：</p>
-          <figure class="highlight plain">
-            <table>
-              <tr>
-                <td class="gutter"><pre><span class="line">1</span><br></pre></td>
-                <td class="code"><pre><span class="line">daocloud.io/xiaohuruwei/taking:latest</span><br></pre></td>
-              </tr>
-            </table>
-          </figure>
-          <p>下一步在使用镜像部署的时候，需要连接外部服务，具体是手动编辑yaml文件。</p>
-          <figure class="highlight">
-            <table>
-              <tr>
-                <td class="gutter"><pre><span class="line">1</span><br></pre></td>
-                <td class="code"><pre><span class="line">takang_test:&#10;  image: daocloud.io/xiaohuruwei/taking:latest&#10;  restart: always&#10;  external_links:&#10;  - mysql1:mysql&#9;  # &#21069;&#38754;&#30340;mysql1&#26159;&#20320;&#20027;&#26426;&#19978;&#24050;&#32463;&#23384;&#22312;&#30340;mysql&#30340;&#23481;&#22120;&#23454;&#20363;&#65292;&#20882;&#21495;&#21518;&#38754;&#26159;&#21035;&#21517;&#10;  ports:&#10;  - &#39;8000&#39;&#10;  environment:    # &#29615;&#22659;&#21464;&#37327;    &#10;  - MYSQL_ADDR=mysql</span><br></pre></td>
-              </tr>
-            </table>
-          </figure>
-          <p>但是我发现这种方法似乎有一些bug，如果上面的方法不成功，那么你就先直接部署，部署成功之后，再去修改yaml文件成为上面描述的样子。在修改yaml文件的时候，daocloud会提示重新部署，选择确定即可。</p>
-          <p>至此，django项目也部署完成了。然后同html5项目部署一样，把各种自动构建，自动发布的功能打开就行了。</p>
-          <p><strong>注意：</strong> 由于django项目是使用uwsgi部署的，直接访问daocloud给出的地址是错误的，这个时候必须配置nginx反向代理。</p>
-          <p>附上uwsgi部署的django nginx代理配置文件：</p>
-          <figure class="highlight nginx">
-            <table>
-              <tr>
-                <td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td>
-                <td class="code"><pre><span class="line"><span class="title">server</span> &#123;</span><br><span class="line">    <span class="title">listen</span> <span class="number">80</span>;</span><br><span class="line">    <span class="title">server_name</span> xiaohuruwei.com;</span><br><span class="line">    <span class="title">access_log</span> /var/log/nginx/taikang.access.log;</span><br><span class="line">    <span class="title">error_log</span> /var/log/nginx/taikang.<span class="built_in">error</span>.log;</span><br><span class="line">    <span class="title">client_max_body_size</span> <span class="number">200m</span>;</span><br><span class="line"></span><br><span class="line">    <span class="title">gzip</span> <span class="built_in">on</span>;</span><br><span class="line">    <span class="title">gzip_min_length</span> <span class="number">1k</span>;</span><br><span class="line">    <span class="title">gzip_buffers</span> <span class="number">16</span> <span class="number">64k</span>;</span><br><span class="line">    <span class="title">gzip_http_version</span> <span class="number">1</span>.<span class="number">1</span>;</span><br><span class="line">    <span class="title">gzip_comp_level</span> <span class="number">6</span>;</span><br><span class="line">    <span class="title">gzip_types</span> text/plain application/x-javascript text/javascript text/css application/xml;</span><br><span class="line">    <span class="title">gzip_vary</span> <span class="built_in">on</span>;</span><br><span class="line"></span><br><span class="line">    <span class="title">location</span> / &#123;</span><br><span class="line">        <span class="title">proxy_set_header</span> Host <span class="variable">$host</span>;</span><br><span class="line">        <span class="title">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">        <span class="title">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line"></span><br><span class="line">        <span class="title">include</span> uwsgi_params;</span><br><span class="line">        <span class="title">uwsgi_pass</span> <span class="number">127.0.0.1:32801</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td>
-              </tr>
-            </table>
-          </figure>
-        </div>
-        <footer class="article-footer clearfix">
-          <div class="article-catetags">
-
-            <div class="article-categories">
-              <span></span>
-              <a class="article-category-link" href="/categories/docker/">docker</a>
-            </div>
-
-
-            <div class="article-tags">
-
-              <span></span> <a href="/tags/docker/">docker</a>
-            </div>
-
-          </div>
-
-          <div class="article-share" id="share">
-
-            <div data-url="http://starding.github.io/2016/01/07/daocloud-deploy/" data-title="使用daocloud持续集成应用 | 小狐濡尾" data-tsina="null" class="share clearfix">
-            </div>
-
-          </div>
-
-
-        </footer>
-      </article>
-      <nav class="article-nav clearfix">
-
-        <div class="prev">
-          <a href="/2016/01/07/deploy-gitlab-by-docker/" title="docker 部署gitlab">
-            <strong>上一篇：</strong><br/>
-            <span>
-  docker 部署gitlab</span>
-          </a>
-        </div>
-
-
-        <div class="next">
-          <a href="/2016/01/07/docker-a-metaphor/" title="docker——从隐喻说起">
-            <strong>下一篇：</strong><br/>
-            <span>docker——从隐喻说起
-</span>
-          </a>
-        </div>
-
-      </nav>
-      <section id="comments" class="comment">
-        <div class="ds-thread" data-thread-key="2016/01/07/daocloud-deploy/" data-title="使用daocloud持续集成应用" data-url="http://starding.github.io/2016/01/07/daocloud-deploy/"></div>
-      </section>
-    </div>
-    <div class="openaside">
-      <a class="navbutton" href="#" title="显示侧边栏"></a>
-    </div>
-
-    <div id="toc" class="toc-aside">
-      <strong class="toc-title">文章目录</strong>
-
-      <ol class="toc">
-        <li class="toc-item toc-level-1"><a class="toc-link" href="#u5199_u5728_u524D_u9762_u7684_u8BDD"><span class="toc-number">1.</span> <span class="toc-text">写在前面的话</span></a></li>
-        <li class="toc-item toc-level-1"><a class="toc-link" href="#daocloud_u4ECB_u7ECD"><span class="toc-number">2.</span> <span class="toc-text">daocloud介绍</span></a></li>
-        <li class="toc-item toc-level-1"><a class="toc-link" href="#u6301_u7EED_u96C6_u6210_u7B80_u5355_u7684html5_u5E94_u7528"><span class="toc-number">3.</span> <span class="toc-text">持续集成简单的html5应用</span></a>
-          <ol class="toc-child">
-            <li class="toc-item toc-level-2"><a class="toc-link" href="#u672C_u5C0F_u8282_u4F7F_u7528_u573A_u666F"><span class="toc-number">3.1.</span> <span class="toc-text">本小节使用场景</span></a></li>
-            <li class="toc-item toc-level-2"><a class="toc-link" href="#u4EC0_u4E48_u662F_u300C_u7B80_u5355_u7684html5_u5E94_u7528_u300D"><span class="toc-number">3.2.</span> <span class="toc-text">什么是「简单的html5应用」</span></a></li>
-            <li class="toc-item toc-level-2"><a class="toc-link" href="#u90E8_u7F72_u5927_u81F4_u89E3_u51B3_u65B9_u6848"><span class="toc-number">3.3.</span> <span class="toc-text">部署大致解决方案</span></a></li>
-            <li class="toc-item toc-level-2"><a class="toc-link" href="#u6784_u5EFA_u5E94_u7528_u524D_u7684_u51C6_u5907"><span class="toc-number">3.4.</span> <span class="toc-text">构建应用前的准备</span></a>
-              <ol class="toc-child">
-                <li class="toc-item toc-level-3"><a class="toc-link" href="#u5E94_u7528_u76EE_u5F55_u7ED3_u6784"><span class="toc-number">3.4.1.</span> <span class="toc-text">应用目录结构</span></a></li>
-                <li class="toc-item toc-level-3"><a class="toc-link" href="#u521B_u5EFADockerfile_u6587_u4EF6"><span class="toc-number">3.4.2.</span> <span class="toc-text">创建Dockerfile文件</span></a></li>
-                <li class="toc-item toc-level-3"><a class="toc-link" href="#u914D_u7F6E_u5728docker_u4E2D_u4F7F_u7528_u7684nginx_u914D_u7F6E_u6587_u4EF6_u3002"><span class="toc-number">3.4.3.</span> <span class="toc-text">配置在docker中使用的nginx配置文件。</span></a></li>
-              </ol>
-            </li>
-            <li class="toc-item toc-level-2"><a class="toc-link" href="#u4F7F_u7528daocloud_u8FDB_u884C_u6301_u7EED_u6784_u5EFA_u955C_u50CF_u4EE5_u53CA_u53D1_u5E03"><span class="toc-number">3.5.</span> <span class="toc-text">使用daocloud进行持续构建镜像以及发布</span></a></li>
-            <li class="toc-item toc-level-2"><a class="toc-link" href="#u53D1_u5E03_u5B8C_u6210_u4E4B_u540E_u9700_u8981_u505A_u7684_u5DE5_u4F5C"><span class="toc-number">3.6.</span> <span class="toc-text">发布完成之后需要做的工作</span></a></li>
-          </ol>
-        </li>
-        <li class="toc-item toc-level-1"><a class="toc-link" href="#u6301_u7EED_u96C6_u6210_u4F9D_u8D56_u5916_u90E8_u670D_u52A1_u7684_u5E94_u7528"><span class="toc-number">4.</span> <span class="toc-text">持续集成依赖外部服务的应用</span></a>
-          <ol class="toc-child">
-            <li class="toc-item toc-level-2"><a class="toc-link" href="#u672C_u6587_u9002_u7528_u7684_u573A_u666F"><span class="toc-number">4.1.</span> <span class="toc-text">本文适用的场景</span></a></li>
-            <li class="toc-item toc-level-2"><a class="toc-link" href="#u4F9D_u8D56_u5916_u90E8_u670D_u52A1_u7684_u5E94_u7528"><span class="toc-number">4.2.</span> <span class="toc-text">依赖外部服务的应用</span></a></li>
-            <li class="toc-item toc-level-2"><a class="toc-link" href="#u6784_u5EFA_u524D_u7684_u51C6_u5907"><span class="toc-number">4.3.</span> <span class="toc-text">构建前的准备</span></a>
-              <ol class="toc-child">
-                <li class="toc-item toc-level-3"><a class="toc-link" href="#u9879_u76EE_u7ED3_u6784"><span class="toc-number">4.3.1.</span> <span class="toc-text">项目结构</span></a></li>
-                <li class="toc-item toc-level-3"><a class="toc-link" href="#Dockerfile_u6587_u4EF6_u7F16_u5199"><span class="toc-number">4.3.2.</span> <span class="toc-text">Dockerfile文件编写</span></a></li>
-                <li class="toc-item toc-level-3"><a class="toc-link" href="#Makefile_u6587_u4EF6_u7F16_u5199"><span class="toc-number">4.3.3.</span> <span class="toc-text">Makefile文件编写</span></a></li>
-                <li class="toc-item toc-level-3"><a class="toc-link" href="#u9759_u6001_u6587_u4EF6_u652F_u6301"><span class="toc-number">4.3.4.</span> <span class="toc-text">静态文件支持</span></a></li>
-                <li class="toc-item toc-level-3"><a class="toc-link" href="#u901A_u8FC7_u73AF_u5883_u53D8_u91CF_u6765_u8FDE_u63A5_u670D_u52A1"><span class="toc-number">4.3.5.</span> <span class="toc-text">通过环境变量来连接服务</span></a></li>
-              </ol>
-            </li>
-            <li class="toc-item toc-level-2"><a class="toc-link" href="#u4F7F_u7528daocloud_u90E8_u7F72_u6784_u5EFA_u597D_u7684taikang_u9879_u76EE"><span class="toc-number">4.4.</span> <span class="toc-text">使用daocloud部署构建好的taikang项目</span></a></li>
-          </ol>
-        </li>
-      </ol>
-
-    </div>
-
-    <div id="asidepart">
-      <div class="closeaside">
-        <a class="closebutton" href="#" title="隐藏侧边栏"></a>
-      </div>
-      <aside class="clearfix">
-
-        <div class="github-card">
-          <p class="asidetitle">Github 名片</p>
-          <div class="github-card" data-github="starding" data-width="220" data-height="119" data-theme="medium">
-            <script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
-          </div>
-        </div>
-
-        <div class="doubanshow">
-          <p class="asidetitle">豆瓣秀</p>
-          <div>
-            <script type="text/javascript" src="http://www.douban.com/service/badge/58816601/?show=collection&amp;n=12&amp;columns=3&amp;hidelogo=yes&amp;hideself=yes&amp;cat=book|movie"></script>
-          </div>
-        </div>
-
-        <div class="categorieslist">
-          <p class="asidetitle">分类</p>
-          <ul>
-
-
-            <li><a href="/categories/computer-philosophy/" title="computer philosophy">computer philosophy<sup>2</sup></a></li>
-
-
-
-            <li><a href="/categories/docker/" title="docker">docker<sup>4</sup></a></li>
-
-
-
-            <li><a href="/categories/javascript/" title="javascript">javascript<sup>2</sup></a></li>
-
-
-
-            <li><a href="/categories/open-questions/" title="open-questions">open-questions<sup>1</sup></a></li>
-
-
-
-            <li><a href="/categories/python/" title="python">python<sup>4</sup></a></li>
-
-
-
-            <li><a href="/categories/前端/" title="前端">前端<sup>3</sup></a></li>
-
-
-
-            <li><a href="/categories/技术哲学/" title="技术哲学">技术哲学<sup>2</sup></a></li>
-
-
-
-            <li><a href="/categories/数学/" title="数学">数学<sup>1</sup></a></li>
-
-
-
-            <li><a href="/categories/科学史与科学哲学/" title="科学史与科学哲学">科学史与科学哲学<sup>1</sup></a></li>
-
-
-
-            <li><a href="/categories/算法/" title="算法">算法<sup>1</sup></a></li>
-
-
-
-            <li><a href="/categories/问题/" title="问题">问题<sup>1</sup></a></li>
-
-
-
-            <li><a href="/categories/随笔/" title="随笔">随笔<sup>4</sup></a></li>
-
-
-          </ul>
-        </div>
-
-        <div class="tagslist">
-          <p class="asidetitle">标签</p>
-          <ul class="clearfix">
-
-
-            <li><a href="/tags/python/" title="python">python<sup>4</sup></a></li>
-
-
-
-            <li><a href="/tags/docker/" title="docker">docker<sup>4</sup></a></li>
-
-
-
-            <li><a href="/tags/前端/" title="前端">前端<sup>2</sup></a></li>
-
-
-
-            <li><a href="/tags/随笔/" title="随笔">随笔<sup>2</sup></a></li>
-
-
-
-            <li><a href="/tags/javascript/" title="javascript">javascript<sup>2</sup></a></li>
-
-
-
-            <li><a href="/tags/django/" title="django">django<sup>1</sup></a></li>
-
-
-
-            <li><a href="/tags/open-questions/" title="open-questions">open-questions<sup>1</sup></a></li>
-
-
-
-            <li><a href="/tags/三体/" title="三体">三体<sup>1</sup></a></li>
-
-
-
-            <li><a href="/tags/科学史/" title="科学史">科学史<sup>1</sup></a></li>
-
-
-
-            <li><a href="/tags/computer/" title="computer">computer<sup>1</sup></a></li>
-
-
-
-            <li><a href="/tags/社会达尔文主义/" title="社会达尔文主义">社会达尔文主义<sup>1</sup></a></li>
-
-
-
-            <li><a href="/tags/科学哲学/" title="科学哲学">科学哲学<sup>1</sup></a></li>
-
-
-
-            <li><a href="/tags/行尸走肉/" title="行尸走肉">行尸走肉<sup>1</sup></a></li>
-
-
-
-            <li><a href="/tags/gitlab/" title="gitlab">gitlab<sup>1</sup></a></li>
-
-
-          </ul>
-        </div>
-
-        <div class="linkslist">
-          <p class="asidetitle">友情链接</p>
-          <ul>
-
-            <li>
-
-              <a href="http://phiphicake.blogspot.com" target="_blank" title=" 一个有趣的哲学博客">哲学鸡蛋糕</a>
-
-            </li>
-
-          </ul>
-        </div>
-
-        <div class="rsspart">
-          <a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
-        </div>
-
-      </aside>
-    </div>
+  <p class="article-author">By
+       
+		<a href="/about" title="starding" target="_blank" itemprop="author">starding</a>
+		
+  <p class="article-time">
+    <time datetime="2016-01-07T07:24:25.000Z" itemprop="datePublished"> 发表于 2016-01-07</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#写在前面的话"><span class="toc-number">1.</span> <span class="toc-text">写在前面的话</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#daocloud介绍"><span class="toc-number">2.</span> <span class="toc-text">daocloud介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#持续集成简单的html5应用"><span class="toc-number">3.</span> <span class="toc-text">持续集成简单的html5应用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#本小节使用场景"><span class="toc-number">3.1.</span> <span class="toc-text">本小节使用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是「简单的html5应用」"><span class="toc-number">3.2.</span> <span class="toc-text">什么是「简单的html5应用」</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#部署大致解决方案"><span class="toc-number">3.3.</span> <span class="toc-text">部署大致解决方案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#构建应用前的准备"><span class="toc-number">3.4.</span> <span class="toc-text">构建应用前的准备</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#应用目录结构"><span class="toc-number">3.4.1.</span> <span class="toc-text">应用目录结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建Dockerfile文件"><span class="toc-number">3.4.2.</span> <span class="toc-text">创建Dockerfile文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置在docker中使用的nginx配置文件。"><span class="toc-number">3.4.3.</span> <span class="toc-text">配置在docker中使用的nginx配置文件。</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用daocloud进行持续构建镜像以及发布"><span class="toc-number">3.5.</span> <span class="toc-text">使用daocloud进行持续构建镜像以及发布</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#发布完成之后需要做的工作"><span class="toc-number">3.6.</span> <span class="toc-text">发布完成之后需要做的工作</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#持续集成依赖外部服务的应用"><span class="toc-number">4.</span> <span class="toc-text">持续集成依赖外部服务的应用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#本文适用的场景"><span class="toc-number">4.1.</span> <span class="toc-text">本文适用的场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#依赖外部服务的应用"><span class="toc-number">4.2.</span> <span class="toc-text">依赖外部服务的应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#构建前的准备"><span class="toc-number">4.3.</span> <span class="toc-text">构建前的准备</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#项目结构"><span class="toc-number">4.3.1.</span> <span class="toc-text">项目结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Dockerfile文件编写"><span class="toc-number">4.3.2.</span> <span class="toc-text">Dockerfile文件编写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Makefile文件编写"><span class="toc-number">4.3.3.</span> <span class="toc-text">Makefile文件编写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#静态文件支持"><span class="toc-number">4.3.4.</span> <span class="toc-text">静态文件支持</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通过环境变量来连接服务"><span class="toc-number">4.3.5.</span> <span class="toc-text">通过环境变量来连接服务</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用daocloud部署构建好的taikang项目"><span class="toc-number">4.4.</span> <span class="toc-text">使用daocloud部署构建好的taikang项目</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<h1 id="写在前面的话"><a href="#写在前面的话" class="headerlink" title="写在前面的话"></a>写在前面的话</h1><p>来自维基百科的：<a href="https://zh.wikipedia.org/wiki/货物崇拜编程" target="_blank" rel="external">货殖崇拜编程</a></p>
+<p>为因GFW屏蔽访问不了维基百科的同学准备的：</p>
+<blockquote>
+<p>货物崇拜编程（Cargo Cult Programming）是一种计算机程序设计中的反模式，其特征为不明就里地、仪式性地使用代码或程序架构。货物崇拜编程通常是程序员既没理解他要解决的bug、也没理解表面上的解决方案的典型表现。</p>
+<p>这个名词有时也指不熟练的或没经验的程序员从某处拷贝代码到另一处，却不太清楚其代码是如何工作的，或者不清楚在新的地方是否需要这段代码。也可以指不正确或过份的应用设计模式、代码风格或编程方法，却对其原理不明就里。</p>
+<p>货物崇拜编程来源于“货物崇拜”这个词。其衍生词还有“货物崇拜软件工程”。</p>
+</blockquote>
+<p>在阅读任何教程类的文章时，都不要有编程上的货殖崇拜，有些内容是需要你根据自己的实际情况修改一些内容的,需要你理解它，如果不理解某些内容，就需要先熟悉一下相关的知识。</p>
+<h1 id="daocloud介绍"><a href="#daocloud介绍" class="headerlink" title="daocloud介绍"></a>daocloud介绍</h1><p>  <a href="https://daocloud.io" target="_blank" rel="external">daocloud</a>提供基于docker进行持续集成的服务，使用它可以很方便的完成项目的自动化构建以及持续发布等功能。</p>
+<p>当然，如果要使用daocloud持续化集成应用，首先你需要注册一个daocloud账号。如果你效力于某个公司的话，还要通知该公司把你的账号拉到公司用户组里，这样才能使用该公司的资源。</p>
+<h1 id="持续集成简单的html5应用"><a href="#持续集成简单的html5应用" class="headerlink" title="持续集成简单的html5应用"></a>持续集成简单的html5应用</h1><h2 id="本小节使用场景"><a href="#本小节使用场景" class="headerlink" title="本小节使用场景"></a>本小节使用场景</h2><ul>
+<li>拥有自己的主机</li>
+<li>将主机添加到了daocloud上</li>
+<li>只使用daocloud的自动构建和部署功能</li>
+<li>镜像也要部署到自己的主机上。</li>
+</ul>
+<h2 id="什么是「简单的html5应用」"><a href="#什么是「简单的html5应用」" class="headerlink" title="什么是「简单的html5应用」"></a>什么是「简单的html5应用」</h2><p>只有前端页面，并且使用nginx提供服务。</p>
+<h2 id="部署大致解决方案"><a href="#部署大致解决方案" class="headerlink" title="部署大致解决方案"></a>部署大致解决方案</h2><p>本文假设一个使用场景：拥有自己的主机，并且绑定到了daocloud上，然后想通过daocloud进行持续化地部署到自己的主机上。如果想要部署一个纯前端项目，需要把nginx集成进去，然后使用nginx来提供服务。</p>
+<h2 id="构建应用前的准备"><a href="#构建应用前的准备" class="headerlink" title="构建应用前的准备"></a>构建应用前的准备</h2><h3 id="应用目录结构"><a href="#应用目录结构" class="headerlink" title="应用目录结构"></a>应用目录结构</h3><p>因为daocloud是基于daocker的，在使用daocloud之前，我们需要按照docker的规范，把自己的项目改成支持打包成镜像的应用，对于html5项目来说，就是添加Dockerfile文件和配置好所需要的nginx配置文件。比如我有一个应用叫jinli，其目录结构为(你的目录结构和这个可能也不一样)：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">jinli/  # 项目根目录</div><div class="line">├── jinli/  # 具体的应用目录</div><div class="line">│   ├── images/ # 图片</div><div class="line">│   ├── index.html  # 默认的检索html</div><div class="line">│   ├── scripts/  #  js文件夹</div><div class="line">│   └── styles/    # 存放css的文件夹</div><div class="line">├── Dockerfile   # Dockerfile</div><div class="line">├── jinli.conf   # 本应用的nginx配置文件</div><div class="line">└── log/  # log文件</div></pre></td></tr></table></figure>
+<p>在这个目录结构中，和docker镜像构建是就是Dockerfile这个文件，jinli.conf是个将要一起打包放入docker镜像中的文件，其他的都是应用本身的文件。</p>
+<h3 id="创建Dockerfile文件"><a href="#创建Dockerfile文件" class="headerlink" title="创建Dockerfile文件"></a>创建Dockerfile文件</h3><p><strong>Dockerfile</strong>，就是一个daocker的规则文件，就像make的Makefile一样。Dockerfile描述了将自己的应用构建成docker镜像的过程。<br>在本例中，Dockerfile的内容如下：</p>
+<figure class="highlight docker"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 选择nginx服务</span></div><div class="line"><span class="keyword">FROM</span> nginx:<span class="number">1.9</span>.<span class="number">5</span></div><div class="line"></div><div class="line"><span class="comment"># copy代码</span></div><div class="line"><span class="keyword">COPY</span> . /src</div><div class="line"></div><div class="line"><span class="comment"># 添加nginx配置文件</span></div><div class="line"><span class="keyword">COPY</span> jinli.conf /etc/nginx/conf.d/</div><div class="line"></div><div class="line"><span class="comment"># 去掉默认的nginx配置文件</span></div><div class="line"><span class="keyword">RUN</span> rm /etc/nginx/conf.d/default.conf</div></pre></td></tr></table></figure>
+<p>Dockerfile解释：</p>
+<ul>
+<li>首先，想象将要构建的docker镜像包含一个linux操作系统。</li>
+<li><code>FROM nginx:1.9.5</code> 的意思就是，将1.9.5版本的nginx服务集成到自己的镜像中（其实操作系统就是在这一步引入的，nginx本身也是一个镜像，它是建立在一个linux操作系统之上的，拉取nginx的时候，会连把nginx连带其附着的linx系统整个一起拉下来）。</li>
+<li><code>COPY . /src</code> 的意思是将当前目录下的代码复制到镜像中（的操作系统中）的 /src目录下</li>
+<li><code>COPY jinli.conf /etc/nginx/conf.d/</code> 的意思是，将当前目录下写好的nginx配置文件，复制到镜像（的操作系统）中的相应目录下。</li>
+<li>删掉原来默认的nginx配置（因为默认配置文件会占用掉localhost，不知道有没有更好的解决办法）</li>
+</ul>
+<h3 id="配置在docker中使用的nginx配置文件。"><a href="#配置在docker中使用的nginx配置文件。" class="headerlink" title="配置在docker中使用的nginx配置文件。"></a>配置在docker中使用的nginx配置文件。</h3><p>本示例中，nginx配置文件命名为jinli.conf。把它打包到镜像中，来给html5应用提供服务，这与平时直接在服务器上部署没有什么很大的差别，需要注意的就是：</p>
+<ul>
+<li>server_name 为 localhost，因为这个server_name是在docker容器内部使用的。</li>
+<li>location 中的root文件夹是docker容器中的地址，不是宿主机的地址</li>
+</ul>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="section">server</span> &#123;</div><div class="line">    <span class="attribute">listen</span> <span class="number">80</span>;</div><div class="line">    <span class="attribute">server_name</span> localhost;</div><div class="line">    <span class="attribute">access_log</span> /src/log/jinli.access.log;</div><div class="line">    <span class="attribute">error_log</span> /src/log/jinli.<span class="literal">error</span>.log;</div><div class="line"></div><div class="line">    <span class="comment"># 这里你还可以选择根据需要配一些gzip等选项</span></div><div class="line"></div><div class="line">    <span class="attribute">location</span> / &#123;</div><div class="line">    <span class="attribute">root</span> /src/jinli/;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>然后将应用提交到github上，比如具体为：xiaohuruwei/jinli.git</p>
+<p>以上已经包含全部必须的材料了，下面进入daocloud环节。</p>
+<h2 id="使用daocloud进行持续构建镜像以及发布"><a href="#使用daocloud进行持续构建镜像以及发布" class="headerlink" title="使用daocloud进行持续构建镜像以及发布"></a>使用daocloud进行持续构建镜像以及发布</h2><p>因为前面的步骤已经构建好了一个支持docker的代码版本，而且不需要外联像mysql这样的外部服务，因此可以直接将其当做一个单应用的镜像来构建。</p>
+<p>在这方面，daocloud已经有了完善的<a href="http://docs.daocloud.io/" target="_blank" rel="external">文档</a>，可以直接参考其中的创建新项目章节，以及持续集成章节。</p>
+<ul>
+<li>第四节<a href="http://docs.daocloud.io/ci-on-daocloud" target="_blank" rel="external">创建新项目</a>，根据具体情况选择要绑定需要的git源</li>
+<li>第五节<a href="http://docs.daocloud.io/ci-image-build" target="_blank" rel="external">持续集成和镜像构建</a>,在简单的html部署中，不需要了解daocloud.yml的写法</li>
+<li>第九节中的<a href="http://docs.daocloud.io/app-deploy-mgmt/deploy-to-cluster" target="_blank" rel="external">向自由主机集群上发布应用</a></li>
+</ul>
+<p>在上面的过程中，核心部分如下：</p>
+<ul>
+<li>绑定git源</li>
+<li>选择要部署的git仓库，并构建成镜像</li>
+<li>部署到<strong>自有主机</strong>上</li>
+<li>将后续自动持续部署的设置打开<ul>
+<li>在「代码构建」具体项目的「设置」中，将持续集成打开，设置好镜像和持续集成的触发规则，比如：在向docker-support分支提交代码时，就触发自动持续集成。</li>
+<li>在「应用列表」中的「发布」设置中，将自动发布打开。</li>
+</ul>
+</li>
+</ul>
+<h2 id="发布完成之后需要做的工作"><a href="#发布完成之后需要做的工作" class="headerlink" title="发布完成之后需要做的工作"></a>发布完成之后需要做的工作</h2><p>发布完成之后，可以在daocloud上看到所创建的容器的具体信息。包括映射到宿主机上的端口号等等，点击端口号后可以看到该应用的访问地址，打开可以测试是否部署成功了</p>
+<p>为方便后面的叙述，这里假设映射出的端口号为8888。因为是发布到自己的主机上，所以还需要自己配置域名以及nginx反向代理来对外提供访问服务。假设有一个域名已经绑定在了自己的主机上，这里假设为xiaohuruwei.com.</p>
+<p>登陆自己的主机，并配置nginx文件，如果是使用apt-get一类的包管理工具安装的，那么应该是在/etc/nginx/conf.d/目录下添加 jinli.conf:</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="section">server</span> &#123;</div><div class="line">    <span class="attribute">listen</span> <span class="number">80</span>;</div><div class="line">    <span class="attribute">server_name</span> xiaohuruwei.com;</div><div class="line">    <span class="attribute">access_log</span> /var/log/nginx/jinli.access.log;</div><div class="line">    <span class="attribute">error_log</span> /var/log/nginx/jinli.<span class="literal">error</span>.log;</div><div class="line">    <span class="attribute">client_max_body_size</span> <span class="number">200m</span>;</div><div class="line"></div><div class="line">    <span class="comment"># 可以根据需要设置其他配置项</span></div><div class="line"></div><div class="line">    <span class="attribute">location</span> / &#123;</div><div class="line">        <span class="attribute">proxy_set_header</span> Host <span class="variable">$host</span>;</div><div class="line">        <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</div><div class="line">        <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</div><div class="line"></div><div class="line">        <span class="attribute">proxy_pass</span> http://127.0.0.1:8888;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>然后访问xiaohuruwei.com就可以看到内容了</p>
+<p>另外，需要在使用daocloud的时候，将自动构建和持续发布都打开，这样下次使用时，只需要往github推代码时，触发了你设定的更新规则，就会持续构建镜像并发布了。</p>
+<hr>
+<h1 id="持续集成依赖外部服务的应用"><a href="#持续集成依赖外部服务的应用" class="headerlink" title="持续集成依赖外部服务的应用"></a>持续集成依赖外部服务的应用</h1><p>以django应用为例</p>
+<h2 id="本文适用的场景"><a href="#本文适用的场景" class="headerlink" title="本文适用的场景"></a>本文适用的场景</h2><ul>
+<li>拥有自己的主机</li>
+<li>将主机添加到了daocloud上</li>
+<li>只使用daocloud的自动构建和部署功能</li>
+<li><strong>所依赖的外部服务已经（以daocke容器）存在于自己的主机上</strong>，镜像也要部署在自己的主机上。在部署的同时连接主机上已经存在的外部服务（如mysql，redis等）。</li>
+</ul>
+<h2 id="依赖外部服务的应用"><a href="#依赖外部服务的应用" class="headerlink" title="依赖外部服务的应用"></a>依赖外部服务的应用</h2><p>在docker领域中，如果一个docker镜像自身需要其他镜像来提供服务，就说这个镜像是带外部服务的。</p>
+<p>以一个简单的django应用为例，如果这个django应用自身无法完成任务，而需要mysql或者其他数据库作为数据的持久化服务，那么这个django应用就是依赖外部服务的。</p>
+<h2 id="构建前的准备"><a href="#构建前的准备" class="headerlink" title="构建前的准备"></a>构建前的准备</h2><p>准备同html5接近，因为需要连接外部服务，而且因为uwsig服务默认不支持静态文件的处理，所以多了一些对原代码的改造。</p>
+<h3 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h3><p>首先是django应用的目录，比如有一个应用叫taikang，目录结构如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">taikang	# 项目根目录	</div><div class="line">├── Dockerfile	# Dockerfile文件</div><div class="line">├── logs	</div><div class="line">├── manage.py</div><div class="line">├── Makefile	# makefile文件</div><div class="line">├── requirements.txt	# 应用依赖的python库</div><div class="line">├── templates</div><div class="line">└── taikang		# 应用目录</div><div class="line">	├── __init__.py</div><div class="line">	├── models.py</div><div class="line">	├── settings.py   # django的配置文件</div><div class="line">	├── urls.py</div><div class="line">	├── views.py</div><div class="line">	└── wsgi.py</div></pre></td></tr></table></figure>
+<h3 id="Dockerfile文件编写"><a href="#Dockerfile文件编写" class="headerlink" title="Dockerfile文件编写"></a>Dockerfile文件编写</h3><p>Dockerfile文件的含义和html5部署中是完全相同的，这里为：</p>
+<figure class="highlight docker"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 使用python2.7.10版本作为基础服务</span></div><div class="line"><span class="keyword">from</span> python:<span class="number">2.7</span>.<span class="number">10</span></div><div class="line"></div><div class="line">将当前项目中的内容全<span class="keyword">copy</span>到镜像中的 /src 目录下</div><div class="line"><span class="keyword">COPY</span> . /src</div><div class="line"></div><div class="line"><span class="comment"># 安装django应用依赖的库，这里设置为豆瓣的pypi源</span></div><div class="line"><span class="keyword">RUN</span> cd /src; pip install -r  requirements.txt -i http://pypi.douban.com/simple --trusted-host pypi.douban.com</div><div class="line"></div><div class="line"><span class="comment"># 镜像暴露出8000端口</span></div><div class="line"><span class="keyword">EXPOSE</span> <span class="number">8000</span></div><div class="line"></div><div class="line"><span class="comment"># 设置工作目录为代码所在目录</span></div><div class="line"><span class="keyword">WORKDIR</span>  /src</div><div class="line"></div><div class="line"><span class="comment"># 设置应用启动命令</span></div><div class="line"><span class="keyword">CMD</span> ["make", "start-uwsgi"]</div></pre></td></tr></table></figure>
+<h3 id="Makefile文件编写"><a href="#Makefile文件编写" class="headerlink" title="Makefile文件编写"></a>Makefile文件编写</h3><p>可以注意到，上述最后的启动命令中使用了make命令，这也是前面目录结构中Makefile文件的作用所在。有关makefile的知识，这里不再详述.<br>总之可以让你更方便的管理应用，这里直接贴出makefile文件：</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># uwsig启动的host和端口 </span></div><div class="line">host:=0.0.0.0</div><div class="line">port:=8000</div><div class="line"></div><div class="line"><span class="comment"># debug的时候直接使用django自带的服务启动</span></div><div class="line"><span class="section">debug:</span></div><div class="line">    ./manage.py runserver $(host):$(port)</div><div class="line"></div><div class="line"><span class="comment"># 启动uwsgi服务</span></div><div class="line">start-uwsgi:</div><div class="line">    uwsgi --socket $(host):$(port) \</div><div class="line">        --chdir $(shell pwd) \</div><div class="line">        --wsgi-file taikang/wsgi.py \</div><div class="line">        --master \</div><div class="line">        --process 4 \</div><div class="line">        --pidfile $(shell pwd)/uwsgi.pid</div><div class="line"></div><div class="line"><span class="comment"># 停止uwsgi服务</span></div><div class="line">stop-uwsgi:</div><div class="line">    uwsgi --stop uwsgi.pid</div><div class="line"></div><div class="line"><span class="comment"># 重载uwsgi服务</span></div><div class="line">reload-uwsgi:</div><div class="line">    uwsgi --reload uwsgi.pid</div><div class="line"></div><div class="line"><span class="comment"># 收集静态文件</span></div><div class="line"><span class="section">collectstatic:</span></div><div class="line">    ./manage.py collectstatic --noinput</div><div class="line"></div><div class="line"></div><div class="line"><span class="meta"><span class="meta-keyword">.PHONY</span>: debug \</span></div><div class="line">    collectstatic \</div><div class="line">    reload-uwsgi \</div><div class="line">    start-uwsgi \</div><div class="line">    stop-uwsgi</div></pre></td></tr></table></figure>
+<h3 id="静态文件支持"><a href="#静态文件支持" class="headerlink" title="静态文件支持"></a>静态文件支持</h3><p>在uwsgi提供服务时，静态文件需要单独进行处理，目前推荐使用django的<a href="https://github.com/evansd/whitenoise" target="_blank" rel="external">whitenoise库</a> 。可以方便的提供静态文件服务，仅仅需要几行配置。</p>
+<h3 id="通过环境变量来连接服务"><a href="#通过环境变量来连接服务" class="headerlink" title="通过环境变量来连接服务"></a>通过环境变量来连接服务</h3><p>在使用docker部署项目，当需要连接外部的服务时，一般通过link + 环境变量的参数进行。而为了支持环境变量的形式，我们的django应用也要做一些相应的改变。具体就是修改settings.py中的配置。</p>
+<p>修改settings.py文件，以mysql为例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 原来的mysql配置文件</span></div><div class="line"><span class="comment">#DATABASES = &#123;</span></div><div class="line"><span class="comment">#    'default': &#123;</span></div><div class="line"><span class="comment">#        'ENGINE': 'django.db.backends.mysql',</span></div><div class="line"><span class="comment">#        'NAME': 'starding_taikang',</span></div><div class="line"><span class="comment">#        'USER': 'root',</span></div><div class="line"><span class="comment">#        'PASSWORD': 'your_password_here',</span></div><div class="line"><span class="comment">#        'HOST': 'localhost',</span></div><div class="line"><span class="comment">#        'PORT': '3306'</span></div><div class="line"><span class="comment">#    &#125;</span></div><div class="line"><span class="comment">#&#125;</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment"># 通过获取环境变量的形式来获取服务</span></div><div class="line"><span class="keyword">import</span> os  <span class="comment"># 导入os库</span></div><div class="line">mysql_name = os.environ.get(<span class="string">'MYSQL_INSTANCE_NAME'</span>) <span class="keyword">or</span> <span class="string">"taikang"</span>  <span class="comment"># 获取数据库名称</span></div><div class="line">mysql_user = os.environ.get(<span class="string">'MYSQL_USERNAME'</span>) <span class="keyword">or</span> <span class="string">"root"</span>  <span class="comment"># 获取mysql用户名</span></div><div class="line">mysql_password = os.environ.get(<span class="string">'MYSQL_PASSWORD'</span>) <span class="keyword">or</span> <span class="string">"your_password"</span>  <span class="comment"># 获取密码</span></div><div class="line">mysql_host = os.environ.get(<span class="string">'MYSQL_ADDR'</span>) <span class="keyword">or</span> <span class="string">"127.0.0.1"</span>  <span class="comment"># 获取服务地址</span></div><div class="line">mysql_port = <span class="string">"3306"</span></div><div class="line"></div><div class="line"><span class="comment"># 直接使用上面的变量代替字符串</span></div><div class="line">DATABASES = &#123;</div><div class="line">   <span class="string">'default'</span>: &#123;</div><div class="line">       <span class="string">'ENGINE'</span>: <span class="string">'django.db.backends.mysql'</span>,</div><div class="line">       <span class="string">'NAME'</span>: mysql_name,</div><div class="line">       <span class="string">'USER'</span>: mysql_user,</div><div class="line">       <span class="string">'PASSWORD'</span>: mysql_password,</div><div class="line">       <span class="string">'HOST'</span>: mysql_host,</div><div class="line">       <span class="string">'PORT'</span>: mysql_port</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="使用daocloud部署构建好的taikang项目"><a href="#使用daocloud部署构建好的taikang项目" class="headerlink" title="使用daocloud部署构建好的taikang项目"></a>使用daocloud部署构建好的taikang项目</h2><p>步骤基本同html5部署，假设你完成镜像构建之后，产生的镜像地址为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">daocloud.io/xiaohuruwei/taking:latest</div></pre></td></tr></table></figure>
+<p>下一步在使用镜像部署的时候，需要连接外部服务，具体是手动编辑yaml文件。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="attr">takang_test:</span></div><div class="line"><span class="attr">  image:</span> daocloud.io/xiaohuruwei/taking:latest</div><div class="line"><span class="attr">  restart:</span> always</div><div class="line"><span class="attr">  external_links:</span></div><div class="line"><span class="attr">  - mysql1:</span>mysql	  <span class="comment"># 前面的mysql1是你主机上已经存在的mysql的容器实例，冒号后面是别名</span></div><div class="line"><span class="attr">  ports:</span></div><div class="line"><span class="bullet">  -</span> <span class="string">'8000'</span></div><div class="line"><span class="attr">  environment:</span>    <span class="comment"># 环境变量    </span></div><div class="line"><span class="bullet">  -</span> MYSQL_ADDR=mysql</div></pre></td></tr></table></figure>
+<p>但是我发现这种方法似乎有一些bug，如果上面的方法不成功，那么你就先直接部署，部署成功之后，再去修改yaml文件成为上面描述的样子。在修改yaml文件的时候，daocloud会提示重新部署，选择确定即可。</p>
+<p>至此，django项目也部署完成了。然后同html5项目部署一样，把各种自动构建，自动发布的功能打开就行了。</p>
+<p><strong>注意：</strong> 由于django项目是使用uwsgi部署的，直接访问daocloud给出的地址是错误的，这个时候必须配置nginx反向代理。</p>
+<p>附上uwsgi部署的django nginx代理配置文件：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="section">server</span> &#123;</div><div class="line">    <span class="attribute">listen</span> <span class="number">80</span>;</div><div class="line">    <span class="attribute">server_name</span> xiaohuruwei.com;</div><div class="line">    <span class="attribute">access_log</span> /var/log/nginx/taikang.access.log;</div><div class="line">    <span class="attribute">error_log</span> /var/log/nginx/taikang.<span class="literal">error</span>.log;</div><div class="line">    <span class="attribute">client_max_body_size</span> <span class="number">200m</span>;</div><div class="line"></div><div class="line">    <span class="attribute">gzip</span> <span class="literal">on</span>;</div><div class="line">    <span class="attribute">gzip_min_length</span> <span class="number">1k</span>;</div><div class="line">    <span class="attribute">gzip_buffers</span> <span class="number">16</span> <span class="number">64k</span>;</div><div class="line">    <span class="attribute">gzip_http_version</span> <span class="number">1</span>.<span class="number">1</span>;</div><div class="line">    <span class="attribute">gzip_comp_level</span> <span class="number">6</span>;</div><div class="line">    <span class="attribute">gzip_types</span> text/plain application/x-javascript text/javascript text/css application/xml;</div><div class="line">    <span class="attribute">gzip_vary</span> <span class="literal">on</span>;</div><div class="line"></div><div class="line">    <span class="attribute">location</span> / &#123;</div><div class="line">        <span class="attribute">proxy_set_header</span> Host <span class="variable">$host</span>;</div><div class="line">        <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</div><div class="line">        <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</div><div class="line"></div><div class="line">        <span class="attribute">include</span> uwsgi_params;</div><div class="line">        <span class="attribute">uwsgi_pass</span> <span class="number">127.0.0.1:32801</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/docker/">docker</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/docker/">docker</a>
   </div>
-  <footer>
-    <div id="footer">
 
-      <div class="line">
-        <span></span>
-        <div class="author"></div>
-      </div>
-
-
-      <section class="info">
-        <p> Hello ,I&#39;m Starding. <br/> This is my blog,believe it or not.</p>
-      </section>
-
-      <div class="social-font" class="clearfix">
-
-
-        <a href="https://github.com/starding" target="_blank" class="icon-github" title="github"></a>
+</div>
 
 
 
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://starding.github.io/2016/01/07/daocloud-deploy/" data-title="使用daocloud持续集成应用 | 小狐濡尾" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/01/07/deploy-gitlab-by-docker/" title="docker 部署gitlab">
+  <strong>上一篇：</strong><br/>
+  <span>
+  docker 部署gitlab</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016/01/07/docker-a-metaphor/"  title="docker——从隐喻说起">
+ <strong>下一篇：</strong><br/> 
+ <span>docker——从隐喻说起
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/01/07/daocloud-deploy/" data-title="使用daocloud持续集成应用" data-url="http://starding.github.io/2016/01/07/daocloud-deploy/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#写在前面的话"><span class="toc-number">1.</span> <span class="toc-text">写在前面的话</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#daocloud介绍"><span class="toc-number">2.</span> <span class="toc-text">daocloud介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#持续集成简单的html5应用"><span class="toc-number">3.</span> <span class="toc-text">持续集成简单的html5应用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#本小节使用场景"><span class="toc-number">3.1.</span> <span class="toc-text">本小节使用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是「简单的html5应用」"><span class="toc-number">3.2.</span> <span class="toc-text">什么是「简单的html5应用」</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#部署大致解决方案"><span class="toc-number">3.3.</span> <span class="toc-text">部署大致解决方案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#构建应用前的准备"><span class="toc-number">3.4.</span> <span class="toc-text">构建应用前的准备</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#应用目录结构"><span class="toc-number">3.4.1.</span> <span class="toc-text">应用目录结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建Dockerfile文件"><span class="toc-number">3.4.2.</span> <span class="toc-text">创建Dockerfile文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置在docker中使用的nginx配置文件。"><span class="toc-number">3.4.3.</span> <span class="toc-text">配置在docker中使用的nginx配置文件。</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用daocloud进行持续构建镜像以及发布"><span class="toc-number">3.5.</span> <span class="toc-text">使用daocloud进行持续构建镜像以及发布</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#发布完成之后需要做的工作"><span class="toc-number">3.6.</span> <span class="toc-text">发布完成之后需要做的工作</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#持续集成依赖外部服务的应用"><span class="toc-number">4.</span> <span class="toc-text">持续集成依赖外部服务的应用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#本文适用的场景"><span class="toc-number">4.1.</span> <span class="toc-text">本文适用的场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#依赖外部服务的应用"><span class="toc-number">4.2.</span> <span class="toc-text">依赖外部服务的应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#构建前的准备"><span class="toc-number">4.3.</span> <span class="toc-text">构建前的准备</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#项目结构"><span class="toc-number">4.3.1.</span> <span class="toc-text">项目结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Dockerfile文件编写"><span class="toc-number">4.3.2.</span> <span class="toc-text">Dockerfile文件编写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Makefile文件编写"><span class="toc-number">4.3.3.</span> <span class="toc-text">Makefile文件编写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#静态文件支持"><span class="toc-number">4.3.4.</span> <span class="toc-text">静态文件支持</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通过环境变量来连接服务"><span class="toc-number">4.3.5.</span> <span class="toc-text">通过环境变量来连接服务</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用daocloud部署构建好的taikang项目"><span class="toc-number">4.4.</span> <span class="toc-text">使用daocloud部署构建好的taikang项目</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="starding" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
 
 
 
-        <a href="https://www.douban.com/people/58816601" target="_blank" class="icon-douban" title="豆瓣"></a>
+  
+
+<div class="doubanshow">
+<p class="asidetitle">豆瓣秀</p>
+<div>
+<script type="text/javascript" src="http://www.douban.com/service/badge/58816601/?show=collection&amp;n=12&amp;columns=3&amp;hidelogo=yes&amp;hideself=yes&amp;cat=book|movie" ></script>
+</div>
+</div>
 
 
-        <a href="http://www.zhihu.com/people/starstarding" target="_blank" class="icon-zhihu" title="知乎"></a>
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/computer-philosophy/" title="computer philosophy">computer philosophy<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/docker/" title="docker">docker<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/javascript/" title="javascript">javascript<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/open-questions/" title="open-questions">open-questions<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/python/" title="python">python<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/前端/" title="前端">前端<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/技术哲学/" title="技术哲学">技术哲学<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/数学/" title="数学">数学<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/科学史与科学哲学/" title="科学史与科学哲学">科学史与科学哲学<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/算法/" title="算法">算法<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/问题/" title="问题">问题<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/随笔/" title="随笔">随笔<sup>4</sup></a></li>
+		  
+		
+		</ul>
+</div>
 
 
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/python/" title="python">python<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/docker/" title="docker">docker<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/前端/" title="前端">前端<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/随笔/" title="随笔">随笔<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/javascript/" title="javascript">javascript<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/科学哲学/" title="科学哲学">科学哲学<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/computer/" title="computer">computer<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/gitlab/" title="gitlab">gitlab<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/open-questions/" title="open-questions">open-questions<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/django/" title="django">django<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/科学史/" title="科学史">科学史<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/三体/" title="三体">三体<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/行尸走肉/" title="行尸走肉">行尸走肉<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/社会达尔文主义/" title="社会达尔文主义">社会达尔文主义<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
 
-        <a href="mailto:starding@buaa.edu.cn" target="_blank" class="icon-email" title="Email Me"></a>
 
-      </div>
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://phiphicake.blogspot.com" target="_blank" title=" 一个有趣的哲学博客">哲学鸡蛋糕</a>
+            
+          </li>
+        
+    </ul>
+</div>
 
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
 
-
-      <p class="copyright">
-        Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016
-
-
-        <a href="/about" target="_blank" title="starding">starding</a>
-
-
-        <br> 本站总访问量
-        <span id="busuanzi_value_site_pv"></span>次 本站访客数
-        <span id="busuanzi_value_site_uv"></span>人次 本文总阅读量
-        <span id="busuanzi_value_page_pv"></span>次
-      </p>
+</aside>
+</div>
     </div>
-  </footer>
-  <script src="/js/jquery-2.0.3.min.js"></script>
-  <script src="/js/jquery.imagesloaded.min.js"></script>
-  <script src="/js/gallery.js"></script>
-  <script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Starding. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/starding" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		<a href="https://www.douban.com/people/58816601" target="_blank" class="icon-douban" title="豆瓣"></a>
+		
+		
+		<a href="http://www.zhihu.com/people/starstarding" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		
+		<a href="mailto:starding@buaa.edu.cn" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
 
-  <script type="text/javascript">
-    $(document).ready(function() {
-      $('.navbar').click(function() {
-        $('header nav').toggleClass('shownav');
-      });
-      var myWidth = 0;
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
 
-      function getSize() {
-        if (typeof(window.innerWidth) == 'number') {
-          myWidth = window.innerWidth;
-        } else if (document.documentElement && document.documentElement.clientWidth) {
-          myWidth = document.documentElement.clientWidth;
-        };
-      };
-      var m = $('#main'),
-        a = $('#asidepart'),
-        c = $('.closeaside'),
-        o = $('.openaside');
-      c.click(function() {
-        a.addClass('fadeOut').css('display', 'none');
-        o.css('display', 'block').addClass('fadeIn');
-        m.addClass('moveMain');
-      });
-      o.click(function() {
-        o.css('display', 'none').removeClass('beforeFadeIn');
-        a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');
-        m.removeClass('moveMain');
-      });
-      $(window).scroll(function() {
-        o.css("top", Math.max(80, 260 - $(this).scrollTop()));
-      });
+		
+		<a href="/about" target="_blank" title="starding">starding</a>
+		
 
-      $(window).resize(function() {
-        getSize();
-        if (myWidth >= 1024) {
-          $('header nav').removeClass('shownav');
-        } else {
-          m.removeClass('moveMain');
-          a.css('display', 'block').removeClass('fadeOut');
-          o.css('display', 'none');
+	    <br>	
+        本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        本站访客数<span id="busuanzi_value_site_uv"></span>人次
+        本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
 
-          $('#toc.toc-aside').css('display', 'none');
-
-        }
-      });
-    });
-  </script>
-
-  <script type="text/javascript">
-    $(document).ready(function() {
-      var ai = $('.article-content>iframe'),
-        ae = $('.article-content>embed'),
-        t = $('#toc'),
-        ta = $('#toc.toc-aside'),
-        o = $('.openaside'),
-        c = $('.closeaside');
-      if (ai.length > 0) {
-        ai.wrap('<div class="video-container" />');
-      };
-      if (ae.length > 0) {
-        ae.wrap('<div class="video-container" />');
-      };
-      c.click(function() {
-        ta.css('display', 'block').addClass('fadeIn');
-      });
-      o.click(function() {
-        ta.css('display', 'none');
-      });
-      $(window).scroll(function() {
-        ta.css("top", Math.max(140, 320 - $(this).scrollTop()));
-      });
-    });
-  </script>
-
-
-  <script type="text/javascript">
-    $(document).ready(function() {
-      var $this = $('.share'),
-        url = $this.attr('data-url'),
-        encodedUrl = encodeURIComponent(url),
-        title = $this.attr('data-title'),
-        tsina = $this.attr('data-tsina'),
-        description = $this.attr('description');
-      var html = [
-        '<div class="hoverqrcode clearfix"></div>',
-        '<a class="overlay" id="qrcode"></a>',
-        '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
-        '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
-        '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
-        '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title + '" class="article-share-renren" target="_blank" title="人人"></a>',
-        '<a href="http://service.weibo.com/share/share.php?title=' + title + '&url=' + encodedUrl + '&ralateUid=' + tsina + '&searchPic=true&style=number' + '" class="article-share-weibo" target="_blank" title="微博"></a>',
-        '<span title="Share to"></span>'
-      ].join('');
-      $this.append(html);
-
-      $('.hoverqrcode').hide();
-
-      var myWidth = 0;
-
-      function updatehoverqrcode() {
-        if (typeof(window.innerWidth) == 'number') {
-          myWidth = window.innerWidth;
-        } else if (document.documentElement && document.documentElement.clientWidth) {
-          myWidth = document.documentElement.clientWidth;
-        };
-        var qrsize = myWidth > 1024 ? 200 : 100;
-        var options = {
-          render: 'image',
-          size: qrsize,
-          fill: '#2ca6cb',
-          text: url,
-          radius: 0.5,
-          quiet: 1
-        };
-        var p = $('.article-share-qrcode').position();
-        $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
-          .css('left', p.left - qrsize / 2 + 20).css('top', p.top - qrsize - 10)
-          .qrcode(options);
-      };
-      $(window).resize(function() {
-        $('.hoverqrcode').hide();
-      });
-      $('.article-share-qrcode').click(function() {
-        updatehoverqrcode();
-        $('.hoverqrcode').toggle();
-      });
-      $('.article-share-qrcode').hover(function() {}, function() {
-        $('.hoverqrcode').hide();
-      });
-    });
-  </script>
-
-
-
-  <script type="text/javascript">
-    var duoshuoQuery = {
-      short_name: "starding"
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
     };
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';
-      ds.async = true;
-      ds.src = '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"starding"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
 
 
 
@@ -810,91 +640,106 @@
 
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
-  <script type="text/javascript">
-    $(document).ready(function() {
-      $('.article-content').each(function(i) {
-        $(this).find('img').each(function() {
-          if ($(this).parent().hasClass('fancybox')) return;
-          var alt = this.alt;
-          if (alt) $(this).after('<span class="caption">' + alt + '</span>');
-          $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
-        });
-        $(this).find('.fancybox').each(function() {
-          $(this).attr('rel', 'article' + i);
-        });
-      });
-      if ($.fancybox) {
-        $('.fancybox').fancybox();
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-72215789-1', 'auto');  
+ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?01f9e8011679173931cf24fe647483cf";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
       }
     });
-  </script>
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 
 
+<!-- MathJax End -->
 
-  <!-- Analytics Begin -->
-  <script type="text/javascript">
-    (function(i, s, o, g, r, a, m) {
-      i['GoogleAnalyticsObject'] = r;
-      i[r] = i[r] || function() {
-        (i[r].q = i[r].q || []).push(arguments)
-      }, i[r].l = 1 * new Date();
-      a = s.createElement(o),
-        m = s.getElementsByTagName(o)[0];
-      a.async = 1;
-      a.src = g;
-      m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-    ga('create', 'UA-72215789-1', 'auto');
-    ga('send', 'pageview');
-  </script>
+<!-- Tiny_search Begin -->
 
+<!-- Tiny_search End -->
 
+<!--不蒜子-->
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
-  <script>
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "//hm.baidu.com/hm.js?01f9e8011679173931cf24fe647483cf";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
-  <!-- Analytics End -->
-
-  <!-- Totop Begin -->
-  <div id="totop">
-    <a title="返回顶部"><img src="/img/scrollup.png" /></a>
-  </div>
-  <script src="/js/totop.js"></script>
-  <!-- Totop End -->
-
-  <!-- MathJax Begin -->
-  <!-- mathjax config similar to math.stackexchange -->
-
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
-  </script>
-
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({ tex2jax: { skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] } });
-  </script>
-
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() { var all = MathJax.Hub.getAllJax(), i; for(i=0; i
-    < all.length; i +=1 ) { all[i].SourceElement().parentNode.className +=' has-jax' ; } }); </script>
-
-      <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-      </script>
-      <!-- MathJax End -->
-
-      <!-- Tiny_search Begin -->
-
-      <!-- Tiny_search End -->
-
-      <!--不蒜子-->
-      <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-</body>
-
+  </body>
 </html>

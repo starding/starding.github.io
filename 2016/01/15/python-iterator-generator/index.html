@@ -1,673 +1,610 @@
-<!DOCTYPE HTML>
-<html lang="zh-CN">
 
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
+  
+    <title>python中的装饰器和迭代器 | 小狐濡尾</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="starding">
+    
 
-  <title>python中的装饰器和迭代器 | 小狐濡尾</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="description" content="简单整理一下吧，毕竟输出才是检验自己水平更好的方法。而且感觉网上很多文章都不是很靠谱，很明显甚至连官方文档都没有看，就只根据经验就直接写文章来总结了，很容易误导人。
+Iterator Types迭代器类型
+先看python2.7官方文档中关于迭代的部分：在阅读之前，需要明确几个词的含义：
 
-  <meta name="author" content="starding">
+「iterator」 迭代器
+「iteration」 迭代
+「iterable」 可迭代的
+「contain">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python中的装饰器和迭代器">
+<meta property="og:url" content="http://starding.github.io/2016/01/15/python-iterator-generator/index.html">
+<meta property="og:site_name" content="小狐濡尾">
+<meta property="og:description" content="简单整理一下吧，毕竟输出才是检验自己水平更好的方法。而且感觉网上很多文章都不是很靠谱，很明显甚至连官方文档都没有看，就只根据经验就直接写文章来总结了，很容易误导人。
+Iterator Types迭代器类型
+先看python2.7官方文档中关于迭代的部分：在阅读之前，需要明确几个词的含义：
 
+「iterator」 迭代器
+「iteration」 迭代
+「iterable」 可迭代的
+「contain">
+<meta property="og:updated_time" content="2016-01-20T05:46:52.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python中的装饰器和迭代器">
+<meta name="twitter:description" content="简单整理一下吧，毕竟输出才是检验自己水平更好的方法。而且感觉网上很多文章都不是很靠谱，很明显甚至连官方文档都没有看，就只根据经验就直接写文章来总结了，很容易误导人。
+Iterator Types迭代器类型
+先看python2.7官方文档中关于迭代的部分：在阅读之前，需要明确几个词的含义：
 
+「iterator」 迭代器
+「iteration」 迭代
+「iterable」 可迭代的
+「contain">
 
-  <meta name="description" content="简单整理一下吧，毕竟输出才是检验自己水平更好的方法。而且感觉网上很多文章都不是很靠谱，很明显甚至连官方文档都没有看，就只根据经验就直接写文章来总结了，很容易误导人。
-Iterator Types
-迭代器类型
-先看python2.7官方文档中关于迭代的部分：
-在阅读之前，需要明确几个词的含义：
-
-  「iterator」 迭代器
-  「iteration」 迭代
-  「iterable」 可迭代的">
-  <meta property="og:type" content="article">
-  <meta property="og:title" content="python中的装饰器和迭代器">
-  <meta property="og:url" content="http://starding.github.io/2016/01/15/python-iterator-generator/index.html">
-  <meta property="og:site_name" content="小狐濡尾">
-  <meta property="og:description" content="简单整理一下吧，毕竟输出才是检验自己水平更好的方法。而且感觉网上很多文章都不是很靠谱，很明显甚至连官方文档都没有看，就只根据经验就直接写文章来总结了，很容易误导人。
-Iterator Types
-迭代器类型
-先看python2.7官方文档中关于迭代的部分：
-在阅读之前，需要明确几个词的含义：
-
-  「iterator」 迭代器
-  「iteration」 迭代
-  「iterable」 可迭代的">
-  <meta property="og:updated_time" content="2016-01-20T05:46:52.000Z">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="python中的装饰器和迭代器">
-  <meta name="twitter:description" content="简单整理一下吧，毕竟输出才是检验自己水平更好的方法。而且感觉网上很多文章都不是很靠谱，很明显甚至连官方文档都没有看，就只根据经验就直接写文章来总结了，很容易误导人。
-Iterator Types
-迭代器类型
-先看python2.7官方文档中关于迭代的部分：
-在阅读之前，需要明确几个词的含义：
-
-  「iterator」 迭代器
-  「iteration」 迭代
-  「iterable」 可迭代的">
-
-
-  <link rel="alternative" href="/atom.xml" title="小狐濡尾" type="application/atom+xml">
-
-
-  <link rel="icon" href="/img/my_favicon.ico">
-
-
-  <link rel="apple-touch-icon" href="/img/jacman.jpg">
-  <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
-
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
+    
+    <link rel="alternative" href="/atom.xml" title="小狐濡尾" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/my_favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<body>
-  <header>
-    <div>
-
-      <div id="imglogo">
-        <a href="/"><img src="/img/my_white_logo.png" alt="小狐濡尾" title="小狐濡尾" /></a>
-      </div>
-
-      <div id="textlogo">
-        <h1 class="site-name"><a href="/" title="小狐濡尾">小狐濡尾</a></h1>
-        <h2 class="blog-motto">未济</h2>
-      </div>
-      <div class="navbar">
-        <a class="navbutton navmobile" href="#" title="菜单">
-        </a>
-      </div>
-      <nav class="animated">
-        <ul>
-          <ul>
-
-            <li><a href="/">主页 | Home</a></li>
-
-            <li><a href="/index">索引 | Index</a></li>
-
-            <li><a href="/archives">归档 | Archives</a></li>
-
-            <li><a href="/about">简介 | About</a></li>
-
-            <li>
-
-              <form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
-                <label>Search</label>
-                <input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
-                <input type="hidden" name="q" value="site:starding.github.io">
-              </form>
-
-            </li>
-          </ul>
-      </nav>
-    </div>
-  </header>
-  <div id="container">
-    <div id="main" class="post" itemscope itemprop="blogPost">
-
-      <article itemprop="articleBody">
-        <header class="article-info clearfix">
-          <h1 itemprop="name">
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/my_white_logo.png" alt="小狐濡尾" title="小狐濡尾"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="小狐濡尾">小狐濡尾</a></h1>
+				<h2 class="blog-motto">未济</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页 | Home</a></li>
+					
+						<li><a href="/index">索引 | Index</a></li>
+					
+						<li><a href="/archives">归档 | Archives</a></li>
+					
+						<li><a href="/about">简介 | About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:starding.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
     
       <a href="/2016/01/15/python-iterator-generator/" title="python中的装饰器和迭代器" itemprop="url">python中的装饰器和迭代器</a>
   </h1>
-          <p class="article-author">By
-
-            <a href="/about" title="starding" target="_blank" itemprop="author">starding</a>
-
-            <p class="article-time">
-              <time datetime="2016-01-15T14:59:16.000Z" itemprop="datePublished"> 发表于 2016-01-15</time>
-
-            </p>
-        </header>
-        <div class="article-content">
-
-          <div id="toc" class="toc-article">
-            <strong class="toc-title">文章目录</strong>
-
-            <ol class="toc">
-              <li class="toc-item toc-level-2"><a class="toc-link" href="#Iterator_Types"><span class="toc-number">1.</span> <span class="toc-text">Iterator Types</span></a>
-                <ol class="toc-child">
-                  <li class="toc-item toc-level-3"><a class="toc-link" href="#u5148_u770Bpython2-7_u5B98_u65B9_u6587_u6863_u4E2D_u5173_u4E8E_u8FED_u4EE3_u7684_u90E8_u5206_uFF1A"><span class="toc-number">1.1.</span> <span class="toc-text">先看python2.7官方文档中关于迭代的部分：</span></a></li>
-                  <li class="toc-item toc-level-3"><a class="toc-link" href="#u6982_u5FF5_u8FA8_u6790"><span class="toc-number">1.2.</span> <span class="toc-text">概念辨析</span></a>
-                    <ol class="toc-child">
-                      <li class="toc-item toc-level-4"><a class="toc-link" href="#The_for_statement"><span class="toc-number">1.2.1.</span> <span class="toc-text">The for statement</span></a></li>
-                    </ol>
-                  </li>
-                </ol>
-              </li>
-              <li class="toc-item toc-level-2"><a class="toc-link" href="#Generator_Types"><span class="toc-number">2.</span> <span class="toc-text">Generator Types</span></a>
-                <ol class="toc-child">
-                  <li class="toc-item toc-level-3"><a class="toc-link" href="#u5B98_u65B9_u6587_u6863_u7684_u5B9A_u4E49_uFF1A"><span class="toc-number">2.1.</span> <span class="toc-text">官方文档的定义：</span></a></li>
-                  <li class="toc-item toc-level-3"><a class="toc-link" href="#u6982_u5FF5_u8FA8_u6790-1"><span class="toc-number">2.2.</span> <span class="toc-text">概念辨析</span></a></li>
-                </ol>
-              </li>
-            </ol>
-
-          </div>
-
-          <p>简单整理一下吧，毕竟输出才是检验自己水平更好的方法。而且感觉网上很多文章都不是很靠谱，很明显甚至连官方文档都没有看，就只根据经验就直接写文章来总结了，很容易误导人。</p>
-          <h2 id="Iterator_Types"><a href="#Iterator_Types" class="headerlink" title="Iterator Types"></a>Iterator Types</h2>
-          <p>迭代器类型</p>
-          <h3 id="u5148_u770Bpython2-7_u5B98_u65B9_u6587_u6863_u4E2D_u5173_u4E8E_u8FED_u4EE3_u7684_u90E8_u5206_uFF1A"><a href="#u5148_u770Bpython2-7_u5B98_u65B9_u6587_u6863_u4E2D_u5173_u4E8E_u8FED_u4EE3_u7684_u90E8_u5206_uFF1A" class="headerlink" title="先看python2.7官方文档中关于迭代的部分："></a>先看python2.7官方文档中关于迭代的部分：</h3>
-          <p>在阅读之前，需要明确几个词的含义：</p>
-          <ul>
-            <li>「iterator」 迭代器</li>
-            <li>「iteration」 迭代</li>
-            <li>「iterable」 可迭代的</li>
-            <li>「container」 容器对象，也就是可以存放其他对象的对象，比如列表，字典等</li>
-          </ul>
-          <blockquote>
-            <p>New in version 2.2.</p>
-            <p>Python supports a concept of iteration over containers. This is implemented using two distinct methods; these are used to allow user-defined classes to support iteration. Sequences, described below in more detail, always support the iteration
-              methods.
-            </p>
-            <p>python提供一种基于容器对象（container）的迭代概念。并且使用了两个特的方法来实现这一概念；这些方法允许自定义的类支持迭代。符合下面详细描述的序列（sequences），都将支持迭代方法。</p>
-            <p>One method needs to be defined for container objects to provide iteration support:</p>
-            <p>第一个在容器对象中定义的方法用于支持迭代（iteration）</p>
-            <p><strong><code>container.__iter__()</code></strong></p>
-            <p>Return an iterator object. The object is required to support the iterator protocol described below. If a container supports different types of iteration, additional methods can be provided to specifically request iterators for those iteration
-              types. (An example of an object supporting multiple forms of iteration would be a tree structure which supports both breadth-first and depth-first traversal.) This method corresponds to the tp_iter slot of the type structure for Python objects
-              in the Python/C API.
-            </p>
-            <p>返回一个迭代器对象（iterator object）。这个对象需要支持下面描述的迭代器协议（iterator protocal）。如果一个容器对象需要支持不同类型的迭代方式，也可以往容器对象中添加更多的方法来支持那些迭代方式。（一个对象支持多种跌打方式的例子是同时支持深度优先遍历和广度优先遍历的树结构）</p>
-            <p>The iterator objects themselves are required to support the following two methods, which together form the iterator protocol:</p>
-            <p>迭代器本身也需要支持下面的两个方法，『这两个方法一起构成了迭代器协议』</p>
-            <p><strong><code>iterator.__iter__()</code></strong></p>
-            <p>Return the iterator object itself. This is required to allow both containers and iterators to be used with the for and in statements. This method corresponds to the tp_iter slot of the type structure for Python objects in the Python/C API.</p>
-            <p>返回迭代器对象自身。如果在for语句以及in语句中，使用容器对象和迭代器对象的话，那么它们都需要拥有此方法。</p>
-            <p><strong><code>iterator.next()</code></strong></p>
-            <p>Return the next item from the container. If there are no further items, raise the StopIteration exception. This method corresponds to the tp_iternext slot of the type structure for Python objects in the Python/C API.</p>
-            <p>返回容器中的下一个元素。如果没有下一个元素，则产生一个StopIteration异常。</p>
-            <p>Python defines several iterator objects to support iteration over general and specific sequence types, dictionaries, and other more specialized forms. The specific types are not important beyond their implementation of the iterator protocol.</p>
-            <p>python基于一些或通用或特定的序列类型，字典或其他更特殊的类型，定义了一系列的迭代器对象来支持迭代。这些对象的核心内容就是其中的迭代器协议。</p>
-            <p>The intention of the protocol is that once an iterator’s next() method raises StopIteration, it will continue to do so on subsequent calls. Implementations that do not obey this property are deemed broken. (This constraint was added in Python
-              2.3; in Python 2.2, various iterators are broken according to this rule.)</p>
-            <p>这个协议的目的是，一旦一个迭代器的next()方法产生了一个StopIteration异常，后续再度调用时，就会一直保持产生一个StopIteration的状态。如果不按照这个特性实现，就被认为是有问题的（这个约束是在python2.3中添加的；在python2.2中，有很多迭代器不遵守这个规则）</p>
-          </blockquote>
-          <h3 id="u6982_u5FF5_u8FA8_u6790"><a href="#u6982_u5FF5_u8FA8_u6790" class="headerlink" title="概念辨析"></a>概念辨析</h3>
-          <p>上面大致就是python2.7中关于迭代的核心内容，整理一下就是：</p>
-          <ul>
-            <li>
-              <p>对于容器对象（container）来说，要支持迭代的话，需要在容器内部实现一个<code>__iter__()</code>方法。这个方法返回一个「迭代器对象」（iterator）。如果一个容器实现了这个方法，那么我们称这个容器是「可迭代的」（iterable）。</p>
-            </li>
-            <li>
-              <p>对于迭代器来说，它也需要一个<code>__iter__()</code>方法，用于返回这个迭代器自身。同时需要一个<code>next()</code>方法，来返回下一个元素。迭代器本身当然是「可迭代的」。迭代器的这两个方法，合在一起，叫做「迭代器协议」。</p>
-            </li>
-          </ul>
-          <p>在for，in语句中，无论是使用容器对象（如列表），还是迭代器对象，它们内部都需要支持<code>__iter__()</code>方法。对于容器对象来说这个方法会返回一个迭代器，对于迭代器对象来说，这个方法会返回自身。然后用于迭代, 换句话说，即使是容器对象，也是先转换为迭代器对象再进行迭代的。这在python的文档中也有说明：</p>
-          <h4 id="The_for_statement"><a href="#The_for_statement" class="headerlink" title="The for statement"></a>The for statement</h4>
-          <blockquote>
-            <p>The for statement is used to iterate over the elements of a sequence (such as a string, tuple or list) or other iterable object:</p>
-            <figure class="highlight python">
-              <table>
-                <tr>
-                  <td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td>
-                  <td class="code"><pre><span class="line">for_stmt ::=  <span class="string">"for"</span> target_list <span class="string">"in"</span> expression_list <span class="string">":"</span> suite </span><br><span class="line">              [<span class="string">"else"</span> <span class="string">":"</span> suite]</span><br></pre></td>
-                </tr>
-              </table>
-            </figure>
-            <p>The expression list is evaluated once; it should yield an iterable object. An iterator is created for the result of the expression_list. The suite is then executed once for each item provided by the iterator, in the order of ascending indices.
-              Each item in turn is assigned to the target list using the standard rules for assignments, and then the suite is executed. When the items are exhausted (which is immediately when the sequence is empty), the suite in the else clause, if present,
-              is executed, and the loop terminates.</p>
-          </blockquote>
-          <h2 id="Generator_Types"><a href="#Generator_Types" class="headerlink" title="Generator Types"></a>Generator Types</h2>
-          <p>生成器类型</p>
-          <h3 id="u5B98_u65B9_u6587_u6863_u7684_u5B9A_u4E49_uFF1A"><a href="#u5B98_u65B9_u6587_u6863_u7684_u5B9A_u4E49_uFF1A" class="headerlink" title="官方文档的定义："></a>官方文档的定义：</h3>
-          <blockquote>
-            <p>Python’s generators provide a convenient way to implement the iterator protocol. If a container object’s <code>__iter__()</code> method is implemented as a generator, it will automatically return an iterator object (technically, a generator
-              object) supplying the <code>__iter__()</code> and <code>next()</code> methods. More information about generators can be found in the documentation for the yield expression.</p>
-            <p>python 的生成器提供了应用迭代器协议的便捷方式。如果一个容器对象的<code>__iter__()</code>方法被用于生成器，它会自动地返回一个迭代器对象（技术上讲，是一个生成器对象），并且提供<code>__iter__()</code> 和<code>next()</code>方法。</p>
-          </blockquote>
-          <h3 id="u6982_u5FF5_u8FA8_u6790-1"><a href="#u6982_u5FF5_u8FA8_u6790-1" class="headerlink" title="概念辨析"></a>概念辨析</h3>
-          <p>上述内容的意思是，生成器对象不过是一种应用迭代器协议的快捷方式。平时我们需要一个自定义的迭代器<br>时，需要手动的去实现需要的<code>__iter__()</code>和<code>next()</code>方法，但是使用生成器对象的话，可以自动返回一个支持迭代协议的迭代器。而创建一个生成器，只需要在函数中使用yield表达式就可以了，这样会创建一个生成器函数，当它被调用时，会返回一个迭代器（通常被叫做生成器），它会控制生成器函数的执行。</p>
-          <blockquote>
-            <p>The yield expression is only used when defining a generator function, and can only be used in the body of a function definition. Using a yield expression in a function definition is sufficient to cause that definition to create a generator
-              function instead of a normal function.</p>
-            <p>When a generator function is called, it returns an iterator known as a generator. That generator then controls the execution of a generator function. The execution starts when one of the generator’s methods is called. At that time, the execution
-              proceeds to the first yield expression, where it is suspended again, returning the value of expression_list to generator’s caller. By suspended we mean that all local state is retained, including the current bindings of local variables,
-              the instruction pointer, and the internal evaluation stack. When the execution is resumed by calling one of the generator’s methods, the function can proceed exactly as if the yield expression was just another external call. The value of
-              the yield expression after resuming depends on the method which resumed the execution.</p>
-            <p>All of this makes generator functions quite similar to coroutines; they yield multiple times, they have more than one entry point and their execution can be suspended. The only difference is that a generator function cannot control where should
-              the execution continue after it yields; the control is always transferred to the generator’s caller</p>
-          </blockquote>
-        </div>
-        <footer class="article-footer clearfix">
-          <div class="article-catetags">
-
-            <div class="article-categories">
-              <span></span>
-              <a class="article-category-link" href="/categories/python/">python</a>
-            </div>
-
-
-            <div class="article-tags">
-
-              <span></span> <a href="/tags/python/">python</a>
-            </div>
-
-          </div>
-
-          <div class="article-share" id="share">
-
-            <div data-url="http://starding.github.io/2016/01/15/python-iterator-generator/" data-title="python中的装饰器和迭代器 | 小狐濡尾" data-tsina="null" class="share clearfix">
-            </div>
-
-          </div>
-
-
-        </footer>
-      </article>
-      <nav class="article-nav clearfix">
-
-        <div class="prev">
-          <a href="/2016/01/15/learn-in-computer-sciense/" title="计算机领域中的概念辨析">
-            <strong>上一篇：</strong><br/>
-            <span>
-  计算机领域中的概念辨析</span>
-          </a>
-        </div>
-
-
-        <div class="next">
-          <a href="/2016/01/11/kuaibo-technological-neutrality/" title="从快播案看技术中性论的地位">
-            <strong>下一篇：</strong><br/>
-            <span>从快播案看技术中性论的地位
-</span>
-          </a>
-        </div>
-
-      </nav>
-      <section id="comments" class="comment">
-        <div class="ds-thread" data-thread-key="2016/01/15/python-iterator-generator/" data-title="python中的装饰器和迭代器" data-url="http://starding.github.io/2016/01/15/python-iterator-generator/"></div>
-      </section>
-    </div>
-    <div class="openaside">
-      <a class="navbutton" href="#" title="显示侧边栏"></a>
-    </div>
-
-    <div id="toc" class="toc-aside">
-      <strong class="toc-title">文章目录</strong>
-
-      <ol class="toc">
-        <li class="toc-item toc-level-2"><a class="toc-link" href="#Iterator_Types"><span class="toc-number">1.</span> <span class="toc-text">Iterator Types</span></a>
-          <ol class="toc-child">
-            <li class="toc-item toc-level-3"><a class="toc-link" href="#u5148_u770Bpython2-7_u5B98_u65B9_u6587_u6863_u4E2D_u5173_u4E8E_u8FED_u4EE3_u7684_u90E8_u5206_uFF1A"><span class="toc-number">1.1.</span> <span class="toc-text">先看python2.7官方文档中关于迭代的部分：</span></a></li>
-            <li class="toc-item toc-level-3"><a class="toc-link" href="#u6982_u5FF5_u8FA8_u6790"><span class="toc-number">1.2.</span> <span class="toc-text">概念辨析</span></a>
-              <ol class="toc-child">
-                <li class="toc-item toc-level-4"><a class="toc-link" href="#The_for_statement"><span class="toc-number">1.2.1.</span> <span class="toc-text">The for statement</span></a></li>
-              </ol>
-            </li>
-          </ol>
-        </li>
-        <li class="toc-item toc-level-2"><a class="toc-link" href="#Generator_Types"><span class="toc-number">2.</span> <span class="toc-text">Generator Types</span></a>
-          <ol class="toc-child">
-            <li class="toc-item toc-level-3"><a class="toc-link" href="#u5B98_u65B9_u6587_u6863_u7684_u5B9A_u4E49_uFF1A"><span class="toc-number">2.1.</span> <span class="toc-text">官方文档的定义：</span></a></li>
-            <li class="toc-item toc-level-3"><a class="toc-link" href="#u6982_u5FF5_u8FA8_u6790-1"><span class="toc-number">2.2.</span> <span class="toc-text">概念辨析</span></a></li>
-          </ol>
-        </li>
-      </ol>
-
-    </div>
-
-    <div id="asidepart">
-      <div class="closeaside">
-        <a class="closebutton" href="#" title="隐藏侧边栏"></a>
-      </div>
-      <aside class="clearfix">
-
-        <div class="github-card">
-          <p class="asidetitle">Github 名片</p>
-          <div class="github-card" data-github="starding" data-width="220" data-height="119" data-theme="medium">
-            <script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
-          </div>
-        </div>
-
-        <div class="doubanshow">
-          <p class="asidetitle">豆瓣秀</p>
-          <div>
-            <script type="text/javascript" src="http://www.douban.com/service/badge/58816601/?show=collection&amp;n=12&amp;columns=3&amp;hidelogo=yes&amp;hideself=yes&amp;cat=book|movie"></script>
-          </div>
-        </div>
-
-        <div class="categorieslist">
-          <p class="asidetitle">分类</p>
-          <ul>
-
-
-            <li><a href="/categories/computer-philosophy/" title="computer philosophy">computer philosophy<sup>2</sup></a></li>
-
-
-
-            <li><a href="/categories/docker/" title="docker">docker<sup>4</sup></a></li>
-
-
-
-            <li><a href="/categories/javascript/" title="javascript">javascript<sup>2</sup></a></li>
-
-
-
-            <li><a href="/categories/open-questions/" title="open-questions">open-questions<sup>1</sup></a></li>
-
-
-
-            <li><a href="/categories/python/" title="python">python<sup>4</sup></a></li>
-
-
-
-            <li><a href="/categories/前端/" title="前端">前端<sup>3</sup></a></li>
-
-
-
-            <li><a href="/categories/技术哲学/" title="技术哲学">技术哲学<sup>2</sup></a></li>
-
-
-
-            <li><a href="/categories/数学/" title="数学">数学<sup>1</sup></a></li>
-
-
-
-            <li><a href="/categories/科学史与科学哲学/" title="科学史与科学哲学">科学史与科学哲学<sup>1</sup></a></li>
-
-
-
-            <li><a href="/categories/算法/" title="算法">算法<sup>1</sup></a></li>
-
-
-
-            <li><a href="/categories/问题/" title="问题">问题<sup>1</sup></a></li>
-
-
-
-            <li><a href="/categories/随笔/" title="随笔">随笔<sup>4</sup></a></li>
-
-
-          </ul>
-        </div>
-
-        <div class="tagslist">
-          <p class="asidetitle">标签</p>
-          <ul class="clearfix">
-
-
-            <li><a href="/tags/python/" title="python">python<sup>4</sup></a></li>
-
-
-
-            <li><a href="/tags/docker/" title="docker">docker<sup>4</sup></a></li>
-
-
-
-            <li><a href="/tags/前端/" title="前端">前端<sup>2</sup></a></li>
-
-
-
-            <li><a href="/tags/随笔/" title="随笔">随笔<sup>2</sup></a></li>
-
-
-
-            <li><a href="/tags/javascript/" title="javascript">javascript<sup>2</sup></a></li>
-
-
-
-            <li><a href="/tags/django/" title="django">django<sup>1</sup></a></li>
-
-
-
-            <li><a href="/tags/open-questions/" title="open-questions">open-questions<sup>1</sup></a></li>
-
-
-
-            <li><a href="/tags/三体/" title="三体">三体<sup>1</sup></a></li>
-
-
-
-            <li><a href="/tags/科学史/" title="科学史">科学史<sup>1</sup></a></li>
-
-
-
-            <li><a href="/tags/computer/" title="computer">computer<sup>1</sup></a></li>
-
-
-
-            <li><a href="/tags/社会达尔文主义/" title="社会达尔文主义">社会达尔文主义<sup>1</sup></a></li>
-
-
-
-            <li><a href="/tags/科学哲学/" title="科学哲学">科学哲学<sup>1</sup></a></li>
-
-
-
-            <li><a href="/tags/行尸走肉/" title="行尸走肉">行尸走肉<sup>1</sup></a></li>
-
-
-
-            <li><a href="/tags/gitlab/" title="gitlab">gitlab<sup>1</sup></a></li>
-
-
-          </ul>
-        </div>
-
-        <div class="linkslist">
-          <p class="asidetitle">友情链接</p>
-          <ul>
-
-            <li>
-
-              <a href="http://phiphicake.blogspot.com" target="_blank" title=" 一个有趣的哲学博客">哲学鸡蛋糕</a>
-
-            </li>
-
-          </ul>
-        </div>
-
-        <div class="rsspart">
-          <a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
-        </div>
-
-      </aside>
-    </div>
+  <p class="article-author">By
+       
+		<a href="/about" title="starding" target="_blank" itemprop="author">starding</a>
+		
+  <p class="article-time">
+    <time datetime="2016-01-15T14:59:16.000Z" itemprop="datePublished"> 发表于 2016-01-15</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Iterator-Types"><span class="toc-number">1.</span> <span class="toc-text">Iterator Types</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#先看python2-7官方文档中关于迭代的部分："><span class="toc-number">1.1.</span> <span class="toc-text">先看python2.7官方文档中关于迭代的部分：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#概念辨析"><span class="toc-number">1.2.</span> <span class="toc-text">概念辨析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#The-for-statement"><span class="toc-number">1.2.1.</span> <span class="toc-text">The for statement</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Generator-Types"><span class="toc-number">2.</span> <span class="toc-text">Generator Types</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#官方文档的定义："><span class="toc-number">2.1.</span> <span class="toc-text">官方文档的定义：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#概念辨析-1"><span class="toc-number">2.2.</span> <span class="toc-text">概念辨析</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<p>简单整理一下吧，毕竟输出才是检验自己水平更好的方法。而且感觉网上很多文章都不是很靠谱，很明显甚至连官方文档都没有看，就只根据经验就直接写文章来总结了，很容易误导人。</p>
+<h2 id="Iterator-Types"><a href="#Iterator-Types" class="headerlink" title="Iterator Types"></a>Iterator Types</h2><p>迭代器类型</p>
+<h3 id="先看python2-7官方文档中关于迭代的部分："><a href="#先看python2-7官方文档中关于迭代的部分：" class="headerlink" title="先看python2.7官方文档中关于迭代的部分："></a>先看python2.7官方文档中关于迭代的部分：</h3><p>在阅读之前，需要明确几个词的含义：</p>
+<ul>
+<li>「iterator」 迭代器</li>
+<li>「iteration」 迭代</li>
+<li>「iterable」 可迭代的</li>
+<li>「container」 容器对象，也就是可以存放其他对象的对象，比如列表，字典等</li>
+</ul>
+<blockquote>
+<p>New in version 2.2.</p>
+<p>Python supports a concept of iteration over containers. This is implemented using two distinct methods; these are used to allow user-defined classes to support iteration. Sequences, described below in more detail, always support the iteration methods.</p>
+<p>python提供一种基于容器对象（container）的迭代概念。并且使用了两个特的方法来实现这一概念；这些方法允许自定义的类支持迭代。符合下面详细描述的序列（sequences），都将支持迭代方法。</p>
+<p>One method needs to be defined for container objects to provide iteration support:</p>
+<p>第一个在容器对象中定义的方法用于支持迭代（iteration）</p>
+<p><strong><code>container.__iter__()</code></strong></p>
+<p>Return an iterator object. The object is required to support the iterator protocol described below. If a container supports different types of iteration, additional methods can be provided to specifically request iterators for those iteration types. (An example of an object supporting multiple forms of iteration would be a tree structure which supports both breadth-first and depth-first traversal.) This method corresponds to the tp_iter slot of the type structure for Python objects in the Python/C API.</p>
+<p>返回一个迭代器对象（iterator object）。这个对象需要支持下面描述的迭代器协议（iterator protocal）。如果一个容器对象需要支持不同类型的迭代方式，也可以往容器对象中添加更多的方法来支持那些迭代方式。（一个对象支持多种跌打方式的例子是同时支持深度优先遍历和广度优先遍历的树结构）</p>
+<p>The iterator objects themselves are required to support the following two methods, which together form the iterator protocol:</p>
+<p>迭代器本身也需要支持下面的两个方法，『这两个方法一起构成了迭代器协议』</p>
+<p><strong><code>iterator.__iter__()</code></strong></p>
+<p>Return the iterator object itself. This is required to allow both containers and iterators to be used with the for and in statements. This method corresponds to the tp_iter slot of the type structure for Python objects in the Python/C API.</p>
+<p>返回迭代器对象自身。如果在for语句以及in语句中，使用容器对象和迭代器对象的话，那么它们都需要拥有此方法。</p>
+<p><strong><code>iterator.next()</code></strong></p>
+<p>Return the next item from the container. If there are no further items, raise the StopIteration exception. This method corresponds to the tp_iternext slot of the type structure for Python objects in the Python/C API.</p>
+<p>返回容器中的下一个元素。如果没有下一个元素，则产生一个StopIteration异常。</p>
+<p>Python defines several iterator objects to support iteration over general and specific sequence types, dictionaries, and other more specialized forms. The specific types are not important beyond their implementation of the iterator protocol.</p>
+<p>python基于一些或通用或特定的序列类型，字典或其他更特殊的类型，定义了一系列的迭代器对象来支持迭代。这些对象的核心内容就是其中的迭代器协议。</p>
+<p>The intention of the protocol is that once an iterator’s next() method raises StopIteration, it will continue to do so on subsequent calls. Implementations that do not obey this property are deemed broken. (This constraint was added in Python 2.3; in Python 2.2, various iterators are broken according to this rule.)</p>
+<p>这个协议的目的是，一旦一个迭代器的next()方法产生了一个StopIteration异常，后续再度调用时，就会一直保持产生一个StopIteration的状态。如果不按照这个特性实现，就被认为是有问题的（这个约束是在python2.3中添加的；在python2.2中，有很多迭代器不遵守这个规则）</p>
+</blockquote>
+<h3 id="概念辨析"><a href="#概念辨析" class="headerlink" title="概念辨析"></a>概念辨析</h3><p>上面大致就是python2.7中关于迭代的核心内容，整理一下就是：</p>
+<ul>
+<li><p>对于容器对象（container）来说，要支持迭代的话，需要在容器内部实现一个<code>__iter__()</code>方法。这个方法返回一个「迭代器对象」（iterator）。如果一个容器实现了这个方法，那么我们称这个容器是「可迭代的」（iterable）。</p>
+</li>
+<li><p>对于迭代器来说，它也需要一个<code>__iter__()</code>方法，用于返回这个迭代器自身。同时需要一个<code>next()</code>方法，来返回下一个元素。迭代器本身当然是「可迭代的」。迭代器的这两个方法，合在一起，叫做「迭代器协议」。</p>
+</li>
+</ul>
+<p>在for，in语句中，无论是使用容器对象（如列表），还是迭代器对象，它们内部都需要支持<code>__iter__()</code>方法。对于容器对象来说这个方法会返回一个迭代器，对于迭代器对象来说，这个方法会返回自身。然后用于迭代, 换句话说，即使是容器对象，也是先转换为迭代器对象再进行迭代的。这在python的文档中也有说明：</p>
+<h4 id="The-for-statement"><a href="#The-for-statement" class="headerlink" title="The for statement"></a>The for statement</h4><blockquote>
+<p>The for statement is used to iterate over the elements of a sequence (such as a string, tuple or list) or other iterable object:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">for_stmt ::=  <span class="string">"for"</span> target_list <span class="string">"in"</span> expression_list <span class="string">":"</span> suite </div><div class="line">              [<span class="string">"else"</span> <span class="string">":"</span> suite]</div></pre></td></tr></table></figure>
+<p>The expression list is evaluated once; it should yield an iterable object. An iterator is created for the result of the expression_list. The suite is then executed once for each item provided by the iterator, in the order of ascending indices. Each item in turn is assigned to the target list using the standard rules for assignments, and then the suite is executed. When the items are exhausted (which is immediately when the sequence is empty), the suite in the else clause, if present, is executed, and the loop terminates.</p>
+</blockquote>
+<h2 id="Generator-Types"><a href="#Generator-Types" class="headerlink" title="Generator Types"></a>Generator Types</h2><p>生成器类型</p>
+<h3 id="官方文档的定义："><a href="#官方文档的定义：" class="headerlink" title="官方文档的定义："></a>官方文档的定义：</h3><blockquote>
+<p>Python’s generators provide a convenient way to implement the iterator protocol. If a container object’s <code>__iter__()</code> method is implemented as a generator, it will automatically return an iterator object (technically, a generator object) supplying the <code>__iter__()</code> and <code>next()</code> methods. More information about generators can be found in the documentation for the yield expression.</p>
+<p>python 的生成器提供了应用迭代器协议的便捷方式。如果一个容器对象的<code>__iter__()</code>方法被用于生成器，它会自动地返回一个迭代器对象（技术上讲，是一个生成器对象），并且提供<code>__iter__()</code> 和<code>next()</code>方法。</p>
+</blockquote>
+<h3 id="概念辨析-1"><a href="#概念辨析-1" class="headerlink" title="概念辨析"></a>概念辨析</h3><p>上述内容的意思是，生成器对象不过是一种应用迭代器协议的快捷方式。平时我们需要一个自定义的迭代器<br>时，需要手动的去实现需要的<code>__iter__()</code>和<code>next()</code>方法，但是使用生成器对象的话，可以自动返回一个支持迭代协议的迭代器。而创建一个生成器，只需要在函数中使用yield表达式就可以了，这样会创建一个生成器函数，当它被调用时，会返回一个迭代器（通常被叫做生成器），它会控制生成器函数的执行。</p>
+<blockquote>
+<p>The yield expression is only used when defining a generator function, and can only be used in the body of a function definition. Using a yield expression in a function definition is sufficient to cause that definition to create a generator function instead of a normal function.</p>
+<p>When a generator function is called, it returns an iterator known as a generator. That generator then controls the execution of a generator function. The execution starts when one of the generator’s methods is called. At that time, the execution proceeds to the first yield expression, where it is suspended again, returning the value of expression_list to generator’s caller. By suspended we mean that all local state is retained, including the current bindings of local variables, the instruction pointer, and the internal evaluation stack. When the execution is resumed by calling one of the generator’s methods, the function can proceed exactly as if the yield expression was just another external call. The value of the yield expression after resuming depends on the method which resumed the execution.</p>
+<p>All of this makes generator functions quite similar to coroutines; they yield multiple times, they have more than one entry point and their execution can be suspended. The only difference is that a generator function cannot control where should the execution continue after it yields; the control is always transferred to the generator’s caller</p>
+</blockquote>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/python/">python</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/python/">python</a>
   </div>
-  <footer>
-    <div id="footer">
 
-      <div class="line">
-        <span></span>
-        <div class="author"></div>
-      </div>
-
-
-      <section class="info">
-        <p> Hello ,I&#39;m Starding. <br/> This is my blog,believe it or not.</p>
-      </section>
-
-      <div class="social-font" class="clearfix">
-
-
-        <a href="https://github.com/starding" target="_blank" class="icon-github" title="github"></a>
+</div>
 
 
 
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://starding.github.io/2016/01/15/python-iterator-generator/" data-title="python中的装饰器和迭代器 | 小狐濡尾" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/01/15/learn-in-computer-sciense/" title="计算机领域中的概念辨析">
+  <strong>上一篇：</strong><br/>
+  <span>
+  计算机领域中的概念辨析</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016/01/11/kuaibo-technological-neutrality/"  title="从快播案看技术中性论的地位">
+ <strong>下一篇：</strong><br/> 
+ <span>从快播案看技术中性论的地位
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/01/15/python-iterator-generator/" data-title="python中的装饰器和迭代器" data-url="http://starding.github.io/2016/01/15/python-iterator-generator/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Iterator-Types"><span class="toc-number">1.</span> <span class="toc-text">Iterator Types</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#先看python2-7官方文档中关于迭代的部分："><span class="toc-number">1.1.</span> <span class="toc-text">先看python2.7官方文档中关于迭代的部分：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#概念辨析"><span class="toc-number">1.2.</span> <span class="toc-text">概念辨析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#The-for-statement"><span class="toc-number">1.2.1.</span> <span class="toc-text">The for statement</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Generator-Types"><span class="toc-number">2.</span> <span class="toc-text">Generator Types</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#官方文档的定义："><span class="toc-number">2.1.</span> <span class="toc-text">官方文档的定义：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#概念辨析-1"><span class="toc-number">2.2.</span> <span class="toc-text">概念辨析</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="starding" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
 
 
 
-        <a href="https://www.douban.com/people/58816601" target="_blank" class="icon-douban" title="豆瓣"></a>
+  
+
+<div class="doubanshow">
+<p class="asidetitle">豆瓣秀</p>
+<div>
+<script type="text/javascript" src="http://www.douban.com/service/badge/58816601/?show=collection&amp;n=12&amp;columns=3&amp;hidelogo=yes&amp;hideself=yes&amp;cat=book|movie" ></script>
+</div>
+</div>
 
 
-        <a href="http://www.zhihu.com/people/starstarding" target="_blank" class="icon-zhihu" title="知乎"></a>
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/computer-philosophy/" title="computer philosophy">computer philosophy<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/docker/" title="docker">docker<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/javascript/" title="javascript">javascript<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/open-questions/" title="open-questions">open-questions<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/python/" title="python">python<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/前端/" title="前端">前端<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/技术哲学/" title="技术哲学">技术哲学<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/数学/" title="数学">数学<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/科学史与科学哲学/" title="科学史与科学哲学">科学史与科学哲学<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/算法/" title="算法">算法<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/问题/" title="问题">问题<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/随笔/" title="随笔">随笔<sup>4</sup></a></li>
+		  
+		
+		</ul>
+</div>
 
 
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/python/" title="python">python<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/docker/" title="docker">docker<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/前端/" title="前端">前端<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/随笔/" title="随笔">随笔<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/javascript/" title="javascript">javascript<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/科学哲学/" title="科学哲学">科学哲学<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/computer/" title="computer">computer<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/gitlab/" title="gitlab">gitlab<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/open-questions/" title="open-questions">open-questions<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/django/" title="django">django<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/科学史/" title="科学史">科学史<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/三体/" title="三体">三体<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/行尸走肉/" title="行尸走肉">行尸走肉<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/社会达尔文主义/" title="社会达尔文主义">社会达尔文主义<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
 
-        <a href="mailto:starding@buaa.edu.cn" target="_blank" class="icon-email" title="Email Me"></a>
 
-      </div>
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://phiphicake.blogspot.com" target="_blank" title=" 一个有趣的哲学博客">哲学鸡蛋糕</a>
+            
+          </li>
+        
+    </ul>
+</div>
 
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
 
-
-      <p class="copyright">
-        Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016
-
-
-        <a href="/about" target="_blank" title="starding">starding</a>
-
-
-        <br> 本站总访问量
-        <span id="busuanzi_value_site_pv"></span>次 本站访客数
-        <span id="busuanzi_value_site_uv"></span>人次 本文总阅读量
-        <span id="busuanzi_value_page_pv"></span>次
-      </p>
+</aside>
+</div>
     </div>
-  </footer>
-  <script src="/js/jquery-2.0.3.min.js"></script>
-  <script src="/js/jquery.imagesloaded.min.js"></script>
-  <script src="/js/gallery.js"></script>
-  <script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Starding. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/starding" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		<a href="https://www.douban.com/people/58816601" target="_blank" class="icon-douban" title="豆瓣"></a>
+		
+		
+		<a href="http://www.zhihu.com/people/starstarding" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		
+		<a href="mailto:starding@buaa.edu.cn" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
 
-  <script type="text/javascript">
-    $(document).ready(function() {
-      $('.navbar').click(function() {
-        $('header nav').toggleClass('shownav');
-      });
-      var myWidth = 0;
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
 
-      function getSize() {
-        if (typeof(window.innerWidth) == 'number') {
-          myWidth = window.innerWidth;
-        } else if (document.documentElement && document.documentElement.clientWidth) {
-          myWidth = document.documentElement.clientWidth;
-        };
-      };
-      var m = $('#main'),
-        a = $('#asidepart'),
-        c = $('.closeaside'),
-        o = $('.openaside');
-      c.click(function() {
-        a.addClass('fadeOut').css('display', 'none');
-        o.css('display', 'block').addClass('fadeIn');
-        m.addClass('moveMain');
-      });
-      o.click(function() {
-        o.css('display', 'none').removeClass('beforeFadeIn');
-        a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');
-        m.removeClass('moveMain');
-      });
-      $(window).scroll(function() {
-        o.css("top", Math.max(80, 260 - $(this).scrollTop()));
-      });
+		
+		<a href="/about" target="_blank" title="starding">starding</a>
+		
 
-      $(window).resize(function() {
-        getSize();
-        if (myWidth >= 1024) {
-          $('header nav').removeClass('shownav');
-        } else {
-          m.removeClass('moveMain');
-          a.css('display', 'block').removeClass('fadeOut');
-          o.css('display', 'none');
+	    <br>	
+        本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        本站访客数<span id="busuanzi_value_site_uv"></span>人次
+        本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
 
-          $('#toc.toc-aside').css('display', 'none');
-
-        }
-      });
-    });
-  </script>
-
-  <script type="text/javascript">
-    $(document).ready(function() {
-      var ai = $('.article-content>iframe'),
-        ae = $('.article-content>embed'),
-        t = $('#toc'),
-        ta = $('#toc.toc-aside'),
-        o = $('.openaside'),
-        c = $('.closeaside');
-      if (ai.length > 0) {
-        ai.wrap('<div class="video-container" />');
-      };
-      if (ae.length > 0) {
-        ae.wrap('<div class="video-container" />');
-      };
-      c.click(function() {
-        ta.css('display', 'block').addClass('fadeIn');
-      });
-      o.click(function() {
-        ta.css('display', 'none');
-      });
-      $(window).scroll(function() {
-        ta.css("top", Math.max(140, 320 - $(this).scrollTop()));
-      });
-    });
-  </script>
-
-
-  <script type="text/javascript">
-    $(document).ready(function() {
-      var $this = $('.share'),
-        url = $this.attr('data-url'),
-        encodedUrl = encodeURIComponent(url),
-        title = $this.attr('data-title'),
-        tsina = $this.attr('data-tsina'),
-        description = $this.attr('description');
-      var html = [
-        '<div class="hoverqrcode clearfix"></div>',
-        '<a class="overlay" id="qrcode"></a>',
-        '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
-        '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
-        '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
-        '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title + '" class="article-share-renren" target="_blank" title="人人"></a>',
-        '<a href="http://service.weibo.com/share/share.php?title=' + title + '&url=' + encodedUrl + '&ralateUid=' + tsina + '&searchPic=true&style=number' + '" class="article-share-weibo" target="_blank" title="微博"></a>',
-        '<span title="Share to"></span>'
-      ].join('');
-      $this.append(html);
-
-      $('.hoverqrcode').hide();
-
-      var myWidth = 0;
-
-      function updatehoverqrcode() {
-        if (typeof(window.innerWidth) == 'number') {
-          myWidth = window.innerWidth;
-        } else if (document.documentElement && document.documentElement.clientWidth) {
-          myWidth = document.documentElement.clientWidth;
-        };
-        var qrsize = myWidth > 1024 ? 200 : 100;
-        var options = {
-          render: 'image',
-          size: qrsize,
-          fill: '#2ca6cb',
-          text: url,
-          radius: 0.5,
-          quiet: 1
-        };
-        var p = $('.article-share-qrcode').position();
-        $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
-          .css('left', p.left - qrsize / 2 + 20).css('top', p.top - qrsize - 10)
-          .qrcode(options);
-      };
-      $(window).resize(function() {
-        $('.hoverqrcode').hide();
-      });
-      $('.article-share-qrcode').click(function() {
-        updatehoverqrcode();
-        $('.hoverqrcode').toggle();
-      });
-      $('.article-share-qrcode').hover(function() {}, function() {
-        $('.hoverqrcode').hide();
-      });
-    });
-  </script>
-
-
-
-  <script type="text/javascript">
-    var duoshuoQuery = {
-      short_name: "starding"
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
     };
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';
-      ds.async = true;
-      ds.src = '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"starding"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
 
 
 
@@ -675,91 +612,106 @@ Iterator Types
 
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
-  <script type="text/javascript">
-    $(document).ready(function() {
-      $('.article-content').each(function(i) {
-        $(this).find('img').each(function() {
-          if ($(this).parent().hasClass('fancybox')) return;
-          var alt = this.alt;
-          if (alt) $(this).after('<span class="caption">' + alt + '</span>');
-          $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
-        });
-        $(this).find('.fancybox').each(function() {
-          $(this).attr('rel', 'article' + i);
-        });
-      });
-      if ($.fancybox) {
-        $('.fancybox').fancybox();
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-72215789-1', 'auto');  
+ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?01f9e8011679173931cf24fe647483cf";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
       }
     });
-  </script>
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 
 
+<!-- MathJax End -->
 
-  <!-- Analytics Begin -->
-  <script type="text/javascript">
-    (function(i, s, o, g, r, a, m) {
-      i['GoogleAnalyticsObject'] = r;
-      i[r] = i[r] || function() {
-        (i[r].q = i[r].q || []).push(arguments)
-      }, i[r].l = 1 * new Date();
-      a = s.createElement(o),
-        m = s.getElementsByTagName(o)[0];
-      a.async = 1;
-      a.src = g;
-      m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-    ga('create', 'UA-72215789-1', 'auto');
-    ga('send', 'pageview');
-  </script>
+<!-- Tiny_search Begin -->
 
+<!-- Tiny_search End -->
 
+<!--不蒜子-->
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
-  <script>
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "//hm.baidu.com/hm.js?01f9e8011679173931cf24fe647483cf";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
-  <!-- Analytics End -->
-
-  <!-- Totop Begin -->
-  <div id="totop">
-    <a title="返回顶部"><img src="/img/scrollup.png" /></a>
-  </div>
-  <script src="/js/totop.js"></script>
-  <!-- Totop End -->
-
-  <!-- MathJax Begin -->
-  <!-- mathjax config similar to math.stackexchange -->
-
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
-  </script>
-
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({ tex2jax: { skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] } });
-  </script>
-
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() { var all = MathJax.Hub.getAllJax(), i; for(i=0; i
-    < all.length; i +=1 ) { all[i].SourceElement().parentNode.className +=' has-jax' ; } }); </script>
-
-      <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-      </script>
-      <!-- MathJax End -->
-
-      <!-- Tiny_search Begin -->
-
-      <!-- Tiny_search End -->
-
-      <!--不蒜子-->
-      <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-</body>
-
+  </body>
 </html>
