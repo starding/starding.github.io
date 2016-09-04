@@ -4,21 +4,23 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>为什么用户看不到内涵段子的「收藏」等功能 | 小狐濡尾</title>
+    <title>前端工程师的形而上学（1）—— 一个例子 | 小狐濡尾</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="starding">
     
 
     
-    <meta name="description" content="经常听到内涵段子的运营收到用户「内涵段子有没有收藏功能」的反馈，数量之多让人不由得疑惑，为什么这么多用户看不到内涵段子的「收藏」「保存」这几个功能？明明它们就在点击分享时弹出的面板上，按理说应该一眼就能看到。
-这其实是一种心理学上的盲视现象，当然一旦你知道有这两个功能并且有意识的去留意时，这种盲视现象就消失了。不过对于不少用户来说，这是个困难的过程。本文就从认知心理学角度来分析一下这个匪夷所思的问">
+    <meta name="description" content="本文介绍一个认知心理学在「内涵段子」（支持一下公司产品）app上的应用。
+经常听到内涵段子的运营收到用户「内涵段子有没有收藏功能」的反馈，数量之多让人不由得疑惑，为什么这么多用户看不到内涵段子的「收藏」「保存」这几个功能？明明它们就在点击分享时弹出的面板上，按理说应该一眼就能看到。
+这其实是一种心理学上的盲视现象，当然一旦你知道有这两个功能并且有意识的去留意时，这种盲视现象就消失了。不过对于不少用">
 <meta property="og:type" content="article">
-<meta property="og:title" content="为什么用户看不到内涵段子的「收藏」等功能">
+<meta property="og:title" content="前端工程师的形而上学（1）—— 一个例子">
 <meta property="og:url" content="http://starding.github.io/2016/08/29/why-users-can-not-see-collect-function-in-neihan/index.html">
 <meta property="og:site_name" content="小狐濡尾">
-<meta property="og:description" content="经常听到内涵段子的运营收到用户「内涵段子有没有收藏功能」的反馈，数量之多让人不由得疑惑，为什么这么多用户看不到内涵段子的「收藏」「保存」这几个功能？明明它们就在点击分享时弹出的面板上，按理说应该一眼就能看到。
-这其实是一种心理学上的盲视现象，当然一旦你知道有这两个功能并且有意识的去留意时，这种盲视现象就消失了。不过对于不少用户来说，这是个困难的过程。本文就从认知心理学角度来分析一下这个匪夷所思的问">
+<meta property="og:description" content="本文介绍一个认知心理学在「内涵段子」（支持一下公司产品）app上的应用。
+经常听到内涵段子的运营收到用户「内涵段子有没有收藏功能」的反馈，数量之多让人不由得疑惑，为什么这么多用户看不到内涵段子的「收藏」「保存」这几个功能？明明它们就在点击分享时弹出的面板上，按理说应该一眼就能看到。
+这其实是一种心理学上的盲视现象，当然一旦你知道有这两个功能并且有意识的去留意时，这种盲视现象就消失了。不过对于不少用">
 <meta property="og:image" content="http://p3.pstatp.com/obj/ba100047afd2cb5387e">
 <meta property="og:image" content="http://p1.pstatp.com/obj/ba100047afb061e12c3">
 <meta property="og:image" content="http://p8.pstatp.com/obj/ba100047bee7bf7fe20">
@@ -30,11 +32,12 @@
 <meta property="og:image" content="http://p3.pstatp.com/obj/ba100047b33dfaaaabd">
 <meta property="og:image" content="http://p3.pstatp.com/obj/ba100047b3865a5a6c6">
 <meta property="og:image" content="http://p1.pstatp.com/obj/ba100047afb061e12c3">
-<meta property="og:updated_time" content="2016-08-29T10:15:41.000Z">
+<meta property="og:updated_time" content="2016-09-04T09:27:40.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="为什么用户看不到内涵段子的「收藏」等功能">
-<meta name="twitter:description" content="经常听到内涵段子的运营收到用户「内涵段子有没有收藏功能」的反馈，数量之多让人不由得疑惑，为什么这么多用户看不到内涵段子的「收藏」「保存」这几个功能？明明它们就在点击分享时弹出的面板上，按理说应该一眼就能看到。
-这其实是一种心理学上的盲视现象，当然一旦你知道有这两个功能并且有意识的去留意时，这种盲视现象就消失了。不过对于不少用户来说，这是个困难的过程。本文就从认知心理学角度来分析一下这个匪夷所思的问">
+<meta name="twitter:title" content="前端工程师的形而上学（1）—— 一个例子">
+<meta name="twitter:description" content="本文介绍一个认知心理学在「内涵段子」（支持一下公司产品）app上的应用。
+经常听到内涵段子的运营收到用户「内涵段子有没有收藏功能」的反馈，数量之多让人不由得疑惑，为什么这么多用户看不到内涵段子的「收藏」「保存」这几个功能？明明它们就在点击分享时弹出的面板上，按理说应该一眼就能看到。
+这其实是一种心理学上的盲视现象，当然一旦你知道有这两个功能并且有意识的去留意时，这种盲视现象就消失了。不过对于不少用">
 <meta name="twitter:image" content="http://p3.pstatp.com/obj/ba100047afd2cb5387e">
 
     
@@ -97,7 +100,7 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/08/29/why-users-can-not-see-collect-function-in-neihan/" title="为什么用户看不到内涵段子的「收藏」等功能" itemprop="url">为什么用户看不到内涵段子的「收藏」等功能</a>
+      <a href="/2016/08/29/why-users-can-not-see-collect-function-in-neihan/" title="前端工程师的形而上学（1）—— 一个例子" itemprop="url">前端工程师的形而上学（1）—— 一个例子</a>
   </h1>
   <p class="article-author">By
        
@@ -117,7 +120,8 @@
 		
 		</div>
 		
-		<p>经常听到内涵段子的运营收到用户「内涵段子有没有收藏功能」的反馈，数量之多让人不由得疑惑，为什么这么多用户看不到内涵段子的「收藏」「保存」这几个功能？明明它们就在点击分享时弹出的面板上，按理说应该一眼就能看到。</p>
+		<p>本文介绍一个认知心理学在「内涵段子」（支持一下公司产品）app上的应用。</p>
+<p>经常听到内涵段子的运营收到用户「内涵段子有没有收藏功能」的反馈，数量之多让人不由得疑惑，为什么这么多用户看不到内涵段子的「收藏」「保存」这几个功能？明明它们就在点击分享时弹出的面板上，按理说应该一眼就能看到。</p>
 <p>这其实是一种心理学上的盲视现象，当然一旦你知道有这两个功能并且有意识的去留意时，这种盲视现象就消失了。不过对于不少用户来说，这是个困难的过程。本文就从认知心理学角度来分析一下这个匪夷所思的问题，并且给出相应的解决方案：</p>
 <h2 id="精简版结论"><a href="#精简版结论" class="headerlink" title="精简版结论"></a>精简版结论</h2><h3 id="两步分析"><a href="#两步分析" class="headerlink" title="两步分析"></a>两步分析</h3><p>进入分享弹层之前，分享图标带有强烈的目标引导倾向（就是分享）， 让人下意识的认为点击这个图标之后的弹层全部功能都与分享有关。</p>
 <p>内涵段子分享图标:<br><img src="http://p3.pstatp.com/obj/ba100047afd2cb5387e" width="30%"></p>
@@ -190,7 +194,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://starding.github.io/2016/08/29/why-users-can-not-see-collect-function-in-neihan/" data-title="为什么用户看不到内涵段子的「收藏」等功能 | 小狐濡尾" data-tsina="null" class="share clearfix">
+	  <div data-url="http://starding.github.io/2016/08/29/why-users-can-not-see-collect-function-in-neihan/" data-title="前端工程师的形而上学（1）—— 一个例子 | 小狐濡尾" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -203,6 +207,14 @@
 	
 <nav class="article-nav clearfix">
  
+ <div class="prev" >
+ <a href="/2016/09/04/fe-metaphysics/" title="前端工程师的形而上学 —— 0">
+  <strong>上一篇：</strong><br/>
+  <span>
+  前端工程师的形而上学 —— 0</span>
+</a>
+</div>
+
 
 <div class="next">
 <a href="/2016/07/29/one-year-after-graduation/"  title="毕业一年">
@@ -216,7 +228,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/08/29/why-users-can-not-see-collect-function-in-neihan/" data-title="为什么用户看不到内涵段子的「收藏」等功能" data-url="http://starding.github.io/2016/08/29/why-users-can-not-see-collect-function-in-neihan/"></div>
+	<div class="ds-thread" data-thread-key="2016/08/29/why-users-can-not-see-collect-function-in-neihan/" data-title="前端工程师的形而上学（1）—— 一个例子" data-url="http://starding.github.io/2016/08/29/why-users-can-not-see-collect-function-in-neihan/"></div>
 </section>
 
 
@@ -315,15 +327,11 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/docker/" title="docker">docker<sup>4</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/python/" title="python">python<sup>4</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/javascript/" title="javascript">javascript<sup>2</sup></a></li>
+				<li><a href="/tags/docker/" title="docker">docker<sup>4</sup></a></li>
 			
 		
 			
@@ -335,11 +343,15 @@
 			
 		
 			
-				<li><a href="/tags/科学史/" title="科学史">科学史<sup>1</sup></a></li>
+				<li><a href="/tags/javascript/" title="javascript">javascript<sup>2</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/科学哲学/" title="科学哲学">科学哲学<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/computer/" title="computer">computer<sup>1</sup></a></li>
 			
 		
 			
@@ -367,7 +379,7 @@
 			
 		
 			
-				<li><a href="/tags/computer/" title="computer">computer<sup>1</sup></a></li>
+				<li><a href="/tags/科学史/" title="科学史">科学史<sup>1</sup></a></li>
 			
 		
 		</ul>
