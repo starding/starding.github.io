@@ -1,0 +1,764 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Material Design——简介及其背后的理论 | 小狐濡尾</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="starding">
+    
+
+    
+    <meta name="description" content="material design—— 将科学引入艺术，让没有什么经验的人也能做出体面的设计
+
+简介最准确的官方介绍：
+
+We challenged ourselves to create a visual language for our users that synthesizes the classic principles of good design with the innovation">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Material Design——简介及其背后的理论">
+<meta property="og:url" content="http://starding.github.io/2016/10/31/Material-Design/index.html">
+<meta property="og:site_name" content="小狐濡尾">
+<meta property="og:description" content="material design—— 将科学引入艺术，让没有什么经验的人也能做出体面的设计
+
+简介最准确的官方介绍：
+
+We challenged ourselves to create a visual language for our users that synthesizes the classic principles of good design with the innovation">
+<meta property="og:image" content="http://p3.pstatp.com/obj/c900003e76f7008dd07">
+<meta property="og:image" content="http://p3.pstatp.com/obj/c900003e759d5e6c1fd">
+<meta property="og:image" content="http://p3.pstatp.com/obj/c8f0005d14632f84a10">
+<meta property="og:image" content="http://ofoypuuao.bkt.clouddn.com/Continuity_04_SharedDo_v6-remapped.gif">
+<meta property="og:image" content="http://p3.pstatp.com/obj/f21000290cf20de7b8d">
+<meta property="og:image" content="http://p3.pstatp.com/obj/c900003e77123e07865">
+<meta property="og:image" content="http://p9.pstatp.com/obj/f21000290ba63fe674a">
+<meta property="og:image" content="http://p3.pstatp.com/obj/c900003e766a96e94a6">
+<meta property="og:updated_time" content="2016-10-31T09:01:03.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Material Design——简介及其背后的理论">
+<meta name="twitter:description" content="material design—— 将科学引入艺术，让没有什么经验的人也能做出体面的设计
+
+简介最准确的官方介绍：
+
+We challenged ourselves to create a visual language for our users that synthesizes the classic principles of good design with the innovation">
+<meta name="twitter:image" content="http://p3.pstatp.com/obj/c900003e76f7008dd07">
+
+    
+    <link rel="alternative" href="/atom.xml" title="小狐濡尾" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/my_favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/my_white_logo.png" alt="小狐濡尾" title="小狐濡尾"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="小狐濡尾">小狐濡尾</a></h1>
+				<h2 class="blog-motto">未济</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页 | Home</a></li>
+					
+						<li><a href="/index">索引 | Index</a></li>
+					
+						<li><a href="/archives">归档 | Archives</a></li>
+					
+						<li><a href="/about">简介 | About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:starding.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/10/31/Material-Design/" title="Material Design——简介及其背后的理论" itemprop="url">Material Design——简介及其背后的理论</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="starding" target="_blank" itemprop="author">starding</a>
+		
+  <p class="article-time">
+    <time datetime="2016-10-31T06:40:42.000Z" itemprop="datePublished"> 发表于 2016-10-31</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#简介"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Material-Design背后的“科学技术”"><span class="toc-number">2.</span> <span class="toc-text">Material Design背后的“科学技术”</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#从传统平面设计中汲取营养"><span class="toc-number">2.1.</span> <span class="toc-text">从传统平面设计中汲取营养</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#开拓新的设计领域"><span class="toc-number">2.2.</span> <span class="toc-text">开拓新的设计领域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#认知心理学"><span class="toc-number">2.3.</span> <span class="toc-text">认知心理学</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#生物学"><span class="toc-number">2.4.</span> <span class="toc-text">生物学</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他"><span class="toc-number">3.</span> <span class="toc-text">其他</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#物理学上的抽象-amp-amp-合理的量化"><span class="toc-number">3.1.</span> <span class="toc-text">物理学上的抽象 && 合理的量化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#让经验不多的人也能做出体面的设计？"><span class="toc-number">3.2.</span> <span class="toc-text">让经验不多的人也能做出体面的设计？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Material-Design-思维导图"><span class="toc-number">4.</span> <span class="toc-text">Material Design 思维导图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">5.</span> <span class="toc-text">参考</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#超链接"><span class="toc-number">5.1.</span> <span class="toc-text">超链接:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#书籍"><span class="toc-number">5.2.</span> <span class="toc-text">书籍</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<p>material design<br>—— 将科学引入艺术，让没有什么经验的人也能做出体面的设计</p>
+<p><img src="http://p3.pstatp.com/obj/c900003e76f7008dd07" alt="material design"></p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>最准确的<a href="https://material.google.com/" target="_blank" rel="external">官方介绍</a>：</p>
+<blockquote>
+<p>We challenged ourselves to create a visual language for our users that synthesizes the classic principles of good design with the innovation and possibility of technology and science. This is material design.<br>Develop a single underlying system that allows for a unified experience across platforms and device sizes. Mobile precepts are fundamental, but touch, voice, mouse, and keyboard are all ﬁrst-class input methods</p>
+<p>我们用了洪荒之力，为用户设计了一种视觉语言，它综合了传统设计原则中好的部分，以及<strong>科学技术带来的创新和可能性</strong>等。这就是material design。<br>（material design可用来）开发一套基准系统，在这个系统的基础之上，构建跨平台和超越设备尺寸的统一体验。它遵循基本的移动设计定则，同时支持触摸、语音、鼠标、键盘等输入方式</p>
+</blockquote>
+<p><strong>设计原则</strong></p>
+<ol>
+<li><p>material（材料） 其实是一个隐喻：<br>这个隐喻是理解material design其他内容的基础。在考虑material设计空间以及一系列元素动作行为设计的时候，都不要忘记背后的隐喻。</p>
+</li>
+<li><p>鲜明，形象，精心设计（就是说设计上是预先安排的，设计后面存在预设动机）<br>借鉴传统印刷平面设计规范——排版、网格、空间、比例、配色、图像使用——来指导视觉处理。这些规范不仅仅能讨好眼球，同时还拥有建立层次，赋予意义和引导焦点上的意义（多是认知心理学上的意义，后面会谈到）。</p>
+</li>
+<li>有意义的动画效果<br>动画是前端交互中非常重要的一部分，但是material design的动画运用并不是随意的，它从现实中抽象而来，并且符合用户的认知模式。</li>
+</ol>
+<p>下面我们就对官方的这个概括做一个解读</p>
+<h2 id="Material-Design背后的“科学技术”"><a href="#Material-Design背后的“科学技术”" class="headerlink" title="Material Design背后的“科学技术”"></a>Material Design背后的“科学技术”</h2><h3 id="从传统平面设计中汲取营养"><a href="#从传统平面设计中汲取营养" class="headerlink" title="从传统平面设计中汲取营养"></a>从传统平面设计中汲取营养</h3><p>在官方介绍中提到，material design「综合了传统设计原则中好的部分，<strong>科学技术带来的创新和可能性</strong>」。其中的「传统设计原则」比较容易理解，早在印刷时代，在如何将信息以更美好，更容易让人接受的形式展示出来上面，人们已经做了很多探索，并且总结出了一些行之有效的平面设计原则：</p>
+<ul>
+<li>一致性</li>
+<li>减轻记忆负担</li>
+<li>对齐，相关</li>
+<li>…</li>
+</ul>
+<p>这些最初用于传统纸质媒介的设计准则，被搬到新的电子媒介上来并且取得了很好的效果——要知道网页刚开始除了页面上有一些超链接外，其他展现方式跟纸质媒介中的丰富性相差甚远，传统平面设计中的理念能对web设计产生非常有用的指导， 比如<strong>网格系统：</strong></p>
+<p><img src="http://p3.pstatp.com/obj/c900003e759d5e6c1fd" alt="平面设计中的网格系统"></p>
+<p>随着web的发展，电子媒介就有了自己独特的地方，不再像纸质媒介那样是纯静态的了——它有了真正的「交互」。新的web特性也需要寻求其他的理论支撑，如果不能再从传统的平面设计中借鉴，如何开创一套适用于web这些新特性的设计准则？这就来到了material design文档中所说的「科学技术带来的创新和可能性」。</p>
+<h3 id="开拓新的设计领域"><a href="#开拓新的设计领域" class="headerlink" title="开拓新的设计领域"></a>开拓新的设计领域</h3><p>如果传统平面设计不能直接借鉴，那么就看看平面设计背后有没有可以深入挖掘的内容。在寻求理论的支撑时，需要向还原理论方向更深处寻找，至于还原论的方向，简单来说如下：</p>
+<blockquote>
+<p>设计的基础是心理<br>心理的基础是生物<br>生物的基础是化学<br>化学的基础是物理</p>
+</blockquote>
+<p>虽然这些概括的命题争议很大，在这些学科中至少可以说「部分如此」。在设计上往更深层次寻找，基本上到「心理，生物」这一范围。找到更深层次的理论，就为「创造性」设计提供了基础，使得设计空间的表达可以发生转变，也不必再囿于传统平面设计在新web媒介下的套用，完全可以根据这些深层理论进行自由发挥，创造出适合web的设计形式。</p>
+<p>说了这么多，那么这些科学技术上的创新，可能性，指的究竟是哪些内容？</p>
+<h3 id="认知心理学"><a href="#认知心理学" class="headerlink" title="认知心理学"></a>认知心理学</h3><p>在说认知心理学之前，先来看一个来自头条圈的小例子：</p>
+<p><img src="http://p3.pstatp.com/obj/c8f0005d14632f84a10" width="50%" alt="头条圈图标投票调查"></p>
+<p>这个小例子多少说明了认知在前端界面中的地位并不像人们想象中的那么低，不过很多人都没有意识到这有多重要。</p>
+<p>人类认知事物的过程（感知，学习，推理，记忆等）是具有某些固定模式的,人们在前端领域所进行的认知行为也没有脱离这个范围。这些模式的形成基于人类的生物学结构，虽然工业革命以来，人类自身和所处的环境被迅速地改造，但是进化毕竟是以百万年为单位的，人类生物结构上的进化已经早已基本完成，在可以预见的时间内，这种生物结构也将一直保持稳定。在心理学上，已经有不少结论可以对设计有所教益：</p>
+<ul>
+<li>经验，环境，目标对认知的影响</li>
+<li>心理上的格式塔现象</li>
+<li>短期记忆与长期记忆</li>
+<li>阅读行为的研究</li>
+<li>决策心理</li>
+<li>…</li>
+</ul>
+<p>上述所列研究在设计中都有所应用，而关于为什么要讨论认知心理学，《认知与设计》中有这样一段话（稍有增改）：</p>
+<blockquote>
+<p>因为遵循用户界面设计准则不像遵守烹饪食谱那么按部就班。设计准则经常描述的是目标而不是操作。它们特意及其概括从而具有更广泛的适用性，但这也意味着，人们对它们准确的意义和在具体设计情景上的适用性经常会做出不同的诠释</p>
+<p>更复杂的是，对于一个设计情景，经常会有多个规则看起来都适用。这就要求要对不同的设计之间做出权衡，而权衡的依据不能仅凭设计师个人喜好，需要有相应的数据，理论支撑。数据可以从运营哪里得来。</p>
+<p>而理论只能求助于更深层次的认知心理学</p>
+</blockquote>
+<p>在了解用户认知模式的情况下，就不容易出现「符合设计原则，但不符合用户认知」，导致用户体验不好的情况。比如上面所举例子中，给… 加上修饰，是符合不少设计规则的——更一致，跟其他图标相容性更好，更加显眼等，但它是不符合认知的，用户在此很容易出错。</p>
+<p>人类身处现实世界之中，而思维有时则在互联网中畅游，这就在现实环境与互联网环境中产生了一种「语境转换」——人们会根据现实中的某些特点来认知互联网中的事物,比如垃圾桶代表回收站等等。借助于心理学，可以做到从现实到互联网设计的较为平滑的认知过渡。对于运动效果也是同样，在真实世界中发生的运动都是平滑的，不会出现折线运动（撞击除外）。这也是平滑过渡的运动看起来自然的原因，而且由于这种自然性，也更容易给人熟悉感，更容易被人接受。</p>
+<p>另一个产生「语境转换」的地方是应用中不同场景的切换，需要精心设计转场动画进行视觉引导，从而使过渡更加自然和平滑，让人的思维不至于断层，贝塞尔曲线也是在这种意义上得到了充分的应用。</p>
+<p><img src="http://ofoypuuao.bkt.clouddn.com/Continuity_04_SharedDo_v6-remapped.gif" alt="material motion gif"></p>
+<h3 id="生物学"><a href="#生物学" class="headerlink" title="生物学"></a>生物学</h3><p>主要是进行生物结构特性上的研究，认知心理学可以在此寻求理论基础，比如：</p>
+<ul>
+<li>脑神经科学</li>
+<li>眼动研究</li>
+<li>眼球成像模式研究</li>
+</ul>
+<p>这些研究更为的基础而且多少会涉及到进化论上的内容，这里不进行展开，举一个关于眼球感光细胞的理论：</p>
+<blockquote>
+<p>人类视野的空间分辨率从中央向边缘锐减，有如下三个理由</p>
+<p><strong>像素密度</strong><br>每只眼睛有600到700万个视锥细胞，它们在视野中央（一个很小的叫做中央凹的区域）的分布比在边缘紧密的多（对应中央视觉）。中央凹没平方毫米有约158000个视锥细胞，而在视网膜的其他部分，每平方毫米只有9000个视锥细胞（对应边界视觉）。</p>
+<p><strong>数据压缩</strong><br>中央凹的视锥细胞与视觉信息处理和传导的起点——神经节细胞——的连接比是1：1，而视网膜的其余地方，多个光感细胞（视锥细胞和视杆细胞）才与一个神经节细胞相连。用术语来说，边界视觉的信息在被传递到大脑之前是经过压缩（数据有损）的，而中央视觉不是。</p>
+<p><strong>资源处理</strong><br>中央凹仅占视网膜面积的约1%，而大脑皮层却有50%的区域用于接受中央凹的输入，另一半处理来自占视网膜99%的区域的数据。</p>
+<p>这导致我们视野中央的视觉分辨率要远远高于其他地方，而在一臂距离下，眼球的中央凹视觉面积大概像拇指指甲那么大，也就是你当前在屏幕上看的三个字宽度左右——这就是视觉焦点的基础。</p>
+<p>——《认知与设计》 [美] Jeff Johnson  （引文略有改动）    </p>
+</blockquote>
+<p>关于眼睛的生物学研究告诉我们，人类在观看屏幕时，其视觉焦点基本只有拇指指甲盖大小，在此之外的视野都是「边界视野」。在这种视觉模式基础上，如何进行视觉引导，把用户的注意力引向那些希望用户看到的信息上面，也是一个挑战。最直接的一个例子是输入框出错时，错误提示放置的位置，出现的方式等等。</p>
+<p><img src="http://p3.pstatp.com/obj/f21000290cf20de7b8d" alt="表单错误提示"></p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><h3 id="物理学上的抽象-amp-amp-合理的量化"><a href="#物理学上的抽象-amp-amp-合理的量化" class="headerlink" title="物理学上的抽象 &amp;&amp; 合理的量化"></a>物理学上的抽象 &amp;&amp; 合理的量化</h3><p>material的官方介绍中，还提到「material is metaphor」，material 是个隐喻，隐喻什么？</p>
+<p>material design所隐喻的是一种设计材料（material），姑且称之为「material卡片」是从现实中抽象出来的，去掉现实中的杂质和随机性，保留空间关系、变化与过渡，光影效果。这种材料具有厚度，材料之间有空间关系。这其实暗示着一个更大的隐喻 —— 整个material design 其实隐喻着一个特殊的设计空间，这个空间具有三维结构，而material卡片则是组成这个空间的基本材料。</p>
+<p><img src="http://p3.pstatp.com/obj/c900003e77123e07865" alt="material environment"></p>
+<p>为什么要费这么大的功夫，来抽象一种设计材料，抽象出一种虚拟空间？</p>
+<p><strong>材料和构建规则一起决定了一致性</strong></p>
+<p>为了理解这件事情，我们可以从真实世界中的建筑设计入手：</p>
+<p><img src="http://p9.pstatp.com/obj/f21000290ba63fe674a" alt="建筑图"></p>
+<p>所有的设计都可以形象的称之为「带着镣铐跳舞」，这一点在建筑设计上尤为明显。在现实中的建筑设计，要求采用基本的砖块，混凝土，钢材，玻璃等可用的原料，做出出<strong>符合真实世界物理规律</strong>的设计。</p>
+<p>要知道世界上大多数建筑物都是大同小异的，只有少部分设计师才能设计出既符合规则，又超脱于世俗的建筑。</p>
+<p>如果材料和规则限制太大，则会造成表现形式上的死板，material design虽然抽象于现实世界，但是也增加了现实中所不存在的魔法特性，，比如material design中的卡片可以随意拆解，合并，变形等等。</p>
+<p>MD中存在一些量化标准，这些量化标准为设计提供了一种更强一层的规范作用：</p>
+<ul>
+<li>卡片厚度</li>
+<li>卡片高度差</li>
+<li>颜色选择</li>
+<li>动画时间<ul>
+<li>连续图像之间可以形成视觉融合的最长间隔：20ms</li>
+<li>一个视觉事件与我们对它完整感知之间的时间差： 100ms</li>
+<li>事件进入意识的编辑“窗口”：250ms</li>
+<li>…</li>
+</ul>
+</li>
+</ul>
+<p>这种「有根据地量化设计」观念是超前的，它使设计不再是那些具有丰富经验的大师们的专属，不再是灵感的迸发和单纯个人喜好的表达。如果你了解一些科学史，就能明白这种在设计语言上「将科学引入设计」的行为的重要性。如果做个对比的话，相当于是在向来以神秘方式进行的炼金术中，引入了量化的科学的方法——它变成了化学。</p>
+<p>在更早的设计中也可以见到科学与技术结合的影子，但是没有一种能像material design这样，借助一种隐喻空间的形式，如此彻底地进行设计上的改造与规范。<br>上述这些特点，可以说是「让经验不多的人，也能做出体面的设计」的原因。</p>
+<h3 id="让经验不多的人也能做出体面的设计？"><a href="#让经验不多的人也能做出体面的设计？" class="headerlink" title="让经验不多的人也能做出体面的设计？"></a>让经验不多的人也能做出体面的设计？</h3><p><strong>什么是体面的设计</strong></p>
+<ul>
+<li>视觉上具有美感</li>
+<li>有利于信息的精确传达</li>
+<li>背后有心理学基础，符合用户的认知习惯（而不仅是设计者个人喜好）</li>
+</ul>
+<p>material design已经将上述东西融入到语素之中了，所以借助material design进行前端的设计在某种程度上决定了它的下限——不会特别烂。</p>
+<p>Material Design 试图在艺术和科学之间找一个设计点，这是可能的——虽然它对设计者的要求非常高。</p>
+<p>在我看来，Material Design 是部分做到这一点了，它拥有非常清晰和极具启发性的思路。即使某天作为整体的Material Design消解了，也会有很多极富启发性的思想被延续下去。</p>
+<h2 id="Material-Design-思维导图"><a href="#Material-Design-思维导图" class="headerlink" title="Material Design 思维导图"></a>Material Design 思维导图</h2><p><img src="http://p3.pstatp.com/obj/c900003e766a96e94a6" alt="MD思维导图"></p>
+<p>上图是根据Material Design设计准则整理出来的思维导图， 右侧几个分支叙述了Material Design 包含的最基本的组件，结构。左侧的分支则介绍了一些经验性的最佳实验，读者可以根据前面的叙述，看看能否在背后找到这些原理，技术的痕迹。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><h3 id="超链接"><a href="#超链接" class="headerlink" title="超链接:"></a>超链接:</h3><p><a href="https://material.google.com" target="_blank" rel="external">material design官网</a><br><a href="https://www.zhihu.com/question/24276657/answer/27262112" target="_blank" rel="external">如何理解 Google 的 Material Design 设计语言？</a><br><a href="http://www.theverge.com/2014/6/27/5849272/material-world-how-google-discovered-what-software-is-made-of" target="_blank" rel="external">The Verge对Matias Duarte的访谈</a></p>
+<h3 id="书籍"><a href="#书籍" class="headerlink" title="书籍"></a>书籍</h3><p>《平面设计中的网格系统》<br>《认知与设计——理解UI设计准则》<br>《Don’t Make me think》</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/前端/">前端</a>
+</div>
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://starding.github.io/2016/10/31/Material-Design/" data-title="Material Design——简介及其背后的理论 | 小狐濡尾" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/10/31/material-design-introduct-md/" title="material design 简介及背后的理论">
+  <strong>上一篇：</strong><br/>
+  <span>
+  material design 简介及背后的理论</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016/09/14/人是复杂的/"  title="">
+ <strong>下一篇：</strong><br/> 
+ <span>(no title)
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/10/31/Material-Design/" data-title="Material Design——简介及其背后的理论" data-url="http://starding.github.io/2016/10/31/Material-Design/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#简介"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Material-Design背后的“科学技术”"><span class="toc-number">2.</span> <span class="toc-text">Material Design背后的“科学技术”</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#从传统平面设计中汲取营养"><span class="toc-number">2.1.</span> <span class="toc-text">从传统平面设计中汲取营养</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#开拓新的设计领域"><span class="toc-number">2.2.</span> <span class="toc-text">开拓新的设计领域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#认知心理学"><span class="toc-number">2.3.</span> <span class="toc-text">认知心理学</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#生物学"><span class="toc-number">2.4.</span> <span class="toc-text">生物学</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他"><span class="toc-number">3.</span> <span class="toc-text">其他</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#物理学上的抽象-amp-amp-合理的量化"><span class="toc-number">3.1.</span> <span class="toc-text">物理学上的抽象 && 合理的量化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#让经验不多的人也能做出体面的设计？"><span class="toc-number">3.2.</span> <span class="toc-text">让经验不多的人也能做出体面的设计？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Material-Design-思维导图"><span class="toc-number">4.</span> <span class="toc-text">Material Design 思维导图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">5.</span> <span class="toc-text">参考</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#超链接"><span class="toc-number">5.1.</span> <span class="toc-text">超链接:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#书籍"><span class="toc-number">5.2.</span> <span class="toc-text">书籍</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<p class="asidetitle">知乎名片</p>
+<div class="zhihu-card" data-userhash="e013a8bda1c63934c4d390974c4981ca" data-width="240" data-height="120" data-key1="answer" data-key2="agree" data-key3="thanks" data-key4="follower" data-theme="github">
+</div>
+<script type="text/javascript" src="//cdn.jsdelivr.net/zhihu-card/latest/widget.js"></script>
+
+
+
+  
+
+<div class="doubanshow">
+<p class="asidetitle">豆瓣秀</p>
+<div>
+<script type="text/javascript" src="http://www.douban.com/service/badge/58816601/?show=collection&amp;n=12&amp;columns=3&amp;hidelogo=yes&amp;hideself=yes&amp;cat=book|movie" ></script>
+</div>
+</div>
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/computer-philosophy/" title="computer philosophy">computer philosophy<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/docker/" title="docker">docker<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/javascript/" title="javascript">javascript<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/open-questions/" title="open-questions">open-questions<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/python/" title="python">python<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/前端/" title="前端">前端<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/技术哲学/" title="技术哲学">技术哲学<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/数学/" title="数学">数学<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/科学史与科学哲学/" title="科学史与科学哲学">科学史与科学哲学<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/算法/" title="算法">算法<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/问题/" title="问题">问题<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/随笔/" title="随笔">随笔<sup>4</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/python/" title="python">python<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/docker/" title="docker">docker<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/随笔/" title="随笔">随笔<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/javascript/" title="javascript">javascript<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/前端/" title="前端">前端<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/gitlab/" title="gitlab">gitlab<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/computer/" title="computer">computer<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/社会达尔文主义/" title="社会达尔文主义">社会达尔文主义<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/django/" title="django">django<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/open-questions/" title="open-questions">open-questions<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/科学史/" title="科学史">科学史<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/三体/" title="三体">三体<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/行尸走肉/" title="行尸走肉">行尸走肉<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/科学哲学/" title="科学哲学">科学哲学<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://phiphicake.blogspot.com" target="_blank" title=" 一个有趣的哲学博客">哲学鸡蛋糕</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Starding. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/starding" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		<a href="https://www.douban.com/people/58816601" target="_blank" class="icon-douban" title="豆瓣"></a>
+		
+		
+		<a href="http://www.zhihu.com/people/starstarding" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		
+		<a href="mailto:starding@buaa.edu.cn" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+
+		
+		<a href="/about" target="_blank" title="starding">starding</a>
+		
+
+	    <br>	
+        本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        本站访客数<span id="busuanzi_value_site_uv"></span>人次
+        本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"starding"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-72215789-1', 'auto');  
+ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?01f9e8011679173931cf24fe647483cf";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+<!--不蒜子-->
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  </body>
+</html>
