@@ -1,51 +1,44 @@
 
  <!DOCTYPE HTML>
-<html lang="zh-CN">
+<html lang="zh_CN">
 <head>
   <meta charset="UTF-8">
   
-    <title>问题记录 | 小狐濡尾</title>
+    <title>问题记录 | 结绳以渔</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
-    <meta name="author" content="starding">
+    <meta name="author" content="XingHua">
     
 
     
-    <meta name="description" content="Meta: 本文章用来记录平时遇到的问题以及相应的解决方案
-杂项linux crontab +  django command 定时执行命令问题场景在做一个档案管理系统时，有一个需要定时从DB2数据库中取出数据，处理之后，存入mysql中的任务。这意味着需要在django中单独跑一个脚本，这个脚本使用django的环境。
-解决方案django提供了一种用户自定义命令来实现这个功能：
-
-Writin">
+    <meta name="description" content="Meta: 本文章用来记录平时遇到的问题以及相应的解决方案 杂项linux crontab + django command 定时执行命令问题场景在做一个档案管理系统时，有一个需要定时从 DB2 数据库中取出数据，处理之后，存入 mysql 中的任务。这意味着需要在 django 中单独跑一个脚本，这个脚本使用 django 的环境。 解决方案django 提供了一种用户自定义命令来实现这个功能：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="问题记录">
 <meta property="og:url" content="http://starding.github.io/2016/02/25/questions-record/index.html">
-<meta property="og:site_name" content="小狐濡尾">
-<meta property="og:description" content="Meta: 本文章用来记录平时遇到的问题以及相应的解决方案
-杂项linux crontab +  django command 定时执行命令问题场景在做一个档案管理系统时，有一个需要定时从DB2数据库中取出数据，处理之后，存入mysql中的任务。这意味着需要在django中单独跑一个脚本，这个脚本使用django的环境。
-解决方案django提供了一种用户自定义命令来实现这个功能：
-
-Writin">
-<meta property="og:updated_time" content="2016-04-29T02:23:44.000Z">
+<meta property="og:site_name" content="结绳以渔">
+<meta property="og:description" content="Meta: 本文章用来记录平时遇到的问题以及相应的解决方案 杂项linux crontab + django command 定时执行命令问题场景在做一个档案管理系统时，有一个需要定时从 DB2 数据库中取出数据，处理之后，存入 mysql 中的任务。这意味着需要在 django 中单独跑一个脚本，这个脚本使用 django 的环境。 解决方案django 提供了一种用户自定义命令来实现这个功能：">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-02-25T01:25:29.000Z">
+<meta property="article:modified_time" content="2024-02-24T02:07:55.828Z">
+<meta property="article:author" content="XingHua">
+<meta property="article:tag" content="投资，计算机，科学哲学，技术哲学">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="问题记录">
-<meta name="twitter:description" content="Meta: 本文章用来记录平时遇到的问题以及相应的解决方案
-杂项linux crontab +  django command 定时执行命令问题场景在做一个档案管理系统时，有一个需要定时从DB2数据库中取出数据，处理之后，存入mysql中的任务。这意味着需要在django中单独跑一个脚本，这个脚本使用django的环境。
-解决方案django提供了一种用户自定义命令来实现这个功能：
-
-Writin">
+<meta name="twitter:creator" content="@starstarding">
 
     
-    <link rel="alternative" href="/atom.xml" title="小狐濡尾" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="结绳以渔" type="application/atom+xml">
     
     
-    <link rel="icon" href="/img/my_favicon.ico">
+    <link rel="icon" href="/img/favicon-yao.ico">
     
     
-    <link rel="apple-touch-icon" href="/img/jacman.jpg">
-    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon" href="/img/white_logo_yao.png">
+    <link rel="apple-touch-icon-precomposed" href="/img/white_logo_yao.png">
     
-    <link rel="stylesheet" href="/css/style.css">
-</head>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 7.1.1"></head>
 
   <body>
     <header>
@@ -53,32 +46,30 @@ Writin">
 <div>
 		
 			<div id="imglogo">
-				<a href="/"><img src="/img/my_white_logo.png" alt="小狐濡尾" title="小狐濡尾"/></a>
+				<a href="/"><img src="/img/white_logo_yao.png" alt="结绳以渔" title="结绳以渔"/></a>
 			</div>
 			
 			<div id="textlogo">
-				<h1 class="site-name"><a href="/" title="小狐濡尾">小狐濡尾</a></h1>
-				<h2 class="blog-motto">未济</h2>
+				<h1 class="site-name"><a href="/" title="结绳以渔">结绳以渔</a></h1>
+				<h2 class="blog-motto">临渊羡鱼，不如退而结网</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
 					<ul>
 					 
-						<li><a href="/">主页 | Home</a></li>
+						<li><a href="/">主页</a></li>
 					
-						<li><a href="/index">索引 | Index</a></li>
+						<li><a href="/archives">归档</a></li>
 					
-						<li><a href="/archives">归档 | Archives</a></li>
-					
-						<li><a href="/about">简介 | About</a></li>
+						<li><a href="/about">关于</a></li>
 					
 					<li>
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
 						<input type="hidden" name="q" value="site:starding.github.io">
 					</form>
 					
@@ -94,83 +85,68 @@ Writin">
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/02/25/questions-record/" title="问题记录" itemprop="url">问题记录</a>
+    <a
+      href="/2016/02/25/questions-record/"
+      title="问题记录"
+      itemprop="url"
+      >问题记录</a
+    >
   </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="starding" target="_blank" itemprop="author">starding</a>
-		
-  <p class="article-time">
-    <time datetime="2016-02-25T02:54:31.000Z" itemprop="datePublished"> 发表于 2016-02-25</time>
-    
-  </p>
+  <div class="article-info-meta">
+    <p class="article-author">
+      
+      <a
+        href="/about"
+        title="XingHua"
+        target="_blank"
+        itemprop="author"
+        >@XingHua</a
+      >
+      
+    </p>
+
+    <p class="article-time">
+      <time datetime="2016-02-25T01:25:29.000Z" itemprop="datePublished">
+        On 2016-02-25</time
+      >
+    </p>
+  </div>
 </header>
+
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目录</strong>
+			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#杂项"><span class="toc-number">1.</span> <span class="toc-text">杂项</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#linux-crontab-django-command-定时执行命令"><span class="toc-number">1.1.</span> <span class="toc-text">linux crontab +  django command 定时执行命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#问题场景"><span class="toc-number">1.1.1.</span> <span class="toc-text">问题场景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#解决方案"><span class="toc-number">1.1.2.</span> <span class="toc-text">解决方案</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#往mysql中写大量数据时，出现错误：2006-‘mysql-server-has-gone-away’"><span class="toc-number">1.2.</span> <span class="toc-text">往mysql中写大量数据时，出现错误：2006 ‘mysql server has gone away’</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#问题场景-1"><span class="toc-number">1.2.1.</span> <span class="toc-text">问题场景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#解决方案-1"><span class="toc-number">1.2.2.</span> <span class="toc-text">解决方案</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vim分屏与-ctrl-p插件"><span class="toc-number">1.3.</span> <span class="toc-text">vim分屏与 ctrl p插件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基础正则表达式"><span class="toc-number">1.4.</span> <span class="toc-text">基础正则表达式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#前端"><span class="toc-number">2.</span> <span class="toc-text">前端</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CSS-伪类和伪元素区别"><span class="toc-number">2.1.</span> <span class="toc-text">CSS 伪类和伪元素区别</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#概念辨析"><span class="toc-number">2.1.1.</span> <span class="toc-text">概念辨析</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSS-font-size-相对大小继承"><span class="toc-number">2.2.</span> <span class="toc-text">CSS font-size 相对大小继承</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#inline-block的表现"><span class="toc-number">2.3.</span> <span class="toc-text">inline-block的表现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rem使用"><span class="toc-number">2.4.</span> <span class="toc-text">rem使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#块级元素和行内元素"><span class="toc-number">2.5.</span> <span class="toc-text">块级元素和行内元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#width-和-height"><span class="toc-number">2.6.</span> <span class="toc-text">width 和 height</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#各种居中方法的使用场景"><span class="toc-number">2.7.</span> <span class="toc-text">各种居中方法的使用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如果内部盒大小超出了外部盒所能包含的大小时表现会如何"><span class="toc-number">2.8.</span> <span class="toc-text">如果内部盒大小超出了外部盒所能包含的大小时表现会如何</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用过的工具"><span class="toc-number">3.</span> <span class="toc-text">使用过的工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#程序中的过度设计"><span class="toc-number">4.</span> <span class="toc-text">程序中的过度设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是程序中的过度设计"><span class="toc-number">4.1.</span> <span class="toc-text">什么是程序中的过度设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#我遇到的过度设计"><span class="toc-number">4.2.</span> <span class="toc-text">我遇到的过度设计</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#产品体验"><span class="toc-number">5.</span> <span class="toc-text">产品体验</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#iOS初体验"><span class="toc-number">5.1.</span> <span class="toc-text">iOS初体验</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#鸡肋的下拉菜单"><span class="toc-number">5.1.1.</span> <span class="toc-text">鸡肋的下拉菜单</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#捉急的闹钟设置"><span class="toc-number">5.1.2.</span> <span class="toc-text">捉急的闹钟设置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#难以捉摸的输入法和全局赋值粘贴"><span class="toc-number">5.1.3.</span> <span class="toc-text">难以捉摸的输入法和全局赋值粘贴</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#没有充分利用触屏优势的短信界面"><span class="toc-number">5.1.4.</span> <span class="toc-text">没有充分利用触屏优势的短信界面</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#厨房里的酱油瓶"><span class="toc-number">5.2.</span> <span class="toc-text">厨房里的酱油瓶</span></a></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%82%E9%A1%B9"><span class="toc-number">1.</span> <span class="toc-text">杂项</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#linux-crontab-django-command-%E5%AE%9A%E6%97%B6%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4"><span class="toc-number">1.1.</span> <span class="toc-text">linux crontab + django command 定时执行命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E5%9C%BA%E6%99%AF"><span class="toc-number">1.1.1.</span> <span class="toc-text">问题场景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">1.1.2.</span> <span class="toc-text">解决方案</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BE%80-mysql-%E4%B8%AD%E5%86%99%E5%A4%A7%E9%87%8F%E6%95%B0%E6%8D%AE%E6%97%B6%EF%BC%8C%E5%87%BA%E7%8E%B0%E9%94%99%E8%AF%AF%EF%BC%9A2006%E2%80%98mysql-server-has-gone-away%E2%80%99"><span class="toc-number">1.2.</span> <span class="toc-text">往 mysql 中写大量数据时，出现错误：2006‘mysql server has gone away’</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E5%9C%BA%E6%99%AF-1"><span class="toc-number">1.2.1.</span> <span class="toc-text">问题场景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88-1"><span class="toc-number">1.2.2.</span> <span class="toc-text">解决方案</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vim-%E5%88%86%E5%B1%8F%E4%B8%8E-ctrl-p-%E6%8F%92%E4%BB%B6"><span class="toc-number">1.3.</span> <span class="toc-text">vim 分屏与 ctrl p 插件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">1.4.</span> <span class="toc-text">基础正则表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9D%97%E7%BA%A7%E5%85%83%E7%B4%A0%E5%92%8C%E8%A1%8C%E5%86%85%E5%85%83%E7%B4%A0"><span class="toc-number">1.5.</span> <span class="toc-text">块级元素和行内元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#width-%E5%92%8C-height"><span class="toc-number">1.6.</span> <span class="toc-text">width 和 height</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%84%E7%A7%8D%E5%B1%85%E4%B8%AD%E6%96%B9%E6%B3%95%E7%9A%84%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">1.7.</span> <span class="toc-text">各种居中方法的使用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E6%9E%9C%E5%86%85%E9%83%A8%E7%9B%92%E5%A4%A7%E5%B0%8F%E8%B6%85%E5%87%BA%E4%BA%86%E5%A4%96%E9%83%A8%E7%9B%92%E6%89%80%E8%83%BD%E5%8C%85%E5%90%AB%E7%9A%84%E5%A4%A7%E5%B0%8F%E6%97%B6%E8%A1%A8%E7%8E%B0%E4%BC%9A%E5%A6%82%E4%BD%95"><span class="toc-number">1.8.</span> <span class="toc-text">如果内部盒大小超出了外部盒所能包含的大小时表现会如何</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E8%BF%87%E7%9A%84%E5%B7%A5%E5%85%B7"><span class="toc-number">2.</span> <span class="toc-text">使用过的工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E4%B8%AD%E7%9A%84%E8%BF%87%E5%BA%A6%E8%AE%BE%E8%AE%A1"><span class="toc-number">3.</span> <span class="toc-text">程序中的过度设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E7%A8%8B%E5%BA%8F%E4%B8%AD%E7%9A%84%E8%BF%87%E5%BA%A6%E8%AE%BE%E8%AE%A1"><span class="toc-number">3.1.</span> <span class="toc-text">什么是程序中的过度设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%88%91%E9%81%87%E5%88%B0%E7%9A%84%E8%BF%87%E5%BA%A6%E8%AE%BE%E8%AE%A1"><span class="toc-number">3.2.</span> <span class="toc-text">我遇到的过度设计</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%A7%E5%93%81%E4%BD%93%E9%AA%8C"><span class="toc-number">4.</span> <span class="toc-text">产品体验</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#iOS-%E5%88%9D%E4%BD%93%E9%AA%8C"><span class="toc-number">4.1.</span> <span class="toc-text">iOS 初体验</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%B8%A1%E8%82%8B%E7%9A%84%E4%B8%8B%E6%8B%89%E8%8F%9C%E5%8D%95"><span class="toc-number">4.1.1.</span> <span class="toc-text">鸡肋的下拉菜单</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8D%89%E6%80%A5%E7%9A%84%E9%97%B9%E9%92%9F%E8%AE%BE%E7%BD%AE"><span class="toc-number">4.1.2.</span> <span class="toc-text">捉急的闹钟设置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9A%BE%E4%BB%A5%E6%8D%89%E6%91%B8%E7%9A%84%E8%BE%93%E5%85%A5%E6%B3%95%E5%92%8C%E5%85%A8%E5%B1%80%E8%B5%8B%E5%80%BC%E7%B2%98%E8%B4%B4"><span class="toc-number">4.1.3.</span> <span class="toc-text">难以捉摸的输入法和全局赋值粘贴</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B2%A1%E6%9C%89%E5%85%85%E5%88%86%E5%88%A9%E7%94%A8%E8%A7%A6%E5%B1%8F%E4%BC%98%E5%8A%BF%E7%9A%84%E7%9F%AD%E4%BF%A1%E7%95%8C%E9%9D%A2"><span class="toc-number">4.1.4.</span> <span class="toc-text">没有充分利用触屏优势的短信界面</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%A8%E6%88%BF%E9%87%8C%E7%9A%84%E9%85%B1%E6%B2%B9%E7%93%B6"><span class="toc-number">4.2.</span> <span class="toc-text">厨房里的酱油瓶</span></a></li></ol></li></ol>
 		
 		</div>
 		
-		<p>Meta: 本文章用来记录平时遇到的问题以及相应的解决方案</p>
-<h2 id="杂项"><a href="#杂项" class="headerlink" title="杂项"></a>杂项</h2><h3 id="linux-crontab-django-command-定时执行命令"><a href="#linux-crontab-django-command-定时执行命令" class="headerlink" title="linux crontab +  django command 定时执行命令"></a>linux crontab +  django command 定时执行命令</h3><h4 id="问题场景"><a href="#问题场景" class="headerlink" title="问题场景"></a>问题场景</h4><p>在做一个档案管理系统时，有一个需要定时从DB2数据库中取出数据，处理之后，存入mysql中的任务。这意味着需要在django中单独跑一个脚本，这个脚本使用django的环境。</p>
-<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p>django提供了一种用户自定义命令来实现这个功能：</p>
+		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Meta: 本文章用来记录平时遇到的问题以及相应的解决方案</p>
+<h2 id="杂项"><a href="#杂项" class="headerlink" title="杂项"></a>杂项</h2><h3 id="linux-crontab-django-command-定时执行命令"><a href="#linux-crontab-django-command-定时执行命令" class="headerlink" title="linux crontab + django command 定时执行命令"></a>linux crontab + django command 定时执行命令</h3><h4 id="问题场景"><a href="#问题场景" class="headerlink" title="问题场景"></a>问题场景</h4><p>在做一个档案管理系统时，有一个需要定时从 DB2 数据库中取出数据，处理之后，存入 mysql 中的任务。这意味着需要在 django 中单独跑一个脚本，这个脚本使用 django 的环境。</p>
+<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p>django 提供了一种用户自定义命令来实现这个功能：</p>
 <blockquote>
-<p><a href="https://docs.djangoproject.com/en/1.9/howto/custom-management-commands/" target="_blank" rel="external">Writing custom django-admin commands¶</a></p>
+<p><a target="_blank" rel="noopener" href="https://docs.djangoproject.com/en/1.9/howto/custom-management-commands/">Writing custom django-admin commands¶</a></p>
 </blockquote>
-<p>而linux则提供了定时执行任务方面的好用工具：</p>
+<p>而 linux 则提供了定时执行任务方面的好用工具：</p>
 <blockquote>
-<p><a href="http://linuxtools-rst.readthedocs.org/zh_CN/latest/tool/crontab.html" target="_blank" rel="external">linux crontab</a></p>
+<p><a target="_blank" rel="noopener" href="https://linuxtools-rst.readthedocs.io/zh-cn/latest/tool/crontab.html">linux crontab</a></p>
 </blockquote>
-<h3 id="往mysql中写大量数据时，出现错误：2006-‘mysql-server-has-gone-away’"><a href="#往mysql中写大量数据时，出现错误：2006-‘mysql-server-has-gone-away’" class="headerlink" title="往mysql中写大量数据时，出现错误：2006 ‘mysql server has gone away’"></a>往mysql中写大量数据时，出现错误：2006 ‘mysql server has gone away’</h3><h4 id="问题场景-1"><a href="#问题场景-1" class="headerlink" title="问题场景"></a>问题场景</h4><p>在做一个档案管理系统时，使用django+mysql，当一次性往mysql中写入了近3w条数据时，就出现了这个错误</p>
-<h4 id="解决方案-1"><a href="#解决方案-1" class="headerlink" title="解决方案"></a>解决方案</h4><p>调查发现是因为mysql默认的有一个写入数据大小限制。只需要在<code>/etc/my.cnf</code>(如果没有这个文件就自己建立一个)下加上下面的代码即可</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[mysqld]</div><div class="line">max_allowed_packet = 16M</div></pre></td></tr></table></figure>
-<p>当然，也可以限制一下自己每次往mysql中写入数据的数量来解决这个问题。</p>
-<h3 id="vim分屏与-ctrl-p插件"><a href="#vim分屏与-ctrl-p插件" class="headerlink" title="vim分屏与 ctrl p插件"></a>vim分屏与 <code>ctrl p</code>插件</h3><p>之前总是听说 <code>ctrl p</code> 插件如何如何好用。不过我开始试用的时候，确实没有体会到太强大的地方，知道后来发现vim的分屏功能。</p>
-<p>试用vim分屏功能，加上ctrl p实现了不退出vim直接打开多个文件的功能，节省了大量在命令行下各种 <code>cd 目录</code> 的时间。</p>
-<p>参考：<a href="http://coolshell.cn/articles/1679.html" target="_blank" rel="external">Vim的分屏功能</a></p>
+<h3 id="往-mysql-中写大量数据时，出现错误：2006‘mysql-server-has-gone-away’"><a href="#往-mysql-中写大量数据时，出现错误：2006‘mysql-server-has-gone-away’" class="headerlink" title="往 mysql 中写大量数据时，出现错误：2006‘mysql server has gone away’"></a>往 mysql 中写大量数据时，出现错误：2006‘mysql server has gone away’</h3><h4 id="问题场景-1"><a href="#问题场景-1" class="headerlink" title="问题场景"></a>问题场景</h4><p>在做一个档案管理系统时，使用 django+mysql，当一次性往 mysql 中写入了近 3w 条数据时，就出现了这个错误</p>
+<h4 id="解决方案-1"><a href="#解决方案-1" class="headerlink" title="解决方案"></a>解决方案</h4><p>调查发现是因为 mysql 默认的有一个写入数据大小限制。只需要在<code>/etc/my.cnf</code>(如果没有这个文件就自己建立一个) 下加上下面的代码即可</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">max_allowed_packet = 16M</span><br></pre></td></tr></table></figure>
+
+<p>当然，也可以限制一下自己每次往 mysql 中写入数据的数量来解决这个问题。</p>
+<h3 id="vim-分屏与-ctrl-p-插件"><a href="#vim-分屏与-ctrl-p-插件" class="headerlink" title="vim 分屏与 ctrl p 插件"></a>vim 分屏与 ctrl p 插件</h3><p>之前总是听说 <code>ctrl p</code> 插件如何如何好用。不过我开始试用的时候，确实没有体会到太强大的地方，知道后来发现 vim 的分屏功能。</p>
+<p>试用 vim 分屏功能，加上 ctrl p 实现了不退出 vim 直接打开多个文件的功能，节省了大量在命令行下各种 cd 目录 的时间。</p>
+<p>参考：<a target="_blank" rel="noopener" href="https://coolshell.cn/articles/1679.html">Vim 的分屏功能</a></p>
 <h3 id="基础正则表达式"><a href="#基础正则表达式" class="headerlink" title="基础正则表达式"></a>基础正则表达式</h3><p>有一次，我需要在一个包含很多行短文字的后面补上的空格，将每一行补成相同的宽度。<br>刚开始使用各种列编辑，块编辑尝试都没有用。难道必须写一个程序来专门处理这件事情？</p>
 <p>后来发现正则表达式基本能满足这一要求：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">%s/$/ n_spaces /g</div></pre></td></tr></table></figure>
-<p>在vim中，$符有丰富的含义，这里指的是行尾前一个字符</p>
-<h2 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h2><p>主要记录一下前端学习中遇到的容易混淆的地方，个人感觉在html，css和javascript中。当属css最令人难以捉摸，由于浏览器默认样式或是限制，css继承，层叠规则等的存在，综合作用之下，很多时候都觉得css效果与预期不一致。因此css的内容或许会更多一些。<br>仅仅是零散的记录，暂时没有整理成单独文章的精力。以后或许会把一些可以扩展的地方扩展成文章式的内容。</p>
-<h3 id="CSS-伪类和伪元素区别"><a href="#CSS-伪类和伪元素区别" class="headerlink" title="CSS 伪类和伪元素区别"></a>CSS 伪类和伪元素区别</h3><p><strong>伪类：Pseudo-elements</strong></p>
-<p><strong>伪元素：Pseudo-classes</strong></p>
-<h4 id="概念辨析"><a href="#概念辨析" class="headerlink" title="概念辨析"></a>概念辨析</h4><p><strong>stackoverflows上的回答</strong></p>
-<p><a href="http://stackoverflow.com/questions/8069973/what-is-the-difference-between-a-pseudo-class-and-a-pseudo-element-in-css" target="_blank" rel="external">What is the difference between a pseudo-class and a pseudo-element in CSS?</a></p>
-<p><strong>W3C上的说明</strong></p>
-<p><a href="https://www.w3.org/TR/2011/REC-css3-selectors-20110929/#pseudo-elements" target="_blank" rel="external">pseudo-elements</a></p>
-<p><a href="https://www.w3.org/TR/2011/REC-css3-selectors-20110929/#pseudo-classes" target="_blank" rel="external">pseudo-classes</a></p>
-<h3 id="CSS-font-size-相对大小继承"><a href="#CSS-font-size-相对大小继承" class="headerlink" title="CSS font-size 相对大小继承"></a>CSS font-size 相对大小继承</h3><p>font-size使用em等相对大小时，会发生计算叠加。</p>
-<blockquote>
-<p>摘自《css设计指南》</p>
-<p>一般来说，em以浏览器默认值为基本单位，也就是<code>1em=16px</code>。如果你想使用 em,但又需要设定具体的像素大小,可以把 body 的 font-size 设定为 62.5%。这样,就等于把基准大小从 16 像素改为 10 像素(16×62.5%=10)。然后, em 与像素的对应关系就十分明确了,比如 1em 等于 10 像素,1.5em 等于 15 像素,2em 等于 20 像素,等等。</p>
-<p>p 元素的文本为 12 像素(body 的 16 像素基准大小×.75=12px), strong 是 p 的子元素,它的文本相对大小会逐层复合,应该是 16px <em> 0.75</em> 0.75=9px。</p>
-</blockquote>
-<p><strong>注意与text-indent的区别</strong>: font-size 会叠加复合计算，text-indent则是后面的值覆盖前面的值</p>
-<blockquote>
-<p>text-indent 可以被子元素继承。如果你 在一个 div 上设定了 text-indent 属性,那么 div 中的所有段落都会继承该缩进值。然而,与 所有继承的 CSS 值一样,这个缩进值并不是祖先元素中设定的值,而是计算的值。下面举一个 例子说明。</p>
-<p>假设有一个 400 像素宽的 div,包含的文本缩进 5%,则缩进的距离是 20 像素(400 的 5%)。 在这个 div 中有一个 200 像素宽的段落。作为子元素,它继承父元素的 text-indent 值,所以 它包含的文本也缩进。但继承的缩进值是多少呢?不是 5%,而是 20 像素。也就是说,子元素 继承的是根据父元素宽度计算得到的缩进值。结果,虽然段落只有父元素一半宽,但其中的文 本也会缩进 20 像素。这样可以确保无论段落多宽,它们的缩进距离都一样。当然,在子元素 上重新设定 text-indent 属性,可以覆盖继承的值.</p>
-</blockquote>
-<h3 id="inline-block的表现"><a href="#inline-block的表现" class="headerlink" title="inline-block的表现"></a>inline-block的表现</h3><blockquote>
-<p>This value causes an element to generate an inline-level block container. The inside of an inline-block is formatted as a block box, and the element itself is formatted as an atomic inline-level box.</p>
-<p>大致意思就是：inline-block 后的元素创建了一个行级的块容器，该元素内部（内容）被格式化成一个块元素，同时元素本身则被格式化成一个行内元素。</p>
-<p>直白一点的意思就是：inline-block 的元素既具有 block 元素可以设置宽高的特性，同时又具有 inline 元素默认不换行的特性。当然不仅仅是这些特性，比如 inline-block 元素也可以设置 vertical-align 属性。简而言之：</p>
-<p>inline-block 后的元素就是一个格式化为行内元素的块容器( Block container )</p>
-</blockquote>
-<p><strong>疑问：</strong> </p>
-<p>inline-block的margin边距会撑开父元素的高度，而普通的block的边距则会与父元素的margin边距重合？</p>
-<p>参考：</p>
-<p><a href="http://ued.taobao.org/blog/2012/08/inline-block/" target="_blank" rel="external">inline-block 前世今生</a>     </p>
-<p><a href="https://www.w3.org/TR/CSS2/visuren.html#display-prop" target="_blank" rel="external">w3c: the ‘display’ property</a></p>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/vertical-align" target="_blank" rel="external">mozilla: vertical-align</a></p>
-<h3 id="rem使用"><a href="#rem使用" class="headerlink" title="rem使用"></a>rem使用</h3><p>今天在chrome中实验rem相对单位，刚开始的实验代码为：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>test rem<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"></div><div class="line">	<span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="undefined"></span></div><div class="line">		html&#123;</div><div class="line"></div><div class="line">			font-size: 62.5%;  // 这里的表现有点奇怪</div><div class="line">		&#125;</div><div class="line">		body&#123;</div><div class="line">			font-size: 1.2rem;</div><div class="line">		&#125;</div><div class="line">		div&#123;</div><div class="line">			width: 300px;</div><div class="line">			height: 300px;</div><div class="line">			background-color: red;</div><div class="line">			padding: 1rem;</div><div class="line">		&#125;</div><div class="line"></div><div class="line"></div><div class="line">	<span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">p</span>&gt;</span>测试字体大小<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>但是这个时候，font-size并不是10px，之前在网上看到将root元素的font-size设置为10px，方便后文计算。但是在这里似乎并没有起到效果。</p>
-<p>原因是因为chrome默认所允许的最小字体为12px，如果设定值小于此值，就会被重置成12px。这个时候，<code>1rem=12px</code>，关于chrome最小字体限制，</p>
-<p>参考： <a href="https://banri.me/web/webkit-text-size-adjust.html" target="_blank" rel="external">Chrome取消-webkit-text-size-adjust后的那些事</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">%</span><span class="language-bash">s/$/ n_spaces /g</span></span><br><span class="line">```    </span><br><span class="line"></span><br><span class="line">在 vim 中，$符有丰富的含义，这里指的是行尾前一个字符</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment"># 前端</span></span></span><br><span class="line">主要记录一下前端学习中遇到的容易混淆的地方，个人感觉在 html，css 和 javascript 中。当属 css 最令人难以捉摸，由于浏览器默认样式或是限制，css 继承，层叠规则等的存在，综合作用之下，很多时候都觉得 css 效果与预期不一致。因此 css 的内容或许会更多一些。</span><br><span class="line">仅仅是零散的记录，暂时没有整理成单独文章的精力。以后或许会把一些可以扩展的地方扩展成文章式的内容。</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment">## CSS 伪类和伪元素区别</span></span></span><br><span class="line">伪类：Pseudo-elements</span><br><span class="line">伪元素：Pseudo-classes</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment">### 概念辨析</span></span></span><br><span class="line">stackoverflows 上的回答</span><br><span class="line">[What is the difference between a pseudo-class and a pseudo-element in CSS?](https://stackoverflow.com/questions/8069973/what-is-the-difference-between-a-pseudo-class-and-a-pseudo-element-in-css)</span><br><span class="line"></span><br><span class="line">W3C 上的说明</span><br><span class="line">[pseudo-elements](https://www.w3.org/TR/2011/REC-css3-selectors-20110929/#pseudo-elements)</span><br><span class="line">[pseudo-classes](https://www.w3.org/TR/2011/REC-css3-selectors-20110929/#pseudo-classes)</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment">## CSS font-size 相对大小继承</span></span></span><br><span class="line">font-size 使用 em 等相对大小时，会发生计算叠加。</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">&gt; </span><span class="language-bash">摘自《css 设计指南》</span></span><br><span class="line"><span class="meta prompt_">&gt; </span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash">&gt; 一般来说，em 以浏览器默认值为基本单位，也就是 1em=16px。如果你想使用 em，但又需要设定具体的像素大小，可以把 body 的 font-size 设定为 62.5%。这样，就等于把基准大小从 16 像素改为 10 像素 (16×62.5%=10)。然后，em 与像素的对应关系就十分明确了，比如 1em 等于 10 像素，1.5em 等于 15 像素，2em 等于 20 像素，等等。</span></span><br><span class="line"><span class="meta prompt_">&gt; </span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash">&gt; p 元素的文本为 12 像素 (body 的 16 像素基准大小×.75=12px), strong 是 p 的子元素，它的文本相对大小会逐层复合，应该是 16px 0.75 0.75=9px。</span></span><br><span class="line"></span><br><span class="line">**注意与 text-indent 的区别：** font-size 会叠加复合计算，text-indent 则是后面的值覆盖前面的值</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">&gt; </span><span class="language-bash">text-indent 可以被子元素继承。如果你 在一个 div 上设定了 text-indent 属性，那么 div 中的所有段落都会继承该缩进值。然而，与 所有继承的 CSS 值一样，这个缩进值并不是祖先元素中设定的值，而是计算的值。下面举一个 例子说明。</span></span><br><span class="line"><span class="meta prompt_">&gt; </span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash">&gt; 假设有一个 400 像素宽的 div，包含的文本缩进 5%,则缩进的距离是 20 像素 (400 的 5%)。在这个 div 中有一个 200 像素宽的段落。作为子元素，它继承父元素的 text-indent 值，所以 它包含的文本也缩进。但继承的缩进值是多少呢？不是 5%,而是 20 像素。也就是说，子元素 继承的是根据父元素宽度计算得到的缩进值。结果，虽然段落只有父元素一半宽，但其中的文 本也会缩进 20 像素。这样可以确保无论段落多宽，它们的缩进距离都一样。当然，在子元素 上重新设定 text-indent 属性，可以覆盖继承的值。</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment">## inline-block 的表现</span></span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">&gt; </span><span class="language-bash">This value causes an element to generate an inline-level block container. The inside of an inline-block is formatted as a block box, and the element itself is formatted as an atomic inline-level box.</span></span><br><span class="line"><span class="meta prompt_">&gt; </span><span class="language-bash">大致意思就是：inline-block 后的元素创建了一个行级的块容器，该元素内部（内容）被格式化成一个块元素，同时元素本身则被格式化成一个行内元素。</span></span><br><span class="line"><span class="meta prompt_">&gt; </span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash">&gt; 直白一点的意思就是：inline-block 的元素既具有 block 元素可以设置宽高的特性，同时又具有 inline 元素默认不换行的特性。当然不仅仅是这些特性，比如 inline-block 元素也可以设置 vertical-align 属性。简而言之：</span></span><br><span class="line"><span class="meta prompt_">&gt; </span><span class="language-bash">inline-block 后的元素就是一个格式化为行内元素的块容器 ( Block container )</span></span><br><span class="line"></span><br><span class="line">疑问：</span><br><span class="line"></span><br><span class="line">inline-block 的 margin 边距会撑开父元素的高度，而普通的 block 的边距则会与父元素的 margin 边距重合？</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">参考：</span><br><span class="line">[inline-block 前世今生](http://ued.taobao.org/blog/2012/08/inline-block/)</span><br><span class="line"></span><br><span class="line">[w3c: the ‘display’ property](https://www.w3.org/TR/CSS2/visuren.html#display-prop)</span><br><span class="line"></span><br><span class="line">[mozilla: vertical-align](https://developer.mozilla.org/en-US/docs/Web/CSS/vertical-align)</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment">## rem 使用</span></span></span><br><span class="line">今天在 chrome 中实验 rem 相对单位，刚开始的实验代码为：</span><br><span class="line"></span><br><span class="line">```html</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">	&lt;meta charset=&quot;utf-8&quot;&gt;</span><br><span class="line">	&lt;title&gt;test rem&lt;/title&gt;</span><br><span class="line">	&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">		html&#123;</span><br><span class="line">			font-size: 62.5%;  // 这里的表现有点奇怪</span><br><span class="line">		&#125;</span><br><span class="line">		body&#123;</span><br><span class="line">			font-size: 1.2rem;</span><br><span class="line">		&#125;</span><br><span class="line">		div&#123;</span><br><span class="line">			width: 300px;</span><br><span class="line">			height: 300px;</span><br><span class="line">			background-color: red;</span><br><span class="line">			padding: 1rem;</span><br><span class="line">		&#125;</span><br><span class="line">	&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">	&lt;p&gt;测试字体大小&lt;/p&gt;</span><br><span class="line">	&lt;div&gt;&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>但是这个时候，font-size 并不是 10px，之前在网上看到将 root 元素的 font-size 设置为 10px，方便后文计算。但是在这里似乎并没有起到效果。</p>
+<p>原因是因为 chrome 默认所允许的最小字体为 12px，如果设定值小于此值，就会被重置成 12px。这个时候，<code>1rem=12px</code>，关于 chrome 最小字体限制，</p>
+<p>参考：<a target="_blank" rel="noopener" href="https://banri.me/web/webkit-text-size-adjust.html">Chrome 取消-webkit-text-size-adjust 后的那些事</a></p>
 <h3 id="块级元素和行内元素"><a href="#块级元素和行内元素" class="headerlink" title="块级元素和行内元素"></a>块级元素和行内元素</h3><ul>
 <li>块级元素（block level element）<ul>
 <li>独占一行</li>
@@ -179,60 +155,60 @@ Writin">
 </ul>
 </li>
 <li>内联元素（inline element）<ul>
-<li>设置width height 无效</li>
+<li>设置 width height 无效</li>
 </ul>
 </li>
 </ul>
-<p>参考： <a href="http://geekplux.com/2014/04/25/several_core_concepts_of_css.html" target="_blank" rel="external">CSS 最核心的几个概念</a></p>
-<h3 id="width-和-height"><a href="#width-和-height" class="headerlink" title="width 和 height"></a><code>width</code> 和 <code>height</code></h3><p>定义元素「内容区」的宽度，默认值为auto 无继承性。浏览器会计算出实际的宽度。</p>
-<p>height 和 width 实用百分数相对单位时，相对的是父元素宽度计算（父元素的宽度同理）。 如果不指定，默认值就是图片本身的宽高，如果图片加载失败，会显示alt属性值，或者浏览器自带的加载失败效果。</p>
-<h3 id="各种居中方法的使用场景"><a href="#各种居中方法的使用场景" class="headerlink" title="各种居中方法的使用场景"></a>各种居中方法的使用场景</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">// 水平居中</div><div class="line"></div><div class="line">// 使用margin水平居中元素的时候，</div><div class="line">// 需要指定要居中元素的width值（与父元素的宽度无关）</div><div class="line">// 显然这里只适用于块级元素</div><div class="line">// 居中被设置该属性的元素自身，不是子元素，也不是父元素 </div><div class="line">margin: 0, auto;   </div><div class="line"></div><div class="line">// </div><div class="line"></div><div class="line">text-align： center</div></pre></td></tr></table></figure>
+<p>参考：<a target="_blank" rel="noopener" href="https://geekplux.com/posts/several_core_concepts_of_css.html">CSS 最核心的几个概念</a></p>
+<h3 id="width-和-height"><a href="#width-和-height" class="headerlink" title="width 和 height"></a>width 和 height</h3><p>定义元素「内容区」的宽度，默认值为 auto 无继承性。浏览器会计算出实际的宽度。</p>
+<p>height 和 width 实用百分数相对单位时，相对的是父元素宽度计算（父元素的宽度同理）。如果不指定，默认值就是图片本身的宽高，如果图片加载失败，会显示 alt 属性值，或者浏览器自带的加载失败效果。</p>
+<h3 id="各种居中方法的使用场景"><a href="#各种居中方法的使用场景" class="headerlink" title="各种居中方法的使用场景"></a>各种居中方法的使用场景</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 水平居中</span><br><span class="line">// 使用 <span class="attribute">margin</span> 水平居中元素的时候，</span><br><span class="line">// 需要指定要居中元素的 <span class="attribute">width</span> 值（与父元素的宽度无关）</span><br><span class="line">// 显然这里只适用于块级元素</span><br><span class="line">// 居中被设置该属性的元素自身，不是子元素，也不是父元素 </span><br><span class="line"><span class="attribute">margin</span>: <span class="number">0</span>, auto;   </span><br><span class="line"><span class="attribute">text-align</span>： center</span><br></pre></td></tr></table></figure>
+
 <h3 id="如果内部盒大小超出了外部盒所能包含的大小时表现会如何"><a href="#如果内部盒大小超出了外部盒所能包含的大小时表现会如何" class="headerlink" title="如果内部盒大小超出了外部盒所能包含的大小时表现会如何"></a>如果内部盒大小超出了外部盒所能包含的大小时表现会如何</h3><h2 id="使用过的工具"><a href="#使用过的工具" class="headerlink" title="使用过的工具"></a>使用过的工具</h2><ul>
 <li>reactjs react router</li>
 <li>underscore</li>
-<li>project-path （npm模块）</li>
-<li>fixed-data-table （react组件）</li>
+<li>project-path（npm 模块）</li>
+<li>fixed-data-table（react 组件）</li>
 </ul>
 <h2 id="程序中的过度设计"><a href="#程序中的过度设计" class="headerlink" title="程序中的过度设计"></a>程序中的过度设计</h2><h3 id="什么是程序中的过度设计"><a href="#什么是程序中的过度设计" class="headerlink" title="什么是程序中的过度设计"></a>什么是程序中的过度设计</h3><p>所谓过度设计或者过度工程，顾名思义就是在编写代码的时候，过多的假想了一些本来不存在的场景，并且在这些假想的场景中做出对应的设计，比如处处考虑将来可能出现的变动等等。而实际上，这个时候代码离考虑这些还有很远的距离。</p>
-<h3 id="我遇到的过度设计"><a href="#我遇到的过度设计" class="headerlink" title="我遇到的过度设计"></a>我遇到的过度设计</h3><p>在之前开发产品的时候，实际上在有些地方过度强调了将来可能面临的风险或变动，比如产品中的图片采用qiniu云存储，刚开始存储的统一都是url，但是这时候工程师假想了一个场景：「如果将来七牛的域名改变了，或者将来不适用七牛了怎么办？」然后将原来的统一url改为key，但是发现实际的改写操作并不是一件容易的事情，最后只好作罢。</p>
+<h3 id="我遇到的过度设计"><a href="#我遇到的过度设计" class="headerlink" title="我遇到的过度设计"></a>我遇到的过度设计</h3><p>在之前开发产品的时候，实际上在有些地方过度强调了将来可能面临的风险或变动，比如产品中的图片采用 qiniu 云存储，刚开始存储的统一都是 url，但是这时候工程师假想了一个场景：「如果将来七牛的域名改变了，或者将来不适用七牛了怎么办？」然后将原来的统一 url 改为 key，但是发现实际的改写操作并不是一件容易的事情，最后只好作罢。</p>
 <p>另一件事情则是产品中的过度设计，在我们开发一个产品的时候，产品经理给出的产品原型变动了无数次，最后的一些变动甚至改变了最基本的数据信息，导致之前写的代码完全失效。而这个产品正是一个需要快速迭代的产品，直到现在第一版还没有做出来。其实这个例子不能算是过度设计，姑且写在这里吧。</p>
-<p>不清楚经常强调mvp(minimum viable product,最小化可行产品)的我们，为何在做自己的产品的时候，却完全不予考虑了。</p>
+<p>不清楚经常强调 mvp(minimum viable product，最小化可行产品) 的我们，为何在做自己的产品的时候，却完全不予考虑了。</p>
 <p>当然对于编程经验还不够丰富的我来说，考虑这些还为时尚早，暂且先记录下来，以待将来反思。</p>
-<h2 id="产品体验"><a href="#产品体验" class="headerlink" title="产品体验"></a>产品体验</h2><h3 id="iOS初体验"><a href="#iOS初体验" class="headerlink" title="iOS初体验"></a>iOS初体验</h3><p>最近服役了三年的nexus终于老态龙钟，光荣退伍了。纠结于android的多种多样，最终直接选了iphone。一上手就感觉有几个地方特别的别扭，这里面自然有一些不同系统之前切换带来的生疏感，但是有些地方明显是设计有问题。</p>
-<h4 id="鸡肋的下拉菜单"><a href="#鸡肋的下拉菜单" class="headerlink" title="鸡肋的下拉菜单"></a>鸡肋的下拉菜单</h4><p>对比Android强大的下拉菜单，iOS的下拉菜单仅用于消息通知或是近期使用的软件功能，而将一部分设置放在了从底部向上拉的菜单中，即便是这些设置也是不完整的，比如wifi设置，只能设定开关，而不能由此作为入口进一步设置wifi。如果想设置wifi需要去设置页中去找。</p>
-<p>再来看Android的下拉菜单设置，不管是wifi还是手电筒等功能，都无比的实用与方便，而且使用频率很高。</p>
-<h4 id="捉急的闹钟设置"><a href="#捉急的闹钟设置" class="headerlink" title="捉急的闹钟设置"></a>捉急的闹钟设置</h4><p>这个就更明显了，android的闹钟设置一步到位。而iOS的闹钟设置页面，要先点击左上角的编辑，进入编辑页，再点击时间才能选择。一步能完成的功能愣是给拆成了好几个步骤。用的时候简直无比纠结。</p>
-<h4 id="难以捉摸的输入法和全局赋值粘贴"><a href="#难以捉摸的输入法和全局赋值粘贴" class="headerlink" title="难以捉摸的输入法和全局赋值粘贴"></a>难以捉摸的输入法和全局赋值粘贴</h4><p>九宫格输入法中的各个按键占比无比蛋疼，主要区域占比不够，而一个大大的确认按钮放在了右侧，占据了n多面积。</p>
+<h2 id="产品体验"><a href="#产品体验" class="headerlink" title="产品体验"></a>产品体验</h2><h3 id="iOS-初体验"><a href="#iOS-初体验" class="headerlink" title="iOS 初体验"></a>iOS 初体验</h3><p>最近服役了三年的 nexus 终于老态龙钟，光荣退伍了。纠结于 android 的多种多样，最终直接选了 iphone。一上手就感觉有几个地方特别的别扭，这里面自然有一些不同系统之前切换带来的生疏感，但是有些地方明显是设计有问题。</p>
+<h4 id="鸡肋的下拉菜单"><a href="#鸡肋的下拉菜单" class="headerlink" title="鸡肋的下拉菜单"></a>鸡肋的下拉菜单</h4><p>对比 Android 强大的下拉菜单，iOS 的下拉菜单仅用于消息通知或是近期使用的软件功能，而将一部分设置放在了从底部向上拉的菜单中，即便是这些设置也是不完整的，比如 wifi 设置，只能设定开关，而不能由此作为入口进一步设置 wifi。如果想设置 wifi 需要去设置页中去找。</p>
+<p>再来看 Android 的下拉菜单设置，不管是 wifi 还是手电筒等功能，都无比的实用与方便，而且使用频率很高。</p>
+<h4 id="捉急的闹钟设置"><a href="#捉急的闹钟设置" class="headerlink" title="捉急的闹钟设置"></a>捉急的闹钟设置</h4><p>这个就更明显了，android 的闹钟设置一步到位。而 iOS 的闹钟设置页面，要先点击左上角的编辑，进入编辑页，再点击时间才能选择。一步能完成的功能愣是给拆成了好几个步骤。用的时候简直无比纠结。</p>
+<h4 id="难以捉摸的输入法和全局赋值粘贴"><a href="#难以捉摸的输入法和全局赋值粘贴" class="headerlink" title="难以捉摸的输入法和全局赋值粘贴"></a>难以捉摸的输入法和全局赋值粘贴</h4><p>九宫格输入法中的各个按键占比无比蛋疼，主要区域占比不够，而一个大大的确认按钮放在了右侧，占据了 n 多面积。</p>
 <p>再者是输入法和全局复制粘贴的表现简直匪夷所思，它们的各种表现简直难以寻找规律。感觉一会儿是这样，一会儿是那样。</p>
-<h4 id="没有充分利用触屏优势的短信界面"><a href="#没有充分利用触屏优势的短信界面" class="headerlink" title="没有充分利用触屏优势的短信界面"></a>没有充分利用触屏优势的短信界面</h4><p>ios短信界面的编辑功能，仍然是左上角有一个编辑按钮，点击之后才能进行编辑。而触摸短信只能进入短信详情，长触摸则没有响应动作。</p>
-<p>「编辑按钮」这个功能在iOS中随处可见，诸如上面提到的闹钟编辑。这和Android有很大的区别，在Android中，长触摸一般都表示对触摸项的编辑功能。而iOS则没有为长触摸指定动作。这样就又多出一步。实在是没有充分利用触屏本身的交互优势。</p>
+<h4 id="没有充分利用触屏优势的短信界面"><a href="#没有充分利用触屏优势的短信界面" class="headerlink" title="没有充分利用触屏优势的短信界面"></a>没有充分利用触屏优势的短信界面</h4><p>ios 短信界面的编辑功能，仍然是左上角有一个编辑按钮，点击之后才能进行编辑。而触摸短信只能进入短信详情，长触摸则没有响应动作。</p>
+<p>「编辑按钮」这个功能在 iOS 中随处可见，诸如上面提到的闹钟编辑。这和 Android 有很大的区别，在 Android 中，长触摸一般都表示对触摸项的编辑功能。而 iOS 则没有为长触摸指定动作。这样就又多出一步。实在是没有充分利用触屏本身的交互优势。</p>
 <h3 id="厨房里的酱油瓶"><a href="#厨房里的酱油瓶" class="headerlink" title="厨房里的酱油瓶"></a>厨房里的酱油瓶</h3><p>有一种酱油叫海天，有着一个无比蛋疼的封口设计。打开瓶盖，拉开拉环，倒出香醇的酱油后，你会发现，瓶盖合不上了！酱油这种长期使用产品，不清楚这种汽水拉环一样的一次性设计是为了什么。</p>
 <p>而对比厨房里的另一瓶调料——白醋，就明显看出设计上的差距。白醋有一个方便拧开的大瓶盖，为了方便控制倒醋时的流速，还在内部加了一个控制流速的狭缝，可谓方便至极。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
-<div class="article-catetags">
+  <div class="article-catetags">
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/问题/">问题</a>
+  <a class="article-category-link" href="/categories/%E4%BD%9C%E4%B8%BA%E5%B7%A5%E7%A8%8B%E5%B8%88/">作为工程师</a>
 </div>
 
 
 </div>
 
-
-
-	<div class="article-share" id="share">
-	
-	  <div data-url="http://starding.github.io/2016/02/25/questions-record/" data-title="问题记录 | 小狐濡尾" data-tsina="null" class="share clearfix">
-	  </div>
-	
-	</div>
-
-
+ 
+  <div class="article-share" id="share">
+    <div
+      data-url="http://starding.github.io/2016/02/25/questions-record/"
+      data-title="问题记录 | 结绳以渔"
+      data-tsina=""
+      class="share clearfix"
+    ></div>
+  </div>
+   
 </footer>
-
    	       
 	</article>
 	
@@ -248,9 +224,9 @@ Writin">
 
 
 <div class="next">
-<a href="/2016/01/19/learn-javascript-follow-definitive-guide/"  title="javascript犀牛书（第六版）">
+<a href="/2016/01/19/learn-javascript-follow-definitive-guide/"  title="javascript 犀牛书（第六版）">
  <strong>下一篇：</strong><br/> 
- <span>javascript犀牛书（第六版）
+ <span>javascript 犀牛书（第六版）
 </span>
 </a>
 </div>
@@ -258,172 +234,57 @@ Writin">
 </nav>
 
 	
-<section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/02/25/questions-record/" data-title="问题记录" data-url="http://starding.github.io/2016/02/25/questions-record/"></div>
-</section>
+
 
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目录</strong>
+  <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#杂项"><span class="toc-number">1.</span> <span class="toc-text">杂项</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#linux-crontab-django-command-定时执行命令"><span class="toc-number">1.1.</span> <span class="toc-text">linux crontab +  django command 定时执行命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#问题场景"><span class="toc-number">1.1.1.</span> <span class="toc-text">问题场景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#解决方案"><span class="toc-number">1.1.2.</span> <span class="toc-text">解决方案</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#往mysql中写大量数据时，出现错误：2006-‘mysql-server-has-gone-away’"><span class="toc-number">1.2.</span> <span class="toc-text">往mysql中写大量数据时，出现错误：2006 ‘mysql server has gone away’</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#问题场景-1"><span class="toc-number">1.2.1.</span> <span class="toc-text">问题场景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#解决方案-1"><span class="toc-number">1.2.2.</span> <span class="toc-text">解决方案</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vim分屏与-ctrl-p插件"><span class="toc-number">1.3.</span> <span class="toc-text">vim分屏与 ctrl p插件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基础正则表达式"><span class="toc-number">1.4.</span> <span class="toc-text">基础正则表达式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#前端"><span class="toc-number">2.</span> <span class="toc-text">前端</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CSS-伪类和伪元素区别"><span class="toc-number">2.1.</span> <span class="toc-text">CSS 伪类和伪元素区别</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#概念辨析"><span class="toc-number">2.1.1.</span> <span class="toc-text">概念辨析</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSS-font-size-相对大小继承"><span class="toc-number">2.2.</span> <span class="toc-text">CSS font-size 相对大小继承</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#inline-block的表现"><span class="toc-number">2.3.</span> <span class="toc-text">inline-block的表现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rem使用"><span class="toc-number">2.4.</span> <span class="toc-text">rem使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#块级元素和行内元素"><span class="toc-number">2.5.</span> <span class="toc-text">块级元素和行内元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#width-和-height"><span class="toc-number">2.6.</span> <span class="toc-text">width 和 height</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#各种居中方法的使用场景"><span class="toc-number">2.7.</span> <span class="toc-text">各种居中方法的使用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如果内部盒大小超出了外部盒所能包含的大小时表现会如何"><span class="toc-number">2.8.</span> <span class="toc-text">如果内部盒大小超出了外部盒所能包含的大小时表现会如何</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用过的工具"><span class="toc-number">3.</span> <span class="toc-text">使用过的工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#程序中的过度设计"><span class="toc-number">4.</span> <span class="toc-text">程序中的过度设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是程序中的过度设计"><span class="toc-number">4.1.</span> <span class="toc-text">什么是程序中的过度设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#我遇到的过度设计"><span class="toc-number">4.2.</span> <span class="toc-text">我遇到的过度设计</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#产品体验"><span class="toc-number">5.</span> <span class="toc-text">产品体验</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#iOS初体验"><span class="toc-number">5.1.</span> <span class="toc-text">iOS初体验</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#鸡肋的下拉菜单"><span class="toc-number">5.1.1.</span> <span class="toc-text">鸡肋的下拉菜单</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#捉急的闹钟设置"><span class="toc-number">5.1.2.</span> <span class="toc-text">捉急的闹钟设置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#难以捉摸的输入法和全局赋值粘贴"><span class="toc-number">5.1.3.</span> <span class="toc-text">难以捉摸的输入法和全局赋值粘贴</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#没有充分利用触屏优势的短信界面"><span class="toc-number">5.1.4.</span> <span class="toc-text">没有充分利用触屏优势的短信界面</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#厨房里的酱油瓶"><span class="toc-number">5.2.</span> <span class="toc-text">厨房里的酱油瓶</span></a></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%82%E9%A1%B9"><span class="toc-number">1.</span> <span class="toc-text">杂项</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#linux-crontab-django-command-%E5%AE%9A%E6%97%B6%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4"><span class="toc-number">1.1.</span> <span class="toc-text">linux crontab + django command 定时执行命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E5%9C%BA%E6%99%AF"><span class="toc-number">1.1.1.</span> <span class="toc-text">问题场景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">1.1.2.</span> <span class="toc-text">解决方案</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BE%80-mysql-%E4%B8%AD%E5%86%99%E5%A4%A7%E9%87%8F%E6%95%B0%E6%8D%AE%E6%97%B6%EF%BC%8C%E5%87%BA%E7%8E%B0%E9%94%99%E8%AF%AF%EF%BC%9A2006%E2%80%98mysql-server-has-gone-away%E2%80%99"><span class="toc-number">1.2.</span> <span class="toc-text">往 mysql 中写大量数据时，出现错误：2006‘mysql server has gone away’</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E5%9C%BA%E6%99%AF-1"><span class="toc-number">1.2.1.</span> <span class="toc-text">问题场景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88-1"><span class="toc-number">1.2.2.</span> <span class="toc-text">解决方案</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vim-%E5%88%86%E5%B1%8F%E4%B8%8E-ctrl-p-%E6%8F%92%E4%BB%B6"><span class="toc-number">1.3.</span> <span class="toc-text">vim 分屏与 ctrl p 插件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">1.4.</span> <span class="toc-text">基础正则表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9D%97%E7%BA%A7%E5%85%83%E7%B4%A0%E5%92%8C%E8%A1%8C%E5%86%85%E5%85%83%E7%B4%A0"><span class="toc-number">1.5.</span> <span class="toc-text">块级元素和行内元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#width-%E5%92%8C-height"><span class="toc-number">1.6.</span> <span class="toc-text">width 和 height</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%84%E7%A7%8D%E5%B1%85%E4%B8%AD%E6%96%B9%E6%B3%95%E7%9A%84%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">1.7.</span> <span class="toc-text">各种居中方法的使用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E6%9E%9C%E5%86%85%E9%83%A8%E7%9B%92%E5%A4%A7%E5%B0%8F%E8%B6%85%E5%87%BA%E4%BA%86%E5%A4%96%E9%83%A8%E7%9B%92%E6%89%80%E8%83%BD%E5%8C%85%E5%90%AB%E7%9A%84%E5%A4%A7%E5%B0%8F%E6%97%B6%E8%A1%A8%E7%8E%B0%E4%BC%9A%E5%A6%82%E4%BD%95"><span class="toc-number">1.8.</span> <span class="toc-text">如果内部盒大小超出了外部盒所能包含的大小时表现会如何</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E8%BF%87%E7%9A%84%E5%B7%A5%E5%85%B7"><span class="toc-number">2.</span> <span class="toc-text">使用过的工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E4%B8%AD%E7%9A%84%E8%BF%87%E5%BA%A6%E8%AE%BE%E8%AE%A1"><span class="toc-number">3.</span> <span class="toc-text">程序中的过度设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E7%A8%8B%E5%BA%8F%E4%B8%AD%E7%9A%84%E8%BF%87%E5%BA%A6%E8%AE%BE%E8%AE%A1"><span class="toc-number">3.1.</span> <span class="toc-text">什么是程序中的过度设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%88%91%E9%81%87%E5%88%B0%E7%9A%84%E8%BF%87%E5%BA%A6%E8%AE%BE%E8%AE%A1"><span class="toc-number">3.2.</span> <span class="toc-text">我遇到的过度设计</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%A7%E5%93%81%E4%BD%93%E9%AA%8C"><span class="toc-number">4.</span> <span class="toc-text">产品体验</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#iOS-%E5%88%9D%E4%BD%93%E9%AA%8C"><span class="toc-number">4.1.</span> <span class="toc-text">iOS 初体验</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%B8%A1%E8%82%8B%E7%9A%84%E4%B8%8B%E6%8B%89%E8%8F%9C%E5%8D%95"><span class="toc-number">4.1.1.</span> <span class="toc-text">鸡肋的下拉菜单</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8D%89%E6%80%A5%E7%9A%84%E9%97%B9%E9%92%9F%E8%AE%BE%E7%BD%AE"><span class="toc-number">4.1.2.</span> <span class="toc-text">捉急的闹钟设置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9A%BE%E4%BB%A5%E6%8D%89%E6%91%B8%E7%9A%84%E8%BE%93%E5%85%A5%E6%B3%95%E5%92%8C%E5%85%A8%E5%B1%80%E8%B5%8B%E5%80%BC%E7%B2%98%E8%B4%B4"><span class="toc-number">4.1.3.</span> <span class="toc-text">难以捉摸的输入法和全局赋值粘贴</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B2%A1%E6%9C%89%E5%85%85%E5%88%86%E5%88%A9%E7%94%A8%E8%A7%A6%E5%B1%8F%E4%BC%98%E5%8A%BF%E7%9A%84%E7%9F%AD%E4%BF%A1%E7%95%8C%E9%9D%A2"><span class="toc-number">4.1.4.</span> <span class="toc-text">没有充分利用触屏优势的短信界面</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%A8%E6%88%BF%E9%87%8C%E7%9A%84%E9%85%B1%E6%B2%B9%E7%93%B6"><span class="toc-number">4.2.</span> <span class="toc-text">厨房里的酱油瓶</span></a></li></ol></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 
   
-<p class="asidetitle">知乎名片</p>
-<div class="zhihu-card" data-userhash="e013a8bda1c63934c4d390974c4981ca" data-width="240" data-height="120" data-key1="answer" data-key2="agree" data-key3="thanks" data-key4="follower" data-theme="github">
-</div>
-<script type="text/javascript" src="//cdn.jsdelivr.net/zhihu-card/latest/widget.js"></script>
-
-
-
-  
-
-<div class="doubanshow">
-<p class="asidetitle">豆瓣秀</p>
-<div>
-<script type="text/javascript" src="http://www.douban.com/service/badge/58816601/?show=collection&amp;n=12&amp;columns=3&amp;hidelogo=yes&amp;hideself=yes&amp;cat=book|movie" ></script>
-</div>
-</div>
-
-
-  
 <div class="categorieslist">
-	<p class="asidetitle">分类</p>
+	<p class="asidetitle">Categories</p>
 		<ul>
 		
 		  
-			<li><a href="/categories/computer-philosophy/" title="computer philosophy">computer philosophy<sup>2</sup></a></li>
+			<li><a href="/categories/作为工程师/" title="作为工程师">作为工程师<sup>11</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/docker/" title="docker">docker<sup>4</sup></a></li>
+			<li><a href="/categories/科哲和科学史/" title="科哲和科学史">科哲和科学史<sup>2</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/javascript/" title="javascript">javascript<sup>2</sup></a></li>
+			<li><a href="/categories/随笔/" title="随笔">随笔<sup>3</sup></a></li>
 		  
-		
-		  
-			<li><a href="/categories/open-questions/" title="open-questions">open-questions<sup>1</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/python/" title="python">python<sup>4</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/前端/" title="前端">前端<sup>3</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/技术哲学/" title="技术哲学">技术哲学<sup>2</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/数学/" title="数学">数学<sup>1</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/科学史与科学哲学/" title="科学史与科学哲学">科学史与科学哲学<sup>1</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/算法/" title="算法">算法<sup>1</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/问题/" title="问题">问题<sup>1</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/随笔/" title="随笔">随笔<sup>4</sup></a></li>
-		  
-		
-		</ul>
-</div>
-
-
-  
-<div class="tagslist">
-	<p class="asidetitle">标签</p>
-		<ul class="clearfix">
-		
-			
-				<li><a href="/tags/python/" title="python">python<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/docker/" title="docker">docker<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/随笔/" title="随笔">随笔<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/前端/" title="前端">前端<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/javascript/" title="javascript">javascript<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/computer/" title="computer">computer<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/科学哲学/" title="科学哲学">科学哲学<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/gitlab/" title="gitlab">gitlab<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/open-questions/" title="open-questions">open-questions<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/django/" title="django">django<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/科学史/" title="科学史">科学史<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/三体/" title="三体">三体<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/行尸走肉/" title="行尸走肉">行尸走肉<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/社会达尔文主义/" title="社会达尔文主义">社会达尔文主义<sup>1</sup></a></li>
-			
 		
 		</ul>
 </div>
 
 
   <div class="linkslist">
-  <p class="asidetitle">友情链接</p>
+  <p class="asidetitle">Links</p>
     <ul>
         
           <li>
             
-            	<a href="http://phiphicake.blogspot.com" target="_blank" title=" 一个有趣的哲学博客">哲学鸡蛋糕</a>
+            	<a href="http://finaltheory.me/" target="_blank" title=" 18~26 岁期间对我影响很大的同学">黄龑</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://chuan.us" target="_blank" title=" 虽然不认识，但 30 岁之后我从他的言论中学到了很多">硅谷王川</a>
             
           </li>
         
@@ -431,60 +292,65 @@ Writin">
 </div>
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
 </div>
 
 </aside>
 </div>
     </div>
-    <footer><div id="footer" >
-	
-	<div class="line">
-		<span></span>
-		<div class="author"></div>
-	</div>
-	
-	
-	<section class="info">
-		<p> Hello ,I&#39;m Starding. <br/>
-			This is my blog,believe it or not.</p>
-	</section>
-	 
-	<div class="social-font" class="clearfix">
-		
-		
-		<a href="https://github.com/starding" target="_blank" class="icon-github" title="github"></a>
-		
-		
-		
-		
-		
-		
-		<a href="https://www.douban.com/people/58816601" target="_blank" class="icon-douban" title="豆瓣"></a>
-		
-		
-		<a href="http://www.zhihu.com/people/starstarding" target="_blank" class="icon-zhihu" title="知乎"></a>
-		
-		
-		
-		<a href="mailto:starding@buaa.edu.cn" target="_blank" class="icon-email" title="Email Me"></a>
-		
-	</div>
-			
-		
+    <footer><div id="footer">
+  
+  <div class="line">
+    <span></span>
+    <div class="author"></div>
+  </div>
+   
+  <section class="info">
+    <p>
+      人存于世，因缘际会 <br />
+      我是兴华，很高兴见到你
+    </p>
+  </section>
+  
+  <div class="social-font" class="clearfix">
+     
+    <a
+      href="https://github.com/starding"
+      target="_blank"
+      class="icon-github"
+      title="github"
+    ></a>
+      
+    <a
+      href="https://twitter.com/starstarding"
+      target="_blank"
+      class="icon-twitter"
+      title="twitter"
+    ></a>
+          
+    <a
+      href="mailto:starstarding@gmail.com"
+      target="_blank"
+      class="icon-email"
+      title="Email Me"
+    ></a>
+    
+  </div>
+   
 
-		<p class="copyright">
-		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
-
-		
-		<a href="/about" target="_blank" title="starding">starding</a>
-		
-
-	    <br>	
-        本站总访问量<span id="busuanzi_value_site_pv"></span>次
-        本站访客数<span id="busuanzi_value_site_uv"></span>人次
-        本文总阅读量<span id="busuanzi_value_page_pv"></span>次
-		</p>
+  <p class="copyright">
+    Powered by
+    <a href="http://hexo.io" target="_blank" title="hexo">hexo</a>
+	
+    © 2024 
+    <a
+      href="/about"
+      target="_blank"
+      title="XingHua"
+      >XingHua</a
+    >
+    
+  </p>
 </div>
 </footer>
     <script src="/js/jquery-2.0.3.min.js"></script>
@@ -493,181 +359,181 @@ Writin">
 <script src="/js/jquery.qrcode-0.12.0.min.js"></script>
 
 <script type="text/javascript">
-$(document).ready(function(){ 
-  $('.navbar').click(function(){
-    $('header nav').toggleClass('shownav');
-  });
-  var myWidth = 0;
-  function getSize(){
-    if( typeof( window.innerWidth ) == 'number' ) {
-      myWidth = window.innerWidth;
-    } else if( document.documentElement && document.documentElement.clientWidth) {
-      myWidth = document.documentElement.clientWidth;
+  $(document).ready(function(){
+    $('.navbar').click(function(){
+      $('header nav').toggleClass('shownav');
+    });
+    var myWidth = 0;
+    function getSize(){
+      if( typeof( window.innerWidth ) == 'number' ) {
+        myWidth = window.innerWidth;
+      } else if( document.documentElement && document.documentElement.clientWidth) {
+        myWidth = document.documentElement.clientWidth;
+      };
     };
-  };
-  var m = $('#main'),
-      a = $('#asidepart'),
-      c = $('.closeaside'),
-      o = $('.openaside');
-  c.click(function(){
-    a.addClass('fadeOut').css('display', 'none');
-    o.css('display', 'block').addClass('fadeIn');
-    m.addClass('moveMain');
-  });
-  o.click(function(){
-    o.css('display', 'none').removeClass('beforeFadeIn');
-    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
-    m.removeClass('moveMain');
-  });
-  $(window).scroll(function(){
-    o.css("top",Math.max(80,260-$(this).scrollTop()));
-  });
-  
-  $(window).resize(function(){
-    getSize(); 
-    if (myWidth >= 1024) {
-      $('header nav').removeClass('shownav');
-    }else{
+    var m = $('#main'),
+        a = $('#asidepart'),
+        c = $('.closeaside'),
+        o = $('.openaside');
+    c.click(function(){
+      a.addClass('fadeOut').css('display', 'none');
+      o.css('display', 'block').addClass('fadeIn');
+      m.addClass('moveMain');
+    });
+    o.click(function(){
+      o.css('display', 'none').removeClass('beforeFadeIn');
+      a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');
       m.removeClass('moveMain');
-      a.css('display', 'block').removeClass('fadeOut');
-      o.css('display', 'none');
-      
-      $('#toc.toc-aside').css('display', 'none');
+    });
+    $(window).scroll(function(){
+      o.css("top",Math.max(80,260-$(this).scrollTop()));
+    });
+    
+    $(window).resize(function(){
+      getSize();
+      if (myWidth >= 1024) {
+        $('header nav').removeClass('shownav');
+      }else{
+        m.removeClass('moveMain');
+        a.css('display', 'block').removeClass('fadeOut');
+        o.css('display', 'none');
         
-    }
+        $('#toc.toc-aside').css('display', 'none');
+        
+      }
+    });
   });
-});
 </script>
 
 <script type="text/javascript">
-$(document).ready(function(){ 
-  var ai = $('.article-content>iframe'),
+  $(document).ready(function () {
+    var ai = $('.article-content>iframe'),
       ae = $('.article-content>embed'),
-      t  = $('#toc'),
+      t = $('#toc'),
       ta = $('#toc.toc-aside'),
-      o  = $('.openaside'),
-      c  = $('.closeaside');
-  if(ai.length>0){
-    ai.wrap('<div class="video-container" />');
-  };
-  if(ae.length>0){
-   ae.wrap('<div class="video-container" />');
-  };
-  c.click(function(){
-    ta.css('display', 'block').addClass('fadeIn');
-  });
-  o.click(function(){
-    ta.css('display', 'none');
-  });
-  $(window).scroll(function(){
-    ta.css("top",Math.max(140,320-$(this).scrollTop()));
-  });
-});
+      o = $('.openaside'),
+      c = $('.closeaside')
+    if (ai.length > 0) {
+      ai.wrap('<div class="video-container" />')
+    }
+    if (ae.length > 0) {
+      ae.wrap('<div class="video-container" />')
+    }
+    c.click(function () {
+      ta.css('display', 'block').addClass('fadeIn')
+    })
+    o.click(function () {
+      ta.css('display', 'none')
+    })
+    $(window).scroll(function () {
+      ta.css('top', Math.max(140, 320 - $(this).scrollTop()))
+    })
+  })
 </script>
-
-
+ 
 <script type="text/javascript">
-$(document).ready(function(){ 
-  var $this = $('.share'),
+  $(document).ready(function () {
+    var $this = $('.share'),
       url = $this.attr('data-url'),
       encodedUrl = encodeURIComponent(url),
       title = $this.attr('data-title'),
       tsina = $this.attr('data-tsina'),
-      description = $this.attr('description');
-  var html = [
-  '<div class="hoverqrcode clearfix"></div>',
-  '<a class="overlay" id="qrcode"></a>',
-  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
-  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
-  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
-  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
-  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
-  '<span title="Share to"></span>'
-  ].join('');
-  $this.append(html);
+      description = $this.attr('description')
+    var html = [
+      '<div class="hoverqrcode clearfix"></div>',
+      '<a class="overlay" id="qrcode"></a>',
+      '<a href="https://twitter.com/intent/tweet?url=' +
+        encodedUrl +
+        '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+      '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+      '<span title="Share to"></span>',
+    ].join('')
+    $this.append(html)
 
-  $('.hoverqrcode').hide();
+    $('.hoverqrcode').hide()
 
-  var myWidth = 0;
-  function updatehoverqrcode(){
-    if( typeof( window.innerWidth ) == 'number' ) {
-      myWidth = window.innerWidth;
-    } else if( document.documentElement && document.documentElement.clientWidth) {
-      myWidth = document.documentElement.clientWidth;
-    };
-    var qrsize = myWidth > 1024 ? 200:100;
-    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
-    var p = $('.article-share-qrcode').position();
-    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
-                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
-                          .qrcode(options);
-  };
-  $(window).resize(function(){
-    $('.hoverqrcode').hide();
-  });
-  $('.article-share-qrcode').click(function(){
-    updatehoverqrcode();
-    $('.hoverqrcode').toggle();
-  });
-  $('.article-share-qrcode').hover(function(){}, function(){
-      $('.hoverqrcode').hide();
-  });
-});   
+    var myWidth = 0
+    function updatehoverqrcode() {
+      if (typeof window.innerWidth == 'number') {
+        myWidth = window.innerWidth
+      } else if (
+        document.documentElement &&
+        document.documentElement.clientWidth
+      ) {
+        myWidth = document.documentElement.clientWidth
+      }
+      var qrsize = myWidth > 1024 ? 200 : 100
+      var options = {
+        render: 'image',
+        size: qrsize,
+        fill: '#2ca6cb',
+        text: url,
+        radius: 0.5,
+        quiet: 1,
+      }
+      var p = $('.article-share-qrcode').position()
+      $('.hoverqrcode')
+        .empty()
+        .css('width', qrsize)
+        .css('height', qrsize)
+        .css('left', p.left - qrsize / 2 + 20)
+        .css('top', p.top - qrsize - 10)
+        .qrcode(options)
+    }
+    $(window).resize(function () {
+      $('.hoverqrcode').hide()
+    })
+    $('.article-share-qrcode').click(function () {
+      updatehoverqrcode()
+      $('.hoverqrcode').toggle()
+    })
+    $('.article-share-qrcode').hover(
+      function () {},
+      function () {
+        $('.hoverqrcode').hide()
+      }
+    )
+  })
 </script>
-
-
-
-<script type="text/javascript">
-  var duoshuoQuery = {short_name:"starding"};
-  (function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = '//static.duoshuo.com/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0] 
-    || document.getElementsByTagName('body')[0]).appendChild(ds);
-  })();
-</script> 
-
-
-
-
-
-
-
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+      
+<link
+  rel="stylesheet"
+  href="/fancybox/jquery.fancybox.css"
+  media="screen"
+  type="text/css"
+/>
 <script src="/fancybox/jquery.fancybox.pack.js"></script>
 <script type="text/javascript">
-$(document).ready(function(){ 
-  $('.article-content').each(function(i){
-    $(this).find('img').each(function(){
-      if ($(this).parent().hasClass('fancybox')) return;
-      var alt = this.alt;
-      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
-      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
-    });
-    $(this).find('.fancybox').each(function(){
-      $(this).attr('rel', 'article' + i);
-    });
-  });
-  if($.fancybox){
-    $('.fancybox').fancybox();
-  }
-}); 
+  $(document).ready(function () {
+    $('.article-content').each(function (i) {
+      $(this)
+        .find('img')
+        .each(function () {
+          if ($(this).parent().hasClass('fancybox')) return
+          var alt = this.alt
+          if (alt) $(this).after('<span class="caption">' + alt + '</span>')
+          $(this).wrap(
+            '<a href="' +
+              this.src +
+              '" title="' +
+              alt +
+              '" class="fancybox"></a>'
+          )
+        })
+      $(this)
+        .find('.fancybox')
+        .each(function () {
+          $(this).attr('rel', 'article' + i)
+        })
+    })
+    if ($.fancybox) {
+      $('.fancybox').fancybox()
+    }
+  })
 </script>
-
 
 
 <!-- Analytics Begin -->
-
-<script type="text/javascript">
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-ga('create', 'UA-72215789-1', 'auto');  
-ga('send', 'pageview');
-</script>
 
 
 
@@ -675,7 +541,7 @@ ga('send', 'pageview');
 var _hmt = _hmt || [];
 (function() {
   var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?01f9e8011679173931cf24fe647483cf";
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
   var s = document.getElementsByTagName("script")[0]; 
   s.parentNode.insertBefore(hm, s);
 })();
@@ -688,7 +554,7 @@ var _hmt = _hmt || [];
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
@@ -697,44 +563,12 @@ var _hmt = _hmt || [];
 <!-- MathJax Begin -->
 <!-- mathjax config similar to math.stackexchange -->
 
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      processEscapes: true
-    }
-  });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      }
-    });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for(i=0; i < all.length; i += 1) {
-            all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-    });
-</script>
-
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-
 
 <!-- MathJax End -->
 
 <!-- Tiny_search Begin -->
 
 <!-- Tiny_search End -->
-
-<!--不蒜子-->
-<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
   </body>
 </html>

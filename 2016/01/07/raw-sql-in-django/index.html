@@ -1,44 +1,44 @@
 
  <!DOCTYPE HTML>
-<html lang="zh-CN">
+<html lang="zh_CN">
 <head>
   <meta charset="UTF-8">
   
-    <title>django中使用原生sql | 小狐濡尾</title>
+    <title>django 中使用原生 sql | 结绳以渔</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
-    <meta name="author" content="starding">
+    <meta name="author" content="XingHua">
     
 
     
-    <meta name="description" content="orm并非万能从功能集上讲，django的orm只是sql的一个子集。也就是说很多使用sql能实现的功能，django orm是无法完成的，更不用说sql甚至是图灵完备的了。比如，直到1.8中，django才逐渐实现了case，when，if这些控制流。而这些内容在一些特殊类型的表操作中非常常见，比如说报表管理。
-好在django提供了使用原生sql的接口，这样就能通过原生sql来实现一些复杂的功">
+    <meta name="description" content="ORM 并非万能从功能集上讲，Django 的 ORM 只是 SQL 的一个子集。这意味着很多使用 SQL 能实现的功能，Django ORM 无法完成，更不用说 SQL 甚至是图灵完备的了。例如，直到 1.8 版本，Django 才逐渐实现了CASE、WHEN、IF这些控制流。而这些内容在一些特殊类型的表操作中非常常见，比如说报表管理。 好在，Django 提供了使用原生 SQL 的接口，这样就">
 <meta property="og:type" content="article">
-<meta property="og:title" content="django中使用原生sql">
+<meta property="og:title" content="django 中使用原生 sql">
 <meta property="og:url" content="http://starding.github.io/2016/01/07/raw-sql-in-django/index.html">
-<meta property="og:site_name" content="小狐濡尾">
-<meta property="og:description" content="orm并非万能从功能集上讲，django的orm只是sql的一个子集。也就是说很多使用sql能实现的功能，django orm是无法完成的，更不用说sql甚至是图灵完备的了。比如，直到1.8中，django才逐渐实现了case，when，if这些控制流。而这些内容在一些特殊类型的表操作中非常常见，比如说报表管理。
-好在django提供了使用原生sql的接口，这样就能通过原生sql来实现一些复杂的功">
-<meta property="og:image" content="http://7xpxcb.com1.z0.glb.clouddn.com/starding48482-ddc55e26121f44aa.png">
-<meta property="og:updated_time" content="2016-01-08T11:33:34.000Z">
+<meta property="og:site_name" content="结绳以渔">
+<meta property="og:description" content="ORM 并非万能从功能集上讲，Django 的 ORM 只是 SQL 的一个子集。这意味着很多使用 SQL 能实现的功能，Django ORM 无法完成，更不用说 SQL 甚至是图灵完备的了。例如，直到 1.8 版本，Django 才逐渐实现了CASE、WHEN、IF这些控制流。而这些内容在一些特殊类型的表操作中非常常见，比如说报表管理。 好在，Django 提供了使用原生 SQL 的接口，这样就">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-01-07T10:47:03.000Z">
+<meta property="article:modified_time" content="2024-02-20T01:19:19.668Z">
+<meta property="article:author" content="XingHua">
+<meta property="article:tag" content="投资，计算机，科学哲学，技术哲学">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="django中使用原生sql">
-<meta name="twitter:description" content="orm并非万能从功能集上讲，django的orm只是sql的一个子集。也就是说很多使用sql能实现的功能，django orm是无法完成的，更不用说sql甚至是图灵完备的了。比如，直到1.8中，django才逐渐实现了case，when，if这些控制流。而这些内容在一些特殊类型的表操作中非常常见，比如说报表管理。
-好在django提供了使用原生sql的接口，这样就能通过原生sql来实现一些复杂的功">
-<meta name="twitter:image" content="http://7xpxcb.com1.z0.glb.clouddn.com/starding48482-ddc55e26121f44aa.png">
+<meta name="twitter:creator" content="@starstarding">
 
     
-    <link rel="alternative" href="/atom.xml" title="小狐濡尾" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="结绳以渔" type="application/atom+xml">
     
     
-    <link rel="icon" href="/img/my_favicon.ico">
+    <link rel="icon" href="/img/favicon-yao.ico">
     
     
-    <link rel="apple-touch-icon" href="/img/jacman.jpg">
-    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon" href="/img/white_logo_yao.png">
+    <link rel="apple-touch-icon-precomposed" href="/img/white_logo_yao.png">
     
-    <link rel="stylesheet" href="/css/style.css">
-</head>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 7.1.1"></head>
 
   <body>
     <header>
@@ -46,32 +46,30 @@
 <div>
 		
 			<div id="imglogo">
-				<a href="/"><img src="/img/my_white_logo.png" alt="小狐濡尾" title="小狐濡尾"/></a>
+				<a href="/"><img src="/img/white_logo_yao.png" alt="结绳以渔" title="结绳以渔"/></a>
 			</div>
 			
 			<div id="textlogo">
-				<h1 class="site-name"><a href="/" title="小狐濡尾">小狐濡尾</a></h1>
-				<h2 class="blog-motto">未济</h2>
+				<h1 class="site-name"><a href="/" title="结绳以渔">结绳以渔</a></h1>
+				<h2 class="blog-motto">临渊羡鱼，不如退而结网</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
 					<ul>
 					 
-						<li><a href="/">主页 | Home</a></li>
+						<li><a href="/">主页</a></li>
 					
-						<li><a href="/index">索引 | Index</a></li>
+						<li><a href="/archives">归档</a></li>
 					
-						<li><a href="/archives">归档 | Archives</a></li>
-					
-						<li><a href="/about">简介 | About</a></li>
+						<li><a href="/about">关于</a></li>
 					
 					<li>
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
 						<input type="hidden" name="q" value="site:starding.github.io">
 					</form>
 					
@@ -87,78 +85,88 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/01/07/raw-sql-in-django/" title="django中使用原生sql" itemprop="url">django中使用原生sql</a>
+    <a
+      href="/2016/01/07/raw-sql-in-django/"
+      title="django 中使用原生 sql"
+      itemprop="url"
+      >django 中使用原生 sql</a
+    >
   </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="starding" target="_blank" itemprop="author">starding</a>
-		
-  <p class="article-time">
-    <time datetime="2016-01-07T07:29:46.000Z" itemprop="datePublished"> 发表于 2016-01-07</time>
-    
-  </p>
+  <div class="article-info-meta">
+    <p class="article-author">
+      
+      <a
+        href="/about"
+        title="XingHua"
+        target="_blank"
+        itemprop="author"
+        >@XingHua</a
+      >
+      
+    </p>
+
+    <p class="article-time">
+      <time datetime="2016-01-07T10:47:03.000Z" itemprop="datePublished">
+        On 2016-01-07</time
+      >
+    </p>
+  </div>
 </header>
+
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目录</strong>
+			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#orm并非万能"><span class="toc-number">1.</span> <span class="toc-text">orm并非万能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sql控制流之CASE-WHEN一个例子"><span class="toc-number">2.</span> <span class="toc-text">sql控制流之CASE WHEN一个例子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#在上述基础上实现链式查询"><span class="toc-number">3.</span> <span class="toc-text">在上述基础上实现链式查询</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#ORM-%E5%B9%B6%E9%9D%9E%E4%B8%87%E8%83%BD"><span class="toc-number">1.</span> <span class="toc-text">ORM 并非万能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQL-%E6%8E%A7%E5%88%B6%E6%B5%81%E4%B9%8B-CASE-WHEN-%E4%B8%80%E4%B8%AA%E4%BE%8B%E5%AD%90"><span class="toc-number">2.</span> <span class="toc-text">SQL 控制流之 CASE WHEN 一个例子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8%E4%B8%8A%E8%BF%B0%E5%9F%BA%E7%A1%80%E4%B8%8A%E5%AE%9E%E7%8E%B0%E9%93%BE%E5%BC%8F%E6%9F%A5%E8%AF%A2"><span class="toc-number">3.</span> <span class="toc-text">在上述基础上实现链式查询</span></a></li></ol>
 		
 		</div>
 		
-		<h2 id="orm并非万能"><a href="#orm并非万能" class="headerlink" title="orm并非万能"></a>orm并非万能</h2><p>从功能集上讲，django的orm只是sql的一个子集。也就是说很多使用sql能实现的功能，django orm是无法完成的，更不用说sql甚至是图灵完备的了。比如，直到1.8中，django才逐渐实现了case，when，if这些控制流。而这些内容在一些特殊类型的表操作中非常常见，比如说报表管理。</p>
-<p>好在django提供了使用原生sql的接口，这样就能通过原生sql来实现一些复杂的功能。</p>
-<h2 id="sql控制流之CASE-WHEN一个例子"><a href="#sql控制流之CASE-WHEN一个例子" class="headerlink" title="sql控制流之CASE WHEN一个例子"></a>sql控制流之CASE WHEN一个例子</h2><p>现有一张档案信息表archives：</p>
-<p><img src="http://7xpxcb.com1.z0.glb.clouddn.com/starding48482-ddc55e26121f44aa.png" alt="mysql-demo"></p>
+		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="ORM-并非万能"><a href="#ORM-并非万能" class="headerlink" title="ORM 并非万能"></a>ORM 并非万能</h2><p>从功能集上讲，Django 的 ORM 只是 SQL 的一个子集。这意味着很多使用 SQL 能实现的功能，Django ORM 无法完成，更不用说 SQL 甚至是图灵完备的了。例如，直到 1.8 版本，Django 才逐渐实现了<code>CASE</code>、<code>WHEN</code>、<code>IF</code>这些控制流。而这些内容在一些特殊类型的表操作中非常常见，比如说报表管理。</p>
+<p>好在，Django 提供了使用原生 SQL 的接口，这样就能通过原生 SQL 来实现一些复杂的功能。</p>
+<h2 id="SQL-控制流之-CASE-WHEN-一个例子"><a href="#SQL-控制流之-CASE-WHEN-一个例子" class="headerlink" title="SQL 控制流之 CASE WHEN 一个例子"></a>SQL 控制流之 CASE WHEN 一个例子</h2><p>现有一张档案信息表<code>archives</code>：</p>
 <p>字段说明：</p>
 <ul>
-<li>number 档案号</li>
-<li>type 档案类型</li>
-<li>status 档案状态</li>
-<li>company 公司</li>
-<li>branch_company 分公司</li>
+<li><code>number</code> 档案号</li>
+<li><code>type</code> 档案类型</li>
+<li><code>status</code> 档案状态</li>
+<li><code>company</code> 公司</li>
+<li><code>branch_company</code> 分公司</li>
 </ul>
-<p><strong>需求是计算出表中同一type，同一分公司下的档案总数，和status=01的档案数，以及它占档案总数的比值。</strong></p>
-<p>当然，使用编程语言也可以实现这个功能，但是会比较复杂。这个时候可以使用case when语句来精确控制表中同一字段下，不同内容的选择。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> </div><div class="line">      <span class="keyword">COUNT</span>(<span class="keyword">CASE</span> <span class="keyword">WHEN</span> <span class="keyword">status</span>=<span class="string">'01'</span> <span class="keyword">THEN</span> <span class="keyword">status</span> <span class="keyword">END</span>) status_01,</div><div class="line">      <span class="keyword">COUNT</span>(*) total,</div><div class="line">      <span class="keyword">CONCAT</span>(<span class="keyword">FORMAT</span>(<span class="keyword">COUNT</span>(<span class="keyword">CASE</span> <span class="keyword">WHEN</span> <span class="keyword">status</span>=<span class="string">'01'</span> <span class="keyword">THEN</span> <span class="keyword">status</span> <span class="keyword">END</span>)/</div><div class="line">      <span class="keyword">COUNT</span>(*)*<span class="number">100</span>, <span class="number">2</span>), <span class="string">'%'</span>)</div><div class="line"><span class="keyword">FROM</span></div><div class="line">      archives</div><div class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span></div><div class="line">      <span class="keyword">status</span>, subbranch_company</div></pre></td></tr></table></figure>
-<p>这样就可以解决上面提出的问题，因为这个表是临时杜撰的，结果这里就不贴了。</p>
-<h2 id="在上述基础上实现链式查询"><a href="#在上述基础上实现链式查询" class="headerlink" title="在上述基础上实现链式查询"></a>在上述基础上实现链式查询</h2><p>在django的orm中，一个非常好用的功能就是使用链式查询，你可以不断连接filter等方法来过滤出想要的内容。</p>
-<p>这在一些特定的场景中特别有用。比如在上面的表中，我有时候想要某个分公司或中支公司下的数据，有时候又想要单一类型下的数据。如果针对每一种条件组合分别写相应地sql查询的话，会非常复杂，而且有时候组合会特别多。而链式查询比较完美的解决了这个问题。<br>而为了让原生sql也能有个简单的链式查询，我们需要不断连接where中的条件子句。为此可以写一个简单的类来实现它：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">GenQuerySQL</span><span class="params">(object)</span>:</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, table)</span>:</span></div><div class="line">        self.table = table</div><div class="line">        self.group_by_fields = <span class="string">" "</span></div><div class="line">        self.where_conditions = <span class="string">" 1=1 "</span></div><div class="line">        self.fields = <span class="string">" "</span></div><div class="line">        self.order_by_fields = <span class="string">""</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">where</span><span class="params">(self, where_condition)</span>:</span></div><div class="line">        <span class="keyword">if</span> where_condition:</div><div class="line">            self.where_conditions += <span class="string">" and "</span> + where_condition</div><div class="line">        <span class="keyword">return</span> self</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">add_field</span><span class="params">(self, fields)</span>:</span></div><div class="line">        self.fields += <span class="string">" "</span> + fields</div><div class="line">        <span class="keyword">return</span> self</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">group_by</span><span class="params">(self, group_by_field)</span>:</span></div><div class="line">        self.group_by_fields = group_by_field</div><div class="line">        <span class="keyword">return</span> self</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">order_by</span><span class="params">(self, order_by_field)</span>:</span></div><div class="line">        self.order_by_fields = order_by_field</div><div class="line">        <span class="keyword">return</span> self</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">sql</span><span class="params">(self)</span>:</span></div><div class="line">       SQL = <span class="string">'SELECT '</span> + self.fields + <span class="string">' FROM '</span> + self.table + <span class="string">' WHERE '</span> + self.where_conditions + <span class="string">' GROUP BY '</span> + self.group_by_fields + <span class="string">' ORDER BY '</span> + self.order_by_fields +  <span class="string">";"</span></div><div class="line">       <span class="keyword">return</span> SQL</div></pre></td></tr></table></figure>
-<p>这个类可以简单的模拟链式查询的功能，可以这样使用它：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">archive_statistics = GenQuerySQL(SOME_TABLE)</div><div class="line">raw_sql = archive_statistics.add_field(fields).where(where_condition).group_by(group_by_fields).order_by(order_by_fields).sql()</div></pre></td></tr></table></figure>
-<p>其中.where可以多次连接。当然也可以使用另一种方式：先把where语句根据条件构造完毕，最终再拼接成sql语句。其思想是一样的：先过滤条件，最终再查询数据库。</p>
+<p>需求是计算出表中同一<code>type</code>，同一分公司下的档案总数，和<code>status=01</code>的档案数，以及它占档案总数的比值。</p>
+<p>当然，使用编程语言也可以实现这个功能，但是会比较复杂。这个时候可以使用<code>CASE WHEN</code>语句来精确控制表中同一字段下，不同内容的选择。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">      <span class="built_in">COUNT</span>(<span class="keyword">CASE</span> <span class="keyword">WHEN</span> status<span class="operator">=</span><span class="string">&#x27;01&#x27;</span> <span class="keyword">THEN</span> status <span class="keyword">END</span>) <span class="keyword">AS</span> status_01,</span><br><span class="line">      <span class="built_in">COUNT</span>(<span class="operator">*</span>) <span class="keyword">AS</span> total,</span><br><span class="line">      CONCAT(FORMAT(<span class="built_in">COUNT</span>(<span class="keyword">CASE</span> <span class="keyword">WHEN</span> status<span class="operator">=</span><span class="string">&#x27;01&#x27;</span> <span class="keyword">THEN</span> status <span class="keyword">END</span>)<span class="operator">/</span></span><br><span class="line">      <span class="built_in">COUNT</span>(<span class="operator">*</span>)<span class="operator">*</span><span class="number">100</span>, <span class="number">2</span>), <span class="string">&#x27;%&#x27;</span>) <span class="keyword">AS</span> percentage</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">      archives</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span></span><br><span class="line">      status, branch_company</span><br></pre></td></tr></table></figure>
+
+<p>这样就可以解决上面提出的问题。因为这个表是临时构造的，结果这里就不展示了。</p>
+<h2 id="在上述基础上实现链式查询"><a href="#在上述基础上实现链式查询" class="headerlink" title="在上述基础上实现链式查询"></a>在上述基础上实现链式查询</h2><p>在 Django 的 ORM 中，一个非常好用的功能就是使用链式查询，你可以不断连接 filter 等方法来过滤出想要的内容。</p>
+<p>这在一些特定的场景中特别有用。比如在上面的表中，有时候可能想要某个分公司或中支公司下的数据，有时候又想要单一类型下的数据。如果针对每一种条件组合分别写相应的 SQL 查询的话，会非常复杂，而且有时候组合会特别多。而链式查询比较完美地解决了这个问题。</p>
+<p>为了让原生 SQL 也能有个简单的链式查询，我们需要不断连接 where 中的条件子句。为此可以写一个简单的类来实现它：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">GenQuerySQL</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, table</span>):</span><br><span class="line">        self.table = table</span><br><span class="line">        self.group_by_fields = <span class="string">&quot; &quot;</span></span><br><span class="line">        self.where_conditions = <span class="string">&quot; 1=1 &quot;</span></span><br><span class="line">        self.fields = <span class="string">&quot; &quot;</span></span><br><span class="line">        self.order_by_fields = <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">where</span>(<span class="params">self, where_condition</span>):</span><br><span class="line">        <span class="keyword">if</span> where_condition:</span><br><span class="line">            self.where_conditions += <span class="string">&quot; and &quot;</span> + where_condition</span><br><span class="line">        <span class="keyword">return</span> self</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">add_field</span>(<span class="params">self, fields</span>):</span><br><span class="line">        self.fields += <span class="string">&quot; &quot;</span> + fields</span><br><span class="line">        <span class="keyword">return</span> self</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">group_by</span>(<span class="params">self, group_by_field</span>):</span><br><span class="line">        self.group_by_fields = group_by_field</span><br><span class="line">        <span class="keyword">return</span> self</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">order_by</span>(<span class="params">self, order_by_field</span>):</span><br><span class="line">        self.order_by_fields = order_by_field</span><br><span class="line">        <span class="keyword">return</span> self</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">sql</span>(<span class="params">self</span>):</span><br><span class="line">        SQL = <span class="string">&#x27;SELECT &#x27;</span> + self.fields + <span class="string">&#x27; FROM &#x27;</span> + self.table + <span class="string">&#x27; WHERE &#x27;</span> + self.where_conditions + <span class="string">&#x27; GROUP BY &#x27;</span> + self.group_by_fields + <span class="string">&#x27; ORDER BY &#x27;</span> + self.order_by_fields + <span class="string">&quot;;&quot;</span></span><br><span class="line">        <span class="keyword">return</span> SQL</span><br></pre></td></tr></table></figure>
+
+<p>这个类可以简单地模拟链式查询的功能。例如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">archive_statistics = GenQuerySQL(<span class="string">&#x27;SOME_TABLE&#x27;</span>)</span><br><span class="line">raw_sql = archive_statistics.add_field(<span class="string">&#x27;fields&#x27;</span>).where(<span class="string">&#x27;where_condition&#x27;</span>).group_by(<span class="string">&#x27;group_by_fields&#x27;</span>).order_by(<span class="string">&#x27;order_by_fields&#x27;</span>).sql()</span><br></pre></td></tr></table></figure>
+
+<p>其中.where 可以多次连接。当然也可以使用另一种方式：先把 where 语句根据条件构造完毕，最终再拼接成 sql 语句。其思想是一样的：先过滤条件，最终再查询数据库。</p>
+<p>2016.01 于北京回龙观</p>
   
 	</div>
 		<footer class="article-footer clearfix">
-<div class="article-catetags">
+  <div class="article-catetags">
 
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/python/">python</a>
+
 </div>
 
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/python/">python</a><a href="/tags/django/">django</a>
+ 
+  <div class="article-share" id="share">
+    <div
+      data-url="http://starding.github.io/2016/01/07/raw-sql-in-django/"
+      data-title="django 中使用原生 sql | 结绳以渔"
+      data-tsina=""
+      class="share clearfix"
+    ></div>
   </div>
-
-</div>
-
-
-
-	<div class="article-share" id="share">
-	
-	  <div data-url="http://starding.github.io/2016/01/07/raw-sql-in-django/" data-title="django中使用原生sql | 小狐濡尾" data-tsina="null" class="share clearfix">
-	  </div>
-	
-	</div>
-
-
+   
 </footer>
-
    	       
 	</article>
 	
@@ -174,9 +182,9 @@
 
 
 <div class="next">
-<a href="/2016/01/07/deploy-gitlab-by-docker/"  title="docker 部署gitlab">
+<a href="/2016/01/07/deploy-gitlab-by-docker/"  title="docker 部署 gitlab">
  <strong>下一篇：</strong><br/> 
- <span>docker 部署gitlab
+ <span>docker 部署 gitlab
 </span>
 </a>
 </div>
@@ -184,172 +192,57 @@
 </nav>
 
 	
-<section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/01/07/raw-sql-in-django/" data-title="django中使用原生sql" data-url="http://starding.github.io/2016/01/07/raw-sql-in-django/"></div>
-</section>
+
 
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目录</strong>
+  <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#orm并非万能"><span class="toc-number">1.</span> <span class="toc-text">orm并非万能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sql控制流之CASE-WHEN一个例子"><span class="toc-number">2.</span> <span class="toc-text">sql控制流之CASE WHEN一个例子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#在上述基础上实现链式查询"><span class="toc-number">3.</span> <span class="toc-text">在上述基础上实现链式查询</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#ORM-%E5%B9%B6%E9%9D%9E%E4%B8%87%E8%83%BD"><span class="toc-number">1.</span> <span class="toc-text">ORM 并非万能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQL-%E6%8E%A7%E5%88%B6%E6%B5%81%E4%B9%8B-CASE-WHEN-%E4%B8%80%E4%B8%AA%E4%BE%8B%E5%AD%90"><span class="toc-number">2.</span> <span class="toc-text">SQL 控制流之 CASE WHEN 一个例子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8%E4%B8%8A%E8%BF%B0%E5%9F%BA%E7%A1%80%E4%B8%8A%E5%AE%9E%E7%8E%B0%E9%93%BE%E5%BC%8F%E6%9F%A5%E8%AF%A2"><span class="toc-number">3.</span> <span class="toc-text">在上述基础上实现链式查询</span></a></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 
   
-<p class="asidetitle">知乎名片</p>
-<div class="zhihu-card" data-userhash="e013a8bda1c63934c4d390974c4981ca" data-width="240" data-height="120" data-key1="answer" data-key2="agree" data-key3="thanks" data-key4="follower" data-theme="github">
-</div>
-<script type="text/javascript" src="//cdn.jsdelivr.net/zhihu-card/latest/widget.js"></script>
-
-
-
-  
-
-<div class="doubanshow">
-<p class="asidetitle">豆瓣秀</p>
-<div>
-<script type="text/javascript" src="http://www.douban.com/service/badge/58816601/?show=collection&amp;n=12&amp;columns=3&amp;hidelogo=yes&amp;hideself=yes&amp;cat=book|movie" ></script>
-</div>
-</div>
-
-
-  
 <div class="categorieslist">
-	<p class="asidetitle">分类</p>
+	<p class="asidetitle">Categories</p>
 		<ul>
 		
 		  
-			<li><a href="/categories/computer-philosophy/" title="computer philosophy">computer philosophy<sup>2</sup></a></li>
+			<li><a href="/categories/作为工程师/" title="作为工程师">作为工程师<sup>11</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/docker/" title="docker">docker<sup>4</sup></a></li>
+			<li><a href="/categories/科哲和科学史/" title="科哲和科学史">科哲和科学史<sup>2</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/javascript/" title="javascript">javascript<sup>2</sup></a></li>
+			<li><a href="/categories/随笔/" title="随笔">随笔<sup>3</sup></a></li>
 		  
-		
-		  
-			<li><a href="/categories/open-questions/" title="open-questions">open-questions<sup>1</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/python/" title="python">python<sup>4</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/前端/" title="前端">前端<sup>3</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/技术哲学/" title="技术哲学">技术哲学<sup>2</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/数学/" title="数学">数学<sup>1</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/科学史与科学哲学/" title="科学史与科学哲学">科学史与科学哲学<sup>1</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/算法/" title="算法">算法<sup>1</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/问题/" title="问题">问题<sup>1</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/随笔/" title="随笔">随笔<sup>4</sup></a></li>
-		  
-		
-		</ul>
-</div>
-
-
-  
-<div class="tagslist">
-	<p class="asidetitle">标签</p>
-		<ul class="clearfix">
-		
-			
-				<li><a href="/tags/python/" title="python">python<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/docker/" title="docker">docker<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/随笔/" title="随笔">随笔<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/前端/" title="前端">前端<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/javascript/" title="javascript">javascript<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/computer/" title="computer">computer<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/科学哲学/" title="科学哲学">科学哲学<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/gitlab/" title="gitlab">gitlab<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/open-questions/" title="open-questions">open-questions<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/django/" title="django">django<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/科学史/" title="科学史">科学史<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/三体/" title="三体">三体<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/行尸走肉/" title="行尸走肉">行尸走肉<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/社会达尔文主义/" title="社会达尔文主义">社会达尔文主义<sup>1</sup></a></li>
-			
 		
 		</ul>
 </div>
 
 
   <div class="linkslist">
-  <p class="asidetitle">友情链接</p>
+  <p class="asidetitle">Links</p>
     <ul>
         
           <li>
             
-            	<a href="http://phiphicake.blogspot.com" target="_blank" title=" 一个有趣的哲学博客">哲学鸡蛋糕</a>
+            	<a href="http://finaltheory.me/" target="_blank" title=" 18~26 岁期间对我影响很大的同学">黄龑</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://chuan.us" target="_blank" title=" 虽然不认识，但 30 岁之后我从他的言论中学到了很多">硅谷王川</a>
             
           </li>
         
@@ -357,60 +250,65 @@
 </div>
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
 </div>
 
 </aside>
 </div>
     </div>
-    <footer><div id="footer" >
-	
-	<div class="line">
-		<span></span>
-		<div class="author"></div>
-	</div>
-	
-	
-	<section class="info">
-		<p> Hello ,I&#39;m Starding. <br/>
-			This is my blog,believe it or not.</p>
-	</section>
-	 
-	<div class="social-font" class="clearfix">
-		
-		
-		<a href="https://github.com/starding" target="_blank" class="icon-github" title="github"></a>
-		
-		
-		
-		
-		
-		
-		<a href="https://www.douban.com/people/58816601" target="_blank" class="icon-douban" title="豆瓣"></a>
-		
-		
-		<a href="http://www.zhihu.com/people/starstarding" target="_blank" class="icon-zhihu" title="知乎"></a>
-		
-		
-		
-		<a href="mailto:starding@buaa.edu.cn" target="_blank" class="icon-email" title="Email Me"></a>
-		
-	</div>
-			
-		
+    <footer><div id="footer">
+  
+  <div class="line">
+    <span></span>
+    <div class="author"></div>
+  </div>
+   
+  <section class="info">
+    <p>
+      人存于世，因缘际会 <br />
+      我是兴华，很高兴见到你
+    </p>
+  </section>
+  
+  <div class="social-font" class="clearfix">
+     
+    <a
+      href="https://github.com/starding"
+      target="_blank"
+      class="icon-github"
+      title="github"
+    ></a>
+      
+    <a
+      href="https://twitter.com/starstarding"
+      target="_blank"
+      class="icon-twitter"
+      title="twitter"
+    ></a>
+          
+    <a
+      href="mailto:starstarding@gmail.com"
+      target="_blank"
+      class="icon-email"
+      title="Email Me"
+    ></a>
+    
+  </div>
+   
 
-		<p class="copyright">
-		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
-
-		
-		<a href="/about" target="_blank" title="starding">starding</a>
-		
-
-	    <br>	
-        本站总访问量<span id="busuanzi_value_site_pv"></span>次
-        本站访客数<span id="busuanzi_value_site_uv"></span>人次
-        本文总阅读量<span id="busuanzi_value_page_pv"></span>次
-		</p>
+  <p class="copyright">
+    Powered by
+    <a href="http://hexo.io" target="_blank" title="hexo">hexo</a>
+	
+    © 2024 
+    <a
+      href="/about"
+      target="_blank"
+      title="XingHua"
+      >XingHua</a
+    >
+    
+  </p>
 </div>
 </footer>
     <script src="/js/jquery-2.0.3.min.js"></script>
@@ -419,181 +317,181 @@
 <script src="/js/jquery.qrcode-0.12.0.min.js"></script>
 
 <script type="text/javascript">
-$(document).ready(function(){ 
-  $('.navbar').click(function(){
-    $('header nav').toggleClass('shownav');
-  });
-  var myWidth = 0;
-  function getSize(){
-    if( typeof( window.innerWidth ) == 'number' ) {
-      myWidth = window.innerWidth;
-    } else if( document.documentElement && document.documentElement.clientWidth) {
-      myWidth = document.documentElement.clientWidth;
+  $(document).ready(function(){
+    $('.navbar').click(function(){
+      $('header nav').toggleClass('shownav');
+    });
+    var myWidth = 0;
+    function getSize(){
+      if( typeof( window.innerWidth ) == 'number' ) {
+        myWidth = window.innerWidth;
+      } else if( document.documentElement && document.documentElement.clientWidth) {
+        myWidth = document.documentElement.clientWidth;
+      };
     };
-  };
-  var m = $('#main'),
-      a = $('#asidepart'),
-      c = $('.closeaside'),
-      o = $('.openaside');
-  c.click(function(){
-    a.addClass('fadeOut').css('display', 'none');
-    o.css('display', 'block').addClass('fadeIn');
-    m.addClass('moveMain');
-  });
-  o.click(function(){
-    o.css('display', 'none').removeClass('beforeFadeIn');
-    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
-    m.removeClass('moveMain');
-  });
-  $(window).scroll(function(){
-    o.css("top",Math.max(80,260-$(this).scrollTop()));
-  });
-  
-  $(window).resize(function(){
-    getSize(); 
-    if (myWidth >= 1024) {
-      $('header nav').removeClass('shownav');
-    }else{
+    var m = $('#main'),
+        a = $('#asidepart'),
+        c = $('.closeaside'),
+        o = $('.openaside');
+    c.click(function(){
+      a.addClass('fadeOut').css('display', 'none');
+      o.css('display', 'block').addClass('fadeIn');
+      m.addClass('moveMain');
+    });
+    o.click(function(){
+      o.css('display', 'none').removeClass('beforeFadeIn');
+      a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');
       m.removeClass('moveMain');
-      a.css('display', 'block').removeClass('fadeOut');
-      o.css('display', 'none');
-      
-      $('#toc.toc-aside').css('display', 'none');
+    });
+    $(window).scroll(function(){
+      o.css("top",Math.max(80,260-$(this).scrollTop()));
+    });
+    
+    $(window).resize(function(){
+      getSize();
+      if (myWidth >= 1024) {
+        $('header nav').removeClass('shownav');
+      }else{
+        m.removeClass('moveMain');
+        a.css('display', 'block').removeClass('fadeOut');
+        o.css('display', 'none');
         
-    }
+        $('#toc.toc-aside').css('display', 'none');
+        
+      }
+    });
   });
-});
 </script>
 
 <script type="text/javascript">
-$(document).ready(function(){ 
-  var ai = $('.article-content>iframe'),
+  $(document).ready(function () {
+    var ai = $('.article-content>iframe'),
       ae = $('.article-content>embed'),
-      t  = $('#toc'),
+      t = $('#toc'),
       ta = $('#toc.toc-aside'),
-      o  = $('.openaside'),
-      c  = $('.closeaside');
-  if(ai.length>0){
-    ai.wrap('<div class="video-container" />');
-  };
-  if(ae.length>0){
-   ae.wrap('<div class="video-container" />');
-  };
-  c.click(function(){
-    ta.css('display', 'block').addClass('fadeIn');
-  });
-  o.click(function(){
-    ta.css('display', 'none');
-  });
-  $(window).scroll(function(){
-    ta.css("top",Math.max(140,320-$(this).scrollTop()));
-  });
-});
+      o = $('.openaside'),
+      c = $('.closeaside')
+    if (ai.length > 0) {
+      ai.wrap('<div class="video-container" />')
+    }
+    if (ae.length > 0) {
+      ae.wrap('<div class="video-container" />')
+    }
+    c.click(function () {
+      ta.css('display', 'block').addClass('fadeIn')
+    })
+    o.click(function () {
+      ta.css('display', 'none')
+    })
+    $(window).scroll(function () {
+      ta.css('top', Math.max(140, 320 - $(this).scrollTop()))
+    })
+  })
 </script>
-
-
+ 
 <script type="text/javascript">
-$(document).ready(function(){ 
-  var $this = $('.share'),
+  $(document).ready(function () {
+    var $this = $('.share'),
       url = $this.attr('data-url'),
       encodedUrl = encodeURIComponent(url),
       title = $this.attr('data-title'),
       tsina = $this.attr('data-tsina'),
-      description = $this.attr('description');
-  var html = [
-  '<div class="hoverqrcode clearfix"></div>',
-  '<a class="overlay" id="qrcode"></a>',
-  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
-  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
-  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
-  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
-  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
-  '<span title="Share to"></span>'
-  ].join('');
-  $this.append(html);
+      description = $this.attr('description')
+    var html = [
+      '<div class="hoverqrcode clearfix"></div>',
+      '<a class="overlay" id="qrcode"></a>',
+      '<a href="https://twitter.com/intent/tweet?url=' +
+        encodedUrl +
+        '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+      '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+      '<span title="Share to"></span>',
+    ].join('')
+    $this.append(html)
 
-  $('.hoverqrcode').hide();
+    $('.hoverqrcode').hide()
 
-  var myWidth = 0;
-  function updatehoverqrcode(){
-    if( typeof( window.innerWidth ) == 'number' ) {
-      myWidth = window.innerWidth;
-    } else if( document.documentElement && document.documentElement.clientWidth) {
-      myWidth = document.documentElement.clientWidth;
-    };
-    var qrsize = myWidth > 1024 ? 200:100;
-    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
-    var p = $('.article-share-qrcode').position();
-    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
-                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
-                          .qrcode(options);
-  };
-  $(window).resize(function(){
-    $('.hoverqrcode').hide();
-  });
-  $('.article-share-qrcode').click(function(){
-    updatehoverqrcode();
-    $('.hoverqrcode').toggle();
-  });
-  $('.article-share-qrcode').hover(function(){}, function(){
-      $('.hoverqrcode').hide();
-  });
-});   
+    var myWidth = 0
+    function updatehoverqrcode() {
+      if (typeof window.innerWidth == 'number') {
+        myWidth = window.innerWidth
+      } else if (
+        document.documentElement &&
+        document.documentElement.clientWidth
+      ) {
+        myWidth = document.documentElement.clientWidth
+      }
+      var qrsize = myWidth > 1024 ? 200 : 100
+      var options = {
+        render: 'image',
+        size: qrsize,
+        fill: '#2ca6cb',
+        text: url,
+        radius: 0.5,
+        quiet: 1,
+      }
+      var p = $('.article-share-qrcode').position()
+      $('.hoverqrcode')
+        .empty()
+        .css('width', qrsize)
+        .css('height', qrsize)
+        .css('left', p.left - qrsize / 2 + 20)
+        .css('top', p.top - qrsize - 10)
+        .qrcode(options)
+    }
+    $(window).resize(function () {
+      $('.hoverqrcode').hide()
+    })
+    $('.article-share-qrcode').click(function () {
+      updatehoverqrcode()
+      $('.hoverqrcode').toggle()
+    })
+    $('.article-share-qrcode').hover(
+      function () {},
+      function () {
+        $('.hoverqrcode').hide()
+      }
+    )
+  })
 </script>
-
-
-
-<script type="text/javascript">
-  var duoshuoQuery = {short_name:"starding"};
-  (function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = '//static.duoshuo.com/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0] 
-    || document.getElementsByTagName('body')[0]).appendChild(ds);
-  })();
-</script> 
-
-
-
-
-
-
-
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+      
+<link
+  rel="stylesheet"
+  href="/fancybox/jquery.fancybox.css"
+  media="screen"
+  type="text/css"
+/>
 <script src="/fancybox/jquery.fancybox.pack.js"></script>
 <script type="text/javascript">
-$(document).ready(function(){ 
-  $('.article-content').each(function(i){
-    $(this).find('img').each(function(){
-      if ($(this).parent().hasClass('fancybox')) return;
-      var alt = this.alt;
-      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
-      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
-    });
-    $(this).find('.fancybox').each(function(){
-      $(this).attr('rel', 'article' + i);
-    });
-  });
-  if($.fancybox){
-    $('.fancybox').fancybox();
-  }
-}); 
+  $(document).ready(function () {
+    $('.article-content').each(function (i) {
+      $(this)
+        .find('img')
+        .each(function () {
+          if ($(this).parent().hasClass('fancybox')) return
+          var alt = this.alt
+          if (alt) $(this).after('<span class="caption">' + alt + '</span>')
+          $(this).wrap(
+            '<a href="' +
+              this.src +
+              '" title="' +
+              alt +
+              '" class="fancybox"></a>'
+          )
+        })
+      $(this)
+        .find('.fancybox')
+        .each(function () {
+          $(this).attr('rel', 'article' + i)
+        })
+    })
+    if ($.fancybox) {
+      $('.fancybox').fancybox()
+    }
+  })
 </script>
-
 
 
 <!-- Analytics Begin -->
-
-<script type="text/javascript">
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-ga('create', 'UA-72215789-1', 'auto');  
-ga('send', 'pageview');
-</script>
 
 
 
@@ -601,7 +499,7 @@ ga('send', 'pageview');
 var _hmt = _hmt || [];
 (function() {
   var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?01f9e8011679173931cf24fe647483cf";
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
   var s = document.getElementsByTagName("script")[0]; 
   s.parentNode.insertBefore(hm, s);
 })();
@@ -614,7 +512,7 @@ var _hmt = _hmt || [];
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
@@ -623,44 +521,12 @@ var _hmt = _hmt || [];
 <!-- MathJax Begin -->
 <!-- mathjax config similar to math.stackexchange -->
 
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      processEscapes: true
-    }
-  });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      }
-    });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for(i=0; i < all.length; i += 1) {
-            all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-    });
-</script>
-
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-
 
 <!-- MathJax End -->
 
 <!-- Tiny_search Begin -->
 
 <!-- Tiny_search End -->
-
-<!--不蒜子-->
-<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
   </body>
 </html>
