@@ -901,11 +901,6 @@ header nav ul li a:hover {
 .photo a:hover {
   color: #ea6753;
 }
-@media only screen and (min-width: 768px) {
-  article header.article-info {
-    border-bottom: 0.5px solid #dbdbdb;
-  }
-}
 article header.article-info h1 {
   padding: 0.2em 4%;
   font-size: 170%;
@@ -1483,7 +1478,7 @@ section.comment {
 }
 .toc-article {
   background: #eee;
-  margin: 1.6em 0 0 2em;
+  margin: 0;
   padding: 1em;
   -webkit-border-radius: 4px;
   border-radius: 4px;
@@ -1504,7 +1499,6 @@ section.comment {
 #toc {
   line-height: 1.3em;
   font-size: 0.8em;
-  float: right;
 }
 #toc .toc {
   padding: 0;
