@@ -1993,6 +1993,11 @@ footer {
     text-align: center;
   }
 }
+@media only screen and (min-width: 1024px) {
+  .info p {
+    text-align: left;
+  }
+}
 .social-font {
   width: 100%;
   margin: 0 auto;
