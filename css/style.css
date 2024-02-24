@@ -914,7 +914,6 @@ article header.article-info h1 {
   word-break: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  border-left: 3px solid #000;
   color: #413f3f;
 }
 @media only screen and (min-width: 1024px) {
