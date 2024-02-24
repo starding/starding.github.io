@@ -19,7 +19,7 @@
 <meta property="og:description" content="之所以取个这么大的标题，是因为这是一篇翻译稿的标题。个人认为这篇演讲的翻译稿非常符合我的思维习惯，而且网上没有一个比较好的版本，故单读整理出来，形成一篇转载文章。 前一段时间，我们小组一直有一个争论，就是在 api 中到底是使用 utc 时间，还是使用 unix 时间戳。个人坚持的观点就是「先为人设计，再为机器设计」，赞同语义化更强的 utc 时间。 上面的例子是想说明，有时候我们做出一件决策，不">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2016-03-19T02:30:47.000Z">
-<meta property="article:modified_time" content="2024-02-24T07:02:43.652Z">
+<meta property="article:modified_time" content="2024-02-24T07:07:46.050Z">
 <meta property="article:author" content="XingHua">
 <meta property="article:tag" content="投资，计算机，科学哲学，技术哲学">
 <meta name="twitter:card" content="summary">
@@ -118,7 +118,7 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML5-%E8%AE%BE%E8%AE%A1%E5%8E%9F%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text">HTML5 设计原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E5%8E%9F%E7%90%86"><span class="toc-number">2.</span> <span class="toc-text">设计原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML"><span class="toc-number">3.</span> <span class="toc-text">HTML</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML5"><span class="toc-number">4.</span> <span class="toc-text">HTML5</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%81%BF%E5%85%8D%E4%B8%8D%E5%BF%85%E8%A6%81%E7%9A%84%E5%A4%8D%E6%9D%82%E6%80%A7"><span class="toc-number">5.</span> <span class="toc-text">避免不必要的复杂性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%AF%E6%8C%81%E5%B7%B2%E6%9C%89%E7%9A%84%E5%86%85%E5%AE%B9"><span class="toc-number">6.</span> <span class="toc-text">支持已有的内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B1%82%E7%9C%9F%E5%8A%A1%E5%AE%9E"><span class="toc-number">7.</span> <span class="toc-text">求真务实</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%B3%E7%A8%B3%E9%80%80%E5%8C%96"><span class="toc-number">8.</span> <span class="toc-text">平稳退化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E7%BB%88%E7%94%A8%E6%88%B7%E4%BC%98%E5%85%88"><span class="toc-number">9.</span> <span class="toc-text">最终用户优先</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%84%9A%E6%B3%A8"><span class="toc-number">10.</span> <span class="toc-text">脚注</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML5-%E8%AE%BE%E8%AE%A1%E5%8E%9F%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text">HTML5 设计原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E5%8E%9F%E7%90%86"><span class="toc-number">2.</span> <span class="toc-text">设计原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML"><span class="toc-number">3.</span> <span class="toc-text">HTML</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML5"><span class="toc-number">4.</span> <span class="toc-text">HTML5</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%81%BF%E5%85%8D%E4%B8%8D%E5%BF%85%E8%A6%81%E7%9A%84%E5%A4%8D%E6%9D%82%E6%80%A7"><span class="toc-number">5.</span> <span class="toc-text">避免不必要的复杂性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%AF%E6%8C%81%E5%B7%B2%E6%9C%89%E7%9A%84%E5%86%85%E5%AE%B9"><span class="toc-number">6.</span> <span class="toc-text">支持已有的内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B1%82%E7%9C%9F%E5%8A%A1%E5%AE%9E"><span class="toc-number">7.</span> <span class="toc-text">求真务实</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%B3%E7%A8%B3%E9%80%80%E5%8C%96"><span class="toc-number">8.</span> <span class="toc-text">平稳退化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E7%BB%88%E7%94%A8%E6%88%B7%E4%BC%98%E5%85%88"><span class="toc-number">9.</span> <span class="toc-text">最终用户优先</span></a></li></ol>
 		
 		</div>
 		
@@ -129,10 +129,8 @@
 <br/>
 
 <hr>
-<h2 id="HTML5-设计原理"><a href="#HTML5-设计原理" class="headerlink" title="HTML5 设计原理"></a>HTML5 设计原理</h2><p>2010 年 10 月 21 日</p>
-<p><a target="_blank" rel="noopener" href="http://www.cn-cuckoo.com/category/web">Web 开发翻译</a> <sup id="fnref:1"><a href="#fn:1" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="不清楚博主的这篇翻译文章为什么没了，但原翻译者应该是他没错，这里只进行一下整理
-">[1]</span></a></sup></p>
-<p><a target="_blank" rel="noopener" href="http://adactio.com/articles/1704/">Jeremy Keith 在 Fronteers 2010 上的主题演讲</a></p>
+<h2 id="HTML5-设计原理"><a href="#HTML5-设计原理" class="headerlink" title="HTML5 设计原理"></a>HTML5 设计原理</h2><p>2010 年 10 月 21 日 <a target="_blank" rel="noopener" href="http://adactio.com/articles/1704/">Jeremy Keith 在 Fronteers 2010 上的主题演讲</a></p>
+<p><a target="_blank" rel="noopener" href="http://www.cn-cuckoo.com/category/web">Web 开发翻译</a> <sup id="fnref:1"><a href="#fn:1" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="不清楚博主的这篇翻译文章为什么没了，但原翻译者应该是他没错，这里只进行一下整理">[1]</span></a></sup></p>
 <p>今天我想跟大家谈一谈 HTML5 的设计。主要分两个方面：一方面，当然了，就是 HTML5。我可以站在这儿只讲 HTML5，但我并不打算这样做，因为如果你想了解 HTML5 的话，你可以 Google，可以看书，甚至可以看规范。</p>
 <p>实际上，确实有人会谈到规范的内容。史蒂夫·福克纳（Steve Faulkner）会讲 HTML5 与可访问性。而保罗·艾里什（Paul Irish）则会讲 HTML5 提供的各种 API。因此，我今天站在这里，不会光讲一讲 HTML5 就算完事了。</p>
 <p>说老实话，在正式开始之前，我想先交待清楚我所说的 HTML5 到底是什么意思。这话听起来有点搞笑：这会子你一直在说 HTML5，难道我们还不知道什么是 HTML5 吗？大家知道，有一个规范，它的名字叫 HTML5。我所说的 HTML5，指的就是这个规范。但问题是，有些人所说的 HTML5，指的不仅仅是这个规范，还有别的意思。比如说，用 HTML5 来代指 CSS3 就是一种常见的叫法。我可不是这样的。我所说的 HTML5，不包含 CSS3，就是 HTML5。</p>
@@ -358,7 +356,7 @@
 <p>也许我该把这条原理打印出来贴到办公室的墙上，让它时刻提醒我，这就是 Web 的设计原理：大多数人的意见和运行的代码。</p>
 <p>我想，今天的演讲就到这里了。如果大家有什么想法可以在 twitter 上通过@adactio 找到我。有时候我也会在自己的博客，adactio.com 上写写有关这个主题的文章。最后，可能还要顺便给我自己做个广告，我刚出了一本书，希望大家关注。</p>
 <p>非常感谢大家。<br>[全文完]</p>
-<h2 id="脚注"><a href="#脚注" class="headerlink" title="脚注"></a>脚注</h2><div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">不清楚博主的这篇翻译文章为什么没了，但原翻译者应该是他没错，这里只进行一下整理<a href="#fnref:1" rev="footnote"> ↩</a></span></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">2.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">1992 年，大卫·克拉克（David Clark）教授在 IETF 会议上总结了这样一句话“We reject: kings, presidents, and voting. We believe in: rough consensus and running code”（我们拒绝国王、总统和投票，我们相信大多数人的意见和运行的代码）。这就是广为流传的“互联网哲学”（Internet Philosophy）。——译者注<a href="#fnref:2" rev="footnote"> ↩</a></span></li></ol></div></div>  
+<div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">不清楚博主的这篇翻译文章为什么没了，但原翻译者应该是他没错，这里只进行一下整理<a href="#fnref:1" rev="footnote"> ↩</a></span></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">2.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">1992 年，大卫·克拉克（David Clark）教授在 IETF 会议上总结了这样一句话“We reject: kings, presidents, and voting. We believe in: rough consensus and running code”（我们拒绝国王、总统和投票，我们相信大多数人的意见和运行的代码）。这就是广为流传的“互联网哲学”（Internet Philosophy）。——译者注<a href="#fnref:2" rev="footnote"> ↩</a></span></li></ol></div></div>  
 	</div>
 		<footer class="article-footer clearfix">
   <div class="article-catetags">
@@ -382,6 +380,14 @@
 	
 <nav class="article-nav clearfix">
  
+ <div class="prev" >
+ <a href="/2016/03/19/model-dialog/" title="什么是模态框（modal dialog）">
+  <strong>上一篇：</strong><br/>
+  <span>
+  什么是模态框（modal dialog）</span>
+</a>
+</div>
+
 
 <div class="next">
 <a href="/2016/03/18/why-should-we-ask-why/"  title="在计算机学习中，为什么我们应该问为什么">
@@ -403,7 +409,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML5-%E8%AE%BE%E8%AE%A1%E5%8E%9F%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text">HTML5 设计原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E5%8E%9F%E7%90%86"><span class="toc-number">2.</span> <span class="toc-text">设计原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML"><span class="toc-number">3.</span> <span class="toc-text">HTML</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML5"><span class="toc-number">4.</span> <span class="toc-text">HTML5</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%81%BF%E5%85%8D%E4%B8%8D%E5%BF%85%E8%A6%81%E7%9A%84%E5%A4%8D%E6%9D%82%E6%80%A7"><span class="toc-number">5.</span> <span class="toc-text">避免不必要的复杂性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%AF%E6%8C%81%E5%B7%B2%E6%9C%89%E7%9A%84%E5%86%85%E5%AE%B9"><span class="toc-number">6.</span> <span class="toc-text">支持已有的内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B1%82%E7%9C%9F%E5%8A%A1%E5%AE%9E"><span class="toc-number">7.</span> <span class="toc-text">求真务实</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%B3%E7%A8%B3%E9%80%80%E5%8C%96"><span class="toc-number">8.</span> <span class="toc-text">平稳退化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E7%BB%88%E7%94%A8%E6%88%B7%E4%BC%98%E5%85%88"><span class="toc-number">9.</span> <span class="toc-text">最终用户优先</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%84%9A%E6%B3%A8"><span class="toc-number">10.</span> <span class="toc-text">脚注</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML5-%E8%AE%BE%E8%AE%A1%E5%8E%9F%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text">HTML5 设计原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E5%8E%9F%E7%90%86"><span class="toc-number">2.</span> <span class="toc-text">设计原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML"><span class="toc-number">3.</span> <span class="toc-text">HTML</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML5"><span class="toc-number">4.</span> <span class="toc-text">HTML5</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%81%BF%E5%85%8D%E4%B8%8D%E5%BF%85%E8%A6%81%E7%9A%84%E5%A4%8D%E6%9D%82%E6%80%A7"><span class="toc-number">5.</span> <span class="toc-text">避免不必要的复杂性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%AF%E6%8C%81%E5%B7%B2%E6%9C%89%E7%9A%84%E5%86%85%E5%AE%B9"><span class="toc-number">6.</span> <span class="toc-text">支持已有的内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B1%82%E7%9C%9F%E5%8A%A1%E5%AE%9E"><span class="toc-number">7.</span> <span class="toc-text">求真务实</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%B3%E7%A8%B3%E9%80%80%E5%8C%96"><span class="toc-number">8.</span> <span class="toc-text">平稳退化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E7%BB%88%E7%94%A8%E6%88%B7%E4%BC%98%E5%85%88"><span class="toc-number">9.</span> <span class="toc-text">最终用户优先</span></a></li></ol>
  
   </div>
 
@@ -417,15 +423,15 @@
 		<ul>
 		
 		  
-			<li><a href="/categories/作为工程师/" title="作为工程师">作为工程师<sup>11</sup></a></li>
+			<li><a href="/categories/作为工程师/" title="作为工程师">作为工程师<sup>15</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/科哲和科学史/" title="科哲和科学史">科哲和科学史<sup>2</sup></a></li>
+			<li><a href="/categories/科哲和科学史/" title="科哲和科学史">科哲和科学史<sup>3</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/随笔/" title="随笔">随笔<sup>3</sup></a></li>
+			<li><a href="/categories/随笔/" title="随笔">随笔<sup>5</sup></a></li>
 		  
 		
 		</ul>

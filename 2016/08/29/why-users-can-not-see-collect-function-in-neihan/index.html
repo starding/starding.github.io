@@ -1,57 +1,56 @@
 
  <!DOCTYPE HTML>
-<html lang="zh-CN">
+<html lang="zh_CN">
 <head>
   <meta charset="UTF-8">
   
-    <title>前端工程师的形而上学(1)—— 一个例子 | 小狐濡尾</title>
+    <title>前端工程师的形而上学 (1)—— 一个例子 | 结绳以渔</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
-    <meta name="author" content="starding">
+    <meta name="author" content="XingHua">
     
 
     
-    <meta name="description" content="本文介绍一个认知心理学在「内涵段子」（支持一下公司产品）app上的应用。
-经常听到内涵段子的运营收到用户「内涵段子有没有收藏功能」的反馈，数量之多让人不由得疑惑，为什么这么多用户看不到内涵段子的「收藏」「保存」这几个功能？明明它们就在点击分享时弹出的面板上，按理说应该一眼就能看到。
-这其实是一种心理学上的盲视现象，当然一旦你知道有这两个功能并且有意识的去留意时，这种盲视现象就消失了。不过对于不少用">
+    <meta name="description" content="本文介绍一个认知心理学在「内涵段子」（支持一下公司产品）app 上的应用。 经常听到内涵段子的运营收到用户「内涵段子有没有收藏功能」的反馈，数量之多让人不由得疑惑，为什么这么多用户看不到内涵段子的「收藏」「保存」这几个功能？明明它们就在点击分享时弹出的面板上，按理说应该一眼就能看到。 这其实是一种心理学上的盲视现象，当然一旦你知道有这两个功能并且有意识的去留意时，这种盲视现象就消失了。不过对于不少">
 <meta property="og:type" content="article">
-<meta property="og:title" content="前端工程师的形而上学(1)—— 一个例子">
+<meta property="og:title" content="前端工程师的形而上学 (1)—— 一个例子">
 <meta property="og:url" content="http://starding.github.io/2016/08/29/why-users-can-not-see-collect-function-in-neihan/index.html">
-<meta property="og:site_name" content="小狐濡尾">
-<meta property="og:description" content="本文介绍一个认知心理学在「内涵段子」（支持一下公司产品）app上的应用。
-经常听到内涵段子的运营收到用户「内涵段子有没有收藏功能」的反馈，数量之多让人不由得疑惑，为什么这么多用户看不到内涵段子的「收藏」「保存」这几个功能？明明它们就在点击分享时弹出的面板上，按理说应该一眼就能看到。
-这其实是一种心理学上的盲视现象，当然一旦你知道有这两个功能并且有意识的去留意时，这种盲视现象就消失了。不过对于不少用">
-<meta property="og:image" content="http://p3.pstatp.com/obj/ba100047afd2cb5387e">
-<meta property="og:image" content="http://p1.pstatp.com/obj/ba100047afb061e12c3">
-<meta property="og:image" content="http://p8.pstatp.com/obj/ba100047bee7bf7fe20">
-<meta property="og:image" content="http://p5a.pstatp.com/obj/c8f0000cb857d542e45">
-<meta property="og:image" content="http://p1.pstatp.com/obj/ba100047afb061e12c3">
-<meta property="og:image" content="http://p3.pstatp.com/obj/ba100047afd2cb5387e">
-<meta property="og:image" content="http://p1.pstatp.com/obj/ba100047afb061e12c3">
-<meta property="og:image" content="http://p3.pstatp.com/obj/c8f0000cbac6e458e27">
-<meta property="og:image" content="http://p3.pstatp.com/obj/ba100047b33dfaaaabd">
-<meta property="og:image" content="http://p3.pstatp.com/obj/ba100047b3865a5a6c6">
-<meta property="og:image" content="http://p1.pstatp.com/obj/ba100047afb061e12c3">
-<meta property="og:updated_time" content="2016-09-04T09:29:37.000Z">
+<meta property="og:site_name" content="结绳以渔">
+<meta property="og:description" content="本文介绍一个认知心理学在「内涵段子」（支持一下公司产品）app 上的应用。 经常听到内涵段子的运营收到用户「内涵段子有没有收藏功能」的反馈，数量之多让人不由得疑惑，为什么这么多用户看不到内涵段子的「收藏」「保存」这几个功能？明明它们就在点击分享时弹出的面板上，按理说应该一眼就能看到。 这其实是一种心理学上的盲视现象，当然一旦你知道有这两个功能并且有意识的去留意时，这种盲视现象就消失了。不过对于不少">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/starding/picx-images-hosting@master/20240224/image.5htfc054ky80.webp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/starding/picx-images-hosting@master/20240224/image.26yvaxxkqnms.webp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/starding/picx-images-hosting@master/20240224/image.1pfm7einwsf4.webp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/starding/picx-images-hosting@master/20240224/image.1mk4pz687fgg.webp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/starding/picx-images-hosting@master/20240224/image.5htfc054ky80.webp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/starding/picx-images-hosting@master/20240224/image.1pfm7einwsf4.webp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/starding/picx-images-hosting@master/20240224/image.5htfc054ky80.webp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/starding/picx-images-hosting@master/20240224/image.1x5dtdlzl3mo.webp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/starding/picx-images-hosting@master/20240224/image.6pbzkr4oook0.webp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/starding/picx-images-hosting@master/20240224/image.2gyyac07p2w0.webp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/starding/picx-images-hosting@master/20240224/image.5htfc054ky80.webp">
+<meta property="article:published_time" content="2016-08-29T08:44:10.000Z">
+<meta property="article:modified_time" content="2024-02-24T09:00:12.411Z">
+<meta property="article:author" content="XingHua">
+<meta property="article:tag" content="投资，计算机，科学哲学，技术哲学">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="前端工程师的形而上学(1)—— 一个例子">
-<meta name="twitter:description" content="本文介绍一个认知心理学在「内涵段子」（支持一下公司产品）app上的应用。
-经常听到内涵段子的运营收到用户「内涵段子有没有收藏功能」的反馈，数量之多让人不由得疑惑，为什么这么多用户看不到内涵段子的「收藏」「保存」这几个功能？明明它们就在点击分享时弹出的面板上，按理说应该一眼就能看到。
-这其实是一种心理学上的盲视现象，当然一旦你知道有这两个功能并且有意识的去留意时，这种盲视现象就消失了。不过对于不少用">
-<meta name="twitter:image" content="http://p3.pstatp.com/obj/ba100047afd2cb5387e">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/starding/picx-images-hosting@master/20240224/image.5htfc054ky80.webp">
+<meta name="twitter:creator" content="@starstarding">
 
     
-    <link rel="alternative" href="/atom.xml" title="小狐濡尾" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="结绳以渔" type="application/atom+xml">
     
     
-    <link rel="icon" href="/img/my_favicon.ico">
+    <link rel="icon" href="/img/favicon-yao.ico">
     
     
-    <link rel="apple-touch-icon" href="/img/jacman.jpg">
-    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon" href="/img/white_logo_yao.png">
+    <link rel="apple-touch-icon-precomposed" href="/img/white_logo_yao.png">
     
-    <link rel="stylesheet" href="/css/style.css">
-</head>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 7.1.1"></head>
 
   <body>
     <header>
@@ -59,32 +58,30 @@
 <div>
 		
 			<div id="imglogo">
-				<a href="/"><img src="/img/my_white_logo.png" alt="小狐濡尾" title="小狐濡尾"/></a>
+				<a href="/"><img src="/img/white_logo_yao.png" alt="结绳以渔" title="结绳以渔"/></a>
 			</div>
 			
 			<div id="textlogo">
-				<h1 class="site-name"><a href="/" title="小狐濡尾">小狐濡尾</a></h1>
-				<h2 class="blog-motto">未济</h2>
+				<h1 class="site-name"><a href="/" title="结绳以渔">结绳以渔</a></h1>
+				<h2 class="blog-motto">临渊羡鱼，不如退而结网</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
 					<ul>
 					 
-						<li><a href="/">主页 | Home</a></li>
+						<li><a href="/">主页</a></li>
 					
-						<li><a href="/index">索引 | Index</a></li>
+						<li><a href="/archives">归档</a></li>
 					
-						<li><a href="/archives">归档 | Archives</a></li>
-					
-						<li><a href="/about">简介 | About</a></li>
+						<li><a href="/about">关于</a></li>
 					
 					<li>
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
 						<input type="hidden" name="q" value="site:starding.github.io">
 					</form>
 					
@@ -100,118 +97,117 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/08/29/why-users-can-not-see-collect-function-in-neihan/" title="前端工程师的形而上学(1)—— 一个例子" itemprop="url">前端工程师的形而上学(1)—— 一个例子</a>
+    <a
+      href="/2016/08/29/why-users-can-not-see-collect-function-in-neihan/"
+      title="前端工程师的形而上学 (1)—— 一个例子"
+      itemprop="url"
+      >前端工程师的形而上学 (1)—— 一个例子</a
+    >
   </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="starding" target="_blank" itemprop="author">starding</a>
-		
-  <p class="article-time">
-    <time datetime="2016-08-29T10:05:57.000Z" itemprop="datePublished"> 发表于 2016-08-29</time>
-    
-  </p>
+  <div class="article-info-meta">
+    <p class="article-author">
+      
+      <a
+        href="/about"
+        title="XingHua"
+        target="_blank"
+        itemprop="author"
+        >@XingHua</a
+      >
+      
+    </p>
+
+    <p class="article-time">
+      <time datetime="2016-08-29T08:44:10.000Z" itemprop="datePublished">
+        On 2016-08-29</time
+      >
+    </p>
+  </div>
 </header>
+
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目录</strong>
+			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#精简版结论"><span class="toc-number">1.</span> <span class="toc-text">精简版结论</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#两步分析"><span class="toc-number">1.1.</span> <span class="toc-text">两步分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如何改进"><span class="toc-number">1.2.</span> <span class="toc-text">如何改进</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#完整版的分析过程"><span class="toc-number">2.</span> <span class="toc-text">完整版的分析过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#两个问题（要是有投票就好了）"><span class="toc-number">2.1.</span> <span class="toc-text">两个问题（要是有投票就好了）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内涵使用经历背景"><span class="toc-number">2.2.</span> <span class="toc-text">内涵使用经历背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#为什么「收藏」「保存」功能被盲视了？"><span class="toc-number">2.3.</span> <span class="toc-text">为什么「收藏」「保存」功能被盲视了？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#操作步骤分析"><span class="toc-number">2.4.</span> <span class="toc-text">操作步骤分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#点击分享图标"><span class="toc-number">2.4.1.</span> <span class="toc-text">点击分享图标</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#进入分享弹层"><span class="toc-number">2.4.2.</span> <span class="toc-text">进入分享弹层</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#被盲视的另一个原因"><span class="toc-number">2.5.</span> <span class="toc-text">被盲视的另一个原因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如何改进-1"><span class="toc-number">2.6.</span> <span class="toc-text">如何改进</span></a></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B2%BE%E7%AE%80%E7%89%88%E7%BB%93%E8%AE%BA"><span class="toc-number">1.</span> <span class="toc-text">精简版结论</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%A4%E6%AD%A5%E5%88%86%E6%9E%90"><span class="toc-number">1.1.</span> <span class="toc-text">两步分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E6%94%B9%E8%BF%9B"><span class="toc-number">1.2.</span> <span class="toc-text">如何改进</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%8C%E6%95%B4%E7%89%88%E7%9A%84%E5%88%86%E6%9E%90%E8%BF%87%E7%A8%8B"><span class="toc-number">2.</span> <span class="toc-text">完整版的分析过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%A4%E4%B8%AA%E9%97%AE%E9%A2%98%EF%BC%88%E8%A6%81%E6%98%AF%E6%9C%89%E6%8A%95%E7%A5%A8%E5%B0%B1%E5%A5%BD%E4%BA%86%EF%BC%89"><span class="toc-number">2.1.</span> <span class="toc-text">两个问题（要是有投票就好了）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E6%B6%B5%E4%BD%BF%E7%94%A8%E7%BB%8F%E5%8E%86%E8%83%8C%E6%99%AF"><span class="toc-number">2.2.</span> <span class="toc-text">内涵使用经历背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E3%80%8C%E6%94%B6%E8%97%8F%E3%80%8D%E3%80%8C%E4%BF%9D%E5%AD%98%E3%80%8D%E5%8A%9F%E8%83%BD%E8%A2%AB%E7%9B%B2%E8%A7%86%E4%BA%86%EF%BC%9F"><span class="toc-number">2.3.</span> <span class="toc-text">为什么「收藏」「保存」功能被盲视了？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E6%AD%A5%E9%AA%A4%E5%88%86%E6%9E%90"><span class="toc-number">2.4.</span> <span class="toc-text">操作步骤分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%82%B9%E5%87%BB%E5%88%86%E4%BA%AB%E5%9B%BE%E6%A0%87"><span class="toc-number">2.4.1.</span> <span class="toc-text">点击分享图标</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9B%E5%85%A5%E5%88%86%E4%BA%AB%E5%BC%B9%E5%B1%82"><span class="toc-number">2.4.2.</span> <span class="toc-text">进入分享弹层</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E6%94%B9%E8%BF%9B-1"><span class="toc-number">2.5.</span> <span class="toc-text">如何改进</span></a></li></ol></li></ol>
 		
 		</div>
 		
-		<p>本文介绍一个认知心理学在「内涵段子」（支持一下公司产品）app上的应用。</p>
+		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>本文介绍一个认知心理学在「内涵段子」（支持一下公司产品）app 上的应用。</p>
 <p>经常听到内涵段子的运营收到用户「内涵段子有没有收藏功能」的反馈，数量之多让人不由得疑惑，为什么这么多用户看不到内涵段子的「收藏」「保存」这几个功能？明明它们就在点击分享时弹出的面板上，按理说应该一眼就能看到。</p>
 <p>这其实是一种心理学上的盲视现象，当然一旦你知道有这两个功能并且有意识的去留意时，这种盲视现象就消失了。不过对于不少用户来说，这是个困难的过程。本文就从认知心理学角度来分析一下这个匪夷所思的问题，并且给出相应的解决方案：</p>
-<h2 id="精简版结论"><a href="#精简版结论" class="headerlink" title="精简版结论"></a>精简版结论</h2><h3 id="两步分析"><a href="#两步分析" class="headerlink" title="两步分析"></a>两步分析</h3><p>进入分享弹层之前，分享图标带有强烈的目标引导倾向（就是分享）， 让人下意识的认为点击这个图标之后的弹层全部功能都与分享有关。</p>
-<p>内涵段子分享图标:<br><img src="http://p3.pstatp.com/obj/ba100047afd2cb5387e" width="30%"></p>
-<p><br><br><br></p>
-<p>进入弹层之后，受目标影响，关注点都在分享功能上，从而导致对其他功能的盲视，而下面那些功能图标风格接近ios系统风格，更是加剧了这种盲视效果。（下图为点击后的弹层，注意下面的「收藏」「保存」功能）</p>
-<p><img src="http://p1.pstatp.com/obj/ba100047afb061e12c3" width="30%"></p>
-<p>用户眼中其实是这样的(用户只看到两个点，当分享时看到上面一个点，取消时会看到下面一个点， 至于中间的部分一般一眼扫过，被忽略掉)：<br><img src="http://p8.pstatp.com/obj/ba100047bee7bf7fe20" width="30%"></p>
+<h2 id="精简版结论"><a href="#精简版结论" class="headerlink" title="精简版结论"></a>精简版结论</h2><h3 id="两步分析"><a href="#两步分析" class="headerlink" title="两步分析"></a>两步分析</h3><p>进入分享弹层之前，分享图标带有强烈的目标引导倾向（就是分享），让人下意识的认为点击这个图标之后的弹层全部功能都与分享有关。</p>
+<p>内涵段子分享图标：<br><img src="https://cdn.jsdelivr.net/gh/starding/picx-images-hosting@master/20240224/image.5htfc054ky80.webp" alt="内涵段子分享图标"></p>
+<p>进入弹层之后，受目标影响，关注点都在分享功能上，从而导致对其他功能的盲视，而下面那些功能图标风格接近 ios 系统风格，更是加剧了这种盲视效果。（下图为点击后的弹层，注意下面的「收藏」「保存」功能）<br><img src="https://cdn.jsdelivr.net/gh/starding/picx-images-hosting@master/20240224/image.26yvaxxkqnms.webp" alt="收藏和保存功能"></p>
+<p>用户眼中其实是这样的 (用户只看到两个点，当分享时看到上面一个点，取消时会看到下面一个点，至于中间的部分一般一眼扫过，被忽略掉)：<br><img src="https://cdn.jsdelivr.net/gh/starding/picx-images-hosting@master/20240224/image.1pfm7einwsf4.webp" alt="用户眼中的分享面板"></p>
 <h3 id="如何改进"><a href="#如何改进" class="headerlink" title="如何改进"></a>如何改进</h3><p>其实很简单，有两个方向</p>
 <ol>
-<li><p>分享图标换成 … （表示更多功能）：因为对于此图标，用户心理预期就是点开之后里面有多种功能可选，从而会较为留心的查看。</p>
-</li>
-<li><p>分享图标就是分享功能，单独拆出来（单一图标等于单一功能的心理预期），剩下的用 …（更多功能）表示</p>
-</li>
+<li>分享图标换成 … （表示更多功能）：因为对于此图标，用户心理预期就是点开之后里面有多种功能可选，从而会较为留心的查看。</li>
+<li>分享图标就是分享功能，单独拆出来（单一图标等于单一功能的心理预期），剩下的用 …（更多功能）表示</li>
 </ol>
-<p>以上不管哪个方向，都需要改变「收藏」「保存」等功能图标的风格，避免跟系统的过于接近，最好是跟内涵风格保持一致。 </p>
-<p><br><br><br></p>
-<p>想深入了解分析过程的童鞋，可观看完整版文章。主要从一些心理认知理论入手进行分析， 文中包含了一些当前认知心理学领域的很有趣的观点，推荐阅读。</p>
-<h2 id="完整版的分析过程"><a href="#完整版的分析过程" class="headerlink" title="完整版的分析过程"></a>完整版的分析过程</h2><h3 id="两个问题（要是有投票就好了）"><a href="#两个问题（要是有投票就好了）" class="headerlink" title="两个问题（要是有投票就好了）"></a>两个问题（要是有投票就好了）</h3><ul>
-<li>你有没有留意到「内涵段子的收藏， 保存功能」？</li>
+<p>以上不管哪个方向，都需要改变「收藏」「保存」等功能图标的风格，避免跟系统的过于接近，最好是跟内涵风格保持一致。</p>
+<p>想深入了解分析过程的童鞋，可观看完整版文章。主要从一些心理认知理论入手进行分析，文中包含了一些当前认知心理学领域的很有趣的观点，推荐阅读。</p>
+<h2 id="完整版的分析过程"><a href="#完整版的分析过程" class="headerlink" title="完整版的分析过程"></a>完整版的分析过程</h2><h3 id="两个问题（要是有投票就好了）"><a href="#两个问题（要是有投票就好了）" class="headerlink" title="两个问题（要是有投票就好了）"></a>两个问题（要是有投票就好了）</h3><ol>
+<li>你有没有留意到「内涵段子的收藏，保存功能」？</li>
 <li>如果留意到了，从使用段子开始到留意到花了多长时间？</li>
-</ul>
-<p>为了描述一个用户使用内涵段子的完整心理，所以加入我个人的使用内涵的经历， 不想了解的可以跳过此段落，直接看第二个大标题段落。</p>
-<h3 id="内涵使用经历背景"><a href="#内涵使用经历背景" class="headerlink" title="内涵使用经历背景"></a>内涵使用经历背景</h3><p>到今天为止，我使用内涵段子app差不多有半年的时间。 在使用过程中让我最疑惑的地方是，有时候遇到一个很喜欢的图片或段子想保存或者收藏下来，但找不到相应的功能。</p>
-<p>作为一名工程师，我自认为使用APP的经验非常丰富，但我的的确确没有发现类似功能。最后我只能猜测是出于某些特别的考虑，pm没有设计这两个功能。以及为了收藏我喜欢的一些段子，只能把它直接分享到我个人的微信中，如下图（很蠢但我没找到好办法）：</p>
-<p><img src="http://p5a.pstatp.com/obj/c8f0000cb857d542e45" width="30%"></p>
+</ol>
+<p>为了描述一个用户使用内涵段子的完整心理，所以加入我个人的使用内涵的经历，不想了解的可以跳过此段落，直接看第二个大标题段落。</p>
+<h3 id="内涵使用经历背景"><a href="#内涵使用经历背景" class="headerlink" title="内涵使用经历背景"></a>内涵使用经历背景</h3><p>到今天为止，我使用内涵段子 app 差不多有半年的时间。在使用过程中让我最疑惑的地方是，有时候遇到一个很喜欢的图片或段子想保存或者收藏下来，但找不到相应的功能。</p>
+<p>作为一名工程师，我自认为使用 APP 的经验非常丰富，但我的的确确没有发现类似功能。最后我只能猜测是出于某些特别的考虑，pm 没有设计这两个功能。以及为了收藏我喜欢的一些段子，只能把它直接分享到我个人的微信中，如下图（很蠢但我没找到好办法）：<br><img src="https://cdn.jsdelivr.net/gh/starding/picx-images-hosting@master/20240224/image.1mk4pz687fgg.webp" alt="通过微信保存我的分享"></p>
 <p>今天第一次参加内涵相关的需求讨论会时，我又想起这个问题，于是问了一下相关的负责人，被告知是有「收藏」「保存」功能的，只是我没有发现（一般人试图找了几次无果后，基本就放弃寻找了，转而用其他手段代替）。</p>
-<p>于是我挨个把所有能看到的图标，全遍历了一遍，千真万确，最后我发现了几个被我忽略近半年的功能 —— 因为某些原因，这些功能被盲视了， 即便我曾无数次的点击分享图标。如下图所示，收藏和保存功能就在弹层下方：</p>
-<p><img src="http://p1.pstatp.com/obj/ba100047afb061e12c3" width="30%"></p>
+<p>于是我挨个把所有能看到的图标，全遍历了一遍，千真万确，最后我发现了几个被我忽略近半年的功能 —— 因为某些原因，这些功能被盲视了，即便我曾无数次的点击分享图标。如下图所示，收藏和保存功能就在弹层下方：<br><img src="https://cdn.jsdelivr.net/gh/starding/picx-images-hosting@master/20240224/image.5htfc054ky80.webp" alt="内涵段子分享图标"></p>
 <h3 id="为什么「收藏」「保存」功能被盲视了？"><a href="#为什么「收藏」「保存」功能被盲视了？" class="headerlink" title="为什么「收藏」「保存」功能被盲视了？"></a>为什么「收藏」「保存」功能被盲视了？</h3><p>这可以从认知心理学上找到原因。简单来说，主要有四个原因（不展开了，只说结论）：</p>
-<ol>
-<li>人的视线焦点集中区域（中央视野）非常窄，在正常屏幕距离下（半臂到一臂距离），我们的视线焦点大概只有拇指指甲盖大小。</li>
-<li>人的注意力非常有限，普通人查看手机时注意力基本只能集中于一点（通常是视线焦点）</li>
-<li>人的注意力很容易被目标引导，跟目标相关性强的容易被注意，反之容易被忽略</li>
-<li>人对事物的认知会受经验和习惯的影响</li>
-</ol>
-<h3 id="操作步骤分析"><a href="#操作步骤分析" class="headerlink" title="操作步骤分析"></a>操作步骤分析</h3><h4 id="点击分享图标"><a href="#点击分享图标" class="headerlink" title="点击分享图标"></a>点击分享图标</h4><p>分享图标：<br><img src="http://p3.pstatp.com/obj/ba100047afd2cb5387e" width="30%"></p>
-<ol>
-<li><p>有互联网产品使用经验的人对这个图标非常熟悉，一般是想要分享才会点击这个图标。注意这里的因果关系，一般不是先点了这个图标，再决定是否分享，而是一开始就带有目的性。</p>
-</li>
-<li><p>这个分享图标太常见了，以至于会设定一种强代表性（也带有强引导性）：图标即功能，在熟练使用互联网的人看来，分享图标与分享功能这二者是一一对应的（如果出现了分享之外的功能，则是不符合用户心理预期的）</p>
-</li>
-</ol>
-<p>上面两点综合起来决定了用户点击这个图标的预期——就是奔着分享去的，我进这个页面会看到分享功能（也是前面认知理论的3，4点）</p>
-<h4 id="进入分享弹层"><a href="#进入分享弹层" class="headerlink" title="进入分享弹层"></a>进入分享弹层</h4><p>功能弹层：<br><img src="http://p1.pstatp.com/obj/ba100047afb061e12c3" width="30%"></p>
-<p>进入分享弹层之后，由于用户实现有了目标和预期并且受其影响，他的视线和注意力是这样的（根据前面的认知理论，用户的视线焦点范围很小，这个焦点只会放在最值得关注的地方），如下图：</p>
-<p><img src="http://p3.pstatp.com/obj/c8f0000cbac6e458e27" width="30%"></p>
-<p>如果用户不想分享了，按照经验习惯直接把目光跳到底部，这个时候他的视线焦点和注意力如下图：</p>
-<p><img src="http://p3.pstatp.com/obj/ba100047b33dfaaaabd" width="30%"></p>
-<h3 id="被盲视的另一个原因"><a href="#被盲视的另一个原因" class="headerlink" title="被盲视的另一个原因"></a>被盲视的另一个原因</h3><p> 头条分享弹层  &amp;&amp; 内涵分享弹层</p>
-<p>头条：<br> <img src="http://p3.pstatp.com/obj/ba100047b3865a5a6c6" width="30%"></p>
-<p>内涵:<br> <img src="http://p1.pstatp.com/obj/ba100047afb061e12c3" width="30%"></p>
-<p> 对比可以发现，内涵的分享弹层下部按钮风格跟ios的风格设定非常接近，而且这种风格采用浅灰色线条式设计，视觉敏感度很低（不容易被边界视觉留意到）。用户再结合自身使用ios的经验，下意识会认为这部分只是系统自带的一些杂七杂八的功能，从而视线直接扫过不看，导致信息丢失。</p>
+<p>人的视线焦点集中区域（中央视野）非常窄，在正常屏幕距离下（半臂到一臂距离），我们的视线焦点大概只有拇指指甲盖大小。<br>人的注意力非常有限，普通人查看手机时注意力基本只能集中于一点（通常是视线焦点）<br>人的注意力很容易被目标引导，跟目标相关性强的容易被注意，反之容易被忽略<br>人对事物的认知会受经验和习惯的影响</p>
+<h3 id="操作步骤分析"><a href="#操作步骤分析" class="headerlink" title="操作步骤分析"></a>操作步骤分析</h3><h4 id="点击分享图标"><a href="#点击分享图标" class="headerlink" title="点击分享图标"></a>点击分享图标</h4><p>分享图标：<br><img src="https://cdn.jsdelivr.net/gh/starding/picx-images-hosting@master/20240224/image.1pfm7einwsf4.webp" alt="分享图标"></p>
+<p>有互联网产品使用经验的人对这个图标非常熟悉，一般是想要分享才会点击这个图标。注意这里的因果关系，一般不是先点了这个图标，再决定是否分享，而是一开始就带有目的性。</p>
+<p>这个分享图标太常见了，以至于会设定一种强代表性（也带有强引导性）：图标即功能，在熟练使用互联网的人看来，分享图标与分享功能这二者是一一对应的（如果出现了分享之外的功能，则是不符合用户心理预期的）</p>
+<p>上面两点综合起来决定了用户点击这个图标的预期——就是奔着分享去的，我进这个页面会看到分享功能（也是前面认知理论的 3，4 点）</p>
+<h4 id="进入分享弹层"><a href="#进入分享弹层" class="headerlink" title="进入分享弹层"></a>进入分享弹层</h4><p>功能弹层：<br><img src="https://cdn.jsdelivr.net/gh/starding/picx-images-hosting@master/20240224/image.5htfc054ky80.webp" alt="内涵段子分享面板"></p>
+<p>进入分享弹层之后，由于用户实现有了目标和预期并且受其影响，他的视线和注意力是这样的（根据前面的认知理论，用户的视线焦点范围很小，这个焦点只会放在最值得关注的地方），如下图：<br><img src="https://cdn.jsdelivr.net/gh/starding/picx-images-hosting@master/20240224/image.1x5dtdlzl3mo.webp" alt="用户眼中的分享面板"></p>
+<p>如果用户不想分享了，按照经验习惯直接把目光跳到底部，这个时候他的视线焦点和注意力如下图：<br><img src="https://cdn.jsdelivr.net/gh/starding/picx-images-hosting@master/20240224/image.6pbzkr4oook0.webp" alt="用户眼中的分享面板"></p>
+<p>被盲视的另一个原因<br>头条分享弹层 &amp;&amp; 内涵分享弹层</p>
+<p>头条：<br><img src="https://cdn.jsdelivr.net/gh/starding/picx-images-hosting@master/20240224/image.2gyyac07p2w0.webp" alt="今日头条分享面板"></p>
+<p>内涵：<br><img src="https://cdn.jsdelivr.net/gh/starding/picx-images-hosting@master/20240224/image.5htfc054ky80.webp" alt="内涵段子分享图标"></p>
+<p>对比可以发现，内涵的分享弹层下部按钮风格跟 ios 的风格设定非常接近，而且这种风格采用浅灰色线条式设计，视觉敏感度很低（不容易被边界视觉留意到）。用户再结合自身使用 ios 的经验，下意识会认为这部分只是系统自带的一些杂七杂八的功能，从而视线直接扫过不看，导致信息丢失。</p>
 <h3 id="如何改进-1"><a href="#如何改进-1" class="headerlink" title="如何改进"></a>如何改进</h3><p>其实很简单，有两个方向</p>
-<ol>
-<li><p>分享图标换成 … ， 表示更多功能，因为对于此图标，用户心理预期就是点开之后里面具有多种功能，从而会较为留心的查看。</p>
-</li>
-<li><p>分享图标就是分享功能，单独拆出来（单一图标等于单一功能的心理预期），剩下的用 …（更多功能）表示</p>
-</li>
-</ol>
-<p>以上不管哪个方向，都需要改变「收藏」「保存」等功能图标的风格，避免跟系统的过于接近，最好是跟内涵风格保持一致。 </p>
+<p>分享图标换成 … ，表示更多功能，因为对于此图标，用户心理预期就是点开之后里面具有多种功能，从而会较为留心的查看。</p>
+<p>分享图标就是分享功能，单独拆出来（单一图标等于单一功能的心理预期），剩下的用 …（更多功能）表示</p>
+<p>以上不管哪个方向，都需要改变「收藏」「保存」等功能图标的风格，避免跟系统的过于接近，最好是跟内涵风格保持一致。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
-<div class="article-catetags">
+  <div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/%E4%BD%9C%E4%B8%BA%E5%B7%A5%E7%A8%8B%E5%B8%88/">作为工程师</a>
+</div>
 
 
 </div>
 
-
-
-	<div class="article-share" id="share">
-	
-	  <div data-url="http://starding.github.io/2016/08/29/why-users-can-not-see-collect-function-in-neihan/" data-title="前端工程师的形而上学(1)—— 一个例子 | 小狐濡尾" data-tsina="null" class="share clearfix">
-	  </div>
-	
-	</div>
-
-
+ 
+  <div class="article-share" id="share">
+    <div
+      data-url="http://starding.github.io/2016/08/29/why-users-can-not-see-collect-function-in-neihan/"
+      data-title="前端工程师的形而上学 (1)—— 一个例子 | 结绳以渔"
+      data-tsina=""
+      class="share clearfix"
+    ></div>
+  </div>
+   
 </footer>
-
    	       
 	</article>
 	
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2016/09/04/fe-metaphysics/" title="前端工程师的形而上学(0)">
+ <a href="/2016/09/04/fe-metaphysics/" title="前端工程师的形而上学 (0)">
   <strong>上一篇：</strong><br/>
   <span>
-  前端工程师的形而上学(0)</span>
+  前端工程师的形而上学 (0)</span>
 </a>
 </div>
 
@@ -227,172 +223,57 @@
 </nav>
 
 	
-<section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/08/29/why-users-can-not-see-collect-function-in-neihan/" data-title="前端工程师的形而上学(1)—— 一个例子" data-url="http://starding.github.io/2016/08/29/why-users-can-not-see-collect-function-in-neihan/"></div>
-</section>
+
 
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目录</strong>
+  <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#精简版结论"><span class="toc-number">1.</span> <span class="toc-text">精简版结论</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#两步分析"><span class="toc-number">1.1.</span> <span class="toc-text">两步分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如何改进"><span class="toc-number">1.2.</span> <span class="toc-text">如何改进</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#完整版的分析过程"><span class="toc-number">2.</span> <span class="toc-text">完整版的分析过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#两个问题（要是有投票就好了）"><span class="toc-number">2.1.</span> <span class="toc-text">两个问题（要是有投票就好了）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内涵使用经历背景"><span class="toc-number">2.2.</span> <span class="toc-text">内涵使用经历背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#为什么「收藏」「保存」功能被盲视了？"><span class="toc-number">2.3.</span> <span class="toc-text">为什么「收藏」「保存」功能被盲视了？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#操作步骤分析"><span class="toc-number">2.4.</span> <span class="toc-text">操作步骤分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#点击分享图标"><span class="toc-number">2.4.1.</span> <span class="toc-text">点击分享图标</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#进入分享弹层"><span class="toc-number">2.4.2.</span> <span class="toc-text">进入分享弹层</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#被盲视的另一个原因"><span class="toc-number">2.5.</span> <span class="toc-text">被盲视的另一个原因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如何改进-1"><span class="toc-number">2.6.</span> <span class="toc-text">如何改进</span></a></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B2%BE%E7%AE%80%E7%89%88%E7%BB%93%E8%AE%BA"><span class="toc-number">1.</span> <span class="toc-text">精简版结论</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%A4%E6%AD%A5%E5%88%86%E6%9E%90"><span class="toc-number">1.1.</span> <span class="toc-text">两步分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E6%94%B9%E8%BF%9B"><span class="toc-number">1.2.</span> <span class="toc-text">如何改进</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%8C%E6%95%B4%E7%89%88%E7%9A%84%E5%88%86%E6%9E%90%E8%BF%87%E7%A8%8B"><span class="toc-number">2.</span> <span class="toc-text">完整版的分析过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%A4%E4%B8%AA%E9%97%AE%E9%A2%98%EF%BC%88%E8%A6%81%E6%98%AF%E6%9C%89%E6%8A%95%E7%A5%A8%E5%B0%B1%E5%A5%BD%E4%BA%86%EF%BC%89"><span class="toc-number">2.1.</span> <span class="toc-text">两个问题（要是有投票就好了）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E6%B6%B5%E4%BD%BF%E7%94%A8%E7%BB%8F%E5%8E%86%E8%83%8C%E6%99%AF"><span class="toc-number">2.2.</span> <span class="toc-text">内涵使用经历背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E3%80%8C%E6%94%B6%E8%97%8F%E3%80%8D%E3%80%8C%E4%BF%9D%E5%AD%98%E3%80%8D%E5%8A%9F%E8%83%BD%E8%A2%AB%E7%9B%B2%E8%A7%86%E4%BA%86%EF%BC%9F"><span class="toc-number">2.3.</span> <span class="toc-text">为什么「收藏」「保存」功能被盲视了？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E6%AD%A5%E9%AA%A4%E5%88%86%E6%9E%90"><span class="toc-number">2.4.</span> <span class="toc-text">操作步骤分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%82%B9%E5%87%BB%E5%88%86%E4%BA%AB%E5%9B%BE%E6%A0%87"><span class="toc-number">2.4.1.</span> <span class="toc-text">点击分享图标</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9B%E5%85%A5%E5%88%86%E4%BA%AB%E5%BC%B9%E5%B1%82"><span class="toc-number">2.4.2.</span> <span class="toc-text">进入分享弹层</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E6%94%B9%E8%BF%9B-1"><span class="toc-number">2.5.</span> <span class="toc-text">如何改进</span></a></li></ol></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 
   
-<p class="asidetitle">知乎名片</p>
-<div class="zhihu-card" data-userhash="e013a8bda1c63934c4d390974c4981ca" data-width="240" data-height="120" data-key1="answer" data-key2="agree" data-key3="thanks" data-key4="follower" data-theme="github">
-</div>
-<script type="text/javascript" src="//cdn.jsdelivr.net/zhihu-card/latest/widget.js"></script>
-
-
-
-  
-
-<div class="doubanshow">
-<p class="asidetitle">豆瓣秀</p>
-<div>
-<script type="text/javascript" src="http://www.douban.com/service/badge/58816601/?show=collection&amp;n=12&amp;columns=3&amp;hidelogo=yes&amp;hideself=yes&amp;cat=book|movie" ></script>
-</div>
-</div>
-
-
-  
 <div class="categorieslist">
-	<p class="asidetitle">分类</p>
+	<p class="asidetitle">Categories</p>
 		<ul>
 		
 		  
-			<li><a href="/categories/computer-philosophy/" title="computer philosophy">computer philosophy<sup>2</sup></a></li>
+			<li><a href="/categories/作为工程师/" title="作为工程师">作为工程师<sup>15</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/docker/" title="docker">docker<sup>4</sup></a></li>
+			<li><a href="/categories/科哲和科学史/" title="科哲和科学史">科哲和科学史<sup>3</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/javascript/" title="javascript">javascript<sup>2</sup></a></li>
+			<li><a href="/categories/随笔/" title="随笔">随笔<sup>5</sup></a></li>
 		  
-		
-		  
-			<li><a href="/categories/open-questions/" title="open-questions">open-questions<sup>1</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/python/" title="python">python<sup>4</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/前端/" title="前端">前端<sup>3</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/技术哲学/" title="技术哲学">技术哲学<sup>2</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/数学/" title="数学">数学<sup>1</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/科学史与科学哲学/" title="科学史与科学哲学">科学史与科学哲学<sup>1</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/算法/" title="算法">算法<sup>1</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/问题/" title="问题">问题<sup>1</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/随笔/" title="随笔">随笔<sup>4</sup></a></li>
-		  
-		
-		</ul>
-</div>
-
-
-  
-<div class="tagslist">
-	<p class="asidetitle">标签</p>
-		<ul class="clearfix">
-		
-			
-				<li><a href="/tags/python/" title="python">python<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/docker/" title="docker">docker<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/随笔/" title="随笔">随笔<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/前端/" title="前端">前端<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/javascript/" title="javascript">javascript<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/computer/" title="computer">computer<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/科学哲学/" title="科学哲学">科学哲学<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/gitlab/" title="gitlab">gitlab<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/open-questions/" title="open-questions">open-questions<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/django/" title="django">django<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/科学史/" title="科学史">科学史<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/三体/" title="三体">三体<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/行尸走肉/" title="行尸走肉">行尸走肉<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/社会达尔文主义/" title="社会达尔文主义">社会达尔文主义<sup>1</sup></a></li>
-			
 		
 		</ul>
 </div>
 
 
   <div class="linkslist">
-  <p class="asidetitle">友情链接</p>
+  <p class="asidetitle">Links</p>
     <ul>
         
           <li>
             
-            	<a href="http://phiphicake.blogspot.com" target="_blank" title=" 一个有趣的哲学博客">哲学鸡蛋糕</a>
+            	<a href="http://finaltheory.me/" target="_blank" title=" 18~26 岁期间对我影响很大的同学">黄龑</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://chuan.us" target="_blank" title=" 虽然不认识，但 30 岁之后我从他的言论中学到了很多">硅谷王川</a>
             
           </li>
         
@@ -400,60 +281,65 @@
 </div>
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
 </div>
 
 </aside>
 </div>
     </div>
-    <footer><div id="footer" >
-	
-	<div class="line">
-		<span></span>
-		<div class="author"></div>
-	</div>
-	
-	
-	<section class="info">
-		<p> Hello ,I&#39;m Starding. <br/>
-			This is my blog,believe it or not.</p>
-	</section>
-	 
-	<div class="social-font" class="clearfix">
-		
-		
-		<a href="https://github.com/starding" target="_blank" class="icon-github" title="github"></a>
-		
-		
-		
-		
-		
-		
-		<a href="https://www.douban.com/people/58816601" target="_blank" class="icon-douban" title="豆瓣"></a>
-		
-		
-		<a href="http://www.zhihu.com/people/starstarding" target="_blank" class="icon-zhihu" title="知乎"></a>
-		
-		
-		
-		<a href="mailto:starding@buaa.edu.cn" target="_blank" class="icon-email" title="Email Me"></a>
-		
-	</div>
-			
-		
+    <footer><div id="footer">
+  
+  <div class="line">
+    <span></span>
+    <div class="author"></div>
+  </div>
+   
+  <section class="info">
+    <p>
+      人存于世，因缘际会 <br />
+      我是兴华，很高兴见到你
+    </p>
+  </section>
+  
+  <div class="social-font" class="clearfix">
+     
+    <a
+      href="https://github.com/starding"
+      target="_blank"
+      class="icon-github"
+      title="github"
+    ></a>
+      
+    <a
+      href="https://twitter.com/starstarding"
+      target="_blank"
+      class="icon-twitter"
+      title="twitter"
+    ></a>
+          
+    <a
+      href="mailto:starstarding@gmail.com"
+      target="_blank"
+      class="icon-email"
+      title="Email Me"
+    ></a>
+    
+  </div>
+   
 
-		<p class="copyright">
-		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
-
-		
-		<a href="/about" target="_blank" title="starding">starding</a>
-		
-
-	    <br>	
-        本站总访问量<span id="busuanzi_value_site_pv"></span>次
-        本站访客数<span id="busuanzi_value_site_uv"></span>人次
-        本文总阅读量<span id="busuanzi_value_page_pv"></span>次
-		</p>
+  <p class="copyright">
+    Powered by
+    <a href="http://hexo.io" target="_blank" title="hexo">hexo</a>
+	
+    © 2024 
+    <a
+      href="/about"
+      target="_blank"
+      title="XingHua"
+      >XingHua</a
+    >
+    
+  </p>
 </div>
 </footer>
     <script src="/js/jquery-2.0.3.min.js"></script>
@@ -462,181 +348,181 @@
 <script src="/js/jquery.qrcode-0.12.0.min.js"></script>
 
 <script type="text/javascript">
-$(document).ready(function(){ 
-  $('.navbar').click(function(){
-    $('header nav').toggleClass('shownav');
-  });
-  var myWidth = 0;
-  function getSize(){
-    if( typeof( window.innerWidth ) == 'number' ) {
-      myWidth = window.innerWidth;
-    } else if( document.documentElement && document.documentElement.clientWidth) {
-      myWidth = document.documentElement.clientWidth;
+  $(document).ready(function(){
+    $('.navbar').click(function(){
+      $('header nav').toggleClass('shownav');
+    });
+    var myWidth = 0;
+    function getSize(){
+      if( typeof( window.innerWidth ) == 'number' ) {
+        myWidth = window.innerWidth;
+      } else if( document.documentElement && document.documentElement.clientWidth) {
+        myWidth = document.documentElement.clientWidth;
+      };
     };
-  };
-  var m = $('#main'),
-      a = $('#asidepart'),
-      c = $('.closeaside'),
-      o = $('.openaside');
-  c.click(function(){
-    a.addClass('fadeOut').css('display', 'none');
-    o.css('display', 'block').addClass('fadeIn');
-    m.addClass('moveMain');
-  });
-  o.click(function(){
-    o.css('display', 'none').removeClass('beforeFadeIn');
-    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
-    m.removeClass('moveMain');
-  });
-  $(window).scroll(function(){
-    o.css("top",Math.max(80,260-$(this).scrollTop()));
-  });
-  
-  $(window).resize(function(){
-    getSize(); 
-    if (myWidth >= 1024) {
-      $('header nav').removeClass('shownav');
-    }else{
+    var m = $('#main'),
+        a = $('#asidepart'),
+        c = $('.closeaside'),
+        o = $('.openaside');
+    c.click(function(){
+      a.addClass('fadeOut').css('display', 'none');
+      o.css('display', 'block').addClass('fadeIn');
+      m.addClass('moveMain');
+    });
+    o.click(function(){
+      o.css('display', 'none').removeClass('beforeFadeIn');
+      a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');
       m.removeClass('moveMain');
-      a.css('display', 'block').removeClass('fadeOut');
-      o.css('display', 'none');
-      
-      $('#toc.toc-aside').css('display', 'none');
+    });
+    $(window).scroll(function(){
+      o.css("top",Math.max(80,260-$(this).scrollTop()));
+    });
+    
+    $(window).resize(function(){
+      getSize();
+      if (myWidth >= 1024) {
+        $('header nav').removeClass('shownav');
+      }else{
+        m.removeClass('moveMain');
+        a.css('display', 'block').removeClass('fadeOut');
+        o.css('display', 'none');
         
-    }
+        $('#toc.toc-aside').css('display', 'none');
+        
+      }
+    });
   });
-});
 </script>
 
 <script type="text/javascript">
-$(document).ready(function(){ 
-  var ai = $('.article-content>iframe'),
+  $(document).ready(function () {
+    var ai = $('.article-content>iframe'),
       ae = $('.article-content>embed'),
-      t  = $('#toc'),
+      t = $('#toc'),
       ta = $('#toc.toc-aside'),
-      o  = $('.openaside'),
-      c  = $('.closeaside');
-  if(ai.length>0){
-    ai.wrap('<div class="video-container" />');
-  };
-  if(ae.length>0){
-   ae.wrap('<div class="video-container" />');
-  };
-  c.click(function(){
-    ta.css('display', 'block').addClass('fadeIn');
-  });
-  o.click(function(){
-    ta.css('display', 'none');
-  });
-  $(window).scroll(function(){
-    ta.css("top",Math.max(140,320-$(this).scrollTop()));
-  });
-});
+      o = $('.openaside'),
+      c = $('.closeaside')
+    if (ai.length > 0) {
+      ai.wrap('<div class="video-container" />')
+    }
+    if (ae.length > 0) {
+      ae.wrap('<div class="video-container" />')
+    }
+    c.click(function () {
+      ta.css('display', 'block').addClass('fadeIn')
+    })
+    o.click(function () {
+      ta.css('display', 'none')
+    })
+    $(window).scroll(function () {
+      ta.css('top', Math.max(140, 320 - $(this).scrollTop()))
+    })
+  })
 </script>
-
-
+ 
 <script type="text/javascript">
-$(document).ready(function(){ 
-  var $this = $('.share'),
+  $(document).ready(function () {
+    var $this = $('.share'),
       url = $this.attr('data-url'),
       encodedUrl = encodeURIComponent(url),
       title = $this.attr('data-title'),
       tsina = $this.attr('data-tsina'),
-      description = $this.attr('description');
-  var html = [
-  '<div class="hoverqrcode clearfix"></div>',
-  '<a class="overlay" id="qrcode"></a>',
-  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
-  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
-  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
-  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
-  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
-  '<span title="Share to"></span>'
-  ].join('');
-  $this.append(html);
+      description = $this.attr('description')
+    var html = [
+      '<div class="hoverqrcode clearfix"></div>',
+      '<a class="overlay" id="qrcode"></a>',
+      '<a href="https://twitter.com/intent/tweet?url=' +
+        encodedUrl +
+        '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+      '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+      '<span title="Share to"></span>',
+    ].join('')
+    $this.append(html)
 
-  $('.hoverqrcode').hide();
+    $('.hoverqrcode').hide()
 
-  var myWidth = 0;
-  function updatehoverqrcode(){
-    if( typeof( window.innerWidth ) == 'number' ) {
-      myWidth = window.innerWidth;
-    } else if( document.documentElement && document.documentElement.clientWidth) {
-      myWidth = document.documentElement.clientWidth;
-    };
-    var qrsize = myWidth > 1024 ? 200:100;
-    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
-    var p = $('.article-share-qrcode').position();
-    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
-                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
-                          .qrcode(options);
-  };
-  $(window).resize(function(){
-    $('.hoverqrcode').hide();
-  });
-  $('.article-share-qrcode').click(function(){
-    updatehoverqrcode();
-    $('.hoverqrcode').toggle();
-  });
-  $('.article-share-qrcode').hover(function(){}, function(){
-      $('.hoverqrcode').hide();
-  });
-});   
+    var myWidth = 0
+    function updatehoverqrcode() {
+      if (typeof window.innerWidth == 'number') {
+        myWidth = window.innerWidth
+      } else if (
+        document.documentElement &&
+        document.documentElement.clientWidth
+      ) {
+        myWidth = document.documentElement.clientWidth
+      }
+      var qrsize = myWidth > 1024 ? 200 : 100
+      var options = {
+        render: 'image',
+        size: qrsize,
+        fill: '#2ca6cb',
+        text: url,
+        radius: 0.5,
+        quiet: 1,
+      }
+      var p = $('.article-share-qrcode').position()
+      $('.hoverqrcode')
+        .empty()
+        .css('width', qrsize)
+        .css('height', qrsize)
+        .css('left', p.left - qrsize / 2 + 20)
+        .css('top', p.top - qrsize - 10)
+        .qrcode(options)
+    }
+    $(window).resize(function () {
+      $('.hoverqrcode').hide()
+    })
+    $('.article-share-qrcode').click(function () {
+      updatehoverqrcode()
+      $('.hoverqrcode').toggle()
+    })
+    $('.article-share-qrcode').hover(
+      function () {},
+      function () {
+        $('.hoverqrcode').hide()
+      }
+    )
+  })
 </script>
-
-
-
-<script type="text/javascript">
-  var duoshuoQuery = {short_name:"starding"};
-  (function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = '//static.duoshuo.com/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0] 
-    || document.getElementsByTagName('body')[0]).appendChild(ds);
-  })();
-</script> 
-
-
-
-
-
-
-
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+      
+<link
+  rel="stylesheet"
+  href="/fancybox/jquery.fancybox.css"
+  media="screen"
+  type="text/css"
+/>
 <script src="/fancybox/jquery.fancybox.pack.js"></script>
 <script type="text/javascript">
-$(document).ready(function(){ 
-  $('.article-content').each(function(i){
-    $(this).find('img').each(function(){
-      if ($(this).parent().hasClass('fancybox')) return;
-      var alt = this.alt;
-      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
-      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
-    });
-    $(this).find('.fancybox').each(function(){
-      $(this).attr('rel', 'article' + i);
-    });
-  });
-  if($.fancybox){
-    $('.fancybox').fancybox();
-  }
-}); 
+  $(document).ready(function () {
+    $('.article-content').each(function (i) {
+      $(this)
+        .find('img')
+        .each(function () {
+          if ($(this).parent().hasClass('fancybox')) return
+          var alt = this.alt
+          if (alt) $(this).after('<span class="caption">' + alt + '</span>')
+          $(this).wrap(
+            '<a href="' +
+              this.src +
+              '" title="' +
+              alt +
+              '" class="fancybox"></a>'
+          )
+        })
+      $(this)
+        .find('.fancybox')
+        .each(function () {
+          $(this).attr('rel', 'article' + i)
+        })
+    })
+    if ($.fancybox) {
+      $('.fancybox').fancybox()
+    }
+  })
 </script>
-
 
 
 <!-- Analytics Begin -->
-
-<script type="text/javascript">
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-ga('create', 'UA-72215789-1', 'auto');  
-ga('send', 'pageview');
-</script>
 
 
 
@@ -644,7 +530,7 @@ ga('send', 'pageview');
 var _hmt = _hmt || [];
 (function() {
   var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?01f9e8011679173931cf24fe647483cf";
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
   var s = document.getElementsByTagName("script")[0]; 
   s.parentNode.insertBefore(hm, s);
 })();
@@ -657,7 +543,7 @@ var _hmt = _hmt || [];
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
@@ -666,44 +552,12 @@ var _hmt = _hmt || [];
 <!-- MathJax Begin -->
 <!-- mathjax config similar to math.stackexchange -->
 
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      processEscapes: true
-    }
-  });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      }
-    });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for(i=0; i < all.length; i += 1) {
-            all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-    });
-</script>
-
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-
 
 <!-- MathJax End -->
 
 <!-- Tiny_search Begin -->
 
 <!-- Tiny_search End -->
-
-<!--不蒜子-->
-<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
   </body>
 </html>
