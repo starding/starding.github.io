@@ -807,7 +807,7 @@ header nav ul li a:hover {
 }
 .archive-title {
   margin: 1em 0;
-  padding: 2em;
+  padding: 0.5em;
   background: #fff;
 }
 @media only screen and (min-width: 1024px) {
