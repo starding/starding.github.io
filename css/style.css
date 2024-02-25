@@ -705,14 +705,25 @@ header nav ul li a:hover {
   color: #fff;
   text-decoration: none;
 }
+#archive-page section.post {
+  width: 100%;
+}
 #archive-page section.post a {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
   font-size: 0.9em;
   padding: 0.5em !important;
 }
-@media only screen and (min-width: 768px) {
-  #archive-page section.post a time {
-    padding-left: 1em;
-  }
+#archive-page section.post h1 {
+  font-size: 1.2em;
+}
+#archive-page section.post time {
+  padding: 0 1em;
+  font-size: 1em !important;
 }
 .moveMain {
   margin-left: 10% !important;
@@ -841,23 +852,6 @@ header nav ul li a:hover {
   .archive-part {
     float: right;
     margin-left: 2% !important;
-  }
-}
-.archive-part section.post {
-  width: 100%;
-}
-.archive-part section.post time {
-  font-size: 1.1em !important;
-  float: left;
-}
-@media only screen and (max-width: 375px) {
-  .archive-part section.post time {
-    width: 100%;
-  }
-}
-@media only screen and (min-width: 375px) {
-  .archive-part section.post time {
-    width: 20%;
   }
 }
 @media only screen and (min-width: 768px) {
