@@ -118,7 +118,7 @@ a img {
   -webkit-margin-after: 0;
 }
 body {
-  background: #ddd;
+  background: #e0e8f6;
   font-family: "Helvetica Neue", "Helvetica", "Microsoft YaHei", "WenQuanYi Micro Hei", Arial, sans-serif;
   font-size: 100%;
   color: #817c7c;
@@ -633,7 +633,7 @@ header nav ul li a:hover {
   }
 }
 #main section.post {
-  background: #fafafa;
+  background: #fff;
   margin-bottom: 0.5px;
 }
 #main section.post a {
@@ -668,7 +668,7 @@ header nav ul li a:hover {
   font-size: 0.9em;
 }
 #main article.post-expand {
-  background: #fafafa;
+  background: #fff;
   margin-bottom: 3.5em;
 }
 #main article.post-expand .img-logo {
@@ -696,7 +696,7 @@ header nav ul li a:hover {
   line-height: 1em;
   padding: 6px 15px;
   border-radius: 15px;
-  background: #ddd;
+  background: #e0e8f6;
   color: #817c7c;
   text-decoration: none;
 }
@@ -717,16 +717,11 @@ header nav ul li a:hover {
 .moveMain {
   margin-left: 10% !important;
 }
-.unexpand .prev {
-  border-left: 0.5em solid #ccc;
-}
-.unexpand .prev:hover {
-  border-left: 0.5em solid #000;
-}
 #page-nav {
-  background: #fafafa;
+  background: #fff;
   text-align: center;
   overflow: hidden;
+  padding: 1em 0;
 }
 #page-nav a {
   display: inline-block;
@@ -734,10 +729,6 @@ header nav ul li a:hover {
 }
 #page-nav a {
   color: #002fa7;
-}
-#page-nav a:hover {
-  background: #ccc;
-  color: #000;
 }
 #page-nav .prev {
   float: left;
@@ -803,14 +794,10 @@ header nav ul li a:hover {
 .tag-icon:before {
   content: "\f02c";
 }
-.archive-icon:before {
-  content: "\f187";
-}
 .archive-title {
   margin: 1em 0;
   padding: 2em;
-  background: #fafafa;
-  border-left: 0.2em solid #ccc;
+  background: #fff;
 }
 @media only screen and (min-width: 1024px) {
   .archive-title {
@@ -822,7 +809,8 @@ header nav ul li a:hover {
 }
 .archive-title h2 {
   width: 90%;
-  color: #002fa7;
+  padding-left: 0.5em;
+  color: #413f3f;
   font-size: 120%;
 }
 .archive-title a {
@@ -887,7 +875,7 @@ header nav ul li a:hover {
 .page,
 .link,
 .photo {
-  background: #fafafa;
+  background: #fff;
 }
 .post a,
 .page a,
@@ -1024,7 +1012,7 @@ article .article-content blockquote {
   color: #808080;
 }
 article .article-content blockquote footer {
-  background: #fafafa;
+  background: #fff;
   padding: 0;
   margin: 0;
   font-size: 80%;
@@ -1179,10 +1167,10 @@ article .article-content .right {
   float: right;
 }
 footer.article-footer {
-  background: #fafafa;
+  background: #fff;
   padding: 0 4%;
   margin: 0;
-  border-top: 1px solid #dbdbdb;
+  border-top: 0.5px solid #dbdbdb;
 }
 .article-share {
   float: right;
@@ -1379,29 +1367,21 @@ footer.article-footer {
 }
 .article-categories {
   color: #d6d6d6;
-  margin-top: 0.3em;
-  margin-right: 3em;
 }
 .article-categories span:before {
-  font-family: "FontAwesome";
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  content: "\f07b";
-}
-.article-category-link {
-  padding: 0.5em;
-  margin: 0 0.3em;
+  content: "#";
+  font-size: 1.2em;
 }
 .article-category-link:hover {
   color: #fff !important;
   background: #002fa7;
 }
 .article-nav {
-  padding: 0 10%;
+  padding: 1.5em 4%;
 }
 @media only screen and (min-width: 768px) {
   .article-nav {
-    padding: 0 4%;
+    padding: 1.5em 4%;
   }
 }
 .article-nav strong {
@@ -1421,55 +1401,22 @@ footer.article-footer {
   width: 100%;
   float: left;
 }
-.article-nav .prev strong {
-  padding-left: 1.8em;
-}
-.article-nav .prev span:before {
-  font-family: "FontAwesome";
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  content: "\f053";
-  padding-right: 0.5em;
-}
 @media only screen and (min-width: 768px) {
   .article-nav .prev {
     width: 45%;
-    float: left;
   }
 }
 .article-nav .next {
   width: 100%;
-  float: left;
-  text-align: left;
-}
-.article-nav .next strong {
-  padding-left: 1.5em;
-}
-.article-nav .next span:before {
-  font-family: "FontAwesome";
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  content: "\f054";
-  padding-right: 0.5em;
+  float: right;
+  text-align: right;
 }
 @media only screen and (min-width: 768px) {
   .article-nav .next {
     width: 45%;
-    float: right;
-    text-align: right;
-  }
-  .article-nav .next strong {
-    padding-right: 1.8em;
   }
   .article-nav .next span:before {
     content: none;
-  }
-  .article-nav .next span:after {
-    font-family: "FontAwesome";
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    content: "\f054";
-    padding-left: 0.5em;
   }
 }
 section.comment {
@@ -1561,6 +1508,29 @@ section.comment {
 .active {
   color: #000 !important;
 }
+#footnotes hr {
+  margin: 0.5em 0;
+  border: 0;
+}
+#footnotes #footnotelist {
+  padding-top: 0.5em;
+}
+#footnotes #footnotelist:before {
+  content: '[脚注]';
+  color: #d6d6d6;
+  font-size: 1.2em;
+}
+#footnotes #footnotelist ol {
+  padding-top: 0.2em;
+  margin-left: 0 !important;
+}
+#footnotes #footnotelist ol li {
+  list-style-type: none;
+}
+#footnotes #footnotelist ol li span {
+  display: inline !important;
+  margin-left: 0 !important;
+}
 .openaside {
   display: none;
   position: fixed;
@@ -1605,7 +1575,7 @@ section.comment {
   }
 }
 #asidepart {
-  background: #fafafa;
+  background: #fff;
   margin: 1em 0 0;
   padding: 0.5em 2% 1em;
 }
@@ -1714,7 +1684,7 @@ section.comment {
 }
 .rsspart a:hover {
   color: #000;
-  background: #fafafa;
+  background: #fff;
 }
 .rsspart a::before {
   font-family: "FontAwesome";
