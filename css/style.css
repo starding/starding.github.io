@@ -1677,8 +1677,8 @@ section.comment {
   text-align: center;
 }
 .rsspart a:hover {
-  color: #fff;
-  background: #000;
+  color: #000;
+  background: #fff;
 }
 .rsspart a::before {
   font-family: "FontAwesome";
@@ -2020,6 +2020,9 @@ footer {
 .icon-email:before {
   content: "\f003";
 }
+.icon-google_plus:before {
+  content: "\f0d5";
+}
 .icon-linkedin:before {
   content: "\f08c";
 }
@@ -2048,10 +2051,10 @@ footer {
   }
 }
 .copyright a {
-  color: #f33931;
+  color: #002fa7;
 }
 .copyright a:hover {
-  color: #f33931;
+  color: #002fa7;
   text-decoration: underline;
 }
 .cc-license {
