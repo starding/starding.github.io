@@ -638,7 +638,7 @@ header nav ul li a:hover {
 }
 #main section.post a {
   display: block;
-  border-left: 0.1em solid #ccc;
+  border-left: 0.1em solid #fff;
   -webkit-transition: border-left 0.45s;
   -moz-transition: border-left 0.45s;
   -o-transition: border-left 0.45s;
