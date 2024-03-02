@@ -428,7 +428,7 @@ body >header a {
   float: left;
   width: 4em;
   height: 4em;
-  margin-left: -0.5em;
+  margin-left: -0.3em;
 }
 @media only screen and (min-width: 768px) {
   #imglogo {
@@ -438,6 +438,7 @@ body >header a {
 @media only screen and (min-width: 1024px) {
   #imglogo {
     width: 5.5em;
+    margin-left: -0.5em;
   }
 }
 #imglogo img {
