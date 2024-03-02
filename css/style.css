@@ -1526,6 +1526,15 @@ section.comment {
   display: inline !important;
   margin-left: 0 !important;
 }
+.giscus .gsc-comment-box-buttons .btn-primary {
+  background-color: #000;
+  color: #fff;
+  border-color: #000;
+}
+.giscus .gsc-comment-box-buttons .btn-primary:hover {
+  background-color: #000;
+  border-color: #000;
+}
 .openaside {
   display: none;
   position: fixed;
