@@ -645,7 +645,7 @@ header nav ul li a:hover {
   -o-transition: border-left 0.45s;
   -ms-transition: border-left 0.45s;
   transition: border-left 0.45s;
-  padding: 0.5em;
+  padding: 0.8em;
 }
 @media only screen and (min-width: 768px) {
   #main section.post a {
@@ -1182,10 +1182,6 @@ footer.article-footer {
     width: 16.5em;
   }
 }
-.article-share .share-jiathis {
-  padding: 0.5em 0;
-  margin-top: 0.3em;
-}
 .share span {
   float: right;
   height: 3em;
@@ -1261,13 +1257,6 @@ footer.article-footer {
 .article-share-qrcode:hover {
   background: #49ae0f;
   text-shadow: 0 1px #3a8b0c;
-}
-.article-share-renren:before {
-  content: "\f18b";
-}
-.article-share-renren:hover {
-  background: #369;
-  text-shadow: 0 1px #29527a;
 }
 .article-back-to-top:before {
   content: "\f062";
@@ -1368,9 +1357,8 @@ footer.article-footer {
   content: "#";
   font-size: 1.2em;
 }
-.article-category-link:hover {
-  color: #fff !important;
-  background: #002fa7;
+.article-category-link {
+  color: #002fa7;
 }
 .article-nav {
   padding: 1.5em 4%;
@@ -1387,11 +1375,7 @@ footer.article-footer {
 .article-nav a {
   display: block;
   overflow: hidden;
-}
-.article-nav .prev a:hover,
-.article-nav .next a:hover {
-  background: #002fa7;
-  color: #fff;
+  color: #002fa7;
 }
 .article-nav .prev {
   width: 100%;
@@ -1667,6 +1651,9 @@ section.comment {
   background: #000;
   width: 100%;
 }
+.rsspart:hover {
+  background: #404040;
+}
 @media only screen and (min-width: 768px) {
   .rsspart {
     float: left;
@@ -1686,10 +1673,6 @@ section.comment {
   display: block;
   padding: 0.625em 0;
   text-align: center;
-}
-.rsspart a:hover {
-  color: #000;
-  background: #fff;
 }
 .rsspart a::before {
   font-family: "FontAwesome";
@@ -1865,59 +1848,135 @@ section.comment {
 .github-card div {
   padding: 0.5em 0;
 }
-footer {
+#footer-wrapper {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -o-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
   margin-top: 1em;
   background: #000;
-  padding: 0 2% 0.5em;
+  padding: 0 2.5%;
 }
 #footer {
-  width: 93%;
-  margin: 0 auto;
-  overflow: hidden;
-  position: relative;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  -o-box-orient: vertical;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -o-box-flex: 1;
+  -ms-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex-grow: 1;
+  flex-grow: 1;
 }
-@media only screen and (min-width: 1024px) {
+@media only screen and (min-width: 768px) {
   #footer {
-    width: 93%;
     max-width: 1200px;
   }
 }
-@media only screen and (min-width: 1560px) {
-  #footer {
-    width: 80%;
-    min-width: 1200px;
-  }
-}
-#footer .line {
-  width: 100%;
-  height: 14em;
-  margin: 0 auto;
+.author-area-container {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  -o-box-orient: vertical;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
 }
 @media only screen and (min-width: 768px) {
-  #footer .line {
-    width: 10em;
-    float: left;
-    position: relative;
+  .author-area-container {
+    -webkit-box-orient: horizontal;
+    -moz-box-orient: horizontal;
+    -o-box-orient: horizontal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-pack: justify;
+    -moz-box-pack: justify;
+    -o-box-pack: justify;
+    -ms-flex-pack: justify;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
   }
 }
-#footer .line span {
+.author-area {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  -o-box-orient: vertical;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+@media only screen and (min-width: 768px) {
+  .author-area {
+    -webkit-box-orient: horizontal;
+    -moz-box-orient: horizontal;
+    -o-box-orient: horizontal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -ms-flex-line-pack: center;
+    -webkit-align-content: center;
+    align-content: center;
+  }
+}
+.author-area .line {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  -o-box-orient: vertical;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -o-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+.author-area .line span {
   display: block;
   width: 0.5em;
-  height: 6.25em;
+  height: 4.25em;
   border-right: 0.125em solid #fff;
-  margin: 0 auto;
 }
-@media only screen and (min-width: 768px) {
-  #footer .line span {
-    position: absolute;
-    left: 3em;
-    margin: 0 0 1.5em;
-  }
-}
-.author {
+.author-area .author {
   width: 6.875em;
   height: 6.875em;
-  margin: 0 auto;
   background: no-repeat url("../img/author.png") left top;
   background-size: 6.875em 6.875em;
   border-radius: 3.4375em;
@@ -1927,76 +1986,82 @@ footer {
   -ms-transition: -ms-transform 2s ease-out;
   transition: transform 2s ease-out;
 }
-.author:hover {
+.author-area .author:hover {
   -webkit-transform: rotateZ(360deg);
   -moz-transform: rotateZ(360deg);
   -o-transform: rotateZ(360deg);
   -ms-transform: rotateZ(360deg);
   transform: rotateZ(360deg);
 }
-@media only screen and (min-width: 768px) {
-  .author {
-    position: absolute;
-    top: 6em;
-    margin: 0 0 1.5em;
-  }
-}
-.info {
+.author-area .info {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -o-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -o-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
   font-family: "Helvetica Neue", "Helvetica", "Microsoft YaHei", "WenQuanYi Micro Hei", Arial, sans-serif;
-  line-height: 1.75;
+  line-height: 1.6;
   font-size: 100%;
-  width: 90%;
-  margin: 0 auto;
   color: #fff;
 }
-@media only screen and (min-width: 768px) {
-  .info {
-    margin: 4.5em 0 2em 0;
-    float: left;
-    width: 75%;
-  }
+.author-area .info p {
+  padding: 1em;
 }
 @media only screen and (min-width: 375px) {
-  .info p {
+  .author-area .info p {
     text-align: center;
   }
 }
-@media only screen and (min-width: 1024px) {
-  .info p {
+@media only screen and (min-width: 768px) {
+  .author-area .info p {
+    padding-top: 4em;
     text-align: left;
   }
 }
 .social-font {
-  width: 100%;
-  margin: 0 auto;
-  float: left;
-  padding-left: 3%;
-}
-@media only screen and (min-width: 375px) {
-  .social-font {
-    padding-left: 20%;
-  }
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -o-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -o-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
 }
 @media only screen and (min-width: 768px) {
   .social-font {
-    width: 15em;
-    position: absolute;
-    right: -2em;
-    top: 3em;
+    padding-top: 3em;
   }
 }
 .social-font a {
-  float: left;
   display: block;
-  width: 14%;
+  text-align: center;
   color: #fff;
   font-size: 185%;
-  padding: 0.5em;
-}
-@media only screen and (min-width: 1024px) {
-  .social-font a {
-    padding: 0.3em;
-  }
+  padding: 1em;
 }
 .social-font a:hover:before {
   color: #002fa7;
@@ -2007,7 +2072,6 @@ footer {
 .icon-facebook:before,
 .icon-stack-overflow:before,
 .icon-email:before,
-.icon-google_plus:before,
 .icon-linkedin:before {
   font-family: "FontAwesome";
   -webkit-font-smoothing: antialiased;
@@ -2031,9 +2095,6 @@ footer {
 .icon-email:before {
   content: "\f003";
 }
-.icon-google_plus:before {
-  content: "\f0d5";
-}
 .icon-linkedin:before {
   content: "\f08c";
 }
@@ -2050,16 +2111,11 @@ footer {
   content: "\f142";
 }
 .copyright {
+  padding: 2em;
   font-family: "Helvetica Neue", "Helvetica", "Microsoft YaHei", "WenQuanYi Micro Hei", Arial, sans-serif;
   font-size: 0.6em;
-  width: 100%;
   color: #fff;
   text-align: center;
-}
-@media only screen and (min-width: 768px) {
-  .copyright {
-    float: left;
-  }
 }
 .copyright a {
   color: #002fa7;
