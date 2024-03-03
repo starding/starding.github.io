@@ -886,7 +886,7 @@ header nav ul li a:hover {
 .photo a:hover {
   color: #ea6753;
 }
-article header.article-info h1 {
+article .article-header h1 {
   padding: 0.2em 4%;
   font-size: 170%;
   line-height: 1.6;
@@ -898,19 +898,19 @@ article header.article-info h1 {
   font-weight: 500;
 }
 @media only screen and (min-width: 1024px) {
-  article header.article-info h1 {
+  article .article-header h1 {
     font-size: 200%;
     padding-top: 0.3em;
   }
 }
-article header.article-info div.article-info-meta {
+article .article-header div.article-info-meta {
   padding: 0.3em 4%;
 }
-article header.article-info p.article-author {
+article .article-header p.article-author {
   display: inline-block;
   text-align: left;
 }
-article header.article-info p.article-time {
+article .article-header p.article-time {
   display: inline-block;
   font-size: 0.9em;
   text-align: center;
