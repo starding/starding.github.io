@@ -1,15 +1,15 @@
 <svg width="540" height="540" viewBox="0 0 540 540" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g clip-path="url(#clip0_558_16)" filter="url(#filter0_d_558_16)">
-<path d="M71.982 54.0431C246.004 54.0404 384.488 75.0026 442.995 242.898" stroke="#FF4040" stroke-opacity="0.5" stroke-width="49" stroke-linecap="round"/>
-<path d="M77.982 49.0431C252.004 49.0404 390.488 70.0026 448.995 237.898" stroke="#FF4040" stroke-opacity="0.5" stroke-width="49" stroke-linecap="round"/>
+<path d="M71.982 54.0431C246.004 54.0404 384.488 75.0026 442.995 242.898" stroke="#8F2F2F" stroke-width="49" stroke-linecap="round"/>
+<path d="M77.982 49.0431C252.004 49.0404 390.488 70.0026 448.995 237.898" stroke="#E00626" stroke-width="49" stroke-linecap="round"/>
 <g filter="url(#filter1_d_558_16)">
 <path d="M470.541 54.0381C287.004 54.0389 163.505 77.9992 99.5272 242.893" stroke="#E00626" stroke-width="49" stroke-linecap="round"/>
 </g>
 <g filter="url(#filter2_d_558_16)">
 <path d="M472.541 60.0381C289.004 60.0389 165.505 83.9992 101.527 248.893" stroke="#F33931" stroke-width="49" stroke-linecap="round"/>
 </g>
-<path d="M470.548 485.961C286.421 481.498 187.003 467 99.5351 297.106" stroke="#FF4040" stroke-opacity="0.5" stroke-width="49" stroke-linecap="round"/>
-<path d="M476.548 481.961C292.421 477.498 193.003 463 105.535 293.106" stroke="#FF4040" stroke-opacity="0.5" stroke-width="49" stroke-linecap="round"/>
+<path d="M470.548 485.961C286.421 481.498 187.003 467 99.5351 297.106" stroke="#8F2F2F" stroke-width="49" stroke-linecap="round"/>
+<path d="M476.548 481.961C292.421 477.498 193.003 463 105.535 293.106" stroke="#E00626" stroke-width="49" stroke-linecap="round"/>
 <g filter="url(#filter3_d_558_16)">
 <path d="M64.9934 480.961C249.121 476.499 371.503 438.5 436.007 292.106" stroke="#E00626" stroke-width="49" stroke-linecap="round"/>
 </g>
