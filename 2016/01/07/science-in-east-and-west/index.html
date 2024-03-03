@@ -43,7 +43,8 @@
   <body>
     <header>
       
-<div>
+<div class="header-container">
+	<div class="logo-wrapper">
 		
 			<div id="imglogo">
 				<a href="/"><img src="/img/logo_red_big_yao.png" alt="结绳以渔" title="结绳以渔"/></a>
@@ -53,40 +54,40 @@
 				<h1 class="site-name"><a href="/" title="结绳以渔">结绳以渔</a></h1>
 				<h2 class="blog-motto">临渊羡鱼，不如退而结网</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
-			</a></div>
-			<nav class="animated">
-				<ul>
-					<ul>
-					 
-						<li><a href="/">主页</a></li>
-					
-						<li><a href="/archives">归档</a></li>
-					
-						<li><a href="/about">关于</a></li>
-					
-					<li>
- 					
-					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
-						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
-						<input type="hidden" name="q" value="site:starding.github.io">
-					</form>
-					
-					</li>
-				</ul>
-			</nav>			
+	</div>
+	<div class="navbar">
+		<a class="navbutton navmobile" href="#" title="Menu"></a>
+	</div>
+	<nav class="animated">
+		<ul class="nav-list">
+			
+				<li><a href="/">主页</a></li>
+			
+				<li><a href="/archives">归档</a></li>
+			
+				<li><a href="/about">关于</a></li>
+			
+			<li>
+			
+			<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+				<label>Search</label>
+				<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+				<input type="hidden" name="q" value="site:starding.github.io">
+			</form>
+			
+			</li>
+		</ul>
+	</nav>			
 </div>
     </header>
     <div id="container">
       <div id="main" class="post" itemscope itemprop="blogPost">
   
 	<article itemprop="articleBody"> 
-		<header class="article-info clearfix">
+		<header class="article-info">
   <h1 itemprop="name">科学史上的东方与西方</h1>
   <div class="article-info-meta">
     <p class="article-author">
-      
       <a
         href="/about"
         title="XingHua"
@@ -94,13 +95,12 @@
         itemprop="author"
         >@XingHua</a
       >
-      
     </p>
 
     <p class="article-time">
       <time datetime="2016-01-07T11:14:29.000Z" itemprop="datePublished">
-        On 2016-01-07</time
-      >
+          2016-01-07
+      </time>
     </p>
   </div>
 </header>
@@ -154,7 +154,7 @@
 <p>2016.01.07 于北京回龙观</p>
   
 	</div>
-		<footer class="article-footer clearfix">
+		<footer class="article-footer">
   <div class="article-catetags">
 
 <div class="article-categories">
@@ -171,7 +171,7 @@
       data-url="http://starding.github.io/2016/01/07/science-in-east-and-west/"
       data-title="科学史上的东方与西方 | 结绳以渔"
       data-tsina=""
-      class="share clearfix"
+      class="share"
     ></div>
   </div>
    
@@ -179,25 +179,21 @@
    	       
 	</article>
 	
-<nav class="article-nav clearfix">
+<nav class="article-nav">
  
  <div class="prev" >
- <a href="/2016/01/07/three-body-walking-dead-Darwin/" title="《三体》，《行尸走肉》与社会达尔文主义">
-  <strong>上一篇：</strong><br/>
-  <span>
-  《三体》，《行尸走肉》与社会达尔文主义</span>
-</a>
-</div>
+    <a href="/2016/01/07/three-body-walking-dead-Darwin/" title="《三体》，《行尸走肉》与社会达尔文主义">
+      <span>《三体》，《行尸走肉》与社会达尔文主义</span>
+    </a>
+  </div>
 
-
-<div class="next">
-<a href="/2016/01/07/raw-sql-in-django/"  title="django 中使用原生 sql">
- <strong>下一篇：</strong><br/> 
- <span>django 中使用原生 sql
-</span>
-</a>
-</div>
-
+  
+  <div class="next">
+    <a href="/2016/01/07/raw-sql-in-django/"  title="django 中使用原生 sql">
+      <span>django 中使用原生 sql</span>
+    </a>
+  </div>
+  
 </nav>
 
 	
@@ -219,7 +215,6 @@
           async>
   </script>
 </section>
-
 
 
 
@@ -334,7 +329,12 @@
     <p class="copyright">
       Powered by
       <a href="http://hexo.io" target="_blank" title="hexo">Hexo</a>
-    
+      and Theme by
+      <a
+        href="https://github.com/starding/hexo_theme_xman"
+        target="_blank"
+        title="xman"
+        >xman</a>
       © 2016~2024 
       <a
         href="/about"
@@ -433,14 +433,15 @@
       tsina = $this.attr('data-tsina'),
       description = $this.attr('description')
     var html = [
+      '<span title="Share to"></span>',
       '<div class="hoverqrcode clearfix"></div>',
       '<a class="overlay" id="qrcode"></a>',
       '<a href="https://twitter.com/intent/tweet?url=' +
         encodedUrl +
         '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
       '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
-      '<span title="Share to"></span>',
     ].join('')
+    
     $this.append(html)
 
     $('.hoverqrcode').hide()
@@ -488,7 +489,9 @@
     )
   })
 </script>
-     
+  
+
+  
 <link
   rel="stylesheet"
   href="/fancybox/jquery.fancybox.css"
@@ -560,7 +563,7 @@
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	<a title="Back to Top"><img src="/img/scrollup.svg"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 

@@ -43,7 +43,8 @@
   <body>
     <header>
       
-<div>
+<div class="header-container">
+	<div class="logo-wrapper">
 		
 			<div id="imglogo">
 				<a href="/"><img src="/img/logo_red_big_yao.png" alt="结绳以渔" title="结绳以渔"/></a>
@@ -53,40 +54,40 @@
 				<h1 class="site-name"><a href="/" title="结绳以渔">结绳以渔</a></h1>
 				<h2 class="blog-motto">临渊羡鱼，不如退而结网</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
-			</a></div>
-			<nav class="animated">
-				<ul>
-					<ul>
-					 
-						<li><a href="/">主页</a></li>
-					
-						<li><a href="/archives">归档</a></li>
-					
-						<li><a href="/about">关于</a></li>
-					
-					<li>
- 					
-					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
-						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
-						<input type="hidden" name="q" value="site:starding.github.io">
-					</form>
-					
-					</li>
-				</ul>
-			</nav>			
+	</div>
+	<div class="navbar">
+		<a class="navbutton navmobile" href="#" title="Menu"></a>
+	</div>
+	<nav class="animated">
+		<ul class="nav-list">
+			
+				<li><a href="/">主页</a></li>
+			
+				<li><a href="/archives">归档</a></li>
+			
+				<li><a href="/about">关于</a></li>
+			
+			<li>
+			
+			<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+				<label>Search</label>
+				<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+				<input type="hidden" name="q" value="site:starding.github.io">
+			</form>
+			
+			</li>
+		</ul>
+	</nav>			
 </div>
     </header>
     <div id="container">
       <div id="main" class="post" itemscope itemprop="blogPost">
   
 	<article itemprop="articleBody"> 
-		<header class="article-info clearfix">
+		<header class="article-info">
   <h1 itemprop="name">html5 设计原理</h1>
   <div class="article-info-meta">
     <p class="article-author">
-      
       <a
         href="/about"
         title="XingHua"
@@ -94,13 +95,12 @@
         itemprop="author"
         >@XingHua</a
       >
-      
     </p>
 
     <p class="article-time">
       <time datetime="2016-03-19T02:30:47.000Z" itemprop="datePublished">
-        On 2016-03-19</time
-      >
+          2016-03-19
+      </time>
     </p>
   </div>
 </header>
@@ -350,7 +350,7 @@
 <p>非常感谢大家。<br>[全文完]</p>
 <div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">不清楚博主的这篇翻译文章为什么没了，但原翻译者应该是他没错，这里只进行一下整理<a href="#fnref:1" rev="footnote"> ↩</a></span></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">2.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">1992 年，大卫·克拉克（David Clark）教授在 IETF 会议上总结了这样一句话“We reject: kings, presidents, and voting. We believe in: rough consensus and running code”（我们拒绝国王、总统和投票，我们相信大多数人的意见和运行的代码）。这就是广为流传的“互联网哲学”（Internet Philosophy）。——译者注<a href="#fnref:2" rev="footnote"> ↩</a></span></li></ol></div></div>  
 	</div>
-		<footer class="article-footer clearfix">
+		<footer class="article-footer">
   <div class="article-catetags">
 
 
@@ -362,7 +362,7 @@
       data-url="http://starding.github.io/2016/03/19/html5-design-principle/"
       data-title="html5 设计原理 | 结绳以渔"
       data-tsina=""
-      class="share clearfix"
+      class="share"
     ></div>
   </div>
    
@@ -370,25 +370,21 @@
    	       
 	</article>
 	
-<nav class="article-nav clearfix">
+<nav class="article-nav">
  
  <div class="prev" >
- <a href="/2016/03/19/model-dialog/" title="什么是模态框（modal dialog）">
-  <strong>上一篇：</strong><br/>
-  <span>
-  什么是模态框（modal dialog）</span>
-</a>
-</div>
+    <a href="/2016/03/19/model-dialog/" title="什么是模态框（modal dialog）">
+      <span>什么是模态框（modal dialog）</span>
+    </a>
+  </div>
 
-
-<div class="next">
-<a href="/2016/03/18/why-should-we-ask-why/"  title="在计算机学习中，为什么我们应该问为什么">
- <strong>下一篇：</strong><br/> 
- <span>在计算机学习中，为什么我们应该问为什么
-</span>
-</a>
-</div>
-
+  
+  <div class="next">
+    <a href="/2016/03/18/why-should-we-ask-why/"  title="在计算机学习中，为什么我们应该问为什么">
+      <span>在计算机学习中，为什么我们应该问为什么</span>
+    </a>
+  </div>
+  
 </nav>
 
 	
@@ -410,7 +406,6 @@
           async>
   </script>
 </section>
-
 
 
 
@@ -525,7 +520,12 @@
     <p class="copyright">
       Powered by
       <a href="http://hexo.io" target="_blank" title="hexo">Hexo</a>
-    
+      and Theme by
+      <a
+        href="https://github.com/starding/hexo_theme_xman"
+        target="_blank"
+        title="xman"
+        >xman</a>
       © 2016~2024 
       <a
         href="/about"
@@ -624,14 +624,15 @@
       tsina = $this.attr('data-tsina'),
       description = $this.attr('description')
     var html = [
+      '<span title="Share to"></span>',
       '<div class="hoverqrcode clearfix"></div>',
       '<a class="overlay" id="qrcode"></a>',
       '<a href="https://twitter.com/intent/tweet?url=' +
         encodedUrl +
         '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
       '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
-      '<span title="Share to"></span>',
     ].join('')
+    
     $this.append(html)
 
     $('.hoverqrcode').hide()
@@ -679,7 +680,9 @@
     )
   })
 </script>
-     
+  
+
+  
 <link
   rel="stylesheet"
   href="/fancybox/jquery.fancybox.css"
@@ -751,7 +754,7 @@
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	<a title="Back to Top"><img src="/img/scrollup.svg"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
