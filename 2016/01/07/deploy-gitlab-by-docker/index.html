@@ -151,12 +151,12 @@
 <p>查看 log 时，由于 log 比较杂乱，没有发现问题，后来在 ruby 社区发现有人解决过同样的问题：<br><a target="_blank" rel="noopener" href="https://ruby-china.org/topics/20450">GitLab 配置通过 smtp.163.com 发送邮件</a><br>以及网易的官方解释：<br><a target="_blank" rel="noopener" href="https://www.mail163.cn/fault/analysis/1109.html">网易服务器 smtp 机器要求身份验证帐号和发信帐号必须一致，如果用户在发送邮件时，身份验证帐号和发件人帐号是不同的，因此拒绝发送。</a></p>
 <p>所以又添加了两行配置后测试可以正常使用了：</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gitlab_rails[<span class="string">&#x27;gitlab_email_from&#x27;</span>] = <span class="string">&quot;xiaohuruwei@163.com&quot;</span></span><br><span class="line">user[<span class="string">&#x27;git_user_email&#x27;</span>] = <span class="string">&quot;xiaohuruwei@163.com&quot;</span></span><br></pre></td></tr></table></figure>
-<h2 id="ssh-方式访问"><a href="#ssh-方式访问" class="headerlink" title="ssh 方式访问"></a>ssh 方式访问</h2><p>因为是使用 docker 部署的，通过 ssh 方式 (比如 git clone <a href="mailto:&#x67;&#x69;&#116;&#x40;&#x67;&#x69;&#116;&#46;&#x78;&#x69;&#97;&#x6f;&#104;&#117;&#114;&#117;&#119;&#101;&#105;&#x2e;&#x63;&#111;&#x6d;">&#x67;&#x69;&#116;&#x40;&#x67;&#x69;&#116;&#46;&#x78;&#x69;&#97;&#x6f;&#104;&#117;&#114;&#117;&#119;&#101;&#105;&#x2e;&#x63;&#111;&#x6d;</a>) 访问会有两层认证：</p>
+<h2 id="ssh-方式访问"><a href="#ssh-方式访问" class="headerlink" title="ssh 方式访问"></a>ssh 方式访问</h2><p>因为是使用 docker 部署的，通过 ssh 方式 (比如 git clone <a href="mailto:&#103;&#x69;&#x74;&#64;&#103;&#105;&#x74;&#46;&#x78;&#x69;&#x61;&#111;&#x68;&#117;&#114;&#117;&#119;&#x65;&#105;&#46;&#99;&#111;&#109;">&#103;&#x69;&#x74;&#64;&#103;&#105;&#x74;&#46;&#x78;&#x69;&#x61;&#111;&#x68;&#117;&#114;&#117;&#119;&#x65;&#105;&#46;&#99;&#111;&#109;</a>) 访问会有两层认证：</p>
 <p>一层是 freelancer 服务器的认证<br>另一层是 gitlab 的认证。<br>后者需要使用 ssh-key<br>前者可能需要 ssh 本身的反向代理 (现在使用的 nginx 不支持除 http，https 以外的反向代理)，</p>
 <p>现在发现使用端口转发的形式比较困难，但是可以改变默认的 gitlab 的 ssh 端口为非标准端口：<br>直接修改 gitlab 配置文件中的变量：</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gitlab_shell_ssh_port = <span class="number">2222</span></span><br></pre></td></tr></table></figure>
 
-<p>然后重新启动 docker 容器，就可以在 web 界面中看到相应的 ssh 地址发生了改变：<br>ssh:&#x2F;&#x2F;<a href="mailto:&#103;&#105;&#116;&#x40;&#x67;&#x69;&#116;&#x2e;&#120;&#x69;&#97;&#111;&#x68;&#x75;&#114;&#x75;&#119;&#x65;&#x69;&#x2e;&#99;&#111;&#109;">&#103;&#105;&#116;&#x40;&#x67;&#x69;&#116;&#x2e;&#120;&#x69;&#97;&#111;&#x68;&#x75;&#114;&#x75;&#119;&#x65;&#x69;&#x2e;&#99;&#111;&#109;</a>:2222&#x2F;root&#x2F;test.git 然后就直接可以继续使用 git clone 来继续操作了</p>
+<p>然后重新启动 docker 容器，就可以在 web 界面中看到相应的 ssh 地址发生了改变：<br>ssh:&#x2F;&#x2F;<a href="mailto:&#x67;&#105;&#116;&#64;&#103;&#105;&#116;&#x2e;&#x78;&#x69;&#97;&#x6f;&#x68;&#x75;&#x72;&#x75;&#x77;&#101;&#105;&#x2e;&#99;&#x6f;&#109;">&#x67;&#105;&#116;&#64;&#103;&#105;&#116;&#x2e;&#x78;&#x69;&#97;&#x6f;&#x68;&#x75;&#x72;&#x75;&#x77;&#101;&#105;&#x2e;&#99;&#x6f;&#109;</a>:2222&#x2F;root&#x2F;test.git 然后就直接可以继续使用 git clone 来继续操作了</p>
 <p>2016.01 于北京回龙观</p>
   
 	</div>
@@ -231,7 +231,7 @@
 
 <div id="asidepart">
 <div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
-<aside class="clearfix">
+<aside>
 
   
 <div class="categorieslist">

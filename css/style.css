@@ -635,26 +635,31 @@ header nav ul li a:hover {
 }
 /* index layout */
 #container {
-  -webkit-flex: 1;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  -o-box-orient: vertical;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   width: 95%;
   margin: 0 auto;
   overflow: hidden;
 }
-@media only screen and (min-width: 768px) {
-  #container {
-    width: 96%;
-  }
-}
 @media only screen and (min-width: 1024px) {
   #container {
-    width: 94%;
+    -webkit-box-orient: horizontal;
+    -moz-box-orient: horizontal;
+    -o-box-orient: horizontal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
     max-width: 1200px;
-  }
-}
-@media only screen and (min-width: 1560px) {
-  #container {
-    width: 75%;
-    min-width: 1200px;
   }
 }
 #main {
@@ -665,7 +670,6 @@ header nav ul li a:hover {
   #main {
     margin: 2em 0 0;
     width: 75%;
-    float: left;
     -webkit-transition: margin 0.5s ease-out;
     -moz-transition: margin 0.5s ease-out;
     -o-transition: margin 0.5s ease-out;
@@ -722,19 +726,61 @@ header nav ul li a:hover {
   padding: 0.5em !important;
 }
 #archive-page section.post h1 {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -o-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
   font-size: 1.2em;
 }
 #archive-page section.post time {
-  padding: 0 1em;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -o-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  margin: 0;
+  white-space: nowrap;
+  padding: 0 0.5em;
   font-size: 1em !important;
 }
 .moveMain {
   margin-left: 10% !important;
 }
 #page-nav {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -o-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -o-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
   background: #fff;
-  text-align: center;
-  overflow: hidden;
   padding: 1em 0;
 }
 #page-nav a {
@@ -744,14 +790,6 @@ header nav ul li a:hover {
 #page-nav a {
   color: #002fa7;
 }
-#page-nav .prev {
-  float: left;
-  -webkit-transition: border-left 0.5s;
-  -moz-transition: border-left 0.5s;
-  -o-transition: border-left 0.5s;
-  -ms-transition: border-left 0.5s;
-  transition: border-left 0.5s;
-}
 #page-nav .prev span:before {
   font-family: "FontAwesome";
   -webkit-font-smoothing: antialiased;
@@ -759,10 +797,7 @@ header nav ul li a:hover {
   content: "\f053";
   padding-right: 0.5em;
 }
-#page-nav .next {
-  float: right;
-}
-#page-nav .next span:before {
+#page-nav .next span:after {
   font-family: "FontAwesome";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -770,16 +805,11 @@ header nav ul li a:hover {
   padding-left: 0.5em;
 }
 #page-nav .page-number {
-  display: none;
+  display: inline-block;
   padding: 0.5em 1em;
 }
-@media only screen and (min-width: 768px) {
-  #page-nav .page-number {
-    display: inline-block;
-  }
-}
 #page-nav .current {
-  color: #b8b8b8;
+  color: #000;
   font-weight: bold;
 }
 #page-nav .space {
@@ -809,16 +839,15 @@ header nav ul li a:hover {
   content: "\f02c";
 }
 .archive-title {
-  margin: 1em 0;
+  margin: 1em 0 auto 0;
   padding: 0.5em;
   background: #fff;
 }
 @media only screen and (min-width: 1024px) {
   .archive-title {
-    margin: 2em 0;
+    margin: 2em 0 auto 0;
     width: 18.5%;
     padding-left: 0.5%;
-    float: left;
   }
 }
 .archive-title h2 {
@@ -843,9 +872,6 @@ header nav ul li a:hover {
   -ms-transition: color 0.5s;
   transition: color 0.5s;
 }
-.current {
-  color: #ea6753 !important;
-}
 @media only screen and (min-width: 768px) {
   .archive-part {
     min-height: 200px;
@@ -853,15 +879,7 @@ header nav ul li a:hover {
 }
 @media only screen and (min-width: 1024px) {
   .archive-part {
-    float: right;
     margin-left: 2% !important;
-  }
-}
-@media only screen and (min-width: 768px) {
-  .archive-nav {
-    width: 100%;
-    float: left;
-    margin-top: 1em;
   }
 }
 /* tags&categories layout */
@@ -1545,21 +1563,19 @@ section.comment {
 }
 #asidepart {
   background: #fff;
-  margin: 1em 0 0;
+  margin: 1em 0 auto 0;
   padding: 0.5em 2% 1em;
 }
 @media only screen and (min-width: 1024px) {
   #asidepart {
-    position: relative;
-    float: left;
     width: 18%;
-    margin: 2em 0 0 3%;
+    margin: 2em 0 auto 3%;
   }
 }
 .asidetitle {
   font-size: 1.1em;
   color: #413f3f;
-  padding: 0 0 0.3125em 0;
+  padding: 0 0 0.3em 0;
   border-bottom: 0.5px solid #ccc;
 }
 .asidetitle a {
@@ -2126,7 +2142,7 @@ section.comment {
 .article-content pre,
 .article-content .highlight,
 .article-content .highlight pre {
-  background: #eee;
+  background: #f5f6f5;
   margin: 0.5em 0;
   padding: 0.5em 2%;
   color: #4d4d4c;
@@ -2145,7 +2161,7 @@ section.comment {
 }
 .article-content .highlight .gutter pre,
 .article-content .gist .gist-file .gist-data .line-numbers {
-  color: #999;
+  color: #bbb;
   font-size: 0.4em;
 }
 @media only screen and (min-width: 375px) {
@@ -2209,7 +2225,7 @@ section.comment {
 }
 .article-content .gist {
   margin: 0.5em 0;
-  background: #eee;
+  background: #f5f6f5;
   padding: 1em 2%;
   -webkit-border-radius: 0.35em;
   border-radius: 0.35em;
@@ -2235,10 +2251,10 @@ section.comment {
   margin: 0;
   padding: 0;
   border: none;
-  background: #eee;
+  background: #f5f6f5;
 }
 .article-content .gist .gist-file .gist-meta {
-  background: #eee;
+  background: #f5f6f5;
   color: #8e908c;
   font: 0.85em "Georgia", serif;
   text-shadow: 0 0;
@@ -2268,7 +2284,7 @@ pre .html .doctype,
 pre .css .id,
 pre .css .class,
 pre .css .pseudo {
-  color: #c82829;
+  color: #ff4040;
 }
 pre .number,
 pre .preprocessor,
@@ -2276,12 +2292,12 @@ pre .built_in,
 pre .literal,
 pre .params,
 pre .constant {
-  color: #f5871f;
+  color: #ff9666;
 }
 pre .class,
 pre .ruby .class .title,
 pre .css .rules .attribute {
-  color: #718c00;
+  color: #1eac3e;
 }
 pre .string,
 pre .value,
@@ -2289,10 +2305,10 @@ pre .inheritance,
 pre .header,
 pre .ruby .symbol,
 pre .xml .cdata {
-  color: #718c00;
+  color: #1eac3e;
 }
 pre .css .hexcolor {
-  color: #3e999f;
+  color: #059b84;
 }
 pre .function,
 pre .python .decorator,
@@ -2302,11 +2318,11 @@ pre .ruby .title .keyword,
 pre .perl .sub,
 pre .javascript .title,
 pre .coffeescript .title {
-  color: #4271ae;
+  color: #007ef0;
 }
 pre .keyword,
 pre .javascript .function {
-  color: #8959a8;
+  color: #8b43ab;
 }
 .gallery {
   overflow: hidden;
