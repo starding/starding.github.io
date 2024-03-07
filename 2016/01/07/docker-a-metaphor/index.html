@@ -32,8 +32,8 @@
     <link rel="icon" href="/img/favicon_red_only_yao.ico">
     
     
-    <link rel="apple-touch-icon" href="/img/red_logo_yao.png">
-    <link rel="apple-touch-icon-precomposed" href="/img/red_logo_yao.png">
+    <link rel="apple-touch-icon" href="/img/apple_icon_yao.png">
+    <link rel="apple-touch-icon-precomposed" href="/img/apple_icon_yao.png">
     
     
 <link rel="stylesheet" href="/css/style.css">
@@ -228,18 +228,16 @@
 
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
-
+      
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">Contents</strong>
- 
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-%E7%9A%84%E5%AD%A6%E6%9C%AF%E5%8C%96%E5%AE%9A%E4%B9%89"><span class="toc-number">1.</span> <span class="toc-text">Docker 的学术化定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-%E7%9A%84%E9%9A%90%E5%96%BB"><span class="toc-number">2.</span> <span class="toc-text">Docker 的隐喻</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E9%9D%A2%E6%84%8F%E6%80%9D%EF%BC%9ADocker%E2%80%94%E2%80%94%E7%A0%81%E5%A4%B4%E5%B7%A5%E4%BA%BA%E3%80%82"><span class="toc-number">2.1.</span> <span class="toc-text">字面意思：Docker——码头工人。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Docker%EF%BC%88%E7%A0%81%E5%A4%B4%E5%B7%A5%E4%BA%BA%EF%BC%89%E6%AD%A3%E6%98%AF%E5%80%9F%E7%94%A8%E4%BA%86%E9%9B%86%E8%A3%85%E7%AE%B1%E7%9A%84%E9%9A%90%E5%96%BB"><span class="toc-number">2.2.</span> <span class="toc-text">Docker（码头工人）正是借用了集装箱的隐喻</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#docker-%E5%87%BA%E7%8E%B0%E4%B9%8B%E5%90%8E"><span class="toc-number">3.</span> <span class="toc-text">docker 出现之后</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%87%E5%87%86%E7%9A%84%E4%BA%A4%E4%BB%98%E4%BB%B6"><span class="toc-number">3.1.</span> <span class="toc-text">标准的交付件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Docker-%E7%A9%B6%E7%AB%9F%E5%81%9A%E4%BA%86%E4%BB%80%E4%B9%88%E7%AE%80%E5%8C%96%EF%BC%9F"><span class="toc-number">3.2.</span> <span class="toc-text">Docker 究竟做了什么简化？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BD%93%E7%84%B6%E4%BC%98%E7%82%B9%E4%B8%8D%E6%AD%A2%E4%BA%8E%E6%AD%A4"><span class="toc-number">3.3.</span> <span class="toc-text">当然优点不止于此</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%9F%E4%B8%80%E7%9A%84%E7%AE%A1%E7%90%86%E6%9C%8D%E5%8A%A1"><span class="toc-number">3.4.</span> <span class="toc-text">统一的管理服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%81%E7%BB%AD%E4%BA%A4%E4%BB%98%E4%B8%8A%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-number">3.5.</span> <span class="toc-text">持续交付上的应用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E-docker-%E7%9A%84%E4%B8%80%E4%B8%AA%E8%AF%AF%E8%A7%A3"><span class="toc-number">4.</span> <span class="toc-text">关于 docker 的一个误解</span></a></li></ol>
- 
+   <strong class="toc-title">Contents</strong>
+    
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-%E7%9A%84%E5%AD%A6%E6%9C%AF%E5%8C%96%E5%AE%9A%E4%B9%89"><span class="toc-number">1.</span> <span class="toc-text">Docker 的学术化定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-%E7%9A%84%E9%9A%90%E5%96%BB"><span class="toc-number">2.</span> <span class="toc-text">Docker 的隐喻</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E9%9D%A2%E6%84%8F%E6%80%9D%EF%BC%9ADocker%E2%80%94%E2%80%94%E7%A0%81%E5%A4%B4%E5%B7%A5%E4%BA%BA%E3%80%82"><span class="toc-number">2.1.</span> <span class="toc-text">字面意思：Docker——码头工人。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Docker%EF%BC%88%E7%A0%81%E5%A4%B4%E5%B7%A5%E4%BA%BA%EF%BC%89%E6%AD%A3%E6%98%AF%E5%80%9F%E7%94%A8%E4%BA%86%E9%9B%86%E8%A3%85%E7%AE%B1%E7%9A%84%E9%9A%90%E5%96%BB"><span class="toc-number">2.2.</span> <span class="toc-text">Docker（码头工人）正是借用了集装箱的隐喻</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#docker-%E5%87%BA%E7%8E%B0%E4%B9%8B%E5%90%8E"><span class="toc-number">3.</span> <span class="toc-text">docker 出现之后</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%87%E5%87%86%E7%9A%84%E4%BA%A4%E4%BB%98%E4%BB%B6"><span class="toc-number">3.1.</span> <span class="toc-text">标准的交付件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Docker-%E7%A9%B6%E7%AB%9F%E5%81%9A%E4%BA%86%E4%BB%80%E4%B9%88%E7%AE%80%E5%8C%96%EF%BC%9F"><span class="toc-number">3.2.</span> <span class="toc-text">Docker 究竟做了什么简化？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BD%93%E7%84%B6%E4%BC%98%E7%82%B9%E4%B8%8D%E6%AD%A2%E4%BA%8E%E6%AD%A4"><span class="toc-number">3.3.</span> <span class="toc-text">当然优点不止于此</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%9F%E4%B8%80%E7%9A%84%E7%AE%A1%E7%90%86%E6%9C%8D%E5%8A%A1"><span class="toc-number">3.4.</span> <span class="toc-text">统一的管理服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%81%E7%BB%AD%E4%BA%A4%E4%BB%98%E4%B8%8A%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-number">3.5.</span> <span class="toc-text">持续交付上的应用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E-docker-%E7%9A%84%E4%B8%80%E4%B8%AA%E8%AF%AF%E8%A7%A3"><span class="toc-number">4.</span> <span class="toc-text">关于 docker 的一个误解</span></a></li></ol>
+    
   </div>
 
-<div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
-<aside>
+
+<aside id="asidepart">
 
   
 <div class="categorieslist">
@@ -286,7 +284,6 @@
 </div>
 
 </aside>
-</div>
     </div>
     <footer><div id="footer-wrapper">
   <div id="footer">
@@ -365,45 +362,6 @@
     $('.navbar').click(function(){
       $('header nav').toggleClass('shownav');
     });
-    var myWidth = 0;
-    function getSize(){
-      if( typeof( window.innerWidth ) == 'number' ) {
-        myWidth = window.innerWidth;
-      } else if( document.documentElement && document.documentElement.clientWidth) {
-        myWidth = document.documentElement.clientWidth;
-      };
-    };
-    var m = $('#main'),
-        a = $('#asidepart'),
-        c = $('.closeaside'),
-        o = $('.openaside');
-    c.click(function(){
-      a.addClass('fadeOut').css('display', 'none');
-      o.css('display', 'block').addClass('fadeIn');
-      m.addClass('moveMain');
-    });
-    o.click(function(){
-      o.css('display', 'none').removeClass('beforeFadeIn');
-      a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');
-      m.removeClass('moveMain');
-    });
-    $(window).scroll(function(){
-      o.css("top",Math.max(80,260-$(this).scrollTop()));
-    });
-    
-    $(window).resize(function(){
-      getSize();
-      if (myWidth >= 1024) {
-        $('header nav').removeClass('shownav');
-      }else{
-        m.removeClass('moveMain');
-        a.css('display', 'block').removeClass('fadeOut');
-        o.css('display', 'none');
-        
-        $('#toc.toc-aside').css('display', 'none');
-        
-      }
-    });
   });
 </script>
 
@@ -433,6 +391,7 @@
   })
 </script>
  
+
 <script type="text/javascript">
   $(document).ready(function () {
     var $this = $('.share'),
@@ -498,7 +457,8 @@
     )
   })
 </script>
-  
+ 
+ 
 
   
 <link
