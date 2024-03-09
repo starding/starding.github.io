@@ -1053,7 +1053,7 @@ article .article-content abbr {
   border-bottom: 1px dotted;
 }
 article .article-content blockquote {
-  border-left: 0.1em solid #000;
+  border-left: 0.1em solid #808080;
   margin: 0.65em 0;
   padding-left: 1%;
   line-height: 1.6;
