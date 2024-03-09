@@ -1060,7 +1060,7 @@ article .article-content abbr {
 article .article-content blockquote {
   border-left: 0.1em solid #808080;
   margin: 0.65em 0;
-  padding-left: 1%;
+  padding-left: 0.25em;
   line-height: 1.8;
   font-size: 100%;
   color: #808080;
