@@ -521,6 +521,12 @@ body header a {
   }
 }
 #imglogo img {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
   width: 4em;
 }
 @media only screen and (min-width: 768px) {
