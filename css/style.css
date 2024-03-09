@@ -2019,7 +2019,7 @@ section.comment {
   text-align: center;
   color: #fff;
   font-size: 185%;
-  padding: 1em;
+  padding: 0.5em;
 }
 .social-font a:hover:before {
   color: #002fa7;
