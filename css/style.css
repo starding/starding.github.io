@@ -174,16 +174,15 @@ body {
   font-family: "Helvetica Neue", "Helvetica", "Microsoft YaHei", "WenQuanYi Micro Hei", Arial, sans-serif;
   font-size: 100%;
   color: #817c7c;
-  line-height: 1.6;
+  line-height: 1.8;
+  letter-spacing: 0.2px;
   min-height: 100vh;
-  display: -webkit-flex;
   display: -webkit-box;
   display: -moz-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: box;
   display: flex;
-  -webkit-flex-direction: column;
   -webkit-box-orient: vertical;
   -moz-box-orient: vertical;
   -o-box-orient: vertical;
@@ -537,7 +536,7 @@ body header a {
 #textlogo h1.site-name {
   font-family: "Helvetica Neue", "Helvetica", "Microsoft YaHei", "WenQuanYi Micro Hei", Arial, sans-serif;
   font-size: 160%;
-  line-height: 1.6;
+  line-height: 1.8;
   font-weight: normal;
 }
 @media only screen and (min-width: 768px) {
@@ -661,7 +660,7 @@ header nav ul li a:hover {
 .search input {
   -webkit-appearance: textfield;
   font-size: 0.87em;
-  line-height: 1.8;
+  line-height: 2;
   border: 1px solid #fff;
   border-radius: 2px;
   color: #fff;
@@ -716,7 +715,7 @@ header nav ul li a:hover {
 }
 #main {
   margin: 1em 0 0;
-  line-height: 1.9;
+  line-height: 2.1;
 }
 @media only screen and (min-width: 1024px) {
   #main {
@@ -753,7 +752,7 @@ header nav ul li a:hover {
 }
 #main section.post a h1 {
   color: #413f3f;
-  line-height: 2.1;
+  line-height: 2.3;
 }
 #main section.post a p {
   color: #817c7c;
@@ -959,7 +958,7 @@ header nav ul li a:hover {
 article .article-header h1 {
   padding: 0.2em 4%;
   font-size: 170%;
-  line-height: 1.6;
+  line-height: 1.8;
   word-wrap: break-word;
   word-break: normal;
   -webkit-font-smoothing: antialiased;
@@ -1001,7 +1000,7 @@ article .article-content .kb {
   display: inline-block;
   margin: 0 0.1em;
   text-shadow: 0 1px 0 #fff;
-  line-height: 1.6;
+  line-height: 1.8;
   white-space: nowrap;
 }
 article .article-content h1,
@@ -1056,7 +1055,7 @@ article .article-content blockquote {
   border-left: 0.1em solid #808080;
   margin: 0.65em 0;
   padding-left: 1%;
-  line-height: 1.6;
+  line-height: 1.8;
   font-size: 100%;
   color: #808080;
 }
@@ -1112,7 +1111,7 @@ article .article-content table td>code {
   border-radius: 0.25em;
 }
 article .article-content p {
-  line-height: 1.6;
+  line-height: 1.8;
   margin-top: 0.7em;
 }
 @media only screen and (min-width: 1024px) {
@@ -1795,7 +1794,7 @@ section.comment {
 }
 .linkslist ul a {
   font-size: 1em;
-  line-height: 1.6;
+  line-height: 1.8;
   display: block;
   padding: 0.2em 0;
 }
@@ -2065,7 +2064,7 @@ section.comment {
   margin: 0.5em 0;
   padding: 0.5em 2%;
   color: #4d4d4c;
-  line-height: 1.6;
+  line-height: 1.8;
   font-size: 0.8em;
   -webkit-border-radius: 0.35em;
   border-radius: 0.35em;
@@ -2087,7 +2086,7 @@ section.comment {
   .article-content .highlight .gutter pre,
   .article-content .gist .gist-file .gist-data .line-numbers {
     font-size: 0.9em;
-    line-height: 1.6;
+    line-height: 1.8;
   }
 }
 .article-content pre {
