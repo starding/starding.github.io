@@ -1,6 +1,6 @@
 
  <!DOCTYPE HTML>
-<html lang="zh_CN">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
   
@@ -56,22 +56,22 @@
 			</div>
 	</div>
 	<div class="navbar">
-		<a class="navbutton navmobile" href="#" title="Menu"></a>
+		<a class="navbutton navmobile" href="#" title="菜单"></a>
 	</div>
 	<nav class="animated">
 		<ul class="nav-list">
 			
 				<li><a href="/">主页</a></li>
 			
-				<li><a href="/archives">归档</a></li>
+				<li><a href="/archives">时间线</a></li>
 			
-				<li><a href="/about">关于</a></li>
+				<li><a href="/about">关于我</a></li>
 			
 			<li>
 			
 			<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 				<label>Search</label>
-				<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+				<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
 				<input type="hidden" name="q" value="site:starding.github.io">
 			</form>
 			
@@ -99,7 +99,7 @@
 
     <p class="article-time">
       <time datetime="2016-01-06T17:28:10.000Z" itemprop="datePublished">
-          2016-01-07
+        于 2016-01-07
       </time>
     </p>
   </div>
@@ -108,7 +108,7 @@
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">Contents</strong>
+			<strong class="toc-title">文章目录</strong>
 		
 			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-%E7%9A%84%E5%AD%A6%E6%9C%AF%E5%8C%96%E5%AE%9A%E4%B9%89"><span class="toc-number">1.</span> <span class="toc-text">Docker 的学术化定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-%E7%9A%84%E9%9A%90%E5%96%BB"><span class="toc-number">2.</span> <span class="toc-text">Docker 的隐喻</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E9%9D%A2%E6%84%8F%E6%80%9D%EF%BC%9ADocker%E2%80%94%E2%80%94%E7%A0%81%E5%A4%B4%E5%B7%A5%E4%BA%BA%E3%80%82"><span class="toc-number">2.1.</span> <span class="toc-text">字面意思：Docker——码头工人。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Docker%EF%BC%88%E7%A0%81%E5%A4%B4%E5%B7%A5%E4%BA%BA%EF%BC%89%E6%AD%A3%E6%98%AF%E5%80%9F%E7%94%A8%E4%BA%86%E9%9B%86%E8%A3%85%E7%AE%B1%E7%9A%84%E9%9A%90%E5%96%BB"><span class="toc-number">2.2.</span> <span class="toc-text">Docker（码头工人）正是借用了集装箱的隐喻</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#docker-%E5%87%BA%E7%8E%B0%E4%B9%8B%E5%90%8E"><span class="toc-number">3.</span> <span class="toc-text">docker 出现之后</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%87%E5%87%86%E7%9A%84%E4%BA%A4%E4%BB%98%E4%BB%B6"><span class="toc-number">3.1.</span> <span class="toc-text">标准的交付件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Docker-%E7%A9%B6%E7%AB%9F%E5%81%9A%E4%BA%86%E4%BB%80%E4%B9%88%E7%AE%80%E5%8C%96%EF%BC%9F"><span class="toc-number">3.2.</span> <span class="toc-text">Docker 究竟做了什么简化？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BD%93%E7%84%B6%E4%BC%98%E7%82%B9%E4%B8%8D%E6%AD%A2%E4%BA%8E%E6%AD%A4"><span class="toc-number">3.3.</span> <span class="toc-text">当然优点不止于此</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%9F%E4%B8%80%E7%9A%84%E7%AE%A1%E7%90%86%E6%9C%8D%E5%8A%A1"><span class="toc-number">3.4.</span> <span class="toc-text">统一的管理服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%81%E7%BB%AD%E4%BA%A4%E4%BB%98%E4%B8%8A%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-number">3.5.</span> <span class="toc-text">持续交付上的应用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E-docker-%E7%9A%84%E4%B8%80%E4%B8%AA%E8%AF%AF%E8%A7%A3"><span class="toc-number">4.</span> <span class="toc-text">关于 docker 的一个误解</span></a></li></ol>
 		
@@ -165,25 +165,27 @@
 	</div>
 		<footer class="article-footer">
   <div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/%E4%BD%9C%E4%B8%BA%E5%B7%A5%E7%A8%8B%E5%B8%88/">作为工程师</a>
-</div>
-
-
+  
+  <div class="article-categories">
+    <span></span>
+    <a class="article-category-link" href="/categories/%E4%BD%9C%E4%B8%BA%E5%B7%A5%E7%A8%8B%E5%B8%88/">作为工程师</a>
+  </div>
+  
+  
 </div>
 
  
-  <div class="article-share" id="share">
-    <div
-      data-url="http://starding.github.io/2016/01/07/docker-a-metaphor/"
-      data-title="Docker——从隐喻说起 | 结绳以渔"
-      data-tsina=""
-      class="share"
-    ></div>
-  </div>
-   
+  
+    <div class="article-share" id="share">
+      <div
+        data-url="http://starding.github.io/2016/01/07/docker-a-metaphor/"
+        data-title="Docker——从隐喻说起 | 结绳以渔"
+        data-tsina=""
+        class="share"
+      ></div>
+    </div>
+     
+  
 </footer>
    	       
 	</article>
@@ -230,7 +232,7 @@
 </div>  
       
   <div id="toc" class="toc-aside">
-   <strong class="toc-title">Contents</strong>
+   <strong class="toc-title">文章目录</strong>
     
       <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-%E7%9A%84%E5%AD%A6%E6%9C%AF%E5%8C%96%E5%AE%9A%E4%B9%89"><span class="toc-number">1.</span> <span class="toc-text">Docker 的学术化定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-%E7%9A%84%E9%9A%90%E5%96%BB"><span class="toc-number">2.</span> <span class="toc-text">Docker 的隐喻</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E9%9D%A2%E6%84%8F%E6%80%9D%EF%BC%9ADocker%E2%80%94%E2%80%94%E7%A0%81%E5%A4%B4%E5%B7%A5%E4%BA%BA%E3%80%82"><span class="toc-number">2.1.</span> <span class="toc-text">字面意思：Docker——码头工人。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Docker%EF%BC%88%E7%A0%81%E5%A4%B4%E5%B7%A5%E4%BA%BA%EF%BC%89%E6%AD%A3%E6%98%AF%E5%80%9F%E7%94%A8%E4%BA%86%E9%9B%86%E8%A3%85%E7%AE%B1%E7%9A%84%E9%9A%90%E5%96%BB"><span class="toc-number">2.2.</span> <span class="toc-text">Docker（码头工人）正是借用了集装箱的隐喻</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#docker-%E5%87%BA%E7%8E%B0%E4%B9%8B%E5%90%8E"><span class="toc-number">3.</span> <span class="toc-text">docker 出现之后</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%87%E5%87%86%E7%9A%84%E4%BA%A4%E4%BB%98%E4%BB%B6"><span class="toc-number">3.1.</span> <span class="toc-text">标准的交付件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Docker-%E7%A9%B6%E7%AB%9F%E5%81%9A%E4%BA%86%E4%BB%80%E4%B9%88%E7%AE%80%E5%8C%96%EF%BC%9F"><span class="toc-number">3.2.</span> <span class="toc-text">Docker 究竟做了什么简化？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BD%93%E7%84%B6%E4%BC%98%E7%82%B9%E4%B8%8D%E6%AD%A2%E4%BA%8E%E6%AD%A4"><span class="toc-number">3.3.</span> <span class="toc-text">当然优点不止于此</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%9F%E4%B8%80%E7%9A%84%E7%AE%A1%E7%90%86%E6%9C%8D%E5%8A%A1"><span class="toc-number">3.4.</span> <span class="toc-text">统一的管理服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%81%E7%BB%AD%E4%BA%A4%E4%BB%98%E4%B8%8A%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-number">3.5.</span> <span class="toc-text">持续交付上的应用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E-docker-%E7%9A%84%E4%B8%80%E4%B8%AA%E8%AF%AF%E8%A7%A3"><span class="toc-number">4.</span> <span class="toc-text">关于 docker 的一个误解</span></a></li></ol>
     
@@ -241,7 +243,7 @@
 
   
 <div class="categorieslist">
-	<p class="asidetitle">Categories</p>
+	<p class="asidetitle">分类</p>
 		<ul>
 		
 		  
@@ -260,8 +262,36 @@
 </div>
 
 
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/docker/" title="docker">docker<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/gitlab/" title="gitlab">gitlab<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/写作/" title="写作">写作<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  
+  <div class="archiveslist">
+    <p class="asidetitle"><a href="/archives">时间线</a></p>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">2024 年 02 月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">2016 年 10 月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">2016 年 09 月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">2016 年 08 月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016 年 07 月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">2016 年 04 月</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">2016 年 03 月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">2016 年 02 月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">2016 年 01 月</a><span class="archive-list-count">16</span></li></ul>
+  </div>
+
+
   <div class="linkslist">
-  <p class="asidetitle">Links</p>
+  <p class="asidetitle">对我有影响的链接</p>
     <ul>
         
           <li>
@@ -280,12 +310,12 @@
 </div>
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
 </div>
 
 </aside>
     </div>
-    <footer><div id="footer-wrapper">
+    <footer id="page-footer"><div id="footer-wrapper">
   <div id="footer">
     <section class="author-area-container">
       <section class="author-area">
@@ -530,24 +560,13 @@
     </script>
 
 
-    <script>
-        var _hmt = _hmt || [];
-        (function() {
-            var hm = document.createElement("script");
-            hm.src =
-                "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
-            var s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(hm, s);
-        })();
-    </script>
-
 
 <!-- Analytics End -->
 
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="Back to Top"><img src="/img/scrollup.svg"/></a>
+	<a title="返回顶部"><img src="/img/scrollup.svg"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
