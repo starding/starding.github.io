@@ -1052,16 +1052,19 @@ article .article-content h2 {
   font-size: 180%;
   line-height: 1.2em;
   padding-bottom: 0.2em;
-  margin-top: 1.5em;
+  margin-top: 1.4em;
+  font-weight: 500;
 }
 article .article-content h3 {
   font-size: 140%;
+  font-weight: 500;
   line-height: 1em;
-  margin-top: 1.3em;
+  margin-top: 1.2em;
 }
 article .article-content h4,
 article .article-content h5,
 article .article-content h6 {
+  margin-top: 1em;
   font-size: 140%;
 }
 article .article-content h1,
@@ -1083,7 +1086,7 @@ article .article-content h6 >code {
   color: #a3a3a3;
 }
 article .article-content hr {
-  border: 1px solid #dbdbdb;
+  border: 0.5px solid #dbdbdb;
 }
 article .article-content strong {
   font-weight: bold;
@@ -1114,13 +1117,10 @@ article .article-content blockquote cite {
   font-style: italic;
   padding-left: 0.5em;
 }
-article .article-content ul,
-article .article-content ol {
-  padding-left: 1.1em;
-  font-size: 100%;
-  padding-top: 0.7em;
-}
 article .article-content ul {
+  padding-left: 1em;
+  font-size: 100%;
+  padding-top: 0.5em;
   list-style-type: disc;
 }
 article .article-content ul ul {
@@ -1136,6 +1136,9 @@ article .article-content ul li::marker {
   color: #002fa7;
 }
 article .article-content ol {
+  padding-left: 1.2em;
+  font-size: 100%;
+  padding-top: 0.5em;
   list-style-type: decimal;
 }
 article .article-content ol ol {
@@ -1170,7 +1173,7 @@ article .article-content table td>code {
 }
 article .article-content p {
   line-height: 1.8;
-  margin-top: 0.7em;
+  margin-top: 0.75em;
 }
 @media only screen and (min-width: 1024px) {
   article .article-content p {
