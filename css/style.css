@@ -2243,10 +2243,10 @@ section.comment {
 .article-content pre,
 .article-content .highlight,
 .article-content .highlight pre {
-  background: #f5f6f5;
+  background: #282c34;
   margin: 0.5em 0;
   padding: 0.5em 2%;
-  color: #4d4d4c;
+  color: #ccc;
   line-height: 1.8;
   font-size: 0.8em;
   -webkit-border-radius: 0.35em;
@@ -2262,7 +2262,7 @@ section.comment {
 }
 .article-content .highlight .gutter pre,
 .article-content .gist .gist-file .gist-data .line-numbers {
-  color: #bbb;
+  color: #666;
   font-size: 0.4em;
 }
 @media only screen and (min-width: 375px) {
@@ -2301,7 +2301,7 @@ section.comment {
   zoom: 1;
   font-size: 0.85em;
   text-align: left;
-  color: #8e908c;
+  color: #5c6370;
   line-height: 1em;
   padding: 0.5em 0;
   margin-bottom: 0.5em;
@@ -2326,7 +2326,7 @@ section.comment {
 }
 .article-content .gist {
   margin: 0.5em 0;
-  background: #f5f6f5;
+  background: #282c34;
   padding: 1em 2%;
   -webkit-border-radius: 0.35em;
   border-radius: 0.35em;
@@ -2352,11 +2352,11 @@ section.comment {
   margin: 0;
   padding: 0;
   border: none;
-  background: #f5f6f5;
+  background: #282c34;
 }
 .article-content .gist .gist-file .gist-meta {
-  background: #f5f6f5;
-  color: #8e908c;
+  background: #282c34;
+  color: #5c6370;
   font: 0.85em "Georgia", serif;
   text-shadow: 0 0;
   padding: 0;
@@ -2369,61 +2369,62 @@ section.comment {
 .article-content .gist .gist-file .gist-meta a:hover {
   color: #000;
 }
-pre .comment,
-pre .title {
-  color: #8e908c;
+.highlight,
+.comment {
+  color: #5c6370;
 }
-pre .variable,
-pre .attribute,
-pre .tag,
-pre .regexp,
-pre .ruby .constant,
-pre .xml .tag .title,
-pre .xml .pi,
-pre .xml .doctype,
-pre .html .doctype,
-pre .css .id,
-pre .css .class,
-pre .css .pseudo {
-  color: #ff4040;
+.variable,
+.attribute,
+.tag,
+.regexp,
+.ruby .constant,
+.xml .tag .title,
+.xml .pi,
+.xml .doctype,
+.html .doctype,
+.css .id,
+.css .class,
+.css .pseudo {
+  color: #e06c75;
 }
-pre .number,
-pre .preprocessor,
-pre .built_in,
-pre .literal,
-pre .params,
-pre .constant {
-  color: #ff9666;
+.number,
+.preprocessor,
+.built_in,
+.literal,
+.params,
+.constant {
+  color: #d19a66;
 }
-pre .class,
-pre .ruby .class .title,
-pre .css .rules .attribute {
-  color: #1eac3e;
+.class,
+.ruby .class .title,
+.css .rules .attribute {
+  color: #98c379;
 }
-pre .string,
-pre .value,
-pre .inheritance,
-pre .header,
-pre .ruby .symbol,
-pre .xml .cdata {
-  color: #1eac3e;
+.string,
+.value,
+.inheritance,
+.header,
+.ruby .symbol,
+.xml .cdata {
+  color: #98c379;
 }
-pre .css .hexcolor {
-  color: #059b84;
+.css .hexcolor {
+  color: #56b6c2;
 }
-pre .function,
-pre .python .decorator,
-pre .python .title,
-pre .ruby .function .title,
-pre .ruby .title .keyword,
-pre .perl .sub,
-pre .javascript .title,
-pre .coffeescript .title {
-  color: #007ef0;
+.function,
+.funciton_,
+.python .decorator,
+.python .title,
+.ruby .function .title,
+.ruby .title .keyword,
+.perl .sub,
+.javascript .title,
+.coffeescript .title {
+  color: #61aeee;
 }
-pre .keyword,
-pre .javascript .function {
-  color: #8b43ab;
+.keyword,
+.javascript .function {
+  color: #c678dd;
 }
 .gallery {
   overflow: hidden;
