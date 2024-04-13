@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>结绳以渔</title>
-  <icon>http://starding.github.io/white_logo_yao.png</icon>
+  <icon>https://xinghua.space/white_logo_yao.png</icon>
   <subtitle>临渊羡鱼，不如退而结网</subtitle>
-  <link href="http://starding.github.io/atom.xml" rel="self"/>
+  <link href="https://xinghua.space/atom.xml" rel="self"/>
   
-  <link href="http://starding.github.io/"/>
+  <link href="https://xinghua.space/"/>
   <updated>2024-04-06T06:35:25.687Z</updated>
-  <id>http://starding.github.io/</id>
+  <id>https://xinghua.space/</id>
   
   <author>
     <name>XingHua</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>精力充沛是好好生活的前提</title>
-    <link href="http://starding.github.io/2024/04/06/vigor-is-the-premise-of-live/"/>
-    <id>http://starding.github.io/2024/04/06/vigor-is-the-premise-of-live/</id>
+    <link href="https://xinghua.space/2024/04/06/vigor-is-the-premise-of-live/"/>
+    <id>https://xinghua.space/2024/04/06/vigor-is-the-premise-of-live/</id>
     <published>2024-04-06T05:57:21.000Z</published>
     <updated>2024-04-06T06:35:25.687Z</updated>
     
@@ -33,17 +33,17 @@
     
     
     
-    <category term="好好生活" scheme="http://starding.github.io/categories/%E5%A5%BD%E5%A5%BD%E7%94%9F%E6%B4%BB/"/>
+    <category term="好好生活" scheme="https://xinghua.space/categories/%E5%A5%BD%E5%A5%BD%E7%94%9F%E6%B4%BB/"/>
     
     
-    <category term="可积累的" scheme="http://starding.github.io/tags/%E5%8F%AF%E7%A7%AF%E7%B4%AF%E7%9A%84/"/>
+    <category term="可积累的" scheme="https://xinghua.space/tags/%E5%8F%AF%E7%A7%AF%E7%B4%AF%E7%9A%84/"/>
     
   </entry>
   
   <entry>
     <title>一幅错误的地图好过没有地图</title>
-    <link href="http://starding.github.io/2024/04/04/error-map-is-better-than-no-map/"/>
-    <id>http://starding.github.io/2024/04/04/error-map-is-better-than-no-map/</id>
+    <link href="https://xinghua.space/2024/04/04/error-map-is-better-than-no-map/"/>
+    <id>https://xinghua.space/2024/04/04/error-map-is-better-than-no-map/</id>
     <published>2024-04-04T00:00:03.000Z</published>
     <updated>2024-04-06T06:03:44.902Z</updated>
     
@@ -57,19 +57,19 @@
     
     
     
-    <category term="随笔" scheme="http://starding.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
+    <category term="随笔" scheme="https://xinghua.space/categories/%E9%9A%8F%E7%AC%94/"/>
     
     
-    <category term="认知方法" scheme="http://starding.github.io/tags/%E8%AE%A4%E7%9F%A5%E6%96%B9%E6%B3%95/"/>
+    <category term="认知方法" scheme="https://xinghua.space/tags/%E8%AE%A4%E7%9F%A5%E6%96%B9%E6%B3%95/"/>
     
-    <category term="可积累的" scheme="http://starding.github.io/tags/%E5%8F%AF%E7%A7%AF%E7%B4%AF%E7%9A%84/"/>
+    <category term="可积累的" scheme="https://xinghua.space/tags/%E5%8F%AF%E7%A7%AF%E7%B4%AF%E7%9A%84/"/>
     
   </entry>
   
   <entry>
     <title>Web 小史：关键脉络</title>
-    <link href="http://starding.github.io/2024/03/30/a-short-web-history/"/>
-    <id>http://starding.github.io/2024/03/30/a-short-web-history/</id>
+    <link href="https://xinghua.space/2024/03/30/a-short-web-history/"/>
+    <id>https://xinghua.space/2024/03/30/a-short-web-history/</id>
     <published>2024-03-30T06:38:56.000Z</published>
     <updated>2024-03-31T11:21:10.466Z</updated>
     
@@ -83,15 +83,15 @@
     
     
     
-    <category term="作为工程师" scheme="http://starding.github.io/categories/%E4%BD%9C%E4%B8%BA%E5%B7%A5%E7%A8%8B%E5%B8%88/"/>
+    <category term="作为工程师" scheme="https://xinghua.space/categories/%E4%BD%9C%E4%B8%BA%E5%B7%A5%E7%A8%8B%E5%B8%88/"/>
     
     
   </entry>
   
   <entry>
     <title>重启独立博客</title>
-    <link href="http://starding.github.io/2024/02/25/blog-reopen/"/>
-    <id>http://starding.github.io/2024/02/25/blog-reopen/</id>
+    <link href="https://xinghua.space/2024/02/25/blog-reopen/"/>
+    <id>https://xinghua.space/2024/02/25/blog-reopen/</id>
     <published>2024-02-25T08:54:22.000Z</published>
     <updated>2024-03-02T07:08:55.425Z</updated>
     
@@ -105,15 +105,15 @@
     
     
     
-    <category term="随笔" scheme="http://starding.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
+    <category term="随笔" scheme="https://xinghua.space/categories/%E9%9A%8F%E7%AC%94/"/>
     
     
   </entry>
   
   <entry>
     <title>material design 简介及背后的理论</title>
-    <link href="http://starding.github.io/2016/10/31/material-design-introduct-md/"/>
-    <id>http://starding.github.io/2016/10/31/material-design-introduct-md/</id>
+    <link href="https://xinghua.space/2016/10/31/material-design-introduct-md/"/>
+    <id>https://xinghua.space/2016/10/31/material-design-introduct-md/</id>
     <published>2016-10-31T09:04:37.000Z</published>
     <updated>2024-03-02T07:12:07.987Z</updated>
     
@@ -127,15 +127,15 @@
     
     
     
-    <category term="作为工程师" scheme="http://starding.github.io/categories/%E4%BD%9C%E4%B8%BA%E5%B7%A5%E7%A8%8B%E5%B8%88/"/>
+    <category term="作为工程师" scheme="https://xinghua.space/categories/%E4%BD%9C%E4%B8%BA%E5%B7%A5%E7%A8%8B%E5%B8%88/"/>
     
     
   </entry>
   
   <entry>
     <title>前端工程师的形而上学 (0)</title>
-    <link href="http://starding.github.io/2016/09/04/fe-metaphysics/"/>
-    <id>http://starding.github.io/2016/09/04/fe-metaphysics/</id>
+    <link href="https://xinghua.space/2016/09/04/fe-metaphysics/"/>
+    <id>https://xinghua.space/2016/09/04/fe-metaphysics/</id>
     <published>2016-09-04T09:00:35.000Z</published>
     <updated>2024-03-02T07:10:19.177Z</updated>
     
@@ -155,8 +155,8 @@
   
   <entry>
     <title>前端工程师的形而上学 (1)—— 一个例子</title>
-    <link href="http://starding.github.io/2016/08/29/why-users-can-not-see-collect-function-in-neihan/"/>
-    <id>http://starding.github.io/2016/08/29/why-users-can-not-see-collect-function-in-neihan/</id>
+    <link href="https://xinghua.space/2016/08/29/why-users-can-not-see-collect-function-in-neihan/"/>
+    <id>https://xinghua.space/2016/08/29/why-users-can-not-see-collect-function-in-neihan/</id>
     <published>2016-08-29T08:44:10.000Z</published>
     <updated>2024-03-02T07:15:59.532Z</updated>
     
@@ -170,15 +170,15 @@
     
     
     
-    <category term="作为工程师" scheme="http://starding.github.io/categories/%E4%BD%9C%E4%B8%BA%E5%B7%A5%E7%A8%8B%E5%B8%88/"/>
+    <category term="作为工程师" scheme="https://xinghua.space/categories/%E4%BD%9C%E4%B8%BA%E5%B7%A5%E7%A8%8B%E5%B8%88/"/>
     
     
   </entry>
   
   <entry>
     <title>毕业一年</title>
-    <link href="http://starding.github.io/2016/07/29/one-year-after-graduation/"/>
-    <id>http://starding.github.io/2016/07/29/one-year-after-graduation/</id>
+    <link href="https://xinghua.space/2016/07/29/one-year-after-graduation/"/>
+    <id>https://xinghua.space/2016/07/29/one-year-after-graduation/</id>
     <published>2016-07-29T08:26:03.000Z</published>
     <updated>2024-03-02T07:13:47.169Z</updated>
     
@@ -192,15 +192,15 @@
     
     
     
-    <category term="随笔" scheme="http://starding.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
+    <category term="随笔" scheme="https://xinghua.space/categories/%E9%9A%8F%E7%AC%94/"/>
     
     
   </entry>
   
   <entry>
     <title>常用算法</title>
-    <link href="http://starding.github.io/2016/04/26/topological-sort/"/>
-    <id>http://starding.github.io/2016/04/26/topological-sort/</id>
+    <link href="https://xinghua.space/2016/04/26/topological-sort/"/>
+    <id>https://xinghua.space/2016/04/26/topological-sort/</id>
     <published>2016-04-26T08:22:21.000Z</published>
     <updated>2024-03-02T07:15:27.862Z</updated>
     
@@ -219,8 +219,8 @@
   
   <entry>
     <title>什么是 Javascript Event Loop</title>
-    <link href="http://starding.github.io/2016/04/26/javascript-event-loop/"/>
-    <id>http://starding.github.io/2016/04/26/javascript-event-loop/</id>
+    <link href="https://xinghua.space/2016/04/26/javascript-event-loop/"/>
+    <id>https://xinghua.space/2016/04/26/javascript-event-loop/</id>
     <published>2016-04-26T07:47:41.000Z</published>
     <updated>2024-03-02T07:11:18.164Z</updated>
     
@@ -239,8 +239,8 @@
   
   <entry>
     <title>板砖，石头与 Web 标准，W3C</title>
-    <link href="http://starding.github.io/2016/04/20/standardization/"/>
-    <id>http://starding.github.io/2016/04/20/standardization/</id>
+    <link href="https://xinghua.space/2016/04/20/standardization/"/>
+    <id>https://xinghua.space/2016/04/20/standardization/</id>
     <published>2016-04-20T07:41:51.000Z</published>
     <updated>2024-03-02T07:15:09.643Z</updated>
     
@@ -254,15 +254,15 @@
     
     
     
-    <category term="作为工程师" scheme="http://starding.github.io/categories/%E4%BD%9C%E4%B8%BA%E5%B7%A5%E7%A8%8B%E5%B8%88/"/>
+    <category term="作为工程师" scheme="https://xinghua.space/categories/%E4%BD%9C%E4%B8%BA%E5%B7%A5%E7%A8%8B%E5%B8%88/"/>
     
     
   </entry>
   
   <entry>
     <title>钟楼和时间革命</title>
-    <link href="http://starding.github.io/2016/04/09/horologe-in-church/"/>
-    <id>http://starding.github.io/2016/04/09/horologe-in-church/</id>
+    <link href="https://xinghua.space/2016/04/09/horologe-in-church/"/>
+    <id>https://xinghua.space/2016/04/09/horologe-in-church/</id>
     <published>2016-04-09T07:36:23.000Z</published>
     <updated>2024-03-02T07:10:52.551Z</updated>
     
@@ -277,15 +277,15 @@
     
     
     
-    <category term="科哲和科学史" scheme="http://starding.github.io/categories/%E7%A7%91%E5%93%B2%E5%92%8C%E7%A7%91%E5%AD%A6%E5%8F%B2/"/>
+    <category term="科哲和科学史" scheme="https://xinghua.space/categories/%E7%A7%91%E5%93%B2%E5%92%8C%E7%A7%91%E5%AD%A6%E5%8F%B2/"/>
     
     
   </entry>
   
   <entry>
     <title>关于圆锥曲线光学性质的有趣解释 (证明与原因)</title>
-    <link href="http://starding.github.io/2016/04/04/somethings-about-ellipse/"/>
-    <id>http://starding.github.io/2016/04/04/somethings-about-ellipse/</id>
+    <link href="https://xinghua.space/2016/04/04/somethings-about-ellipse/"/>
+    <id>https://xinghua.space/2016/04/04/somethings-about-ellipse/</id>
     <published>2016-04-04T07:24:12.000Z</published>
     <updated>2024-03-02T07:14:57.617Z</updated>
     
@@ -299,15 +299,15 @@
     
     
     
-    <category term="随笔" scheme="http://starding.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
+    <category term="随笔" scheme="https://xinghua.space/categories/%E9%9A%8F%E7%AC%94/"/>
     
     
   </entry>
   
   <entry>
     <title>什么是模态框（modal dialog）</title>
-    <link href="http://starding.github.io/2016/03/19/model-dialog/"/>
-    <id>http://starding.github.io/2016/03/19/model-dialog/</id>
+    <link href="https://xinghua.space/2016/03/19/model-dialog/"/>
+    <id>https://xinghua.space/2016/03/19/model-dialog/</id>
     <published>2016-03-19T07:13:33.000Z</published>
     <updated>2024-03-02T07:12:44.087Z</updated>
     
@@ -321,15 +321,15 @@
     
     
     
-    <category term="作为工程师" scheme="http://starding.github.io/categories/%E4%BD%9C%E4%B8%BA%E5%B7%A5%E7%A8%8B%E5%B8%88/"/>
+    <category term="作为工程师" scheme="https://xinghua.space/categories/%E4%BD%9C%E4%B8%BA%E5%B7%A5%E7%A8%8B%E5%B8%88/"/>
     
     
   </entry>
   
   <entry>
     <title>html5 设计原理</title>
-    <link href="http://starding.github.io/2016/03/19/html5-design-principle/"/>
-    <id>http://starding.github.io/2016/03/19/html5-design-principle/</id>
+    <link href="https://xinghua.space/2016/03/19/html5-design-principle/"/>
+    <id>https://xinghua.space/2016/03/19/html5-design-principle/</id>
     <published>2016-03-19T02:30:47.000Z</published>
     <updated>2024-03-02T07:11:04.020Z</updated>
     
@@ -348,8 +348,8 @@
   
   <entry>
     <title>在计算机学习中，为什么我们应该问为什么</title>
-    <link href="http://starding.github.io/2016/03/18/why-should-we-ask-why/"/>
-    <id>http://starding.github.io/2016/03/18/why-should-we-ask-why/</id>
+    <link href="https://xinghua.space/2016/03/18/why-should-we-ask-why/"/>
+    <id>https://xinghua.space/2016/03/18/why-should-we-ask-why/</id>
     <published>2016-03-18T02:23:14.000Z</published>
     <updated>2024-03-02T07:15:50.690Z</updated>
     
@@ -363,15 +363,15 @@
     
     
     
-    <category term="作为工程师" scheme="http://starding.github.io/categories/%E4%BD%9C%E4%B8%BA%E5%B7%A5%E7%A8%8B%E5%B8%88/"/>
+    <category term="作为工程师" scheme="https://xinghua.space/categories/%E4%BD%9C%E4%B8%BA%E5%B7%A5%E7%A8%8B%E5%B8%88/"/>
     
     
   </entry>
   
   <entry>
     <title>隐喻</title>
-    <link href="http://starding.github.io/2016/02/26/metaphor/"/>
-    <id>http://starding.github.io/2016/02/26/metaphor/</id>
+    <link href="https://xinghua.space/2016/02/26/metaphor/"/>
+    <id>https://xinghua.space/2016/02/26/metaphor/</id>
     <published>2016-02-26T02:13:33.000Z</published>
     <updated>2024-03-02T07:12:18.685Z</updated>
     
@@ -385,15 +385,15 @@
     
     
     
-    <category term="随笔" scheme="http://starding.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
+    <category term="随笔" scheme="https://xinghua.space/categories/%E9%9A%8F%E7%AC%94/"/>
     
     
   </entry>
   
   <entry>
     <title>问题记录</title>
-    <link href="http://starding.github.io/2016/02/25/questions-record/"/>
-    <id>http://starding.github.io/2016/02/25/questions-record/</id>
+    <link href="https://xinghua.space/2016/02/25/questions-record/"/>
+    <id>https://xinghua.space/2016/02/25/questions-record/</id>
     <published>2016-02-25T01:25:29.000Z</published>
     <updated>2024-03-02T07:14:23.789Z</updated>
     
@@ -408,15 +408,15 @@
     
     
     
-    <category term="作为工程师" scheme="http://starding.github.io/categories/%E4%BD%9C%E4%B8%BA%E5%B7%A5%E7%A8%8B%E5%B8%88/"/>
+    <category term="作为工程师" scheme="https://xinghua.space/categories/%E4%BD%9C%E4%B8%BA%E5%B7%A5%E7%A8%8B%E5%B8%88/"/>
     
     
   </entry>
   
   <entry>
     <title>javascript 犀牛书（第六版）</title>
-    <link href="http://starding.github.io/2016/01/19/learn-javascript-follow-definitive-guide/"/>
-    <id>http://starding.github.io/2016/01/19/learn-javascript-follow-definitive-guide/</id>
+    <link href="https://xinghua.space/2016/01/19/learn-javascript-follow-definitive-guide/"/>
+    <id>https://xinghua.space/2016/01/19/learn-javascript-follow-definitive-guide/</id>
     <published>2016-01-19T05:01:58.000Z</published>
     <updated>2024-03-02T07:11:51.839Z</updated>
     
@@ -430,15 +430,15 @@
     
     
     
-    <category term="作为工程师" scheme="http://starding.github.io/categories/%E4%BD%9C%E4%B8%BA%E5%B7%A5%E7%A8%8B%E5%B8%88/"/>
+    <category term="作为工程师" scheme="https://xinghua.space/categories/%E4%BD%9C%E4%B8%BA%E5%B7%A5%E7%A8%8B%E5%B8%88/"/>
     
     
   </entry>
   
   <entry>
     <title>docker-gitlab 数据迁移</title>
-    <link href="http://starding.github.io/2016/01/18/gitlab-migrate/"/>
-    <id>http://starding.github.io/2016/01/18/gitlab-migrate/</id>
+    <link href="https://xinghua.space/2016/01/18/gitlab-migrate/"/>
+    <id>https://xinghua.space/2016/01/18/gitlab-migrate/</id>
     <published>2016-01-18T01:22:59.000Z</published>
     <updated>2024-03-10T06:58:32.301Z</updated>
     
@@ -452,12 +452,12 @@
     
     
     
-    <category term="作为工程师" scheme="http://starding.github.io/categories/%E4%BD%9C%E4%B8%BA%E5%B7%A5%E7%A8%8B%E5%B8%88/"/>
+    <category term="作为工程师" scheme="https://xinghua.space/categories/%E4%BD%9C%E4%B8%BA%E5%B7%A5%E7%A8%8B%E5%B8%88/"/>
     
     
-    <category term="docker" scheme="http://starding.github.io/tags/docker/"/>
+    <category term="docker" scheme="https://xinghua.space/tags/docker/"/>
     
-    <category term="gitlab" scheme="http://starding.github.io/tags/gitlab/"/>
+    <category term="gitlab" scheme="https://xinghua.space/tags/gitlab/"/>
     
   </entry>
   
