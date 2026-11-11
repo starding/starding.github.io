@@ -14,9 +14,11 @@
 <link rel="alternate" type="application/atom+xml" title="结绳以渔" href="/atom.xml">
 <link rel="icon" href="/img/favicon_red_only_yao.ico">
 <link rel="apple-touch-icon" href="/img/apple_icon_yao.png">
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}</script>
 <link rel="stylesheet" href="/theme/tokens.css">
 <link rel="stylesheet" href="/theme/site.css">
 <script src="/theme/overlay-scroll.js" defer></script>
+<script src="/theme/theme.js" defer></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-V9SXMWSY9Z"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-V9SXMWSY9Z');</script>
 </head>
@@ -24,6 +26,18 @@
 <header class="appbar">
   <div class="appbar-in">
     <a class="brand" href="/"><img src="/img/logo_red_yao.svg" alt=""><span><b>结绳以渔</b><small>临渊羡鱼，不如退而结网</small></span></a>
+    <div class="theme-pick">
+      <button type="button" class="theme-btn" id="themeBtn" aria-haspopup="menu" aria-expanded="false" title="外观"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="currentColor" d="M12 3.5a8.5 8.5 0 0 1 0 17z"/></svg>
+</button>
+      <div class="theme-menu" id="themeMenu" role="menu" hidden>
+        <button type="button" role="menuitemradio" data-theme-set="auto"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="currentColor" d="M12 3.5a8.5 8.5 0 0 1 0 17z"/></svg>
+<span>自动</span><small>跟随系统</small></button>
+        <button type="button" role="menuitemradio" data-theme-set="light"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/><path stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>
+<span>浅色</span></button>
+        <button type="button" role="menuitemradio" data-theme-set="dark"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
+<span>深色</span></button>
+      </div>
+    </div>
     <nav>
       <a href="/">主页</a>
       <a href="/works/">作品</a>
@@ -74,27 +88,27 @@
 <h3 id="构建应用前的准备">构建应用前的准备</h3>
 <h4 id="应用目录结构">应用目录结构</h4>
 <p>因为 daocloud 是基于 daocker 的，在使用 daocloud 之前，我们需要按照 docker 的规范，把自己的项目改成支持打包成镜像的应用，对于 html5 项目来说，就是添加 Dockerfile 文件和配置好所需要的 nginx 配置文件。比如我有一个应用叫 jinli，其目录结构为 (你的目录结构和这个可能也不一样)：</p>
-<pre><code class="language-shell">jinli/  # 项目根目录
-├── jinli/  # 具体的应用目录
-│   ├── images/ # 图片
-│   ├── index.html  # 默认的检索 html
-│   ├── scripts/  #  js 文件夹
-│   └── styles/    # 存放 css 的文件夹
-├── Dockerfile   # Dockerfile
-├── jinli.conf   # 本应用的 nginx 配置文件
-└── log/  # log 文件</code></pre>
+<pre><code class="language-shell">jinli/  <span class="tok-c"># 项目根目录</span>
+├── jinli/  <span class="tok-c"># 具体的应用目录</span>
+│   ├── images/ <span class="tok-c"># 图片</span>
+│   ├── index.html  <span class="tok-c"># 默认的检索 html</span>
+│   ├── scripts/  <span class="tok-c">#  js 文件夹</span>
+│   └── styles/    <span class="tok-c"># 存放 css 的文件夹</span>
+├── Dockerfile   <span class="tok-c"># Dockerfile</span>
+├── jinli.conf   <span class="tok-c"># 本应用的 nginx 配置文件</span>
+└── log/  <span class="tok-c"># log 文件</span></code></pre>
 <p>在这个目录结构中，和 docker 镜像构建是就是 Dockerfile 这个文件，jinli.conf 是个将要一起打包放入 docker 镜像中的文件，其他的都是应用本身的文件。</p>
 <h4 id="创建-dockerfile-文件">创建 Dockerfile 文件</h4>
 <p>Dockerfile，就是一个 daocker 的规则文件，就像 make 的 Makefile 一样。Dockerfile 描述了将自己的应用构建成 docker 镜像的过程。<br>
 在本例中，Dockerfile 的内容如下：</p>
-<pre><code class="language-dockerfile"># 选择 nginx 服务
-FROM nginx:1.9.5
-# copy 代码
-COPY . /src
-# 添加 nginx 配置文件
-COPY jinli.conf /etc/nginx/conf.d/
-# 去掉默认的 nginx 配置文件
-RUN rm /etc/nginx/conf.d/default.conf</code></pre>
+<pre><code class="language-dockerfile"><span class="tok-c"># 选择 nginx 服务</span>
+<span class="tok-k">FROM</span> nginx:<span class="tok-n">1.9</span>.<span class="tok-n">5</span>
+<span class="tok-c"># copy 代码</span>
+<span class="tok-k">COPY</span> . /src
+<span class="tok-c"># 添加 nginx 配置文件</span>
+<span class="tok-k">COPY</span> jinli.conf /etc/nginx/conf.d/
+<span class="tok-c"># 去掉默认的 nginx 配置文件</span>
+<span class="tok-k">RUN</span> rm /etc/nginx/conf.d/default.conf</code></pre>
 <p>Dockerfile 解释：</p>
 <ul>
 <li>首先，想象将要构建的 docker 镜像包含一个 linux 操作系统。</li>
@@ -109,14 +123,14 @@ RUN rm /etc/nginx/conf.d/default.conf</code></pre>
 <li>server_name 为 localhost，因为这个 server_name 是在 docker 容器内部使用的。</li>
 <li>location 中的 root 文件夹是 docker 容器中的地址，不是宿主机的地址</li>
 </ul>
-<pre><code class="language-nginx">server {
-    listen 80;
-    server_name localhost;
-    access_log /src/log/jinli.access.log;
-    error_log /src/log/jinli.error.log;
-    # 这里你还可以选择根据需要配一些 gzip 等选项
-    location / {
-    root /src/jinli/;
+<pre><code class="language-nginx"><span class="tok-k">server</span> {
+    <span class="tok-k">listen</span> <span class="tok-n">80</span>;
+    <span class="tok-k">server_name</span> localhost;
+    <span class="tok-k">access_log</span> /src/log/jinli.access.log;
+    <span class="tok-k">error_log</span> /src/log/jinli.error.log;
+    <span class="tok-c"># 这里你还可以选择根据需要配一些 gzip 等选项</span>
+    <span class="tok-k">location</span> / {
+    <span class="tok-k">root</span> /src/jinli/;
     }
 }</code></pre>
 <p>然后将应用提交到 github 上，比如具体为：xiaohuruwei/jinli.git</p>
@@ -140,18 +154,18 @@ RUN rm /etc/nginx/conf.d/default.conf</code></pre>
 <p>发布完成之后，可以在 daocloud 上看到所创建的容器的具体信息。包括映射到宿主机上的端口号等等，点击端口号后可以看到该应用的访问地址，打开可以测试是否部署成功了</p>
 <p>为方便后面的叙述，这里假设映射出的端口号为 8888。因为是发布到自己的主机上，所以还需要自己配置域名以及 nginx 反向代理来对外提供访问服务。假设有一个域名已经绑定在了自己的主机上，这里假设为 xiaohuruwei.com.</p>
 <p>登陆自己的主机，并配置 nginx 文件，如果是使用 apt-get 一类的包管理工具安装的，那么应该是在/etc/nginx/conf.d/目录下添加 jinli.conf:</p>
-<pre><code class="language-nginx">server {
-    listen 80;
-    server_name xiaohuruwei.com;
-    access_log /var/log/nginx/jinli.access.log;
-    error_log /var/log/nginx/jinli.error.log;
-    client_max_body_size 200m;
-    # 可以根据需要设置其他配置项
-    location / {
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_pass http://127.0.0.1:8888;
+<pre><code class="language-nginx"><span class="tok-k">server</span> {
+    <span class="tok-k">listen</span> <span class="tok-n">80</span>;
+    <span class="tok-k">server_name</span> xiaohuruwei.com;
+    <span class="tok-k">access_log</span> /var/log/nginx/jinli.access.log;
+    <span class="tok-k">error_log</span> /var/log/nginx/jinli.error.log;
+    client_max_body_size <span class="tok-n">200</span>m;
+    <span class="tok-c"># 可以根据需要设置其他配置项</span>
+    <span class="tok-k">location</span> / {
+        <span class="tok-k">proxy_set_header</span> Host <span class="tok-n">$host</span>;
+        <span class="tok-k">proxy_set_header</span> X-Real-IP <span class="tok-n">$remote_addr</span>;
+        <span class="tok-k">proxy_set_header</span> X-Forwarded-For <span class="tok-n">$proxy_add_x_forwarded_for</span>;
+        <span class="tok-k">proxy_pass</span> <span class="tok-k">http</span>://<span class="tok-n">127.0</span>.<span class="tok-n">0.1</span>:<span class="tok-n">8888</span>;
     }
 }</code></pre>
 <p>然后访问 xiaohuruwei.com 就可以看到内容了</p>
@@ -172,58 +186,58 @@ RUN rm /etc/nginx/conf.d/default.conf</code></pre>
 <p>准备同 html5 接近，因为需要连接外部服务，而且因为 uwsig 服务默认不支持静态文件的处理，所以多了一些对原代码的改造。</p>
 <h4 id="项目结构">项目结构</h4>
 <p>首先是 django 应用的目录，比如有一个应用叫 taikang，目录结构如下：</p>
-<pre><code class="language-shell">taikang    # 项目根目录    
-├── Dockerfile    # Dockerfile 文件
+<pre><code class="language-shell">taikang    <span class="tok-c"># 项目根目录    </span>
+├── Dockerfile    <span class="tok-c"># Dockerfile 文件</span>
 ├── logs    
 ├── manage.py
-├── Makefile    # makefile 文件
-├── requirements.txt    # 应用依赖的 python 库
+├── Makefile    <span class="tok-c"># makefile 文件</span>
+├── requirements.txt    <span class="tok-c"># 应用依赖的 python 库</span>
 ├── templates
-└── taikang        # 应用目录
+└── taikang        <span class="tok-c"># 应用目录</span>
     ├── __init__.py
     ├── models.py
-    ├── settings.py   # django 的配置文件
+    ├── settings.py   <span class="tok-c"># django 的配置文件</span>
     ├── urls.py
     ├── views.py
     └── wsgi.py</code></pre>
 <p>Dockerfile 文件编写<br>
 Dockerfile 文件的含义和 html5 部署中是完全相同的，这里为：</p>
-<pre><code class="language-python"># 使用 python2.7.10 版本作为基础服务
-from python:2.7.10
+<pre><code class="language-python"><span class="tok-c"># 使用 python2.7.10 版本作为基础服务</span>
+<span class="tok-k">from</span> python:<span class="tok-n">2.7</span>.<span class="tok-n">10</span>
 将当前项目中的内容全 copy 到镜像中的 /src 目录下
 COPY . /src
-# 安装 django 应用依赖的库，这里设置为豆瓣的 pypi 源
+<span class="tok-c"># 安装 django 应用依赖的库，这里设置为豆瓣的 pypi 源</span>
 RUN cd /src; pip install -r  requirements.txt -i http://pypi.douban.com/simple --trusted-host pypi.douban.com
-# 镜像暴露出 8000 端口
-EXPOSE 8000
-# 设置工作目录为代码所在目录
+<span class="tok-c"># 镜像暴露出 8000 端口</span>
+EXPOSE <span class="tok-n">8000</span>
+<span class="tok-c"># 设置工作目录为代码所在目录</span>
 WORKDIR  /src
-# 设置应用启动命令
-CMD [&quot;make&quot;, &quot;start-uwsgi&quot;]</code></pre>
+<span class="tok-c"># 设置应用启动命令</span>
+CMD [<span class="tok-s">"make"</span>, <span class="tok-s">"start-uwsgi"</span>]</code></pre>
 <h4 id="makefile-文件编写">Makefile 文件编写</h4>
 <p>可以注意到，上述最后的启动命令中使用了 make 命令，这也是前面目录结构中 Makefile 文件的作用所在。有关 makefile 的知识，这里不再详述。<br>
 总之可以让你更方便的管理应用，这里直接贴出 makefile 文件：</p>
-<pre><code class="language-makefile"># uwsig 启动的 host 和端口 
-host:=0.0.0.0
-port:=8000
-# debug 的时候直接使用 django 自带的服务启动
+<pre><code class="language-makefile"><span class="tok-c"># uwsig 启动的 host 和端口 </span>
+host:=<span class="tok-n">0.0</span>.<span class="tok-n">0.0</span>
+port:=<span class="tok-n">8000</span>
+<span class="tok-c"># debug 的时候直接使用 django 自带的服务启动</span>
 debug:
-    ./manage.py runserver $(host):$(port)
-# 启动 uwsgi 服务
+    ./manage.py runserver <span class="tok-n">$(</span>host):<span class="tok-n">$(</span>port)
+<span class="tok-c"># 启动 uwsgi 服务</span>
 start-uwsgi:
-    uwsgi --socket $(host):$(port) \
-        --chdir $(shell pwd) \
+    uwsgi --socket <span class="tok-n">$(</span>host):<span class="tok-n">$(</span>port) \
+        --chdir <span class="tok-n">$(</span>shell pwd) \
         --wsgi-file taikang/wsgi.py \
         --master \
-        --process 4 \
-        --pidfile $(shell pwd)/uwsgi.pid
-# 停止 uwsgi 服务
+        --process <span class="tok-n">4</span> \
+        --pidfile <span class="tok-n">$(</span>shell pwd)/uwsgi.pid
+<span class="tok-c"># 停止 uwsgi 服务</span>
 stop-uwsgi:
     uwsgi --stop uwsgi.pid
-# 重载 uwsgi 服务
+<span class="tok-c"># 重载 uwsgi 服务</span>
 reload-uwsgi:
     uwsgi --reload uwsgi.pid
-# 收集静态文件
+<span class="tok-c"># 收集静态文件</span>
 collectstatic:
     ./manage.py collectstatic --noinput
 .PHONY: debug \
@@ -236,33 +250,33 @@ collectstatic:
 <h4 id="通过环境变量来连接服务">通过环境变量来连接服务</h4>
 <p>在使用 docker 部署项目，当需要连接外部的服务时，一般通过 link + 环境变量的参数进行。而为了支持环境变量的形式，我们的 django 应用也要做一些相应的改变。具体就是修改 settings.py 中的配置。</p>
 <p>修改 settings.py 文件，以 mysql 为例：</p>
-<pre><code class="language-python"># 原来的 mysql 配置文件
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.mysql',
-#        'NAME': 'starding_taikang',
-#        'USER': 'root',
-#        'PASSWORD': 'your_password_here',
-#        'HOST': 'localhost',
-#        'PORT': '3306'
-#    }
-#}
-# 通过获取环境变量的形式来获取服务
-import os  # 导入 os 库
-mysql_name = os.environ.get('MYSQL_INSTANCE_NAME') or &quot;taikang&quot;  # 获取数据库名称
-mysql_user = os.environ.get('MYSQL_USERNAME') or &quot;root&quot;  # 获取 mysql 用户名
-mysql_password = os.environ.get('MYSQL_PASSWORD') or &quot;your_password&quot;  # 获取密码
-mysql_host = os.environ.get('MYSQL_ADDR') or &quot;127.0.0.1&quot;  # 获取服务地址
-mysql_port = &quot;3306&quot;
-# 直接使用上面的变量代替字符串
+<pre><code class="language-python"><span class="tok-c"># 原来的 mysql 配置文件</span>
+<span class="tok-c">#DATABASES = {</span>
+<span class="tok-c">#    'default': {</span>
+<span class="tok-c">#        'ENGINE': 'django.db.backends.mysql',</span>
+<span class="tok-c">#        'NAME': 'starding_taikang',</span>
+<span class="tok-c">#        'USER': 'root',</span>
+<span class="tok-c">#        'PASSWORD': 'your_password_here',</span>
+<span class="tok-c">#        'HOST': 'localhost',</span>
+<span class="tok-c">#        'PORT': '3306'</span>
+<span class="tok-c">#    }</span>
+<span class="tok-c">#}</span>
+<span class="tok-c"># 通过获取环境变量的形式来获取服务</span>
+<span class="tok-k">import</span> os  <span class="tok-c"># 导入 os 库</span>
+mysql_name = os.environ.<span class="tok-f">get</span>(<span class="tok-s">'MYSQL_INSTANCE_NAME'</span>) <span class="tok-k">or</span> <span class="tok-s">"taikang"</span>  <span class="tok-c"># 获取数据库名称</span>
+mysql_user = os.environ.<span class="tok-f">get</span>(<span class="tok-s">'MYSQL_USERNAME'</span>) <span class="tok-k">or</span> <span class="tok-s">"root"</span>  <span class="tok-c"># 获取 mysql 用户名</span>
+mysql_password = os.environ.<span class="tok-f">get</span>(<span class="tok-s">'MYSQL_PASSWORD'</span>) <span class="tok-k">or</span> <span class="tok-s">"your_password"</span>  <span class="tok-c"># 获取密码</span>
+mysql_host = os.environ.<span class="tok-f">get</span>(<span class="tok-s">'MYSQL_ADDR'</span>) <span class="tok-k">or</span> <span class="tok-s">"127.0.0.1"</span>  <span class="tok-c"># 获取服务地址</span>
+mysql_port = <span class="tok-s">"3306"</span>
+<span class="tok-c"># 直接使用上面的变量代替字符串</span>
 DATABASES = {
-   'default': {
-       'ENGINE': 'django.db.backends.mysql',
-       'NAME': mysql_name,
-       'USER': mysql_user,
-       'PASSWORD': mysql_password,
-       'HOST': mysql_host,
-       'PORT': mysql_port
+   <span class="tok-s">'default'</span>: {
+       <span class="tok-s">'ENGINE'</span>: <span class="tok-s">'django.db.backends.mysql'</span>,
+       <span class="tok-s">'NAME'</span>: mysql_name,
+       <span class="tok-s">'USER'</span>: mysql_user,
+       <span class="tok-s">'PASSWORD'</span>: mysql_password,
+       <span class="tok-s">'HOST'</span>: mysql_host,
+       <span class="tok-s">'PORT'</span>: mysql_port
    }
 }</code></pre>
 <h3 id="使用-daocloud-部署构建好的-taikang-项目">使用 daocloud 部署构建好的 taikang 项目</h3>
@@ -273,34 +287,34 @@ DATABASES = {
   image: daocloud.io/xiaohuruwei/taking:latest
   restart: always
   external_links:
-  - mysql1:mysql      # 前面的 mysql1 是你主机上已经存在的 mysql 的容器实例，冒号后面是别名
+  - mysql1:mysql      <span class="tok-c"># 前面的 mysql1 是你主机上已经存在的 mysql 的容器实例，冒号后面是别名</span>
   ports:
-  - '8000'
-  environment:    # 环境变量    
+  - <span class="tok-s">'8000'</span>
+  environment:    <span class="tok-c"># 环境变量    </span>
   - MYSQL_ADDR=mysql</code></pre>
 <p>但是我发现这种方法似乎有一些 bug，如果上面的方法不成功，那么你就先直接部署，部署成功之后，再去修改 yaml 文件成为上面描述的样子。在修改 yaml 文件的时候，daocloud 会提示重新部署，选择确定即可。</p>
 <p>至此，django 项目也部署完成了。然后同 html5 项目部署一样，把各种自动构建，自动发布的功能打开就行了。</p>
 <p>注意：由于 django 项目是使用 uwsgi 部署的，直接访问 daocloud 给出的地址是错误的，这个时候必须配置 nginx 反向代理。</p>
 <p>附上 uwsgi 部署的 django nginx 代理配置文件：</p>
-<pre><code class="language-nginx">server {
-    listen 80;
-    server_name xiaohuruwei.com;
-    access_log /var/log/nginx/taikang.access.log;
-    error_log /var/log/nginx/taikang.error.log;
-    client_max_body_size 200m;
+<pre><code class="language-nginx"><span class="tok-k">server</span> {
+    <span class="tok-k">listen</span> <span class="tok-n">80</span>;
+    <span class="tok-k">server_name</span> xiaohuruwei.com;
+    <span class="tok-k">access_log</span> /var/log/nginx/taikang.access.log;
+    <span class="tok-k">error_log</span> /var/log/nginx/taikang.error.log;
+    client_max_body_size <span class="tok-n">200</span>m;
     gzip on;
-    gzip_min_length 1k;
-    gzip_buffers 16 64k;
-    gzip_http_version 1.1;
-    gzip_comp_level 6;
+    gzip_min_length <span class="tok-n">1</span>k;
+    gzip_buffers <span class="tok-n">16</span> <span class="tok-n">64</span>k;
+    gzip_http_version <span class="tok-n">1.1</span>;
+    gzip_comp_level <span class="tok-n">6</span>;
     gzip_types text/plain application/x-javascript text/javascript text/css application/xml;
     gzip_vary on;
-    location / {
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        include uwsgi_params;
-        uwsgi_pass 127.0.0.1:32801;
+    <span class="tok-k">location</span> / {
+        <span class="tok-k">proxy_set_header</span> Host <span class="tok-n">$host</span>;
+        <span class="tok-k">proxy_set_header</span> X-Real-IP <span class="tok-n">$remote_addr</span>;
+        <span class="tok-k">proxy_set_header</span> X-Forwarded-For <span class="tok-n">$proxy_add_x_forwarded_for</span>;
+        <span class="tok-k">include</span> uwsgi_params;
+        uwsgi_pass <span class="tok-n">127.0</span>.<span class="tok-n">0.1</span>:<span class="tok-n">32801</span>;
     }
 }</code></pre>
 <p>2016.01 于北京回龙观</p>

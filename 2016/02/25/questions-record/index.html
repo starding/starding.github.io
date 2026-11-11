@@ -14,9 +14,11 @@
 <link rel="alternate" type="application/atom+xml" title="结绳以渔" href="/atom.xml">
 <link rel="icon" href="/img/favicon_red_only_yao.ico">
 <link rel="apple-touch-icon" href="/img/apple_icon_yao.png">
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}</script>
 <link rel="stylesheet" href="/theme/tokens.css">
 <link rel="stylesheet" href="/theme/site.css">
 <script src="/theme/overlay-scroll.js" defer></script>
+<script src="/theme/theme.js" defer></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-V9SXMWSY9Z"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-V9SXMWSY9Z');</script>
 </head>
@@ -24,6 +26,18 @@
 <header class="appbar">
   <div class="appbar-in">
     <a class="brand" href="/"><img src="/img/logo_red_yao.svg" alt=""><span><b>结绳以渔</b><small>临渊羡鱼，不如退而结网</small></span></a>
+    <div class="theme-pick">
+      <button type="button" class="theme-btn" id="themeBtn" aria-haspopup="menu" aria-expanded="false" title="外观"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="currentColor" d="M12 3.5a8.5 8.5 0 0 1 0 17z"/></svg>
+</button>
+      <div class="theme-menu" id="themeMenu" role="menu" hidden>
+        <button type="button" role="menuitemradio" data-theme-set="auto"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="currentColor" d="M12 3.5a8.5 8.5 0 0 1 0 17z"/></svg>
+<span>自动</span><small>跟随系统</small></button>
+        <button type="button" role="menuitemradio" data-theme-set="light"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/><path stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>
+<span>浅色</span></button>
+        <button type="button" role="menuitemradio" data-theme-set="dark"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
+<span>深色</span></button>
+      </div>
+    </div>
     <nav>
       <a href="/">主页</a>
       <a href="/works/">作品</a>
@@ -63,7 +77,7 @@
 <h4 id="解决方案-1">解决方案</h4>
 <p>调查发现是因为 mysql 默认的有一个写入数据大小限制。只需要在<code>/etc/my.cnf</code>(如果没有这个文件就自己建立一个) 下加上下面的代码即可</p>
 <pre><code class="language-conf">[mysqld]
-max_allowed_packet = 16M</code></pre>
+max_allowed_packet = <span class="tok-n">16</span>M</code></pre>
 <p>当然，也可以限制一下自己每次往 mysql 中写入数据的数量来解决这个问题。</p>
 <h3 id="vim-分屏与-ctrl-p-插件">vim 分屏与 ctrl p 插件</h3>
 <p>之前总是听说 <code>ctrl p</code> 插件如何如何好用。不过我开始试用的时候，确实没有体会到太强大的地方，知道后来发现 vim 的分屏功能。</p>
@@ -114,12 +128,12 @@ inline-block 后的元素就是一个格式化为行内元素的块容器 ( Bloc
 <p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/vertical-align" rel="noopener">mozilla: vertical-align</a></p>
 <h3 id="rem-使用">rem 使用</h3>
 <p>今天在 chrome 中实验 rem 相对单位，刚开始的实验代码为：</p>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-    &lt;meta charset=&quot;utf-8&quot;&gt;
-    &lt;title&gt;test rem&lt;/title&gt;
-    &lt;style type=&quot;text/css&quot;&gt;
+<pre><code class="language-html"><span class="tok-k">&lt;!DOCTYPE html&gt;</span>
+&lt;<span class="tok-t">html</span>&gt;
+&lt;<span class="tok-t">head</span>&gt;
+    &lt;<span class="tok-t">meta</span> <span class="tok-a">charset</span>=<span class="tok-s">"utf-8"</span>&gt;
+    &lt;<span class="tok-t">title</span>&gt;test rem&lt;/<span class="tok-t">title</span>&gt;
+    &lt;<span class="tok-t">style</span> <span class="tok-a">type</span>=<span class="tok-s">"text/css"</span>&gt;
         html{
             font-size: 62.5%;  // 这里的表现有点奇怪
         }
@@ -132,13 +146,13 @@ inline-block 后的元素就是一个格式化为行内元素的块容器 ( Bloc
             background-color: red;
             padding: 1rem;
         }
-    &lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;p&gt;测试字体大小&lt;/p&gt;
-    &lt;div&gt;&lt;/div&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>
+    &lt;/<span class="tok-t">style</span>&gt;
+&lt;/<span class="tok-t">head</span>&gt;
+&lt;<span class="tok-t">body</span>&gt;
+    &lt;<span class="tok-t">p</span>&gt;测试字体大小&lt;/<span class="tok-t">p</span>&gt;
+    &lt;<span class="tok-t">div</span>&gt;&lt;/<span class="tok-t">div</span>&gt;
+&lt;/<span class="tok-t">body</span>&gt;
+&lt;/<span class="tok-t">html</span>&gt;</code></pre>
 <p>但是这个时候，font-size 并不是 10px，之前在网上看到将 root 元素的 font-size 设置为 10px，方便后文计算。但是在这里似乎并没有起到效果。</p>
 <p>原因是因为 chrome 默认所允许的最小字体为 12px，如果设定值小于此值，就会被重置成 12px。这个时候，<code>1rem=12px</code>，关于 chrome 最小字体限制，</p>
 <p>参考：<a href="https://banri.me/web/webkit-text-size-adjust.html" rel="noopener">Chrome 取消-webkit-text-size-adjust 后的那些事</a></p>
@@ -165,7 +179,7 @@ inline-block 后的元素就是一个格式化为行内元素的块容器 ( Bloc
 // 需要指定要居中元素的 width 值（与父元素的宽度无关）
 // 显然这里只适用于块级元素
 // 居中被设置该属性的元素自身，不是子元素，也不是父元素 
-margin: 0, auto;   
+margin: <span class="tok-n">0</span>, auto;   
 text-align： center</code></pre>
 <h3 id="如果内部盒大小超出了外部盒所能包含的大小时表现会如何">如果内部盒大小超出了外部盒所能包含的大小时表现会如何</h3>
 <h2 id="使用过的工具">使用过的工具</h2>

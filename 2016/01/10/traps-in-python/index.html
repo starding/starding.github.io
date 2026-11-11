@@ -14,9 +14,11 @@
 <link rel="alternate" type="application/atom+xml" title="结绳以渔" href="/atom.xml">
 <link rel="icon" href="/img/favicon_red_only_yao.ico">
 <link rel="apple-touch-icon" href="/img/apple_icon_yao.png">
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}</script>
 <link rel="stylesheet" href="/theme/tokens.css">
 <link rel="stylesheet" href="/theme/site.css">
 <script src="/theme/overlay-scroll.js" defer></script>
+<script src="/theme/theme.js" defer></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-V9SXMWSY9Z"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-V9SXMWSY9Z');</script>
 </head>
@@ -24,6 +26,18 @@
 <header class="appbar">
   <div class="appbar-in">
     <a class="brand" href="/"><img src="/img/logo_red_yao.svg" alt=""><span><b>结绳以渔</b><small>临渊羡鱼，不如退而结网</small></span></a>
+    <div class="theme-pick">
+      <button type="button" class="theme-btn" id="themeBtn" aria-haspopup="menu" aria-expanded="false" title="外观"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="currentColor" d="M12 3.5a8.5 8.5 0 0 1 0 17z"/></svg>
+</button>
+      <div class="theme-menu" id="themeMenu" role="menu" hidden>
+        <button type="button" role="menuitemradio" data-theme-set="auto"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="currentColor" d="M12 3.5a8.5 8.5 0 0 1 0 17z"/></svg>
+<span>自动</span><small>跟随系统</small></button>
+        <button type="button" role="menuitemradio" data-theme-set="light"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/><path stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>
+<span>浅色</span></button>
+        <button type="button" role="menuitemradio" data-theme-set="dark"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
+<span>深色</span></button>
+      </div>
+    </div>
     <nav>
       <a href="/">主页</a>
       <a href="/works/">作品</a>
@@ -49,103 +63,103 @@
 <h2 id="python-中的模块导入">python 中的模块导入</h2>
 <h3 id="包导入">包导入</h3>
 <p>这个比较简单，一个例子带过吧，但刚开始确实扑街了…</p>
-<pre><code class="language-python">#文件结构：
+<pre><code class="language-python"><span class="tok-c">#文件结构：</span>
 packages
 ├── __init__.py
 └── my_module.py
-# 这种是包导入
-import packages
-# 后续是从__init__.py 中定义的属性中获取的
+<span class="tok-c"># 这种是包导入</span>
+<span class="tok-k">import</span> packages
+<span class="tok-c"># 后续是从__init__.py 中定义的属性中获取的</span>
 packages.some_module.some_method
-# 这种是把包当做搜索路径上的一环
-from packages import some_module
+<span class="tok-c"># 这种是把包当做搜索路径上的一环</span>
+<span class="tok-k">from</span> packages <span class="tok-k">import</span> some_module
 some_module.some_method</code></pre>
 <h3 id="模块导入搜索路径">模块导入搜索路径</h3>
 <p>例如下面的使用场景：</p>
-<pre><code class="language-python"># django 中有一个 common app，并且已经添加到已安装 app 列表中
-# common app 文件结构
+<pre><code class="language-python"><span class="tok-c"># django 中有一个 common app，并且已经添加到已安装 app 列表中</span>
+<span class="tok-c"># common app 文件结构</span>
 common
 ├── __init__.py
 ├── common.py
 ├── others.py
 └── somethings.py
-# somethings.py 中存在导入语句
-from common.others import some_func   # 会报错</code></pre>
+<span class="tok-c"># somethings.py 中存在导入语句</span>
+<span class="tok-k">from</span> common.others <span class="tok-k">import</span> some_func   <span class="tok-c"># 会报错</span></code></pre>
 <p>在上面的代码示例中，由于 common 的名称相同，以及搜索路径默认是先从当前执行代码所在目录开始搜索，所以 common 文件 会在 common 包之前被搜索到，造成搜索路径上的覆盖。而一旦搜索到 common 时，就会去 common 文件中查找 some_func，但是无法找到，这样就会报错。</p>
 <h2 id="try-except-finally-中语句执行顺序">try-except-finally 中语句执行顺序</h2>
 <p>在 python 的异常处理中，无论 try 语句中是否有异常抛出，finally 语句总会被执行。由于这个特性，finally 语句经常被用来做一些清理工作，例如关闭文件，数据库等等。</p>
 <p>如果当 try-except-finally 中出现异常，并且未被妥善处理时，python 会先把发生的异常暂存，当 finally 中的动作执行完毕之后，把保存的异常返回给上级。try-except-finally 中的语句执行顺序，决定了它会有一些潜在的陷阱。</p>
 <p>看以下例子：</p>
-<pre><code class="language-python">def finallyTest():
-    print 'start------'
-    while  True:
-        try:
-            print &quot;running------&quot;
-            raise IndexError(&quot;r&quot;)   #抛出异 IndexError 异常
-        except NameError as e:
-            print 'NameError happended {0}'.format(str(e))
-            break
-        finally:
-            print 'finally executed'
-            break #finally 语句中有 break 语句
+<pre><code class="language-python"><span class="tok-k">def</span> <span class="tok-f">finallyTest</span>():
+    print <span class="tok-s">'start------'</span>
+    <span class="tok-k">while</span>  <span class="tok-n">True</span>:
+        <span class="tok-k">try</span>:
+            print <span class="tok-s">"running------"</span>
+            <span class="tok-k">raise</span> <span class="tok-f">IndexError</span>(<span class="tok-s">"r"</span>)   <span class="tok-c">#抛出异 IndexError 异常</span>
+        <span class="tok-k">except</span> NameError <span class="tok-k">as</span> e:
+            print <span class="tok-s">'NameError happended {0}'</span>.<span class="tok-f">format</span>(<span class="tok-f">str</span>(e))
+            <span class="tok-k">break</span>
+        <span class="tok-k">finally</span>:
+            print <span class="tok-s">'finally executed'</span>
+            <span class="tok-k">break</span> <span class="tok-c">#finally 语句中有 break 语句</span>
             
-# 执行测试函数
-FinallyTest()
-#输出结果为：
+<span class="tok-c"># 执行测试函数</span>
+<span class="tok-f">FinallyTest</span>()
+<span class="tok-c">#输出结果为：</span>
 start------
 running------
-finally executed</code></pre>
+<span class="tok-k">finally</span> executed</code></pre>
 <p>在上面的例子中，在 try 语句中，raise 出了一个 IndexError 异常，而且 except 语句也没有捕获这个错误。按照平常的理解，这个错误会向上级（也就是调用这个函数的程序）传递，在本例中会传递到解释器，并引发一个 IndexError 错误。但是整个函数执行完之后并没有异常出现。</p>
 <p>原因就在于在当 try 块中发生异常的时候，如果在 except 语句中找不到对应的异常处理，异常将会被「临时保存起来」。当 finally 执行完毕的时候，临时保存的异常将会「再次被抛出」，但如果 finally 语句中产生了新的异常或者执行了 return 或者 break 语句，那么临时保存的异常将会被丢失，从而导致「异常屏蔽」。</p>
 <p>另外一个稍微复杂一些例子：</p>
-<pre><code class="language-py">import logging
-logger = logging.Logger(__name__)
-def returnTest(a):
-    try:
-        if a == False:
-            raise ValueError(&quot;data can not be False&quot;)
-        else:
-            return a  
-    except ValueError as e:
-        logger.exception(&quot;exception!, {detail}&quot;).fomat(detail)
-        return &quot;return exception in except statement&quot; 
-    finally:
-        return &quot;return in finally statement&quot;
-print returnTest(False)
-print returnTest(True)</code></pre>
+<pre><code class="language-py"><span class="tok-k">import</span> logging
+logger = logging.<span class="tok-f">Logger</span>(__name__)
+<span class="tok-k">def</span> <span class="tok-f">returnTest</span>(a):
+    <span class="tok-k">try</span>:
+        <span class="tok-k">if</span> a == <span class="tok-n">False</span>:
+            <span class="tok-k">raise</span> <span class="tok-f">ValueError</span>(<span class="tok-s">"data can not be False"</span>)
+        <span class="tok-k">else</span>:
+            <span class="tok-k">return</span> a  
+    <span class="tok-k">except</span> ValueError <span class="tok-k">as</span> e:
+        logger.<span class="tok-f">exception</span>(<span class="tok-s">"exception!, {detail}"</span>).<span class="tok-f">fomat</span>(detail)
+        <span class="tok-k">return</span> <span class="tok-s">"return exception in except statement"</span> 
+    <span class="tok-k">finally</span>:
+        <span class="tok-k">return</span> <span class="tok-s">"return in finally statement"</span>
+print <span class="tok-f">returnTest</span>(<span class="tok-n">False</span>)
+print <span class="tok-f">returnTest</span>(<span class="tok-n">True</span>)</code></pre>
 <p>按照平常理解，第一个 print 语句会触发错误，然后进入 except 语句打印异常，而同时 finally 部分中的语句必然会执行，所以这里会返回一个’return in finally statement’值。第二个则会返回 True。实际上则不然，返回值竟然都是’return in finally statement’。</p>
 <p>原因是和上面的例子中是一样的，无论是 try 复合语句中，还是 except 复合语句中的 return/break 语句，这种会产生程序跳转的语句会先被保存起来。然后再去执行 finally 中的语句，而一旦 finally 中出现了跳转语句，就会直接跳转了，这样早成的结果就是上面保存状态的消失。</p>
 <h2 id="字典推导的限制">字典推导的限制</h2>
 <p>在做一个项目的时候，遇到一个需要多次请求数据库的操作，详细情况就是，有一些公司，这些公司本身有名字，公司代号这样的组织，如果每次都从数据库中取公司信息，会有性能问题。于是就采用用字典缓存下来，于是想使用字典推导。发现推导时只能生成单元素，之前我没有留意过这一点，在此记录一下。</p>
-<pre><code class="language-py"># 这样是可以的
-&gt;&gt;&gt;{model.key: model.value for Modle in models }
-# 结果就是个普通的字典
+<pre><code class="language-py"><span class="tok-c"># 这样是可以的</span>
+&gt;&gt;&gt;{model.key: model.value <span class="tok-k">for</span> Modle <span class="tok-k">in</span> models }
+<span class="tok-c"># 结果就是个普通的字典</span>
 &gt;&gt;&gt;{key1: value1, key2: value2, ...}
-# 但是想要下面这样使用是不支持的
-&gt;&gt;&gt;{model.key1: model.value1, moedel.key2: model.value2 for model in models}
-# 折中的办法是将上面的 value 值换成一个字典，或者是使用列表推导再封装一层列表
-&gt;&gt;&gt;{model.key1: {models.key1: models.value1, model.key2: model.value2, ...} for model in models}</code></pre>
+<span class="tok-c"># 但是想要下面这样使用是不支持的</span>
+&gt;&gt;&gt;{model.key1: model.value1, moedel.key2: model.value2 <span class="tok-k">for</span> model <span class="tok-k">in</span> models}
+<span class="tok-c"># 折中的办法是将上面的 value 值换成一个字典，或者是使用列表推导再封装一层列表</span>
+&gt;&gt;&gt;{model.key1: {models.key1: models.value1, model.key2: model.value2, ...} <span class="tok-k">for</span> model <span class="tok-k">in</span> models}</code></pre>
 <p>补充一下实际的例子，其中 branch 相关的是分公司信息，subbranch 相关的是中支公司信息，目的是构造一个，分公司名称为 key 值，分公司的主键，编号，以及该分公司辖下的中支公司为 value 值的字典，其中的中支公司也是一个字典：以中支公司名称为 key 值，中支公司的其他信息为 value 值。这样就构成了一个公司数据的二阶字典缓存列表。</p>
 <pre><code class="language-py">companys_by_name = {
         branch.name: {
-            &quot;pk&quot;: branch.pk,
-            &quot;number&quot;: branch.number,
-            &quot;subbranch&quot;: {
-                subbranch.name: {&quot;pk&quot;:subbranch.pk, &quot;number&quot;:subbranch.number} for subbranch in SubbranchCompany.objects.filter(branch_company=branch)
-            } for branch in BranchCompany.objects.all()
+            <span class="tok-s">"pk"</span>: branch.pk,
+            <span class="tok-s">"number"</span>: branch.number,
+            <span class="tok-s">"subbranch"</span>: {
+                subbranch.name: {<span class="tok-s">"pk"</span>:subbranch.pk, <span class="tok-s">"number"</span>:subbranch.number} <span class="tok-k">for</span> subbranch <span class="tok-k">in</span> SubbranchCompany.objects.<span class="tok-f">filter</span>(branch_company=branch)
+            } <span class="tok-k">for</span> branch <span class="tok-k">in</span> BranchCompany.objects.<span class="tok-f">all</span>()
 }
-# 详细含义如下，其中中支公司是分工司辖下的公司
+<span class="tok-c"># 详细含义如下，其中中支公司是分工司辖下的公司</span>
 公司信息字典 = {
      分公司名字:{
-        &quot;主键&quot;: 当前迭代分公司主键，
-        &quot;公司号&quot;: 当前迭代公司公司号，
-        &quot;中支公司&quot;:{
+        <span class="tok-s">"主键"</span>: 当前迭代分公司主键，
+        <span class="tok-s">"公司号"</span>: 当前迭代公司公司号，
+        <span class="tok-s">"中支公司"</span>:{
             中支公司名字:{
-                &quot;主键&quot;: 当前迭代中支公司主键,
-                &quot;中支公司号&quot;: 当前迭代中支公司号,
-            } for 中支公司 in 当期迭代分公司下中支公司集合
+                <span class="tok-s">"主键"</span>: 当前迭代中支公司主键,
+                <span class="tok-s">"中支公司号"</span>: 当前迭代中支公司号,
+            } <span class="tok-k">for</span> 中支公司 <span class="tok-k">in</span> 当期迭代分公司下中支公司集合
         }
-     } for 分公司 in 分公司集合
+     } <span class="tok-k">for</span> 分公司 <span class="tok-k">in</span> 分公司集合
 }</code></pre>
   </div>
   <section class="post-related"><h2>同主题</h2><ul class="related"><li><a href="/2024/03/30/a-short-web-history/">Web 小史：关键脉络</a><time datetime="2024-03-30T06:38:56.000Z">2024</time></li><li><a href="/2016/10/31/material-design-introduct-md/">material design 简介及背后的理论</a><time datetime="2016-10-31T09:04:37.000Z">2016</time></li><li><a href="/2016/08/29/why-users-can-not-see-collect-function-in-neihan/">前端工程师的形而上学 (1)—— 一个例子</a><time datetime="2016-08-29T08:44:10.000Z">2016</time></li></ul></section>

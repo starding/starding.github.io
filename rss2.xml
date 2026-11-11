@@ -481,7 +481,7 @@ Develop a single underlying system that allows for a unified experience across p
 <h3 id="javascript-中的模块依赖关系">JavasCript 中的模块依赖关系</h3>
 <p>在写 JavaScript 的时候，我们应该都遇到过标题中的概念，比如有一个模块 A，它依赖于模块 B, C, D；模块 B 又依赖于 C, E, F；模块 C 依赖于 D, E, F, G。</p>
 <p>换一种表示方式就是：</p>
-<pre><code class="language-javascript">// 模块：{依赖模块}
+<pre><code class="language-javascript"><span class="tok-c">// 模块：{依赖模块}</span>
 A: {B, C, D}
 B: {C, E }
 C: {D, E}
@@ -505,19 +505,19 @@ E: {}</code></pre>
 <p>目前不同的 JavaScript 引擎实现有好几种，但是当前最流行的实现版本是 Google Chrome 的 V8 引擎（这个引擎不受限于浏览器端，在服务器端的 Nodejs 使用的也是它）。说了这么多，那 JavaScript 引擎到底是干啥的？其实很简单——它的工作就是遍历 Web 应用中的每一行 JavaScript 代码，并且逐个执行（process one at a time）。你没有看错——就是逐个执行，这意味着 JavaScript 是单线程的。这一特点的主要影响是，如果你执行一行需要非常非常长的时间才能返回结果的代码，这之后的代码都会被阻塞掉。我们当然不想写出这么阻塞的代码——特别是在浏览器中。想象一下你正在查看一个 Web 网页并且垫底了某个按钮…它就这么耗在了那里。你试着点击其他的按钮，然而并没有什么卵用，啥作用都没起。这种蛋疼的局面只能归罪于点击按钮的时候触发了某些代码的执行（假设没有 bug 的话），但是这些代码阻塞在了那里。</p>
 <p>另一方面，JavaScript 引擎如何知道一次只执行一行代码的？它使用了一个调用栈（call stack）。你可以把调用栈想象成一个叠罗汉活动——第一个叠罗汉的只能最后一个下来，对应的是最后一个叠罗汉的第一个下来（原文用乘电梯作比喻，个人认为不是很形象，改成了叠罗汉）。</p>
 <p>下面来看一个例子：</p>
-<pre><code class="language-javascript">/* Within main.js */
-var firstFunction = function () {  
-  console.log(&quot;I'm first!&quot;);
+<pre><code class="language-javascript"><span class="tok-c">/* Within main.js */</span>
+<span class="tok-k">var</span> firstFunction = <span class="tok-k">function</span> () {  
+  console.<span class="tok-f">log</span>(<span class="tok-s">"I'm first!"</span>);
 };
-var secondFunction = function () {  
-  firstFunction();
-  console.log(&quot;I'm second!&quot;);
+<span class="tok-k">var</span> secondFunction = <span class="tok-k">function</span> () {  
+  <span class="tok-f">firstFunction</span>();
+  console.<span class="tok-f">log</span>(<span class="tok-s">"I'm second!"</span>);
 };
-secondFunction();
-/* Results:
+<span class="tok-f">secondFunction</span>();
+<span class="tok-c">/* Results:
  * =&gt; I'm first!
  * =&gt; I'm second!
- */</code></pre>
+ */</span></code></pre>
 <p>下面是执行代码中，调用栈中发生的一系列事件：</p>
 <ol>
 <li><p>Main.js 首先被执行<br>
@@ -535,20 +535,20 @@ secondFunction();
 </ol>
 <h2 id="ok但是这根-event-loop-有毛线关系">OK，但是这根 Event Loop 有毛线关系？</h2>
 <p>现在你已经明白 JavaScript 引擎中的调用栈是如何工作的了，让我们回到之前的代码阻塞的思路上来。当然，你已经意识到应该避免出现这些阻塞，但是该怎么做？幸运的是，JavaScript 提供了一种机制，它基于异步回调函数（asynchronous callback function）的方式来实现。这个概念看起来有些吓人，不过不用担心——所谓异步函数和你在 JavaScript 中使用的普通函数没有什么两样，只不过是加了一些它会在之后执行（而不是立即）执行的手段。如果你使用过 Javascript 的 setTimeout 函数，你其实已经使用过异步回调函数的概念了。下面来看一个例子：</p>
-<pre><code class="language-javascript">/* Within main.js */
-var firstFunction = function () {  
- console.log(&quot;I'm first!&quot;);
+<pre><code class="language-javascript"><span class="tok-c">/* Within main.js */</span>
+<span class="tok-k">var</span> firstFunction = <span class="tok-k">function</span> () {  
+ console.<span class="tok-f">log</span>(<span class="tok-s">"I'm first!"</span>);
 };
-var secondFunction = function () {  
- setTimeout(firstFunction, 5000);
- console.log(&quot;I'm second!&quot;);
+<span class="tok-k">var</span> secondFunction = <span class="tok-k">function</span> () {  
+ <span class="tok-f">setTimeout</span>(firstFunction, <span class="tok-n">5000</span>);
+ console.<span class="tok-f">log</span>(<span class="tok-s">"I'm second!"</span>);
 };
-secondFunction();
-/* Results:
+<span class="tok-f">secondFunction</span>();
+<span class="tok-c">/* Results:
  * =&gt; I'm second!
  * (And 5 seconds later)
  * =&gt; I'm first!
- */</code></pre>
+ */</span></code></pre>
 <p>下面是调用栈中的一系列活动（我们省去了前面的函数加入调用栈的过程，直接来看 setTimeout 函数）：</p>
 <ol>
 <li>当 secondFunction 被推入调用栈之后，setTimeout 函数被调用，而且也被压入调用栈中：<br>
@@ -779,12 +779,12 @@ W3C 则截然相反，可以说是一种民主的工作机制。所有成员都�
 <h2 id="避免不必要的复杂性">避免不必要的复杂性</h2>
 <p>下面我就给大家介绍一些这份文档中记载的设计原理。第一个，非常简单：避免不必要的复杂性。好像很简单吧。我用一个例子来说明。</p>
 <p>假设我使用 HTML 4.01 规范，我打开文档，输入 doctype。这里有人记得 HTML 4.01 的 doctype 吗？好，没有，我猜没有。除非……我的意思是说，你是傻冒。现场恐怕真有人背过，这就是 HTML 4.01 的 doctype：</p>
-<pre><code class="language-html">&lt;!DOCTYPE html PUBLIC &quot;-//W3C/DTD HTML 4.01//EN&quot; &quot;http://www.w3.org/TR/html4/strict.dtd&quot;&gt;</code></pre>
+<pre><code class="language-html"><span class="tok-k">&lt;!DOCTYPE html PUBLIC "-//W3C/DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"&gt;</span></code></pre>
 <p>我不记这个两行代码，不然还要记事本、要 Google、要模板有什么用呢？</p>
 <p>要是我使用 XHTML 1.0 呢，这个规范我都已经用了 10 年了。有谁记得住这个 doctype 吗？没错，它的长度跟 HTML 4.01 的差不太多：</p>
-<pre><code class="language-html">&lt;!DOCTYPE html PUBLIC &quot;-//W3C/DTD XHTML 1.0 Strict//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd&quot;&gt;</code></pre>
+<pre><code class="language-html"><span class="tok-k">&lt;!DOCTYPE html PUBLIC "-//W3C/DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;</span></code></pre>
 <p>是不是，基本上相同。它要告诉浏览器的是：这个文档是 XHTML 1.0 的文档。那么在 HTML 5 中，省掉不必要的复杂性，doctype 就简化成了：</p>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;</code></pre>
+<pre><code class="language-html"><span class="tok-k">&lt;!DOCTYPE html&gt;</span></code></pre>
 <p>仅此而已。好了，就连我也能过目不忘了。我用不着把这几个字符记在记事本里了。我得说，在我第一次看到这个 doctype 的时候——我当然以为这是一个 HTML 文档的 doctype——被它吓了一跳：“是不是还少一个数字 5 啊？”我心里想：“这个 doctype 想告诉浏览器什么呢？就说这个文档是 HTML 吗？难道这是有史以来唯一一个 HTML 版本吗，这件事我得首先搞清楚，HTML 今后永远不会再有新版本了吗？”好一副唯我独尊的架式！我错了，因为这个 doctype 并没有这个意思。为此，必须先搞清楚为什么文档一开头就要写 doctype。它不是写给浏览器看的。Doctype 是写给验证器看的。也就是说，我之所以要在文档一开头写那行 XHTML 1.0 的 doctype，是为了告诉验证器，让验证器按照该 doctype 来验证我的文档。</p>
 <p>浏览器反倒无所谓了。假设我写的是 HTML 3.2 文档，文档开头写的是 HTML 3.2 的 doctype。而在文档中某个地方，我使用了 HTML 4.01 中才出现的一个元素。浏览器会怎么处理这种情况？它会因为这个元素出现在比 doctype 声明的 HTML 版本更晚的规范中，就不解释呈现该元素吗？不会，当然不会！它照样会解释呈现该元素，别忘了伯斯塔尔法则，别忘了健壮性。浏览器在接收的时候必须要开放。因此，它不会检查任何格式类型，而验证器会，验证器才关心格式类型。这才是存在 doctype 的真正原因。</p>
 <p>而按照 HTML5 的另一个设计原理，它必须向前向后兼容，兼容未来的 HTML 版本——不管是 HTML6、HTML7，还是其他什么——都要与当前的 HTML 版本，HTML5，兼容。因此，把一个版本号放在 doctype 里面没有多大的意义，即使对验器证也一样。</p>
@@ -793,12 +793,12 @@ W3C 则截然相反，可以说是一种民主的工作机制。所有成员都�
 <p>下面我出一道有奖抢答题，听好：“一分钟后开始，如果你手快的话，第一个在文档前面写完 doctype html，然后我用 Internet Explorer 打开你的文档，会触发它的标准模式，还是会触发它的兼容模式？”</p>
 <p>答案是，这是在 Internet Explorer 中触发标准模式的最少字符数目。我认为这也说明了 HTML5 规范的本质：它不追求理论上的完美。HTML5 所体现的不是“噢，给作者一个简短好记的 doctype 不好吗？”，没错，简短好记是很好，但如果这个好记的 doctype 无法适应现有的浏览器，还不如把它忘了更好。因此，这个平衡把握得非常好，不仅理论上看是个好主意——简短好记的 doctype，而且实践中同样也是个好主意——仍然可以触发标准模式。应该说，Doctype 是一个非常典型的例子。</p>
 <p>还有一个例子，同样可以说明规范是如何省略不必要的复杂性，避免不必要的复杂性的。如果前面的文档使用的是 HTML 4.01，假设我要指定文档的字符编码。理想的方式，是通过服务器在头部信息中发送字符编码，不过也可以在文档这个级别上指定：</p>
-<pre><code class="language-html">&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot;&gt;</code></pre>
+<pre><code class="language-html">&lt;<span class="tok-t">meta</span> <span class="tok-a">http-equiv</span>=<span class="tok-s">"Content-Type"</span> <span class="tok-a">content</span>=<span class="tok-s">"text/html; charset=utf-8"</span>&gt;</code></pre>
 <p>同样，我也不会把这行代码背下来。我还想省下自己的脑细胞去记点别的更有价值的东西呢。不过，如果我想指定文档使用 UTF-8 编码，只能添加这行代码。这是在 HTML 4.01 中需要这样做。要是你在 XHTML 1.0 指定同样的编码，就得多敲一下键盘，因为你还得声明 meta 元素位于一个开始的 XML 标签中。</p>
-<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
-&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;</code></pre>
+<pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;
+&lt;<span class="tok-t">meta</span> <span class="tok-a">http-equiv</span>=<span class="tok-s">"Content-Type"</span> <span class="tok-a">content</span>=<span class="tok-s">"text/html; charset=utf-8"</span> /&gt;</code></pre>
 <p>在 HTML5 中，你要敲的字符只有：</p>
-<pre><code class="language-html">&lt;meta charset=&quot;utf-8&quot;&gt;</code></pre>
+<pre><code class="language-html">&lt;<span class="tok-t">meta</span> <span class="tok-a">charset</span>=<span class="tok-s">"utf-8"</span>&gt;</code></pre>
 <p>简短好记。我能背下来。</p>
 <p>同样，这样写也是有效的。它不仅适用于最新版本的浏览器，只要是今天还有人在用的浏览器都同样有效。为什么？因为在我们把这些 meta 元素输入浏览器时，浏览器会这样解释它：“元数据（meta）点点点点点，字符集（charset）utf-8。”这就是浏览器在解释那行字符串时真正看到的内容。它必须看到这些内容，根据就是伯斯塔尔法则，对不对？</p>
 <p>我多次提到健壮性原理，但总有人不理解。我们换一种说法，浏览器会想“好，我觉得作者是想要指定一个字符集……看，没错，utf-8。”这些都是规范里明文规定的。如今，不仅那个斜杠可以省了，而且总共只要写 meta charset=”utf-8″就行了。</p>
@@ -809,13 +809,13 @@ W3C 则截然相反，可以说是一种民主的工作机制。所有成员都�
 <p>支持已有的内容。这一点非常重要，因为很多人都认为 HTML5 很新，很闪亮；它应该代表着未来发展的方向，应该把 Web 推向一个新的发展阶段。这就是 HTML5，对吗？显然，我们都会考虑让 Web 的未来发展得更好，但他们则必须考虑过去。别忘了 W3C 这个工作组中有很多人代表的是浏览器厂商，他们肯定是要考虑支持已有内容的。只要你想构建一款浏览器，就必须记住这个原则：必须支持已有的内容。</p>
 <p>下面我们就来看一个 HTML5 支持已有内容的例子。</p>
 <p>这个例子展示了编写同样内容的四种不同方式。上面是一个 img 元素，下面是带一个属性的段落元素。四种写法唯一的不同点就是语法。把其中任何一段代码交给浏览器，浏览器都会生成相同的 DOM 树，没有任何问题。从浏览器的角度看，这四种写法没有区别。因而在 HTML5 中，你可以随意使用下列任何语法。</p>
-<pre><code class="language-html">&lt;img src=&quot;foo&quot; alt=&quot;bar&quot; /&gt; &lt;p class=&quot;foo&quot;&gt;Hello world&lt;/p&gt;
+<pre><code class="language-html">&lt;<span class="tok-t">img</span> <span class="tok-a">src</span>=<span class="tok-s">"foo"</span> <span class="tok-a">alt</span>=<span class="tok-s">"bar"</span> /&gt; &lt;<span class="tok-t">p</span> <span class="tok-a">class</span>=<span class="tok-s">"foo"</span>&gt;Hello world&lt;/<span class="tok-t">p</span>&gt;
 
-&lt;img src=&quot;foo&quot; alt=&quot;bar&quot;&gt;&lt;p class=&quot;foo&quot;&gt;Hello world
+&lt;<span class="tok-t">img</span> <span class="tok-a">src</span>=<span class="tok-s">"foo"</span> <span class="tok-a">alt</span>=<span class="tok-s">"bar"</span>&gt;&lt;<span class="tok-t">p</span> <span class="tok-a">class</span>=<span class="tok-s">"foo"</span>&gt;Hello world
 
-&lt;IMG SRC=&quot;foo&quot; ALT=&quot;bar&quot;&gt;&lt;P CLASS=&quot;foo&quot;&gt;Hello world&lt;/P&gt;
+&lt;<span class="tok-t">IMG</span> <span class="tok-a">SRC</span>=<span class="tok-s">"foo"</span> <span class="tok-a">ALT</span>=<span class="tok-s">"bar"</span>&gt;&lt;<span class="tok-t">P</span> <span class="tok-a">CLASS</span>=<span class="tok-s">"foo"</span>&gt;Hello world&lt;/<span class="tok-t">P</span>&gt;
 
-&lt;img src=foo alt=bar&gt;&lt;p class=foo&gt;Hello world&lt;/p&gt;</code></pre>
+&lt;<span class="tok-t">img</span> <span class="tok-a">src</span>=<span class="tok-s">foo</span> <span class="tok-a">alt</span>=<span class="tok-s">bar</span>&gt;&lt;<span class="tok-t">p</span> <span class="tok-a">class</span>=<span class="tok-s">foo</span>&gt;Hello world&lt;/<span class="tok-t">p</span>&gt;</code></pre>
 <p>好了，看到这几段代码，恐怕有人会说“不对不对不对。其中只有一个是对的，另外三个——说不好。”不对，应该给属性值加引号！拜托，我们可是一直都给属性值加引号的！元素名大写对吗？这种做法 10 年不是就被抛弃了吗？</p>
 <p>看到 HTML5 同时允许这些写法，我心里忍不住一阵阵想吐。我写了 10 年的 XHTML 1.0，已经非常适应严格的语法了。但你必须明白，站在浏览器的角度上，这些写法实际上都是一样的。确实没有什么问题。</p>
 <p>还有谁也感到不舒服了吗？有谁看到这些之后想“噢，这不是乱写嘛，这样做不对”？只有我这样想吗？还有别人吗？</p>
@@ -828,14 +828,14 @@ W3C 则截然相反，可以说是一种民主的工作机制。所有成员都�
 <p>解决现实的问题<br>
 HTML5 的另一个设计原理是解决现实的问题。显而易见的是，解决各种问题的格式和规范已经比比皆是了，但是在我看来，那些格式和规范要解决的都是理论问题，而非现实问题。这条设计原理才是真正要解决今天的人们所面临的现实问题、令人头疼的问题。</p>
 <p>下面我来举个例子。相信这个例子有不少人都遇到过。假设我使用 HTML 4 或 XHTML 1，页面中已经有了一块内容，我想给整块内容加个链接，怎么办？问题是这块内容里包含一个标题，一个段落，也许还有一张图片。如果我想给它们全部都可以点击，必须使用 3 个链接元素。于是，我得先把光标放在标题（比如说 h2 元素）中，写一个链接标签，然后再选中所有要包含到链接里面来的文本。接着，再把光标放在段落里，写一个链接标签，然后把段落中的文本放在链接里……</p>
-<pre><code class="language-html">&lt;h2&gt;&lt;a href=&quot;/path/to/resource&quot;&gt;Headline text&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&quot;/path/to/resource&quot;&gt;Paragraph text.&lt;/a&gt;&lt;/p&gt;</code></pre>
+<pre><code class="language-html">&lt;<span class="tok-t">h2</span>&gt;&lt;<span class="tok-t">a</span> <span class="tok-a">href</span>=<span class="tok-s">"/path/to/resource"</span>&gt;Headline text&lt;/<span class="tok-t">a</span>&gt;&lt;/<span class="tok-t">h2</span>&gt;
+&lt;<span class="tok-t">p</span>&gt;&lt;<span class="tok-t">a</span> <span class="tok-a">href</span>=<span class="tok-s">"/path/to/resource"</span>&gt;Paragraph text.&lt;/<span class="tok-t">a</span>&gt;&lt;/<span class="tok-t">p</span>&gt;</code></pre>
 <p>在 HTML5 中，我只要简单地把所有内容都包装在一个链接元素中就行了。</p>
-<pre><code class="language-html">&lt;a href=&quot;/path/to/resource&quot;&gt;
-&lt;h2&gt;Headline text&lt;/h2&gt;
+<pre><code class="language-html">&lt;<span class="tok-t">a</span> <span class="tok-a">href</span>=<span class="tok-s">"/path/to/resource"</span>&gt;
+&lt;<span class="tok-t">h2</span>&gt;Headline text&lt;/<span class="tok-t">h2</span>&gt;
 
-&lt;p&gt;Paragraph text.&lt;/p&gt;
-&lt;/a&gt;</code></pre>
+&lt;<span class="tok-t">p</span>&gt;Paragraph text.&lt;/<span class="tok-t">p</span>&gt;
+&lt;/<span class="tok-t">a</span>&gt;</code></pre>
 <p>没错，链接包含的都是块级元素，但现在我可以用一个元素包含它们。这样太好了。因为我碰到过类似的情形，必须给几个块级元素加上相同的链接，所有能这样写就太好了。为此，我就非常欢迎 HTML5 这个新标准。</p>
 <p>它解决了一个现实的问题。我敢说在座不少朋友都曾遇到过这个问题。</p>
 <p>那这到底解决的是什么问题呢？浏览器不必因此重新写代码来支持这种写法。这种写法其实早就已经存在于浏览器中了，因为早就有人这样写了，当然以前这样写是不合乎规范的。所以，说 HTML5 解决现实的问题，其本质还是“你都这样写了很多年了吧？现在我们把标准改了，允许你这样写了。”</p>
@@ -843,39 +843,39 @@ HTML5 的另一个设计原理是解决现实的问题。显而易见的是，�
 <p>在所有设计原理中，这一条恐怕是最响亮的了——求真务实。不知道大家有没有在公司里开会时听到过这种口号：“开拓进取，求真务实。”实际上，除了作为企业的口号，它还是一条非常重要的设计原理，因为求真务实对于 HTML 的含义是：在解决那些令人头痛的问题之前，先看看人们为应对这些问题都想出了哪些办法。集中精力去理解这些“民间的”解决方案才是当务之急。</p>
 <p>HTML5 中新的语义元素就是遵循求真务实原理的反映。新增的元素不算多，谈不上无限的扩展性，但却不失为一件好事。尽管数量屈指可数，但意义却非同一般。这些新元素涉及头部（header）、脚部（footer）、分区（section）、文章（article）……，相信大家都不会觉得陌生。我的意思是说，即便你不使用 HTML5，也应该熟悉这些称呼，这些都是你曾经使用过的类名，比如 class=”header”/“head”/“heading”，或 class=”footer”/“foot”。当然，也可能是 ID，id=”header”，id=”footer”。这些不都是我们已经司空见惯了的嘛。</p>
 <p>好，举个例子吧，假设你今天写了下面这个文档。</p>
-<pre><code class="language-html">&lt;body&gt;
-    &lt;div id=&quot;header&quot;&gt;...&lt;/div&gt;
-    &lt;div id=&quot;navigation&quot;&gt;...&lt;/div&gt;
-    &lt;div id=&quot;main&quot;&gt;...&lt;/div&gt;
-    &lt;div id=&quot;sidebar&quot;&gt;...&lt;/div&gt;
-    &lt;div id=&quot;footer&quot;&gt;...&lt;/div&gt;
-&lt;/body&gt;</code></pre>
+<pre><code class="language-html">&lt;<span class="tok-t">body</span>&gt;
+    &lt;<span class="tok-t">div</span> <span class="tok-a">id</span>=<span class="tok-s">"header"</span>&gt;...&lt;/<span class="tok-t">div</span>&gt;
+    &lt;<span class="tok-t">div</span> <span class="tok-a">id</span>=<span class="tok-s">"navigation"</span>&gt;...&lt;/<span class="tok-t">div</span>&gt;
+    &lt;<span class="tok-t">div</span> <span class="tok-a">id</span>=<span class="tok-s">"main"</span>&gt;...&lt;/<span class="tok-t">div</span>&gt;
+    &lt;<span class="tok-t">div</span> <span class="tok-a">id</span>=<span class="tok-s">"sidebar"</span>&gt;...&lt;/<span class="tok-t">div</span>&gt;
+    &lt;<span class="tok-t">div</span> <span class="tok-a">id</span>=<span class="tok-s">"footer"</span>&gt;...&lt;/<span class="tok-t">div</span>&gt;
+&lt;/<span class="tok-t">body</span>&gt;</code></pre>
 <p>这里有一个 div 使用了 id=”header”，另一个 div 使用了 id=”navigation”，……。怎么样，都轻车熟路了吧？在 HTML5 中，这些元素都可以换掉。说起新增的语义元素，它们价值的一方面可以这样来体现：“嘿，看啊，这样多好，用 HTML5 新增的元素可以把这些 div 都替换掉。”</p>
-<pre><code class="language-html">&lt;body&gt;
-    &lt;header&gt;...&lt;/header&gt;
-    &lt;nav&gt;...&lt;/nav&gt;
-    &lt;div id=&quot;main&quot;&gt;...&lt;/div&gt;
-    &lt;aside&gt;...&lt;/aside&gt;
-    &lt;footer&gt;...&lt;/footer&gt;
-&lt;/body&gt;</code></pre>
+<pre><code class="language-html">&lt;<span class="tok-t">body</span>&gt;
+    &lt;<span class="tok-t">header</span>&gt;...&lt;/<span class="tok-t">header</span>&gt;
+    &lt;<span class="tok-t">nav</span>&gt;...&lt;/<span class="tok-t">nav</span>&gt;
+    &lt;<span class="tok-t">div</span> <span class="tok-a">id</span>=<span class="tok-s">"main"</span>&gt;...&lt;/<span class="tok-t">div</span>&gt;
+    &lt;<span class="tok-t">aside</span>&gt;...&lt;/<span class="tok-t">aside</span>&gt;
+    &lt;<span class="tok-t">footer</span>&gt;...&lt;/<span class="tok-t">footer</span>&gt;
+&lt;/<span class="tok-t">body</span>&gt;</code></pre>
 <p>当然了，你可以这样做。在文档级别上使用这些元素没有问题。但是，假如新增这些元素的目的仅仅是为了取代原来的 div，那就真有点多此一举了。</p>
 <p>虽然在这个文档中，我们用这些新元素来替换的是 ID，但在我个人看来，将它们作为类的替代品更有价值。为什么这么说呢？因为这些元素在一个页面中不止可以使用一次，而是可以使用多次。没错，你可以为文档添加一个头部（header），再添加一个脚部（footer）；但文档中的每个分区（section）照样也都可以有一个头部和一个脚部。而每个分区里还可以嵌套另一个分区，被嵌套的分区仍然可以有自己的头部和脚部，是这样吧？</p>
 <p>这四个新元素：section、article、aside 和 nav，之所以说它们强大，原因在于它们代表了一种新的内容模型，一种 HTML 中前所未有的内容模型——给内容分区。迄今为止，我们一直都在用 div 来组织页面中的内容，但与其他类似的元素一样，div 本身并没有语义。但 section、article、aside 和 nav 实际上是在明确地告诉你——这一块就像文档中的另一个文档一样。位于这些元素中的任何内容，都可以拥有自己的概要、标题，自己的脚部。</p>
 <p>其中最为通用的 section，可以说是与内容最相关的一个。而 article 则是一种特殊的 section。Aside 呢，是一种特殊的 section。最后，Nav 也是一种特殊的 section。</p>
 <p>好，即便是现在，你照样可以使用 div 和类来描述页面中不同的部分，就像下面这样：</p>
-<pre><code class="language-html">&lt;div class=&quot;item&quot;&gt;
-    &lt;h2&gt;...&lt;/h2&gt;
-    &lt;div class=&quot;meta&quot;&gt;...&lt;/div&gt;
-    &lt;div class=&quot;content&quot;&gt;...&lt;/div&gt;
-    &lt;div class=&quot;links&quot;&gt;...&lt;/div&gt;
-&lt;/div&gt;</code></pre>
+<pre><code class="language-html">&lt;<span class="tok-t">div</span> <span class="tok-a">class</span>=<span class="tok-s">"item"</span>&gt;
+    &lt;<span class="tok-t">h2</span>&gt;...&lt;/<span class="tok-t">h2</span>&gt;
+    &lt;<span class="tok-t">div</span> <span class="tok-a">class</span>=<span class="tok-s">"meta"</span>&gt;...&lt;/<span class="tok-t">div</span>&gt;
+    &lt;<span class="tok-t">div</span> <span class="tok-a">class</span>=<span class="tok-s">"content"</span>&gt;...&lt;/<span class="tok-t">div</span>&gt;
+    &lt;<span class="tok-t">div</span> <span class="tok-a">class</span>=<span class="tok-s">"links"</span>&gt;...&lt;/<span class="tok-t">div</span>&gt;
+&lt;/<span class="tok-t">div</span>&gt;</code></pre>
 <p>其中包含可能是有关内容作者的元数据，而下面会给出一些链接，差不多就这样。在 HTML5 中，我完全可以说这块内容就是一个文档，通过对内容分区，使用 section 或 article 或 aside，我可以说“这一块完全是可以独立存在的。”因此，我当然可以使用 header 和 footer。</p>
-<pre><code class="language-html">&lt;section class=&quot;item&quot;&gt;
-    &lt;header&gt;&lt;h1&gt;...&lt;/h1&gt;&lt;/header&gt;
-    &lt;footer class=&quot;meta&quot;&gt;...&lt;/footer&gt;
-    &lt;div class=&quot;content&quot;&gt;...&lt;/div&gt;
-    &lt;nav class=&quot;links&quot;&gt;...&lt;/nav&gt;
-&lt;/section&gt;</code></pre>
+<pre><code class="language-html">&lt;<span class="tok-t">section</span> <span class="tok-a">class</span>=<span class="tok-s">"item"</span>&gt;
+    &lt;<span class="tok-t">header</span>&gt;&lt;<span class="tok-t">h1</span>&gt;...&lt;/<span class="tok-t">h1</span>&gt;&lt;/<span class="tok-t">header</span>&gt;
+    &lt;<span class="tok-t">footer</span> <span class="tok-a">class</span>=<span class="tok-s">"meta"</span>&gt;...&lt;/<span class="tok-t">footer</span>&gt;
+    &lt;<span class="tok-t">div</span> <span class="tok-a">class</span>=<span class="tok-s">"content"</span>&gt;...&lt;/<span class="tok-t">div</span>&gt;
+    &lt;<span class="tok-t">nav</span> <span class="tok-a">class</span>=<span class="tok-s">"links"</span>&gt;...&lt;/<span class="tok-t">nav</span>&gt;
+&lt;/<span class="tok-t">section</span>&gt;</code></pre>
 <p>请注意，即便是 footer，也不一定非要出现在下面，不是吗？这几个元素，header、footer、aside、nav，最重要的是它们的语义；跟位置没有关系。一想到 footer 这个词，我们总会不由自主地想，“噢，应该放在下面。”同样，我们把 aside 想象成一个侧边栏。可是，如果你看一看规范，就会发现这些元素只跟内容有关。因此，放在 footer 中的内容也可以是署名，文章作者之类的，它只是你使用的一个元素。这个元素并没有说“必须把我放在文档或者分区的下面。”</p>
 <p>这里，请注意，最重要的还不是我用几个新元素替换了原来的 div 加类，而是我把原来的 H2 换成了 H1——震撼吧，我看到有人发抖了。我碰到过不少职业的 Web 开发人员，多年来他们一直认为规范里说一个文档中只能有一个 H1。还有一些自诩为万能的 SEO 秘诀同样说要这样。很多 SEO 的技巧其实是很教条的。所谓教条，意思就是不相信数据。过去，这种教条表现为“不行，页面中包含两个以上的 H1，你就会死掉的。”在 HTML5 中，只要你建立一个新的内容块，不管用 section、article、aside、nav，还是别的元素，都可以在其中使用 H1，而不必担心这个块里的标题在整个页面中应该排在什么级别；H2、H3，都没有问题。</p>
 <p>这个变化太厉害了。想一想吧，这个变化对内容管理是革命性的。因为现在，你可以把每个内容分区想象一个独立的、能够从页面中拿出来的部分。此时，根据上下文不同，这个独立部分中的 H1，在整个页面中没准会扮演 H2 或 H3 的角色——取决于它在文档中出现的位置。面对这个突如其来的变化，也许有人的脑子会暂时转不过弯来。不要紧，但我可以告诉你，我认为这才是 HTML5 中这些新语义标记的真正价值所在。换句话说，我们现在有了独立的元素了，这些元素中的标题级别可以重新定义。</p>
@@ -884,17 +884,17 @@ HTML5 的另一个设计原理是解决现实的问题。显而易见的是，�
 <h2 id="平稳退化">平稳退化</h2>
 <p>下一条原理大家应该都很熟悉了，那就是平稳退化。毕竟，我们已经遵守这条规则好多年了。渐进增强的另一面就是平稳退化。</p>
 <p>有关 HTML5 遵循这条原理的例子，就是使用 type 属性增强表单。下面列出了可以为 type 属性指定的新值，有 number、search、range，等等。</p>
-<pre><code class="language-html">&lt;input type=&quot;number&quot;&gt;
+<pre><code class="language-html">&lt;<span class="tok-t">input</span> <span class="tok-a">type</span>=<span class="tok-s">"number"</span>&gt;
 
-&lt;input type=&quot;search&quot;&gt;
+&lt;<span class="tok-t">input</span> <span class="tok-a">type</span>=<span class="tok-s">"search"</span>&gt;
 
-&lt;input type=&quot;range&quot;&gt;
+&lt;<span class="tok-t">input</span> <span class="tok-a">type</span>=<span class="tok-s">"range"</span>&gt;
 
-&lt;input type=&quot;email&quot;&gt;
+&lt;<span class="tok-t">input</span> <span class="tok-a">type</span>=<span class="tok-s">"email"</span>&gt;
 
-&lt;input type=&quot;date&quot;&gt;
+&lt;<span class="tok-t">input</span> <span class="tok-a">type</span>=<span class="tok-s">"date"</span>&gt;
 
-&lt;input type=&quot;url&quot;&gt;</code></pre>
+&lt;<span class="tok-t">input</span> <span class="tok-a">type</span>=<span class="tok-s">"url"</span>&gt;</code></pre>
 <p>最关键的问题在于浏览器在看到这些新 type 值时会如何处理。现有的浏览器，不是将来的浏览器，现有的浏览器是无法理解这些新 type 值的。但在它们看到自己不理解的 type 值时，会将 type 的值解释为 text。</p>
 <p>无论你写的是 input type=”foo”还是 input type=”bar”，现有的任何浏览器都会说：“嗯，也许作者的意思是 text。”因而，你从现在开始就可以使用这些新值，而且你也可以放心，那些不理解它们的浏览器会把新值看成 type=”text”，而这真是一个浏览器实践平稳退化原理的好例子。</p>
 <p>比如说，你现在输入了 type=”number”。假设你需要一个输入数值的文本框。那么你可以把这个 input 的 type 属性设置为 number，然后理解它的浏览器就会呈现一个可爱的小控件，像带小箭头图标的微调控件之类的。对吧？而在不理解它的浏览器中，你会看到一个文本框，一个你再熟悉不过的文本框。既然如此，为什么不能说输入 type=”number”就会得到一个带小箭头图标的微调控件呢？</p>
@@ -907,25 +907,25 @@ HTML5 的另一个设计原理是解决现实的问题。显而易见的是，�
 首先，他们所说的 HTML5 对 Flash，并不是指的 HTML5，也不是指的 Flash。而是指 HTML5 的一个子集和 Flash 的一个子集。具体来说，他们指的是视频。因此，不管你在哪里听到别人说“HTML5 对 Flash”，那很可能说的只是 HTML5 视频对 Flash 视频。</p>
 <p>其次，一说 HTML5 对 Flash，就好像你必须得作出选择一样：你站在哪一边？实际上不是这样的。HTML5 规范的设计能够让你做到鱼和熊掌兼得。</p>
 <p>好，下面就来看看这个新的 video 元素；真是非常贴心的一个元素，而且设计又简单，又实用。一个开始的 video 元素，加一个结束的 video 元素，中间可以放后备内容。注意，是后备内容，不是保证可访问性的内容，是后备内容。下面就是针对不支持 video 元素的浏览器写的代码：</p>
-<pre><code class="language-html">&lt;video src=&quot;movie.mp4&quot;&gt;
-&lt;!-- 后备内容 --&gt; 
-&lt;/video&gt;</code></pre>
+<pre><code class="language-html">&lt;<span class="tok-t">video</span> <span class="tok-a">src</span>=<span class="tok-s">"movie.mp4"</span>&gt;
+<span class="tok-c">&lt;!-- 后备内容 --&gt;</span> 
+&lt;/<span class="tok-t">video</span>&gt;</code></pre>
 <p>那么，在后备内容里面放些什么东西呢？好，你可以放 Flash 影片。这样，HTML5 的视频与 Flash 的视频就可以协同起来了。你不用作出选择。</p>
-<pre><code class="language-html">&lt;video src=&quot;movie.mp4&quot;&gt;
-    &lt;object data=&quot;movie.swf&quot;&gt;
-    &lt;!-- 后备内容 --&gt;
-    &lt;/object&gt;
-&lt;/video&gt;</code></pre>
+<pre><code class="language-html">&lt;<span class="tok-t">video</span> <span class="tok-a">src</span>=<span class="tok-s">"movie.mp4"</span>&gt;
+    &lt;<span class="tok-t">object</span> <span class="tok-a">data</span>=<span class="tok-s">"movie.swf"</span>&gt;
+    <span class="tok-c">&lt;!-- 后备内容 --&gt;</span>
+    &lt;/<span class="tok-t">object</span>&gt;
+&lt;/<span class="tok-t">video</span>&gt;</code></pre>
 <p>当然，你的代码实际上并没有这么简单。因为这里我使用了 H264，部分浏览器支持这种视频格式。但有的浏览器不支持。</p>
 <p>对不起，请不要跟我谈视频格式，我一听就心烦。不是因为技术。技术倒无所谓，关键是会牵扯到一大堆专利还有律师、知识产权等等，这些都是 Web 的天敌，对我建网站一点好处都没有。</p>
 <p>可你实际上要做的，仅仅就是把后备内容放在那而已，后备内容可以包含多种视频格式。如果愿意的话，可以使用 source 元素而非 src 属性来指定不同的视频格式。</p>
-<pre><code class="language-html">&lt;video&gt;
-    &lt;source src=&quot;movie.mp4&quot;&gt;
-    &lt;source src=&quot;movie.ogv&quot;&gt;
-    &lt;object data=&quot;movie.swf&quot;&gt;
-        &lt;a href=&quot;movie.mp4&quot;&gt;download&lt;/a&gt;
-    &lt;/object&gt;
-&lt;/video&gt;</code></pre>
+<pre><code class="language-html">&lt;<span class="tok-t">video</span>&gt;
+    &lt;<span class="tok-t">source</span> <span class="tok-a">src</span>=<span class="tok-s">"movie.mp4"</span>&gt;
+    &lt;<span class="tok-t">source</span> <span class="tok-a">src</span>=<span class="tok-s">"movie.ogv"</span>&gt;
+    &lt;<span class="tok-t">object</span> <span class="tok-a">data</span>=<span class="tok-s">"movie.swf"</span>&gt;
+        &lt;<span class="tok-t">a</span> <span class="tok-a">href</span>=<span class="tok-s">"movie.mp4"</span>&gt;download&lt;/<span class="tok-t">a</span>&gt;
+    &lt;/<span class="tok-t">object</span>&gt;
+&lt;/<span class="tok-t">video</span>&gt;</code></pre>
 <p>上面的代码中包含了 4 个不同的层次。</p>
 <ol>
 <li>如果浏览器支持 video 元素，也支持 H264，没什么好说的，用第一个视频。</li>
@@ -1085,7 +1085,7 @@ They have their exits and their entrances. and one man in his time plays many pa
 <h4 id="解决方案-1">解决方案</h4>
 <p>调查发现是因为 mysql 默认的有一个写入数据大小限制。只需要在<code>/etc/my.cnf</code>(如果没有这个文件就自己建立一个) 下加上下面的代码即可</p>
 <pre><code class="language-conf">[mysqld]
-max_allowed_packet = 16M</code></pre>
+max_allowed_packet = <span class="tok-n">16</span>M</code></pre>
 <p>当然，也可以限制一下自己每次往 mysql 中写入数据的数量来解决这个问题。</p>
 <h3 id="vim-分屏与-ctrl-p-插件">vim 分屏与 ctrl p 插件</h3>
 <p>之前总是听说 <code>ctrl p</code> 插件如何如何好用。不过我开始试用的时候，确实没有体会到太强大的地方，知道后来发现 vim 的分屏功能。</p>
@@ -1136,12 +1136,12 @@ inline-block 后的元素就是一个格式化为行内元素的块容器 ( Bloc
 <p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/vertical-align" rel="noopener">mozilla: vertical-align</a></p>
 <h3 id="rem-使用">rem 使用</h3>
 <p>今天在 chrome 中实验 rem 相对单位，刚开始的实验代码为：</p>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-    &lt;meta charset=&quot;utf-8&quot;&gt;
-    &lt;title&gt;test rem&lt;/title&gt;
-    &lt;style type=&quot;text/css&quot;&gt;
+<pre><code class="language-html"><span class="tok-k">&lt;!DOCTYPE html&gt;</span>
+&lt;<span class="tok-t">html</span>&gt;
+&lt;<span class="tok-t">head</span>&gt;
+    &lt;<span class="tok-t">meta</span> <span class="tok-a">charset</span>=<span class="tok-s">"utf-8"</span>&gt;
+    &lt;<span class="tok-t">title</span>&gt;test rem&lt;/<span class="tok-t">title</span>&gt;
+    &lt;<span class="tok-t">style</span> <span class="tok-a">type</span>=<span class="tok-s">"text/css"</span>&gt;
         html{
             font-size: 62.5%;  // 这里的表现有点奇怪
         }
@@ -1154,13 +1154,13 @@ inline-block 后的元素就是一个格式化为行内元素的块容器 ( Bloc
             background-color: red;
             padding: 1rem;
         }
-    &lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;p&gt;测试字体大小&lt;/p&gt;
-    &lt;div&gt;&lt;/div&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>
+    &lt;/<span class="tok-t">style</span>&gt;
+&lt;/<span class="tok-t">head</span>&gt;
+&lt;<span class="tok-t">body</span>&gt;
+    &lt;<span class="tok-t">p</span>&gt;测试字体大小&lt;/<span class="tok-t">p</span>&gt;
+    &lt;<span class="tok-t">div</span>&gt;&lt;/<span class="tok-t">div</span>&gt;
+&lt;/<span class="tok-t">body</span>&gt;
+&lt;/<span class="tok-t">html</span>&gt;</code></pre>
 <p>但是这个时候，font-size 并不是 10px，之前在网上看到将 root 元素的 font-size 设置为 10px，方便后文计算。但是在这里似乎并没有起到效果。</p>
 <p>原因是因为 chrome 默认所允许的最小字体为 12px，如果设定值小于此值，就会被重置成 12px。这个时候，<code>1rem=12px</code>，关于 chrome 最小字体限制，</p>
 <p>参考：<a href="https://banri.me/web/webkit-text-size-adjust.html" rel="noopener">Chrome 取消-webkit-text-size-adjust 后的那些事</a></p>
@@ -1187,7 +1187,7 @@ inline-block 后的元素就是一个格式化为行内元素的块容器 ( Bloc
 // 需要指定要居中元素的 width 值（与父元素的宽度无关）
 // 显然这里只适用于块级元素
 // 居中被设置该属性的元素自身，不是子元素，也不是父元素 
-margin: 0, auto;   
+margin: <span class="tok-n">0</span>, auto;   
 text-align： center</code></pre>
 <h3 id="如果内部盒大小超出了外部盒所能包含的大小时表现会如何">如果内部盒大小超出了外部盒所能包含的大小时表现会如何</h3>
 <h2 id="使用过的工具">使用过的工具</h2>
@@ -1279,10 +1279,10 @@ text-align： center</code></pre>
 <h2 id="模糊点">模糊点</h2>
 <h3 id="包装对象">包装对象</h3>
 <p>原始类型不是对象，但你可能会见过 APrimitiveType.method 的调用形式，这是因为数字，字符串，布尔值存在「包装对象」这个概念。也就是说，档使用上面的。运算时，javascript 会自动调用 new String(s) | new Number(s) | new Boolean(s) 的方式将这三种基本类型临时转换为对象，并继承相应类型的方法。</p>
-<pre><code class="language-javascript">//一个经典的例子
-var s = &quot;test&quot;;
-s.len = 4;  //因为点运算，这里会临时建立一个 string 对象，但是随即又销毁了
-var t = s.len; //这里也会创建一个 string 对象，但是已经不是上面那个了，故 undefined</code></pre>
+<pre><code class="language-javascript"><span class="tok-c">//一个经典的例子</span>
+<span class="tok-k">var</span> s = <span class="tok-s">"test"</span>;
+s.len = <span class="tok-n">4</span>;  <span class="tok-c">//因为点运算，这里会临时建立一个 string 对象，但是随即又销毁了</span>
+<span class="tok-k">var</span> t = s.len; <span class="tok-c">//这里也会创建一个 string 对象，但是已经不是上面那个了，故 undefined</span></code></pre>
 <ul>
 <li>null 和 undefined 没有包装对象</li>
 <li>可以使用构造函数显式地构造包装对象。</li>
@@ -1308,57 +1308,57 @@ var t = s.len; //这里也会创建一个 string 对象，但是已经不是上�
 <h3 id="throw-try-catch-finally-语句">throw/try/catch/finally 语句</h3>
 <p>之前写过一篇<a href="">那些年我在 python 中扑过的街</a>，在其中提到过 python 中，try/except/finally 中容易进的坑。</p>
 <p>这个坑在 javascript 中也是同样的，就像那篇文章里说的那样，因为 finally 的设计目的就是无论如何都会执行，那么一旦 finally 中出现了跳转语句，其他语句中的返回内容就会被忽略。</p>
-<pre><code class="language-javascript">function finallyTest(){
-    var x = 'catch', y = 'except', z = 'finally';
-    try {
+<pre><code class="language-javascript"><span class="tok-k">function</span> <span class="tok-f">finallyTest</span>(){
+    <span class="tok-k">var</span> x = <span class="tok-s">'catch'</span>, y = <span class="tok-s">'except'</span>, z = <span class="tok-s">'finally'</span>;
+    <span class="tok-k">try</span> {
         k = x + y;
         a = b;
-        console.log(&quot;here is try------------&quot;);
-    } catch(e) {
-        console.log(&quot;here is catch----------&quot;);
-        return x;
-    } finally{
-        console.log(&quot;here is finally---------&quot;);
-        return z;
+        console.<span class="tok-f">log</span>(<span class="tok-s">"here is try------------"</span>);
+    } <span class="tok-k">catch</span>(e) {
+        console.<span class="tok-f">log</span>(<span class="tok-s">"here is catch----------"</span>);
+        <span class="tok-k">return</span> x;
+    } <span class="tok-k">finally</span>{
+        console.<span class="tok-f">log</span>(<span class="tok-s">"here is finally---------"</span>);
+        <span class="tok-k">return</span> z;
     }
 }
-//执行
-finallyTest()
-//返回值
-here is catch----------
-here is finally---------
-'finally'</code></pre>
+<span class="tok-c">//执行</span>
+<span class="tok-f">finallyTest</span>()
+<span class="tok-c">//返回值</span>
+here is <span class="tok-k">catch</span>----------
+here is <span class="tok-k">finally</span>---------
+<span class="tok-s">'finally'</span></code></pre>
 <h3 id="函数名">函数名</h3>
-<pre><code class="language-js">// 直接声明函数是具有函数名的
-function foo(){}
-foo.name  // 函数名为 foo
-var bar = foo
-bar.name  // 将函数赋值给一个变量，只是让变量指向了函数结构，并不会改变函数结构本身
-// 函数表达式生成的是匿名函数
-var foo = function(){}
-foo.name // &quot;&quot; (空字符串)
-// 函数名称只存在于函数自身结构内，被传递时不会改变这个结构
-function foo(){}
-var o ={
-    a: 'a',
+<pre><code class="language-js"><span class="tok-c">// 直接声明函数是具有函数名的</span>
+<span class="tok-k">function</span> <span class="tok-f">foo</span>(){}
+foo.name  <span class="tok-c">// 函数名为 foo</span>
+<span class="tok-k">var</span> bar = foo
+bar.name  <span class="tok-c">// 将函数赋值给一个变量，只是让变量指向了函数结构，并不会改变函数结构本身</span>
+<span class="tok-c">// 函数表达式生成的是匿名函数</span>
+<span class="tok-k">var</span> foo = <span class="tok-k">function</span>(){}
+foo.name <span class="tok-c">// "" (空字符串)</span>
+<span class="tok-c">// 函数名称只存在于函数自身结构内，被传递时不会改变这个结构</span>
+<span class="tok-k">function</span> <span class="tok-f">foo</span>(){}
+<span class="tok-k">var</span> o ={
+    a: <span class="tok-s">'a'</span>,
     bar: foo
 };
-o.bar.name // foo</code></pre>
+o.bar.name <span class="tok-c">// foo</span></code></pre>
 <h3 id="this-引用丢失">this 引用丢失</h3>
-<pre><code class="language-js">// 函数被多次传递时可能发生
-function foo(){
-    console.log(this.a);
+<pre><code class="language-js"><span class="tok-c">// 函数被多次传递时可能发生</span>
+<span class="tok-k">function</span> <span class="tok-f">foo</span>(){
+    console.<span class="tok-f">log</span>(<span class="tok-k">this</span>.a);
 }
-var obj = {
-    a: 2,
+<span class="tok-k">var</span> obj = {
+    a: <span class="tok-n">2</span>,
     foo: foo
 };
-var bar = obj.foo;
-var a=&quot;oops, global&quot;;
-bar(); //&quot;oops, global&quot;
-// 回调函数中可能发生（异步）
-// 代码同上
-setTimeout(obj.foo, 100); // &quot;oops, global&quot;</code></pre>]]></description></item>
+<span class="tok-k">var</span> bar = obj.foo;
+<span class="tok-k">var</span> a=<span class="tok-s">"oops, global"</span>;
+<span class="tok-f">bar</span>(); <span class="tok-c">//"oops, global"</span>
+<span class="tok-c">// 回调函数中可能发生（异步）</span>
+<span class="tok-c">// 代码同上</span>
+<span class="tok-f">setTimeout</span>(obj.foo, <span class="tok-n">100</span>); <span class="tok-c">// "oops, global"</span></code></pre>]]></description></item>
 <item><title>docker-gitlab 数据迁移</title><link>https://xinghua.space/2016/01/18/gitlab-migrate/</link><guid>https://xinghua.space/2016/01/18/gitlab-migrate/</guid><pubDate>Mon, 18 Jan 2016 01:22:59 GMT</pubDate><description><![CDATA[<h2 id="问题来源docker-的-file-system-神坑">问题来源：docker 的 file system 神坑</h2>
 <p>我们的 gitlab 是使用 docker 部署的，方便快捷。</p>
 <p>但是后来服务器上的某个应用出现了内存泄露，没想到重启服务器之后整个 docker 就跪了，启动容器时总是遇到一系列比较底层的 filesystem unkown 错误，而且报错细节不止一种。调查之后，发现是 docker 使用的 devicemapper 出现了 bug，而且查看 docker 官方的 github，有不少人遇到这个 bug，讨论话题在此：<a href="https://github.com/moby/moby/issues/4036" rel="noopener">docker fails to mount the block device for the container on devicemapper</a>，感觉掉到一个深不见底的神坑里了。</p>
@@ -1378,19 +1378,19 @@ setTimeout(obj.foo, 100); // &quot;oops, global&quot;</code></pre>]]></descripti
 <h3 id="1停止-gitlab-容器">1.停止 Gitlab 容器</h3>
 <pre><code class="language-bash">docker stop gitlab</code></pre>
 <h3 id="2备份所有-docker-volumes-所有的-gitlab-文件">2.备份所有 Docker Volumes (所有的 gitlab 文件)</h3>
-<pre><code class="language-sh">backupDate=$(date +&quot;%Y%m%d%H%M%S&quot;) \
-  &amp;&amp; cd /home/bob/docker-data/ \
-  &amp;&amp; sudo tar zvcf gitlab-data-${backupDate}.tar.gz gitlab/</code></pre>
+<pre><code class="language-sh">backupDate=<span class="tok-n">$(</span>date +<span class="tok-s">"%Y%m%d%H%M%S"</span>) \
+  &amp;&amp; <span class="tok-k">cd</span> /home/bob/docker-data/ \
+  &amp;&amp; <span class="tok-k">sudo</span> tar zvcf gitlab-data-<span class="tok-n">${backupDate}</span>.tar.gz gitlab/</code></pre>
 <h3 id="3备份-gitlab-镜像可选">3.备份 gitlab 镜像（可选）</h3>
 <pre><code class="language-sh">docker save -o /home/bob/gitlab-ce-image.tar gitlab/gitlab-ce:latest</code></pre>
 <h3 id="4删除-gitlab-容器-译注如果你是把数据迁到其他服务器的-docker-gitlab-实例下的话本步骤可选">4.删除 gitlab 容器 ( 译注：如果你是把数据迁到其他服务器的 docker gitlab 实例下的话，本步骤可选)</h3>
 <pre><code class="language-sh">docker rm gitlab</code></pre>
 <h3 id="5拉取最新的-gitlab-镜像">5.拉取最新的 gitlab 镜像</h3>
-<pre><code class="language-sh">sudo docker pull gitlab/gitlab-ce:latest</code></pre>
+<pre><code class="language-sh"><span class="tok-k">sudo</span> docker pull gitlab/gitlab-ce:latest</code></pre>
 <h3 id="6拉取完毕后创建并运行容器">6.拉取完毕后，创建并运行容器</h3>
 <pre><code class="language-sh">docker run -d \
-  --hostname 192.168.1.1 \
-  --publish 8443:443 --publish 8082:80 --publish 2224:22 \
+  --hostname <span class="tok-n">192.168</span>.<span class="tok-n">1.1</span> \
+  --publish <span class="tok-n">8443</span>:<span class="tok-n">443</span> --publish <span class="tok-n">8082</span>:<span class="tok-n">80</span> --publish <span class="tok-n">2224</span>:<span class="tok-n">22</span> \
   --name gitlab \
   --restart always \
   --volume /etc/localtime:/etc/localtime \
@@ -1399,7 +1399,7 @@ setTimeout(obj.foo, 100); // &quot;oops, global&quot;</code></pre>]]></descripti
   --volume /home/bob/docker-data/gitlab/data:/var/opt/gitlab \
   gitlab/gitlab-ce:latest</code></pre>
 <h3 id="7容器启动后观察运行日志">7.容器启动后，观察运行日志：</h3>
-<pre><code class="language-sh">docker logs -f --tail 10 gitlab</code></pre>
+<pre><code class="language-sh">docker logs -f --tail <span class="tok-n">10</span> gitlab</code></pre>
 <p>日志内容</p>
 <pre><code class="language-log">[2015-11-26T15:12:26+02:00] INFO: Retrying execution of execute[create gitlab database user], 19 attempt(s) left
 [2015-11-26T15:12:28+02:00] INFO: Retrying execution of execute[create gitlab database user], 18 attempt(s) left
@@ -1413,20 +1413,20 @@ Error executing action `run` on resource 'execute[create gitlab database user]'
 Mixlib::ShellOut::ShellCommandFailed
  
 Expected process to exit with [0], but received '2'
----- Begin output of /opt/gitlab/embedded/bin/psql --port 5432 -h /var/opt/gitlab/postgresql -d template1 -c &quot;CREATE USER gitlab&quot; ----
+---- Begin output of /opt/gitlab/embedded/bin/psql --port 5432 -h /var/opt/gitlab/postgresql -d template1 -c "CREATE USER gitlab" ----
 STDOUT: 
 STDERR: psql: could not connect to server: No such file or directory
 Is the server running locally and accepting
-connections on Unix domain socket &quot;/var/opt/gitlab/postgresql/.s.PGSQL.5432&quot;?
----- End output of /opt/gitlab/embedded/bin/psql --port 5432 -h /var/opt/gitlab/postgresql -d template1 -c &quot;CREATE USER gitlab&quot; ----
-Ran /opt/gitlab/embedded/bin/psql --port 5432 -h /var/opt/gitlab/postgresql -d template1 -c &quot;CREATE USER gitlab&quot; returned 2
+connections on Unix domain socket "/var/opt/gitlab/postgresql/.s.PGSQL.5432"?
+---- End output of /opt/gitlab/embedded/bin/psql --port 5432 -h /var/opt/gitlab/postgresql -d template1 -c "CREATE USER gitlab" ----
+Ran /opt/gitlab/embedded/bin/psql --port 5432 -h /var/opt/gitlab/postgresql -d template1 -c "CREATE USER gitlab" returned 2
  
 Resource Declaration:
  
 # In /opt/gitlab/embedded/cookbooks/cache/cookbooks/gitlab/recipes/postgresql.rb
  
-153:   execute &quot;create #{sql_user} database user&quot; do
-154:     command &quot;#{bin_dir}/psql --port #{pg_port} -h #{postgresql_socket_dir} -d template1 -c \&quot;CREATE USER #{sql_user}\&quot;&quot;
+153:   execute "create #{sql_user} database user" do
+154:     command "#{bin_dir}/psql --port #{pg_port} -h #{postgresql_socket_dir} -d template1 -c \"CREATE USER #{sql_user}\""
 155:     user postgresql_user
 156:     # Added retries to give the service time to start on slower systems
 157:     retries 20
@@ -1438,18 +1438,18 @@ Compiled Resource:
  
 # Declared in /opt/gitlab/embedded/cookbooks/cache/cookbooks/gitlab/recipes/postgresql.rb:153:in `block in from_file'
  
-execute(&quot;create gitlab database user&quot;) do
+execute("create gitlab database user") do
 action [:run]
 retries 20
 retry_delay 2
 default_guard_interpreter :execute
-command &quot;/opt/gitlab/embedded/bin/psql --port 5432 -h /var/opt/gitlab/postgresql -d template1 -c \&quot;CREATE USER gitlab\&quot;&quot;
+command "/opt/gitlab/embedded/bin/psql --port 5432 -h /var/opt/gitlab/postgresql -d template1 -c \"CREATE USER gitlab\""
 backup 5
 returns 0
-user &quot;gitlab-psql&quot;
+user "gitlab-psql"
 declared_type :execute
-cookbook_name &quot;gitlab&quot;
-recipe_name &quot;postgresql&quot;
+cookbook_name "gitlab"
+recipe_name "postgresql"
 not_if { #code block }
 end</code></pre>
 <p>有两个已知的权限问题，在 <a href="https://docs.gitlab.com/omnibus/docker/" rel="noopener">official documentation</a> 和 <a href="https://github.com/gitlabhq/gitlabhq/issues/9611" rel="noopener">#9611</a> 中描述。为了解决这两个问题，执行：</p>
@@ -1461,21 +1461,21 @@ docker exec gitlab chown -R gitlab-redis /var/opt/gitlab/redis</code></pre>
 <p>登录到 gitlab 容器中的 shell：</p>
 <pre><code class="language-sh">docker exec -t -i gitlab /bin/bash</code></pre>
 <p>检查数据库迁移状况：</p>
-<pre><code class="language-bash">sudo gitlab-rake db:migrate:status</code></pre>
+<pre><code class="language-bash"><span class="tok-k">sudo</span> gitlab-rake db:migrate:status</code></pre>
 <p>如果所有状态都显示为 up 状态，是没问题的。如果发现 down 状态，类似下面这样：</p>
 <pre><code class="language-log">up     20150920161119  Add line code to sent notification
 down    20150924125150  Add project id to ci commit
 down    20150924125436  Migrate project id for ci commits</code></pre>
 <p>就必须重新手动执行数据库 migration 命令：</p>
-<pre><code class="language-sh">sudo gitlab-rake db:migrate</code></pre>
+<pre><code class="language-sh"><span class="tok-k">sudo</span> gitlab-rake db:migrate</code></pre>
 <p>当执行结束时，重新检查数据库 migrate 状态，确保所有状态都为 up：</p>
-<pre><code class="language-sh">sudo gitlab-rake db:migrate:status</code></pre>
+<pre><code class="language-sh"><span class="tok-k">sudo</span> gitlab-rake db:migrate:status</code></pre>
 <h3 id="9继续在容器内部的-bash-shell-上重新配置-gitlab">9.继续在容器内部的 bash shell 上，重新配置 gitlab:</h3>
-<pre><code class="language-sh">sudo gitlab-ctl reconfigure</code></pre>
+<pre><code class="language-sh"><span class="tok-k">sudo</span> gitlab-ctl reconfigure</code></pre>
 <p>然后检查是不是所有内容都正常运行：</p>
-<pre><code class="language-sh">sudo gitlab-rake gitlab:check</code></pre>
+<pre><code class="language-sh"><span class="tok-k">sudo</span> gitlab-rake gitlab:check</code></pre>
 <h3 id="10如果一切正常执行下面的命令">10.如果一切正常，执行下面的命令：</h3>
-<pre><code class="language-sh">sudo gitlab-rake gitlab:env:info RAILS_ENV=production</code></pre>
+<pre><code class="language-sh"><span class="tok-k">sudo</span> gitlab-rake gitlab:env:info RAILS_ENV=production</code></pre>
 <p>会返回类似下面这样的结果：</p>
 <pre><code class="language-log">System information
 System:   Ubuntu 14.04
@@ -1505,7 +1505,7 @@ Hooks:    /opt/gitlab/embedded/service/gitlab-shell/hooks/
 Git:    /opt/gitlab/embedded/bin/git</code></pre>
 <h3 id="11最后清除-redis-的缓存">11.最后，清除 Redis 的缓存</h3>
 <p>不然可能会遇到这个问题： <a href="https://gitlab.com/gitlab-org/gitlab-foss/-/issues/3619" rel="noopener">#3619</a> 或这个问题 <a href="https://gitlab.com/gitlab-org/gitlab-foss/-/issues/3609" rel="noopener">#3609</a>:</p>
-<pre><code class="language-sh">sudo gitlab-rake cache:clear</code></pre>
+<pre><code class="language-sh"><span class="tok-k">sudo</span> gitlab-rake cache:clear</code></pre>
 <h3 id="12访问测试">12.访问测试</h3>
 <p>完成上述步骤之后，访问 <a href="http://localhost:8082" rel="noopener">http://localhost:8082</a> 应该能正常登陆</p>]]></description></item>
 <item><title>计算机领域中的概念辨析</title><link>https://xinghua.space/2016/01/15/learn-in-computer-sciense/</link><guid>https://xinghua.space/2016/01/15/learn-in-computer-sciense/</guid><pubDate>Fri, 15 Jan 2016 01:14:51 GMT</pubDate><description><![CDATA[<h2 id="概念辨析">概念辨析？</h2>
@@ -1590,7 +1590,7 @@ The intention of the protocol is that once an iterator’s next() method raises 
 <h3 id="the-for-statement">The for statement</h3>
 <blockquote>
 <p>The for statement is used to iterate over the elements of a sequence (such as a string, tuple or list) or other iterable object:</p>
-<pre><code class="language-py">for_stmt ::=  &quot;for&quot; target_list &quot;in&quot; expression_list &quot;:&quot; suite [&quot;else&quot; &quot;:&quot; suite]</code></pre>
+<pre><code class="language-py">for_stmt ::=  <span class="tok-s">"for"</span> target_list <span class="tok-s">"in"</span> expression_list <span class="tok-s">":"</span> suite [<span class="tok-s">"else"</span> <span class="tok-s">":"</span> suite]</code></pre>
 <p>The expression list is evaluated once; it should yield an iterable object. An iterator is created for the result of the expression_list. The suite is then executed once for each item provided by the iterator, in the order of ascending indices. Each item in turn is assigned to the target list using the standard rules for assignments, and then the suite is executed. When the items are exhausted (which is immediately when the sequence is empty), the suite in the else clause, if present, is executed, and the loop terminates.</p>
 </blockquote>
 <h2 id="generator-types">Generator Types</h2>
@@ -1711,103 +1711,103 @@ python 的生成器提供了应用迭代器协议的便捷方式。如果一个�
 <h2 id="python-中的模块导入">python 中的模块导入</h2>
 <h3 id="包导入">包导入</h3>
 <p>这个比较简单，一个例子带过吧，但刚开始确实扑街了…</p>
-<pre><code class="language-python">#文件结构：
+<pre><code class="language-python"><span class="tok-c">#文件结构：</span>
 packages
 ├── __init__.py
 └── my_module.py
-# 这种是包导入
-import packages
-# 后续是从__init__.py 中定义的属性中获取的
+<span class="tok-c"># 这种是包导入</span>
+<span class="tok-k">import</span> packages
+<span class="tok-c"># 后续是从__init__.py 中定义的属性中获取的</span>
 packages.some_module.some_method
-# 这种是把包当做搜索路径上的一环
-from packages import some_module
+<span class="tok-c"># 这种是把包当做搜索路径上的一环</span>
+<span class="tok-k">from</span> packages <span class="tok-k">import</span> some_module
 some_module.some_method</code></pre>
 <h3 id="模块导入搜索路径">模块导入搜索路径</h3>
 <p>例如下面的使用场景：</p>
-<pre><code class="language-python"># django 中有一个 common app，并且已经添加到已安装 app 列表中
-# common app 文件结构
+<pre><code class="language-python"><span class="tok-c"># django 中有一个 common app，并且已经添加到已安装 app 列表中</span>
+<span class="tok-c"># common app 文件结构</span>
 common
 ├── __init__.py
 ├── common.py
 ├── others.py
 └── somethings.py
-# somethings.py 中存在导入语句
-from common.others import some_func   # 会报错</code></pre>
+<span class="tok-c"># somethings.py 中存在导入语句</span>
+<span class="tok-k">from</span> common.others <span class="tok-k">import</span> some_func   <span class="tok-c"># 会报错</span></code></pre>
 <p>在上面的代码示例中，由于 common 的名称相同，以及搜索路径默认是先从当前执行代码所在目录开始搜索，所以 common 文件 会在 common 包之前被搜索到，造成搜索路径上的覆盖。而一旦搜索到 common 时，就会去 common 文件中查找 some_func，但是无法找到，这样就会报错。</p>
 <h2 id="try-except-finally-中语句执行顺序">try-except-finally 中语句执行顺序</h2>
 <p>在 python 的异常处理中，无论 try 语句中是否有异常抛出，finally 语句总会被执行。由于这个特性，finally 语句经常被用来做一些清理工作，例如关闭文件，数据库等等。</p>
 <p>如果当 try-except-finally 中出现异常，并且未被妥善处理时，python 会先把发生的异常暂存，当 finally 中的动作执行完毕之后，把保存的异常返回给上级。try-except-finally 中的语句执行顺序，决定了它会有一些潜在的陷阱。</p>
 <p>看以下例子：</p>
-<pre><code class="language-python">def finallyTest():
-    print 'start------'
-    while  True:
-        try:
-            print &quot;running------&quot;
-            raise IndexError(&quot;r&quot;)   #抛出异 IndexError 异常
-        except NameError as e:
-            print 'NameError happended {0}'.format(str(e))
-            break
-        finally:
-            print 'finally executed'
-            break #finally 语句中有 break 语句
+<pre><code class="language-python"><span class="tok-k">def</span> <span class="tok-f">finallyTest</span>():
+    print <span class="tok-s">'start------'</span>
+    <span class="tok-k">while</span>  <span class="tok-n">True</span>:
+        <span class="tok-k">try</span>:
+            print <span class="tok-s">"running------"</span>
+            <span class="tok-k">raise</span> <span class="tok-f">IndexError</span>(<span class="tok-s">"r"</span>)   <span class="tok-c">#抛出异 IndexError 异常</span>
+        <span class="tok-k">except</span> NameError <span class="tok-k">as</span> e:
+            print <span class="tok-s">'NameError happended {0}'</span>.<span class="tok-f">format</span>(<span class="tok-f">str</span>(e))
+            <span class="tok-k">break</span>
+        <span class="tok-k">finally</span>:
+            print <span class="tok-s">'finally executed'</span>
+            <span class="tok-k">break</span> <span class="tok-c">#finally 语句中有 break 语句</span>
             
-# 执行测试函数
-FinallyTest()
-#输出结果为：
+<span class="tok-c"># 执行测试函数</span>
+<span class="tok-f">FinallyTest</span>()
+<span class="tok-c">#输出结果为：</span>
 start------
 running------
-finally executed</code></pre>
+<span class="tok-k">finally</span> executed</code></pre>
 <p>在上面的例子中，在 try 语句中，raise 出了一个 IndexError 异常，而且 except 语句也没有捕获这个错误。按照平常的理解，这个错误会向上级（也就是调用这个函数的程序）传递，在本例中会传递到解释器，并引发一个 IndexError 错误。但是整个函数执行完之后并没有异常出现。</p>
 <p>原因就在于在当 try 块中发生异常的时候，如果在 except 语句中找不到对应的异常处理，异常将会被「临时保存起来」。当 finally 执行完毕的时候，临时保存的异常将会「再次被抛出」，但如果 finally 语句中产生了新的异常或者执行了 return 或者 break 语句，那么临时保存的异常将会被丢失，从而导致「异常屏蔽」。</p>
 <p>另外一个稍微复杂一些例子：</p>
-<pre><code class="language-py">import logging
-logger = logging.Logger(__name__)
-def returnTest(a):
-    try:
-        if a == False:
-            raise ValueError(&quot;data can not be False&quot;)
-        else:
-            return a  
-    except ValueError as e:
-        logger.exception(&quot;exception!, {detail}&quot;).fomat(detail)
-        return &quot;return exception in except statement&quot; 
-    finally:
-        return &quot;return in finally statement&quot;
-print returnTest(False)
-print returnTest(True)</code></pre>
+<pre><code class="language-py"><span class="tok-k">import</span> logging
+logger = logging.<span class="tok-f">Logger</span>(__name__)
+<span class="tok-k">def</span> <span class="tok-f">returnTest</span>(a):
+    <span class="tok-k">try</span>:
+        <span class="tok-k">if</span> a == <span class="tok-n">False</span>:
+            <span class="tok-k">raise</span> <span class="tok-f">ValueError</span>(<span class="tok-s">"data can not be False"</span>)
+        <span class="tok-k">else</span>:
+            <span class="tok-k">return</span> a  
+    <span class="tok-k">except</span> ValueError <span class="tok-k">as</span> e:
+        logger.<span class="tok-f">exception</span>(<span class="tok-s">"exception!, {detail}"</span>).<span class="tok-f">fomat</span>(detail)
+        <span class="tok-k">return</span> <span class="tok-s">"return exception in except statement"</span> 
+    <span class="tok-k">finally</span>:
+        <span class="tok-k">return</span> <span class="tok-s">"return in finally statement"</span>
+print <span class="tok-f">returnTest</span>(<span class="tok-n">False</span>)
+print <span class="tok-f">returnTest</span>(<span class="tok-n">True</span>)</code></pre>
 <p>按照平常理解，第一个 print 语句会触发错误，然后进入 except 语句打印异常，而同时 finally 部分中的语句必然会执行，所以这里会返回一个’return in finally statement’值。第二个则会返回 True。实际上则不然，返回值竟然都是’return in finally statement’。</p>
 <p>原因是和上面的例子中是一样的，无论是 try 复合语句中，还是 except 复合语句中的 return/break 语句，这种会产生程序跳转的语句会先被保存起来。然后再去执行 finally 中的语句，而一旦 finally 中出现了跳转语句，就会直接跳转了，这样早成的结果就是上面保存状态的消失。</p>
 <h2 id="字典推导的限制">字典推导的限制</h2>
 <p>在做一个项目的时候，遇到一个需要多次请求数据库的操作，详细情况就是，有一些公司，这些公司本身有名字，公司代号这样的组织，如果每次都从数据库中取公司信息，会有性能问题。于是就采用用字典缓存下来，于是想使用字典推导。发现推导时只能生成单元素，之前我没有留意过这一点，在此记录一下。</p>
-<pre><code class="language-py"># 这样是可以的
-&gt;&gt;&gt;{model.key: model.value for Modle in models }
-# 结果就是个普通的字典
+<pre><code class="language-py"><span class="tok-c"># 这样是可以的</span>
+&gt;&gt;&gt;{model.key: model.value <span class="tok-k">for</span> Modle <span class="tok-k">in</span> models }
+<span class="tok-c"># 结果就是个普通的字典</span>
 &gt;&gt;&gt;{key1: value1, key2: value2, ...}
-# 但是想要下面这样使用是不支持的
-&gt;&gt;&gt;{model.key1: model.value1, moedel.key2: model.value2 for model in models}
-# 折中的办法是将上面的 value 值换成一个字典，或者是使用列表推导再封装一层列表
-&gt;&gt;&gt;{model.key1: {models.key1: models.value1, model.key2: model.value2, ...} for model in models}</code></pre>
+<span class="tok-c"># 但是想要下面这样使用是不支持的</span>
+&gt;&gt;&gt;{model.key1: model.value1, moedel.key2: model.value2 <span class="tok-k">for</span> model <span class="tok-k">in</span> models}
+<span class="tok-c"># 折中的办法是将上面的 value 值换成一个字典，或者是使用列表推导再封装一层列表</span>
+&gt;&gt;&gt;{model.key1: {models.key1: models.value1, model.key2: model.value2, ...} <span class="tok-k">for</span> model <span class="tok-k">in</span> models}</code></pre>
 <p>补充一下实际的例子，其中 branch 相关的是分公司信息，subbranch 相关的是中支公司信息，目的是构造一个，分公司名称为 key 值，分公司的主键，编号，以及该分公司辖下的中支公司为 value 值的字典，其中的中支公司也是一个字典：以中支公司名称为 key 值，中支公司的其他信息为 value 值。这样就构成了一个公司数据的二阶字典缓存列表。</p>
 <pre><code class="language-py">companys_by_name = {
         branch.name: {
-            &quot;pk&quot;: branch.pk,
-            &quot;number&quot;: branch.number,
-            &quot;subbranch&quot;: {
-                subbranch.name: {&quot;pk&quot;:subbranch.pk, &quot;number&quot;:subbranch.number} for subbranch in SubbranchCompany.objects.filter(branch_company=branch)
-            } for branch in BranchCompany.objects.all()
+            <span class="tok-s">"pk"</span>: branch.pk,
+            <span class="tok-s">"number"</span>: branch.number,
+            <span class="tok-s">"subbranch"</span>: {
+                subbranch.name: {<span class="tok-s">"pk"</span>:subbranch.pk, <span class="tok-s">"number"</span>:subbranch.number} <span class="tok-k">for</span> subbranch <span class="tok-k">in</span> SubbranchCompany.objects.<span class="tok-f">filter</span>(branch_company=branch)
+            } <span class="tok-k">for</span> branch <span class="tok-k">in</span> BranchCompany.objects.<span class="tok-f">all</span>()
 }
-# 详细含义如下，其中中支公司是分工司辖下的公司
+<span class="tok-c"># 详细含义如下，其中中支公司是分工司辖下的公司</span>
 公司信息字典 = {
      分公司名字:{
-        &quot;主键&quot;: 当前迭代分公司主键，
-        &quot;公司号&quot;: 当前迭代公司公司号，
-        &quot;中支公司&quot;:{
+        <span class="tok-s">"主键"</span>: 当前迭代分公司主键，
+        <span class="tok-s">"公司号"</span>: 当前迭代公司公司号，
+        <span class="tok-s">"中支公司"</span>:{
             中支公司名字:{
-                &quot;主键&quot;: 当前迭代中支公司主键,
-                &quot;中支公司号&quot;: 当前迭代中支公司号,
-            } for 中支公司 in 当期迭代分公司下中支公司集合
+                <span class="tok-s">"主键"</span>: 当前迭代中支公司主键,
+                <span class="tok-s">"中支公司号"</span>: 当前迭代中支公司号,
+            } <span class="tok-k">for</span> 中支公司 <span class="tok-k">in</span> 当期迭代分公司下中支公司集合
         }
-     } for 分公司 in 分公司集合
+     } <span class="tok-k">for</span> 分公司 <span class="tok-k">in</span> 分公司集合
 }</code></pre>]]></description></item>
 <item><title>Open Questions</title><link>https://xinghua.space/2016/01/10/open-questions/</link><guid>https://xinghua.space/2016/01/10/open-questions/</guid><pubDate>Sun, 10 Jan 2016 14:59:11 GMT</pubDate><description><![CDATA[<p>本文专门用于汇总一些平时遇到的问题。<br>
 这些问题有的有一些我的初步思考，但可能存在很大的缺陷，甚至根本上就是错误的。而有的是刚遇到，或者是刚刚想到的问题，因为身处于自己的范式之中，我目前甚至都判断不清楚这些问题是不是幼稚的，这些问题本身是不是就有问题。</p>
@@ -1864,24 +1864,24 @@ print returnTest(True)</code></pre>
 <p>上面说完语义的重要性，接着来看如何通过理解这些第二类语义元素来理解网页。这部分内容涉及的元素比较多，这里只是粗略说明一下。</p>
 <p>首先网页有不少展示用的语义化元素用来展示信息。</p>
 <p>像最基本的</p>
-<pre><code class="language-html">&lt;!--头部--&gt;
-&lt;header&gt;&lt;/header&gt;
-&lt;!--主体--&gt;
-&lt;main&gt;&lt;/main&gt;
-&lt;!--尾部--&gt;
-&lt;footer&gt;&lt;/footer&gt;
-&lt;!--段落--&gt;
-&lt;p&gt;&lt;/p&gt;
-&lt;!--章节--&gt;
-&lt;section&gt;&lt;/section&gt;
-&lt;!--独立片段--&gt;
-&lt;artical&gt;&lt;/artical&gt;
+<pre><code class="language-html"><span class="tok-c">&lt;!--头部--&gt;</span>
+&lt;<span class="tok-t">header</span>&gt;&lt;/<span class="tok-t">header</span>&gt;
+<span class="tok-c">&lt;!--主体--&gt;</span>
+&lt;<span class="tok-t">main</span>&gt;&lt;/<span class="tok-t">main</span>&gt;
+<span class="tok-c">&lt;!--尾部--&gt;</span>
+&lt;<span class="tok-t">footer</span>&gt;&lt;/<span class="tok-t">footer</span>&gt;
+<span class="tok-c">&lt;!--段落--&gt;</span>
+&lt;<span class="tok-t">p</span>&gt;&lt;/<span class="tok-t">p</span>&gt;
+<span class="tok-c">&lt;!--章节--&gt;</span>
+&lt;<span class="tok-t">section</span>&gt;&lt;/<span class="tok-t">section</span>&gt;
+<span class="tok-c">&lt;!--独立片段--&gt;</span>
+&lt;<span class="tok-t">artical</span>&gt;&lt;/<span class="tok-t">artical</span>&gt;
 ...</code></pre>
 <p>以及更具体的：</p>
-<pre><code class="language-html">&lt;!--时间--&gt;
-&lt;time&gt;&lt;/time&gt;
-&lt;!--地址--&gt;
-&lt;address&gt;&lt;/address&gt;
+<pre><code class="language-html"><span class="tok-c">&lt;!--时间--&gt;</span>
+&lt;<span class="tok-t">time</span>&gt;&lt;/<span class="tok-t">time</span>&gt;
+<span class="tok-c">&lt;!--地址--&gt;</span>
+&lt;<span class="tok-t">address</span>&gt;&lt;/<span class="tok-t">address</span>&gt;
 ...</code></pre>
 <p>这些都是普通的语义化的来展示信息的元素。但是像现实生活那样，信息展示还有其他的方式，有助于人类更好的阅读和理解。比如：</p>
 <ul>
@@ -1898,11 +1898,11 @@ print returnTest(True)</code></pre>
 </ul>
 <p>他们的作用也和现实生活中的大同小异，而且 html 中的表单有多种多样的类型，单选框，复选框，输入框（输入框本身也有更细的语义化的类型）。这和现实中的多种多样的调查表单都是相似的。</p>
 <p>另外，html 中还多了一些独特的语义元素。比如：</p>
-<pre><code class="language-html">&lt;!--链接，可能是最重要的独特元素，它把各个页面通过网络组合了起来--&gt;
-&lt;a&gt;&lt;/a&gt;
-&lt;!--其他一些元素，这些元素或描述了网页关系，或是描述网页信息等等--&gt;
-&lt;link&gt;
-&lt;meta&gt;</code></pre>
+<pre><code class="language-html"><span class="tok-c">&lt;!--链接，可能是最重要的独特元素，它把各个页面通过网络组合了起来--&gt;</span>
+&lt;<span class="tok-t">a</span>&gt;&lt;/<span class="tok-t">a</span>&gt;
+<span class="tok-c">&lt;!--其他一些元素，这些元素或描述了网页关系，或是描述网页信息等等--&gt;</span>
+&lt;<span class="tok-t">link</span>&gt;
+&lt;<span class="tok-t">meta</span>&gt;</code></pre>
 <p>基本的 html 元素，就是上述这些种类，可以看到，这些元素组合起来，即有收集信息的部分，又有展示信息的部分，而且为了更好的展示信息，html 又提供了许多语义化的元素。</p>
 <p>这些元素组合在一起，一起形成了网页的全部语义信息，几乎可以实现和模仿现实中的所有信息载体，某些方面犹有胜之。</p>
 <h2 id="文档流">文档流</h2>
@@ -2015,46 +2015,46 @@ print returnTest(True)</code></pre>
 </ul>
 <p>需求是计算出表中同一<code>type</code>，同一分公司下的档案总数，和<code>status=01</code>的档案数，以及它占档案总数的比值。</p>
 <p>当然，使用编程语言也可以实现这个功能，但是会比较复杂。这个时候可以使用<code>CASE WHEN</code>语句来精确控制表中同一字段下，不同内容的选择。</p>
-<pre><code class="language-sql">SELECT 
-      COUNT(CASE WHEN status='01' THEN status END) AS status_01,
-      COUNT(*) AS total,
-      CONCAT(FORMAT(COUNT(CASE WHEN status='01' THEN status END)/
-      COUNT(*)*100, 2), '%') AS percentage
-FROM
+<pre><code class="language-sql"><span class="tok-k">SELECT</span> 
+      <span class="tok-k">COUNT</span>(<span class="tok-k">CASE</span> <span class="tok-k">WHEN</span> status=<span class="tok-s">'01'</span> <span class="tok-k">THEN</span> status <span class="tok-k">END</span>) <span class="tok-k">AS</span> status_01,
+      <span class="tok-k">COUNT</span>(*) <span class="tok-k">AS</span> total,
+      <span class="tok-f">CONCAT</span>(<span class="tok-f">FORMAT</span>(<span class="tok-k">COUNT</span>(<span class="tok-k">CASE</span> <span class="tok-k">WHEN</span> status=<span class="tok-s">'01'</span> <span class="tok-k">THEN</span> status <span class="tok-k">END</span>)/
+      <span class="tok-k">COUNT</span>(*)*<span class="tok-n">100</span>, <span class="tok-n">2</span>), <span class="tok-s">'%'</span>) <span class="tok-k">AS</span> percentage
+<span class="tok-k">FROM</span>
       archives
-GROUP BY
+<span class="tok-k">GROUP</span> <span class="tok-k">BY</span>
       status, branch_company</code></pre>
 <p>这样就可以解决上面提出的问题。因为这个表是临时构造的，结果这里就不展示了。</p>
 <h2 id="在上述基础上实现链式查询">在上述基础上实现链式查询</h2>
 <p>在 Django 的 ORM 中，一个非常好用的功能就是使用链式查询，你可以不断连接 filter 等方法来过滤出想要的内容。</p>
 <p>这在一些特定的场景中特别有用。比如在上面的表中，有时候可能想要某个分公司或中支公司下的数据，有时候又想要单一类型下的数据。如果针对每一种条件组合分别写相应的 SQL 查询的话，会非常复杂，而且有时候组合会特别多。而链式查询比较完美地解决了这个问题。</p>
 <p>为了让原生 SQL 也能有个简单的链式查询，我们需要不断连接 where 中的条件子句。为此可以写一个简单的类来实现它：</p>
-<pre><code class="language-python">class GenQuerySQL(object):
-    def __init__(self, table):
-        self.table = table
-        self.group_by_fields = &quot; &quot;
-        self.where_conditions = &quot; 1=1 &quot;
-        self.fields = &quot; &quot;
-        self.order_by_fields = &quot;&quot;
-    def where(self, where_condition):
-        if where_condition:
-            self.where_conditions += &quot; and &quot; + where_condition
-        return self
-    def add_field(self, fields):
-        self.fields += &quot; &quot; + fields
-        return self
-    def group_by(self, group_by_field):
-        self.group_by_fields = group_by_field
-        return self
-    def order_by(self, order_by_field):
-        self.order_by_fields = order_by_field
-        return self
-    def sql(self):
-        SQL = 'SELECT ' + self.fields + ' FROM ' + self.table + ' WHERE ' + self.where_conditions + ' GROUP BY ' + self.group_by_fields + ' ORDER BY ' + self.order_by_fields + &quot;;&quot;
-        return SQL</code></pre>
+<pre><code class="language-python"><span class="tok-k">class</span> <span class="tok-f">GenQuerySQL</span>(object):
+    <span class="tok-k">def</span> <span class="tok-f">__init__</span>(<span class="tok-n">self</span>, table):
+        <span class="tok-n">self</span>.table = table
+        <span class="tok-n">self</span>.group_by_fields = <span class="tok-s">" "</span>
+        <span class="tok-n">self</span>.where_conditions = <span class="tok-s">" 1=1 "</span>
+        <span class="tok-n">self</span>.fields = <span class="tok-s">" "</span>
+        <span class="tok-n">self</span>.order_by_fields = <span class="tok-s">""</span>
+    <span class="tok-k">def</span> <span class="tok-f">where</span>(<span class="tok-n">self</span>, where_condition):
+        <span class="tok-k">if</span> where_condition:
+            <span class="tok-n">self</span>.where_conditions += <span class="tok-s">" and "</span> + where_condition
+        <span class="tok-k">return</span> <span class="tok-n">self</span>
+    <span class="tok-k">def</span> <span class="tok-f">add_field</span>(<span class="tok-n">self</span>, fields):
+        <span class="tok-n">self</span>.fields += <span class="tok-s">" "</span> + fields
+        <span class="tok-k">return</span> <span class="tok-n">self</span>
+    <span class="tok-k">def</span> <span class="tok-f">group_by</span>(<span class="tok-n">self</span>, group_by_field):
+        <span class="tok-n">self</span>.group_by_fields = group_by_field
+        <span class="tok-k">return</span> <span class="tok-n">self</span>
+    <span class="tok-k">def</span> <span class="tok-f">order_by</span>(<span class="tok-n">self</span>, order_by_field):
+        <span class="tok-n">self</span>.order_by_fields = order_by_field
+        <span class="tok-k">return</span> <span class="tok-n">self</span>
+    <span class="tok-k">def</span> <span class="tok-f">sql</span>(<span class="tok-n">self</span>):
+        SQL = <span class="tok-s">'SELECT '</span> + <span class="tok-n">self</span>.fields + <span class="tok-s">' FROM '</span> + <span class="tok-n">self</span>.table + <span class="tok-s">' WHERE '</span> + <span class="tok-n">self</span>.where_conditions + <span class="tok-s">' GROUP BY '</span> + <span class="tok-n">self</span>.group_by_fields + <span class="tok-s">' ORDER BY '</span> + <span class="tok-n">self</span>.order_by_fields + <span class="tok-s">";"</span>
+        <span class="tok-k">return</span> SQL</code></pre>
 <p>这个类可以简单地模拟链式查询的功能。例如：</p>
-<pre><code class="language-python">archive_statistics = GenQuerySQL('SOME_TABLE')
-raw_sql = archive_statistics.add_field('fields').where('where_condition').group_by('group_by_fields').order_by('order_by_fields').sql()</code></pre>
+<pre><code class="language-python">archive_statistics = <span class="tok-f">GenQuerySQL</span>(<span class="tok-s">'SOME_TABLE'</span>)
+raw_sql = archive_statistics.<span class="tok-f">add_field</span>(<span class="tok-s">'fields'</span>).<span class="tok-f">where</span>(<span class="tok-s">'where_condition'</span>).<span class="tok-f">group_by</span>(<span class="tok-s">'group_by_fields'</span>).<span class="tok-f">order_by</span>(<span class="tok-s">'order_by_fields'</span>).<span class="tok-f">sql</span>()</code></pre>
 <p>其中.where 可以多次连接。当然也可以使用另一种方式：先把 where 语句根据条件构造完毕，最终再拼接成 sql 语句。其思想是一样的：先过滤条件，最终再查询数据库。</p>
 <p>2016.01 于北京回龙观</p>]]></description></item>
 <item><title>docker 部署 gitlab</title><link>https://xinghua.space/2016/01/07/deploy-gitlab-by-docker/</link><guid>https://xinghua.space/2016/01/07/deploy-gitlab-by-docker/</guid><pubDate>Thu, 07 Jan 2016 00:27:22 GMT</pubDate><description><![CDATA[<h2 id="拉取镜像及启动容器">拉取镜像及启动容器</h2>
@@ -2065,9 +2065,9 @@ raw_sql = archive_statistics.add_field('fields').where('where_condition').group_
 <p>简单来说 volumes，就是可以映射到容器中去的容器外部存储空间。你可以将一些比价通用的配置文件，数据，或者是代码等都使用 volumes 的形式存储在容器所在的宿主机器上。这样不仅可以永久保留数据，保证数据的安全性。同时还可以方便的修改 volumes 中的内容，然后重新映射到容器中，这对于需要经常动态修改文件的容器非常有用。<br>
 在本次部署 gitlab 的时候，创建三个 volumes，分别是/mnt/volumes/gitlab 下的 config，logs，data 目录。<br>
 启动一个 gitlab 容器</p>
-<pre><code class="language-shell">sudo docker run --detach \
+<pre><code class="language-shell"><span class="tok-k">sudo</span> docker run --detach \
     --hostname git.xiaohuruwei.com \
-    --publish 8443:443 --publish 8080:80 --publish 2222:22 \
+    --publish <span class="tok-n">8443</span>:<span class="tok-n">443</span> --publish <span class="tok-n">8080</span>:<span class="tok-n">80</span> --publish <span class="tok-n">2222</span>:<span class="tok-n">22</span> \
     --name gitlab \
     --restart always \
     --volume /mnt/volumes/gitlab/config:/etc/gitlab \
@@ -2084,36 +2084,36 @@ volume 映射，冒号前面是宿主机的一个文件路径，后面是容器�
 <h2 id="配置-nginx支持-https">配置 nginx，支持 https</h2>
 <p>参考：<a href="https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/doc/settings/nginx.md#enable-https" rel="noopener">gitlab set nginx</a></p>
 <p>nginx 配置文件</p>
-<pre><code class="language-nginx">server {
-    listen 80;
-    server_name git.xiaohuruwei.com;
-    access_log /var/log/nginx/gitlab.xiaohuruwei.access.log;
-    error_log /var/log/nginx/gitlab.xiaohuruwei.error.log;
-    rewrite ^ https://git.xiaohuruwei.com;
+<pre><code class="language-nginx"><span class="tok-k">server</span> {
+    <span class="tok-k">listen</span> <span class="tok-n">80</span>;
+    <span class="tok-k">server_name</span> git.xiaohuruwei.com;
+    <span class="tok-k">access_log</span> /var/log/nginx/gitlab.xiaohuruwei.access.log;
+    <span class="tok-k">error_log</span> /var/log/nginx/gitlab.xiaohuruwei.error.log;
+    <span class="tok-k">rewrite</span> ^ https://git.xiaohuruwei.com;
 }</code></pre>
 <p>https proxy</p>
-<pre><code class="language-nginx">server {
-    listen       443 ssl;
-    server_name  git.xiaohuruwei.com;
-    access_log /var/log/nginx/https-gitlab.xiaohuruwei.access.log;
-    error_log /var/log/nginx/https-gitlab.xiaohuruwei.error.log;
-    # ssl 证书配置，这里使用的是自己生成的证书，在访问时会提示证书问题，选择相信即可。
-    # 如果想要公认的证书，需要在网络上的一些授权中心生成
+<pre><code class="language-nginx"><span class="tok-k">server</span> {
+    <span class="tok-k">listen</span>       <span class="tok-n">443</span> ssl;
+    <span class="tok-k">server_name</span>  git.xiaohuruwei.com;
+    <span class="tok-k">access_log</span> /var/log/nginx/https-gitlab.xiaohuruwei.access.log;
+    <span class="tok-k">error_log</span> /var/log/nginx/https-gitlab.xiaohuruwei.error.log;
+    <span class="tok-c"># ssl 证书配置，这里使用的是自己生成的证书，在访问时会提示证书问题，选择相信即可。</span>
+    <span class="tok-c"># 如果想要公认的证书，需要在网络上的一些授权中心生成</span>
     ssl on;
     ssl_certificate /etc/nginx/ssl/getbase.crt;
     ssl_certificate_key /etc/nginx/ssl/getbase_nopass.key;
-    location / {
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_pass https://localhost:8443;
+    <span class="tok-k">location</span> / {
+        <span class="tok-k">proxy_set_header</span> Host <span class="tok-n">$host</span>;
+        <span class="tok-k">proxy_set_header</span> X-Real-IP <span class="tok-n">$remote_addr</span>;
+        <span class="tok-k">proxy_set_header</span> X-Forwarded-For <span class="tok-n">$proxy_add_x_forwarded_for</span>;
+        <span class="tok-k">proxy_pass</span> https://localhost:<span class="tok-n">8443</span>;
     }
 }</code></pre>
 <h2 id="开放-gitlab-的-https-支持">开放 gitlab 的 https 支持</h2>
 <p>仅仅由 nginx 反向代理 https 是不行的，因为还需要打开 gitlab 的 https 支持。</p>
 <p>修改配置文件，在/mnt/volumes/gitlab/config/ 目录下的 gitlab.rb 中添加：</p>
-<pre><code class="language-ruby"># note the 'https' below
-external_url &quot;https://gitlab.example.com&quot;</code></pre>
+<pre><code class="language-ruby"><span class="tok-c"># note the 'https' below</span>
+external_url <span class="tok-s">"https://gitlab.example.com"</span></code></pre>
 <p>新建 ssl 目录，同时在该目录下添加 ssl 证书文件，命名要与上述域名中保持一致</p>
 <p>git.xiaohuruwei.com.crt<br>
 git.xiaohuruwei.com.key</p>
@@ -2122,28 +2122,28 @@ git.xiaohuruwei.com.key</p>
 <h2 id="访问-gitlab-测试">访问 gitlab 测试</h2>
 <p>打开 web 界面，默认登录名为 root，密码为 5iveL!fe（已经改为厘米脚印的默认密码），新建一个 project 仓库:test<br>
 因为 ssl 证书是自己生成的，并不具有全网通用性，因此只能先选择相信证书。在本地设置环境变量：</p>
-<pre><code class="language-shell">export GIT_SSL_NO_VERIFY=1</code></pre>
+<pre><code class="language-shell"><span class="tok-k">export</span> GIT_SSL_NO_VERIFY=<span class="tok-n">1</span></code></pre>
 <p>然后克隆仓库：git clone <a href="https://git.xiaohuruwei.com/root/test.git" rel="noopener">https://git.xiaohuruwei.com/root/test.git</a></p>
 <h2 id="开启邮件服务">开启邮件服务</h2>
 <p>默认的邮件服务不太好使，所以这里配置自己的邮件服务。参考官方 gitlab stmp 文档。</p>
 <p>使用 163 邮箱，按照官方文档配置后，会发现发送邮件没有起作用。</p>
-<pre><code class="language-ruby">gitlab_rails['smtp_enable'] = true
-gitlab_rails['smtp_address'] = &quot;smtp.163.com&quot;
-gitlab_rails['smtp_port'] = 25
-gitlab_rails['smtp_user_name'] = &quot;xiaohuruwei@163.com&quot;
-gitlab_rails['smtp_password'] = &quot;xxxx&quot;
-gitlab_rails['smtp_domain'] = &quot;163.com&quot;
-gitlab_rails['smtp_authentication'] = &quot;login&quot;
-gitlab_rails['smtp_enable_starttls_auto'] = true
-gitlab_rails['smtp_tls'] = false
-gitlab_rails['smtp_openssl_verify_mode'] = 'none'</code></pre>
+<pre><code class="language-ruby">gitlab_rails[<span class="tok-s">'smtp_enable'</span>] = <span class="tok-n">true</span>
+gitlab_rails[<span class="tok-s">'smtp_address'</span>] = <span class="tok-s">"smtp.163.com"</span>
+gitlab_rails[<span class="tok-s">'smtp_port'</span>] = <span class="tok-n">25</span>
+gitlab_rails[<span class="tok-s">'smtp_user_name'</span>] = <span class="tok-s">"xiaohuruwei@163.com"</span>
+gitlab_rails[<span class="tok-s">'smtp_password'</span>] = <span class="tok-s">"xxxx"</span>
+gitlab_rails[<span class="tok-s">'smtp_domain'</span>] = <span class="tok-s">"163.com"</span>
+gitlab_rails[<span class="tok-s">'smtp_authentication'</span>] = <span class="tok-s">"login"</span>
+gitlab_rails[<span class="tok-s">'smtp_enable_starttls_auto'</span>] = <span class="tok-n">true</span>
+gitlab_rails[<span class="tok-s">'smtp_tls'</span>] = <span class="tok-n">false</span>
+gitlab_rails[<span class="tok-s">'smtp_openssl_verify_mode'</span>] = <span class="tok-s">'none'</span></code></pre>
 <p>查看 log 时，由于 log 比较杂乱，没有发现问题，后来在 ruby 社区发现有人解决过同样的问题：<br>
 <a href="https://ruby-china.org/topics/20450" rel="noopener">GitLab 配置通过 smtp.163.com 发送邮件</a><br>
 以及网易的官方解释：<br>
 <a href="https://www.mail163.cn/fault/analysis/1109.html" rel="noopener">网易服务器 smtp 机器要求身份验证帐号和发信帐号必须一致，如果用户在发送邮件时，身份验证帐号和发件人帐号是不同的，因此拒绝发送。</a></p>
 <p>所以又添加了两行配置后测试可以正常使用了：</p>
-<pre><code class="language-ruby">gitlab_rails['gitlab_email_from'] = &quot;xiaohuruwei@163.com&quot;
-user['git_user_email'] = &quot;xiaohuruwei@163.com&quot;</code></pre>
+<pre><code class="language-ruby">gitlab_rails[<span class="tok-s">'gitlab_email_from'</span>] = <span class="tok-s">"xiaohuruwei@163.com"</span>
+user[<span class="tok-s">'git_user_email'</span>] = <span class="tok-s">"xiaohuruwei@163.com"</span></code></pre>
 <h2 id="ssh-方式访问">ssh 方式访问</h2>
 <p>因为是使用 docker 部署的，通过 ssh 方式 (比如 git clone git@git.xiaohuruwei.com) 访问会有两层认证：</p>
 <p>一层是 freelancer 服务器的认证<br>
@@ -2152,7 +2152,7 @@ user['git_user_email'] = &quot;xiaohuruwei@163.com&quot;</code></pre>
 前者可能需要 ssh 本身的反向代理 (现在使用的 nginx 不支持除 http，https 以外的反向代理)，</p>
 <p>现在发现使用端口转发的形式比较困难，但是可以改变默认的 gitlab 的 ssh 端口为非标准端口：<br>
 直接修改 gitlab 配置文件中的变量：</p>
-<pre><code class="language-ruby">gitlab_shell_ssh_port = 2222</code></pre>
+<pre><code class="language-ruby">gitlab_shell_ssh_port = <span class="tok-n">2222</span></code></pre>
 <p>然后重新启动 docker 容器，就可以在 web 界面中看到相应的 ssh 地址发生了改变：<br>
 ssh://git@git.xiaohuruwei.com:2222/root/test.git 然后就直接可以继续使用 git clone 来继续操作了</p>
 <p>2016.01 于北京回龙观</p>]]></description></item>
@@ -2187,27 +2187,27 @@ ssh://git@git.xiaohuruwei.com:2222/root/test.git 然后就直接可以继续使�
 <h3 id="构建应用前的准备">构建应用前的准备</h3>
 <h4 id="应用目录结构">应用目录结构</h4>
 <p>因为 daocloud 是基于 daocker 的，在使用 daocloud 之前，我们需要按照 docker 的规范，把自己的项目改成支持打包成镜像的应用，对于 html5 项目来说，就是添加 Dockerfile 文件和配置好所需要的 nginx 配置文件。比如我有一个应用叫 jinli，其目录结构为 (你的目录结构和这个可能也不一样)：</p>
-<pre><code class="language-shell">jinli/  # 项目根目录
-├── jinli/  # 具体的应用目录
-│   ├── images/ # 图片
-│   ├── index.html  # 默认的检索 html
-│   ├── scripts/  #  js 文件夹
-│   └── styles/    # 存放 css 的文件夹
-├── Dockerfile   # Dockerfile
-├── jinli.conf   # 本应用的 nginx 配置文件
-└── log/  # log 文件</code></pre>
+<pre><code class="language-shell">jinli/  <span class="tok-c"># 项目根目录</span>
+├── jinli/  <span class="tok-c"># 具体的应用目录</span>
+│   ├── images/ <span class="tok-c"># 图片</span>
+│   ├── index.html  <span class="tok-c"># 默认的检索 html</span>
+│   ├── scripts/  <span class="tok-c">#  js 文件夹</span>
+│   └── styles/    <span class="tok-c"># 存放 css 的文件夹</span>
+├── Dockerfile   <span class="tok-c"># Dockerfile</span>
+├── jinli.conf   <span class="tok-c"># 本应用的 nginx 配置文件</span>
+└── log/  <span class="tok-c"># log 文件</span></code></pre>
 <p>在这个目录结构中，和 docker 镜像构建是就是 Dockerfile 这个文件，jinli.conf 是个将要一起打包放入 docker 镜像中的文件，其他的都是应用本身的文件。</p>
 <h4 id="创建-dockerfile-文件">创建 Dockerfile 文件</h4>
 <p>Dockerfile，就是一个 daocker 的规则文件，就像 make 的 Makefile 一样。Dockerfile 描述了将自己的应用构建成 docker 镜像的过程。<br>
 在本例中，Dockerfile 的内容如下：</p>
-<pre><code class="language-dockerfile"># 选择 nginx 服务
-FROM nginx:1.9.5
-# copy 代码
-COPY . /src
-# 添加 nginx 配置文件
-COPY jinli.conf /etc/nginx/conf.d/
-# 去掉默认的 nginx 配置文件
-RUN rm /etc/nginx/conf.d/default.conf</code></pre>
+<pre><code class="language-dockerfile"><span class="tok-c"># 选择 nginx 服务</span>
+<span class="tok-k">FROM</span> nginx:<span class="tok-n">1.9</span>.<span class="tok-n">5</span>
+<span class="tok-c"># copy 代码</span>
+<span class="tok-k">COPY</span> . /src
+<span class="tok-c"># 添加 nginx 配置文件</span>
+<span class="tok-k">COPY</span> jinli.conf /etc/nginx/conf.d/
+<span class="tok-c"># 去掉默认的 nginx 配置文件</span>
+<span class="tok-k">RUN</span> rm /etc/nginx/conf.d/default.conf</code></pre>
 <p>Dockerfile 解释：</p>
 <ul>
 <li>首先，想象将要构建的 docker 镜像包含一个 linux 操作系统。</li>
@@ -2222,14 +2222,14 @@ RUN rm /etc/nginx/conf.d/default.conf</code></pre>
 <li>server_name 为 localhost，因为这个 server_name 是在 docker 容器内部使用的。</li>
 <li>location 中的 root 文件夹是 docker 容器中的地址，不是宿主机的地址</li>
 </ul>
-<pre><code class="language-nginx">server {
-    listen 80;
-    server_name localhost;
-    access_log /src/log/jinli.access.log;
-    error_log /src/log/jinli.error.log;
-    # 这里你还可以选择根据需要配一些 gzip 等选项
-    location / {
-    root /src/jinli/;
+<pre><code class="language-nginx"><span class="tok-k">server</span> {
+    <span class="tok-k">listen</span> <span class="tok-n">80</span>;
+    <span class="tok-k">server_name</span> localhost;
+    <span class="tok-k">access_log</span> /src/log/jinli.access.log;
+    <span class="tok-k">error_log</span> /src/log/jinli.error.log;
+    <span class="tok-c"># 这里你还可以选择根据需要配一些 gzip 等选项</span>
+    <span class="tok-k">location</span> / {
+    <span class="tok-k">root</span> /src/jinli/;
     }
 }</code></pre>
 <p>然后将应用提交到 github 上，比如具体为：xiaohuruwei/jinli.git</p>
@@ -2253,18 +2253,18 @@ RUN rm /etc/nginx/conf.d/default.conf</code></pre>
 <p>发布完成之后，可以在 daocloud 上看到所创建的容器的具体信息。包括映射到宿主机上的端口号等等，点击端口号后可以看到该应用的访问地址，打开可以测试是否部署成功了</p>
 <p>为方便后面的叙述，这里假设映射出的端口号为 8888。因为是发布到自己的主机上，所以还需要自己配置域名以及 nginx 反向代理来对外提供访问服务。假设有一个域名已经绑定在了自己的主机上，这里假设为 xiaohuruwei.com.</p>
 <p>登陆自己的主机，并配置 nginx 文件，如果是使用 apt-get 一类的包管理工具安装的，那么应该是在/etc/nginx/conf.d/目录下添加 jinli.conf:</p>
-<pre><code class="language-nginx">server {
-    listen 80;
-    server_name xiaohuruwei.com;
-    access_log /var/log/nginx/jinli.access.log;
-    error_log /var/log/nginx/jinli.error.log;
-    client_max_body_size 200m;
-    # 可以根据需要设置其他配置项
-    location / {
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_pass http://127.0.0.1:8888;
+<pre><code class="language-nginx"><span class="tok-k">server</span> {
+    <span class="tok-k">listen</span> <span class="tok-n">80</span>;
+    <span class="tok-k">server_name</span> xiaohuruwei.com;
+    <span class="tok-k">access_log</span> /var/log/nginx/jinli.access.log;
+    <span class="tok-k">error_log</span> /var/log/nginx/jinli.error.log;
+    client_max_body_size <span class="tok-n">200</span>m;
+    <span class="tok-c"># 可以根据需要设置其他配置项</span>
+    <span class="tok-k">location</span> / {
+        <span class="tok-k">proxy_set_header</span> Host <span class="tok-n">$host</span>;
+        <span class="tok-k">proxy_set_header</span> X-Real-IP <span class="tok-n">$remote_addr</span>;
+        <span class="tok-k">proxy_set_header</span> X-Forwarded-For <span class="tok-n">$proxy_add_x_forwarded_for</span>;
+        <span class="tok-k">proxy_pass</span> <span class="tok-k">http</span>://<span class="tok-n">127.0</span>.<span class="tok-n">0.1</span>:<span class="tok-n">8888</span>;
     }
 }</code></pre>
 <p>然后访问 xiaohuruwei.com 就可以看到内容了</p>
@@ -2285,58 +2285,58 @@ RUN rm /etc/nginx/conf.d/default.conf</code></pre>
 <p>准备同 html5 接近，因为需要连接外部服务，而且因为 uwsig 服务默认不支持静态文件的处理，所以多了一些对原代码的改造。</p>
 <h4 id="项目结构">项目结构</h4>
 <p>首先是 django 应用的目录，比如有一个应用叫 taikang，目录结构如下：</p>
-<pre><code class="language-shell">taikang    # 项目根目录    
-├── Dockerfile    # Dockerfile 文件
+<pre><code class="language-shell">taikang    <span class="tok-c"># 项目根目录    </span>
+├── Dockerfile    <span class="tok-c"># Dockerfile 文件</span>
 ├── logs    
 ├── manage.py
-├── Makefile    # makefile 文件
-├── requirements.txt    # 应用依赖的 python 库
+├── Makefile    <span class="tok-c"># makefile 文件</span>
+├── requirements.txt    <span class="tok-c"># 应用依赖的 python 库</span>
 ├── templates
-└── taikang        # 应用目录
+└── taikang        <span class="tok-c"># 应用目录</span>
     ├── __init__.py
     ├── models.py
-    ├── settings.py   # django 的配置文件
+    ├── settings.py   <span class="tok-c"># django 的配置文件</span>
     ├── urls.py
     ├── views.py
     └── wsgi.py</code></pre>
 <p>Dockerfile 文件编写<br>
 Dockerfile 文件的含义和 html5 部署中是完全相同的，这里为：</p>
-<pre><code class="language-python"># 使用 python2.7.10 版本作为基础服务
-from python:2.7.10
+<pre><code class="language-python"><span class="tok-c"># 使用 python2.7.10 版本作为基础服务</span>
+<span class="tok-k">from</span> python:<span class="tok-n">2.7</span>.<span class="tok-n">10</span>
 将当前项目中的内容全 copy 到镜像中的 /src 目录下
 COPY . /src
-# 安装 django 应用依赖的库，这里设置为豆瓣的 pypi 源
+<span class="tok-c"># 安装 django 应用依赖的库，这里设置为豆瓣的 pypi 源</span>
 RUN cd /src; pip install -r  requirements.txt -i http://pypi.douban.com/simple --trusted-host pypi.douban.com
-# 镜像暴露出 8000 端口
-EXPOSE 8000
-# 设置工作目录为代码所在目录
+<span class="tok-c"># 镜像暴露出 8000 端口</span>
+EXPOSE <span class="tok-n">8000</span>
+<span class="tok-c"># 设置工作目录为代码所在目录</span>
 WORKDIR  /src
-# 设置应用启动命令
-CMD [&quot;make&quot;, &quot;start-uwsgi&quot;]</code></pre>
+<span class="tok-c"># 设置应用启动命令</span>
+CMD [<span class="tok-s">"make"</span>, <span class="tok-s">"start-uwsgi"</span>]</code></pre>
 <h4 id="makefile-文件编写">Makefile 文件编写</h4>
 <p>可以注意到，上述最后的启动命令中使用了 make 命令，这也是前面目录结构中 Makefile 文件的作用所在。有关 makefile 的知识，这里不再详述。<br>
 总之可以让你更方便的管理应用，这里直接贴出 makefile 文件：</p>
-<pre><code class="language-makefile"># uwsig 启动的 host 和端口 
-host:=0.0.0.0
-port:=8000
-# debug 的时候直接使用 django 自带的服务启动
+<pre><code class="language-makefile"><span class="tok-c"># uwsig 启动的 host 和端口 </span>
+host:=<span class="tok-n">0.0</span>.<span class="tok-n">0.0</span>
+port:=<span class="tok-n">8000</span>
+<span class="tok-c"># debug 的时候直接使用 django 自带的服务启动</span>
 debug:
-    ./manage.py runserver $(host):$(port)
-# 启动 uwsgi 服务
+    ./manage.py runserver <span class="tok-n">$(</span>host):<span class="tok-n">$(</span>port)
+<span class="tok-c"># 启动 uwsgi 服务</span>
 start-uwsgi:
-    uwsgi --socket $(host):$(port) \
-        --chdir $(shell pwd) \
+    uwsgi --socket <span class="tok-n">$(</span>host):<span class="tok-n">$(</span>port) \
+        --chdir <span class="tok-n">$(</span>shell pwd) \
         --wsgi-file taikang/wsgi.py \
         --master \
-        --process 4 \
-        --pidfile $(shell pwd)/uwsgi.pid
-# 停止 uwsgi 服务
+        --process <span class="tok-n">4</span> \
+        --pidfile <span class="tok-n">$(</span>shell pwd)/uwsgi.pid
+<span class="tok-c"># 停止 uwsgi 服务</span>
 stop-uwsgi:
     uwsgi --stop uwsgi.pid
-# 重载 uwsgi 服务
+<span class="tok-c"># 重载 uwsgi 服务</span>
 reload-uwsgi:
     uwsgi --reload uwsgi.pid
-# 收集静态文件
+<span class="tok-c"># 收集静态文件</span>
 collectstatic:
     ./manage.py collectstatic --noinput
 .PHONY: debug \
@@ -2349,33 +2349,33 @@ collectstatic:
 <h4 id="通过环境变量来连接服务">通过环境变量来连接服务</h4>
 <p>在使用 docker 部署项目，当需要连接外部的服务时，一般通过 link + 环境变量的参数进行。而为了支持环境变量的形式，我们的 django 应用也要做一些相应的改变。具体就是修改 settings.py 中的配置。</p>
 <p>修改 settings.py 文件，以 mysql 为例：</p>
-<pre><code class="language-python"># 原来的 mysql 配置文件
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.mysql',
-#        'NAME': 'starding_taikang',
-#        'USER': 'root',
-#        'PASSWORD': 'your_password_here',
-#        'HOST': 'localhost',
-#        'PORT': '3306'
-#    }
-#}
-# 通过获取环境变量的形式来获取服务
-import os  # 导入 os 库
-mysql_name = os.environ.get('MYSQL_INSTANCE_NAME') or &quot;taikang&quot;  # 获取数据库名称
-mysql_user = os.environ.get('MYSQL_USERNAME') or &quot;root&quot;  # 获取 mysql 用户名
-mysql_password = os.environ.get('MYSQL_PASSWORD') or &quot;your_password&quot;  # 获取密码
-mysql_host = os.environ.get('MYSQL_ADDR') or &quot;127.0.0.1&quot;  # 获取服务地址
-mysql_port = &quot;3306&quot;
-# 直接使用上面的变量代替字符串
+<pre><code class="language-python"><span class="tok-c"># 原来的 mysql 配置文件</span>
+<span class="tok-c">#DATABASES = {</span>
+<span class="tok-c">#    'default': {</span>
+<span class="tok-c">#        'ENGINE': 'django.db.backends.mysql',</span>
+<span class="tok-c">#        'NAME': 'starding_taikang',</span>
+<span class="tok-c">#        'USER': 'root',</span>
+<span class="tok-c">#        'PASSWORD': 'your_password_here',</span>
+<span class="tok-c">#        'HOST': 'localhost',</span>
+<span class="tok-c">#        'PORT': '3306'</span>
+<span class="tok-c">#    }</span>
+<span class="tok-c">#}</span>
+<span class="tok-c"># 通过获取环境变量的形式来获取服务</span>
+<span class="tok-k">import</span> os  <span class="tok-c"># 导入 os 库</span>
+mysql_name = os.environ.<span class="tok-f">get</span>(<span class="tok-s">'MYSQL_INSTANCE_NAME'</span>) <span class="tok-k">or</span> <span class="tok-s">"taikang"</span>  <span class="tok-c"># 获取数据库名称</span>
+mysql_user = os.environ.<span class="tok-f">get</span>(<span class="tok-s">'MYSQL_USERNAME'</span>) <span class="tok-k">or</span> <span class="tok-s">"root"</span>  <span class="tok-c"># 获取 mysql 用户名</span>
+mysql_password = os.environ.<span class="tok-f">get</span>(<span class="tok-s">'MYSQL_PASSWORD'</span>) <span class="tok-k">or</span> <span class="tok-s">"your_password"</span>  <span class="tok-c"># 获取密码</span>
+mysql_host = os.environ.<span class="tok-f">get</span>(<span class="tok-s">'MYSQL_ADDR'</span>) <span class="tok-k">or</span> <span class="tok-s">"127.0.0.1"</span>  <span class="tok-c"># 获取服务地址</span>
+mysql_port = <span class="tok-s">"3306"</span>
+<span class="tok-c"># 直接使用上面的变量代替字符串</span>
 DATABASES = {
-   'default': {
-       'ENGINE': 'django.db.backends.mysql',
-       'NAME': mysql_name,
-       'USER': mysql_user,
-       'PASSWORD': mysql_password,
-       'HOST': mysql_host,
-       'PORT': mysql_port
+   <span class="tok-s">'default'</span>: {
+       <span class="tok-s">'ENGINE'</span>: <span class="tok-s">'django.db.backends.mysql'</span>,
+       <span class="tok-s">'NAME'</span>: mysql_name,
+       <span class="tok-s">'USER'</span>: mysql_user,
+       <span class="tok-s">'PASSWORD'</span>: mysql_password,
+       <span class="tok-s">'HOST'</span>: mysql_host,
+       <span class="tok-s">'PORT'</span>: mysql_port
    }
 }</code></pre>
 <h3 id="使用-daocloud-部署构建好的-taikang-项目">使用 daocloud 部署构建好的 taikang 项目</h3>
@@ -2386,34 +2386,34 @@ DATABASES = {
   image: daocloud.io/xiaohuruwei/taking:latest
   restart: always
   external_links:
-  - mysql1:mysql      # 前面的 mysql1 是你主机上已经存在的 mysql 的容器实例，冒号后面是别名
+  - mysql1:mysql      <span class="tok-c"># 前面的 mysql1 是你主机上已经存在的 mysql 的容器实例，冒号后面是别名</span>
   ports:
-  - '8000'
-  environment:    # 环境变量    
+  - <span class="tok-s">'8000'</span>
+  environment:    <span class="tok-c"># 环境变量    </span>
   - MYSQL_ADDR=mysql</code></pre>
 <p>但是我发现这种方法似乎有一些 bug，如果上面的方法不成功，那么你就先直接部署，部署成功之后，再去修改 yaml 文件成为上面描述的样子。在修改 yaml 文件的时候，daocloud 会提示重新部署，选择确定即可。</p>
 <p>至此，django 项目也部署完成了。然后同 html5 项目部署一样，把各种自动构建，自动发布的功能打开就行了。</p>
 <p>注意：由于 django 项目是使用 uwsgi 部署的，直接访问 daocloud 给出的地址是错误的，这个时候必须配置 nginx 反向代理。</p>
 <p>附上 uwsgi 部署的 django nginx 代理配置文件：</p>
-<pre><code class="language-nginx">server {
-    listen 80;
-    server_name xiaohuruwei.com;
-    access_log /var/log/nginx/taikang.access.log;
-    error_log /var/log/nginx/taikang.error.log;
-    client_max_body_size 200m;
+<pre><code class="language-nginx"><span class="tok-k">server</span> {
+    <span class="tok-k">listen</span> <span class="tok-n">80</span>;
+    <span class="tok-k">server_name</span> xiaohuruwei.com;
+    <span class="tok-k">access_log</span> /var/log/nginx/taikang.access.log;
+    <span class="tok-k">error_log</span> /var/log/nginx/taikang.error.log;
+    client_max_body_size <span class="tok-n">200</span>m;
     gzip on;
-    gzip_min_length 1k;
-    gzip_buffers 16 64k;
-    gzip_http_version 1.1;
-    gzip_comp_level 6;
+    gzip_min_length <span class="tok-n">1</span>k;
+    gzip_buffers <span class="tok-n">16</span> <span class="tok-n">64</span>k;
+    gzip_http_version <span class="tok-n">1.1</span>;
+    gzip_comp_level <span class="tok-n">6</span>;
     gzip_types text/plain application/x-javascript text/javascript text/css application/xml;
     gzip_vary on;
-    location / {
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        include uwsgi_params;
-        uwsgi_pass 127.0.0.1:32801;
+    <span class="tok-k">location</span> / {
+        <span class="tok-k">proxy_set_header</span> Host <span class="tok-n">$host</span>;
+        <span class="tok-k">proxy_set_header</span> X-Real-IP <span class="tok-n">$remote_addr</span>;
+        <span class="tok-k">proxy_set_header</span> X-Forwarded-For <span class="tok-n">$proxy_add_x_forwarded_for</span>;
+        <span class="tok-k">include</span> uwsgi_params;
+        uwsgi_pass <span class="tok-n">127.0</span>.<span class="tok-n">0.1</span>:<span class="tok-n">32801</span>;
     }
 }</code></pre>
 <p>2016.01 于北京回龙观</p>]]></description></item>
@@ -2450,22 +2450,22 @@ DATABASES = {
 <p>笼统地说，镜像分为两种：</p>
 <p>一种简单的称之为基础独立镜像吧。它一般是一个独立的服务，最独立的服务镜像，莫过于各种精简的操作系统了。它们被封装在镜像中，作为最基础的服务，基本上所有镜像都离不开它。但是对于我们这些普通应用开发者来说，一般不会直接使用这种镜像。<br>
 如果要使用这种镜像，我们的 Dockerfile 一般类似于下面这样：</p>
-<pre><code class="language-dockerfile"># 基础的操作系统
+<pre><code class="language-dockerfile"><span class="tok-c"># 基础的操作系统</span>
 From ubuntu:latest
-# 构建其他需要的其他服务，以及我们自己的代码
-RUN apt-get install mysql
-COPY .  /src/</code></pre>
+<span class="tok-c"># 构建其他需要的其他服务，以及我们自己的代码</span>
+<span class="tok-k">RUN</span> apt-get install mysql
+<span class="tok-k">COPY</span> .  /src/</code></pre>
 <p>另一种，姑且称之为组合镜像。它建立在一个独立镜像的基础上，在上面组合了其他服务，比如 python 服务，或是 mysql 之类的服务。作为比较顶层的应用开发者，我们一般会直接使用这种组合好后的服务镜像。<br>
 Dockerfile 则类似于这样：</p>
-<pre><code class="language-dockerfile"># 基础 python 服务
-From python:2.7.10 
-# 我们自己的代码
-RUN apt-get install mysql
-COPY .  /src/</code></pre>
+<pre><code class="language-dockerfile"><span class="tok-c"># 基础 python 服务</span>
+From python:<span class="tok-n">2.7</span>.<span class="tok-n">10</span> 
+<span class="tok-c"># 我们自己的代码</span>
+<span class="tok-k">RUN</span> apt-get install mysql
+<span class="tok-k">COPY</span> .  /src/</code></pre>
 <p>其实像上面的 python 服务，其本身也是建立在一个基础的操作系统之上的。如果我们查看 dockerhub 上的 python 的 Dockerfile，就可以明确这一点：</p>
-<pre><code class="language-dockerfile">FROM buildpack-deps:jessie    # jessie 就是一个精简的 debian 操作系统
-# remove several traces of debian python
-RUN apt-get purge -y python.*</code></pre>
+<pre><code class="language-dockerfile"><span class="tok-k">FROM</span> buildpack-deps:jessie    <span class="tok-c"># jessie 就是一个精简的 debian 操作系统</span>
+<span class="tok-c"># remove several traces of debian python</span>
+<span class="tok-k">RUN</span> apt-get purge -y python.*</code></pre>
 <p>而我们自己构建的镜像，也可以称之为一种组合镜像。我们一般使用 Dockerfile 将自己的应用代码，加上上面的某些具体的服务镜像（比如 python）再组合起来，就可以构建我们自己的应用了。</p>
 <h3 id="docker-究竟做了什么简化">Docker 究竟做了什么简化？</h3>
 <p>docker 正是在部署过程中，将上面那些重复的部分，由 docker 自动化完成。只需要在第一次部署时，构建完可用的 docker 镜像。然后在以后使用的过程中，短短的几行命令，就可以直接拉取镜像，根据这个镜像创建出一个容器，把服务跑起来了。所需要的仅仅是安装了 docker 的服务器，一个 Dockerfile 文件，以及比较流畅的网络而已。真可谓，『一次构建，到处部署』。</p>
@@ -2506,17 +2506,17 @@ RUN apt-get purge -y python.*</code></pre>
 直接考察定义，再加上对「闭包」一词的直觉，只能产生一种模糊的概念：这货大致是一个封闭的结构，它包括一个函数以及在函数外定义的变量。但是更深入的理解就还得看实际中的代码了。</li>
 </ul>
 <p>一个 python 闭包的例子：</p>
-<pre><code class="language-python"># 创建闭包的函数
-def counter(start_at=0):
+<pre><code class="language-python"><span class="tok-c"># 创建闭包的函数</span>
+<span class="tok-k">def</span> <span class="tok-f">counter</span>(start_at=<span class="tok-n">0</span>):
     count = [start_at]
-    def incr():
-        count[0] += 1
-        return count[0]
-    return incr
-# 将闭包赋值给另一个变量
-counter1 = counter()
-# 再次赋值给一个变量
-counter2 = counter(5)</code></pre>
+    <span class="tok-k">def</span> <span class="tok-f">incr</span>():
+        count[<span class="tok-n">0</span>] += <span class="tok-n">1</span>
+        <span class="tok-k">return</span> count[<span class="tok-n">0</span>]
+    <span class="tok-k">return</span> incr
+<span class="tok-c"># 将闭包赋值给另一个变量</span>
+counter1 = <span class="tok-f">counter</span>()
+<span class="tok-c"># 再次赋值给一个变量</span>
+counter2 = <span class="tok-f">counter</span>(<span class="tok-n">5</span>)</code></pre>
 <p>在上面的代码中，counter 是一个创建闭包的函数，然后下面两句分别赋值给了两个不同的变量。这实际上产生了两个闭包函数，counter1 和 counter2，他们都包括一个函数本身，以及在函数外关联的一个作用域。</p>
 <p>上面的两个闭包非常像实例化的两个对象，它们附加的那个函数之外的作用域互相独立。彼此之间互不影响。</p>
 <h2 id="装饰器">装饰器</h2>
@@ -2528,28 +2528,28 @@ counter2 = counter(5)</code></pre>
 <p>装饰什么呢？<br>
 又是如何实现装饰功能的呢？<br>
 还是通过代码来看，一个 python 装饰器的例子：</p>
-<pre><code class="language-python">import time
-from functools import wraps
-# 被装饰的主体函数
-def foo():
-    # 做一些我们想要做的功能
-    # ...
-    # ...
-    # 最后打印一下
-    print 'in foo()'
-# 装饰器    
-def timeit(func):
-    '''
+<pre><code class="language-python"><span class="tok-k">import</span> time
+<span class="tok-k">from</span> functools <span class="tok-k">import</span> wraps
+<span class="tok-c"># 被装饰的主体函数</span>
+<span class="tok-k">def</span> <span class="tok-f">foo</span>():
+    <span class="tok-c"># 做一些我们想要做的功能</span>
+    <span class="tok-c"># ...</span>
+    <span class="tok-c"># ...</span>
+    <span class="tok-c"># 最后打印一下</span>
+    print <span class="tok-s">'in foo()'</span>
+<span class="tok-c"># 装饰器    </span>
+<span class="tok-k">def</span> <span class="tok-f">timeit</span>(func):
+    <span class="tok-s">'''
     Decorator that reports the execution time.
-   '''
-   @wraps(func)
-    def wrapper(*args, **kwargs):
-        start  = time.clock()
-        result = func(*args, **kwargs)
-        end = time.clock()
-        print 'used: {0}'.format(end-start)
-        return result
-    return wrapper</code></pre>
+   '''</span>
+   @<span class="tok-f">wraps</span>(func)
+    <span class="tok-k">def</span> <span class="tok-f">wrapper</span>(*args, **kwargs):
+        start  = time.<span class="tok-f">clock</span>()
+        result = <span class="tok-f">func</span>(*args, **kwargs)
+        end = time.<span class="tok-f">clock</span>()
+        print <span class="tok-s">'used: {0}'</span>.<span class="tok-f">format</span>(end-start)
+        <span class="tok-k">return</span> result
+    <span class="tok-k">return</span> wrapper</code></pre>
 <p>首先要明白我们的程序主体是什么，我们想要用 foo 函数来完成一些特定的功能，最终再打印一下，所以我们的主体函数是 foo。</p>
 <p>同时，我们还想知道完成这件事所用的时间，那这正好可以通过装饰器来完成。于是我们构造了一个函数 timeit 作为装饰器，来装饰 foo 函数。</p>
 <p>需要再次强调的一点是，装饰器 timeit 是用来装饰 foo 函数的，它只是给 foo 函数增加可以输出执行时间的特性，并不改变 foo 函数原来想要完成的功能。对 foo 函数原来所要做的事情，没有任何影响。</p>

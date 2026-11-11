@@ -14,9 +14,11 @@
 <link rel="alternate" type="application/atom+xml" title="结绳以渔" href="/atom.xml">
 <link rel="icon" href="/img/favicon_red_only_yao.ico">
 <link rel="apple-touch-icon" href="/img/apple_icon_yao.png">
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}</script>
 <link rel="stylesheet" href="/theme/tokens.css">
 <link rel="stylesheet" href="/theme/site.css">
 <script src="/theme/overlay-scroll.js" defer></script>
+<script src="/theme/theme.js" defer></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-V9SXMWSY9Z"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-V9SXMWSY9Z');</script>
 </head>
@@ -24,6 +26,18 @@
 <header class="appbar">
   <div class="appbar-in">
     <a class="brand" href="/"><img src="/img/logo_red_yao.svg" alt=""><span><b>结绳以渔</b><small>临渊羡鱼，不如退而结网</small></span></a>
+    <div class="theme-pick">
+      <button type="button" class="theme-btn" id="themeBtn" aria-haspopup="menu" aria-expanded="false" title="外观"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="currentColor" d="M12 3.5a8.5 8.5 0 0 1 0 17z"/></svg>
+</button>
+      <div class="theme-menu" id="themeMenu" role="menu" hidden>
+        <button type="button" role="menuitemradio" data-theme-set="auto"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="currentColor" d="M12 3.5a8.5 8.5 0 0 1 0 17z"/></svg>
+<span>自动</span><small>跟随系统</small></button>
+        <button type="button" role="menuitemradio" data-theme-set="light"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/><path stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>
+<span>浅色</span></button>
+        <button type="button" role="menuitemradio" data-theme-set="dark"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
+<span>深色</span></button>
+      </div>
+    </div>
     <nav>
       <a href="/">主页</a>
       <a href="/works/">作品</a>
@@ -92,7 +106,7 @@ The intention of the protocol is that once an iterator’s next() method raises 
 <h3 id="the-for-statement">The for statement</h3>
 <blockquote>
 <p>The for statement is used to iterate over the elements of a sequence (such as a string, tuple or list) or other iterable object:</p>
-<pre><code class="language-py">for_stmt ::=  &quot;for&quot; target_list &quot;in&quot; expression_list &quot;:&quot; suite [&quot;else&quot; &quot;:&quot; suite]</code></pre>
+<pre><code class="language-py">for_stmt ::=  <span class="tok-s">"for"</span> target_list <span class="tok-s">"in"</span> expression_list <span class="tok-s">":"</span> suite [<span class="tok-s">"else"</span> <span class="tok-s">":"</span> suite]</code></pre>
 <p>The expression list is evaluated once; it should yield an iterable object. An iterator is created for the result of the expression_list. The suite is then executed once for each item provided by the iterator, in the order of ascending indices. Each item in turn is assigned to the target list using the standard rules for assignments, and then the suite is executed. When the items are exhausted (which is immediately when the sequence is empty), the suite in the else clause, if present, is executed, and the loop terminates.</p>
 </blockquote>
 <h2 id="generator-types">Generator Types</h2>

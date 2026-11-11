@@ -14,9 +14,11 @@
 <link rel="alternate" type="application/atom+xml" title="结绳以渔" href="/atom.xml">
 <link rel="icon" href="/img/favicon_red_only_yao.ico">
 <link rel="apple-touch-icon" href="/img/apple_icon_yao.png">
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}</script>
 <link rel="stylesheet" href="/theme/tokens.css">
 <link rel="stylesheet" href="/theme/site.css">
 <script src="/theme/overlay-scroll.js" defer></script>
+<script src="/theme/theme.js" defer></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-V9SXMWSY9Z"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-V9SXMWSY9Z');</script>
 </head>
@@ -24,6 +26,18 @@
 <header class="appbar">
   <div class="appbar-in">
     <a class="brand" href="/"><img src="/img/logo_red_yao.svg" alt=""><span><b>结绳以渔</b><small>临渊羡鱼，不如退而结网</small></span></a>
+    <div class="theme-pick">
+      <button type="button" class="theme-btn" id="themeBtn" aria-haspopup="menu" aria-expanded="false" title="外观"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="currentColor" d="M12 3.5a8.5 8.5 0 0 1 0 17z"/></svg>
+</button>
+      <div class="theme-menu" id="themeMenu" role="menu" hidden>
+        <button type="button" role="menuitemradio" data-theme-set="auto"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="currentColor" d="M12 3.5a8.5 8.5 0 0 1 0 17z"/></svg>
+<span>自动</span><small>跟随系统</small></button>
+        <button type="button" role="menuitemradio" data-theme-set="light"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/><path stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>
+<span>浅色</span></button>
+        <button type="button" role="menuitemradio" data-theme-set="dark"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
+<span>深色</span></button>
+      </div>
+    </div>
     <nav>
       <a href="/">主页</a>
       <a href="/works/">作品</a>
@@ -55,19 +69,19 @@
 <p>目前不同的 JavaScript 引擎实现有好几种，但是当前最流行的实现版本是 Google Chrome 的 V8 引擎（这个引擎不受限于浏览器端，在服务器端的 Nodejs 使用的也是它）。说了这么多，那 JavaScript 引擎到底是干啥的？其实很简单——它的工作就是遍历 Web 应用中的每一行 JavaScript 代码，并且逐个执行（process one at a time）。你没有看错——就是逐个执行，这意味着 JavaScript 是单线程的。这一特点的主要影响是，如果你执行一行需要非常非常长的时间才能返回结果的代码，这之后的代码都会被阻塞掉。我们当然不想写出这么阻塞的代码——特别是在浏览器中。想象一下你正在查看一个 Web 网页并且垫底了某个按钮…它就这么耗在了那里。你试着点击其他的按钮，然而并没有什么卵用，啥作用都没起。这种蛋疼的局面只能归罪于点击按钮的时候触发了某些代码的执行（假设没有 bug 的话），但是这些代码阻塞在了那里。</p>
 <p>另一方面，JavaScript 引擎如何知道一次只执行一行代码的？它使用了一个调用栈（call stack）。你可以把调用栈想象成一个叠罗汉活动——第一个叠罗汉的只能最后一个下来，对应的是最后一个叠罗汉的第一个下来（原文用乘电梯作比喻，个人认为不是很形象，改成了叠罗汉）。</p>
 <p>下面来看一个例子：</p>
-<pre><code class="language-javascript">/* Within main.js */
-var firstFunction = function () {  
-  console.log(&quot;I'm first!&quot;);
+<pre><code class="language-javascript"><span class="tok-c">/* Within main.js */</span>
+<span class="tok-k">var</span> firstFunction = <span class="tok-k">function</span> () {  
+  console.<span class="tok-f">log</span>(<span class="tok-s">"I'm first!"</span>);
 };
-var secondFunction = function () {  
-  firstFunction();
-  console.log(&quot;I'm second!&quot;);
+<span class="tok-k">var</span> secondFunction = <span class="tok-k">function</span> () {  
+  <span class="tok-f">firstFunction</span>();
+  console.<span class="tok-f">log</span>(<span class="tok-s">"I'm second!"</span>);
 };
-secondFunction();
-/* Results:
+<span class="tok-f">secondFunction</span>();
+<span class="tok-c">/* Results:
  * =&gt; I'm first!
  * =&gt; I'm second!
- */</code></pre>
+ */</span></code></pre>
 <p>下面是执行代码中，调用栈中发生的一系列事件：</p>
 <ol>
 <li><p>Main.js 首先被执行<br>
@@ -85,20 +99,20 @@ secondFunction();
 </ol>
 <h2 id="ok但是这根-event-loop-有毛线关系">OK，但是这根 Event Loop 有毛线关系？</h2>
 <p>现在你已经明白 JavaScript 引擎中的调用栈是如何工作的了，让我们回到之前的代码阻塞的思路上来。当然，你已经意识到应该避免出现这些阻塞，但是该怎么做？幸运的是，JavaScript 提供了一种机制，它基于异步回调函数（asynchronous callback function）的方式来实现。这个概念看起来有些吓人，不过不用担心——所谓异步函数和你在 JavaScript 中使用的普通函数没有什么两样，只不过是加了一些它会在之后执行（而不是立即）执行的手段。如果你使用过 Javascript 的 setTimeout 函数，你其实已经使用过异步回调函数的概念了。下面来看一个例子：</p>
-<pre><code class="language-javascript">/* Within main.js */
-var firstFunction = function () {  
- console.log(&quot;I'm first!&quot;);
+<pre><code class="language-javascript"><span class="tok-c">/* Within main.js */</span>
+<span class="tok-k">var</span> firstFunction = <span class="tok-k">function</span> () {  
+ console.<span class="tok-f">log</span>(<span class="tok-s">"I'm first!"</span>);
 };
-var secondFunction = function () {  
- setTimeout(firstFunction, 5000);
- console.log(&quot;I'm second!&quot;);
+<span class="tok-k">var</span> secondFunction = <span class="tok-k">function</span> () {  
+ <span class="tok-f">setTimeout</span>(firstFunction, <span class="tok-n">5000</span>);
+ console.<span class="tok-f">log</span>(<span class="tok-s">"I'm second!"</span>);
 };
-secondFunction();
-/* Results:
+<span class="tok-f">secondFunction</span>();
+<span class="tok-c">/* Results:
  * =&gt; I'm second!
  * (And 5 seconds later)
  * =&gt; I'm first!
- */</code></pre>
+ */</span></code></pre>
 <p>下面是调用栈中的一系列活动（我们省去了前面的函数加入调用栈的过程，直接来看 setTimeout 函数）：</p>
 <ol>
 <li>当 secondFunction 被推入调用栈之后，setTimeout 函数被调用，而且也被压入调用栈中：<br>

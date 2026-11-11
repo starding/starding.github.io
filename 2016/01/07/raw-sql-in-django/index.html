@@ -14,9 +14,11 @@
 <link rel="alternate" type="application/atom+xml" title="结绳以渔" href="/atom.xml">
 <link rel="icon" href="/img/favicon_red_only_yao.ico">
 <link rel="apple-touch-icon" href="/img/apple_icon_yao.png">
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}</script>
 <link rel="stylesheet" href="/theme/tokens.css">
 <link rel="stylesheet" href="/theme/site.css">
 <script src="/theme/overlay-scroll.js" defer></script>
+<script src="/theme/theme.js" defer></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-V9SXMWSY9Z"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-V9SXMWSY9Z');</script>
 </head>
@@ -24,6 +26,18 @@
 <header class="appbar">
   <div class="appbar-in">
     <a class="brand" href="/"><img src="/img/logo_red_yao.svg" alt=""><span><b>结绳以渔</b><small>临渊羡鱼，不如退而结网</small></span></a>
+    <div class="theme-pick">
+      <button type="button" class="theme-btn" id="themeBtn" aria-haspopup="menu" aria-expanded="false" title="外观"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="currentColor" d="M12 3.5a8.5 8.5 0 0 1 0 17z"/></svg>
+</button>
+      <div class="theme-menu" id="themeMenu" role="menu" hidden>
+        <button type="button" role="menuitemradio" data-theme-set="auto"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="currentColor" d="M12 3.5a8.5 8.5 0 0 1 0 17z"/></svg>
+<span>自动</span><small>跟随系统</small></button>
+        <button type="button" role="menuitemradio" data-theme-set="light"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/><path stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>
+<span>浅色</span></button>
+        <button type="button" role="menuitemradio" data-theme-set="dark"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
+<span>深色</span></button>
+      </div>
+    </div>
     <nav>
       <a href="/">主页</a>
       <a href="/works/">作品</a>
@@ -58,46 +72,46 @@
 </ul>
 <p>需求是计算出表中同一<code>type</code>，同一分公司下的档案总数，和<code>status=01</code>的档案数，以及它占档案总数的比值。</p>
 <p>当然，使用编程语言也可以实现这个功能，但是会比较复杂。这个时候可以使用<code>CASE WHEN</code>语句来精确控制表中同一字段下，不同内容的选择。</p>
-<pre><code class="language-sql">SELECT 
-      COUNT(CASE WHEN status='01' THEN status END) AS status_01,
-      COUNT(*) AS total,
-      CONCAT(FORMAT(COUNT(CASE WHEN status='01' THEN status END)/
-      COUNT(*)*100, 2), '%') AS percentage
-FROM
+<pre><code class="language-sql"><span class="tok-k">SELECT</span> 
+      <span class="tok-k">COUNT</span>(<span class="tok-k">CASE</span> <span class="tok-k">WHEN</span> status=<span class="tok-s">'01'</span> <span class="tok-k">THEN</span> status <span class="tok-k">END</span>) <span class="tok-k">AS</span> status_01,
+      <span class="tok-k">COUNT</span>(*) <span class="tok-k">AS</span> total,
+      <span class="tok-f">CONCAT</span>(<span class="tok-f">FORMAT</span>(<span class="tok-k">COUNT</span>(<span class="tok-k">CASE</span> <span class="tok-k">WHEN</span> status=<span class="tok-s">'01'</span> <span class="tok-k">THEN</span> status <span class="tok-k">END</span>)/
+      <span class="tok-k">COUNT</span>(*)*<span class="tok-n">100</span>, <span class="tok-n">2</span>), <span class="tok-s">'%'</span>) <span class="tok-k">AS</span> percentage
+<span class="tok-k">FROM</span>
       archives
-GROUP BY
+<span class="tok-k">GROUP</span> <span class="tok-k">BY</span>
       status, branch_company</code></pre>
 <p>这样就可以解决上面提出的问题。因为这个表是临时构造的，结果这里就不展示了。</p>
 <h2 id="在上述基础上实现链式查询">在上述基础上实现链式查询</h2>
 <p>在 Django 的 ORM 中，一个非常好用的功能就是使用链式查询，你可以不断连接 filter 等方法来过滤出想要的内容。</p>
 <p>这在一些特定的场景中特别有用。比如在上面的表中，有时候可能想要某个分公司或中支公司下的数据，有时候又想要单一类型下的数据。如果针对每一种条件组合分别写相应的 SQL 查询的话，会非常复杂，而且有时候组合会特别多。而链式查询比较完美地解决了这个问题。</p>
 <p>为了让原生 SQL 也能有个简单的链式查询，我们需要不断连接 where 中的条件子句。为此可以写一个简单的类来实现它：</p>
-<pre><code class="language-python">class GenQuerySQL(object):
-    def __init__(self, table):
-        self.table = table
-        self.group_by_fields = &quot; &quot;
-        self.where_conditions = &quot; 1=1 &quot;
-        self.fields = &quot; &quot;
-        self.order_by_fields = &quot;&quot;
-    def where(self, where_condition):
-        if where_condition:
-            self.where_conditions += &quot; and &quot; + where_condition
-        return self
-    def add_field(self, fields):
-        self.fields += &quot; &quot; + fields
-        return self
-    def group_by(self, group_by_field):
-        self.group_by_fields = group_by_field
-        return self
-    def order_by(self, order_by_field):
-        self.order_by_fields = order_by_field
-        return self
-    def sql(self):
-        SQL = 'SELECT ' + self.fields + ' FROM ' + self.table + ' WHERE ' + self.where_conditions + ' GROUP BY ' + self.group_by_fields + ' ORDER BY ' + self.order_by_fields + &quot;;&quot;
-        return SQL</code></pre>
+<pre><code class="language-python"><span class="tok-k">class</span> <span class="tok-f">GenQuerySQL</span>(object):
+    <span class="tok-k">def</span> <span class="tok-f">__init__</span>(<span class="tok-n">self</span>, table):
+        <span class="tok-n">self</span>.table = table
+        <span class="tok-n">self</span>.group_by_fields = <span class="tok-s">" "</span>
+        <span class="tok-n">self</span>.where_conditions = <span class="tok-s">" 1=1 "</span>
+        <span class="tok-n">self</span>.fields = <span class="tok-s">" "</span>
+        <span class="tok-n">self</span>.order_by_fields = <span class="tok-s">""</span>
+    <span class="tok-k">def</span> <span class="tok-f">where</span>(<span class="tok-n">self</span>, where_condition):
+        <span class="tok-k">if</span> where_condition:
+            <span class="tok-n">self</span>.where_conditions += <span class="tok-s">" and "</span> + where_condition
+        <span class="tok-k">return</span> <span class="tok-n">self</span>
+    <span class="tok-k">def</span> <span class="tok-f">add_field</span>(<span class="tok-n">self</span>, fields):
+        <span class="tok-n">self</span>.fields += <span class="tok-s">" "</span> + fields
+        <span class="tok-k">return</span> <span class="tok-n">self</span>
+    <span class="tok-k">def</span> <span class="tok-f">group_by</span>(<span class="tok-n">self</span>, group_by_field):
+        <span class="tok-n">self</span>.group_by_fields = group_by_field
+        <span class="tok-k">return</span> <span class="tok-n">self</span>
+    <span class="tok-k">def</span> <span class="tok-f">order_by</span>(<span class="tok-n">self</span>, order_by_field):
+        <span class="tok-n">self</span>.order_by_fields = order_by_field
+        <span class="tok-k">return</span> <span class="tok-n">self</span>
+    <span class="tok-k">def</span> <span class="tok-f">sql</span>(<span class="tok-n">self</span>):
+        SQL = <span class="tok-s">'SELECT '</span> + <span class="tok-n">self</span>.fields + <span class="tok-s">' FROM '</span> + <span class="tok-n">self</span>.table + <span class="tok-s">' WHERE '</span> + <span class="tok-n">self</span>.where_conditions + <span class="tok-s">' GROUP BY '</span> + <span class="tok-n">self</span>.group_by_fields + <span class="tok-s">' ORDER BY '</span> + <span class="tok-n">self</span>.order_by_fields + <span class="tok-s">";"</span>
+        <span class="tok-k">return</span> SQL</code></pre>
 <p>这个类可以简单地模拟链式查询的功能。例如：</p>
-<pre><code class="language-python">archive_statistics = GenQuerySQL('SOME_TABLE')
-raw_sql = archive_statistics.add_field('fields').where('where_condition').group_by('group_by_fields').order_by('order_by_fields').sql()</code></pre>
+<pre><code class="language-python">archive_statistics = <span class="tok-f">GenQuerySQL</span>(<span class="tok-s">'SOME_TABLE'</span>)
+raw_sql = archive_statistics.<span class="tok-f">add_field</span>(<span class="tok-s">'fields'</span>).<span class="tok-f">where</span>(<span class="tok-s">'where_condition'</span>).<span class="tok-f">group_by</span>(<span class="tok-s">'group_by_fields'</span>).<span class="tok-f">order_by</span>(<span class="tok-s">'order_by_fields'</span>).<span class="tok-f">sql</span>()</code></pre>
 <p>其中.where 可以多次连接。当然也可以使用另一种方式：先把 where 语句根据条件构造完毕，最终再拼接成 sql 语句。其思想是一样的：先过滤条件，最终再查询数据库。</p>
 <p>2016.01 于北京回龙观</p>
   </div>

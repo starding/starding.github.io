@@ -14,9 +14,11 @@
 <link rel="alternate" type="application/atom+xml" title="结绳以渔" href="/atom.xml">
 <link rel="icon" href="/img/favicon_red_only_yao.ico">
 <link rel="apple-touch-icon" href="/img/apple_icon_yao.png">
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}</script>
 <link rel="stylesheet" href="/theme/tokens.css">
 <link rel="stylesheet" href="/theme/site.css">
 <script src="/theme/overlay-scroll.js" defer></script>
+<script src="/theme/theme.js" defer></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-V9SXMWSY9Z"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-V9SXMWSY9Z');</script>
 </head>
@@ -24,6 +26,18 @@
 <header class="appbar">
   <div class="appbar-in">
     <a class="brand" href="/"><img src="/img/logo_red_yao.svg" alt=""><span><b>结绳以渔</b><small>临渊羡鱼，不如退而结网</small></span></a>
+    <div class="theme-pick">
+      <button type="button" class="theme-btn" id="themeBtn" aria-haspopup="menu" aria-expanded="false" title="外观"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="currentColor" d="M12 3.5a8.5 8.5 0 0 1 0 17z"/></svg>
+</button>
+      <div class="theme-menu" id="themeMenu" role="menu" hidden>
+        <button type="button" role="menuitemradio" data-theme-set="auto"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="currentColor" d="M12 3.5a8.5 8.5 0 0 1 0 17z"/></svg>
+<span>自动</span><small>跟随系统</small></button>
+        <button type="button" role="menuitemradio" data-theme-set="light"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/><path stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>
+<span>浅色</span></button>
+        <button type="button" role="menuitemradio" data-theme-set="dark"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
+<span>深色</span></button>
+      </div>
+    </div>
     <nav>
       <a href="/">主页</a>
       <a href="/works/">作品</a>
@@ -76,24 +90,24 @@
 <p>上面说完语义的重要性，接着来看如何通过理解这些第二类语义元素来理解网页。这部分内容涉及的元素比较多，这里只是粗略说明一下。</p>
 <p>首先网页有不少展示用的语义化元素用来展示信息。</p>
 <p>像最基本的</p>
-<pre><code class="language-html">&lt;!--头部--&gt;
-&lt;header&gt;&lt;/header&gt;
-&lt;!--主体--&gt;
-&lt;main&gt;&lt;/main&gt;
-&lt;!--尾部--&gt;
-&lt;footer&gt;&lt;/footer&gt;
-&lt;!--段落--&gt;
-&lt;p&gt;&lt;/p&gt;
-&lt;!--章节--&gt;
-&lt;section&gt;&lt;/section&gt;
-&lt;!--独立片段--&gt;
-&lt;artical&gt;&lt;/artical&gt;
+<pre><code class="language-html"><span class="tok-c">&lt;!--头部--&gt;</span>
+&lt;<span class="tok-t">header</span>&gt;&lt;/<span class="tok-t">header</span>&gt;
+<span class="tok-c">&lt;!--主体--&gt;</span>
+&lt;<span class="tok-t">main</span>&gt;&lt;/<span class="tok-t">main</span>&gt;
+<span class="tok-c">&lt;!--尾部--&gt;</span>
+&lt;<span class="tok-t">footer</span>&gt;&lt;/<span class="tok-t">footer</span>&gt;
+<span class="tok-c">&lt;!--段落--&gt;</span>
+&lt;<span class="tok-t">p</span>&gt;&lt;/<span class="tok-t">p</span>&gt;
+<span class="tok-c">&lt;!--章节--&gt;</span>
+&lt;<span class="tok-t">section</span>&gt;&lt;/<span class="tok-t">section</span>&gt;
+<span class="tok-c">&lt;!--独立片段--&gt;</span>
+&lt;<span class="tok-t">artical</span>&gt;&lt;/<span class="tok-t">artical</span>&gt;
 ...</code></pre>
 <p>以及更具体的：</p>
-<pre><code class="language-html">&lt;!--时间--&gt;
-&lt;time&gt;&lt;/time&gt;
-&lt;!--地址--&gt;
-&lt;address&gt;&lt;/address&gt;
+<pre><code class="language-html"><span class="tok-c">&lt;!--时间--&gt;</span>
+&lt;<span class="tok-t">time</span>&gt;&lt;/<span class="tok-t">time</span>&gt;
+<span class="tok-c">&lt;!--地址--&gt;</span>
+&lt;<span class="tok-t">address</span>&gt;&lt;/<span class="tok-t">address</span>&gt;
 ...</code></pre>
 <p>这些都是普通的语义化的来展示信息的元素。但是像现实生活那样，信息展示还有其他的方式，有助于人类更好的阅读和理解。比如：</p>
 <ul>
@@ -110,11 +124,11 @@
 </ul>
 <p>他们的作用也和现实生活中的大同小异，而且 html 中的表单有多种多样的类型，单选框，复选框，输入框（输入框本身也有更细的语义化的类型）。这和现实中的多种多样的调查表单都是相似的。</p>
 <p>另外，html 中还多了一些独特的语义元素。比如：</p>
-<pre><code class="language-html">&lt;!--链接，可能是最重要的独特元素，它把各个页面通过网络组合了起来--&gt;
-&lt;a&gt;&lt;/a&gt;
-&lt;!--其他一些元素，这些元素或描述了网页关系，或是描述网页信息等等--&gt;
-&lt;link&gt;
-&lt;meta&gt;</code></pre>
+<pre><code class="language-html"><span class="tok-c">&lt;!--链接，可能是最重要的独特元素，它把各个页面通过网络组合了起来--&gt;</span>
+&lt;<span class="tok-t">a</span>&gt;&lt;/<span class="tok-t">a</span>&gt;
+<span class="tok-c">&lt;!--其他一些元素，这些元素或描述了网页关系，或是描述网页信息等等--&gt;</span>
+&lt;<span class="tok-t">link</span>&gt;
+&lt;<span class="tok-t">meta</span>&gt;</code></pre>
 <p>基本的 html 元素，就是上述这些种类，可以看到，这些元素组合起来，即有收集信息的部分，又有展示信息的部分，而且为了更好的展示信息，html 又提供了许多语义化的元素。</p>
 <p>这些元素组合在一起，一起形成了网页的全部语义信息，几乎可以实现和模仿现实中的所有信息载体，某些方面犹有胜之。</p>
 <h2 id="文档流">文档流</h2>

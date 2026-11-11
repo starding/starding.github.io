@@ -14,9 +14,11 @@
 <link rel="alternate" type="application/atom+xml" title="结绳以渔" href="/atom.xml">
 <link rel="icon" href="/img/favicon_red_only_yao.ico">
 <link rel="apple-touch-icon" href="/img/apple_icon_yao.png">
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}</script>
 <link rel="stylesheet" href="/theme/tokens.css">
 <link rel="stylesheet" href="/theme/site.css">
 <script src="/theme/overlay-scroll.js" defer></script>
+<script src="/theme/theme.js" defer></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-V9SXMWSY9Z"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-V9SXMWSY9Z');</script>
 </head>
@@ -24,6 +26,18 @@
 <header class="appbar">
   <div class="appbar-in">
     <a class="brand" href="/"><img src="/img/logo_red_yao.svg" alt=""><span><b>结绳以渔</b><small>临渊羡鱼，不如退而结网</small></span></a>
+    <div class="theme-pick">
+      <button type="button" class="theme-btn" id="themeBtn" aria-haspopup="menu" aria-expanded="false" title="外观"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="currentColor" d="M12 3.5a8.5 8.5 0 0 1 0 17z"/></svg>
+</button>
+      <div class="theme-menu" id="themeMenu" role="menu" hidden>
+        <button type="button" role="menuitemradio" data-theme-set="auto"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="currentColor" d="M12 3.5a8.5 8.5 0 0 1 0 17z"/></svg>
+<span>自动</span><small>跟随系统</small></button>
+        <button type="button" role="menuitemradio" data-theme-set="light"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/><path stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>
+<span>浅色</span></button>
+        <button type="button" role="menuitemradio" data-theme-set="dark"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
+<span>深色</span></button>
+      </div>
+    </div>
     <nav>
       <a href="/">主页</a>
       <a href="/works/">作品</a>
@@ -100,10 +114,10 @@
 <h2 id="模糊点">模糊点</h2>
 <h3 id="包装对象">包装对象</h3>
 <p>原始类型不是对象，但你可能会见过 APrimitiveType.method 的调用形式，这是因为数字，字符串，布尔值存在「包装对象」这个概念。也就是说，档使用上面的。运算时，javascript 会自动调用 new String(s) | new Number(s) | new Boolean(s) 的方式将这三种基本类型临时转换为对象，并继承相应类型的方法。</p>
-<pre><code class="language-javascript">//一个经典的例子
-var s = &quot;test&quot;;
-s.len = 4;  //因为点运算，这里会临时建立一个 string 对象，但是随即又销毁了
-var t = s.len; //这里也会创建一个 string 对象，但是已经不是上面那个了，故 undefined</code></pre>
+<pre><code class="language-javascript"><span class="tok-c">//一个经典的例子</span>
+<span class="tok-k">var</span> s = <span class="tok-s">"test"</span>;
+s.len = <span class="tok-n">4</span>;  <span class="tok-c">//因为点运算，这里会临时建立一个 string 对象，但是随即又销毁了</span>
+<span class="tok-k">var</span> t = s.len; <span class="tok-c">//这里也会创建一个 string 对象，但是已经不是上面那个了，故 undefined</span></code></pre>
 <ul>
 <li>null 和 undefined 没有包装对象</li>
 <li>可以使用构造函数显式地构造包装对象。</li>
@@ -129,57 +143,57 @@ var t = s.len; //这里也会创建一个 string 对象，但是已经不是上�
 <h3 id="throw-try-catch-finally-语句">throw/try/catch/finally 语句</h3>
 <p>之前写过一篇<a href="">那些年我在 python 中扑过的街</a>，在其中提到过 python 中，try/except/finally 中容易进的坑。</p>
 <p>这个坑在 javascript 中也是同样的，就像那篇文章里说的那样，因为 finally 的设计目的就是无论如何都会执行，那么一旦 finally 中出现了跳转语句，其他语句中的返回内容就会被忽略。</p>
-<pre><code class="language-javascript">function finallyTest(){
-    var x = 'catch', y = 'except', z = 'finally';
-    try {
+<pre><code class="language-javascript"><span class="tok-k">function</span> <span class="tok-f">finallyTest</span>(){
+    <span class="tok-k">var</span> x = <span class="tok-s">'catch'</span>, y = <span class="tok-s">'except'</span>, z = <span class="tok-s">'finally'</span>;
+    <span class="tok-k">try</span> {
         k = x + y;
         a = b;
-        console.log(&quot;here is try------------&quot;);
-    } catch(e) {
-        console.log(&quot;here is catch----------&quot;);
-        return x;
-    } finally{
-        console.log(&quot;here is finally---------&quot;);
-        return z;
+        console.<span class="tok-f">log</span>(<span class="tok-s">"here is try------------"</span>);
+    } <span class="tok-k">catch</span>(e) {
+        console.<span class="tok-f">log</span>(<span class="tok-s">"here is catch----------"</span>);
+        <span class="tok-k">return</span> x;
+    } <span class="tok-k">finally</span>{
+        console.<span class="tok-f">log</span>(<span class="tok-s">"here is finally---------"</span>);
+        <span class="tok-k">return</span> z;
     }
 }
-//执行
-finallyTest()
-//返回值
-here is catch----------
-here is finally---------
-'finally'</code></pre>
+<span class="tok-c">//执行</span>
+<span class="tok-f">finallyTest</span>()
+<span class="tok-c">//返回值</span>
+here is <span class="tok-k">catch</span>----------
+here is <span class="tok-k">finally</span>---------
+<span class="tok-s">'finally'</span></code></pre>
 <h3 id="函数名">函数名</h3>
-<pre><code class="language-js">// 直接声明函数是具有函数名的
-function foo(){}
-foo.name  // 函数名为 foo
-var bar = foo
-bar.name  // 将函数赋值给一个变量，只是让变量指向了函数结构，并不会改变函数结构本身
-// 函数表达式生成的是匿名函数
-var foo = function(){}
-foo.name // &quot;&quot; (空字符串)
-// 函数名称只存在于函数自身结构内，被传递时不会改变这个结构
-function foo(){}
-var o ={
-    a: 'a',
+<pre><code class="language-js"><span class="tok-c">// 直接声明函数是具有函数名的</span>
+<span class="tok-k">function</span> <span class="tok-f">foo</span>(){}
+foo.name  <span class="tok-c">// 函数名为 foo</span>
+<span class="tok-k">var</span> bar = foo
+bar.name  <span class="tok-c">// 将函数赋值给一个变量，只是让变量指向了函数结构，并不会改变函数结构本身</span>
+<span class="tok-c">// 函数表达式生成的是匿名函数</span>
+<span class="tok-k">var</span> foo = <span class="tok-k">function</span>(){}
+foo.name <span class="tok-c">// "" (空字符串)</span>
+<span class="tok-c">// 函数名称只存在于函数自身结构内，被传递时不会改变这个结构</span>
+<span class="tok-k">function</span> <span class="tok-f">foo</span>(){}
+<span class="tok-k">var</span> o ={
+    a: <span class="tok-s">'a'</span>,
     bar: foo
 };
-o.bar.name // foo</code></pre>
+o.bar.name <span class="tok-c">// foo</span></code></pre>
 <h3 id="this-引用丢失">this 引用丢失</h3>
-<pre><code class="language-js">// 函数被多次传递时可能发生
-function foo(){
-    console.log(this.a);
+<pre><code class="language-js"><span class="tok-c">// 函数被多次传递时可能发生</span>
+<span class="tok-k">function</span> <span class="tok-f">foo</span>(){
+    console.<span class="tok-f">log</span>(<span class="tok-k">this</span>.a);
 }
-var obj = {
-    a: 2,
+<span class="tok-k">var</span> obj = {
+    a: <span class="tok-n">2</span>,
     foo: foo
 };
-var bar = obj.foo;
-var a=&quot;oops, global&quot;;
-bar(); //&quot;oops, global&quot;
-// 回调函数中可能发生（异步）
-// 代码同上
-setTimeout(obj.foo, 100); // &quot;oops, global&quot;</code></pre>
+<span class="tok-k">var</span> bar = obj.foo;
+<span class="tok-k">var</span> a=<span class="tok-s">"oops, global"</span>;
+<span class="tok-f">bar</span>(); <span class="tok-c">//"oops, global"</span>
+<span class="tok-c">// 回调函数中可能发生（异步）</span>
+<span class="tok-c">// 代码同上</span>
+<span class="tok-f">setTimeout</span>(obj.foo, <span class="tok-n">100</span>); <span class="tok-c">// "oops, global"</span></code></pre>
   </div>
   <section class="post-related"><h2>同主题</h2><ul class="related"><li><a href="/2024/03/30/a-short-web-history/">Web 小史：关键脉络</a><time datetime="2024-03-30T06:38:56.000Z">2024</time></li><li><a href="/2016/10/31/material-design-introduct-md/">material design 简介及背后的理论</a><time datetime="2016-10-31T09:04:37.000Z">2016</time></li><li><a href="/2016/08/29/why-users-can-not-see-collect-function-in-neihan/">前端工程师的形而上学 (1)—— 一个例子</a><time datetime="2016-08-29T08:44:10.000Z">2016</time></li></ul></section>
   <div class="post-author"><div class="author-card">
