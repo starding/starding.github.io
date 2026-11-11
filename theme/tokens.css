@@ -1,0 +1,27 @@
+/* 设计变量（Material 3 色调分层）：浅蓝灰底面上放白色纸面，层级靠色调差，不靠阴影与框线。
+   强调色是克莱因蓝，只用于链接、当前位置与可点状态；红色只出现在标志上。间距取 8 的倍数。 */
+:root{
+  --surface:#eef1f8; --paper:#ffffff; --tone:#f4f6fa; --tone-2:#e6eaf4;
+  --on:#1b1c20; --text:#2f3237; --muted:#5c6271; --faint:#8b90a0; --line:#e3e7f0;
+  --primary:#002fa7; --primary-soft:#dfe5ff; --on-primary-soft:#001a5c;
+  --appbar:#000000; --on-appbar:#ffffff;
+  --lift:0 4px 16px rgba(0,31,110,.08); --scroll:rgba(27,28,32,.22); --scroll-strong:rgba(27,28,32,.42);
+  --r-l:16px; --r-m:12px; --r-s:8px;
+  --sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Source Han Sans SC","Noto Sans SC","Microsoft YaHei",sans-serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  --fs-headline:32px; --fs-title:20px; --fs-body:17px; --fs-label:14px; --fs-small:12px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --surface:#111318; --paper:#1b1e25; --tone:#22262f; --tone-2:#2a2f3a;
+    --on:#e6e8ee; --text:#cfd2d8; --muted:#a3a8b5; --faint:#7c8190; --line:#2c303a;
+    --primary:#b4c5ff; --primary-soft:#26345f; --on-primary-soft:#dfe5ff;
+    --appbar:#000000; --lift:0 4px 16px rgba(0,0,0,.45); --scroll:rgba(230,232,238,.22); --scroll-strong:rgba(230,232,238,.45);
+  }
+}
+:root[data-theme="dark"]{
+  --surface:#111318; --paper:#1b1e25; --tone:#22262f; --tone-2:#2a2f3a;
+  --on:#e6e8ee; --text:#cfd2d8; --muted:#a3a8b5; --faint:#7c8190; --line:#2c303a;
+  --primary:#b4c5ff; --primary-soft:#26345f; --on-primary-soft:#dfe5ff;
+  --appbar:#000000; --lift:0 4px 16px rgba(0,0,0,.45); --scroll:rgba(230,232,238,.22); --scroll-strong:rgba(230,232,238,.45);
+}

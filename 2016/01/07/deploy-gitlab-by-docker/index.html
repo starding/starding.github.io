@@ -1,599 +1,201 @@
-
- <!DOCTYPE HTML>
+<!doctype html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  
-    <title>docker 部署 gitlab | 结绳以渔</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
-    
-    <meta name="author" content="XingHua">
-    
-
-    
-    <meta name="description" content="拉取镜像及启动容器参考：gitlab documentation 首先使用 dao 加速器拉取 daocker 镜像：1dao pull gitlab&#x2F;gitlab-ce  创建 volumes简单来说 volumes，就是可以映射到容器中去的容器外部存储空间。你可以将一些比价通用的配置文件，数据，或者是代码等都使用 volumes 的形式存储在容器所在的宿主机器上。这样不仅可以永久保留数据，保证">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>docker 部署 gitlab | 结绳以渔</title>
+<meta name="description" content="参考：gitlab documentation 简单来说 volumes，就是可以映射到容器中去的容器外部存储空间。你可以将一些比价通用的配置文件，数据，或者是代码等都使用 volumes 的形式存储在容器所在的宿主机器上。这样不仅可以永久">
+<meta name="theme-color" content="#000000">
 <meta property="og:type" content="article">
 <meta property="og:title" content="docker 部署 gitlab">
-<meta property="og:url" content="https://xinghua.space/2016/01/07/deploy-gitlab-by-docker/index.html">
+<meta property="og:url" content="https://xinghua.space/2016/01/07/deploy-gitlab-by-docker/">
 <meta property="og:site_name" content="结绳以渔">
-<meta property="og:description" content="拉取镜像及启动容器参考：gitlab documentation 首先使用 dao 加速器拉取 daocker 镜像：1dao pull gitlab&#x2F;gitlab-ce  创建 volumes简单来说 volumes，就是可以映射到容器中去的容器外部存储空间。你可以将一些比价通用的配置文件，数据，或者是代码等都使用 volumes 的形式存储在容器所在的宿主机器上。这样不仅可以永久保留数据，保证">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2016-01-07T00:27:22.000Z">
-<meta property="article:modified_time" content="2024-03-10T02:27:59.948Z">
-<meta property="article:author" content="XingHua">
-<meta property="article:tag" content="docker">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:creator" content="@starstarding">
-
-    
-    <link rel="alternative" href="/atom.xml" title="结绳以渔" type="application/atom+xml">
-    
-    
-    <link rel="icon" href="/img/favicon_red_only_yao.ico">
-    
-    
-    <link rel="apple-touch-icon" href="/img/apple_icon_yao.png">
-    <link rel="apple-touch-icon-precomposed" href="/img/apple_icon_yao.png">
-    
-    
-<link rel="stylesheet" href="/css/style.css">
-
-<meta name="generator" content="Hexo 7.1.1"></head>
-
-  <body>
-    <header>
-      
-<div class="header-container">
-	<div class="logo-wrapper">
-		
-			<div id="imglogo">
-				<a href="/"><img src="/img/logo_red_yao.svg" alt="结绳以渔" title="结绳以渔"/></a>
-			</div>
-			
-			<div id="textlogo">
-				<h1 class="site-name"><a href="/" title="结绳以渔">结绳以渔</a></h1>
-				<h2 class="blog-motto">临渊羡鱼，不如退而结网</h2>
-			</div>
-	</div>
-	<div class="navbar">
-		<a class="navbutton navmobile" href="#" title="菜单"></a>
-	</div>
-	<nav class="animated">
-		<ul class="nav-list">
-			
-				<li><a href="/">主页</a></li>
-			
-				<li><a href="/archives">时间线</a></li>
-			
-				<li><a href="/about">关于我</a></li>
-			
-			<li>
-			
-			<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
-				<label>Search</label>
-				<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
-				<input type="hidden" name="q" value="site:xinghua.space">
-			</form>
-			
-			</li>
-		</ul>
-	</nav>			
-</div>
-    </header>
-    <div id="container">
-      <div id="main" class="post" itemscope itemprop="blogPost">
-  
-	<article itemprop="articleBody"> 
-		<div class="article-header">
-  <h1 itemprop="name">docker 部署 gitlab</h1>
-  <div class="article-info-meta">
-    <p class="article-author">
-      <a
-        href="/about"
-        title="XingHua"
-        target="_blank"
-        itemprop="author"
-        >@XingHua</a
-      >
-    </p>
-
-    <p class="article-time">
-      <time datetime="2016-01-07T00:27:22.000Z" itemprop="datePublished">
-        于 2016-01-07
-      </time>
-    </p>
+<link rel="canonical" href="https://xinghua.space/2016/01/07/deploy-gitlab-by-docker/">
+<link rel="alternate" type="application/atom+xml" title="结绳以渔" href="/atom.xml">
+<link rel="icon" href="/img/favicon_red_only_yao.ico">
+<link rel="apple-touch-icon" href="/img/apple_icon_yao.png">
+<link rel="stylesheet" href="/theme/tokens.css">
+<link rel="stylesheet" href="/theme/site.css">
+<script src="/theme/overlay-scroll.js" defer></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-V9SXMWSY9Z"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-V9SXMWSY9Z');</script>
+</head>
+<body>
+<header class="appbar">
+  <div class="appbar-in">
+    <a class="brand" href="/"><img src="/img/logo_red_yao.svg" alt=""><span><b>结绳以渔</b><small>临渊羡鱼，不如退而结网</small></span></a>
+    <nav>
+      <a href="/">主页</a>
+      <a href="/works/">作品</a>
+      <a href="/about/">关于我</a>
+    </nav>
   </div>
-</div>
-
-	<div class="article-content">
-		
-		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目录</strong>
-		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8B%89%E5%8F%96%E9%95%9C%E5%83%8F%E5%8F%8A%E5%90%AF%E5%8A%A8%E5%AE%B9%E5%99%A8"><span class="toc-number">1.</span> <span class="toc-text">拉取镜像及启动容器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A6%96%E5%85%88%E4%BD%BF%E7%94%A8-dao-%E5%8A%A0%E9%80%9F%E5%99%A8%E6%8B%89%E5%8F%96-daocker-%E9%95%9C%E5%83%8F%EF%BC%9A"><span class="toc-number">1.1.</span> <span class="toc-text">首先使用 dao 加速器拉取 daocker 镜像：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA-volumes"><span class="toc-number">1.2.</span> <span class="toc-text">创建 volumes</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE-nginx%EF%BC%8C%E6%94%AF%E6%8C%81-https"><span class="toc-number">2.</span> <span class="toc-text">配置 nginx，支持 https</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E6%94%BE-gitlab-%E7%9A%84-https-%E6%94%AF%E6%8C%81"><span class="toc-number">3.</span> <span class="toc-text">开放 gitlab 的 https 支持</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE-gitlab-%E6%B5%8B%E8%AF%95"><span class="toc-number">4.</span> <span class="toc-text">访问 gitlab 测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%90%AF%E9%82%AE%E4%BB%B6%E6%9C%8D%E5%8A%A1"><span class="toc-number">5.</span> <span class="toc-text">开启邮件服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ssh-%E6%96%B9%E5%BC%8F%E8%AE%BF%E9%97%AE"><span class="toc-number">6.</span> <span class="toc-text">ssh 方式访问</span></a></li></ol>
-		
-		</div>
-		
-		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="拉取镜像及启动容器"><a href="#拉取镜像及启动容器" class="headerlink" title="拉取镜像及启动容器"></a>拉取镜像及启动容器</h2><p>参考：<a target="_blank" rel="noopener" href="https://docs.gitlab.com/ee/install/docker.html">gitlab documentation</a></p>
-<h3 id="首先使用-dao-加速器拉取-daocker-镜像："><a href="#首先使用-dao-加速器拉取-daocker-镜像：" class="headerlink" title="首先使用 dao 加速器拉取 daocker 镜像："></a>首先使用 dao 加速器拉取 daocker 镜像：</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dao pull gitlab/gitlab-ce</span><br></pre></td></tr></table></figure>
-
-<h3 id="创建-volumes"><a href="#创建-volumes" class="headerlink" title="创建 volumes"></a>创建 volumes</h3><p>简单来说 volumes，就是可以映射到容器中去的容器外部存储空间。你可以将一些比价通用的配置文件，数据，或者是代码等都使用 volumes 的形式存储在容器所在的宿主机器上。这样不仅可以永久保留数据，保证数据的安全性。同时还可以方便的修改 volumes 中的内容，然后重新映射到容器中，这对于需要经常动态修改文件的容器非常有用。<br>在本次部署 gitlab 的时候，创建三个 volumes，分别是&#x2F;mnt&#x2F;volumes&#x2F;gitlab 下的 config，logs，data 目录。<br>启动一个 gitlab 容器</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sudo docker run --detach \</span><br><span class="line">    --hostname git.xiaohuruwei.com \</span><br><span class="line">    --publish 8443:443 --publish 8080:80 --publish 2222:22 \</span><br><span class="line">    --name gitlab \</span><br><span class="line">    --restart always \</span><br><span class="line">    --volume /mnt/volumes/gitlab/config:/etc/gitlab \</span><br><span class="line">    --volume /mnt/volumes/gitlab/logs:/var/log/gitlab \</span><br><span class="line">    --volume /mnt/volumes/gitlab/data:/var/opt/gitlab \</span><br><span class="line">    gitlab/gitlab-ce:latest</span><br></pre></td></tr></table></figure>
-
+</header>
+<div class="frame cols">
+  <main>
+<article class="paper">
+  <header class="post-head">
+    <h1>docker 部署 gitlab</h1>
+    <div class="meta">
+      <span>@XingHua</span>
+      <time datetime="2016-01-07T00:27:22.000Z">2016 年 1 月 7 日</time>
+      <span>约 3 分钟</span>
+    </div>
+  </header>
+  <div class="prose">
+<h2 id="拉取镜像及启动容器">拉取镜像及启动容器</h2>
+<p>参考：<a href="https://docs.gitlab.com/ee/install/docker.html" rel="noopener">gitlab documentation</a></p>
+<h3 id="首先使用-dao-加速器拉取-daocker-镜像">首先使用 dao 加速器拉取 daocker 镜像：</h3>
+<pre><code class="language-shell">dao pull gitlab/gitlab-ce</code></pre>
+<h3 id="创建-volumes">创建 volumes</h3>
+<p>简单来说 volumes，就是可以映射到容器中去的容器外部存储空间。你可以将一些比价通用的配置文件，数据，或者是代码等都使用 volumes 的形式存储在容器所在的宿主机器上。这样不仅可以永久保留数据，保证数据的安全性。同时还可以方便的修改 volumes 中的内容，然后重新映射到容器中，这对于需要经常动态修改文件的容器非常有用。<br>
+在本次部署 gitlab 的时候，创建三个 volumes，分别是/mnt/volumes/gitlab 下的 config，logs，data 目录。<br>
+启动一个 gitlab 容器</p>
+<pre><code class="language-shell">sudo docker run --detach \
+    --hostname git.xiaohuruwei.com \
+    --publish 8443:443 --publish 8080:80 --publish 2222:22 \
+    --name gitlab \
+    --restart always \
+    --volume /mnt/volumes/gitlab/config:/etc/gitlab \
+    --volume /mnt/volumes/gitlab/logs:/var/log/gitlab \
+    --volume /mnt/volumes/gitlab/data:/var/opt/gitlab \
+    gitlab/gitlab-ce:latest</code></pre>
 <p>命令参数解释：</p>
-<p>–hostname<br>指定容器中绑定的域名，会在创建镜像仓库的时候使用到，这里绑定 git.xiaohuruwei.com</p>
-<p>–publish<br>端口映射，冒号前面是宿主机端口，后面是容器 expose 出的端口</p>
-<p>–volume<br>volume 映射，冒号前面是宿主机的一个文件路径，后面是容器中的文件路径</p>
-<h2 id="配置-nginx，支持-https"><a href="#配置-nginx，支持-https" class="headerlink" title="配置 nginx，支持 https"></a>配置 nginx，支持 https</h2><p>参考：<a target="_blank" rel="noopener" href="https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/doc/settings/nginx.md#enable-https">gitlab set nginx</a></p>
+<p>–hostname<br>
+指定容器中绑定的域名，会在创建镜像仓库的时候使用到，这里绑定 git.xiaohuruwei.com</p>
+<p>–publish<br>
+端口映射，冒号前面是宿主机端口，后面是容器 expose 出的端口</p>
+<p>–volume<br>
+volume 映射，冒号前面是宿主机的一个文件路径，后面是容器中的文件路径</p>
+<h2 id="配置-nginx支持-https">配置 nginx，支持 https</h2>
+<p>参考：<a href="https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/doc/settings/nginx.md#enable-https" rel="noopener">gitlab set nginx</a></p>
 <p>nginx 配置文件</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">    <span class="attribute">server_name</span> git.xiaohuruwei.com;</span><br><span class="line">    <span class="attribute">access_log</span> /var/log/nginx/gitlab.xiaohuruwei.access.log;</span><br><span class="line">    <span class="attribute">error_log</span> /var/log/nginx/gitlab.xiaohuruwei.<span class="literal">error</span>.log;</span><br><span class="line">    <span class="attribute">rewrite</span><span class="regexp"> ^</span> https://git.xiaohuruwei.com;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="language-nginx">server {
+    listen 80;
+    server_name git.xiaohuruwei.com;
+    access_log /var/log/nginx/gitlab.xiaohuruwei.access.log;
+    error_log /var/log/nginx/gitlab.xiaohuruwei.error.log;
+    rewrite ^ https://git.xiaohuruwei.com;
+}</code></pre>
 <p>https proxy</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span>       <span class="number">443</span> ssl;</span><br><span class="line">    <span class="attribute">server_name</span>  git.xiaohuruwei.com;</span><br><span class="line">    <span class="attribute">access_log</span> /var/log/nginx/https-gitlab.xiaohuruwei.access.log;</span><br><span class="line">    <span class="attribute">error_log</span> /var/log/nginx/https-gitlab.xiaohuruwei.<span class="literal">error</span>.log;</span><br><span class="line">    <span class="comment"># ssl 证书配置，这里使用的是自己生成的证书，在访问时会提示证书问题，选择相信即可。</span></span><br><span class="line">    <span class="comment"># 如果想要公认的证书，需要在网络上的一些授权中心生成</span></span><br><span class="line">    <span class="attribute">ssl</span> <span class="literal">on</span>;</span><br><span class="line">    <span class="attribute">ssl_certificate</span> /etc/nginx/ssl/getbase.crt;</span><br><span class="line">    <span class="attribute">ssl_certificate_key</span> /etc/nginx/ssl/getbase_nopass.key;</span><br><span class="line">    <span class="section">location</span> / &#123;</span><br><span class="line">        <span class="attribute">proxy_set_header</span> Host <span class="variable">$host</span>;</span><br><span class="line">        <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">        <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">        <span class="attribute">proxy_pass</span> https://localhost:8443;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="开放-gitlab-的-https-支持"><a href="#开放-gitlab-的-https-支持" class="headerlink" title="开放 gitlab 的 https 支持"></a>开放 gitlab 的 https 支持</h2><p>仅仅由 nginx 反向代理 https 是不行的，因为还需要打开 gitlab 的 https 支持。</p>
-<p>修改配置文件，在&#x2F;mnt&#x2F;volumes&#x2F;gitlab&#x2F;config&#x2F; 目录下的 gitlab.rb 中添加：</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># note the &#x27;https&#x27; below</span></span><br><span class="line">external_url <span class="string">&quot;https://gitlab.example.com&quot;</span></span><br></pre></td></tr></table></figure>
-
+<pre><code class="language-nginx">server {
+    listen       443 ssl;
+    server_name  git.xiaohuruwei.com;
+    access_log /var/log/nginx/https-gitlab.xiaohuruwei.access.log;
+    error_log /var/log/nginx/https-gitlab.xiaohuruwei.error.log;
+    # ssl 证书配置，这里使用的是自己生成的证书，在访问时会提示证书问题，选择相信即可。
+    # 如果想要公认的证书，需要在网络上的一些授权中心生成
+    ssl on;
+    ssl_certificate /etc/nginx/ssl/getbase.crt;
+    ssl_certificate_key /etc/nginx/ssl/getbase_nopass.key;
+    location / {
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_pass https://localhost:8443;
+    }
+}</code></pre>
+<h2 id="开放-gitlab-的-https-支持">开放 gitlab 的 https 支持</h2>
+<p>仅仅由 nginx 反向代理 https 是不行的，因为还需要打开 gitlab 的 https 支持。</p>
+<p>修改配置文件，在/mnt/volumes/gitlab/config/ 目录下的 gitlab.rb 中添加：</p>
+<pre><code class="language-ruby"># note the 'https' below
+external_url &quot;https://gitlab.example.com&quot;</code></pre>
 <p>新建 ssl 目录，同时在该目录下添加 ssl 证书文件，命名要与上述域名中保持一致</p>
-<p>git.xiaohuruwei.com.crt<br>git.xiaohuruwei.com.key</p>
+<p>git.xiaohuruwei.com.crt<br>
+git.xiaohuruwei.com.key</p>
 <p>重新启动容器</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker restart gitlab</span><br></pre></td></tr></table></figure>
-
-<h2 id="访问-gitlab-测试"><a href="#访问-gitlab-测试" class="headerlink" title="访问 gitlab 测试"></a>访问 gitlab 测试</h2><p>打开 web 界面，默认登录名为 root，密码为 5iveL!fe（已经改为厘米脚印的默认密码），新建一个 project 仓库:test<br>因为 ssl 证书是自己生成的，并不具有全网通用性，因此只能先选择相信证书。在本地设置环境变量：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export GIT_SSL_NO_VERIFY=1</span><br></pre></td></tr></table></figure>
-
-<p>然后克隆仓库：git clone <a target="_blank" rel="noopener" href="https://git.xiaohuruwei.com/root/test.git">https://git.xiaohuruwei.com/root/test.git</a></p>
-<h2 id="开启邮件服务"><a href="#开启邮件服务" class="headerlink" title="开启邮件服务"></a>开启邮件服务</h2><p>默认的邮件服务不太好使，所以这里配置自己的邮件服务。参考官方 gitlab stmp 文档。</p>
+<pre><code class="language-shell">docker restart gitlab</code></pre>
+<h2 id="访问-gitlab-测试">访问 gitlab 测试</h2>
+<p>打开 web 界面，默认登录名为 root，密码为 5iveL!fe（已经改为厘米脚印的默认密码），新建一个 project 仓库:test<br>
+因为 ssl 证书是自己生成的，并不具有全网通用性，因此只能先选择相信证书。在本地设置环境变量：</p>
+<pre><code class="language-shell">export GIT_SSL_NO_VERIFY=1</code></pre>
+<p>然后克隆仓库：git clone <a href="https://git.xiaohuruwei.com/root/test.git" rel="noopener">https://git.xiaohuruwei.com/root/test.git</a></p>
+<h2 id="开启邮件服务">开启邮件服务</h2>
+<p>默认的邮件服务不太好使，所以这里配置自己的邮件服务。参考官方 gitlab stmp 文档。</p>
 <p>使用 163 邮箱，按照官方文档配置后，会发现发送邮件没有起作用。</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">gitlab_rails[<span class="string">&#x27;smtp_enable&#x27;</span>] = <span class="literal">true</span></span><br><span class="line">gitlab_rails[<span class="string">&#x27;smtp_address&#x27;</span>] = <span class="string">&quot;smtp.163.com&quot;</span></span><br><span class="line">gitlab_rails[<span class="string">&#x27;smtp_port&#x27;</span>] = <span class="number">25</span></span><br><span class="line">gitlab_rails[<span class="string">&#x27;smtp_user_name&#x27;</span>] = <span class="string">&quot;xiaohuruwei@163.com&quot;</span></span><br><span class="line">gitlab_rails[<span class="string">&#x27;smtp_password&#x27;</span>] = <span class="string">&quot;xxxx&quot;</span></span><br><span class="line">gitlab_rails[<span class="string">&#x27;smtp_domain&#x27;</span>] = <span class="string">&quot;163.com&quot;</span></span><br><span class="line">gitlab_rails[<span class="string">&#x27;smtp_authentication&#x27;</span>] = <span class="string">&quot;login&quot;</span></span><br><span class="line">gitlab_rails[<span class="string">&#x27;smtp_enable_starttls_auto&#x27;</span>] = <span class="literal">true</span></span><br><span class="line">gitlab_rails[<span class="string">&#x27;smtp_tls&#x27;</span>] = <span class="literal">false</span></span><br><span class="line">gitlab_rails[<span class="string">&#x27;smtp_openssl_verify_mode&#x27;</span>] = <span class="string">&#x27;none&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<p>查看 log 时，由于 log 比较杂乱，没有发现问题，后来在 ruby 社区发现有人解决过同样的问题：<br><a target="_blank" rel="noopener" href="https://ruby-china.org/topics/20450">GitLab 配置通过 smtp.163.com 发送邮件</a><br>以及网易的官方解释：<br><a target="_blank" rel="noopener" href="https://www.mail163.cn/fault/analysis/1109.html">网易服务器 smtp 机器要求身份验证帐号和发信帐号必须一致，如果用户在发送邮件时，身份验证帐号和发件人帐号是不同的，因此拒绝发送。</a></p>
+<pre><code class="language-ruby">gitlab_rails['smtp_enable'] = true
+gitlab_rails['smtp_address'] = &quot;smtp.163.com&quot;
+gitlab_rails['smtp_port'] = 25
+gitlab_rails['smtp_user_name'] = &quot;xiaohuruwei@163.com&quot;
+gitlab_rails['smtp_password'] = &quot;xxxx&quot;
+gitlab_rails['smtp_domain'] = &quot;163.com&quot;
+gitlab_rails['smtp_authentication'] = &quot;login&quot;
+gitlab_rails['smtp_enable_starttls_auto'] = true
+gitlab_rails['smtp_tls'] = false
+gitlab_rails['smtp_openssl_verify_mode'] = 'none'</code></pre>
+<p>查看 log 时，由于 log 比较杂乱，没有发现问题，后来在 ruby 社区发现有人解决过同样的问题：<br>
+<a href="https://ruby-china.org/topics/20450" rel="noopener">GitLab 配置通过 smtp.163.com 发送邮件</a><br>
+以及网易的官方解释：<br>
+<a href="https://www.mail163.cn/fault/analysis/1109.html" rel="noopener">网易服务器 smtp 机器要求身份验证帐号和发信帐号必须一致，如果用户在发送邮件时，身份验证帐号和发件人帐号是不同的，因此拒绝发送。</a></p>
 <p>所以又添加了两行配置后测试可以正常使用了：</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gitlab_rails[<span class="string">&#x27;gitlab_email_from&#x27;</span>] = <span class="string">&quot;xiaohuruwei@163.com&quot;</span></span><br><span class="line">user[<span class="string">&#x27;git_user_email&#x27;</span>] = <span class="string">&quot;xiaohuruwei@163.com&quot;</span></span><br></pre></td></tr></table></figure>
-<h2 id="ssh-方式访问"><a href="#ssh-方式访问" class="headerlink" title="ssh 方式访问"></a>ssh 方式访问</h2><p>因为是使用 docker 部署的，通过 ssh 方式 (比如 git clone <a href="mailto:&#x67;&#105;&#x74;&#x40;&#103;&#x69;&#x74;&#x2e;&#120;&#x69;&#x61;&#x6f;&#x68;&#x75;&#x72;&#117;&#x77;&#101;&#105;&#x2e;&#99;&#111;&#x6d;">&#x67;&#105;&#x74;&#x40;&#103;&#x69;&#x74;&#x2e;&#120;&#x69;&#x61;&#x6f;&#x68;&#x75;&#x72;&#117;&#x77;&#101;&#105;&#x2e;&#99;&#111;&#x6d;</a>) 访问会有两层认证：</p>
-<p>一层是 freelancer 服务器的认证<br>另一层是 gitlab 的认证。<br>后者需要使用 ssh-key<br>前者可能需要 ssh 本身的反向代理 (现在使用的 nginx 不支持除 http，https 以外的反向代理)，</p>
-<p>现在发现使用端口转发的形式比较困难，但是可以改变默认的 gitlab 的 ssh 端口为非标准端口：<br>直接修改 gitlab 配置文件中的变量：</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gitlab_shell_ssh_port = <span class="number">2222</span></span><br></pre></td></tr></table></figure>
-
-<p>然后重新启动 docker 容器，就可以在 web 界面中看到相应的 ssh 地址发生了改变：<br>ssh:&#x2F;&#x2F;<a href="mailto:&#x67;&#x69;&#116;&#x40;&#103;&#105;&#116;&#x2e;&#120;&#x69;&#x61;&#x6f;&#104;&#x75;&#x72;&#117;&#119;&#101;&#x69;&#46;&#99;&#x6f;&#x6d;">&#x67;&#x69;&#116;&#x40;&#103;&#105;&#116;&#x2e;&#120;&#x69;&#x61;&#x6f;&#104;&#x75;&#x72;&#117;&#119;&#101;&#x69;&#46;&#99;&#x6f;&#x6d;</a>:2222&#x2F;root&#x2F;test.git 然后就直接可以继续使用 git clone 来继续操作了</p>
+<pre><code class="language-ruby">gitlab_rails['gitlab_email_from'] = &quot;xiaohuruwei@163.com&quot;
+user['git_user_email'] = &quot;xiaohuruwei@163.com&quot;</code></pre>
+<h2 id="ssh-方式访问">ssh 方式访问</h2>
+<p>因为是使用 docker 部署的，通过 ssh 方式 (比如 git clone git@git.xiaohuruwei.com) 访问会有两层认证：</p>
+<p>一层是 freelancer 服务器的认证<br>
+另一层是 gitlab 的认证。<br>
+后者需要使用 ssh-key<br>
+前者可能需要 ssh 本身的反向代理 (现在使用的 nginx 不支持除 http，https 以外的反向代理)，</p>
+<p>现在发现使用端口转发的形式比较困难，但是可以改变默认的 gitlab 的 ssh 端口为非标准端口：<br>
+直接修改 gitlab 配置文件中的变量：</p>
+<pre><code class="language-ruby">gitlab_shell_ssh_port = 2222</code></pre>
+<p>然后重新启动 docker 容器，就可以在 web 界面中看到相应的 ssh 地址发生了改变：<br>
+ssh://git@git.xiaohuruwei.com:2222/root/test.git 然后就直接可以继续使用 git clone 来继续操作了</p>
 <p>2016.01 于北京回龙观</p>
-  
-	</div>
-		<footer class="article-footer">
-  <div class="article-catetags">
-  
-  
-    <div class="article-tags">
-    
-    <span></span> <a href="/tags/docker/">docker</a>
-    </div>
-  
+  </div>
+  <section class="post-related"><h2>同主题</h2><ul class="related"><li><a href="/2016/01/18/gitlab-migrate/">docker-gitlab 数据迁移</a><time datetime="2016-01-18T01:22:59.000Z">2016</time></li></ul></section>
+  <div class="post-author"><div class="author-card">
+  <div class="author">
+    <img src="/img/author.png" alt="XingHua">
+    <p>人存于世，因缘际会<br>我是兴华，很高兴见到你</p>
+  </div>
+  <nav class="social"><a href="https://github.com/starding" title="GitHub" aria-label="GitHub" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+</a><a href="https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70" title="即刻" aria-label="即刻" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M14.6 2h4.2v13.4c0 4.1-2.6 6.6-6.4 6.6-1.9 0-3.6-.6-5-1.7l2.2-3.3c.8.6 1.7.9 2.6.9 1.6 0 2.4-1 2.4-3V2z"/><path fill="none" stroke="currentColor" stroke-width="1.2" d="M16.4 3.6v12.6c0 3.6-2.3 5.9-5.6 6.1"/></svg>
+</a><a href="https://twitter.com/starstarding" title="Twitter" aria-label="Twitter" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M23.6 4.6c-.9.4-1.8.6-2.8.8 1-.6 1.8-1.6 2.1-2.7-.9.6-2 1-3.1 1.2a4.9 4.9 0 00-8.4 4.5C7.4 8.2 3.8 6.2 1.4 3.3a4.9 4.9 0 001.5 6.6c-.8 0-1.6-.3-2.2-.6 0 2.4 1.7 4.4 3.9 4.8-.7.2-1.5.2-2.2.1.6 2 2.4 3.4 4.6 3.4A9.9 9.9 0 010 19.6 13.9 13.9 0 007.5 21.8c9.1 0 14-7.5 14-14v-.6c1-.7 1.8-1.6 2.1-2.6z"/></svg>
+</a><a href="mailto:starstarding@gmail.com" title="邮件" aria-label="邮件"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 4h18a2 2 0 012 2v12a2 2 0 01-2 2H3a2 2 0 01-2-2V6a2 2 0 012-2zm0 2v.5l9 6 9-6V6H3z"/></svg>
+</a><a href="/atom.xml" title="订阅" aria-label="订阅"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="19" r="3" fill="currentColor"/><path fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" d="M3.6 10.6a9.8 9.8 0 019.8 9.8M3.6 3.6a16.8 16.8 0 0116.8 16.8"/></svg>
+</a></nav>
 </div>
-
- 
-  
-    <div class="article-share" id="share">
-      <div
-        data-url="https://xinghua.space/2016/01/07/deploy-gitlab-by-docker/"
-        data-title="docker 部署 gitlab | 结绳以渔"
-        data-tsina=""
-        class="share"
-      ></div>
-    </div>
-     
-  
-</footer>
-   	       
-	</article>
-	
-<nav class="article-nav">
- 
- <div class="prev" >
-    <a href="/2016/01/07/raw-sql-in-django/" title="django 中使用原生 sql">
-      <span>django 中使用原生 sql</span>
-    </a>
-  </div>
-
-  
-  <div class="next">
-    <a href="/2016/01/07/daocloud-deploy/"  title="使用 daocloud 持续集成应用">
-      <span>使用 daocloud 持续集成应用</span>
-    </a>
-  </div>
-  
-</nav>
-
-	
-<section id="comments" class="comment">
-  <script src="https://giscus.app/client.js"
-          data-repo="starding/xinghua_blog_giscus"
-          data-repo-id="R_kgDOLagm8g"
-          data-category="Announcements"
-          data-category-id="DIC_kwDOLagm8s4CdqOC"
-          data-mapping="og:title"
-          data-strict="1"
-          data-reactions-enabled="1"
-          data-emit-metadata="1"
-          data-input-position="top"
-          data-theme="noborder_light"
-          data-lang="zh-CN"
-          data-loading="lazy"
-          crossorigin="anonymous"
-          async>
-  </script>
+</div>
+  <nav class="pager">
+    <span><a href="/2016/01/07/raw-sql-in-django/"><small>较新</small>django 中使用原生 sql</a></span>
+    <span class="next"><a href="/2016/01/07/daocloud-deploy/"><small>较早</small>使用 daocloud 持续集成应用</a></span>
+  </nav>
+  <section class="comments">
+<script src="https://giscus.app/client.js" data-repo="starding/xinghua_blog_giscus" data-repo-id="R_kgDOLagm8g" data-category="Announcements" data-category-id="DIC_kwDOLagm8s4CdqOC" data-mapping="og:title" data-strict="1" data-reactions-enabled="1" data-emit-metadata="1" data-input-position="top" data-theme="preferred_color_scheme" data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous" async></script>
 </section>
+</article>
 
-
-
-</div>  
-      
-  <div id="toc" class="toc-aside">
-   <strong class="toc-title">文章目录</strong>
-    
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8B%89%E5%8F%96%E9%95%9C%E5%83%8F%E5%8F%8A%E5%90%AF%E5%8A%A8%E5%AE%B9%E5%99%A8"><span class="toc-number">1.</span> <span class="toc-text">拉取镜像及启动容器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A6%96%E5%85%88%E4%BD%BF%E7%94%A8-dao-%E5%8A%A0%E9%80%9F%E5%99%A8%E6%8B%89%E5%8F%96-daocker-%E9%95%9C%E5%83%8F%EF%BC%9A"><span class="toc-number">1.1.</span> <span class="toc-text">首先使用 dao 加速器拉取 daocker 镜像：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA-volumes"><span class="toc-number">1.2.</span> <span class="toc-text">创建 volumes</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE-nginx%EF%BC%8C%E6%94%AF%E6%8C%81-https"><span class="toc-number">2.</span> <span class="toc-text">配置 nginx，支持 https</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E6%94%BE-gitlab-%E7%9A%84-https-%E6%94%AF%E6%8C%81"><span class="toc-number">3.</span> <span class="toc-text">开放 gitlab 的 https 支持</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE-gitlab-%E6%B5%8B%E8%AF%95"><span class="toc-number">4.</span> <span class="toc-text">访问 gitlab 测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%90%AF%E9%82%AE%E4%BB%B6%E6%9C%8D%E5%8A%A1"><span class="toc-number">5.</span> <span class="toc-text">开启邮件服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ssh-%E6%96%B9%E5%BC%8F%E8%AE%BF%E9%97%AE"><span class="toc-number">6.</span> <span class="toc-text">ssh 方式访问</span></a></li></ol>
-    
+  </main>
+  <aside class="aside"><div class="author-card">
+  <div class="author">
+    <img src="/img/author.png" alt="XingHua">
+    <p>人存于世，因缘际会<br>我是兴华，很高兴见到你</p>
   </div>
-
-
-<aside id="asidepart">
-
-  
-<div class="categorieslist">
-	<p class="asidetitle">分类</p>
-		<ul>
-		
-		  
-			<li><a href="/categories/作为工程师/" title="作为工程师">作为工程师<sup>16</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/好好生活/" title="好好生活">好好生活<sup>2</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/科哲和科学史/" title="科哲和科学史">科哲和科学史<sup>3</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/随笔/" title="随笔">随笔<sup>7</sup></a></li>
-		  
-		
-		</ul>
+  <nav class="social"><a href="https://github.com/starding" title="GitHub" aria-label="GitHub" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+</a><a href="https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70" title="即刻" aria-label="即刻" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M14.6 2h4.2v13.4c0 4.1-2.6 6.6-6.4 6.6-1.9 0-3.6-.6-5-1.7l2.2-3.3c.8.6 1.7.9 2.6.9 1.6 0 2.4-1 2.4-3V2z"/><path fill="none" stroke="currentColor" stroke-width="1.2" d="M16.4 3.6v12.6c0 3.6-2.3 5.9-5.6 6.1"/></svg>
+</a><a href="https://twitter.com/starstarding" title="Twitter" aria-label="Twitter" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M23.6 4.6c-.9.4-1.8.6-2.8.8 1-.6 1.8-1.6 2.1-2.7-.9.6-2 1-3.1 1.2a4.9 4.9 0 00-8.4 4.5C7.4 8.2 3.8 6.2 1.4 3.3a4.9 4.9 0 001.5 6.6c-.8 0-1.6-.3-2.2-.6 0 2.4 1.7 4.4 3.9 4.8-.7.2-1.5.2-2.2.1.6 2 2.4 3.4 4.6 3.4A9.9 9.9 0 010 19.6 13.9 13.9 0 007.5 21.8c9.1 0 14-7.5 14-14v-.6c1-.7 1.8-1.6 2.1-2.6z"/></svg>
+</a><a href="mailto:starstarding@gmail.com" title="邮件" aria-label="邮件"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 4h18a2 2 0 012 2v12a2 2 0 01-2 2H3a2 2 0 01-2-2V6a2 2 0 012-2zm0 2v.5l9 6 9-6V6H3z"/></svg>
+</a><a href="/atom.xml" title="订阅" aria-label="订阅"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="19" r="3" fill="currentColor"/><path fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" d="M3.6 10.6a9.8 9.8 0 019.8 9.8M3.6 3.6a16.8 16.8 0 0116.8 16.8"/></svg>
+</a></nav>
 </div>
-
-
-  
-<div class="tagslist">
-	<p class="asidetitle">标签</p>
-		<ul class="clearfix">
-		
-			
-				<li><a href="/tags/docker/" title="docker">docker<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/可积累的/" title="可积累的">可积累的<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/认知方法/" title="认知方法">认知方法<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/gitlab/" title="gitlab">gitlab<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/写作/" title="写作">写作<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Memos/" title="Memos">Memos<sup>1</sup></a></li>
-			
-		
-		</ul>
-</div>
-
-
-  
-  <div class="archiveslist">
-    <p class="asidetitle"><a href="/archives">时间线</a></p>
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">2024 年 04 月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">2024 年 03 月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">2024 年 02 月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">2016 年 10 月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">2016 年 09 月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">2016 年 08 月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016 年 07 月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">2016 年 04 月</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">2016 年 03 月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">2016 年 02 月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">2016 年 01 月</a><span class="archive-list-count">16</span></li></ul>
-  </div>
-
-
-  <div class="linkslist">
-  <p class="asidetitle">对我有影响的链接</p>
-    <ul>
-        
-          <li>
-            
-            	<a href="http://finaltheory.me/" target="_blank" title=" 18~26 岁期间对我影响很大的同学">黄龑</a>
-            
-          </li>
-        
-          <li>
-            
-            	<a href="https://chuan.us" target="_blank" title=" 虽然不认识，但 30 岁之后我从他的言论中学到了很多">硅谷王川</a>
-            
-          </li>
-        
-    </ul>
-</div>
-
-  <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
-</div>
-
-</aside>
-    </div>
-    <footer id="page-footer"><div id="footer-wrapper">
-  <div id="footer">
-    <section class="author-area-container">
-      <section class="author-area">
-        
-        <div class="line">
-          <span></span>
-          <div class="author"></div>
-        </div>
-         
-        
-        <section class="info">
-          <p>
-            人存于世，因缘际会 <br />
-            我是兴华，很高兴见到你
-          </p>
-        </section>
-        
-      </section>
-      <div class="social-font font-icon-family" class="clearfix">
-         
-        <a
-          href="https://github.com/starding"
-          target="_blank"
-          class="icon-github"
-          title="github"
-        ></a>
-          
-        <a
-          href="https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70"
-          target="_blank"
-          class="icon-jike"
-          title="jike"
-        ></a>
-         
-        <a
-          href="https://twitter.com/starstarding"
-          target="_blank"
-          class="icon-twitter"
-          title="twitter"
-        ></a>
-           
-        
-        <a
-          href="mailto:starstarding@gmail.com"
-          target="_blank"
-          class="icon-email"
-          title="Email Me"
-        ></a>
-        
-        
-        <a
-          href="/atom.xml"
-          target="_blank"
-          class="icon-rss"
-          title="RSS Me"
-        ></a>
-        
-
-      </div>
-       
-    </section>
-    <p class="copyright">
-      Powered by
-      <a href="http://hexo.io" target="_blank" title="hexo">Hexo</a>
-      and Theme by
-      <a
-        href="https://github.com/starding/hexo-theme-xman"
-        target="_blank"
-        title="xman"
-        >xman</a>
-      © 2016~2024 
-      <a
-        href="/about"
-        target="_blank"
-        title="XingHua"
-        >XingHua</a
-      >
-      
-    </p>
-  </div>
-</div></footer>
-    <script src="/js/jquery-2.0.3.min.js"></script>
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
-<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
-
-<script type="text/javascript">
-  $(document).ready(function(){
-    $('.navbar').click(function(){
-      $('header nav').toggleClass('shownav');
-    });
-  });
-</script>
-
-<script type="text/javascript">
-  $(document).ready(function () {
-    var ai = $('.article-content>iframe'),
-      ae = $('.article-content>embed'),
-      t = $('#toc'),
-      ta = $('#toc.toc-aside'),
-      o = $('.openaside'),
-      c = $('.closeaside')
-    if (ai.length > 0) {
-      ai.wrap('<div class="video-container" />')
-    }
-    if (ae.length > 0) {
-      ae.wrap('<div class="video-container" />')
-    }
-    c.click(function () {
-      ta.css('display', 'block').addClass('fadeIn')
-    })
-    o.click(function () {
-      ta.css('display', 'none')
-    })
-    $(window).scroll(function () {
-      ta.css('top', Math.max(140, 320 - $(this).scrollTop()))
-    })
-  })
-</script>
- 
-
-<script type="text/javascript">
-  $(document).ready(function () {
-    var $this = $('.share'),
-      url = $this.attr('data-url'),
-      encodedUrl = encodeURIComponent(url),
-      title = $this.attr('data-title'),
-      tsina = $this.attr('data-tsina'),
-      description = $this.attr('description')
-    var html = [
-      '<span title="Share to"></span>',
-      '<div class="hoverqrcode clearfix"></div>',
-      '<a class="overlay" id="qrcode"></a>',
-      '<a href="https://twitter.com/intent/tweet?url=' +
-        encodedUrl +
-        '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
-      '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
-    ].join('')
+<div class="aside-sticky-wrap"><div class="aside-sticky"><nav class="toc"><b>文章目录</b><ol><li class="l2"><a href="#拉取镜像及启动容器">拉取镜像及启动容器</a></li><li class="l3"><a href="#首先使用-dao-加速器拉取-daocker-镜像">首先使用 dao 加速器拉取 daocker 镜像：</a></li><li class="l3"><a href="#创建-volumes">创建 volumes</a></li><li class="l2"><a href="#配置-nginx支持-https">配置 nginx，支持 https</a></li><li class="l2"><a href="#开放-gitlab-的-https-支持">开放 gitlab 的 https 支持</a></li><li class="l2"><a href="#访问-gitlab-测试">访问 gitlab 测试</a></li><li class="l2"><a href="#开启邮件服务">开启邮件服务</a></li><li class="l2"><a href="#ssh-方式访问">ssh 方式访问</a></li></ol></nav>
+<script src="/theme/toc.js" defer></script>
+<section class="aside-block">
+  <h2>本文</h2>
+  <dl class="facts">
+    <div><dt>字数</dt><dd>1,395 字</dd></div>
     
-    $this.append(html)
-
-    $('.hoverqrcode').hide()
-
-    var myWidth = 0
-    function updatehoverqrcode() {
-      if (typeof window.innerWidth == 'number') {
-        myWidth = window.innerWidth
-      } else if (
-        document.documentElement &&
-        document.documentElement.clientWidth
-      ) {
-        myWidth = document.documentElement.clientWidth
-      }
-      var qrsize = myWidth > 1024 ? 200 : 100
-      var options = {
-        render: 'image',
-        size: qrsize,
-        fill: '#2ca6cb',
-        text: url,
-        radius: 0.5,
-        quiet: 1,
-      }
-      var p = $('.article-share-qrcode').position()
-      $('.hoverqrcode')
-        .empty()
-        .css('width', qrsize)
-        .css('height', qrsize)
-        .css('left', p.left - qrsize / 2 + 20)
-        .css('top', p.top - qrsize - 10)
-        .qrcode(options)
-    }
-    $(window).resize(function () {
-      $('.hoverqrcode').hide()
-    })
-    $('.article-share-qrcode').click(function () {
-      updatehoverqrcode()
-      $('.hoverqrcode').toggle()
-    })
-    $('.article-share-qrcode').hover(
-      function () {},
-      function () {
-        $('.hoverqrcode').hide()
-      }
-    )
-  })
-</script>
- 
- 
-
-  
-<link
-  rel="stylesheet"
-  href="/fancybox/jquery.fancybox.css"
-  media="screen"
-  type="text/css"
-/>
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-  $(document).ready(function () {
-    $('.article-content').each(function (i) {
-      $(this)
-        .find('img')
-        .each(function () {
-          if ($(this).parent().hasClass('fancybox')) return
-          var alt = this.alt
-          if (alt) $(this).after('<span class="caption">' + alt + '</span>')
-          $(this).wrap(
-            '<a href="' +
-              this.src +
-              '" title="' +
-              alt +
-              '" class="fancybox"></a>'
-          )
-        })
-      $(this)
-        .find('.fancybox')
-        .each(function () {
-          $(this).attr('rel', 'article' + i)
-        })
-    })
-    if ($.fancybox) {
-      $('.fancybox').fancybox()
-    }
-  })
-</script>
-
-
-<!-- Analytics Begin -->
-
- <!-- Google tag (gtag.js) -->
-    <script async
-        src="https://www.googletagmanager.com/gtag/js?id=G-V9SXMWSY9Z">
-    </script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-        gtag('config',
-        'G-V9SXMWSY9Z');
-    </script>
-
-
-
-<!-- Analytics End -->
-
-<!-- Totop Begin -->
-
-	<div id="totop">
-	<a title="返回顶部"><img src="/img/scrollup.svg"/></a>
-	</div>
-	<script src="/js/totop.js"></script>
-
-<!-- Totop End -->
-
-<!-- MathJax Begin -->
-<!-- mathjax config similar to math.stackexchange -->
-
-
-<!-- MathJax End -->
-
-<!-- Tiny_search Begin -->
-
-<!-- Tiny_search End -->
-
-  </body>
+  </dl>
+  <div class="chips"><a href="/tags/docker/">#docker</a></div>
+</section>
+<section class="aside-block">
+  <h2>同主题</h2>
+  <ul class="related"><li><a href="/2016/01/18/gitlab-migrate/">docker-gitlab 数据迁移</a><time datetime="2016-01-18T01:22:59.000Z">2016</time></li></ul>
+</section>
+</div></div></aside>
+</div>
+<footer class="pagefoot"><p class="legal">© 2016–2026 XingHua · <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans" rel="license noopener">CC BY-NC-SA 4.0</a> · <a href="/llms.txt">llms.txt</a></p>
+</footer>
+</body>
 </html>

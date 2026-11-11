@@ -1,156 +1,107 @@
-
- <!DOCTYPE HTML>
+<!doctype html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  
-    <title>我的前端笔记之理解 html 篇 | 结绳以渔</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
-    
-    <meta name="author" content="XingHua">
-    
-
-    
-    <meta name="description" content="之前也多多少少接触过一点前端，但每次都会触及一些细枝末节，像 html 的某个元素啦，或是某个 css 的具体意思了，再或者是写一点 javascript 啦之类的内容。但总是感觉对前端缺乏一种比较顶层的认识。 虽然偶尔也会听说一些关于网页三剑客的比喻。类似 html 是网页的骨骼，负责网页的骨架部分；css 是网页的皮肤，负责网页的外观部分；javascript 则是网页的肌肉，给网页上的交互提">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>我的前端笔记之理解 html 篇 | 结绳以渔</title>
+<meta name="description" content="之前也多多少少接触过一点前端，但每次都会触及一些细枝末节，像 html 的某个元素啦，或是某个 css 的具体意思了，再或者是写一点 javascript 啦之类的内容。但总是感觉对前端缺乏一种比较顶层的认识。 虽然偶尔也会听说一些关于网页">
+<meta name="theme-color" content="#000000">
 <meta property="og:type" content="article">
 <meta property="og:title" content="我的前端笔记之理解 html 篇">
-<meta property="og:url" content="https://xinghua.space/2016/01/09/my-front-end-introduction/index.html">
+<meta property="og:url" content="https://xinghua.space/2016/01/09/my-front-end-introduction/">
 <meta property="og:site_name" content="结绳以渔">
-<meta property="og:description" content="之前也多多少少接触过一点前端，但每次都会触及一些细枝末节，像 html 的某个元素啦，或是某个 css 的具体意思了，再或者是写一点 javascript 啦之类的内容。但总是感觉对前端缺乏一种比较顶层的认识。 虽然偶尔也会听说一些关于网页三剑客的比喻。类似 html 是网页的骨骼，负责网页的骨架部分；css 是网页的皮肤，负责网页的外观部分；javascript 则是网页的肌肉，给网页上的交互提">
-<meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://www.w3school.com.cn/i/ct_htmltree.gif">
-<meta property="article:published_time" content="2016-01-09T13:03:40.000Z">
-<meta property="article:modified_time" content="2024-03-02T07:13:05.767Z">
-<meta property="article:author" content="XingHua">
-<meta property="article:tag" content="投资，计算机，科学哲学，技术哲学">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://www.w3school.com.cn/i/ct_htmltree.gif">
-<meta name="twitter:creator" content="@starstarding">
-
-    
-    <link rel="alternative" href="/atom.xml" title="结绳以渔" type="application/atom+xml">
-    
-    
-    <link rel="icon" href="/img/favicon_red_only_yao.ico">
-    
-    
-    <link rel="apple-touch-icon" href="/img/apple_icon_yao.png">
-    <link rel="apple-touch-icon-precomposed" href="/img/apple_icon_yao.png">
-    
-    
-<link rel="stylesheet" href="/css/style.css">
-
-<meta name="generator" content="Hexo 7.1.1"></head>
-
-  <body>
-    <header>
-      
-<div class="header-container">
-	<div class="logo-wrapper">
-		
-			<div id="imglogo">
-				<a href="/"><img src="/img/logo_red_yao.svg" alt="结绳以渔" title="结绳以渔"/></a>
-			</div>
-			
-			<div id="textlogo">
-				<h1 class="site-name"><a href="/" title="结绳以渔">结绳以渔</a></h1>
-				<h2 class="blog-motto">临渊羡鱼，不如退而结网</h2>
-			</div>
-	</div>
-	<div class="navbar">
-		<a class="navbutton navmobile" href="#" title="菜单"></a>
-	</div>
-	<nav class="animated">
-		<ul class="nav-list">
-			
-				<li><a href="/">主页</a></li>
-			
-				<li><a href="/archives">时间线</a></li>
-			
-				<li><a href="/about">关于我</a></li>
-			
-			<li>
-			
-			<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
-				<label>Search</label>
-				<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
-				<input type="hidden" name="q" value="site:xinghua.space">
-			</form>
-			
-			</li>
-		</ul>
-	</nav>			
-</div>
-    </header>
-    <div id="container">
-      <div id="main" class="post" itemscope itemprop="blogPost">
-  
-	<article itemprop="articleBody"> 
-		<div class="article-header">
-  <h1 itemprop="name">我的前端笔记之理解 html 篇</h1>
-  <div class="article-info-meta">
-    <p class="article-author">
-      <a
-        href="/about"
-        title="XingHua"
-        target="_blank"
-        itemprop="author"
-        >@XingHua</a
-      >
-    </p>
-
-    <p class="article-time">
-      <time datetime="2016-01-09T13:03:40.000Z" itemprop="datePublished">
-        于 2016-01-09
-      </time>
-    </p>
+<link rel="canonical" href="https://xinghua.space/2016/01/09/my-front-end-introduction/">
+<link rel="alternate" type="application/atom+xml" title="结绳以渔" href="/atom.xml">
+<link rel="icon" href="/img/favicon_red_only_yao.ico">
+<link rel="apple-touch-icon" href="/img/apple_icon_yao.png">
+<link rel="stylesheet" href="/theme/tokens.css">
+<link rel="stylesheet" href="/theme/site.css">
+<script src="/theme/overlay-scroll.js" defer></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-V9SXMWSY9Z"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-V9SXMWSY9Z');</script>
+</head>
+<body>
+<header class="appbar">
+  <div class="appbar-in">
+    <a class="brand" href="/"><img src="/img/logo_red_yao.svg" alt=""><span><b>结绳以渔</b><small>临渊羡鱼，不如退而结网</small></span></a>
+    <nav>
+      <a href="/">主页</a>
+      <a href="/works/">作品</a>
+      <a href="/about/">关于我</a>
+    </nav>
   </div>
-</div>
-
-	<div class="article-content">
-		
-		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目录</strong>
-		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8E%E7%BD%91%E9%A1%B5%E8%AF%B4%E8%B5%B7"><span class="toc-number">1.</span> <span class="toc-text">从网页说起</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E9%A1%B5%E6%98%AF%E7%8E%B0%E5%AE%9E%E7%94%9F%E6%B4%BB%E4%B8%AD%E5%90%84%E7%A7%8D%E4%BF%A1%E6%81%AF%E8%BD%BD%E4%BD%93%E7%9A%84%E7%BD%91%E7%BB%9C%E8%81%9A%E5%90%88%E7%89%88"><span class="toc-number">1.1.</span> <span class="toc-text">网页是现实生活中各种信息载体的网络聚合版</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%BA%E7%B1%BB%E5%9C%A8%E5%85%B3%E6%B3%A8%E7%BD%91%E9%A1%B5%E6%97%B6%EF%BC%8C%E4%BA%BA%E7%B1%BB%E5%9C%A8%E5%85%B3%E6%B3%A8%E4%BB%80%E4%B9%88"><span class="toc-number">1.2.</span> <span class="toc-text">人类在关注网页时，人类在关注什么</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#html%E2%80%94%E2%80%94%E5%B8%A6%E8%AF%AD%E4%B9%89%E7%9A%84%E6%96%87%E6%A1%A3%E6%B5%81"><span class="toc-number">2.</span> <span class="toc-text">html——带语义的文档流</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E9%A1%B5%E7%9A%84%E3%80%8C%E4%B8%A4%E7%A7%8D%E8%AF%AD%E4%B9%89%E3%80%8D"><span class="toc-number">2.1.</span> <span class="toc-text">网页的「两种语义」</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E7%AC%AC%E4%BA%8C%E7%A7%8D%E8%AF%AD%E4%B9%89%E6%98%AF%E9%87%8D%E8%A6%81%E7%9A%84"><span class="toc-number">2.2.</span> <span class="toc-text">为什么第二种语义是重要的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A5-html-%E7%9A%84%E8%AF%AD%E4%B9%89%E6%9D%A5%E7%90%86%E8%A7%A3%E7%BD%91%E9%A1%B5"><span class="toc-number">2.3.</span> <span class="toc-text">以 html 的语义来理解网页</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E6%A1%A3%E6%B5%81"><span class="toc-number">3.</span> <span class="toc-text">文档流</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DOM"><span class="toc-number">4.</span> <span class="toc-text">DOM</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-Document-Object-Model"><span class="toc-number">4.1.</span> <span class="toc-text">什么是 Document Object Model?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Why-the-Document-Object-Model"><span class="toc-number">4.2.</span> <span class="toc-text">Why the Document Object Model?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8A%E9%9D%A2%E4%B8%A4%E6%AE%B5%E5%9C%A8%E8%AF%B4%E5%95%A5%EF%BC%9F"><span class="toc-number">4.3.</span> <span class="toc-text">上面两段在说啥？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">5.</span> <span class="toc-text">小结</span></a></li></ol>
-		
-		</div>
-		
-		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>之前也多多少少接触过一点前端，但每次都会触及一些细枝末节，像 html 的某个元素啦，或是某个 css 的具体意思了，再或者是写一点 javascript 啦之类的内容。但总是感觉对前端缺乏一种比较顶层的认识。</p>
+</header>
+<div class="frame cols">
+  <main>
+<article class="paper">
+  <header class="post-head">
+    <h1>我的前端笔记之理解 html 篇</h1>
+    <div class="meta">
+      <span>@XingHua</span>
+      <time datetime="2016-01-09T13:03:40.000Z">2016 年 1 月 9 日</time>
+      <span>约 11 分钟</span>
+    </div>
+  </header>
+  <div class="prose">
+<p>之前也多多少少接触过一点前端，但每次都会触及一些细枝末节，像 html 的某个元素啦，或是某个 css 的具体意思了，再或者是写一点 javascript 啦之类的内容。但总是感觉对前端缺乏一种比较顶层的认识。</p>
 <p>虽然偶尔也会听说一些关于网页三剑客的比喻。类似 html 是网页的骨骼，负责网页的骨架部分；css 是网页的皮肤，负责网页的外观部分；javascript 则是网页的肌肉，给网页上的交互提供动力。不过这种说法似乎又太过于宽泛了，难以让人形成具体的认识。</p>
 <p>所以本文试着整理一种介于上述比喻，以及底层细节之间的一些内容。通过分别叙述 html，css，javascript 的核心角色，试着能不能找到那种高屋建瓴的感觉。</p>
 <p>首先辨析一下前端两个概念：「排版」和「布局」</p>
-<p>参考知乎的两个回答：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/38795148/answer/78177006">排版和布局是两个不同的东西</a>和<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/19588854/answer/13243044">布局和排版是有差异的</a></p>
+<p>参考知乎的两个回答：<a href="https://www.zhihu.com/question/38795148/answer/78177006" rel="noopener">排版和布局是两个不同的东西</a>和<a href="https://www.zhihu.com/question/19588854/answer/13243044" rel="noopener">布局和排版是有差异的</a></p>
 <p>「布局」指的是宏观 GUI 的划分，比如你有多个大块的东西，想要按照指定方式排布。</p>
 <p>「排版」指的是，比如你有一些段落，段落中有不同的字体，不同字号，按照不同基线对齐、折行、断词，并且合理处理溢出的部分。</p>
-<h2 id="从网页说起"><a href="#从网页说起" class="headerlink" title="从网页说起"></a>从网页说起</h2><h3 id="网页是现实生活中各种信息载体的网络聚合版"><a href="#网页是现实生活中各种信息载体的网络聚合版" class="headerlink" title="网页是现实生活中各种信息载体的网络聚合版"></a>网页是现实生活中各种信息载体的网络聚合版</h3><p>网页，是前端最直接的展示部分。它的目的在于「展示信息」，其他的一切活动都是为展示信息服务的。网页和其他的展示信息的载体，并没有什么本质的差别。想象一下我们日常生活中常见的信息载体：一个 word 文档，一份 PDF，一份调查问卷，一份财务报表等等。而网页就是这些信息载体的网络聚合版本。</p>
-<h3 id="人类在关注网页时，人类在关注什么"><a href="#人类在关注网页时，人类在关注什么" class="headerlink" title="人类在关注网页时，人类在关注什么"></a>人类在关注网页时，人类在关注什么</h3><p>就像我们对待生活中的那些信息载体以及其所附带的信息那样，我们也会以类似的态度对待网页：首先关注的是文档本身展示出的内容，如果这些内容展示的格式非常漂亮，那可能会让我们阅读时更愉快，也更愿意去阅读更多的内容，另外，如果这些信息载体要是再多一些互动就更容易吸引人了。</p>
+<h2 id="从网页说起">从网页说起</h2>
+<h3 id="网页是现实生活中各种信息载体的网络聚合版">网页是现实生活中各种信息载体的网络聚合版</h3>
+<p>网页，是前端最直接的展示部分。它的目的在于「展示信息」，其他的一切活动都是为展示信息服务的。网页和其他的展示信息的载体，并没有什么本质的差别。想象一下我们日常生活中常见的信息载体：一个 word 文档，一份 PDF，一份调查问卷，一份财务报表等等。而网页就是这些信息载体的网络聚合版本。</p>
+<h3 id="人类在关注网页时人类在关注什么">人类在关注网页时，人类在关注什么</h3>
+<p>就像我们对待生活中的那些信息载体以及其所附带的信息那样，我们也会以类似的态度对待网页：首先关注的是文档本身展示出的内容，如果这些内容展示的格式非常漂亮，那可能会让我们阅读时更愉快，也更愿意去阅读更多的内容，另外，如果这些信息载体要是再多一些互动就更容易吸引人了。</p>
 <p>也就是说，人类在关注网页时，仍然是：内容-&gt;样式，交互 的顺序，当然在网页越来越丰富多彩的今天，样式和交互也越来越被看重，甚至已经和内容一样重要的程度了。</p>
 <p>而内容，对应着 html；样式和交互，则由 css 和 javascript 共同决定</p>
-<h2 id="html——带语义的文档流"><a href="#html——带语义的文档流" class="headerlink" title="html——带语义的文档流"></a>html——带语义的文档流</h2><h3 id="网页的「两种语义」"><a href="#网页的「两种语义」" class="headerlink" title="网页的「两种语义」"></a>网页的「两种语义」</h3><p>当然网页作为信息载体和日常生活中的实体还是有区别的。虽然网页上的信息最终受众是人类，但它要通过浏览器，搜索引擎，或是一些其他能够处理网页的程序来实现这一功能。这也就形成了网页的两种语义：</p>
-<p>第一种语义是最终展示出来的语义，由人类来理解，也就是平时理解的语义。<br>第二种语义是由浏览器，搜索引擎等机器程序可理解，属于「机器可读的语义」<br>最终呈现出的语义，是由人类的知识结构来决定的，人类会将页面上不同的内容，理解成为「标题」，「内容」， 「脚注」， 「导航」等具有特定语义的元素。也正是因为这个原因，有些 html 元素，生来就带有一定的样式，比如 h1~h6 这些标题，字号会比较大，同时也会加粗。这是符合人类的常识的，也与最终要展示的语义贴合，因此这样的设定会非常方便。</p>
+<h2 id="html带语义的文档流">html——带语义的文档流</h2>
+<h3 id="网页的两种语义">网页的「两种语义」</h3>
+<p>当然网页作为信息载体和日常生活中的实体还是有区别的。虽然网页上的信息最终受众是人类，但它要通过浏览器，搜索引擎，或是一些其他能够处理网页的程序来实现这一功能。这也就形成了网页的两种语义：</p>
+<p>第一种语义是最终展示出来的语义，由人类来理解，也就是平时理解的语义。<br>
+第二种语义是由浏览器，搜索引擎等机器程序可理解，属于「机器可读的语义」<br>
+最终呈现出的语义，是由人类的知识结构来决定的，人类会将页面上不同的内容，理解成为「标题」，「内容」， 「脚注」， 「导航」等具有特定语义的元素。也正是因为这个原因，有些 html 元素，生来就带有一定的样式，比如 h1~h6 这些标题，字号会比较大，同时也会加粗。这是符合人类的常识的，也与最终要展示的语义贴合，因此这样的设定会非常方便。</p>
 <p>而第二种语义，也就是机器可读的语义，从上面的意义上说，是为第一种语义服务的。浏览器，搜索引擎等程序会识别 html 代码中的语义元素，然后加上样式等最终展示出来。语义化越强的 html，越方便于机器去理解。在软件领域，语义化往往是建立在合理的「结构化」之上的，所谓「结构化」指的就是不同语义部分的内容，采用不同的结构加以区分，而 html 中的结构化，其实就是使用各类 html 标签完成的。</p>
 <p>让第一种语义更友好的展示，是网页的整体目标。这需要设计师，信息架构师，程序员的通力合作。</p>
 <p>让第二种语义更好的服务于第一种语义，是程序员的本质工作。</p>
-<h3 id="为什么第二种语义是重要的"><a href="#为什么第二种语义是重要的" class="headerlink" title="为什么第二种语义是重要的"></a>为什么第二种语义是重要的</h3><p>有一个非常合适的例子可以说明第二种语义的重要性。不知道你在使用智能手机的时候有没有遇到过这样的情况：</p>
+<h3 id="为什么第二种语义是重要的">为什么第二种语义是重要的</h3>
+<p>有一个非常合适的例子可以说明第二种语义的重要性。不知道你在使用智能手机的时候有没有遇到过这样的情况：</p>
 <p>有时候需要在某个网站上输入东西时，会弹出输入法。但是不同的输入框，弹出的输入法的界面又有所不同，当你输入邮箱时，会弹出带@符号的键盘，当你需要输入密码时，弹出的是全键盘等等。而且更奇怪的时，这个功能有时候灵，有时候不灵。这个功能好用的时候，你会感觉输入内容时非常顺畅，不灵时，你就要手动切换输入法的不同的界面，找到你需要的符号。感觉就非常不爽。</p>
 <p>这背后就是第二种语义在起作用：在 html 中，输入框有很多不同的类型，有的是 email，有的是 password，有的是 text。如果一个网站很好的对这些语义做了区分，并且应用在了他们的 html 中。那么上述的输入法弹窗表现的就会很智能。因为机器可以根据 html 中不同的语义来选择弹出什么样的界面。如果是 emai，就弹出带@符号的界面，如果是密码，就弹出全键盘等等。但是如果语义化做的不好的网站，就做不到这一点，只会统一弹出通用界面，需要人类去判断，切换。</p>
 <p>这个例子是要说明，在浏览器等软件越来越智能化的今天，html 的语义化也变得越来越重要。</p>
 <p>上面也提到，浏览器一般会给一些特定的 html 元素以特定的样式，但是这只是因为这样做比较符合人类尝试，能够提供便利性。千万不要因为想要某个样式去使用元素，而是应该给要标记的内容选择最合适语义的元素。至于样式，则应该交由 css 去处理。『html 只关注语义，不关注布局，也不关注样式或交互』，这样的总结，也是出于这个原因。</p>
-<h3 id="以-html-的语义来理解网页"><a href="#以-html-的语义来理解网页" class="headerlink" title="以 html 的语义来理解网页"></a>以 html 的语义来理解网页</h3><p>上面说完语义的重要性，接着来看如何通过理解这些第二类语义元素来理解网页。这部分内容涉及的元素比较多，这里只是粗略说明一下。</p>
+<h3 id="以-html-的语义来理解网页">以 html 的语义来理解网页</h3>
+<p>上面说完语义的重要性，接着来看如何通过理解这些第二类语义元素来理解网页。这部分内容涉及的元素比较多，这里只是粗略说明一下。</p>
 <p>首先网页有不少展示用的语义化元素用来展示信息。</p>
 <p>像最基本的</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--头部--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">header</span>&gt;</span><span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--主体--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">main</span>&gt;</span><span class="tag">&lt;/<span class="name">main</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--尾部--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">footer</span>&gt;</span><span class="tag">&lt;/<span class="name">footer</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--段落--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--章节--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">section</span>&gt;</span><span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--独立片段--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">artical</span>&gt;</span><span class="tag">&lt;/<span class="name">artical</span>&gt;</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-
+<pre><code class="language-html">&lt;!--头部--&gt;
+&lt;header&gt;&lt;/header&gt;
+&lt;!--主体--&gt;
+&lt;main&gt;&lt;/main&gt;
+&lt;!--尾部--&gt;
+&lt;footer&gt;&lt;/footer&gt;
+&lt;!--段落--&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;!--章节--&gt;
+&lt;section&gt;&lt;/section&gt;
+&lt;!--独立片段--&gt;
+&lt;artical&gt;&lt;/artical&gt;
+...</code></pre>
 <p>以及更具体的：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--时间--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">time</span>&gt;</span><span class="tag">&lt;/<span class="name">time</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--地址--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">address</span>&gt;</span><span class="tag">&lt;/<span class="name">address</span>&gt;</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-
+<pre><code class="language-html">&lt;!--时间--&gt;
+&lt;time&gt;&lt;/time&gt;
+&lt;!--地址--&gt;
+&lt;address&gt;&lt;/address&gt;
+...</code></pre>
 <p>这些都是普通的语义化的来展示信息的元素。但是像现实生活那样，信息展示还有其他的方式，有助于人类更好的阅读和理解。比如：</p>
 <ul>
-<li><p>列表<br>它分条分类的列出比较核心的信息，可以让人更快的理解清楚一件事物的各方面重点。html 中</p>
-</li>
-<li><p>嵌入式的元素<br>如图片，所谓一图胜千言。<br>再如音乐，视频等等</p>
-</li>
+<li><p>列表<br>
+它分条分类的列出比较核心的信息，可以让人更快的理解清楚一件事物的各方面重点。html 中</p></li>
+<li><p>嵌入式的元素<br>
+如图片，所谓一图胜千言。<br>
+再如音乐，视频等等</p></li>
 </ul>
 <p>另外，现实生活中，我们常会遇到通过分发纸质的表单，用来收集信息。还有报表，用来清楚的展示分门分类的比较格式化的信息。这在 html 中也有相应的语义元素，分别是：</p>
 <ul>
@@ -159,461 +110,90 @@
 </ul>
 <p>他们的作用也和现实生活中的大同小异，而且 html 中的表单有多种多样的类型，单选框，复选框，输入框（输入框本身也有更细的语义化的类型）。这和现实中的多种多样的调查表单都是相似的。</p>
 <p>另外，html 中还多了一些独特的语义元素。比如：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--链接，可能是最重要的独特元素，它把各个页面通过网络组合了起来--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--其他一些元素，这些元素或描述了网页关系，或是描述网页信息等等--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
+<pre><code class="language-html">&lt;!--链接，可能是最重要的独特元素，它把各个页面通过网络组合了起来--&gt;
+&lt;a&gt;&lt;/a&gt;
+&lt;!--其他一些元素，这些元素或描述了网页关系，或是描述网页信息等等--&gt;
+&lt;link&gt;
+&lt;meta&gt;</code></pre>
 <p>基本的 html 元素，就是上述这些种类，可以看到，这些元素组合起来，即有收集信息的部分，又有展示信息的部分，而且为了更好的展示信息，html 又提供了许多语义化的元素。</p>
 <p>这些元素组合在一起，一起形成了网页的全部语义信息，几乎可以实现和模仿现实中的所有信息载体，某些方面犹有胜之。</p>
-<h2 id="文档流"><a href="#文档流" class="headerlink" title="文档流"></a>文档流</h2><p>除了前面所说的一些元素会根据常识带有一些样式外（如果说这算排版样式的话），html 还有一种简单的默认的布局方式（姑且这叫布局样式）：也就是从上到下，从左至右依次排列元素。用更形象的说法是，这叫 html 文档流。</p>
+<h2 id="文档流">文档流</h2>
+<p>除了前面所说的一些元素会根据常识带有一些样式外（如果说这算排版样式的话），html 还有一种简单的默认的布局方式（姑且这叫布局样式）：也就是从上到下，从左至右依次排列元素。用更形象的说法是，这叫 html 文档流。</p>
 <p>这种默认的文档流，给 html 提供了符合常识的，也是最基础的布局，不至于说所有元素都乱糟糟的堆在一起。但还是强调那句话，虽然浏览器给 html 提供了一些默认的样式和布局，但这都是基于人类直觉和常识的：『html 只关注语义，不关注布局，也不关注样式或交互』</p>
-<h2 id="DOM"><a href="#DOM" class="headerlink" title="DOM"></a>DOM</h2><p>DOM 全称为 Document Object Module，也即文档对象模型。来看 <a target="_blank" rel="noopener" href="https://dom.spec.whatwg.org/">W3.org 上的解释</a></p>
-<h3 id="什么是-Document-Object-Model"><a href="#什么是-Document-Object-Model" class="headerlink" title="什么是 Document Object Model?"></a>什么是 Document Object Model?</h3><blockquote>
-<p>The Document Object Model is a platform- and language-neutral interface that will allow programs and scripts to dynamically access and update the content, structure and style of documents. The document can be further processed and the results of that processing can be incorporated back into the presented page.<br>文档对象模型是「平台和语言无关的接口」，允许程序或脚本来动态地获得和更新文档的内容，结构以及样式等。这样，文档就可以以后再被处理（further processed），而且处理的结果反过来合并入目前的页面上。</p>
+<h2 id="dom">DOM</h2>
+<p>DOM 全称为 Document Object Module，也即文档对象模型。来看 <a href="https://dom.spec.whatwg.org/" rel="noopener">W3.org 上的解释</a></p>
+<h3 id="什么是-document-object-model">什么是 Document Object Model?</h3>
+<blockquote>
+<p>The Document Object Model is a platform- and language-neutral interface that will allow programs and scripts to dynamically access and update the content, structure and style of documents. The document can be further processed and the results of that processing can be incorporated back into the presented page.<br>
+文档对象模型是「平台和语言无关的接口」，允许程序或脚本来动态地获得和更新文档的内容，结构以及样式等。这样，文档就可以以后再被处理（further processed），而且处理的结果反过来合并入目前的页面上。</p>
 </blockquote>
-<h3 id="Why-the-Document-Object-Model"><a href="#Why-the-Document-Object-Model" class="headerlink" title="Why the Document Object Model?"></a>Why the Document Object Model?</h3><blockquote>
-<p>“Dynamic HTML” is a term used by some vendors to describe the combination of HTML, style sheets and scripts that allows documents to be animated. The W3C has received several submissions from members companies on the way in which the object model of HTML documents should be exposed to scripts. These submissions do not propose any new HTML tags or style sheet technology. The W3C DOM Activity is working hard to make sure interoperable and scripting-language neutral solutions are agreed upon.<br>“动态 html”是一些厂商描述 HTML，style sheet（样式表）和 scripts（脚本）结合起来实现文档动态化的说法。W3C 已经收到了来自一些团体组织的 submission，描述了 HTML 文档对象模型应该以何种方式暴露给 scripts。这些 submission 不建议任何新的 HTML 标签和样式表技术。W3C 组织的 DOM 运动累成狗，就是为了尽量协调多方需求以及形成平台和语言中立的解决方案。</p>
+<h3 id="why-the-document-object-model">Why the Document Object Model?</h3>
+<blockquote>
+<p>“Dynamic HTML” is a term used by some vendors to describe the combination of HTML, style sheets and scripts that allows documents to be animated. The W3C has received several submissions from members companies on the way in which the object model of HTML documents should be exposed to scripts. These submissions do not propose any new HTML tags or style sheet technology. The W3C DOM Activity is working hard to make sure interoperable and scripting-language neutral solutions are agreed upon.<br>
+“动态 html”是一些厂商描述 HTML，style sheet（样式表）和 scripts（脚本）结合起来实现文档动态化的说法。W3C 已经收到了来自一些团体组织的 submission，描述了 HTML 文档对象模型应该以何种方式暴露给 scripts。这些 submission 不建议任何新的 HTML 标签和样式表技术。W3C 组织的 DOM 运动累成狗，就是为了尽量协调多方需求以及形成平台和语言中立的解决方案。</p>
 </blockquote>
-<h3 id="上面两段在说啥？"><a href="#上面两段在说啥？" class="headerlink" title="上面两段在说啥？"></a>上面两段在说啥？</h3><p>也就是说，DOM 呢，是文档对象模型，它不是属于某个具体语言的标准库啥的，它是一种与语言和平台无关的模型。其他语言想要操作 HTML 文档（其实不仅是 HTML，还有 XML 等一些结构化语言）呢，就必须按照这个对象模型设计自己的操作方式。</p>
+<h3 id="上面两段在说啥">上面两段在说啥？</h3>
+<p>也就是说，DOM 呢，是文档对象模型，它不是属于某个具体语言的标准库啥的，它是一种与语言和平台无关的模型。其他语言想要操作 HTML 文档（其实不仅是 HTML，还有 XML 等一些结构化语言）呢，就必须按照这个对象模型设计自己的操作方式。</p>
 <p>推出 DOM 这个东西的原因就是原来有一批人在撕逼，你有你的想法，我有我的思路。W3C 为了一统武林，就提出了 DOM，并且不断的规范它，这样对大家都好。</p>
 <p>DOM 本身是挺复杂的东西，但是我们平常所用的 DOM，只用了解到它的大致模样，以及知道如何操作就算入门了。我们平常说的 DOM，其实就是一种 HTML 的树形结构：</p>
-<p><img src="https://www.w3school.com.cn/i/ct_htmltree.gif" alt="DOM tree"></p>
+<p><img src="ct_htmltree.gif" alt="DOM tree" loading="lazy"></p>
 <p>通过上图中的树形结构，可以使用其他实现了 DOM 操作的语言，如 javascript 等，按照一定的规则来操作这些节点。而这棵 DOM 树本身也定义了一些继承的概念，用于更方便的控制其中的节点。</p>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>以上基本上就是 html 核心的全部了，用几个词来总结一下就是：语义，基于常识的元素默认样式，文档流，以及 DOM。</p>
-  
-	</div>
-		<footer class="article-footer">
-  <div class="article-catetags">
-  
-  <div class="article-categories">
-    <span></span>
-    <a class="article-category-link" href="/categories/%E4%BD%9C%E4%B8%BA%E5%B7%A5%E7%A8%8B%E5%B8%88/">作为工程师</a>
+<h2 id="小结">小结</h2>
+<p>以上基本上就是 html 核心的全部了，用几个词来总结一下就是：语义，基于常识的元素默认样式，文档流，以及 DOM。</p>
   </div>
-  
-  
+  <section class="post-related"><h2>同主题</h2><ul class="related"><li><a href="/2024/03/30/a-short-web-history/">Web 小史：关键脉络</a><time datetime="2024-03-30T06:38:56.000Z">2024</time></li><li><a href="/2016/10/31/material-design-introduct-md/">material design 简介及背后的理论</a><time datetime="2016-10-31T09:04:37.000Z">2016</time></li><li><a href="/2016/08/29/why-users-can-not-see-collect-function-in-neihan/">前端工程师的形而上学 (1)—— 一个例子</a><time datetime="2016-08-29T08:44:10.000Z">2016</time></li></ul></section>
+  <div class="post-author"><div class="author-card">
+  <div class="author">
+    <img src="/img/author.png" alt="XingHua">
+    <p>人存于世，因缘际会<br>我是兴华，很高兴见到你</p>
+  </div>
+  <nav class="social"><a href="https://github.com/starding" title="GitHub" aria-label="GitHub" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+</a><a href="https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70" title="即刻" aria-label="即刻" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M14.6 2h4.2v13.4c0 4.1-2.6 6.6-6.4 6.6-1.9 0-3.6-.6-5-1.7l2.2-3.3c.8.6 1.7.9 2.6.9 1.6 0 2.4-1 2.4-3V2z"/><path fill="none" stroke="currentColor" stroke-width="1.2" d="M16.4 3.6v12.6c0 3.6-2.3 5.9-5.6 6.1"/></svg>
+</a><a href="https://twitter.com/starstarding" title="Twitter" aria-label="Twitter" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M23.6 4.6c-.9.4-1.8.6-2.8.8 1-.6 1.8-1.6 2.1-2.7-.9.6-2 1-3.1 1.2a4.9 4.9 0 00-8.4 4.5C7.4 8.2 3.8 6.2 1.4 3.3a4.9 4.9 0 001.5 6.6c-.8 0-1.6-.3-2.2-.6 0 2.4 1.7 4.4 3.9 4.8-.7.2-1.5.2-2.2.1.6 2 2.4 3.4 4.6 3.4A9.9 9.9 0 010 19.6 13.9 13.9 0 007.5 21.8c9.1 0 14-7.5 14-14v-.6c1-.7 1.8-1.6 2.1-2.6z"/></svg>
+</a><a href="mailto:starstarding@gmail.com" title="邮件" aria-label="邮件"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 4h18a2 2 0 012 2v12a2 2 0 01-2 2H3a2 2 0 01-2-2V6a2 2 0 012-2zm0 2v.5l9 6 9-6V6H3z"/></svg>
+</a><a href="/atom.xml" title="订阅" aria-label="订阅"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="19" r="3" fill="currentColor"/><path fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" d="M3.6 10.6a9.8 9.8 0 019.8 9.8M3.6 3.6a16.8 16.8 0 0116.8 16.8"/></svg>
+</a></nav>
 </div>
-
- 
-  
-    <div class="article-share" id="share">
-      <div
-        data-url="https://xinghua.space/2016/01/09/my-front-end-introduction/"
-        data-title="我的前端笔记之理解 html 篇 | 结绳以渔"
-        data-tsina=""
-        class="share"
-      ></div>
-    </div>
-     
-  
-</footer>
-   	       
-	</article>
-	
-<nav class="article-nav">
- 
- <div class="prev" >
-    <a href="/2016/01/10/open-questions/" title="Open Questions">
-      <span>Open Questions</span>
-    </a>
-  </div>
-
-  
-  <div class="next">
-    <a href="/2016/01/07/three-body-walking-dead-Darwin/"  title="《三体》，《行尸走肉》与社会达尔文主义">
-      <span>《三体》，《行尸走肉》与社会达尔文主义</span>
-    </a>
-  </div>
-  
-</nav>
-
-	
-<section id="comments" class="comment">
-  <script src="https://giscus.app/client.js"
-          data-repo="starding/xinghua_blog_giscus"
-          data-repo-id="R_kgDOLagm8g"
-          data-category="Announcements"
-          data-category-id="DIC_kwDOLagm8s4CdqOC"
-          data-mapping="og:title"
-          data-strict="1"
-          data-reactions-enabled="1"
-          data-emit-metadata="1"
-          data-input-position="top"
-          data-theme="noborder_light"
-          data-lang="zh-CN"
-          data-loading="lazy"
-          crossorigin="anonymous"
-          async>
-  </script>
+</div>
+  <nav class="pager">
+    <span><a href="/2016/01/10/open-questions/"><small>较新</small>Open Questions</a></span>
+    <span class="next"><a href="/2016/01/07/three-body-walking-dead-Darwin/"><small>较早</small>《三体》，《行尸走肉》与社会达尔文主义</a></span>
+  </nav>
+  <section class="comments">
+<script src="https://giscus.app/client.js" data-repo="starding/xinghua_blog_giscus" data-repo-id="R_kgDOLagm8g" data-category="Announcements" data-category-id="DIC_kwDOLagm8s4CdqOC" data-mapping="og:title" data-strict="1" data-reactions-enabled="1" data-emit-metadata="1" data-input-position="top" data-theme="preferred_color_scheme" data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous" async></script>
 </section>
+</article>
 
-
-
-</div>  
-      
-  <div id="toc" class="toc-aside">
-   <strong class="toc-title">文章目录</strong>
-    
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8E%E7%BD%91%E9%A1%B5%E8%AF%B4%E8%B5%B7"><span class="toc-number">1.</span> <span class="toc-text">从网页说起</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E9%A1%B5%E6%98%AF%E7%8E%B0%E5%AE%9E%E7%94%9F%E6%B4%BB%E4%B8%AD%E5%90%84%E7%A7%8D%E4%BF%A1%E6%81%AF%E8%BD%BD%E4%BD%93%E7%9A%84%E7%BD%91%E7%BB%9C%E8%81%9A%E5%90%88%E7%89%88"><span class="toc-number">1.1.</span> <span class="toc-text">网页是现实生活中各种信息载体的网络聚合版</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%BA%E7%B1%BB%E5%9C%A8%E5%85%B3%E6%B3%A8%E7%BD%91%E9%A1%B5%E6%97%B6%EF%BC%8C%E4%BA%BA%E7%B1%BB%E5%9C%A8%E5%85%B3%E6%B3%A8%E4%BB%80%E4%B9%88"><span class="toc-number">1.2.</span> <span class="toc-text">人类在关注网页时，人类在关注什么</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#html%E2%80%94%E2%80%94%E5%B8%A6%E8%AF%AD%E4%B9%89%E7%9A%84%E6%96%87%E6%A1%A3%E6%B5%81"><span class="toc-number">2.</span> <span class="toc-text">html——带语义的文档流</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E9%A1%B5%E7%9A%84%E3%80%8C%E4%B8%A4%E7%A7%8D%E8%AF%AD%E4%B9%89%E3%80%8D"><span class="toc-number">2.1.</span> <span class="toc-text">网页的「两种语义」</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E7%AC%AC%E4%BA%8C%E7%A7%8D%E8%AF%AD%E4%B9%89%E6%98%AF%E9%87%8D%E8%A6%81%E7%9A%84"><span class="toc-number">2.2.</span> <span class="toc-text">为什么第二种语义是重要的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A5-html-%E7%9A%84%E8%AF%AD%E4%B9%89%E6%9D%A5%E7%90%86%E8%A7%A3%E7%BD%91%E9%A1%B5"><span class="toc-number">2.3.</span> <span class="toc-text">以 html 的语义来理解网页</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E6%A1%A3%E6%B5%81"><span class="toc-number">3.</span> <span class="toc-text">文档流</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DOM"><span class="toc-number">4.</span> <span class="toc-text">DOM</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-Document-Object-Model"><span class="toc-number">4.1.</span> <span class="toc-text">什么是 Document Object Model?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Why-the-Document-Object-Model"><span class="toc-number">4.2.</span> <span class="toc-text">Why the Document Object Model?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8A%E9%9D%A2%E4%B8%A4%E6%AE%B5%E5%9C%A8%E8%AF%B4%E5%95%A5%EF%BC%9F"><span class="toc-number">4.3.</span> <span class="toc-text">上面两段在说啥？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">5.</span> <span class="toc-text">小结</span></a></li></ol>
-    
+  </main>
+  <aside class="aside"><div class="author-card">
+  <div class="author">
+    <img src="/img/author.png" alt="XingHua">
+    <p>人存于世，因缘际会<br>我是兴华，很高兴见到你</p>
   </div>
-
-
-<aside id="asidepart">
-
-  
-<div class="categorieslist">
-	<p class="asidetitle">分类</p>
-		<ul>
-		
-		  
-			<li><a href="/categories/作为工程师/" title="作为工程师">作为工程师<sup>16</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/好好生活/" title="好好生活">好好生活<sup>2</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/科哲和科学史/" title="科哲和科学史">科哲和科学史<sup>3</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/随笔/" title="随笔">随笔<sup>7</sup></a></li>
-		  
-		
-		</ul>
+  <nav class="social"><a href="https://github.com/starding" title="GitHub" aria-label="GitHub" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+</a><a href="https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70" title="即刻" aria-label="即刻" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M14.6 2h4.2v13.4c0 4.1-2.6 6.6-6.4 6.6-1.9 0-3.6-.6-5-1.7l2.2-3.3c.8.6 1.7.9 2.6.9 1.6 0 2.4-1 2.4-3V2z"/><path fill="none" stroke="currentColor" stroke-width="1.2" d="M16.4 3.6v12.6c0 3.6-2.3 5.9-5.6 6.1"/></svg>
+</a><a href="https://twitter.com/starstarding" title="Twitter" aria-label="Twitter" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M23.6 4.6c-.9.4-1.8.6-2.8.8 1-.6 1.8-1.6 2.1-2.7-.9.6-2 1-3.1 1.2a4.9 4.9 0 00-8.4 4.5C7.4 8.2 3.8 6.2 1.4 3.3a4.9 4.9 0 001.5 6.6c-.8 0-1.6-.3-2.2-.6 0 2.4 1.7 4.4 3.9 4.8-.7.2-1.5.2-2.2.1.6 2 2.4 3.4 4.6 3.4A9.9 9.9 0 010 19.6 13.9 13.9 0 007.5 21.8c9.1 0 14-7.5 14-14v-.6c1-.7 1.8-1.6 2.1-2.6z"/></svg>
+</a><a href="mailto:starstarding@gmail.com" title="邮件" aria-label="邮件"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 4h18a2 2 0 012 2v12a2 2 0 01-2 2H3a2 2 0 01-2-2V6a2 2 0 012-2zm0 2v.5l9 6 9-6V6H3z"/></svg>
+</a><a href="/atom.xml" title="订阅" aria-label="订阅"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="19" r="3" fill="currentColor"/><path fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" d="M3.6 10.6a9.8 9.8 0 019.8 9.8M3.6 3.6a16.8 16.8 0 0116.8 16.8"/></svg>
+</a></nav>
 </div>
-
-
+<div class="aside-sticky-wrap"><div class="aside-sticky"><nav class="toc"><b>文章目录</b><ol><li class="l2"><a href="#从网页说起">从网页说起</a></li><li class="l3"><a href="#网页是现实生活中各种信息载体的网络聚合版">网页是现实生活中各种信息载体的网络聚合版</a></li><li class="l3"><a href="#人类在关注网页时人类在关注什么">人类在关注网页时，人类在关注什么</a></li><li class="l2"><a href="#html带语义的文档流">html——带语义的文档流</a></li><li class="l3"><a href="#网页的两种语义">网页的「两种语义」</a></li><li class="l3"><a href="#为什么第二种语义是重要的">为什么第二种语义是重要的</a></li><li class="l3"><a href="#以-html-的语义来理解网页">以 html 的语义来理解网页</a></li><li class="l2"><a href="#文档流">文档流</a></li><li class="l2"><a href="#dom">DOM</a></li><li class="l3"><a href="#什么是-document-object-model">什么是 Document Object Model?</a></li><li class="l3"><a href="#why-the-document-object-model">Why the Document Object Model?</a></li><li class="l3"><a href="#上面两段在说啥">上面两段在说啥？</a></li><li class="l2"><a href="#小结">小结</a></li></ol></nav>
+<script src="/theme/toc.js" defer></script>
+<section class="aside-block">
+  <h2>本文</h2>
+  <dl class="facts">
+    <div><dt>字数</dt><dd>4,310 字</dd></div>
+    <div><dt>分类</dt><dd><a href="/categories/作为工程师/">作为工程师</a></dd></div>
+  </dl>
   
-<div class="tagslist">
-	<p class="asidetitle">标签</p>
-		<ul class="clearfix">
-		
-			
-				<li><a href="/tags/docker/" title="docker">docker<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/可积累的/" title="可积累的">可积累的<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/认知方法/" title="认知方法">认知方法<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/gitlab/" title="gitlab">gitlab<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/写作/" title="写作">写作<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Memos/" title="Memos">Memos<sup>1</sup></a></li>
-			
-		
-		</ul>
+</section>
+<section class="aside-block">
+  <h2>同主题</h2>
+  <ul class="related"><li><a href="/2024/03/30/a-short-web-history/">Web 小史：关键脉络</a><time datetime="2024-03-30T06:38:56.000Z">2024</time></li><li><a href="/2016/10/31/material-design-introduct-md/">material design 简介及背后的理论</a><time datetime="2016-10-31T09:04:37.000Z">2016</time></li><li><a href="/2016/08/29/why-users-can-not-see-collect-function-in-neihan/">前端工程师的形而上学 (1)—— 一个例子</a><time datetime="2016-08-29T08:44:10.000Z">2016</time></li></ul>
+</section>
+</div></div></aside>
 </div>
-
-
-  
-  <div class="archiveslist">
-    <p class="asidetitle"><a href="/archives">时间线</a></p>
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">2024 年 04 月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">2024 年 03 月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">2024 年 02 月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">2016 年 10 月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">2016 年 09 月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">2016 年 08 月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016 年 07 月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">2016 年 04 月</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">2016 年 03 月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">2016 年 02 月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">2016 年 01 月</a><span class="archive-list-count">16</span></li></ul>
-  </div>
-
-
-  <div class="linkslist">
-  <p class="asidetitle">对我有影响的链接</p>
-    <ul>
-        
-          <li>
-            
-            	<a href="http://finaltheory.me/" target="_blank" title=" 18~26 岁期间对我影响很大的同学">黄龑</a>
-            
-          </li>
-        
-          <li>
-            
-            	<a href="https://chuan.us" target="_blank" title=" 虽然不认识，但 30 岁之后我从他的言论中学到了很多">硅谷王川</a>
-            
-          </li>
-        
-    </ul>
-</div>
-
-  <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
-</div>
-
-</aside>
-    </div>
-    <footer id="page-footer"><div id="footer-wrapper">
-  <div id="footer">
-    <section class="author-area-container">
-      <section class="author-area">
-        
-        <div class="line">
-          <span></span>
-          <div class="author"></div>
-        </div>
-         
-        
-        <section class="info">
-          <p>
-            人存于世，因缘际会 <br />
-            我是兴华，很高兴见到你
-          </p>
-        </section>
-        
-      </section>
-      <div class="social-font font-icon-family" class="clearfix">
-         
-        <a
-          href="https://github.com/starding"
-          target="_blank"
-          class="icon-github"
-          title="github"
-        ></a>
-          
-        <a
-          href="https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70"
-          target="_blank"
-          class="icon-jike"
-          title="jike"
-        ></a>
-         
-        <a
-          href="https://twitter.com/starstarding"
-          target="_blank"
-          class="icon-twitter"
-          title="twitter"
-        ></a>
-           
-        
-        <a
-          href="mailto:starstarding@gmail.com"
-          target="_blank"
-          class="icon-email"
-          title="Email Me"
-        ></a>
-        
-        
-        <a
-          href="/atom.xml"
-          target="_blank"
-          class="icon-rss"
-          title="RSS Me"
-        ></a>
-        
-
-      </div>
-       
-    </section>
-    <p class="copyright">
-      Powered by
-      <a href="http://hexo.io" target="_blank" title="hexo">Hexo</a>
-      and Theme by
-      <a
-        href="https://github.com/starding/hexo-theme-xman"
-        target="_blank"
-        title="xman"
-        >xman</a>
-      © 2016~2024 
-      <a
-        href="/about"
-        target="_blank"
-        title="XingHua"
-        >XingHua</a
-      >
-      
-    </p>
-  </div>
-</div></footer>
-    <script src="/js/jquery-2.0.3.min.js"></script>
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
-<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
-
-<script type="text/javascript">
-  $(document).ready(function(){
-    $('.navbar').click(function(){
-      $('header nav').toggleClass('shownav');
-    });
-  });
-</script>
-
-<script type="text/javascript">
-  $(document).ready(function () {
-    var ai = $('.article-content>iframe'),
-      ae = $('.article-content>embed'),
-      t = $('#toc'),
-      ta = $('#toc.toc-aside'),
-      o = $('.openaside'),
-      c = $('.closeaside')
-    if (ai.length > 0) {
-      ai.wrap('<div class="video-container" />')
-    }
-    if (ae.length > 0) {
-      ae.wrap('<div class="video-container" />')
-    }
-    c.click(function () {
-      ta.css('display', 'block').addClass('fadeIn')
-    })
-    o.click(function () {
-      ta.css('display', 'none')
-    })
-    $(window).scroll(function () {
-      ta.css('top', Math.max(140, 320 - $(this).scrollTop()))
-    })
-  })
-</script>
- 
-
-<script type="text/javascript">
-  $(document).ready(function () {
-    var $this = $('.share'),
-      url = $this.attr('data-url'),
-      encodedUrl = encodeURIComponent(url),
-      title = $this.attr('data-title'),
-      tsina = $this.attr('data-tsina'),
-      description = $this.attr('description')
-    var html = [
-      '<span title="Share to"></span>',
-      '<div class="hoverqrcode clearfix"></div>',
-      '<a class="overlay" id="qrcode"></a>',
-      '<a href="https://twitter.com/intent/tweet?url=' +
-        encodedUrl +
-        '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
-      '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
-    ].join('')
-    
-    $this.append(html)
-
-    $('.hoverqrcode').hide()
-
-    var myWidth = 0
-    function updatehoverqrcode() {
-      if (typeof window.innerWidth == 'number') {
-        myWidth = window.innerWidth
-      } else if (
-        document.documentElement &&
-        document.documentElement.clientWidth
-      ) {
-        myWidth = document.documentElement.clientWidth
-      }
-      var qrsize = myWidth > 1024 ? 200 : 100
-      var options = {
-        render: 'image',
-        size: qrsize,
-        fill: '#2ca6cb',
-        text: url,
-        radius: 0.5,
-        quiet: 1,
-      }
-      var p = $('.article-share-qrcode').position()
-      $('.hoverqrcode')
-        .empty()
-        .css('width', qrsize)
-        .css('height', qrsize)
-        .css('left', p.left - qrsize / 2 + 20)
-        .css('top', p.top - qrsize - 10)
-        .qrcode(options)
-    }
-    $(window).resize(function () {
-      $('.hoverqrcode').hide()
-    })
-    $('.article-share-qrcode').click(function () {
-      updatehoverqrcode()
-      $('.hoverqrcode').toggle()
-    })
-    $('.article-share-qrcode').hover(
-      function () {},
-      function () {
-        $('.hoverqrcode').hide()
-      }
-    )
-  })
-</script>
- 
- 
-
-  
-<link
-  rel="stylesheet"
-  href="/fancybox/jquery.fancybox.css"
-  media="screen"
-  type="text/css"
-/>
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-  $(document).ready(function () {
-    $('.article-content').each(function (i) {
-      $(this)
-        .find('img')
-        .each(function () {
-          if ($(this).parent().hasClass('fancybox')) return
-          var alt = this.alt
-          if (alt) $(this).after('<span class="caption">' + alt + '</span>')
-          $(this).wrap(
-            '<a href="' +
-              this.src +
-              '" title="' +
-              alt +
-              '" class="fancybox"></a>'
-          )
-        })
-      $(this)
-        .find('.fancybox')
-        .each(function () {
-          $(this).attr('rel', 'article' + i)
-        })
-    })
-    if ($.fancybox) {
-      $('.fancybox').fancybox()
-    }
-  })
-</script>
-
-
-<!-- Analytics Begin -->
-
- <!-- Google tag (gtag.js) -->
-    <script async
-        src="https://www.googletagmanager.com/gtag/js?id=G-V9SXMWSY9Z">
-    </script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-        gtag('config',
-        'G-V9SXMWSY9Z');
-    </script>
-
-
-
-<!-- Analytics End -->
-
-<!-- Totop Begin -->
-
-	<div id="totop">
-	<a title="返回顶部"><img src="/img/scrollup.svg"/></a>
-	</div>
-	<script src="/js/totop.js"></script>
-
-<!-- Totop End -->
-
-<!-- MathJax Begin -->
-<!-- mathjax config similar to math.stackexchange -->
-
-
-<!-- MathJax End -->
-
-<!-- Tiny_search Begin -->
-
-<!-- Tiny_search End -->
-
-  </body>
+<footer class="pagefoot"><p class="legal">© 2016–2026 XingHua · <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans" rel="license noopener">CC BY-NC-SA 4.0</a> · <a href="/llms.txt">llms.txt</a></p>
+</footer>
+</body>
 </html>
