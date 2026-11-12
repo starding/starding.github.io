@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512">
+  <g transform="translate(256 256) scale(0.95) translate(-256 -256)">
+  <title>网页页眉品牌标志</title>
+  <defs>
+    <radialGradient id="overlap-shadow" gradientUnits="userSpaceOnUse" cx="256" cy="37.3" r="102" color-interpolation="sRGB">
+      <stop offset="0" stop-color="#930023"/>
+      <stop offset=".45" stop-color="#9E0026"/>
+      <stop offset=".74" stop-color="#AF002B"/>
+      <stop offset="1" stop-color="#B6002E"/>
+    </radialGradient>
+  </defs>
+  <g fill="none" stroke-width="44" stroke-linecap="round">
+    <path d="M418 224 A227.734021 227.734021 0 0 0 50 78.378807" stroke="url(#overlap-shadow)"/>
+    <path d="M94 224 A227.734021 227.734021 0 0 1 462 78.378807" stroke="#FF473B"/>
+    <g transform="rotate(180 256 256)">
+      <path d="M418 224 A227.734021 227.734021 0 0 0 50 78.378807" stroke="url(#overlap-shadow)"/>
+      <path d="M94 224 A227.734021 227.734021 0 0 1 462 78.378807" stroke="#FF473B"/>
+    </g>
+  </g>
+  </g>
+</svg>
