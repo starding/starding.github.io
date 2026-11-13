@@ -5,12 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>关于圆锥曲线光学性质的有趣解释 (证明与原因) | 结绳以渔</title>
 <meta name="description" content="突然想起很久之前，在其他地方贴过一个关于椭圆光学性质的文章。直到今天想来，这个解释仍然是十分直观和有趣。当时我以为这样一个解释方式是「本质的」，但经同学提醒，用「直观」这个词或许会更准确。 虽然文章说的是椭圆，但是放在更一般的圆锥曲线上基本">
+<meta name="author" content="XingHua">
 <meta name="theme-color" content="#000000">
 <meta property="og:type" content="article">
 <meta property="og:title" content="关于圆锥曲线光学性质的有趣解释 (证明与原因)">
-<meta property="og:url" content="https://xinghua.space/2016/04/04/somethings-about-ellipse/">
+<meta property="og:description" content="突然想起很久之前，在其他地方贴过一个关于椭圆光学性质的文章。直到今天想来，这个解释仍然是十分直观和有趣。当时我以为这样一个解释方式是「本质的」，但经同学提醒，用「直观」这个词或许会更准确。 虽然文章说的是椭圆，但是放在更一般的圆锥曲线上基本">
+<meta property="og:image" content="https://xinghua.space/2016/04/04/somethings-about-ellipse/image.2w7eaer55vo0.webp">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:site_name" content="结绳以渔">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="article:published_time" content="2016-04-04T07:24:12.000Z">
+<meta property="og:url" content="https://xinghua.space/2016/04/04/somethings-about-ellipse/">
 <link rel="canonical" href="https://xinghua.space/2016/04/04/somethings-about-ellipse/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"关于圆锥曲线光学性质的有趣解释 (证明与原因)","description":"突然想起很久之前，在其他地方贴过一个关于椭圆光学性质的文章。直到今天想来，这个解释仍然是十分直观和有趣。当时我以为这样一个解释方式是「本质的」，但经同学提醒，用「直观」这个词或许会更准确。 虽然文章说的是椭圆，但是放在更一般的圆锥曲线上基本","datePublished":"2016-04-04T07:24:12.000Z","inLanguage":"zh-CN","author":{"@type":"Person","name":"XingHua","url":"https://xinghua.space/about/","sameAs":["https://github.com/starding","https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70","https://twitter.com/starstarding"]},"publisher":{"@type":"Person","name":"XingHua","url":"https://xinghua.space/about/","sameAs":["https://github.com/starding","https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70","https://twitter.com/starstarding"]},"mainEntityOfPage":"https://xinghua.space/2016/04/04/somethings-about-ellipse/","image":"https://xinghua.space/2016/04/04/somethings-about-ellipse/image.2w7eaer55vo0.webp","articleSection":"随笔"}</script>
 <link rel="alternate" type="application/atom+xml" title="结绳以渔" href="/atom.xml">
 <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
 <link rel="icon" href="/favicon-96x96.png" type="image/png" sizes="96x96">
@@ -23,6 +30,7 @@
 <link rel="stylesheet" href="/theme/site.css">
 <script src="/theme/overlay-scroll.js" defer></script>
 <script src="/theme/theme.js" defer></script>
+
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-V9SXMWSY9Z"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-V9SXMWSY9Z');</script>
 </head>
@@ -86,7 +94,7 @@
   <section class="post-related"><h2>同主题</h2><ul class="related"><li><a href="/2024/04/04/error-map-is-better-than-no-map/">一幅错误的地图好过没有地图</a><time datetime="2024-04-04T00:00:03.000Z">2024</time></li><li><a href="/2024/02/25/blog-reopen/">重启独立博客</a><time datetime="2024-02-25T08:54:22.000Z">2024</time></li><li><a href="/2016/07/29/one-year-after-graduation/">毕业一年</a><time datetime="2016-07-29T08:26:03.000Z">2016</time></li></ul></section>
   <div class="post-author"><div class="author-card">
   <div class="author">
-    <img src="/img/author.png" alt="XingHua">
+    <img src="/img/author.jpg" alt="XingHua">
     <p>人存于世，因缘际会<br>我是兴华，很高兴见到你</p>
   </div>
   <nav class="social"><a href="https://github.com/starding" title="GitHub" aria-label="GitHub" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -102,14 +110,14 @@
     <span class="next"><a href="/2016/03/19/model-dialog/"><small>较早</small>什么是模态框（modal dialog）</a></span>
   </nav>
   <section class="comments">
-<script src="https://giscus.app/client.js" data-repo="starding/xinghua_blog_giscus" data-repo-id="R_kgDOLagm8g" data-category="Announcements" data-category-id="DIC_kwDOLagm8s4CdqOC" data-mapping="og:title" data-strict="1" data-reactions-enabled="1" data-emit-metadata="1" data-input-position="top" data-theme="preferred_color_scheme" data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous" async></script>
+<script src="https://giscus.app/client.js" data-repo="starding/xinghua_blog_giscus" data-repo-id="R_kgDOLagm8g" data-category="Announcements" data-category-id="DIC_kwDOLagm8s4CdqOC" data-mapping="specific" data-term="关于圆锥曲线光学性质的有趣解释 (证明与原因)" data-strict="1" data-reactions-enabled="1" data-emit-metadata="1" data-input-position="top" data-theme="preferred_color_scheme" data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous" async></script>
 </section>
 </article>
 
   </main>
   <aside class="aside"><div class="author-card">
   <div class="author">
-    <img src="/img/author.png" alt="XingHua">
+    <img src="/img/author.jpg" alt="XingHua">
     <p>人存于世，因缘际会<br>我是兴华，很高兴见到你</p>
   </div>
   <nav class="social"><a href="https://github.com/starding" title="GitHub" aria-label="GitHub" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
