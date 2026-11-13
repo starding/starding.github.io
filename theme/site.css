@@ -357,3 +357,28 @@ body:has(>.pagefoot)>.frame{width:100%;box-sizing:border-box}
 .lang-btn{display:grid;place-items:center;min-width:40px;height:40px;padding:0 10px;border-radius:20px;color:var(--on-appbar);opacity:.7;font-size:14px;font-weight:500;letter-spacing:.02em}
 .lang-btn:hover{opacity:1;background:rgba(255,255,255,.12);text-decoration:none}
 .navlist a span{margin-left:12px;flex:none}
+/* 精简顶栏：往上滚时出现，提供回主页与切换版块的入口 */
+.minibar{position:fixed;top:0;left:0;right:0;z-index:30;background:var(--appbar);color:var(--on-appbar);transform:translateY(-100%);transition:transform .2s cubic-bezier(.2,0,0,1);box-shadow:0 1px 0 rgba(255,255,255,.06)}
+.minibar.show{transform:none}
+.minibar-in{max-width:1120px;margin:0 auto;padding:0 24px;height:52px;display:flex;align-items:center;gap:28px}
+.mini-brand{display:flex;align-items:center;gap:10px;color:var(--on-appbar);font-weight:600;font-size:16px}
+.mini-brand:hover{text-decoration:none}
+.mini-brand img{width:26px;height:26px}
+.minibar nav{display:flex;gap:20px}
+.minibar nav a{color:var(--on-appbar);opacity:.6;font-size:15px;line-height:52px;position:relative}
+.minibar nav a:hover{opacity:1;text-decoration:none}
+.minibar nav a[aria-current="page"]{opacity:1}
+.minibar nav a[aria-current="page"]::after{content:"";position:absolute;left:0;right:0;bottom:12px;height:2px;border-radius:1px;background:currentColor}
+@media (max-width:600px){.minibar-in{padding:0 16px;gap:16px}.mini-brand span{display:none}.minibar nav{gap:16px}}
+
+/* 文章所属主题：标题上方一行，点了去主题页 */
+/* 作品详情页回到作品列表 */
+.title-row{display:flex;align-items:flex-start;gap:2px;margin-left:-12px}
+.title-row h1{flex:1;min-width:0}
+.back-btn{flex:none;display:grid;place-items:center;width:40px;height:40px;border-radius:20px;color:var(--on)}
+@media (max-width:600px){.paper .back-btn{height:34px}}
+.back-btn:hover{background:var(--tone-2);text-decoration:none}
+.back-btn svg{width:24px;height:24px}
+.aside-sticky-wrap,.side{transition:top .2s cubic-bezier(.2,0,0,1)}
+.mini-on .aside-sticky-wrap,.mini-on .side{top:76px;max-height:calc(100vh - 100px)}
+.minibar .lang-btn{margin-left:auto;margin-right:-10px}

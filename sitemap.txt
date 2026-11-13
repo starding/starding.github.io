@@ -12,6 +12,16 @@ https://xinghua.space/works/markdown-upload-to-notion/
 https://xinghua.space/en/works/markdown-upload-to-notion/
 https://xinghua.space/archives/
 https://xinghua.space/en/archives/
+https://xinghua.space/topics/frontend/
+https://xinghua.space/en/topics/frontend/
+https://xinghua.space/topics/engineering/
+https://xinghua.space/en/topics/engineering/
+https://xinghua.space/topics/science-philosophy/
+https://xinghua.space/en/topics/science-philosophy/
+https://xinghua.space/topics/learning/
+https://xinghua.space/en/topics/learning/
+https://xinghua.space/topics/life/
+https://xinghua.space/en/topics/life/
 https://xinghua.space/about/
 https://xinghua.space/en/about/
 https://xinghua.space/2024/04/17/presence-is-enough/

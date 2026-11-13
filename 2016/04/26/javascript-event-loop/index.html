@@ -17,7 +17,7 @@
 <meta property="article:published_time" content="2016-04-26T07:47:41.000Z">
 <meta property="og:url" content="https://xinghua.space/2016/04/26/javascript-event-loop/">
 <link rel="canonical" href="https://xinghua.space/2016/04/26/javascript-event-loop/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"什么是 Javascript Event Loop","description":"本文为翻译文章，原文1 如果你像我一样热爱 JavaScript。没错，它不是完美的语言，但是这个世界上哪有「完美的语言」这种存在？所以尽管 Javascript 有这样或那样的缺陷，我仍然喜欢 web 编程以及 JavaScript 给予","datePublished":"2016-04-26T07:47:41.000Z","inLanguage":"zh-CN","author":{"@type":"Person","name":"XingHua","url":"https://xinghua.space/about/","sameAs":["https://github.com/starding","https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70","https://twitter.com/starstarding"]},"publisher":{"@type":"Person","name":"XingHua","url":"https://xinghua.space/about/","sameAs":["https://github.com/starding","https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70","https://twitter.com/starstarding"]},"mainEntityOfPage":"https://xinghua.space/2016/04/26/javascript-event-loop/","image":"https://xinghua.space/2016/04/26/javascript-event-loop/image.1evqqj6whq2o.webp"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"什么是 Javascript Event Loop","description":"本文为翻译文章，原文1 如果你像我一样热爱 JavaScript。没错，它不是完美的语言，但是这个世界上哪有「完美的语言」这种存在？所以尽管 Javascript 有这样或那样的缺陷，我仍然喜欢 web 编程以及 JavaScript 给予","datePublished":"2016-04-26T07:47:41.000Z","inLanguage":"zh-CN","author":{"@type":"Person","name":"XingHua","url":"https://xinghua.space/about/","sameAs":["https://github.com/starding","https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70","https://twitter.com/starstarding"]},"publisher":{"@type":"Person","name":"XingHua","url":"https://xinghua.space/about/","sameAs":["https://github.com/starding","https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70","https://twitter.com/starstarding"]},"mainEntityOfPage":"https://xinghua.space/2016/04/26/javascript-event-loop/","image":"https://xinghua.space/2016/04/26/javascript-event-loop/image.1evqqj6whq2o.webp","articleSection":"前端与交互"}</script>
 <link rel="alternate" type="application/atom+xml" title="结绳以渔" href="/atom.xml">
 <link rel="alternate" hreflang="zh-CN" href="https://xinghua.space/2016/04/26/javascript-event-loop/">
 <link rel="alternate" hreflang="en" href="https://xinghua.space/en/2016/04/26/javascript-event-loop/">
@@ -33,6 +33,7 @@
 <link rel="stylesheet" href="/theme/site.css">
 <script src="/theme/overlay-scroll.js" defer></script>
 <script src="/theme/theme.js" defer></script>
+<script src="/theme/nav.js" defer></script>
 <script>(()=>{if(location.hostname!=='xinghua.space'||navigator.webdriver)return;try{navigator.sendBeacon('https://xinghua-stats.xinghua-space.workers.dev/c',JSON.stringify({p:location.pathname,r:document.referrer,w:innerWidth,l:navigator.language}))}catch(e){}})()</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-V9SXMWSY9Z"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-V9SXMWSY9Z');</script>
@@ -55,20 +56,33 @@
       </div>
     </div>
     <nav>
-      <a href="/">主页</a>
+      <a href="/" aria-current="page">主页</a>
       <a href="/works/">作品</a>
       <a href="/about/">关于我</a>
     </nav>
   </div>
 </header>
+<div class="minibar" id="minibar" inert>
+  <div class="minibar-in">
+    <a class="mini-brand" href="/"><img src="/brand/logo.svg" alt=""><span>结绳以渔</span></a>
+    <nav>
+      <a href="/" aria-current="page">主页</a>
+      <a href="/works/">作品</a>
+      <a href="/about/">关于我</a>
+    </nav>
+    <a class="lang-btn" href="/en/2016/04/26/javascript-event-loop/" hreflang="en" lang="en" title="English version">EN</a>
+  </div>
+</div>
 <div class="frame cols">
   <main>
 <article class="paper">
   <header class="post-head">
-    <h1>什么是 Javascript Event Loop</h1>
+    <div class="title-row"><a class="back-btn" id="backBtn" href="/" aria-label="返回" title="返回"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M15 5l-7 7 7 7"/></svg>
+</a><h1>什么是 Javascript Event Loop</h1></div>
     <div class="meta">
       <span>@XingHua</span>
       <time datetime="2016-04-26T07:47:41.000Z">2016 年 4 月 26 日</time>
+      <a href="/topics/frontend/">前端与交互</a>
       <span>约 8 分钟</span>
     </div>
   </header>
@@ -157,7 +171,7 @@
 <p>问题：setTimeout 中设置的时间是准确的吗？</p>
 <section class="footnotes"><ol><li id="fn-1">2024 年，作者的博客已经无法再访问了，好在 Medium 上有一个备份：<a href="https://medium.com/@fay_jai/what-is-the-javascript-event-loop-98707ed20a90" rel="noopener">https://medium.com/@fay_jai/what-is-the-javascript-event-loop-98707ed20a90</a> <a href="#fnref-1" class="fn-back" aria-label="返回正文">↩</a></li></ol></section>
   </div>
-  
+  <section class="post-related"><h2>同主题</h2><ul class="related"><li><a href="/2024/03/30/a-short-web-history/">Web 小史：关键脉络</a><time datetime="2024-03-30T06:38:56.000Z">2024</time></li><li><a href="/2016/10/31/material-design-introduct-md/">material design 简介及背后的理论</a><time datetime="2016-10-31T09:04:37.000Z">2016</time></li><li><a href="/2016/09/04/fe-metaphysics/">前端工程师的形而上学 (0)</a><time datetime="2016-09-04T09:00:35.000Z">2016</time></li></ul></section>
   <div class="post-author"><div class="author-card">
   <div class="author">
     <img src="/img/author.jpg" alt="XingHua">
@@ -172,8 +186,8 @@
 </div>
 </div>
   <nav class="pager">
-    <span><a href="/2016/04/26/topological-sort/"><small>较新</small>拓扑排序：用它理清 JavaScript 模块的依赖顺序</a></span>
-    <span class="next"><a href="/2016/04/20/standardization/"><small>较早</small>板砖，石头与 Web 标准，W3C</a></span>
+    <span><a href="/2016/04/20/standardization/" rel="prev"><small>← 上一篇</small>板砖，石头与 Web 标准，W3C</a></span>
+    <span class="next"><a href="/2016/04/26/topological-sort/" rel="next"><small>下一篇 →</small>拓扑排序：用它理清 JavaScript 模块的依赖顺序</a></span>
   </nav>
   <section class="comments">
 <script src="https://giscus.app/client.js" data-repo="starding/xinghua_blog_giscus" data-repo-id="R_kgDOLagm8g" data-category="Announcements" data-category-id="DIC_kwDOLagm8s4CdqOC" data-mapping="specific" data-term="什么是 Javascript Event Loop" data-strict="1" data-reactions-enabled="1" data-emit-metadata="1" data-input-position="top" data-theme="preferred_color_scheme" data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous" async></script>
@@ -199,11 +213,13 @@
   <h2>本文</h2>
   <dl class="facts">
     <div><dt>字数</dt><dd>3,128 字</dd></div>
-    
+    <div><dt>主题</dt><dd><a href="/topics/frontend/">前端与交互</a></dd></div>
   </dl>
-  
 </section>
-
+<section class="aside-block">
+  <h2>同主题</h2>
+  <ul class="related"><li><a href="/2024/03/30/a-short-web-history/">Web 小史：关键脉络</a><time datetime="2024-03-30T06:38:56.000Z">2024</time></li><li><a href="/2016/10/31/material-design-introduct-md/">material design 简介及背后的理论</a><time datetime="2016-10-31T09:04:37.000Z">2016</time></li><li><a href="/2016/09/04/fe-metaphysics/">前端工程师的形而上学 (0)</a><time datetime="2016-09-04T09:00:35.000Z">2016</time></li></ul>
+</section>
 </div></div></aside>
 </div>
 <footer class="pagefoot"><p class="legal"><span class="legal-owner">© 2016–2026 XingHua</span><span class="legal-sep"> · </span><span class="legal-links"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans" rel="license noopener">CC BY-NC-SA 4.0</a> · <a href="/llms.txt">llms.txt</a></span></p>

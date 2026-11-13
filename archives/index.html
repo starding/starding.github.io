@@ -32,6 +32,7 @@
 <link rel="stylesheet" href="/theme/site.css">
 <script src="/theme/overlay-scroll.js" defer></script>
 <script src="/theme/theme.js" defer></script>
+<script src="/theme/nav.js" defer></script>
 <script>(()=>{if(location.hostname!=='xinghua.space'||navigator.webdriver)return;try{navigator.sendBeacon('https://xinghua-stats.xinghua-space.workers.dev/c',JSON.stringify({p:location.pathname,r:document.referrer,w:innerWidth,l:navigator.language}))}catch(e){}})()</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-V9SXMWSY9Z"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-V9SXMWSY9Z');</script>
@@ -54,12 +55,23 @@
       </div>
     </div>
     <nav>
-      <a href="/">主页</a>
+      <a href="/" aria-current="page">主页</a>
       <a href="/works/">作品</a>
       <a href="/about/">关于我</a>
     </nav>
   </div>
 </header>
+<div class="minibar" id="minibar" inert>
+  <div class="minibar-in">
+    <a class="mini-brand" href="/"><img src="/brand/logo.svg" alt=""><span>结绳以渔</span></a>
+    <nav>
+      <a href="/" aria-current="page">主页</a>
+      <a href="/works/">作品</a>
+      <a href="/about/">关于我</a>
+    </nav>
+    <a class="lang-btn" href="/en/archives/" hreflang="en" lang="en" title="English version">EN</a>
+  </div>
+</div>
 <div class="frame cols feed">
   <main>
 <section class="paper">
@@ -86,10 +98,9 @@
 </a></nav>
 </div>
 <div class="aside-sticky-wrap"><div class="aside-sticky"><h2>作品</h2><ul class="navlist"><li><a href="/works/product-finance-ai/">产品×金融×AI</a></li><li><a href="/works/pitbus/">PitBus</a></li><li><a href="/works/lessonml/">LessonML</a></li><li><a href="/works/markdown-upload-to-notion/">Markdown 上传到 Notion</a></li></ul>
-<h2>分类</h2>
-<ul class="navlist"><li><a href="/categories/作为工程师/">作为工程师<span>16</span></a></li><li><a href="/categories/随笔/">随笔<span>7</span></a></li><li><a href="/categories/科哲和科学史/">科哲和科学史<span>3</span></a></li><li><a href="/categories/好好生活/">好好生活<span>2</span></a></li></ul>
-<h2>标签</h2>
-<div class="chips"><a href="/tags/可积累的/">#可积累的</a><a href="/tags/docker/">#docker</a><a href="/tags/Memos/">#Memos</a><a href="/tags/认知方法/">#认知方法</a><a href="/tags/gitlab/">#gitlab</a><a href="/tags/写作/">#写作</a></div>
+<h2>主题</h2>
+<ul class="navlist"><li><a href="/topics/frontend/">前端与交互<span>11</span></a></li><li><a href="/topics/engineering/">工程实践<span>9</span></a></li><li><a href="/topics/science-philosophy/">科学与哲学<span>7</span></a></li><li><a href="/topics/learning/">学习与认知<span>6</span></a></li><li><a href="/topics/life/">生活与写作<span>5</span></a></li></ul>
+
 </div><div class="aside-legal"><p class="legal"><span class="legal-owner">© 2016–2026 XingHua</span><span class="legal-sep"> · </span><span class="legal-links"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans" rel="license noopener">CC BY-NC-SA 4.0</a> · <a href="/llms.txt">llms.txt</a></span></p>
 </div></div></aside>
 </div>

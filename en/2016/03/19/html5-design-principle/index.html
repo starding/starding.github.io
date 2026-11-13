@@ -17,7 +17,7 @@
 <meta property="article:published_time" content="2016-03-19T02:30:47.000Z">
 <meta property="og:url" content="https://xinghua.space/en/2016/03/19/html5-design-principle/">
 <link rel="canonical" href="https://xinghua.space/en/2016/03/19/html5-design-principle/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"HTML5 Design Principles — notes on Jeremy Keith's talk","description":"Why I reposted Jeremy Keith's keynote on HTML5's design principles, and what it taught me about making technical decisions: design for people first, then for machines.","datePublished":"2016-03-19T02:30:47.000Z","inLanguage":"en","author":{"@type":"Person","name":"XingHua","url":"https://xinghua.space/en/about/","sameAs":["https://github.com/starding","https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70","https://twitter.com/starstarding"]},"publisher":{"@type":"Person","name":"XingHua","url":"https://xinghua.space/en/about/","sameAs":["https://github.com/starding","https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70","https://twitter.com/starstarding"]},"mainEntityOfPage":"https://xinghua.space/en/2016/03/19/html5-design-principle/"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"HTML5 Design Principles — notes on Jeremy Keith's talk","description":"Why I reposted Jeremy Keith's keynote on HTML5's design principles, and what it taught me about making technical decisions: design for people first, then for machines.","datePublished":"2016-03-19T02:30:47.000Z","inLanguage":"en","author":{"@type":"Person","name":"XingHua","url":"https://xinghua.space/en/about/","sameAs":["https://github.com/starding","https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70","https://twitter.com/starstarding"]},"publisher":{"@type":"Person","name":"XingHua","url":"https://xinghua.space/en/about/","sameAs":["https://github.com/starding","https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70","https://twitter.com/starstarding"]},"mainEntityOfPage":"https://xinghua.space/en/2016/03/19/html5-design-principle/","articleSection":"Front-End & Interaction"}</script>
 <link rel="alternate" type="application/atom+xml" title="Knots &amp; Nets" href="/en/atom.xml">
 <link rel="alternate" hreflang="zh-CN" href="https://xinghua.space/2016/03/19/html5-design-principle/">
 <link rel="alternate" hreflang="en" href="https://xinghua.space/en/2016/03/19/html5-design-principle/">
@@ -33,6 +33,7 @@
 <link rel="stylesheet" href="/theme/site.css">
 <script src="/theme/overlay-scroll.js" defer></script>
 <script src="/theme/theme.js" defer></script>
+<script src="/theme/nav.js" defer></script>
 <script>(()=>{if(location.hostname!=='xinghua.space'||navigator.webdriver)return;try{navigator.sendBeacon('https://xinghua-stats.xinghua-space.workers.dev/c',JSON.stringify({p:location.pathname,r:document.referrer,w:innerWidth,l:navigator.language}))}catch(e){}})()</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-V9SXMWSY9Z"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-V9SXMWSY9Z');</script>
@@ -42,7 +43,7 @@
   <div class="appbar-in">
     <a class="brand" href="/en/"><img src="/brand/logo.svg" alt=""><span><b>Knots &amp; Nets</b><small>Rather than wishing for fish by the water, go home and weave a net.</small></span></a>
     <div class="theme-pick">
-      <a class="lang-btn" href="/2016/03/19/html5-design-principle/" hreflang="zh-CN" lang="zh-CN" title="中文版">中文</a>
+      <a class="lang-btn" href="/2016/03/19/html5-design-principle/" hreflang="zh-CN" lang="zh-CN" title="中文版">ZH</a>
       <button type="button" class="theme-btn" id="themeBtn" aria-haspopup="menu" aria-expanded="false" title="Appearance"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="currentColor" d="M12 3.5a8.5 8.5 0 0 1 0 17z"/></svg>
 </button>
       <div class="theme-menu" id="themeMenu" role="menu" hidden>
@@ -55,20 +56,33 @@
       </div>
     </div>
     <nav>
-      <a href="/en/">Home</a>
+      <a href="/en/" aria-current="page">Home</a>
       <a href="/en/works/">Works</a>
       <a href="/en/about/">About</a>
     </nav>
   </div>
 </header>
+<div class="minibar" id="minibar" inert>
+  <div class="minibar-in">
+    <a class="mini-brand" href="/en/"><img src="/brand/logo.svg" alt=""><span>Knots &amp; Nets</span></a>
+    <nav>
+      <a href="/en/" aria-current="page">Home</a>
+      <a href="/en/works/">Works</a>
+      <a href="/en/about/">About</a>
+    </nav>
+    <a class="lang-btn" href="/2016/03/19/html5-design-principle/" hreflang="zh-CN" lang="zh-CN" title="中文版">ZH</a>
+  </div>
+</div>
 <div class="frame cols">
   <main>
 <article class="paper">
   <header class="post-head">
-    <h1>HTML5 Design Principles — notes on Jeremy Keith's talk</h1>
+    <div class="title-row"><a class="back-btn" id="backBtn" href="/en/" aria-label="Back" title="Back"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M15 5l-7 7 7 7"/></svg>
+</a><h1>HTML5 Design Principles — notes on Jeremy Keith's talk</h1></div>
     <div class="meta">
       <span>@XingHua</span>
       <time datetime="2016-03-19T02:30:47.000Z">Mar 19, 2016</time>
+      <a href="/en/topics/frontend/">Front-End &amp; Interaction</a>
       <span>1 min read</span>
     </div>
   </header>
@@ -89,7 +103,7 @@
 <li>Priority of constituencies: put end users first</li>
 </ul>
   </div>
-  
+  <section class="post-related"><h2>Related</h2><ul class="related"><li><a href="/en/2024/03/30/a-short-web-history/">A Short History of the Web: The Key Threads</a><time datetime="2024-03-30T06:38:56.000Z">2024</time></li><li><a href="/en/2016/10/31/material-design-introduct-md/">Material Design: An Introduction and the Theory Behind It</a><time datetime="2016-10-31T09:04:37.000Z">2016</time></li><li><a href="/en/2016/09/04/fe-metaphysics/">The Metaphysics of Front-End Engineering (0)</a><time datetime="2016-09-04T09:00:35.000Z">2016</time></li></ul></section>
   <div class="post-author"><div class="author-card">
   <div class="author">
     <img src="/img/author.jpg" alt="XingHua">
@@ -104,8 +118,8 @@
 </div>
 </div>
   <nav class="pager">
-    <span><a href="/en/2016/03/19/model-dialog/"><small>Newer</small>What Is a Modal Dialog? What &quot;Modal&quot; Actually Means</a></span>
-    <span class="next"><a href="/en/2016/03/18/why-should-we-ask-why/"><small>Older</small>Why We Should Ask &quot;Why&quot; When Learning Computer Science</a></span>
+    <span><a href="/en/2016/03/18/why-should-we-ask-why/" rel="prev"><small>← Previous</small>Why We Should Ask &quot;Why&quot; When Learning Computer Science</a></span>
+    <span class="next"><a href="/en/2016/03/19/model-dialog/" rel="next"><small>Next →</small>What Is a Modal Dialog? What &quot;Modal&quot; Actually Means</a></span>
   </nav>
   <section class="comments">
 <script src="https://giscus.app/client.js" data-repo="starding/xinghua_blog_giscus" data-repo-id="R_kgDOLagm8g" data-category="Announcements" data-category-id="DIC_kwDOLagm8s4CdqOC" data-mapping="specific" data-term="html5 设计原理" data-strict="1" data-reactions-enabled="1" data-emit-metadata="1" data-input-position="top" data-theme="preferred_color_scheme" data-lang="en" data-loading="lazy" crossorigin="anonymous" async></script>
@@ -130,11 +144,13 @@
   <h2>This post</h2>
   <dl class="facts">
     <div><dt>Length</dt><dd>258 words</dd></div>
-    
+    <div><dt>Topic</dt><dd><a href="/en/topics/frontend/">Front-End &amp; Interaction</a></dd></div>
   </dl>
-  
 </section>
-
+<section class="aside-block">
+  <h2>Related</h2>
+  <ul class="related"><li><a href="/en/2024/03/30/a-short-web-history/">A Short History of the Web: The Key Threads</a><time datetime="2024-03-30T06:38:56.000Z">2024</time></li><li><a href="/en/2016/10/31/material-design-introduct-md/">Material Design: An Introduction and the Theory Behind It</a><time datetime="2016-10-31T09:04:37.000Z">2016</time></li><li><a href="/en/2016/09/04/fe-metaphysics/">The Metaphysics of Front-End Engineering (0)</a><time datetime="2016-09-04T09:00:35.000Z">2016</time></li></ul>
+</section>
 </div></div></aside>
 </div>
 <footer class="pagefoot"><p class="legal"><span class="legal-owner">© 2016–2026 XingHua</span><span class="legal-sep"> · </span><span class="legal-links"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="license noopener">CC BY-NC-SA 4.0</a> · <a href="/llms.txt">llms.txt</a></span></p>

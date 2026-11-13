@@ -13,38 +13,38 @@
 
 ## 文章
 
-- [在场就足够了[Memos]](https://xinghua.space/2024/04/17/presence-is-enough/index.md)：2024-04-17，好好生活（[English](https://xinghua.space/en/2024/04/17/presence-is-enough/index.md)）
-- [精力充沛是好好生活的前提](https://xinghua.space/2024/04/06/vigor-is-the-premise-of-live/index.md)：2024-04-06，好好生活（[English](https://xinghua.space/en/2024/04/06/vigor-is-the-premise-of-live/index.md)）
-- [一幅错误的地图好过没有地图](https://xinghua.space/2024/04/04/error-map-is-better-than-no-map/index.md)：2024-04-04，随笔（[English](https://xinghua.space/en/2024/04/04/error-map-is-better-than-no-map/index.md)）
-- [Web 小史：关键脉络](https://xinghua.space/2024/03/30/a-short-web-history/index.md)：2024-03-30，作为工程师（[English](https://xinghua.space/en/2024/03/30/a-short-web-history/index.md)）
-- [重启独立博客](https://xinghua.space/2024/02/25/blog-reopen/index.md)：2024-02-25，随笔（[English](https://xinghua.space/en/2024/02/25/blog-reopen/index.md)）
-- [material design 简介及背后的理论](https://xinghua.space/2016/10/31/material-design-introduct-md/index.md)：2016-10-31，作为工程师（[English](https://xinghua.space/en/2016/10/31/material-design-introduct-md/index.md)）
-- [前端工程师的形而上学 (0)](https://xinghua.space/2016/09/04/fe-metaphysics/index.md)：2016-09-04（[English](https://xinghua.space/en/2016/09/04/fe-metaphysics/index.md)）
-- [前端工程师的形而上学 (1)—— 一个例子](https://xinghua.space/2016/08/29/why-users-can-not-see-collect-function-in-neihan/index.md)：2016-08-29，作为工程师（[English](https://xinghua.space/en/2016/08/29/why-users-can-not-see-collect-function-in-neihan/index.md)）
-- [毕业一年](https://xinghua.space/2016/07/29/one-year-after-graduation/index.md)：2016-07-29，随笔（[English](https://xinghua.space/en/2016/07/29/one-year-after-graduation/index.md)）
-- [拓扑排序：用它理清 JavaScript 模块的依赖顺序](https://xinghua.space/2016/04/26/topological-sort/index.md)：2016-04-26（[English](https://xinghua.space/en/2016/04/26/topological-sort/index.md)）
-- [什么是 Javascript Event Loop](https://xinghua.space/2016/04/26/javascript-event-loop/index.md)：2016-04-26（[English](https://xinghua.space/en/2016/04/26/javascript-event-loop/index.md)）
-- [板砖，石头与 Web 标准，W3C](https://xinghua.space/2016/04/20/standardization/index.md)：2016-04-20，作为工程师（[English](https://xinghua.space/en/2016/04/20/standardization/index.md)）
-- [钟楼和时间革命](https://xinghua.space/2016/04/09/horologe-in-church/index.md)：2016-04-09，科哲和科学史（[English](https://xinghua.space/en/2016/04/09/horologe-in-church/index.md)）
-- [椭圆的反射性质：为什么光从一个焦点出发会汇聚到另一个焦点](https://xinghua.space/2016/04/04/somethings-about-ellipse/index.md)：2016-04-04，随笔（[English](https://xinghua.space/en/2016/04/04/somethings-about-ellipse/index.md)）
-- [什么是模态框（modal dialog）：「模态」到底是什么意思](https://xinghua.space/2016/03/19/model-dialog/index.md)：2016-03-19，作为工程师（[English](https://xinghua.space/en/2016/03/19/model-dialog/index.md)）
-- [html5 设计原理](https://xinghua.space/2016/03/19/html5-design-principle/index.md)：2016-03-19（[English](https://xinghua.space/en/2016/03/19/html5-design-principle/index.md)）
-- [在计算机学习中，为什么我们应该问为什么](https://xinghua.space/2016/03/18/why-should-we-ask-why/index.md)：2016-03-18，作为工程师（[English](https://xinghua.space/en/2016/03/18/why-should-we-ask-why/index.md)）
-- [什么是隐喻：它和明喻有什么区别](https://xinghua.space/2016/02/26/metaphor/index.md)：2016-02-26，随笔（[English](https://xinghua.space/en/2016/02/26/metaphor/index.md)）
-- [问题记录](https://xinghua.space/2016/02/25/questions-record/index.md)：2016-02-25，作为工程师（[English](https://xinghua.space/en/2016/02/25/questions-record/index.md)）
-- [javascript 犀牛书（第六版）](https://xinghua.space/2016/01/19/learn-javascript-follow-definitive-guide/index.md)：2016-01-19，作为工程师（[English](https://xinghua.space/en/2016/01/19/learn-javascript-follow-definitive-guide/index.md)）
-- [docker-gitlab 数据迁移](https://xinghua.space/2016/01/18/gitlab-migrate/index.md)：2016-01-18，作为工程师（[English](https://xinghua.space/en/2016/01/18/gitlab-migrate/index.md)）
-- [计算机领域中的概念辨析](https://xinghua.space/2016/01/15/learn-in-computer-sciense/index.md)：2016-01-15，作为工程师（[English](https://xinghua.space/en/2016/01/15/learn-in-computer-sciense/index.md)）
-- [python 中的装饰器和迭代器](https://xinghua.space/2016/01/15/python-iterator-generator/index.md)：2016-01-15，作为工程师（[English](https://xinghua.space/en/2016/01/15/python-iterator-generator/index.md)）
-- [从快播案看技术中性论的地位](https://xinghua.space/2016/01/11/kuaibo-technological-neutrality/index.md)：2016-01-11，科哲和科学史（[English](https://xinghua.space/en/2016/01/11/kuaibo-technological-neutrality/index.md)）
-- [那些年我在 python 中扑过的街](https://xinghua.space/2016/01/10/traps-in-python/index.md)：2016-01-10，作为工程师（[English](https://xinghua.space/en/2016/01/10/traps-in-python/index.md)）
-- [Open Questions](https://xinghua.space/2016/01/10/open-questions/index.md)：2016-01-10（[English](https://xinghua.space/en/2016/01/10/open-questions/index.md)）
-- [我的前端笔记之理解 html 篇](https://xinghua.space/2016/01/09/my-front-end-introduction/index.md)：2016-01-09，作为工程师（[English](https://xinghua.space/en/2016/01/09/my-front-end-introduction/index.md)）
-- [《三体》，《行尸走肉》与社会达尔文主义](https://xinghua.space/2016/01/07/three-body-walking-dead-Darwin/index.md)：2016-01-07，随笔（[English](https://xinghua.space/en/2016/01/07/three-body-walking-dead-Darwin/index.md)）
-- [科学史上的东方与西方](https://xinghua.space/2016/01/07/science-in-east-and-west/index.md)：2016-01-07，科哲和科学史（[English](https://xinghua.space/en/2016/01/07/science-in-east-and-west/index.md)）
-- [django 中使用原生 sql](https://xinghua.space/2016/01/07/raw-sql-in-django/index.md)：2016-01-07（[English](https://xinghua.space/en/2016/01/07/raw-sql-in-django/index.md)）
-- [docker 部署 gitlab](https://xinghua.space/2016/01/07/deploy-gitlab-by-docker/index.md)：2016-01-07（[English](https://xinghua.space/en/2016/01/07/deploy-gitlab-by-docker/index.md)）
-- [使用 daocloud 持续集成应用](https://xinghua.space/2016/01/07/daocloud-deploy/index.md)：2016-01-07，作为工程师（[English](https://xinghua.space/en/2016/01/07/daocloud-deploy/index.md)）
-- [Docker——从隐喻说起](https://xinghua.space/2016/01/07/docker-a-metaphor/index.md)：2016-01-07，作为工程师（[English](https://xinghua.space/en/2016/01/07/docker-a-metaphor/index.md)）
-- [Python 中的闭包和装饰器](https://xinghua.space/2016/01/06/closure-decorator-in-python/index.md)：2016-01-06，作为工程师（[English](https://xinghua.space/en/2016/01/06/closure-decorator-in-python/index.md)）
-- [缘起](https://xinghua.space/2016/01/05/hello-world/index.md)：2016-01-05，随笔（[English](https://xinghua.space/en/2016/01/05/hello-world/index.md)）
+- [在场就足够了[Memos]](https://xinghua.space/2024/04/17/presence-is-enough/index.md)：2024-04-17，生活与写作（[English](https://xinghua.space/en/2024/04/17/presence-is-enough/index.md)）
+- [精力充沛是好好生活的前提](https://xinghua.space/2024/04/06/vigor-is-the-premise-of-live/index.md)：2024-04-06，生活与写作（[English](https://xinghua.space/en/2024/04/06/vigor-is-the-premise-of-live/index.md)）
+- [一幅错误的地图好过没有地图](https://xinghua.space/2024/04/04/error-map-is-better-than-no-map/index.md)：2024-04-04，学习与认知（[English](https://xinghua.space/en/2024/04/04/error-map-is-better-than-no-map/index.md)）
+- [Web 小史：关键脉络](https://xinghua.space/2024/03/30/a-short-web-history/index.md)：2024-03-30，前端与交互（[English](https://xinghua.space/en/2024/03/30/a-short-web-history/index.md)）
+- [重启独立博客](https://xinghua.space/2024/02/25/blog-reopen/index.md)：2024-02-25，生活与写作（[English](https://xinghua.space/en/2024/02/25/blog-reopen/index.md)）
+- [material design 简介及背后的理论](https://xinghua.space/2016/10/31/material-design-introduct-md/index.md)：2016-10-31，前端与交互（[English](https://xinghua.space/en/2016/10/31/material-design-introduct-md/index.md)）
+- [前端工程师的形而上学 (0)](https://xinghua.space/2016/09/04/fe-metaphysics/index.md)：2016-09-04，前端与交互（[English](https://xinghua.space/en/2016/09/04/fe-metaphysics/index.md)）
+- [前端工程师的形而上学 (1)—— 一个例子](https://xinghua.space/2016/08/29/why-users-can-not-see-collect-function-in-neihan/index.md)：2016-08-29，前端与交互（[English](https://xinghua.space/en/2016/08/29/why-users-can-not-see-collect-function-in-neihan/index.md)）
+- [毕业一年](https://xinghua.space/2016/07/29/one-year-after-graduation/index.md)：2016-07-29，生活与写作（[English](https://xinghua.space/en/2016/07/29/one-year-after-graduation/index.md)）
+- [拓扑排序：用它理清 JavaScript 模块的依赖顺序](https://xinghua.space/2016/04/26/topological-sort/index.md)：2016-04-26，工程实践（[English](https://xinghua.space/en/2016/04/26/topological-sort/index.md)）
+- [什么是 Javascript Event Loop](https://xinghua.space/2016/04/26/javascript-event-loop/index.md)：2016-04-26，前端与交互（[English](https://xinghua.space/en/2016/04/26/javascript-event-loop/index.md)）
+- [板砖，石头与 Web 标准，W3C](https://xinghua.space/2016/04/20/standardization/index.md)：2016-04-20，前端与交互（[English](https://xinghua.space/en/2016/04/20/standardization/index.md)）
+- [钟楼和时间革命](https://xinghua.space/2016/04/09/horologe-in-church/index.md)：2016-04-09，科学与哲学（[English](https://xinghua.space/en/2016/04/09/horologe-in-church/index.md)）
+- [椭圆的反射性质：为什么光从一个焦点出发会汇聚到另一个焦点](https://xinghua.space/2016/04/04/somethings-about-ellipse/index.md)：2016-04-04，科学与哲学（[English](https://xinghua.space/en/2016/04/04/somethings-about-ellipse/index.md)）
+- [什么是模态框（modal dialog）：「模态」到底是什么意思](https://xinghua.space/2016/03/19/model-dialog/index.md)：2016-03-19，前端与交互（[English](https://xinghua.space/en/2016/03/19/model-dialog/index.md)）
+- [html5 设计原理](https://xinghua.space/2016/03/19/html5-design-principle/index.md)：2016-03-19，前端与交互（[English](https://xinghua.space/en/2016/03/19/html5-design-principle/index.md)）
+- [在计算机学习中，为什么我们应该问为什么](https://xinghua.space/2016/03/18/why-should-we-ask-why/index.md)：2016-03-18，学习与认知（[English](https://xinghua.space/en/2016/03/18/why-should-we-ask-why/index.md)）
+- [什么是隐喻：它和明喻有什么区别](https://xinghua.space/2016/02/26/metaphor/index.md)：2016-02-26，学习与认知（[English](https://xinghua.space/en/2016/02/26/metaphor/index.md)）
+- [问题记录](https://xinghua.space/2016/02/25/questions-record/index.md)：2016-02-25，前端与交互（[English](https://xinghua.space/en/2016/02/25/questions-record/index.md)）
+- [javascript 犀牛书（第六版）](https://xinghua.space/2016/01/19/learn-javascript-follow-definitive-guide/index.md)：2016-01-19，前端与交互（[English](https://xinghua.space/en/2016/01/19/learn-javascript-follow-definitive-guide/index.md)）
+- [docker-gitlab 数据迁移](https://xinghua.space/2016/01/18/gitlab-migrate/index.md)：2016-01-18，工程实践（[English](https://xinghua.space/en/2016/01/18/gitlab-migrate/index.md)）
+- [计算机领域中的概念辨析](https://xinghua.space/2016/01/15/learn-in-computer-sciense/index.md)：2016-01-15，学习与认知（[English](https://xinghua.space/en/2016/01/15/learn-in-computer-sciense/index.md)）
+- [python 中的装饰器和迭代器](https://xinghua.space/2016/01/15/python-iterator-generator/index.md)：2016-01-15，工程实践（[English](https://xinghua.space/en/2016/01/15/python-iterator-generator/index.md)）
+- [从快播案看技术中性论的地位](https://xinghua.space/2016/01/11/kuaibo-technological-neutrality/index.md)：2016-01-11，科学与哲学（[English](https://xinghua.space/en/2016/01/11/kuaibo-technological-neutrality/index.md)）
+- [那些年我在 python 中扑过的街](https://xinghua.space/2016/01/10/traps-in-python/index.md)：2016-01-10，工程实践（[English](https://xinghua.space/en/2016/01/10/traps-in-python/index.md)）
+- [Open Questions](https://xinghua.space/2016/01/10/open-questions/index.md)：2016-01-10，学习与认知（[English](https://xinghua.space/en/2016/01/10/open-questions/index.md)）
+- [我的前端笔记之理解 html 篇](https://xinghua.space/2016/01/09/my-front-end-introduction/index.md)：2016-01-09，前端与交互（[English](https://xinghua.space/en/2016/01/09/my-front-end-introduction/index.md)）
+- [《三体》，《行尸走肉》与社会达尔文主义](https://xinghua.space/2016/01/07/three-body-walking-dead-Darwin/index.md)：2016-01-07，科学与哲学（[English](https://xinghua.space/en/2016/01/07/three-body-walking-dead-Darwin/index.md)）
+- [科学史上的东方与西方](https://xinghua.space/2016/01/07/science-in-east-and-west/index.md)：2016-01-07，科学与哲学（[English](https://xinghua.space/en/2016/01/07/science-in-east-and-west/index.md)）
+- [django 中使用原生 sql](https://xinghua.space/2016/01/07/raw-sql-in-django/index.md)：2016-01-07，工程实践（[English](https://xinghua.space/en/2016/01/07/raw-sql-in-django/index.md)）
+- [docker 部署 gitlab](https://xinghua.space/2016/01/07/deploy-gitlab-by-docker/index.md)：2016-01-07，工程实践（[English](https://xinghua.space/en/2016/01/07/deploy-gitlab-by-docker/index.md)）
+- [使用 daocloud 持续集成应用](https://xinghua.space/2016/01/07/daocloud-deploy/index.md)：2016-01-07，工程实践（[English](https://xinghua.space/en/2016/01/07/daocloud-deploy/index.md)）
+- [Docker——从隐喻说起](https://xinghua.space/2016/01/07/docker-a-metaphor/index.md)：2016-01-07，工程实践（[English](https://xinghua.space/en/2016/01/07/docker-a-metaphor/index.md)）
+- [Python 中的闭包和装饰器](https://xinghua.space/2016/01/06/closure-decorator-in-python/index.md)：2016-01-06，工程实践（[English](https://xinghua.space/en/2016/01/06/closure-decorator-in-python/index.md)）
+- [缘起](https://xinghua.space/2016/01/05/hello-world/index.md)：2016-01-05，生活与写作（[English](https://xinghua.space/en/2016/01/05/hello-world/index.md)）

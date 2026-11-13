@@ -17,7 +17,7 @@
 <meta property="article:published_time" content="2024-03-30T06:38:56.000Z">
 <meta property="og:url" content="https://xinghua.space/2024/03/30/a-short-web-history/">
 <link rel="canonical" href="https://xinghua.space/2024/03/30/a-short-web-history/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Web 小史：关键脉络","description":"按时间线梳理 Web 的关键脉络：从 1980 年 Tim Berners-Lee 的 ENQUIRE、早期浏览器，到 V8、云计算与 PWA，看 Web 如何从「一个超文本应用」走向「一个操作系统」。","datePublished":"2024-03-30T06:38:56.000Z","inLanguage":"zh-CN","author":{"@type":"Person","name":"XingHua","url":"https://xinghua.space/about/","sameAs":["https://github.com/starding","https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70","https://twitter.com/starstarding"]},"publisher":{"@type":"Person","name":"XingHua","url":"https://xinghua.space/about/","sameAs":["https://github.com/starding","https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70","https://twitter.com/starstarding"]},"mainEntityOfPage":"https://xinghua.space/2024/03/30/a-short-web-history/","image":"https://xinghua.space/2024/03/30/a-short-web-history/image.6m3o5wuarl.webp","articleSection":"作为工程师"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Web 小史：关键脉络","description":"按时间线梳理 Web 的关键脉络：从 1980 年 Tim Berners-Lee 的 ENQUIRE、早期浏览器，到 V8、云计算与 PWA，看 Web 如何从「一个超文本应用」走向「一个操作系统」。","datePublished":"2024-03-30T06:38:56.000Z","inLanguage":"zh-CN","author":{"@type":"Person","name":"XingHua","url":"https://xinghua.space/about/","sameAs":["https://github.com/starding","https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70","https://twitter.com/starstarding"]},"publisher":{"@type":"Person","name":"XingHua","url":"https://xinghua.space/about/","sameAs":["https://github.com/starding","https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70","https://twitter.com/starstarding"]},"mainEntityOfPage":"https://xinghua.space/2024/03/30/a-short-web-history/","image":"https://xinghua.space/2024/03/30/a-short-web-history/image.6m3o5wuarl.webp","articleSection":"前端与交互","keywords":"前端与交互,科学与哲学"}</script>
 <link rel="alternate" type="application/atom+xml" title="结绳以渔" href="/atom.xml">
 <link rel="alternate" hreflang="zh-CN" href="https://xinghua.space/2024/03/30/a-short-web-history/">
 <link rel="alternate" hreflang="en" href="https://xinghua.space/en/2024/03/30/a-short-web-history/">
@@ -33,6 +33,7 @@
 <link rel="stylesheet" href="/theme/site.css">
 <script src="/theme/overlay-scroll.js" defer></script>
 <script src="/theme/theme.js" defer></script>
+<script src="/theme/nav.js" defer></script>
 <script>(()=>{if(location.hostname!=='xinghua.space'||navigator.webdriver)return;try{navigator.sendBeacon('https://xinghua-stats.xinghua-space.workers.dev/c',JSON.stringify({p:location.pathname,r:document.referrer,w:innerWidth,l:navigator.language}))}catch(e){}})()</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-V9SXMWSY9Z"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-V9SXMWSY9Z');</script>
@@ -55,20 +56,33 @@
       </div>
     </div>
     <nav>
-      <a href="/">主页</a>
+      <a href="/" aria-current="page">主页</a>
       <a href="/works/">作品</a>
       <a href="/about/">关于我</a>
     </nav>
   </div>
 </header>
+<div class="minibar" id="minibar" inert>
+  <div class="minibar-in">
+    <a class="mini-brand" href="/"><img src="/brand/logo.svg" alt=""><span>结绳以渔</span></a>
+    <nav>
+      <a href="/" aria-current="page">主页</a>
+      <a href="/works/">作品</a>
+      <a href="/about/">关于我</a>
+    </nav>
+    <a class="lang-btn" href="/en/2024/03/30/a-short-web-history/" hreflang="en" lang="en" title="English version">EN</a>
+  </div>
+</div>
 <div class="frame cols">
   <main>
 <article class="paper">
   <header class="post-head">
-    <h1>Web 小史：关键脉络</h1>
+    <div class="title-row"><a class="back-btn" id="backBtn" href="/" aria-label="返回" title="返回"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M15 5l-7 7 7 7"/></svg>
+</a><h1>Web 小史：关键脉络</h1></div>
     <div class="meta">
       <span>@XingHua</span>
       <time datetime="2024-03-30T06:38:56.000Z">2024 年 3 月 30 日</time>
+      <a href="/topics/frontend/">前端与交互</a>
       <span>约 13 分钟</span>
     </div>
   </header>
@@ -182,7 +196,7 @@ ES6 标准最大的改进是原生支持了模块化能力、更方便的异步�
 <img src="image.58h529r57z.webp" alt="Web App 讨论 1" loading="lazy"></p>
 <section class="footnotes"><ol><li id="fn-1">European Organization for Nuclear Research, 欧洲核子研究中心，是一个由 23个成员国组成的政府间组织，成立于 1954 年，坐标在法国与瑞士边境的日内瓦西郊梅林 <a href="#fnref-1" class="fn-back" aria-label="返回正文">↩</a></li><li id="fn-2"><a href="https://www.w3.org/History/1980/Enquire/manual/" rel="noopener">https://www.w3.org/History/1980/Enquire/manual/</a>, 根据伯纳斯-李的说法，这个名字源自于是他小时候看过的，对他影响深刻的一本指南书:《Enquire Within upon Everything》 <a href="#fnref-2" class="fn-back" aria-label="返回正文">↩</a></li><li id="fn-3">原采访见：<a href="https://achievement.org/achiever/sir-timothy-berners-lee/#interview" rel="noopener">https://achievement.org/achiever/sir-timothy-berners-lee/#interview</a> <a href="#fnref-3" class="fn-back" aria-label="返回正文">↩</a></li><li id="fn-4">《编制万维网》一书对这段历史有详细的描写 <a href="#fnref-4" class="fn-back" aria-label="返回正文">↩</a></li><li id="fn-5">Web 20 周年时重建，域名和内容都保持了原状 <a href="#fnref-5" class="fn-back" aria-label="返回正文">↩</a></li><li id="fn-6">Netscape 于 1996 年向 ECMA International 提交了 JavaScript，部分原因是 ECMA 被认为具有更快的标准化进程，并且已经拥有标准化编程语言的经验。 ECMAScript 标准的第一版于 1997 年被 ECMA International 采用 <a href="#fnref-6" class="fn-back" aria-label="返回正文">↩</a></li><li id="fn-7">这个名字来源于一种特定的汽车发动机引擎结构，也即 V8 汽车发动机，所以它不是版本号 <a href="#fnref-7" class="fn-back" aria-label="返回正文">↩</a></li></ol></section>
   </div>
-  <section class="post-related"><h2>同主题</h2><ul class="related"><li><a href="/2016/10/31/material-design-introduct-md/">material design 简介及背后的理论</a><time datetime="2016-10-31T09:04:37.000Z">2016</time></li><li><a href="/2016/08/29/why-users-can-not-see-collect-function-in-neihan/">前端工程师的形而上学 (1)—— 一个例子</a><time datetime="2016-08-29T08:44:10.000Z">2016</time></li><li><a href="/2016/04/20/standardization/">板砖，石头与 Web 标准，W3C</a><time datetime="2016-04-20T07:41:51.000Z">2016</time></li></ul></section>
+  <section class="post-related"><h2>同主题</h2><ul class="related"><li><a href="/2016/04/20/standardization/">板砖，石头与 Web 标准，W3C</a><time datetime="2016-04-20T07:41:51.000Z">2016</time></li><li><a href="/2016/10/31/material-design-introduct-md/">material design 简介及背后的理论</a><time datetime="2016-10-31T09:04:37.000Z">2016</time></li><li><a href="/2016/09/04/fe-metaphysics/">前端工程师的形而上学 (0)</a><time datetime="2016-09-04T09:00:35.000Z">2016</time></li></ul></section>
   <div class="post-author"><div class="author-card">
   <div class="author">
     <img src="/img/author.jpg" alt="XingHua">
@@ -197,8 +211,8 @@ ES6 标准最大的改进是原生支持了模块化能力、更方便的异步�
 </div>
 </div>
   <nav class="pager">
-    <span><a href="/2024/04/04/error-map-is-better-than-no-map/"><small>较新</small>一幅错误的地图好过没有地图</a></span>
-    <span class="next"><a href="/2024/02/25/blog-reopen/"><small>较早</small>重启独立博客</a></span>
+    <span><a href="/2024/02/25/blog-reopen/" rel="prev"><small>← 上一篇</small>重启独立博客</a></span>
+    <span class="next"><a href="/2024/04/04/error-map-is-better-than-no-map/" rel="next"><small>下一篇 →</small>一幅错误的地图好过没有地图</a></span>
   </nav>
   <section class="comments">
 <script src="https://giscus.app/client.js" data-repo="starding/xinghua_blog_giscus" data-repo-id="R_kgDOLagm8g" data-category="Announcements" data-category-id="DIC_kwDOLagm8s4CdqOC" data-mapping="specific" data-term="a-short-web-history" data-strict="1" data-reactions-enabled="1" data-emit-metadata="1" data-input-position="top" data-theme="preferred_color_scheme" data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous" async></script>
@@ -224,13 +238,12 @@ ES6 标准最大的改进是原生支持了模块化能力、更方便的异步�
   <h2>本文</h2>
   <dl class="facts">
     <div><dt>字数</dt><dd>5,342 字</dd></div>
-    <div><dt>分类</dt><dd><a href="/categories/作为工程师/">作为工程师</a></dd></div>
+    <div><dt>主题</dt><dd><a href="/topics/frontend/">前端与交互</a> · <a href="/topics/science-philosophy/">科学与哲学</a></dd></div>
   </dl>
-  
 </section>
 <section class="aside-block">
   <h2>同主题</h2>
-  <ul class="related"><li><a href="/2016/10/31/material-design-introduct-md/">material design 简介及背后的理论</a><time datetime="2016-10-31T09:04:37.000Z">2016</time></li><li><a href="/2016/08/29/why-users-can-not-see-collect-function-in-neihan/">前端工程师的形而上学 (1)—— 一个例子</a><time datetime="2016-08-29T08:44:10.000Z">2016</time></li><li><a href="/2016/04/20/standardization/">板砖，石头与 Web 标准，W3C</a><time datetime="2016-04-20T07:41:51.000Z">2016</time></li></ul>
+  <ul class="related"><li><a href="/2016/04/20/standardization/">板砖，石头与 Web 标准，W3C</a><time datetime="2016-04-20T07:41:51.000Z">2016</time></li><li><a href="/2016/10/31/material-design-introduct-md/">material design 简介及背后的理论</a><time datetime="2016-10-31T09:04:37.000Z">2016</time></li><li><a href="/2016/09/04/fe-metaphysics/">前端工程师的形而上学 (0)</a><time datetime="2016-09-04T09:00:35.000Z">2016</time></li></ul>
 </section>
 </div></div></aside>
 </div>

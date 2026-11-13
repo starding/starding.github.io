@@ -17,7 +17,7 @@
 <meta property="article:published_time" content="2016-02-25T01:25:29.000Z">
 <meta property="og:url" content="https://xinghua.space/2016/02/25/questions-record/">
 <link rel="canonical" href="https://xinghua.space/2016/02/25/questions-record/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"问题记录","description":"Meta: 本文章用来记录平时遇到的问题以及相应的解决方案 在做一个档案管理系统时，有一个需要定时从 DB2 数据库中取出数据，处理之后，存入 mysql 中的任务。这意味着需要在 django 中单独跑一个脚本，这个脚本使用 django","datePublished":"2016-02-25T01:25:29.000Z","inLanguage":"zh-CN","author":{"@type":"Person","name":"XingHua","url":"https://xinghua.space/about/","sameAs":["https://github.com/starding","https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70","https://twitter.com/starstarding"]},"publisher":{"@type":"Person","name":"XingHua","url":"https://xinghua.space/about/","sameAs":["https://github.com/starding","https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70","https://twitter.com/starstarding"]},"mainEntityOfPage":"https://xinghua.space/2016/02/25/questions-record/","articleSection":"作为工程师"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"问题记录","description":"Meta: 本文章用来记录平时遇到的问题以及相应的解决方案 在做一个档案管理系统时，有一个需要定时从 DB2 数据库中取出数据，处理之后，存入 mysql 中的任务。这意味着需要在 django 中单独跑一个脚本，这个脚本使用 django","datePublished":"2016-02-25T01:25:29.000Z","inLanguage":"zh-CN","author":{"@type":"Person","name":"XingHua","url":"https://xinghua.space/about/","sameAs":["https://github.com/starding","https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70","https://twitter.com/starstarding"]},"publisher":{"@type":"Person","name":"XingHua","url":"https://xinghua.space/about/","sameAs":["https://github.com/starding","https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70","https://twitter.com/starstarding"]},"mainEntityOfPage":"https://xinghua.space/2016/02/25/questions-record/","articleSection":"前端与交互"}</script>
 <link rel="alternate" type="application/atom+xml" title="结绳以渔" href="/atom.xml">
 <link rel="alternate" hreflang="zh-CN" href="https://xinghua.space/2016/02/25/questions-record/">
 <link rel="alternate" hreflang="en" href="https://xinghua.space/en/2016/02/25/questions-record/">
@@ -33,6 +33,7 @@
 <link rel="stylesheet" href="/theme/site.css">
 <script src="/theme/overlay-scroll.js" defer></script>
 <script src="/theme/theme.js" defer></script>
+<script src="/theme/nav.js" defer></script>
 <script>(()=>{if(location.hostname!=='xinghua.space'||navigator.webdriver)return;try{navigator.sendBeacon('https://xinghua-stats.xinghua-space.workers.dev/c',JSON.stringify({p:location.pathname,r:document.referrer,w:innerWidth,l:navigator.language}))}catch(e){}})()</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-V9SXMWSY9Z"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-V9SXMWSY9Z');</script>
@@ -55,20 +56,33 @@
       </div>
     </div>
     <nav>
-      <a href="/">主页</a>
+      <a href="/" aria-current="page">主页</a>
       <a href="/works/">作品</a>
       <a href="/about/">关于我</a>
     </nav>
   </div>
 </header>
+<div class="minibar" id="minibar" inert>
+  <div class="minibar-in">
+    <a class="mini-brand" href="/"><img src="/brand/logo.svg" alt=""><span>结绳以渔</span></a>
+    <nav>
+      <a href="/" aria-current="page">主页</a>
+      <a href="/works/">作品</a>
+      <a href="/about/">关于我</a>
+    </nav>
+    <a class="lang-btn" href="/en/2016/02/25/questions-record/" hreflang="en" lang="en" title="English version">EN</a>
+  </div>
+</div>
 <div class="frame cols">
   <main>
 <article class="paper">
   <header class="post-head">
-    <h1>问题记录</h1>
+    <div class="title-row"><a class="back-btn" id="backBtn" href="/" aria-label="返回" title="返回"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M15 5l-7 7 7 7"/></svg>
+</a><h1>问题记录</h1></div>
     <div class="meta">
       <span>@XingHua</span>
       <time datetime="2016-02-25T01:25:29.000Z">2016 年 2 月 25 日</time>
+      <a href="/topics/frontend/">前端与交互</a>
       <span>约 10 分钟</span>
     </div>
   </header>
@@ -231,7 +245,7 @@ text-align： center</code></pre>
 <p>有一种酱油叫海天，有着一个无比蛋疼的封口设计。打开瓶盖，拉开拉环，倒出香醇的酱油后，你会发现，瓶盖合不上了！酱油这种长期使用产品，不清楚这种汽水拉环一样的一次性设计是为了什么。</p>
 <p>而对比厨房里的另一瓶调料——白醋，就明显看出设计上的差距。白醋有一个方便拧开的大瓶盖，为了方便控制倒醋时的流速，还在内部加了一个控制流速的狭缝，可谓方便至极。</p>
   </div>
-  <section class="post-related"><h2>同主题</h2><ul class="related"><li><a href="/2024/03/30/a-short-web-history/">Web 小史：关键脉络</a><time datetime="2024-03-30T06:38:56.000Z">2024</time></li><li><a href="/2016/10/31/material-design-introduct-md/">material design 简介及背后的理论</a><time datetime="2016-10-31T09:04:37.000Z">2016</time></li><li><a href="/2016/08/29/why-users-can-not-see-collect-function-in-neihan/">前端工程师的形而上学 (1)—— 一个例子</a><time datetime="2016-08-29T08:44:10.000Z">2016</time></li></ul></section>
+  <section class="post-related"><h2>同主题</h2><ul class="related"><li><a href="/2024/03/30/a-short-web-history/">Web 小史：关键脉络</a><time datetime="2024-03-30T06:38:56.000Z">2024</time></li><li><a href="/2016/10/31/material-design-introduct-md/">material design 简介及背后的理论</a><time datetime="2016-10-31T09:04:37.000Z">2016</time></li><li><a href="/2016/09/04/fe-metaphysics/">前端工程师的形而上学 (0)</a><time datetime="2016-09-04T09:00:35.000Z">2016</time></li></ul></section>
   <div class="post-author"><div class="author-card">
   <div class="author">
     <img src="/img/author.jpg" alt="XingHua">
@@ -246,8 +260,8 @@ text-align： center</code></pre>
 </div>
 </div>
   <nav class="pager">
-    <span><a href="/2016/02/26/metaphor/"><small>较新</small>什么是隐喻：它和明喻有什么区别</a></span>
-    <span class="next"><a href="/2016/01/19/learn-javascript-follow-definitive-guide/"><small>较早</small>javascript 犀牛书（第六版）</a></span>
+    <span><a href="/2016/01/19/learn-javascript-follow-definitive-guide/" rel="prev"><small>← 上一篇</small>javascript 犀牛书（第六版）</a></span>
+    <span class="next"><a href="/2016/02/26/metaphor/" rel="next"><small>下一篇 →</small>什么是隐喻：它和明喻有什么区别</a></span>
   </nav>
   <section class="comments">
 <script src="https://giscus.app/client.js" data-repo="starding/xinghua_blog_giscus" data-repo-id="R_kgDOLagm8g" data-category="Announcements" data-category-id="DIC_kwDOLagm8s4CdqOC" data-mapping="specific" data-term="问题记录" data-strict="1" data-reactions-enabled="1" data-emit-metadata="1" data-input-position="top" data-theme="preferred_color_scheme" data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous" async></script>
@@ -273,13 +287,12 @@ text-align： center</code></pre>
   <h2>本文</h2>
   <dl class="facts">
     <div><dt>字数</dt><dd>4,106 字</dd></div>
-    <div><dt>分类</dt><dd><a href="/categories/作为工程师/">作为工程师</a></dd></div>
+    <div><dt>主题</dt><dd><a href="/topics/frontend/">前端与交互</a></dd></div>
   </dl>
-  
 </section>
 <section class="aside-block">
   <h2>同主题</h2>
-  <ul class="related"><li><a href="/2024/03/30/a-short-web-history/">Web 小史：关键脉络</a><time datetime="2024-03-30T06:38:56.000Z">2024</time></li><li><a href="/2016/10/31/material-design-introduct-md/">material design 简介及背后的理论</a><time datetime="2016-10-31T09:04:37.000Z">2016</time></li><li><a href="/2016/08/29/why-users-can-not-see-collect-function-in-neihan/">前端工程师的形而上学 (1)—— 一个例子</a><time datetime="2016-08-29T08:44:10.000Z">2016</time></li></ul>
+  <ul class="related"><li><a href="/2024/03/30/a-short-web-history/">Web 小史：关键脉络</a><time datetime="2024-03-30T06:38:56.000Z">2024</time></li><li><a href="/2016/10/31/material-design-introduct-md/">material design 简介及背后的理论</a><time datetime="2016-10-31T09:04:37.000Z">2016</time></li><li><a href="/2016/09/04/fe-metaphysics/">前端工程师的形而上学 (0)</a><time datetime="2016-09-04T09:00:35.000Z">2016</time></li></ul>
 </section>
 </div></div></aside>
 </div>
