@@ -326,7 +326,7 @@ body:has(>.pagefoot)>.frame{width:100%;box-sizing:border-box}
 .appbar-in{position:relative}
 .theme-pick{position:absolute;top:21px;right:16px}
 @media (max-width:900px){.theme-pick{top:13px;right:8px}}
-@media (max-width:600px){.theme-pick{top:14px}}
+@media (max-width:600px){.theme-pick{top:21px}}
 .theme-btn{display:grid;place-items:center;width:40px;height:40px;border-radius:20px;border:0;background:none;color:var(--on-appbar);opacity:.7;cursor:pointer}
 .theme-btn:hover,.theme-btn[aria-expanded="true"]{opacity:1;background:rgba(255,255,255,.12)}
 .theme-btn svg{width:20px;height:20px}
