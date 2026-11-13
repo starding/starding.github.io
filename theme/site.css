@@ -224,6 +224,9 @@ html::-webkit-scrollbar{display:none}
 .post-related{display:none}
 .aside{align-self:stretch;font-size:var(--fs-label);line-height:20px}
 .aside .author-card{background:var(--paper);border-radius:var(--r-l);padding:20px;margin-bottom:24px}
+.aside .author{flex-direction:column;align-items:flex-start;gap:12px}
+.aside .author img{width:56px;height:56px}
+.aside .author p{white-space:normal}
 .aside-sticky-wrap{position:sticky;top:24px;max-height:calc(100vh - 48px);overflow-y:auto;scrollbar-width:none}
 .aside-sticky-wrap::-webkit-scrollbar{display:none}
 .aside-sticky{background:var(--paper);border-radius:var(--r-l);padding:20px}
