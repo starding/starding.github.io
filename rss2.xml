@@ -475,7 +475,7 @@ Develop a single underlying system that allows for a unified experience across p
 <p>一年之中，心理上会产生许多变化，有一些学生时代的缺点慢慢被弥补了，同时也有很多优秀品质慢慢的消失了，比如每天花时间学习，出生牛犊不怕虎的气概。</p>
 <h2 id="后记">后记</h2>
 <p>这篇文章写在六月毕业季，因为中间换了电脑，导致思路断断续续，直到现在也仍然是残缺的，但是随着在新公司的阅历增加，又慢慢找回了学习的状态，和当仁不让予师的感觉。对未来的职业生涯也有了更成熟一些的规划，继续补充中。</p>]]></description></item>
-<item><title>常用算法</title><link>https://xinghua.space/2016/04/26/topological-sort/</link><guid>https://xinghua.space/2016/04/26/topological-sort/</guid><pubDate>Tue, 26 Apr 2016 08:22:21 GMT</pubDate><description><![CDATA[<h2 id="拓扑排序">拓扑排序</h2>
+<item><title>拓扑排序：用它理清 JavaScript 模块的依赖顺序</title><link>https://xinghua.space/2016/04/26/topological-sort/</link><guid>https://xinghua.space/2016/04/26/topological-sort/</guid><pubDate>Tue, 26 Apr 2016 08:22:21 GMT</pubDate><description><![CDATA[<h2 id="拓扑排序">拓扑排序</h2>
 <p>刚听到「拓扑排序」这个概念的时候，我直接懵了，脑袋中过滤一遍，完全没有发现跟这个概念相关的知识。本科的时候学过图的算法，但主要集中于图的连通性，生成树，深搜，广搜等内容，似乎并没有什么「拓扑排序」。</p>
 <p>当我了解到它的基本内容以及应用场景之后，才发现原来的确是有这个东西，只不过是没有明确的认识到这个概念和它的重要性。</p>
 <h3 id="javascript-中的模块依赖关系">JavasCript 中的模块依赖关系</h3>
@@ -629,7 +629,7 @@ E: {}</code></pre>
 <h2 id="时间就是金钱">时间就是金钱</h2>
 <p>到了今天，「时间就是金钱」已经成为一个口头隐喻了。在我们的文化中，时间已经成为了一种宝贵的商品，是我们达成目标所需的有限资源。人们按小时，星期来计算薪酬，更精确的按照分钟来计算话费等等。我们已经把许多金钱方面的词汇概念用于时间的表达上，时间成了一种可以花费，浪费，预算，投资，节省或挥霍的东西。总而言之，时间的观念重新构建了我们日常基本生活中的行为以及对这个世界的认知。</p>
 <p>这一切的一切都是从钟楼等这类人造的，独立于自然因素的计时工具开始的。</p>]]></description></item>
-<item><title>关于圆锥曲线光学性质的有趣解释 (证明与原因)</title><link>https://xinghua.space/2016/04/04/somethings-about-ellipse/</link><guid>https://xinghua.space/2016/04/04/somethings-about-ellipse/</guid><pubDate>Mon, 04 Apr 2016 07:24:12 GMT</pubDate><description><![CDATA[<p>突然想起很久之前，在其他地方贴过一个关于椭圆光学性质的文章。直到今天想来，这个解释仍然是十分直观和有趣。当时我以为这样一个解释方式是「本质的」，但经同学提醒，用「直观」这个词或许会更准确。</p>
+<item><title>椭圆的反射性质：为什么光从一个焦点出发会汇聚到另一个焦点</title><link>https://xinghua.space/2016/04/04/somethings-about-ellipse/</link><guid>https://xinghua.space/2016/04/04/somethings-about-ellipse/</guid><pubDate>Mon, 04 Apr 2016 07:24:12 GMT</pubDate><description><![CDATA[<p>突然想起很久之前，在其他地方贴过一个关于椭圆光学性质的文章。直到今天想来，这个解释仍然是十分直观和有趣。当时我以为这样一个解释方式是「本质的」，但经同学提醒，用「直观」这个词或许会更准确。</p>
 <p>虽然文章说的是椭圆，但是放在更一般的圆锥曲线上基本上也都适用。</p>
 <h2 id="椭圆的光学性质">椭圆的光学性质</h2>
 <p>在圆锥曲线的性质中，我们常常会见到下面这样一张图：从椭圆的一个焦点入射的光线，经过椭圆壁的反射后，会通过另一个焦点。</p>
@@ -650,7 +650,7 @@ E: {}</code></pre>
 <p>至此，“为什么”的问题才算有了个“直观上的”解释。</p>
 <h2 id="其他一些有趣的推广">其他一些有趣的推广</h2>
 <p>上面的思路可以推广到圆锥曲线中去，即便对于椭圆本身也有一些扩展，比如两颗钉子的距离调整，比如当两颗钉子重合的时候会如何？答案是显而易见的。</p>]]></description></item>
-<item><title>什么是模态框（modal dialog）</title><link>https://xinghua.space/2016/03/19/model-dialog/</link><guid>https://xinghua.space/2016/03/19/model-dialog/</guid><pubDate>Sat, 19 Mar 2016 07:13:33 GMT</pubDate><description><![CDATA[<h2 id="问题来源">问题来源</h2>
+<item><title>什么是模态框（modal dialog）：「模态」到底是什么意思</title><link>https://xinghua.space/2016/03/19/model-dialog/</link><guid>https://xinghua.space/2016/03/19/model-dialog/</guid><pubDate>Sat, 19 Mar 2016 07:13:33 GMT</pubDate><description><![CDATA[<h2 id="问题来源">问题来源</h2>
 <p>在学习前端的时候，我遇到一个让人费解的词：「模态框」，它对应一种特殊的弹出式窗口。而且一时之间很难说清楚到底特殊在什么地方，以及这样的弹窗与其他类型窗体的核心区别在哪里。与「对话框」，「面板」这些比较直白的词汇不同，「模态」这个词处处透漏着一种玄乎的感觉，很难直观的感受到它到底是个啥，又想要通过这个词来表达什么，你会不自觉的感到困惑：啥叫模态？</p>
 <p>在计算机领域的词汇中，我一直抱有这样一种信念：如果一个词汇显得玄乎，那它背后肯定隐藏着更多的东西，或许是某些隐喻，或许是一些更深层次的设计原理等等。无论如何，都值得去好好调查一番这些词汇背后的含义，可能这些小小的词汇就成了通往一个个饶有趣味的世界的门径。</p>
 <h2 id="什么是模态">什么是「模态」？</h2>
@@ -1024,7 +1024,7 @@ HTML5 的另一个设计原理是解决现实的问题。显而易见的是，�
 <h2 id="前端领域">前端领域</h2>
 <p>在前端领域更是如此，前端纯粹是人类建构出来的，我们可以追问许多东西，比如 html5 的作用是什么？为什么提出 html5，提出者们是怎么考虑的？</p>
 <p>通过这些追问，可以让我们根据问题回溯到设计者的意图上去，了解初衷，从而产生更深入的理解以及对未来的把握。</p>]]></description></item>
-<item><title>隐喻</title><link>https://xinghua.space/2016/02/26/metaphor/</link><guid>https://xinghua.space/2016/02/26/metaphor/</guid><pubDate>Fri, 26 Feb 2016 02:13:33 GMT</pubDate><description><![CDATA[<h2 id="隐喻">隐喻</h2>
+<item><title>什么是隐喻：它和明喻有什么区别</title><link>https://xinghua.space/2016/02/26/metaphor/</link><guid>https://xinghua.space/2016/02/26/metaphor/</guid><pubDate>Fri, 26 Feb 2016 02:13:33 GMT</pubDate><description><![CDATA[<h2 id="隐喻">隐喻</h2>
 <h3 id="为什么明确概念如此重要">为什么明确概念如此重要</h3>
 <p>在美剧中，我们常常能见到演员们提及或使用「隐喻」这种修辞手法，而且模糊的知道这种修辞和「类比」相似，但是缺少对这种修辞的清晰认知。实际上，我们平时日常交谈时，常常会无意识的使用到这种修辞，而造成这种无意识的原因是我们对「隐喻」没有一个明确的概念。</p>
 <p>不止隐喻是这样，在日常生活中，常常会遇到这样的情景：在你明确一件事物的概念之前，即使这件事物在身边常常见到，你也不会过多的去留意它，这个时候对这件事物的认知，就处于一种「无意识」的状态，而你一旦掌握了这样事物的概念之后，就会脱离那种混沌的无意识状态，转而开始有意的留意身边的这些事物，就会吃惊的发现，啊，原来它早已存在。</p>

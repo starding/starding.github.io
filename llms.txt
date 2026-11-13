@@ -22,15 +22,15 @@
 - [前端工程师的形而上学 (0)](https://xinghua.space/2016/09/04/fe-metaphysics/index.md)：2016-09-04
 - [前端工程师的形而上学 (1)—— 一个例子](https://xinghua.space/2016/08/29/why-users-can-not-see-collect-function-in-neihan/index.md)：2016-08-29，作为工程师
 - [毕业一年](https://xinghua.space/2016/07/29/one-year-after-graduation/index.md)：2016-07-29，随笔
-- [常用算法](https://xinghua.space/2016/04/26/topological-sort/index.md)：2016-04-26
+- [拓扑排序：用它理清 JavaScript 模块的依赖顺序](https://xinghua.space/2016/04/26/topological-sort/index.md)：2016-04-26
 - [什么是 Javascript Event Loop](https://xinghua.space/2016/04/26/javascript-event-loop/index.md)：2016-04-26
 - [板砖，石头与 Web 标准，W3C](https://xinghua.space/2016/04/20/standardization/index.md)：2016-04-20，作为工程师
 - [钟楼和时间革命](https://xinghua.space/2016/04/09/horologe-in-church/index.md)：2016-04-09，科哲和科学史
-- [关于圆锥曲线光学性质的有趣解释 (证明与原因)](https://xinghua.space/2016/04/04/somethings-about-ellipse/index.md)：2016-04-04，随笔
-- [什么是模态框（modal dialog）](https://xinghua.space/2016/03/19/model-dialog/index.md)：2016-03-19，作为工程师
+- [椭圆的反射性质：为什么光从一个焦点出发会汇聚到另一个焦点](https://xinghua.space/2016/04/04/somethings-about-ellipse/index.md)：2016-04-04，随笔
+- [什么是模态框（modal dialog）：「模态」到底是什么意思](https://xinghua.space/2016/03/19/model-dialog/index.md)：2016-03-19，作为工程师
 - [html5 设计原理](https://xinghua.space/2016/03/19/html5-design-principle/index.md)：2016-03-19
 - [在计算机学习中，为什么我们应该问为什么](https://xinghua.space/2016/03/18/why-should-we-ask-why/index.md)：2016-03-18，作为工程师
-- [隐喻](https://xinghua.space/2016/02/26/metaphor/index.md)：2016-02-26，随笔
+- [什么是隐喻：它和明喻有什么区别](https://xinghua.space/2016/02/26/metaphor/index.md)：2016-02-26，随笔
 - [问题记录](https://xinghua.space/2016/02/25/questions-record/index.md)：2016-02-25，作为工程师
 - [javascript 犀牛书（第六版）](https://xinghua.space/2016/01/19/learn-javascript-follow-definitive-guide/index.md)：2016-01-19，作为工程师
 - [docker-gitlab 数据迁移](https://xinghua.space/2016/01/18/gitlab-migrate/index.md)：2016-01-18，作为工程师
