@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Material Design: An Introduction and the Theory Behind It | Knots &amp; Nets</title>
+<meta name="description" content="What Material Design is, and the science behind it: graphic design, cognitive psychology, biology and physics that let novices make decent designs.">
+<meta name="author" content="XingHua">
+<meta name="theme-color" content="#000000">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Material Design: An Introduction and the Theory Behind It">
+<meta property="og:description" content="What Material Design is, and the science behind it: graphic design, cognitive psychology, biology and physics that let novices make decent designs.">
+<meta property="og:image" content="https://xinghua.space/2016/10/31/material-design-introduct-md/image.pf2jxhz9w.webp">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Knots &amp; Nets">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="article:published_time" content="2016-10-31T09:04:37.000Z">
+<meta property="og:url" content="https://xinghua.space/en/2016/10/31/material-design-introduct-md/">
+<link rel="canonical" href="https://xinghua.space/en/2016/10/31/material-design-introduct-md/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Material Design: An Introduction and the Theory Behind It","description":"What Material Design is, and the science behind it: graphic design, cognitive psychology, biology and physics that let novices make decent designs.","datePublished":"2016-10-31T09:04:37.000Z","inLanguage":"en","author":{"@type":"Person","name":"XingHua","url":"https://xinghua.space/en/about/","sameAs":["https://github.com/starding","https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70","https://twitter.com/starstarding"]},"publisher":{"@type":"Person","name":"XingHua","url":"https://xinghua.space/en/about/","sameAs":["https://github.com/starding","https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70","https://twitter.com/starstarding"]},"mainEntityOfPage":"https://xinghua.space/en/2016/10/31/material-design-introduct-md/","image":"https://xinghua.space/2016/10/31/material-design-introduct-md/image.pf2jxhz9w.webp","articleSection":"As an Engineer"}</script>
+<link rel="alternate" type="application/atom+xml" title="Knots &amp; Nets" href="/en/atom.xml">
+<link rel="alternate" hreflang="zh-CN" href="https://xinghua.space/2016/10/31/material-design-introduct-md/">
+<link rel="alternate" hreflang="en" href="https://xinghua.space/en/2016/10/31/material-design-introduct-md/">
+<link rel="alternate" hreflang="x-default" href="https://xinghua.space/2016/10/31/material-design-introduct-md/">
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="/favicon-96x96.png" type="image/png" sizes="96x96">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#B6002E">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
+<link rel="manifest" href="/manifest.webmanifest">
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="stylesheet" href="/theme/tokens.css">
+<link rel="stylesheet" href="/theme/site.css">
+<script src="/theme/overlay-scroll.js" defer></script>
+<script src="/theme/theme.js" defer></script>
+<script>(()=>{if(location.hostname!=='xinghua.space'||navigator.webdriver)return;try{navigator.sendBeacon('https://xinghua-stats.xinghua-space.workers.dev/c',JSON.stringify({p:location.pathname,r:document.referrer,w:innerWidth,l:navigator.language}))}catch(e){}})()</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-V9SXMWSY9Z"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-V9SXMWSY9Z');</script>
+</head>
+<body>
+<header class="appbar">
+  <div class="appbar-in">
+    <a class="brand" href="/en/"><img src="/brand/logo.svg" alt=""><span><b>Knots &amp; Nets</b><small>Rather than wishing for fish by the water, go home and weave a net.</small></span></a>
+    <div class="theme-pick">
+      <a class="lang-btn" href="/2016/10/31/material-design-introduct-md/" hreflang="zh-CN" lang="zh-CN" title="中文版">中文</a>
+      <button type="button" class="theme-btn" id="themeBtn" aria-haspopup="menu" aria-expanded="false" title="Appearance"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="currentColor" d="M12 3.5a8.5 8.5 0 0 1 0 17z"/></svg>
+</button>
+      <div class="theme-menu" id="themeMenu" role="menu" hidden>
+        <button type="button" role="menuitemradio" data-theme-set="auto"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="currentColor" d="M12 3.5a8.5 8.5 0 0 1 0 17z"/></svg>
+<span>Auto</span><small>System</small></button>
+        <button type="button" role="menuitemradio" data-theme-set="light"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/><path stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>
+<span>Light</span></button>
+        <button type="button" role="menuitemradio" data-theme-set="dark"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
+<span>Dark</span></button>
+      </div>
+    </div>
+    <nav>
+      <a href="/en/">Home</a>
+      <a href="/en/works/">Works</a>
+      <a href="/en/about/">About</a>
+    </nav>
+  </div>
+</header>
+<div class="frame cols">
+  <main>
+<article class="paper">
+  <header class="post-head">
+    <h1>Material Design: An Introduction and the Theory Behind It</h1>
+    <div class="meta">
+      <span>@XingHua</span>
+      <time datetime="2016-10-31T09:04:37.000Z">Oct 31, 2016</time>
+      <span>10 min read</span>
+    </div>
+  </header>
+  <div class="prose">
+<p>material design<br>
+—— bringing science into art, so that people without much experience can still make decent designs</p>
+<p><img src="/2016/10/31/material-design-introduct-md/image.pf2jxhz9w.webp" alt="material design" loading="lazy"></p>
+<h2 id="introduction">Introduction</h2>
+<p>The most accurate description is the <a href="https://m1.material.io/" rel="noopener">official introduction</a><sup class="fn"><a href="#fn-1" id="fnref-1">1</a></sup>:</p>
+<blockquote>
+<p>We challenged ourselves to create a visual language for our users that synthesizes the classic principles of good design with the innovation and possibility of technology and science. This is material design.<br>
+Develop a single underlying system that allows for a unified experience across platforms and device sizes. Mobile precepts are fundamental, but touch, voice, mouse, and keyboard are all ﬁrst-class input methods</p>
+</blockquote>
+<p><strong>Design principles</strong></p>
+<ol>
+<li><p>Material is a metaphor:<br>
+This metaphor is the foundation for understanding everything else in material design. Whenever you think about the material design space and about how a whole series of elements should move and behave, don't forget the metaphor behind it.</p></li>
+<li><p>Bold, graphic, intentional (that is, the design is arranged in advance; there is a deliberate motive behind it)<br>
+It borrows the conventions of traditional print graphic design (typography, grids, space, scale, color, use of imagery) to guide visual treatment. These conventions don't just please the eye; they also serve to build hierarchy, convey meaning and direct focus (mostly in the sense of cognitive psychology, which I'll come to later).</p></li>
+<li><p>Motion provides meaning<br>
+Animation is a very important part of front-end interaction, but material design doesn't use it arbitrarily. Its motion is abstracted from reality and matches users' cognitive patterns.</p></li>
+</ol>
+<p>Below I'll unpack this official summary.</p>
+<h2 id="the-science-and-technology-behind-material-design">The "science and technology" behind Material Design</h2>
+<h3 id="drawing-on-traditional-graphic-design">Drawing on traditional graphic design</h3>
+<p>The official introduction says material design "synthesizes the classic principles of good design with the innovation and possibility of technology and science." The "classic principles" part is easy to understand. Back in the age of print, people had already explored a great deal about how to present information in forms that are more pleasing and easier to take in, and had distilled a number of graphic design principles that work:</p>
+<ul>
+<li>Consistency</li>
+<li>Reducing memory load</li>
+<li>Alignment, proximity</li>
+<li>…<br>
+These guidelines, originally for traditional paper media, were carried over to the new electronic media with very good results. Keep in mind that early web pages, apart from a few hyperlinks, came nowhere near the richness of presentation in print. Ideas from traditional graphic design gave web design very useful guidance, the grid system for example:<br>
+<img src="/2016/10/31/material-design-introduct-md/image.42f393xkglk0.webp" alt="Grid systems in graphic design" loading="lazy"></li>
+</ul>
+<p>As the web developed, electronic media acquired something of their own. They were no longer purely static like paper; they had real "interaction." The web's new features needed other theoretical support. If we can no longer borrow from traditional graphic design, how do we create a set of design guidelines suited to these new web features? This is where the material design docs' "innovation and possibility of technology and science" comes in.</p>
+<h3 id="opening-up-new-design-territory">Opening up new design territory</h3>
+<p>If traditional graphic design can't be borrowed directly, look at whether there is something behind graphic design worth digging into. When looking for theoretical support, you need to search deeper in the reductionist direction. Roughly, that direction goes like this:</p>
+<blockquote>
+<p>Design rests on psychology<br>
+Psychology rests on biology<br>
+Biology rests on chemistry<br>
+Chemistry rests on physics</p>
+</blockquote>
+<p>These sweeping propositions are highly contested, but within these disciplines you can at least say they are "partly true." Digging deeper for design basically takes you as far as psychology and biology. Finding deeper theory gives a foundation for "creative" design. It lets the expression of the design space change, so you're no longer confined to transplanting traditional graphic design onto the new web medium; you can improvise freely from these deeper theories and create design forms suited to the web.</p>
+<p>All that said, what exactly are these innovations and possibilities of technology and science?</p>
+<h3 id="cognitive-psychology">Cognitive psychology</h3>
+<p>Before talking about cognitive psychology, here's a small example from Toutiao Quan (a social feature in the Toutiao news app):</p>
+<p><img src="http://p3.pstatp.com/obj/c8f0005d14632f84a10" alt="Toutiao Quan icon poll" loading="lazy"></p>
+<p>This small example shows, to some extent, that cognition matters in front-end interfaces far more than people imagine, though many people don't realize how important it is.</p>
+<p>The way humans come to know things (perception, learning, reasoning, memory and so on) follows certain fixed patterns, and people's cognitive behavior in front-end interfaces doesn't escape them. These patterns are formed by human biology. Since the Industrial Revolution, humans and their environment have been rapidly transformed, but evolution works on a scale of millions of years. The evolution of human biology was essentially finished long ago, and for the foreseeable future that biology will stay stable. Psychology already has quite a few findings that can teach design something:</p>
+<ul>
+<li>How experience, environment and goals affect cognition</li>
+<li>Gestalt phenomena in perception</li>
+<li>Short-term and long-term memory</li>
+<li>Research on reading behavior</li>
+<li>The psychology of decision-making</li>
+<li>…</li>
+</ul>
+<p>All of the research listed above has applications in design. As for why we should talk about cognitive psychology at all, <em>Designing with the Mind in Mind</em> has a passage on it (slightly edited and expanded):</p>
+<p>Following user-interface design guidelines isn't as step-by-step as following a cooking recipe. Design guidelines often describe goals rather than actions. They are deliberately very general so that they apply broadly, but that also means people often interpret their precise meaning, and how they apply to a specific design situation, in different ways.</p>
+<p>To complicate things further, for any one design situation, several rules often seem to apply at once. That requires trade-offs between designs, and those trade-offs can't rest on the designer's personal taste alone; they need data and theory behind them. Data can come from the operations team.</p>
+<p>Theory, though, can only come from the deeper level of cognitive psychology.</p>
+<p>If you understand users' cognitive patterns, you're less likely to end up with something that "follows the design principles but doesn't match how users think," which makes for a bad user experience. In the example above, decorating the "…" follows quite a few design rules: it's more consistent, fits better with the other icons, stands out more, and so on. But it doesn't match cognition, and users easily make mistakes there.</p>
+<p>Humans live in the physical world, while their minds sometimes roam the internet. This creates a "context switch" between the physical environment and the internet environment: people understand things on the internet through certain features of the real world, the trash can standing for the recycle bin, for example. With the help of psychology, we can make the cognitive transition from reality to internet design fairly smooth. The same goes for motion. Motion in the real world is smooth; nothing moves in broken lines (collisions aside). That's why smooth transitions look natural, and because of that naturalness they feel familiar and are more readily accepted.</p>
+<p>Another place where a "context switch" happens is moving between scenes within an app. Transition animations need careful design to guide the eye, so that the transition feels natural and smooth and the user's train of thought doesn't break. This is where Bézier curves come into their own.<br>
+<img src="/2016/10/31/material-design-introduct-md/keynote_animation_material_design.3wdz6hrupme0.gif" alt="material design motion gif" loading="lazy"></p>
+<h3 id="biology">Biology</h3>
+<p>This is mainly research into the characteristics of biological structure, where cognitive psychology can look for its theoretical foundation, for example:</p>
+<ul>
+<li>Neuroscience</li>
+<li>Eye-tracking research</li>
+<li>Research on how the eye forms images</li>
+<li>This research is more fundamental and touches on evolutionary theory to some extent, so I won't go into it here. Here's one piece of theory about the eye's photoreceptor cells:</li>
+</ul>
+<p>The spatial resolution of human vision drops sharply from the center to the periphery, for three reasons:</p>
+<blockquote>
+<p>Pixel density<br>
+Each eye has 6 to 7 million cone cells, and they are packed far more densely in the center of the visual field (a tiny region called the fovea) than at the edges (corresponding to central vision). The fovea has about 158,000 cones per square millimeter, while the rest of the retina has only 9,000 cones per square millimeter (corresponding to peripheral vision).</p>
+<p>Data compression<br>
+The fovea's cones connect 1:1 to ganglion cells, the starting point for processing and transmitting visual information, while in the rest of the retina several photoreceptors (cones and rods) connect to a single ganglion cell. In technical terms, peripheral visual information is compressed (lossily) before it reaches the brain, while central vision is not.</p>
+<p>Processing resources<br>
+The fovea makes up only about 1% of the retina, yet 50% of the visual cortex is devoted to input from the fovea, and the other half processes data from the remaining 99% of the retina.</p>
+<p>As a result, visual resolution at the center of our visual field is far higher than anywhere else. At arm's length, the fovea's field covers roughly the area of a thumbnail, about the width of three characters on the screen you're reading now. This is the basis of visual focus.</p>
+<p>—— Jeff Johnson, <em>Designing with the Mind in Mind</em> (quotation slightly adapted)</p>
+</blockquote>
+<p>Biological research on the eye tells us that when people look at a screen, their visual focus is basically only the size of a thumbnail; everything outside it is "peripheral vision." Given this mode of vision, how to guide the eye and draw users' attention to the information you want them to see is a real challenge. The most direct example is where and how an error message appears when an input field has an error.</p>
+<p><img src="/2016/10/31/material-design-introduct-md/image.4ni1tz3a4oi0.webp" alt="Form error message" loading="lazy"></p>
+<h2 id="other-things">Other things</h2>
+<h3 id="abstraction-from-physics--sensible-quantification">Abstraction from physics &amp;&amp; sensible quantification</h3>
+<p>The official material introduction also says <a href="https://m1.material.io/material-design/introduction.html#introduction-principles" rel="noopener">"material is metaphor"</a>. Material is a metaphor. A metaphor for what?</p>
+<p>What material design metaphorically refers to is a design material. Let's call it the "material card." It is abstracted from reality, stripped of reality's impurities and randomness, keeping spatial relationships, change and transition, and light and shadow. This material has thickness, and pieces of it have spatial relationships with one another. This actually hints at a bigger metaphor: the whole of material design stands for a particular design space, a space with three-dimensional structure, and material cards are the basic material it is built from.</p>
+<p><img src="/2016/10/31/material-design-introduct-md/image.3bcaojsh32g0.webp" alt="material environment" loading="lazy"></p>
+<p>Why go to so much trouble to abstract a design material and a virtual space?<br>
+<strong>Because materials, together with the rules for building with them, determine consistency</strong></p>
+<p>To understand this, we can start from architecture in the real world:<br>
+<img src="/2016/10/31/material-design-introduct-md/image.5y74kebkgds0.webp" alt="Architecture" loading="lazy"></p>
+<p>All design can be vividly described as "dancing in shackles," and this is especially obvious in architecture. Real-world architecture requires using basic available materials (brick, concrete, steel, glass) to produce designs that obey the physical laws of the real world.</p>
+<p>Keep in mind that most buildings in the world are much alike. Only a few architects can design buildings that both obey the rules and rise above the ordinary.</p>
+<p>If the materials and rules are too restrictive, the result is rigid expression. Although material design is abstracted from the real world, it also adds magical properties that don't exist in reality: material design cards can be freely split apart, merged, transformed and so on.</p>
+<p>MD has some quantitative standards, and they provide design with a stronger layer of regulation:</p>
+<ul>
+<li>Card thickness</li>
+<li>Card elevation differences</li>
+<li>Color choices</li>
+<li>Animation timing
+<ul>
+<li>The longest gap between successive images that still lets them fuse visually: 20ms</li>
+<li>The lag between a visual event and our complete perception of it: 100ms</li>
+<li>The editing "window" for an event to enter consciousness: 250ms</li>
+<li>…</li>
+</ul></li>
+</ul>
+<p>This idea of "quantified design with a basis" is ahead of its time. It means design no longer belongs exclusively to masters with rich experience, and is no longer just bursts of inspiration and the expression of personal taste. If you know some history of science, you'll see why this act of "bringing science into design" at the level of design language matters. To draw a comparison: it is like bringing quantitative, scientific method into alchemy, which had always been practiced in mysterious ways, and it became chemistry.</p>
+<p>Traces of combining science and technology can be seen in earlier design too, but none of them reformed and regulated design as thoroughly as material design does, through the form of a metaphorical space.<br>
+These features can be said to be why "people without much experience can still make decent designs."</p>
+<h3 id="people-without-much-experience-can-still-make-decent-designs">People without much experience can still make decent designs?</h3>
+<p><strong>What is decent design</strong></p>
+<ul>
+<li>Visually beautiful</li>
+<li>Helps convey information precisely</li>
+<li>Grounded in psychology and matched to users' cognitive habits (not just the designer's personal taste)</li>
+<li>Material design has already built all of the above into its basic vocabulary, so doing front-end design with material design to some extent sets its floor: it won't be terrible.</li>
+</ul>
+<p>Material Design tries to find a design point between art and science. That is possible, although it demands a great deal of the designer.</p>
+<p>In my view, Material Design has partly achieved this. Its thinking is very clear and highly inspiring. Even if Material Design as a whole dissolves one day, many of its most inspiring ideas will carry on.</p>
+<h2 id="a-material-design-mind-map">A Material Design mind map</h2>
+<p><img src="http://p3.pstatp.com/obj/c900003e766a96e94a6" alt="MD mind map" loading="lazy"></p>
+<p>The mind map above was compiled from the Material Design guidelines. The branches on the right describe Material Design's most basic components and structures. The branches on the left introduce some empirical best practices. Using what I've described above, readers can see whether they can find traces of these principles and techniques behind them.</p>
+<h2 id="references">References</h2>
+<h3 id="links">Links:</h3>
+<p><a href="https://m1.material.io/" rel="noopener">material design official site</a><br>
+<a href="https://www.zhihu.com/question/24276657/answer/27262112" rel="noopener">How should we understand Google's Material Design language? (Zhihu, Chinese)</a><br>
+<a href="https://www.theverge.com/2014/6/27/5849272/material-world-how-google-discovered-what-software-is-made-of" rel="noopener">The Verge's interview with Matias Duarte</a></p>
+<h3 id="books">Books</h3>
+<p><em>Grid Systems in Graphic Design</em><br>
+<em>Designing with the Mind in Mind: Simple Guide to Understanding User Interface Design Guidelines</em><br>
+<em>Don't Make Me Think</em></p>
+<section class="footnotes"><ol><li id="fn-1">This is the original material design website; by 2024 it had moved on to M3 <a href="#fnref-1" class="fn-back" aria-label="返回正文">↩</a></li></ol></section>
+  </div>
+  <section class="post-related"><h2>Related</h2><ul class="related"><li><a href="/en/2024/03/30/a-short-web-history/">A Short History of the Web: The Key Threads</a><time datetime="2024-03-30T06:38:56.000Z">2024</time></li><li><a href="/en/2016/08/29/why-users-can-not-see-collect-function-in-neihan/">Front-End Metaphysics (1): Why Users Can't See the Favorites Button</a><time datetime="2016-08-29T08:44:10.000Z">2016</time></li><li><a href="/en/2016/04/20/standardization/">Bricks, Stones, Web Standards and the W3C</a><time datetime="2016-04-20T07:41:51.000Z">2016</time></li></ul></section>
+  <div class="post-author"><div class="author-card">
+  <div class="author">
+    <img src="/img/author.jpg" alt="XingHua">
+    <p>We meet by chance in this world.<br>I’m XingHua — glad to meet you.</p>
+  </div>
+  <nav class="social"><a href="https://github.com/starding" title="GitHub" aria-label="GitHub" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+</a><a href="https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70" title="Jike" aria-label="Jike" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M14.6 2h4.2v13.4c0 4.1-2.6 6.6-6.4 6.6-1.9 0-3.6-.6-5-1.7l2.2-3.3c.8.6 1.7.9 2.6.9 1.6 0 2.4-1 2.4-3V2z"/><path fill="none" stroke="currentColor" stroke-width="1.2" d="M16.4 3.6v12.6c0 3.6-2.3 5.9-5.6 6.1"/></svg>
+</a><a href="https://twitter.com/starstarding" title="Twitter" aria-label="Twitter" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M23.6 4.6c-.9.4-1.8.6-2.8.8 1-.6 1.8-1.6 2.1-2.7-.9.6-2 1-3.1 1.2a4.9 4.9 0 00-8.4 4.5C7.4 8.2 3.8 6.2 1.4 3.3a4.9 4.9 0 001.5 6.6c-.8 0-1.6-.3-2.2-.6 0 2.4 1.7 4.4 3.9 4.8-.7.2-1.5.2-2.2.1.6 2 2.4 3.4 4.6 3.4A9.9 9.9 0 010 19.6 13.9 13.9 0 007.5 21.8c9.1 0 14-7.5 14-14v-.6c1-.7 1.8-1.6 2.1-2.6z"/></svg>
+</a><a href="mailto:starstarding@gmail.com" title="Email" aria-label="Email"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 4h18a2 2 0 012 2v12a2 2 0 01-2 2H3a2 2 0 01-2-2V6a2 2 0 012-2zm0 2v.5l9 6 9-6V6H3z"/></svg>
+</a><a href="/en/atom.xml" title="RSS" aria-label="RSS"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="19" r="3" fill="currentColor"/><path fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" d="M3.6 10.6a9.8 9.8 0 019.8 9.8M3.6 3.6a16.8 16.8 0 0116.8 16.8"/></svg>
+</a></nav>
+</div>
+</div>
+  <nav class="pager">
+    <span><a href="/en/2024/02/25/blog-reopen/"><small>Newer</small>Reopening My Independent Blog</a></span>
+    <span class="next"><a href="/en/2016/09/04/fe-metaphysics/"><small>Older</small>The Metaphysics of Front-End Engineering (0)</a></span>
+  </nav>
+  <section class="comments">
+<script src="https://giscus.app/client.js" data-repo="starding/xinghua_blog_giscus" data-repo-id="R_kgDOLagm8g" data-category="Announcements" data-category-id="DIC_kwDOLagm8s4CdqOC" data-mapping="specific" data-term="material design 简介及背后的理论" data-strict="1" data-reactions-enabled="1" data-emit-metadata="1" data-input-position="top" data-theme="preferred_color_scheme" data-lang="en" data-loading="lazy" crossorigin="anonymous" async></script>
+</section>
+</article>
+
+  </main>
+  <aside class="aside"><div class="author-card">
+  <div class="author">
+    <img src="/img/author.jpg" alt="XingHua">
+    <p>We meet by chance in this world.<br>I’m XingHua — glad to meet you.</p>
+  </div>
+  <nav class="social"><a href="https://github.com/starding" title="GitHub" aria-label="GitHub" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+</a><a href="https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70" title="Jike" aria-label="Jike" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M14.6 2h4.2v13.4c0 4.1-2.6 6.6-6.4 6.6-1.9 0-3.6-.6-5-1.7l2.2-3.3c.8.6 1.7.9 2.6.9 1.6 0 2.4-1 2.4-3V2z"/><path fill="none" stroke="currentColor" stroke-width="1.2" d="M16.4 3.6v12.6c0 3.6-2.3 5.9-5.6 6.1"/></svg>
+</a><a href="https://twitter.com/starstarding" title="Twitter" aria-label="Twitter" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M23.6 4.6c-.9.4-1.8.6-2.8.8 1-.6 1.8-1.6 2.1-2.7-.9.6-2 1-3.1 1.2a4.9 4.9 0 00-8.4 4.5C7.4 8.2 3.8 6.2 1.4 3.3a4.9 4.9 0 001.5 6.6c-.8 0-1.6-.3-2.2-.6 0 2.4 1.7 4.4 3.9 4.8-.7.2-1.5.2-2.2.1.6 2 2.4 3.4 4.6 3.4A9.9 9.9 0 010 19.6 13.9 13.9 0 007.5 21.8c9.1 0 14-7.5 14-14v-.6c1-.7 1.8-1.6 2.1-2.6z"/></svg>
+</a><a href="mailto:starstarding@gmail.com" title="Email" aria-label="Email"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 4h18a2 2 0 012 2v12a2 2 0 01-2 2H3a2 2 0 01-2-2V6a2 2 0 012-2zm0 2v.5l9 6 9-6V6H3z"/></svg>
+</a><a href="/en/atom.xml" title="RSS" aria-label="RSS"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="19" r="3" fill="currentColor"/><path fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" d="M3.6 10.6a9.8 9.8 0 019.8 9.8M3.6 3.6a16.8 16.8 0 0116.8 16.8"/></svg>
+</a></nav>
+</div>
+<div class="aside-sticky-wrap"><div class="aside-sticky"><nav class="toc"><b>Contents</b><ol><li class="l2"><a href="#introduction">Introduction</a></li><li class="l2"><a href="#the-science-and-technology-behind-material-design">The "science and technology" behind Material Design</a></li><li class="l3"><a href="#drawing-on-traditional-graphic-design">Drawing on traditional graphic design</a></li><li class="l3"><a href="#opening-up-new-design-territory">Opening up new design territory</a></li><li class="l3"><a href="#cognitive-psychology">Cognitive psychology</a></li><li class="l3"><a href="#biology">Biology</a></li><li class="l2"><a href="#other-things">Other things</a></li><li class="l3"><a href="#abstraction-from-physics--sensible-quantification">Abstraction from physics &amp;&amp; sensible quantification</a></li><li class="l3"><a href="#people-without-much-experience-can-still-make-decent-designs">People without much experience can still make decent designs?</a></li><li class="l2"><a href="#a-material-design-mind-map">A Material Design mind map</a></li><li class="l2"><a href="#references">References</a></li><li class="l3"><a href="#links">Links:</a></li><li class="l3"><a href="#books">Books</a></li></ol></nav>
+<script src="/theme/toc.js" defer></script>
+<section class="aside-block">
+  <h2>This post</h2>
+  <dl class="facts">
+    <div><dt>Length</dt><dd>2,167 words</dd></div>
+    <div><dt>Category</dt><dd><a href="/en/categories/as-an-engineer/">As an Engineer</a></dd></div>
+  </dl>
+  
+</section>
+<section class="aside-block">
+  <h2>Related</h2>
+  <ul class="related"><li><a href="/en/2024/03/30/a-short-web-history/">A Short History of the Web: The Key Threads</a><time datetime="2024-03-30T06:38:56.000Z">2024</time></li><li><a href="/en/2016/08/29/why-users-can-not-see-collect-function-in-neihan/">Front-End Metaphysics (1): Why Users Can't See the Favorites Button</a><time datetime="2016-08-29T08:44:10.000Z">2016</time></li><li><a href="/en/2016/04/20/standardization/">Bricks, Stones, Web Standards and the W3C</a><time datetime="2016-04-20T07:41:51.000Z">2016</time></li></ul>
+</section>
+</div></div></aside>
+</div>
+<footer class="pagefoot"><p class="legal"><span class="legal-owner">© 2016–2026 XingHua</span><span class="legal-sep"> · </span><span class="legal-links"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="license noopener">CC BY-NC-SA 4.0</a> · <a href="/llms.txt">llms.txt</a></span></p>
+</footer>
+</body>
+</html>

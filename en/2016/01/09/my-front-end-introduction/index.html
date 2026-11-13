@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My Front-End Notes: Understanding HTML | Knots &amp; Nets</title>
+<meta name="description" content="A middle-level view of HTML between the skeleton metaphor and the nitty-gritty: semantics for humans and machines, default styles, the document flow, and the DOM.">
+<meta name="author" content="XingHua">
+<meta name="theme-color" content="#000000">
+<meta property="og:type" content="article">
+<meta property="og:title" content="My Front-End Notes: Understanding HTML">
+<meta property="og:description" content="A middle-level view of HTML between the skeleton metaphor and the nitty-gritty: semantics for humans and machines, default styles, the document flow, and the DOM.">
+<meta property="og:image" content="https://xinghua.space/2016/01/09/my-front-end-introduction/ct_htmltree.gif">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Knots &amp; Nets">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="article:published_time" content="2016-01-09T13:03:40.000Z">
+<meta property="og:url" content="https://xinghua.space/en/2016/01/09/my-front-end-introduction/">
+<link rel="canonical" href="https://xinghua.space/en/2016/01/09/my-front-end-introduction/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"My Front-End Notes: Understanding HTML","description":"A middle-level view of HTML between the skeleton metaphor and the nitty-gritty: semantics for humans and machines, default styles, the document flow, and the DOM.","datePublished":"2016-01-09T13:03:40.000Z","inLanguage":"en","author":{"@type":"Person","name":"XingHua","url":"https://xinghua.space/en/about/","sameAs":["https://github.com/starding","https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70","https://twitter.com/starstarding"]},"publisher":{"@type":"Person","name":"XingHua","url":"https://xinghua.space/en/about/","sameAs":["https://github.com/starding","https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70","https://twitter.com/starstarding"]},"mainEntityOfPage":"https://xinghua.space/en/2016/01/09/my-front-end-introduction/","image":"https://xinghua.space/2016/01/09/my-front-end-introduction/ct_htmltree.gif","articleSection":"As an Engineer"}</script>
+<link rel="alternate" type="application/atom+xml" title="Knots &amp; Nets" href="/en/atom.xml">
+<link rel="alternate" hreflang="zh-CN" href="https://xinghua.space/2016/01/09/my-front-end-introduction/">
+<link rel="alternate" hreflang="en" href="https://xinghua.space/en/2016/01/09/my-front-end-introduction/">
+<link rel="alternate" hreflang="x-default" href="https://xinghua.space/2016/01/09/my-front-end-introduction/">
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="/favicon-96x96.png" type="image/png" sizes="96x96">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#B6002E">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
+<link rel="manifest" href="/manifest.webmanifest">
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="stylesheet" href="/theme/tokens.css">
+<link rel="stylesheet" href="/theme/site.css">
+<script src="/theme/overlay-scroll.js" defer></script>
+<script src="/theme/theme.js" defer></script>
+<script>(()=>{if(location.hostname!=='xinghua.space'||navigator.webdriver)return;try{navigator.sendBeacon('https://xinghua-stats.xinghua-space.workers.dev/c',JSON.stringify({p:location.pathname,r:document.referrer,w:innerWidth,l:navigator.language}))}catch(e){}})()</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-V9SXMWSY9Z"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-V9SXMWSY9Z');</script>
+</head>
+<body>
+<header class="appbar">
+  <div class="appbar-in">
+    <a class="brand" href="/en/"><img src="/brand/logo.svg" alt=""><span><b>Knots &amp; Nets</b><small>Rather than wishing for fish by the water, go home and weave a net.</small></span></a>
+    <div class="theme-pick">
+      <a class="lang-btn" href="/2016/01/09/my-front-end-introduction/" hreflang="zh-CN" lang="zh-CN" title="中文版">中文</a>
+      <button type="button" class="theme-btn" id="themeBtn" aria-haspopup="menu" aria-expanded="false" title="Appearance"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="currentColor" d="M12 3.5a8.5 8.5 0 0 1 0 17z"/></svg>
+</button>
+      <div class="theme-menu" id="themeMenu" role="menu" hidden>
+        <button type="button" role="menuitemradio" data-theme-set="auto"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="currentColor" d="M12 3.5a8.5 8.5 0 0 1 0 17z"/></svg>
+<span>Auto</span><small>System</small></button>
+        <button type="button" role="menuitemradio" data-theme-set="light"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/><path stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>
+<span>Light</span></button>
+        <button type="button" role="menuitemradio" data-theme-set="dark"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
+<span>Dark</span></button>
+      </div>
+    </div>
+    <nav>
+      <a href="/en/">Home</a>
+      <a href="/en/works/">Works</a>
+      <a href="/en/about/">About</a>
+    </nav>
+  </div>
+</header>
+<div class="frame cols">
+  <main>
+<article class="paper">
+  <header class="post-head">
+    <h1>My Front-End Notes: Understanding HTML</h1>
+    <div class="meta">
+      <span>@XingHua</span>
+      <time datetime="2016-01-09T13:03:40.000Z">Jan 9, 2016</time>
+      <span>8 min read</span>
+    </div>
+  </header>
+  <div class="prose">
+<p>I've dabbled in front-end work before, but every time I ended up touching small details: some HTML element here, what some CSS property means there, or writing a bit of JavaScript and the like. I always felt I lacked a higher-level understanding of the front end.</p>
+<p>I'd occasionally hear metaphors about the three pillars of the web page: HTML is the skeleton, responsible for the page's structure; CSS is the skin, responsible for how the page looks; JavaScript is the muscle, powering the page's interactions. But that kind of description seems too broad to give you a concrete understanding.</p>
+<p>So this post tries to lay out something between that metaphor and the low-level details. By describing the core role of HTML, CSS, and JavaScript in turn, I want to see whether I can get that bird's-eye view.</p>
+<p>First, let's distinguish two front-end concepts: "typesetting" and "layout."</p>
+<p>See two answers on Zhihu (a Chinese Q&amp;A site): <a href="https://www.zhihu.com/question/38795148/answer/78177006" rel="noopener">Typesetting and layout are two different things</a> and <a href="https://www.zhihu.com/question/19588854/answer/13243044" rel="noopener">Layout and typesetting are different</a></p>
+<p>"Layout" refers to the macro-level division of the GUI, for example when you have several large blocks and want to arrange them in a specified way.</p>
+<p>"Typesetting" refers to things like this: you have some paragraphs containing different fonts and font sizes, and you align them to different baselines, wrap lines, break words, and handle overflow sensibly.</p>
+<h2 id="starting-from-the-web-page">Starting from the web page</h2>
+<h3 id="a-web-page-is-the-networked-aggregate-of-all-kinds-of-real-world-information-carriers">A web page is the networked aggregate of all kinds of real-world information carriers</h3>
+<p>The web page is the most direct visible part of the front end. Its purpose is to "present information," and everything else serves that purpose. A web page isn't fundamentally different from any other carrier of information. Think of the information carriers we see in daily life: a Word document, a PDF, a questionnaire, a financial statement, and so on. A web page is a networked aggregate version of these carriers.</p>
+<h3 id="when-humans-look-at-a-web-page-what-are-they-looking-at">When humans look at a web page, what are they looking at?</h3>
+<p>Just as we treat the information carriers in our lives and the information they hold, we treat web pages in a similar way: first we pay attention to the content the document presents. If the content is formatted beautifully, we may enjoy reading it more and be more willing to read further. And if the carrier has a bit more interactivity, it's even more engaging.</p>
+<p>In other words, when humans look at a web page, the order is still content -&gt; style, interaction. Of course, as web pages grow richer and more colorful, style and interaction get more and more weight, to the point of being as important as the content.</p>
+<p>Content corresponds to HTML; style and interaction are determined jointly by CSS and JavaScript.</p>
+<h2 id="html-a-semantic-document-flow">HTML: a semantic document flow</h2>
+<h3 id="the-two-semantics-of-a-web-page">The "two semantics" of a web page</h3>
+<p>Of course, as an information carrier a web page differs from physical objects in everyday life. Although the ultimate audience for the information on a web page is human, it reaches them through browsers, search engines, or other programs that can process web pages. This gives rise to two kinds of semantics on a web page:</p>
+<p>The first is the meaning that is ultimately presented, understood by humans; this is semantics in the everyday sense.<br>
+The second is understandable by machine programs such as browsers and search engines; it is "machine-readable semantics."<br>
+The semantics ultimately presented are determined by human knowledge structures: humans interpret different content on a page as elements with specific meanings, such as "title," "body," "footnote," and "navigation." This is exactly why some HTML elements come with certain styles built in. Headings h1 through h6, for example, have a larger font size and are bold. That matches human common sense and fits the meaning to be presented, so this default is very convenient.</p>
+<p>The second kind, machine-readable semantics, in the sense above, serves the first kind. Browsers, search engines, and other programs recognize the semantic elements in HTML code, then add styles and so on to present the final result. The more semantic the HTML, the easier it is for machines to understand. In software, semantics is usually built on sensible "structuring." Structuring means distinguishing content with different meanings by giving it different structures, and in HTML that structuring is done with the various HTML tags.</p>
+<p>Presenting the first kind of semantics in a friendlier way is the overall goal of a web page. That takes close collaboration among designers, information architects, and programmers.</p>
+<p>Making the second kind of semantics serve the first kind better is the essential work of the programmer.</p>
+<h3 id="why-the-second-kind-of-semantics-matters">Why the second kind of semantics matters</h3>
+<p>There's a very apt example of why the second kind of semantics matters. I don't know if you've run into this on your smartphone:</p>
+<p>When you need to type something on a website, a keyboard pops up. But different input fields bring up different keyboard layouts: when you type an email address you get a keyboard with the @ symbol, when you type a password you get the full keyboard, and so on. Stranger still, this sometimes works and sometimes doesn't. When it works, typing feels very smooth. When it doesn't, you have to switch keyboard layouts by hand to find the symbol you need, which is really annoying.</p>
+<p>Behind this is the second kind of semantics at work: in HTML there are many different types of input fields, some email, some password, some text. If a website distinguishes these meanings well and uses them in its HTML, the keyboard pop-up behaves very intelligently, because the machine can choose which layout to show based on the different semantics in the HTML. If it's email, it shows the layout with @; if it's a password, the full keyboard; and so on. Sites with poor semantics can't do this. They just show the generic layout, and the human has to figure it out and switch.</p>
+<p>This example shows that as browsers and other software get smarter, semantic HTML becomes more and more important.</p>
+<p>As mentioned above, browsers generally give certain HTML elements certain styles, but only because that matches human common sense and is convenient. Never use an element because you want a certain style; instead, choose the element whose meaning best fits the content you're marking up. Styling should be left to CSS. This is also why people sum it up as: "HTML cares only about semantics, not layout, and not style or interaction."</p>
+<h3 id="understanding-a-web-page-through-html-semantics">Understanding a web page through HTML semantics</h3>
+<p>Having covered why semantics matters, let's look at how to understand a web page through these elements of the second kind. Quite a few elements are involved here, so this is only a rough outline.</p>
+<p>First, web pages have quite a few semantic elements for presenting information.</p>
+<p>The most basic ones, like</p>
+<pre><code class="language-html"><span class="tok-c">&lt;!--header--&gt;</span>
+&lt;<span class="tok-t">header</span>&gt;&lt;/<span class="tok-t">header</span>&gt;
+<span class="tok-c">&lt;!--main body--&gt;</span>
+&lt;<span class="tok-t">main</span>&gt;&lt;/<span class="tok-t">main</span>&gt;
+<span class="tok-c">&lt;!--footer--&gt;</span>
+&lt;<span class="tok-t">footer</span>&gt;&lt;/<span class="tok-t">footer</span>&gt;
+<span class="tok-c">&lt;!--paragraph--&gt;</span>
+&lt;<span class="tok-t">p</span>&gt;&lt;/<span class="tok-t">p</span>&gt;
+<span class="tok-c">&lt;!--section--&gt;</span>
+&lt;<span class="tok-t">section</span>&gt;&lt;/<span class="tok-t">section</span>&gt;
+<span class="tok-c">&lt;!--self-contained piece--&gt;</span>
+&lt;<span class="tok-t">artical</span>&gt;&lt;/<span class="tok-t">artical</span>&gt;
+...</code></pre>
+<p>and more specific ones:</p>
+<pre><code class="language-html"><span class="tok-c">&lt;!--time--&gt;</span>
+&lt;<span class="tok-t">time</span>&gt;&lt;/<span class="tok-t">time</span>&gt;
+<span class="tok-c">&lt;!--address--&gt;</span>
+&lt;<span class="tok-t">address</span>&gt;&lt;/<span class="tok-t">address</span>&gt;
+...</code></pre>
+<p>These are all ordinary semantic elements for presenting information. But just as in real life, there are other ways to present information that help humans read and understand it better. For example:</p>
+<ul>
+<li><p>Lists<br>
+They lay out the core information point by point and category by category, letting people quickly grasp the key aspects of something. In HTML</p></li>
+<li><p>Embedded elements<br>
+Such as images; a picture is worth a thousand words.<br>
+And music, video, and so on</p></li>
+</ul>
+<p>Also, in real life we often hand out paper forms to collect information, and use reports to clearly present information sorted into categories in a fairly structured format. HTML has corresponding semantic elements for these:</p>
+<ul>
+<li>Forms (form)</li>
+<li>Tables (table)</li>
+</ul>
+<p>They serve much the same purpose as their real-life counterparts. HTML forms come in many types: radio buttons, checkboxes, input fields (and input fields themselves have finer-grained semantic types). That mirrors the many kinds of surveys and forms in real life.</p>
+<p>HTML also has some semantic elements of its own. For example:</p>
+<pre><code class="language-html"><span class="tok-c">&lt;!--link, perhaps the most important unique element: it ties pages together over the network--&gt;</span>
+&lt;<span class="tok-t">a</span>&gt;&lt;/<span class="tok-t">a</span>&gt;
+<span class="tok-c">&lt;!--some other elements, which describe relationships between pages, page information, and so on--&gt;</span>
+&lt;<span class="tok-t">link</span>&gt;
+&lt;<span class="tok-t">meta</span>&gt;</code></pre>
+<p>Those are basically the kinds of HTML elements there are. Combined, they include parts for collecting information and parts for presenting it, and to present information better, HTML provides many semantic elements.</p>
+<p>Put together, these elements form all the semantic information of a web page. They can implement and imitate almost every real-world information carrier, and in some respects even surpass them.</p>
+<h2 id="the-document-flow">The document flow</h2>
+<p>Besides the elements mentioned earlier that carry some styles based on common sense (if those count as typesetting styles), HTML also has a simple default way of laying things out (let's call it layout style): elements are arranged in order from top to bottom and left to right. To put it more vividly, this is called the HTML document flow.</p>
+<p>This default document flow gives HTML a common-sense, most basic layout, so that elements don't all end up heaped together in a mess. But I'll stress it again: although browsers give HTML some default styles and layout, these are all based on human intuition and common sense: "HTML cares only about semantics, not layout, and not style or interaction."</p>
+<h2 id="dom">DOM</h2>
+<p>DOM stands for Document Object Module, that is, the Document Object Model. Here is the <a href="https://dom.spec.whatwg.org/" rel="noopener">explanation from W3.org</a>:</p>
+<h3 id="what-is-the-document-object-model">What is the Document Object Model?</h3>
+<blockquote>
+<p>The Document Object Model is a platform- and language-neutral interface that will allow programs and scripts to dynamically access and update the content, structure and style of documents. The document can be further processed and the results of that processing can be incorporated back into the presented page.</p>
+</blockquote>
+<h3 id="why-the-document-object-model">Why the Document Object Model?</h3>
+<blockquote>
+<p>“Dynamic HTML” is a term used by some vendors to describe the combination of HTML, style sheets and scripts that allows documents to be animated. The W3C has received several submissions from members companies on the way in which the object model of HTML documents should be exposed to scripts. These submissions do not propose any new HTML tags or style sheet technology. The W3C DOM Activity is working hard to make sure interoperable and scripting-language neutral solutions are agreed upon.</p>
+</blockquote>
+<h3 id="what-are-those-two-paragraphs-saying">What are those two paragraphs saying?</h3>
+<p>In other words, the DOM is the Document Object Model. It isn't part of some specific language's standard library or anything like that; it's a model independent of language and platform. Any other language that wants to manipulate HTML documents (actually not just HTML, but also XML and some other structured languages) has to design its way of doing so according to this object model.</p>
+<p>The reason the DOM came about is that a bunch of people used to be at each other's throats: you had your ideas, I had mine. To unify the martial world, the W3C proposed the DOM and has kept standardizing it, which is good for everyone.</p>
+<p>The DOM itself is a fairly complex thing, but for the DOM we use day to day, it's enough to know roughly what it looks like and how to manipulate it to count as getting started. When we talk about the DOM, we really mean a tree structure of HTML:</p>
+<p><img src="/2016/01/09/my-front-end-introduction/ct_htmltree.gif" alt="DOM tree" loading="lazy"></p>
+<p>With the tree structure in the figure above, other languages that implement DOM manipulation, such as JavaScript, can operate on these nodes according to certain rules. The DOM tree itself also defines some concepts of inheritance, which make it easier to control its nodes.</p>
+<h2 id="summary">Summary</h2>
+<p>That's basically the whole core of HTML. To sum it up in a few words: semantics, common-sense default styles for elements, the document flow, and the DOM.</p>
+  </div>
+  <section class="post-related"><h2>Related</h2><ul class="related"><li><a href="/en/2024/03/30/a-short-web-history/">A Short History of the Web: The Key Threads</a><time datetime="2024-03-30T06:38:56.000Z">2024</time></li><li><a href="/en/2016/10/31/material-design-introduct-md/">Material Design: An Introduction and the Theory Behind It</a><time datetime="2016-10-31T09:04:37.000Z">2016</time></li><li><a href="/en/2016/08/29/why-users-can-not-see-collect-function-in-neihan/">Front-End Metaphysics (1): Why Users Can't See the Favorites Button</a><time datetime="2016-08-29T08:44:10.000Z">2016</time></li></ul></section>
+  <div class="post-author"><div class="author-card">
+  <div class="author">
+    <img src="/img/author.jpg" alt="XingHua">
+    <p>We meet by chance in this world.<br>I’m XingHua — glad to meet you.</p>
+  </div>
+  <nav class="social"><a href="https://github.com/starding" title="GitHub" aria-label="GitHub" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+</a><a href="https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70" title="Jike" aria-label="Jike" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M14.6 2h4.2v13.4c0 4.1-2.6 6.6-6.4 6.6-1.9 0-3.6-.6-5-1.7l2.2-3.3c.8.6 1.7.9 2.6.9 1.6 0 2.4-1 2.4-3V2z"/><path fill="none" stroke="currentColor" stroke-width="1.2" d="M16.4 3.6v12.6c0 3.6-2.3 5.9-5.6 6.1"/></svg>
+</a><a href="https://twitter.com/starstarding" title="Twitter" aria-label="Twitter" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M23.6 4.6c-.9.4-1.8.6-2.8.8 1-.6 1.8-1.6 2.1-2.7-.9.6-2 1-3.1 1.2a4.9 4.9 0 00-8.4 4.5C7.4 8.2 3.8 6.2 1.4 3.3a4.9 4.9 0 001.5 6.6c-.8 0-1.6-.3-2.2-.6 0 2.4 1.7 4.4 3.9 4.8-.7.2-1.5.2-2.2.1.6 2 2.4 3.4 4.6 3.4A9.9 9.9 0 010 19.6 13.9 13.9 0 007.5 21.8c9.1 0 14-7.5 14-14v-.6c1-.7 1.8-1.6 2.1-2.6z"/></svg>
+</a><a href="mailto:starstarding@gmail.com" title="Email" aria-label="Email"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 4h18a2 2 0 012 2v12a2 2 0 01-2 2H3a2 2 0 01-2-2V6a2 2 0 012-2zm0 2v.5l9 6 9-6V6H3z"/></svg>
+</a><a href="/en/atom.xml" title="RSS" aria-label="RSS"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="19" r="3" fill="currentColor"/><path fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" d="M3.6 10.6a9.8 9.8 0 019.8 9.8M3.6 3.6a16.8 16.8 0 0116.8 16.8"/></svg>
+</a></nav>
+</div>
+</div>
+  <nav class="pager">
+    <span><a href="/en/2016/01/10/open-questions/"><small>Newer</small>Open Questions</a></span>
+    <span class="next"><a href="/en/2016/01/07/three-body-walking-dead-Darwin/"><small>Older</small>The Three-Body Problem, The Walking Dead, and Social Darwinism</a></span>
+  </nav>
+  <section class="comments">
+<script src="https://giscus.app/client.js" data-repo="starding/xinghua_blog_giscus" data-repo-id="R_kgDOLagm8g" data-category="Announcements" data-category-id="DIC_kwDOLagm8s4CdqOC" data-mapping="specific" data-term="我的前端笔记之理解 html 篇" data-strict="1" data-reactions-enabled="1" data-emit-metadata="1" data-input-position="top" data-theme="preferred_color_scheme" data-lang="en" data-loading="lazy" crossorigin="anonymous" async></script>
+</section>
+</article>
+
+  </main>
+  <aside class="aside"><div class="author-card">
+  <div class="author">
+    <img src="/img/author.jpg" alt="XingHua">
+    <p>We meet by chance in this world.<br>I’m XingHua — glad to meet you.</p>
+  </div>
+  <nav class="social"><a href="https://github.com/starding" title="GitHub" aria-label="GitHub" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+</a><a href="https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70" title="Jike" aria-label="Jike" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M14.6 2h4.2v13.4c0 4.1-2.6 6.6-6.4 6.6-1.9 0-3.6-.6-5-1.7l2.2-3.3c.8.6 1.7.9 2.6.9 1.6 0 2.4-1 2.4-3V2z"/><path fill="none" stroke="currentColor" stroke-width="1.2" d="M16.4 3.6v12.6c0 3.6-2.3 5.9-5.6 6.1"/></svg>
+</a><a href="https://twitter.com/starstarding" title="Twitter" aria-label="Twitter" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M23.6 4.6c-.9.4-1.8.6-2.8.8 1-.6 1.8-1.6 2.1-2.7-.9.6-2 1-3.1 1.2a4.9 4.9 0 00-8.4 4.5C7.4 8.2 3.8 6.2 1.4 3.3a4.9 4.9 0 001.5 6.6c-.8 0-1.6-.3-2.2-.6 0 2.4 1.7 4.4 3.9 4.8-.7.2-1.5.2-2.2.1.6 2 2.4 3.4 4.6 3.4A9.9 9.9 0 010 19.6 13.9 13.9 0 007.5 21.8c9.1 0 14-7.5 14-14v-.6c1-.7 1.8-1.6 2.1-2.6z"/></svg>
+</a><a href="mailto:starstarding@gmail.com" title="Email" aria-label="Email"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 4h18a2 2 0 012 2v12a2 2 0 01-2 2H3a2 2 0 01-2-2V6a2 2 0 012-2zm0 2v.5l9 6 9-6V6H3z"/></svg>
+</a><a href="/en/atom.xml" title="RSS" aria-label="RSS"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="19" r="3" fill="currentColor"/><path fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" d="M3.6 10.6a9.8 9.8 0 019.8 9.8M3.6 3.6a16.8 16.8 0 0116.8 16.8"/></svg>
+</a></nav>
+</div>
+<div class="aside-sticky-wrap"><div class="aside-sticky"><nav class="toc"><b>Contents</b><ol><li class="l2"><a href="#starting-from-the-web-page">Starting from the web page</a></li><li class="l3"><a href="#a-web-page-is-the-networked-aggregate-of-all-kinds-of-real-world-information-carriers">A web page is the networked aggregate of all kinds of real-world information carriers</a></li><li class="l3"><a href="#when-humans-look-at-a-web-page-what-are-they-looking-at">When humans look at a web page, what are they looking at?</a></li><li class="l2"><a href="#html-a-semantic-document-flow">HTML: a semantic document flow</a></li><li class="l3"><a href="#the-two-semantics-of-a-web-page">The "two semantics" of a web page</a></li><li class="l3"><a href="#why-the-second-kind-of-semantics-matters">Why the second kind of semantics matters</a></li><li class="l3"><a href="#understanding-a-web-page-through-html-semantics">Understanding a web page through HTML semantics</a></li><li class="l2"><a href="#the-document-flow">The document flow</a></li><li class="l2"><a href="#dom">DOM</a></li><li class="l3"><a href="#what-is-the-document-object-model">What is the Document Object Model?</a></li><li class="l3"><a href="#why-the-document-object-model">Why the Document Object Model?</a></li><li class="l3"><a href="#what-are-those-two-paragraphs-saying">What are those two paragraphs saying?</a></li><li class="l2"><a href="#summary">Summary</a></li></ol></nav>
+<script src="/theme/toc.js" defer></script>
+<section class="aside-block">
+  <h2>This post</h2>
+  <dl class="facts">
+    <div><dt>Length</dt><dd>1,802 words</dd></div>
+    <div><dt>Category</dt><dd><a href="/en/categories/as-an-engineer/">As an Engineer</a></dd></div>
+  </dl>
+  
+</section>
+<section class="aside-block">
+  <h2>Related</h2>
+  <ul class="related"><li><a href="/en/2024/03/30/a-short-web-history/">A Short History of the Web: The Key Threads</a><time datetime="2024-03-30T06:38:56.000Z">2024</time></li><li><a href="/en/2016/10/31/material-design-introduct-md/">Material Design: An Introduction and the Theory Behind It</a><time datetime="2016-10-31T09:04:37.000Z">2016</time></li><li><a href="/en/2016/08/29/why-users-can-not-see-collect-function-in-neihan/">Front-End Metaphysics (1): Why Users Can't See the Favorites Button</a><time datetime="2016-08-29T08:44:10.000Z">2016</time></li></ul>
+</section>
+</div></div></aside>
+</div>
+<footer class="pagefoot"><p class="legal"><span class="legal-owner">© 2016–2026 XingHua</span><span class="legal-sep"> · </span><span class="legal-links"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="license noopener">CC BY-NC-SA 4.0</a> · <a href="/llms.txt">llms.txt</a></span></p>
+</footer>
+</body>
+</html>

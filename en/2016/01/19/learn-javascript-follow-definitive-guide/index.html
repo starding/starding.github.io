@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reading Notes on JavaScript: The Definitive Guide (6th Edition, the Rhino Book) | Knots &amp; Nets</title>
+<meta name="description" content="Notes on JavaScript's core ideas and confusing corners from the Rhino book, from value types and strict mode to finally, function names and lost this.">
+<meta name="author" content="XingHua">
+<meta name="theme-color" content="#000000">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Reading Notes on JavaScript: The Definitive Guide (6th Edition, the Rhino Book)">
+<meta property="og:description" content="Notes on JavaScript's core ideas and confusing corners from the Rhino book, from value types and strict mode to finally, function names and lost this.">
+<meta property="og:image" content="https://xinghua.space/brand/logo-512.png">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Knots &amp; Nets">
+<meta name="twitter:card" content="summary">
+<meta property="article:published_time" content="2016-01-19T05:01:58.000Z">
+<meta property="og:url" content="https://xinghua.space/en/2016/01/19/learn-javascript-follow-definitive-guide/">
+<link rel="canonical" href="https://xinghua.space/en/2016/01/19/learn-javascript-follow-definitive-guide/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Reading Notes on JavaScript: The Definitive Guide (6th Edition, the Rhino Book)","description":"Notes on JavaScript's core ideas and confusing corners from the Rhino book, from value types and strict mode to finally, function names and lost this.","datePublished":"2016-01-19T05:01:58.000Z","inLanguage":"en","author":{"@type":"Person","name":"XingHua","url":"https://xinghua.space/en/about/","sameAs":["https://github.com/starding","https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70","https://twitter.com/starstarding"]},"publisher":{"@type":"Person","name":"XingHua","url":"https://xinghua.space/en/about/","sameAs":["https://github.com/starding","https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70","https://twitter.com/starstarding"]},"mainEntityOfPage":"https://xinghua.space/en/2016/01/19/learn-javascript-follow-definitive-guide/","articleSection":"As an Engineer"}</script>
+<link rel="alternate" type="application/atom+xml" title="Knots &amp; Nets" href="/en/atom.xml">
+<link rel="alternate" hreflang="zh-CN" href="https://xinghua.space/2016/01/19/learn-javascript-follow-definitive-guide/">
+<link rel="alternate" hreflang="en" href="https://xinghua.space/en/2016/01/19/learn-javascript-follow-definitive-guide/">
+<link rel="alternate" hreflang="x-default" href="https://xinghua.space/2016/01/19/learn-javascript-follow-definitive-guide/">
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="/favicon-96x96.png" type="image/png" sizes="96x96">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#B6002E">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
+<link rel="manifest" href="/manifest.webmanifest">
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="stylesheet" href="/theme/tokens.css">
+<link rel="stylesheet" href="/theme/site.css">
+<script src="/theme/overlay-scroll.js" defer></script>
+<script src="/theme/theme.js" defer></script>
+<script>(()=>{if(location.hostname!=='xinghua.space'||navigator.webdriver)return;try{navigator.sendBeacon('https://xinghua-stats.xinghua-space.workers.dev/c',JSON.stringify({p:location.pathname,r:document.referrer,w:innerWidth,l:navigator.language}))}catch(e){}})()</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-V9SXMWSY9Z"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-V9SXMWSY9Z');</script>
+</head>
+<body>
+<header class="appbar">
+  <div class="appbar-in">
+    <a class="brand" href="/en/"><img src="/brand/logo.svg" alt=""><span><b>Knots &amp; Nets</b><small>Rather than wishing for fish by the water, go home and weave a net.</small></span></a>
+    <div class="theme-pick">
+      <a class="lang-btn" href="/2016/01/19/learn-javascript-follow-definitive-guide/" hreflang="zh-CN" lang="zh-CN" title="中文版">中文</a>
+      <button type="button" class="theme-btn" id="themeBtn" aria-haspopup="menu" aria-expanded="false" title="Appearance"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="currentColor" d="M12 3.5a8.5 8.5 0 0 1 0 17z"/></svg>
+</button>
+      <div class="theme-menu" id="themeMenu" role="menu" hidden>
+        <button type="button" role="menuitemradio" data-theme-set="auto"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="currentColor" d="M12 3.5a8.5 8.5 0 0 1 0 17z"/></svg>
+<span>Auto</span><small>System</small></button>
+        <button type="button" role="menuitemradio" data-theme-set="light"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/><path stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>
+<span>Light</span></button>
+        <button type="button" role="menuitemradio" data-theme-set="dark"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
+<span>Dark</span></button>
+      </div>
+    </div>
+    <nav>
+      <a href="/en/">Home</a>
+      <a href="/en/works/">Works</a>
+      <a href="/en/about/">About</a>
+    </nav>
+  </div>
+</header>
+<div class="frame cols">
+  <main>
+<article class="paper">
+  <header class="post-head">
+    <h1>Reading Notes on JavaScript: The Definitive Guide (6th Edition, the Rhino Book)</h1>
+    <div class="meta">
+      <span>@XingHua</span>
+      <time datetime="2016-01-19T05:01:58.000Z">Jan 19, 2016</time>
+      <span>4 min read</span>
+    </div>
+  </header>
+  <div class="prose">
+<p>Notes from reading <em>JavaScript: The Definitive Guide</em>, on the parts I consider core or easy to get confused about.<br>
+I'll also add some good articles I read along the way that expand on them.</p>
+<p><strong>Changelog</strong></p>
+<blockquote>
+<p>2016-01-18 Updated up to the try-except-finally statement<br>
+2016-04-07 Renamed the post. Split its structure into core parts and fuzzy points</p>
+</blockquote>
+<p><strong>What I consider the core of the book</strong></p>
+<blockquote>
+<ol>
+<li>The core of the language</li>
+<li>Variable types</li>
+<li>Strict mode</li>
+<li>Lexical scope, functions, closures, this, call, apply, bind</li>
+<li>The prototype system</li>
+</ol>
+</blockquote>
+<h2 id="core-parts">Core parts</h2>
+<h3 id="the-language-core">The language core</h3>
+<h4 id="variables-and-their-types">Variables and their types</h4>
+<p>Variables in JavaScript have no type of their own. When you assign a value to a variable, the variable is really just referencing that value. This is the same as in Python.</p>
+<p>Both differ from fixed-type variables in languages like C. In C, when you declare a variable you have to specify its type, and the variable is actually a fixed-size chunk of space that holds the value directly. Arrays are the same: an array can only store values of a single type, and C decides how much memory to allocate based on the type, for example 4 bytes for an int.</p>
+<p>In JavaScript and Python you don't declare a variable's type. A variable is just a reference to data, and the type is determined by the data itself: whatever type of value the variable references, that's the variable's type. Data types in JavaScript fall into two groups (apparently borrowed from Java):</p>
+<h4 id="primitive-types">Primitive types</h4>
+<ul>
+<li>Primitive types (5 of them)
+<ul>
+<li>Numbers</li>
+<li>Strings</li>
+<li>Booleans</li>
+<li>null</li>
+<li>undefined</li>
+</ul></li>
+</ul>
+<p><strong>Note:</strong> primitives are not objects, but you may have seen calls of the form APrimitiveType.method. That's because numbers, strings and booleans have the concept of "wrapper objects".</p>
+<h4 id="object-types">Object types</h4>
+<ul>
+<li>Object types (object) (every data type other than the 5 primitives is an object type)
+<ul>
+<li>Plain objects (name-value pairs)</li>
+<li>Arrays</li>
+<li>Functions - JavaScript can treat function objects like ordinary objects</li>
+</ul></li>
+</ul>
+<h4 id="strict-mode-use-strict">Strict mode: use strict</h4>
+<p>If you know a bit of JavaScript history, you'll know Brendan Eich designed it in ten days, drawing mainly on Scheme, Self, C, Java and other languages. Even with existing languages to borrow from, a really rigorous design in that little time wasn't realistic, so JavaScript carried some hidden flaws from the very start. Add the rapid spread during the browser wars, and these flaws never had enough time to be fixed before becoming part of the standard, which is why they have stuck around.</p>
+<p>For a quick look at these flaws, see Ruan Yifeng's (a well-known Chinese tech blogger) article <a href="https://www.ruanyifeng.com/blog/2011/06/10_design_defects_in_javascript.html" rel="noopener">Ten design flaws of JavaScript</a>, and the book <em>JavaScript: The Good Parts</em>.</p>
+<p>use strict is actually a directive added in ECMAScript 5. It's very close to a statement but differs from one: it contains no keyword, is just a string literal, and can only appear in particular positions.</p>
+<p>The purpose of use strict is to make the code after it run in JS's "strict mode", a subset of the language that fixes some important flaws and provides robust error checking and stronger security. Strict and non-strict mode differ in some important ways:</p>
+<ul>
+<li>The with statement can't be used in strict mode</li>
+<li>In strict mode every variable must be declared with var first (in non-strict mode, using an undeclared variable adds a new property to the global object)</li>
+<li>In strict mode, the this value in a function call is undefined rather than the global object.</li>
+</ul>
+<h2 id="fuzzy-points">Fuzzy points</h2>
+<h3 id="wrapper-objects">Wrapper objects</h3>
+<p>Primitives are not objects, but you may have seen calls of the form APrimitiveType.method. That's because numbers, strings and booleans have the concept of "wrapper objects". In other words, when you use the . operator on one of them, JavaScript automatically calls new String(s) | new Number(s) | new Boolean(s) to temporarily convert these three primitive types into objects that inherit the methods of the corresponding type.</p>
+<pre><code class="language-javascript"><span class="tok-c">// A classic example</span>
+<span class="tok-k">var</span> s = <span class="tok-s">"test"</span>;
+s.len = <span class="tok-n">4</span>;  <span class="tok-c">// Because of the dot operator, a temporary String object is created here, but it is destroyed right away</span>
+<span class="tok-k">var</span> t = s.len; <span class="tok-c">// A String object is created here too, but it is not the one above, hence undefined</span></code></pre>
+<ul>
+<li>null and undefined have no wrapper objects</li>
+<li>You can construct wrapper objects explicitly with the constructors.</li>
+</ul>
+<h3 id="variable-hoisting-and-variable-configurability">Variable hoisting and variable configurability</h3>
+<ul>
+<li>Hoisting
+<ul>
+<li>A variable declared with var is moved up to the top of the scope it lives in</li>
+</ul></li>
+<li>Configurability
+<ul>
+<li>Global variables are properties of the global object; local variables have no such rule</li>
+<li>Global variables declared with var are non-configurable and can't be removed with the delete operator</li>
+</ul></li>
+</ul>
+<h3 id="the-eval-operator">The eval operator</h3>
+<p>eval() is actually a function, but it has long been treated as an operator. ECMAScript tries to constrain how eval() behaves so that it looks like an expression.</p>
+<p>That's because treating eval as an ordinary function without any restrictions has many drawbacks. First, eval() executes code dynamically, which breaks the original code structure and is hard for the interpreter to optimize. Second, if eval were an ordinary function, it could be assigned to another name, say g = eval, so anywhere g is used would have the same problem, making JavaScript code hard to optimize and performance worrying.</p>
+<p>In short, if eval behaves like an operator, these serious problems go away. So the ECMAScript grammar keeps constraining it to make it behave more like an operator.</p>
+<h3 id="labeled-statements">Labeled statements</h3>
+<p>Mainly used together with continue and break to allow more flexible jumps.</p>
+<h3 id="throw-try-catch-finally-statements">throw/try/catch/finally statements</h3>
+<p>I wrote an earlier post, <a href="/en/2016/01/10/traps-in-python/">Python Pitfalls I Fell Into</a>, which covered an easy trap with try/except/finally in Python.</p>
+<p>JavaScript has the same trap. As that post explains, since finally is designed to run no matter what, once a jump statement appears in finally, whatever the other blocks return is ignored.</p>
+<pre><code class="language-javascript"><span class="tok-k">function</span> <span class="tok-f">finallyTest</span>(){
+    <span class="tok-k">var</span> x = <span class="tok-s">'catch'</span>, y = <span class="tok-s">'except'</span>, z = <span class="tok-s">'finally'</span>;
+    <span class="tok-k">try</span> {
+        k = x + y;
+        a = b;
+        console.<span class="tok-f">log</span>(<span class="tok-s">"here is try------------"</span>);
+    } <span class="tok-k">catch</span>(e) {
+        console.<span class="tok-f">log</span>(<span class="tok-s">"here is catch----------"</span>);
+        <span class="tok-k">return</span> x;
+    } <span class="tok-k">finally</span>{
+        console.<span class="tok-f">log</span>(<span class="tok-s">"here is finally---------"</span>);
+        <span class="tok-k">return</span> z;
+    }
+}
+<span class="tok-c">// Run</span>
+<span class="tok-f">finallyTest</span>()
+<span class="tok-c">// Return value</span>
+here is <span class="tok-k">catch</span>----------
+here is <span class="tok-k">finally</span>---------
+<span class="tok-s">'finally'</span></code></pre>
+<h3 id="function-names">Function names</h3>
+<pre><code class="language-js"><span class="tok-c">// A function declared directly has a function name</span>
+<span class="tok-k">function</span> <span class="tok-f">foo</span>(){}
+foo.name  <span class="tok-c">// the function name is foo</span>
+<span class="tok-k">var</span> bar = foo
+bar.name  <span class="tok-c">// assigning a function to a variable just points the variable at the function structure; it does not change the structure itself</span>
+<span class="tok-c">// A function expression produces an anonymous function</span>
+<span class="tok-k">var</span> foo = <span class="tok-k">function</span>(){}
+foo.name <span class="tok-c">// "" (empty string)</span>
+<span class="tok-c">// The function name exists only inside the function's own structure, and passing it around does not change that structure</span>
+<span class="tok-k">function</span> <span class="tok-f">foo</span>(){}
+<span class="tok-k">var</span> o ={
+    a: <span class="tok-s">'a'</span>,
+    bar: foo
+};
+o.bar.name <span class="tok-c">// foo</span></code></pre>
+<h3 id="losing-the-this-reference">Losing the this reference</h3>
+<pre><code class="language-js"><span class="tok-c">// Can happen when a function is passed around several times</span>
+<span class="tok-k">function</span> <span class="tok-f">foo</span>(){
+    console.<span class="tok-f">log</span>(<span class="tok-k">this</span>.a);
+}
+<span class="tok-k">var</span> obj = {
+    a: <span class="tok-n">2</span>,
+    foo: foo
+};
+<span class="tok-k">var</span> bar = obj.foo;
+<span class="tok-k">var</span> a=<span class="tok-s">"oops, global"</span>;
+<span class="tok-f">bar</span>(); <span class="tok-c">//"oops, global"</span>
+<span class="tok-c">// Can happen in callbacks (async)</span>
+<span class="tok-c">// same code as above</span>
+<span class="tok-f">setTimeout</span>(obj.foo, <span class="tok-n">100</span>); <span class="tok-c">// "oops, global"</span></code></pre>
+  </div>
+  <section class="post-related"><h2>Related</h2><ul class="related"><li><a href="/en/2024/03/30/a-short-web-history/">A Short History of the Web: The Key Threads</a><time datetime="2024-03-30T06:38:56.000Z">2024</time></li><li><a href="/en/2016/10/31/material-design-introduct-md/">Material Design: An Introduction and the Theory Behind It</a><time datetime="2016-10-31T09:04:37.000Z">2016</time></li><li><a href="/en/2016/08/29/why-users-can-not-see-collect-function-in-neihan/">Front-End Metaphysics (1): Why Users Can't See the Favorites Button</a><time datetime="2016-08-29T08:44:10.000Z">2016</time></li></ul></section>
+  <div class="post-author"><div class="author-card">
+  <div class="author">
+    <img src="/img/author.jpg" alt="XingHua">
+    <p>We meet by chance in this world.<br>I’m XingHua — glad to meet you.</p>
+  </div>
+  <nav class="social"><a href="https://github.com/starding" title="GitHub" aria-label="GitHub" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+</a><a href="https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70" title="Jike" aria-label="Jike" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M14.6 2h4.2v13.4c0 4.1-2.6 6.6-6.4 6.6-1.9 0-3.6-.6-5-1.7l2.2-3.3c.8.6 1.7.9 2.6.9 1.6 0 2.4-1 2.4-3V2z"/><path fill="none" stroke="currentColor" stroke-width="1.2" d="M16.4 3.6v12.6c0 3.6-2.3 5.9-5.6 6.1"/></svg>
+</a><a href="https://twitter.com/starstarding" title="Twitter" aria-label="Twitter" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M23.6 4.6c-.9.4-1.8.6-2.8.8 1-.6 1.8-1.6 2.1-2.7-.9.6-2 1-3.1 1.2a4.9 4.9 0 00-8.4 4.5C7.4 8.2 3.8 6.2 1.4 3.3a4.9 4.9 0 001.5 6.6c-.8 0-1.6-.3-2.2-.6 0 2.4 1.7 4.4 3.9 4.8-.7.2-1.5.2-2.2.1.6 2 2.4 3.4 4.6 3.4A9.9 9.9 0 010 19.6 13.9 13.9 0 007.5 21.8c9.1 0 14-7.5 14-14v-.6c1-.7 1.8-1.6 2.1-2.6z"/></svg>
+</a><a href="mailto:starstarding@gmail.com" title="Email" aria-label="Email"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 4h18a2 2 0 012 2v12a2 2 0 01-2 2H3a2 2 0 01-2-2V6a2 2 0 012-2zm0 2v.5l9 6 9-6V6H3z"/></svg>
+</a><a href="/en/atom.xml" title="RSS" aria-label="RSS"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="19" r="3" fill="currentColor"/><path fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" d="M3.6 10.6a9.8 9.8 0 019.8 9.8M3.6 3.6a16.8 16.8 0 0116.8 16.8"/></svg>
+</a></nav>
+</div>
+</div>
+  <nav class="pager">
+    <span><a href="/en/2016/02/25/questions-record/"><small>Newer</small>A Running Log of Problems and Fixes</a></span>
+    <span class="next"><a href="/en/2016/01/18/gitlab-migrate/"><small>Older</small>Migrating GitLab Data Between Docker Hosts</a></span>
+  </nav>
+  <section class="comments">
+<script src="https://giscus.app/client.js" data-repo="starding/xinghua_blog_giscus" data-repo-id="R_kgDOLagm8g" data-category="Announcements" data-category-id="DIC_kwDOLagm8s4CdqOC" data-mapping="specific" data-term="javascript 犀牛书（第六版）" data-strict="1" data-reactions-enabled="1" data-emit-metadata="1" data-input-position="top" data-theme="preferred_color_scheme" data-lang="en" data-loading="lazy" crossorigin="anonymous" async></script>
+</section>
+</article>
+
+  </main>
+  <aside class="aside"><div class="author-card">
+  <div class="author">
+    <img src="/img/author.jpg" alt="XingHua">
+    <p>We meet by chance in this world.<br>I’m XingHua — glad to meet you.</p>
+  </div>
+  <nav class="social"><a href="https://github.com/starding" title="GitHub" aria-label="GitHub" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+</a><a href="https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70" title="Jike" aria-label="Jike" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M14.6 2h4.2v13.4c0 4.1-2.6 6.6-6.4 6.6-1.9 0-3.6-.6-5-1.7l2.2-3.3c.8.6 1.7.9 2.6.9 1.6 0 2.4-1 2.4-3V2z"/><path fill="none" stroke="currentColor" stroke-width="1.2" d="M16.4 3.6v12.6c0 3.6-2.3 5.9-5.6 6.1"/></svg>
+</a><a href="https://twitter.com/starstarding" title="Twitter" aria-label="Twitter" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M23.6 4.6c-.9.4-1.8.6-2.8.8 1-.6 1.8-1.6 2.1-2.7-.9.6-2 1-3.1 1.2a4.9 4.9 0 00-8.4 4.5C7.4 8.2 3.8 6.2 1.4 3.3a4.9 4.9 0 001.5 6.6c-.8 0-1.6-.3-2.2-.6 0 2.4 1.7 4.4 3.9 4.8-.7.2-1.5.2-2.2.1.6 2 2.4 3.4 4.6 3.4A9.9 9.9 0 010 19.6 13.9 13.9 0 007.5 21.8c9.1 0 14-7.5 14-14v-.6c1-.7 1.8-1.6 2.1-2.6z"/></svg>
+</a><a href="mailto:starstarding@gmail.com" title="Email" aria-label="Email"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 4h18a2 2 0 012 2v12a2 2 0 01-2 2H3a2 2 0 01-2-2V6a2 2 0 012-2zm0 2v.5l9 6 9-6V6H3z"/></svg>
+</a><a href="/en/atom.xml" title="RSS" aria-label="RSS"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="19" r="3" fill="currentColor"/><path fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" d="M3.6 10.6a9.8 9.8 0 019.8 9.8M3.6 3.6a16.8 16.8 0 0116.8 16.8"/></svg>
+</a></nav>
+</div>
+<div class="aside-sticky-wrap"><div class="aside-sticky"><nav class="toc"><b>Contents</b><ol><li class="l2"><a href="#core-parts">Core parts</a></li><li class="l3"><a href="#the-language-core">The language core</a></li><li class="l2"><a href="#fuzzy-points">Fuzzy points</a></li><li class="l3"><a href="#wrapper-objects">Wrapper objects</a></li><li class="l3"><a href="#variable-hoisting-and-variable-configurability">Variable hoisting and variable configurability</a></li><li class="l3"><a href="#the-eval-operator">The eval operator</a></li><li class="l3"><a href="#labeled-statements">Labeled statements</a></li><li class="l3"><a href="#throw-try-catch-finally-statements">throw/try/catch/finally statements</a></li><li class="l3"><a href="#function-names">Function names</a></li><li class="l3"><a href="#losing-the-this-reference">Losing the this reference</a></li></ol></nav>
+<script src="/theme/toc.js" defer></script>
+<section class="aside-block">
+  <h2>This post</h2>
+  <dl class="facts">
+    <div><dt>Length</dt><dd>867 words</dd></div>
+    <div><dt>Category</dt><dd><a href="/en/categories/as-an-engineer/">As an Engineer</a></dd></div>
+  </dl>
+  
+</section>
+<section class="aside-block">
+  <h2>Related</h2>
+  <ul class="related"><li><a href="/en/2024/03/30/a-short-web-history/">A Short History of the Web: The Key Threads</a><time datetime="2024-03-30T06:38:56.000Z">2024</time></li><li><a href="/en/2016/10/31/material-design-introduct-md/">Material Design: An Introduction and the Theory Behind It</a><time datetime="2016-10-31T09:04:37.000Z">2016</time></li><li><a href="/en/2016/08/29/why-users-can-not-see-collect-function-in-neihan/">Front-End Metaphysics (1): Why Users Can't See the Favorites Button</a><time datetime="2016-08-29T08:44:10.000Z">2016</time></li></ul>
+</section>
+</div></div></aside>
+</div>
+<footer class="pagefoot"><p class="legal"><span class="legal-owner">© 2016–2026 XingHua</span><span class="legal-sep"> · </span><span class="legal-links"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="license noopener">CC BY-NC-SA 4.0</a> · <a href="/llms.txt">llms.txt</a></span></p>
+</footer>
+</body>
+</html>

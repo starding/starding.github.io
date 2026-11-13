@@ -237,8 +237,8 @@ html::-webkit-scrollbar{display:none}
 .aside .toc a[aria-current]{color:var(--primary);font-weight:500}
 .aside-block{margin-bottom:28px}
 .aside h2,.post-related h2{font-size:var(--fs-small);line-height:16px;letter-spacing:.08em;color:var(--faint);font-weight:500;margin:0 0 10px}
-.facts{margin:0 0 12px;display:grid;gap:6px}
-.facts div{display:grid;grid-template-columns:40px 1fr;gap:8px}
+.facts{margin:0 0 12px;display:grid;grid-template-columns:max-content 1fr;gap:6px 12px}
+.facts div{display:contents}
 .facts dt{color:var(--faint)}
 .facts dd{margin:0;color:var(--text)}
 .facts a{color:var(--text)}
@@ -349,3 +349,8 @@ body:has(>.pagefoot)>.frame{width:100%;box-sizing:border-box}
 .ifig-read{font-variant-numeric:tabular-nums;color:var(--text)}
 .ifig-read b{font-weight:600;color:var(--tok-n)}
 @media (max-width:600px){.ifig svg text{font-size:24px}.ifig-ctl input[type=range]{width:120px}}
+/* 页头右上角：语言切换与外观按钮并排 */
+.theme-pick{display:flex;align-items:center;gap:4px}
+.lang-btn{display:grid;place-items:center;min-width:40px;height:40px;padding:0 10px;border-radius:20px;color:var(--on-appbar);opacity:.7;font-size:14px;font-weight:500;letter-spacing:.02em}
+.lang-btn:hover{opacity:1;background:rgba(255,255,255,.12);text-decoration:none}
+.navlist a span{margin-left:12px;flex:none}

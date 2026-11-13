@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
 <title>结绳以渔</title><subtitle>临渊羡鱼，不如退而结网</subtitle>
 <link href="https://xinghua.space/atom.xml" rel="self"/><link href="https://xinghua.space/"/>
 <id>https://xinghua.space/</id><updated>2024-04-17T14:08:57.000Z</updated><author><name>XingHua</name></author>

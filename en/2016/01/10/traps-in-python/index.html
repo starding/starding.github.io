@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Python Pitfalls I Fell Into: Import Paths, try/finally, and Dict Comprehensions | Knots &amp; Nets</title>
+<meta name="description" content="Three Python traps from real work: module shadowing on the import path, return or break in finally swallowing exceptions, and dict comprehension limits.">
+<meta name="author" content="XingHua">
+<meta name="theme-color" content="#000000">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python Pitfalls I Fell Into: Import Paths, try/finally, and Dict Comprehensions">
+<meta property="og:description" content="Three Python traps from real work: module shadowing on the import path, return or break in finally swallowing exceptions, and dict comprehension limits.">
+<meta property="og:image" content="https://xinghua.space/brand/logo-512.png">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Knots &amp; Nets">
+<meta name="twitter:card" content="summary">
+<meta property="article:published_time" content="2016-01-10T15:03:01.000Z">
+<meta property="og:url" content="https://xinghua.space/en/2016/01/10/traps-in-python/">
+<link rel="canonical" href="https://xinghua.space/en/2016/01/10/traps-in-python/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Python Pitfalls I Fell Into: Import Paths, try/finally, and Dict Comprehensions","description":"Three Python traps from real work: module shadowing on the import path, return or break in finally swallowing exceptions, and dict comprehension limits.","datePublished":"2016-01-10T15:03:01.000Z","inLanguage":"en","author":{"@type":"Person","name":"XingHua","url":"https://xinghua.space/en/about/","sameAs":["https://github.com/starding","https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70","https://twitter.com/starstarding"]},"publisher":{"@type":"Person","name":"XingHua","url":"https://xinghua.space/en/about/","sameAs":["https://github.com/starding","https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70","https://twitter.com/starstarding"]},"mainEntityOfPage":"https://xinghua.space/en/2016/01/10/traps-in-python/","articleSection":"As an Engineer"}</script>
+<link rel="alternate" type="application/atom+xml" title="Knots &amp; Nets" href="/en/atom.xml">
+<link rel="alternate" hreflang="zh-CN" href="https://xinghua.space/2016/01/10/traps-in-python/">
+<link rel="alternate" hreflang="en" href="https://xinghua.space/en/2016/01/10/traps-in-python/">
+<link rel="alternate" hreflang="x-default" href="https://xinghua.space/2016/01/10/traps-in-python/">
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="/favicon-96x96.png" type="image/png" sizes="96x96">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#B6002E">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
+<link rel="manifest" href="/manifest.webmanifest">
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="stylesheet" href="/theme/tokens.css">
+<link rel="stylesheet" href="/theme/site.css">
+<script src="/theme/overlay-scroll.js" defer></script>
+<script src="/theme/theme.js" defer></script>
+<script>(()=>{if(location.hostname!=='xinghua.space'||navigator.webdriver)return;try{navigator.sendBeacon('https://xinghua-stats.xinghua-space.workers.dev/c',JSON.stringify({p:location.pathname,r:document.referrer,w:innerWidth,l:navigator.language}))}catch(e){}})()</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-V9SXMWSY9Z"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-V9SXMWSY9Z');</script>
+</head>
+<body>
+<header class="appbar">
+  <div class="appbar-in">
+    <a class="brand" href="/en/"><img src="/brand/logo.svg" alt=""><span><b>Knots &amp; Nets</b><small>Rather than wishing for fish by the water, go home and weave a net.</small></span></a>
+    <div class="theme-pick">
+      <a class="lang-btn" href="/2016/01/10/traps-in-python/" hreflang="zh-CN" lang="zh-CN" title="中文版">中文</a>
+      <button type="button" class="theme-btn" id="themeBtn" aria-haspopup="menu" aria-expanded="false" title="Appearance"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="currentColor" d="M12 3.5a8.5 8.5 0 0 1 0 17z"/></svg>
+</button>
+      <div class="theme-menu" id="themeMenu" role="menu" hidden>
+        <button type="button" role="menuitemradio" data-theme-set="auto"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="currentColor" d="M12 3.5a8.5 8.5 0 0 1 0 17z"/></svg>
+<span>Auto</span><small>System</small></button>
+        <button type="button" role="menuitemradio" data-theme-set="light"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/><path stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>
+<span>Light</span></button>
+        <button type="button" role="menuitemradio" data-theme-set="dark"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
+<span>Dark</span></button>
+      </div>
+    </div>
+    <nav>
+      <a href="/en/">Home</a>
+      <a href="/en/works/">Works</a>
+      <a href="/en/about/">About</a>
+    </nav>
+  </div>
+</header>
+<div class="frame cols">
+  <main>
+<article class="paper">
+  <header class="post-head">
+    <h1>Python Pitfalls I Fell Into: Import Paths, try/finally, and Dict Comprehensions</h1>
+    <div class="meta">
+      <span>@XingHua</span>
+      <time datetime="2016-01-10T15:03:01.000Z">Jan 10, 2016</time>
+      <span>3 min read</span>
+    </div>
+  </header>
+  <div class="prose">
+<blockquote>
+<p>Past experience, if not forgotten, is a guide for the future. (前事不忘，后事之师) — <em>Strategies of the Warring States</em>, "Strategies of Zhao I"</p>
+</blockquote>
+<h2 id="module-imports-in-python">Module Imports in Python</h2>
+<h3 id="package-imports">Package Imports</h3>
+<p>This one is fairly simple, so a single example will do. Still, it did trip me up when I was starting out…</p>
+<pre><code class="language-python"><span class="tok-c"># File structure:</span>
+packages
+├── __init__.py
+└── my_module.py
+<span class="tok-c"># This is a package import</span>
+<span class="tok-k">import</span> packages
+<span class="tok-c"># What follows is obtained from attributes defined in __init__.py</span>
+packages.some_module.some_method
+<span class="tok-c"># This treats the package as one step on the search path</span>
+<span class="tok-k">from</span> packages <span class="tok-k">import</span> some_module
+some_module.some_method</code></pre>
+<h3 id="the-module-search-path">The Module Search Path</h3>
+<p>Consider the following scenario:</p>
+<pre><code class="language-python"><span class="tok-c"># Django has a common app, and it has been added to the installed apps list</span>
+<span class="tok-c"># File structure of the common app</span>
+common
+├── __init__.py
+├── common.py
+├── others.py
+└── somethings.py
+<span class="tok-c"># somethings.py contains this import statement</span>
+<span class="tok-k">from</span> common.others <span class="tok-k">import</span> some_func   <span class="tok-c"># raises an error</span></code></pre>
+<p>In the code above, because the names are the same and the search path by default starts from the directory of the code currently being executed, the <code>common</code> file is found before the <code>common</code> package, so it shadows the package on the search path. Once <code>common</code> is found, Python looks for <code>some_func</code> in the <code>common</code> file, can't find it, and raises an error.</p>
+<h2 id="execution-order-in-try-except-finally">Execution Order in try-except-finally</h2>
+<p>In Python exception handling, the <code>finally</code> clause is always executed, whether or not an exception is raised in the <code>try</code> clause. Because of this, <code>finally</code> is often used for cleanup, such as closing files or database connections.</p>
+<p>If an exception occurs in try-except-finally and is not properly handled, Python first stashes the exception, and after the actions in <code>finally</code> have finished, it passes the stashed exception up to the caller. This execution order is what creates some potential traps.</p>
+<p>Look at this example:</p>
+<pre><code class="language-python"><span class="tok-k">def</span> <span class="tok-f">finallyTest</span>():
+    print <span class="tok-s">'start------'</span>
+    <span class="tok-k">while</span>  <span class="tok-n">True</span>:
+        <span class="tok-k">try</span>:
+            print <span class="tok-s">"running------"</span>
+            <span class="tok-k">raise</span> <span class="tok-f">IndexError</span>(<span class="tok-s">"r"</span>)   <span class="tok-c"># raise an IndexError</span>
+        <span class="tok-k">except</span> NameError <span class="tok-k">as</span> e:
+            print <span class="tok-s">'NameError happended {0}'</span>.<span class="tok-f">format</span>(<span class="tok-f">str</span>(e))
+            <span class="tok-k">break</span>
+        <span class="tok-k">finally</span>:
+            print <span class="tok-s">'finally executed'</span>
+            <span class="tok-k">break</span> <span class="tok-c"># there is a break statement in finally</span>
+            
+<span class="tok-c"># run the test function</span>
+<span class="tok-f">FinallyTest</span>()
+<span class="tok-c"># output:</span>
+start------
+running------
+<span class="tok-k">finally</span> executed</code></pre>
+<p>In this example, the <code>try</code> clause raises an <code>IndexError</code>, and the <code>except</code> clause doesn't catch it. You would normally expect the error to propagate up to the caller (here, to the interpreter) and trigger an <code>IndexError</code>. But after the whole function runs, no exception appears.</p>
+<p>The reason is that when an exception occurs in the <code>try</code> block and no matching handler is found in the <code>except</code> clauses, the exception is "stashed temporarily." When <code>finally</code> finishes, the stashed exception is "raised again." But if <code>finally</code> raises a new exception or executes a <code>return</code> or <code>break</code> statement, the stashed exception is lost, which leads to "exception masking."</p>
+<p>Another, slightly more complicated example:</p>
+<pre><code class="language-py"><span class="tok-k">import</span> logging
+logger = logging.<span class="tok-f">Logger</span>(__name__)
+<span class="tok-k">def</span> <span class="tok-f">returnTest</span>(a):
+    <span class="tok-k">try</span>:
+        <span class="tok-k">if</span> a == <span class="tok-n">False</span>:
+            <span class="tok-k">raise</span> <span class="tok-f">ValueError</span>(<span class="tok-s">"data can not be False"</span>)
+        <span class="tok-k">else</span>:
+            <span class="tok-k">return</span> a  
+    <span class="tok-k">except</span> ValueError <span class="tok-k">as</span> e:
+        logger.<span class="tok-f">exception</span>(<span class="tok-s">"exception!, {detail}"</span>).<span class="tok-f">fomat</span>(detail)
+        <span class="tok-k">return</span> <span class="tok-s">"return exception in except statement"</span> 
+    <span class="tok-k">finally</span>:
+        <span class="tok-k">return</span> <span class="tok-s">"return in finally statement"</span>
+print <span class="tok-f">returnTest</span>(<span class="tok-n">False</span>)
+print <span class="tok-f">returnTest</span>(<span class="tok-n">True</span>)</code></pre>
+<p>You would normally expect the first <code>print</code> to trigger the error, enter the <code>except</code> clause and log the exception, and since the statements in <code>finally</code> always run, it returns 'return in finally statement'. The second should return <code>True</code>. In fact, both return 'return in finally statement'.</p>
+<p>The reason is the same as in the previous example. Whether in the <code>try</code> suite or the <code>except</code> suite, a <code>return</code> or <code>break</code>, any statement that makes the program jump, is saved first. Then the statements in <code>finally</code> are executed, and as soon as <code>finally</code> contains a jump statement, the program jumps right away, so the saved state above simply disappears.</p>
+<h2 id="the-limits-of-dict-comprehensions">The Limits of Dict Comprehensions</h2>
+<p>On one project I ran into an operation that had to query the database many times. Specifically, there were companies, each with attributes such as a name and a company code. Fetching company information from the database every time caused performance problems, so I decided to cache it in a dictionary and wanted to use a dict comprehension. I found that each iteration of a comprehension can only produce a single entry. I had never noticed this before, so I'm writing it down here.</p>
+<pre><code class="language-py"><span class="tok-c"># This works</span>
+&gt;&gt;&gt;{model.key: model.value <span class="tok-k">for</span> Modle <span class="tok-k">in</span> models }
+<span class="tok-c"># The result is an ordinary dictionary</span>
+&gt;&gt;&gt;{key1: value1, key2: value2, ...}
+<span class="tok-c"># But using it like this is not supported</span>
+&gt;&gt;&gt;{model.key1: model.value1, moedel.key2: model.value2 <span class="tok-k">for</span> model <span class="tok-k">in</span> models}
+<span class="tok-c"># The workaround is to make the value above a dictionary, or to use a list comprehension and wrap it in one more list</span>
+&gt;&gt;&gt;{model.key1: {models.key1: models.value1, model.key2: model.value2, ...} <span class="tok-k">for</span> model <span class="tok-k">in</span> models}</code></pre>
+<p>Here is the real example. The branch-related parts are branch company information, and the subbranch-related parts are sub-branch company information. The goal is to build a dictionary whose keys are branch company names and whose values are the branch's primary key, its number, and the sub-branches under it. The sub-branches are themselves a dictionary, keyed by sub-branch name with the sub-branch's other information as values. Together this forms a two-level dictionary cache of company data.</p>
+<pre><code class="language-py">companys_by_name = {
+        branch.name: {
+            <span class="tok-s">"pk"</span>: branch.pk,
+            <span class="tok-s">"number"</span>: branch.number,
+            <span class="tok-s">"subbranch"</span>: {
+                subbranch.name: {<span class="tok-s">"pk"</span>:subbranch.pk, <span class="tok-s">"number"</span>:subbranch.number} <span class="tok-k">for</span> subbranch <span class="tok-k">in</span> SubbranchCompany.objects.<span class="tok-f">filter</span>(branch_company=branch)
+            } <span class="tok-k">for</span> branch <span class="tok-k">in</span> BranchCompany.objects.<span class="tok-f">all</span>()
+}
+<span class="tok-c"># In detail, the meaning is as follows; sub-branches are companies under a branch</span>
+company_info_dict = {
+     branch_name:{
+        <span class="tok-s">"primary key"</span>: primary key of the current branch,
+        <span class="tok-s">"company number"</span>: company number of the current branch,
+        <span class="tok-s">"sub-branches"</span>:{
+            sub_branch_name:{
+                <span class="tok-s">"primary key"</span>: primary key of the current sub-branch,
+                <span class="tok-s">"sub-branch number"</span>: number of the current sub-branch,
+            } <span class="tok-k">for</span> sub_branch <span class="tok-k">in</span> sub-branches under the current branch
+        }
+     } <span class="tok-k">for</span> branch <span class="tok-k">in</span> all branches
+}</code></pre>
+  </div>
+  <section class="post-related"><h2>Related</h2><ul class="related"><li><a href="/en/2024/03/30/a-short-web-history/">A Short History of the Web: The Key Threads</a><time datetime="2024-03-30T06:38:56.000Z">2024</time></li><li><a href="/en/2016/10/31/material-design-introduct-md/">Material Design: An Introduction and the Theory Behind It</a><time datetime="2016-10-31T09:04:37.000Z">2016</time></li><li><a href="/en/2016/08/29/why-users-can-not-see-collect-function-in-neihan/">Front-End Metaphysics (1): Why Users Can't See the Favorites Button</a><time datetime="2016-08-29T08:44:10.000Z">2016</time></li></ul></section>
+  <div class="post-author"><div class="author-card">
+  <div class="author">
+    <img src="/img/author.jpg" alt="XingHua">
+    <p>We meet by chance in this world.<br>I’m XingHua — glad to meet you.</p>
+  </div>
+  <nav class="social"><a href="https://github.com/starding" title="GitHub" aria-label="GitHub" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+</a><a href="https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70" title="Jike" aria-label="Jike" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M14.6 2h4.2v13.4c0 4.1-2.6 6.6-6.4 6.6-1.9 0-3.6-.6-5-1.7l2.2-3.3c.8.6 1.7.9 2.6.9 1.6 0 2.4-1 2.4-3V2z"/><path fill="none" stroke="currentColor" stroke-width="1.2" d="M16.4 3.6v12.6c0 3.6-2.3 5.9-5.6 6.1"/></svg>
+</a><a href="https://twitter.com/starstarding" title="Twitter" aria-label="Twitter" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M23.6 4.6c-.9.4-1.8.6-2.8.8 1-.6 1.8-1.6 2.1-2.7-.9.6-2 1-3.1 1.2a4.9 4.9 0 00-8.4 4.5C7.4 8.2 3.8 6.2 1.4 3.3a4.9 4.9 0 001.5 6.6c-.8 0-1.6-.3-2.2-.6 0 2.4 1.7 4.4 3.9 4.8-.7.2-1.5.2-2.2.1.6 2 2.4 3.4 4.6 3.4A9.9 9.9 0 010 19.6 13.9 13.9 0 007.5 21.8c9.1 0 14-7.5 14-14v-.6c1-.7 1.8-1.6 2.1-2.6z"/></svg>
+</a><a href="mailto:starstarding@gmail.com" title="Email" aria-label="Email"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 4h18a2 2 0 012 2v12a2 2 0 01-2 2H3a2 2 0 01-2-2V6a2 2 0 012-2zm0 2v.5l9 6 9-6V6H3z"/></svg>
+</a><a href="/en/atom.xml" title="RSS" aria-label="RSS"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="19" r="3" fill="currentColor"/><path fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" d="M3.6 10.6a9.8 9.8 0 019.8 9.8M3.6 3.6a16.8 16.8 0 0116.8 16.8"/></svg>
+</a></nav>
+</div>
+</div>
+  <nav class="pager">
+    <span><a href="/en/2016/01/11/kuaibo-technological-neutrality/"><small>Newer</small>The Kuaibo Case and the Standing of Technological Neutrality</a></span>
+    <span class="next"><a href="/en/2016/01/10/open-questions/"><small>Older</small>Open Questions</a></span>
+  </nav>
+  <section class="comments">
+<script src="https://giscus.app/client.js" data-repo="starding/xinghua_blog_giscus" data-repo-id="R_kgDOLagm8g" data-category="Announcements" data-category-id="DIC_kwDOLagm8s4CdqOC" data-mapping="specific" data-term="那些年我在 python 中扑过的街" data-strict="1" data-reactions-enabled="1" data-emit-metadata="1" data-input-position="top" data-theme="preferred_color_scheme" data-lang="en" data-loading="lazy" crossorigin="anonymous" async></script>
+</section>
+</article>
+
+  </main>
+  <aside class="aside"><div class="author-card">
+  <div class="author">
+    <img src="/img/author.jpg" alt="XingHua">
+    <p>We meet by chance in this world.<br>I’m XingHua — glad to meet you.</p>
+  </div>
+  <nav class="social"><a href="https://github.com/starding" title="GitHub" aria-label="GitHub" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+</a><a href="https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70" title="Jike" aria-label="Jike" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M14.6 2h4.2v13.4c0 4.1-2.6 6.6-6.4 6.6-1.9 0-3.6-.6-5-1.7l2.2-3.3c.8.6 1.7.9 2.6.9 1.6 0 2.4-1 2.4-3V2z"/><path fill="none" stroke="currentColor" stroke-width="1.2" d="M16.4 3.6v12.6c0 3.6-2.3 5.9-5.6 6.1"/></svg>
+</a><a href="https://twitter.com/starstarding" title="Twitter" aria-label="Twitter" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M23.6 4.6c-.9.4-1.8.6-2.8.8 1-.6 1.8-1.6 2.1-2.7-.9.6-2 1-3.1 1.2a4.9 4.9 0 00-8.4 4.5C7.4 8.2 3.8 6.2 1.4 3.3a4.9 4.9 0 001.5 6.6c-.8 0-1.6-.3-2.2-.6 0 2.4 1.7 4.4 3.9 4.8-.7.2-1.5.2-2.2.1.6 2 2.4 3.4 4.6 3.4A9.9 9.9 0 010 19.6 13.9 13.9 0 007.5 21.8c9.1 0 14-7.5 14-14v-.6c1-.7 1.8-1.6 2.1-2.6z"/></svg>
+</a><a href="mailto:starstarding@gmail.com" title="Email" aria-label="Email"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 4h18a2 2 0 012 2v12a2 2 0 01-2 2H3a2 2 0 01-2-2V6a2 2 0 012-2zm0 2v.5l9 6 9-6V6H3z"/></svg>
+</a><a href="/en/atom.xml" title="RSS" aria-label="RSS"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="19" r="3" fill="currentColor"/><path fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" d="M3.6 10.6a9.8 9.8 0 019.8 9.8M3.6 3.6a16.8 16.8 0 0116.8 16.8"/></svg>
+</a></nav>
+</div>
+<div class="aside-sticky-wrap"><div class="aside-sticky"><nav class="toc"><b>Contents</b><ol><li class="l2"><a href="#module-imports-in-python">Module Imports in Python</a></li><li class="l3"><a href="#package-imports">Package Imports</a></li><li class="l3"><a href="#the-module-search-path">The Module Search Path</a></li><li class="l2"><a href="#execution-order-in-try-except-finally">Execution Order in try-except-finally</a></li><li class="l2"><a href="#the-limits-of-dict-comprehensions">The Limits of Dict Comprehensions</a></li></ol></nav>
+<script src="/theme/toc.js" defer></script>
+<section class="aside-block">
+  <h2>This post</h2>
+  <dl class="facts">
+    <div><dt>Length</dt><dd>570 words</dd></div>
+    <div><dt>Category</dt><dd><a href="/en/categories/as-an-engineer/">As an Engineer</a></dd></div>
+  </dl>
+  
+</section>
+<section class="aside-block">
+  <h2>Related</h2>
+  <ul class="related"><li><a href="/en/2024/03/30/a-short-web-history/">A Short History of the Web: The Key Threads</a><time datetime="2024-03-30T06:38:56.000Z">2024</time></li><li><a href="/en/2016/10/31/material-design-introduct-md/">Material Design: An Introduction and the Theory Behind It</a><time datetime="2016-10-31T09:04:37.000Z">2016</time></li><li><a href="/en/2016/08/29/why-users-can-not-see-collect-function-in-neihan/">Front-End Metaphysics (1): Why Users Can't See the Favorites Button</a><time datetime="2016-08-29T08:44:10.000Z">2016</time></li></ul>
+</section>
+</div></div></aside>
+</div>
+<footer class="pagefoot"><p class="legal"><span class="legal-owner">© 2016–2026 XingHua</span><span class="legal-sep"> · </span><span class="legal-links"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="license noopener">CC BY-NC-SA 4.0</a> · <a href="/llms.txt">llms.txt</a></span></p>
+</footer>
+</body>
+</html>

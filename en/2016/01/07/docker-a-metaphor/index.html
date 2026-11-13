@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Understanding Docker Through a Metaphor | Knots &amp; Nets</title>
+<meta name="description" content="What is Docker actually good for? Using the shipping container as a metaphor, this post explains images, containers, and why standardized delivery changes deployment.">
+<meta name="author" content="XingHua">
+<meta name="theme-color" content="#000000">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Understanding Docker Through a Metaphor">
+<meta property="og:description" content="What is Docker actually good for? Using the shipping container as a metaphor, this post explains images, containers, and why standardized delivery changes deployment.">
+<meta property="og:image" content="https://xinghua.space/brand/logo-512.png">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Knots &amp; Nets">
+<meta name="twitter:card" content="summary">
+<meta property="article:published_time" content="2016-01-06T17:28:10.000Z">
+<meta property="og:url" content="https://xinghua.space/en/2016/01/07/docker-a-metaphor/">
+<link rel="canonical" href="https://xinghua.space/en/2016/01/07/docker-a-metaphor/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Understanding Docker Through a Metaphor","description":"What is Docker actually good for? Using the shipping container as a metaphor, this post explains images, containers, and why standardized delivery changes deployment.","datePublished":"2016-01-06T17:28:10.000Z","inLanguage":"en","author":{"@type":"Person","name":"XingHua","url":"https://xinghua.space/en/about/","sameAs":["https://github.com/starding","https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70","https://twitter.com/starstarding"]},"publisher":{"@type":"Person","name":"XingHua","url":"https://xinghua.space/en/about/","sameAs":["https://github.com/starding","https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70","https://twitter.com/starstarding"]},"mainEntityOfPage":"https://xinghua.space/en/2016/01/07/docker-a-metaphor/","articleSection":"As an Engineer"}</script>
+<link rel="alternate" type="application/atom+xml" title="Knots &amp; Nets" href="/en/atom.xml">
+<link rel="alternate" hreflang="zh-CN" href="https://xinghua.space/2016/01/07/docker-a-metaphor/">
+<link rel="alternate" hreflang="en" href="https://xinghua.space/en/2016/01/07/docker-a-metaphor/">
+<link rel="alternate" hreflang="x-default" href="https://xinghua.space/2016/01/07/docker-a-metaphor/">
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="/favicon-96x96.png" type="image/png" sizes="96x96">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#B6002E">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
+<link rel="manifest" href="/manifest.webmanifest">
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="stylesheet" href="/theme/tokens.css">
+<link rel="stylesheet" href="/theme/site.css">
+<script src="/theme/overlay-scroll.js" defer></script>
+<script src="/theme/theme.js" defer></script>
+<script>(()=>{if(location.hostname!=='xinghua.space'||navigator.webdriver)return;try{navigator.sendBeacon('https://xinghua-stats.xinghua-space.workers.dev/c',JSON.stringify({p:location.pathname,r:document.referrer,w:innerWidth,l:navigator.language}))}catch(e){}})()</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-V9SXMWSY9Z"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-V9SXMWSY9Z');</script>
+</head>
+<body>
+<header class="appbar">
+  <div class="appbar-in">
+    <a class="brand" href="/en/"><img src="/brand/logo.svg" alt=""><span><b>Knots &amp; Nets</b><small>Rather than wishing for fish by the water, go home and weave a net.</small></span></a>
+    <div class="theme-pick">
+      <a class="lang-btn" href="/2016/01/07/docker-a-metaphor/" hreflang="zh-CN" lang="zh-CN" title="中文版">中文</a>
+      <button type="button" class="theme-btn" id="themeBtn" aria-haspopup="menu" aria-expanded="false" title="Appearance"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="currentColor" d="M12 3.5a8.5 8.5 0 0 1 0 17z"/></svg>
+</button>
+      <div class="theme-menu" id="themeMenu" role="menu" hidden>
+        <button type="button" role="menuitemradio" data-theme-set="auto"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="currentColor" d="M12 3.5a8.5 8.5 0 0 1 0 17z"/></svg>
+<span>Auto</span><small>System</small></button>
+        <button type="button" role="menuitemradio" data-theme-set="light"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/><path stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>
+<span>Light</span></button>
+        <button type="button" role="menuitemradio" data-theme-set="dark"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
+<span>Dark</span></button>
+      </div>
+    </div>
+    <nav>
+      <a href="/en/">Home</a>
+      <a href="/en/works/">Works</a>
+      <a href="/en/about/">About</a>
+    </nav>
+  </div>
+</header>
+<div class="frame cols">
+  <main>
+<article class="paper">
+  <header class="post-head">
+    <h1>Understanding Docker Through a Metaphor</h1>
+    <div class="meta">
+      <span>@XingHua</span>
+      <time datetime="2016-01-06T17:28:10.000Z">Jan 7, 2016</time>
+      <span>10 min read</span>
+    </div>
+  </header>
+  <div class="prose">
+<h2 id="the-academic-definition-of-docker">The academic definition of Docker</h2>
+<p>Let's start with Wikipedia's definition:</p>
+<blockquote>
+<p>Docker is an open-source project that automates the deployment of applications inside software containers, by providing an additional layer of abstraction and automation of operating-system-level virtualization on Linux. Docker uses the resource isolation features of the Linux kernel such as cgroups and kernel namespaces, and a union-capable filesystem such as aufs and others to allow independent “containers” to run within a single Linux instance, avoiding the overhead of starting and maintaining virtual machines.</p>
+</blockquote>
+<p>From this fairly academic definition you can vaguely gather that Docker is a tool that automates things like deployment, but you can't really see what makes it so damn great, or where exactly its strengths lie. To figure that out, reading the definition is nowhere near enough. One way is to use Docker for a long time and gradually come to appreciate its advantages. But for a newcomer who has never touched Docker, and who may not even know much about deployment, how do you get there quickly? A good approach is to lean on a metaphor.</p>
+<h2 id="the-docker-metaphor">The Docker metaphor</h2>
+<p>The concept of "metaphor" gets its own post: "Metaphor"</p>
+<p>Likewise, if you want to understand Docker quickly and grasp its core idea, a metaphor matters a lot.</p>
+<h3 id="the-literal-meaning-docker-the-dock-worker">The literal meaning: Docker, the dock worker</h3>
+<p>The name Docker is itself a metaphor. In the global logistics system, one of the most important inventions is the shipping container.</p>
+<p>Why is the container so important? To see why, look at how logistics worked before containers existed: goods are produced and packed into crates, then loaded crate by crate onto a truck, then unloaded crate by crate and put on a train, carried to the station near the port, unloaded crate by crate again, loaded onto trucks, hauled to the freighter, loaded on crate by crate...</p>
+<p>You can see that a huge amount of time, labor, and material goes to waste on all the loading and unloading in between. In logistics, the time goods actually spend on the road is fixed, and until transportation technology improves it's hard to shorten. So the time spent loading and unloading became the bottleneck of logistics, and that situation improved enormously once the container appeared.</p>
+<p>What makes the container important is that it provides a universal, standard specification for packaging goods (put plainly, its size and shape conform to a standard). This produces a huge advantage: in transport, the goods only need to be packed once before shipping. The container can then go onto a train or a truck, be hauled to the port, be placed directly on the ship, and after unloading go straight onto a train or truck again to its destination. On top of that, the container's standard makes it very easy to handle mechanically, which kicked off a standardization of the entire global logistics system around the container. That saved enormous amounts of time and labor and accelerated the flow and reallocation of resources around the world.</p>
+<h3 id="docker-the-dock-worker-borrows-exactly-the-container-metaphor">Docker (the dock worker) borrows exactly the container metaphor</h3>
+<p>Docker is like the dock worker loading goods into a container: it packages your application into a container of a standard specification. In computing terms, this container packed to a given specification is called an "image." Really it's your original code plus some extra content, format, and so on, turned into a static application. And just as a disc image can only be parsed by software that understands that disc image format, this image can only be parsed by Docker.</p>
+<p>The container reduces the work of transporting goods. What similar advantage does a Docker image offer? First, let's look at what deploying an application was like before Docker.</p>
+<p>Before Docker, say I wanted to deploy a Django application. What would I have to do?<br>
+First I need a Python environment. Say I use Python 3 and your machine has Python 2. OK, install Python 3 first. Turns out that's a pain: you have to install all kinds of dependencies first and sort out possible conflicts. No way around it, so you grit your teeth and do it.</p>
+<p>Once Python is installed, thanks to magical tools like pip, Django and the Python libraries you need go in quickly. Huh, turns out you also need MySQL, and Redis too. No way around it, keep going: download, install, configure. After a herculean effort it's finally done. And just like that, the day is gone.</p>
+<p>What? You're telling me the old server is being retired and we're switching to a new one? Dammit, fine, let's do it all over again. With yesterday's experience, it only takes most of a day.</p>
+<p>What? You're saying our app is so good we're going to promote it, and we need to walk other people through deploying it? I choose death. Delete the code and quit.</p>
+<p>That description may be a bit exaggerated, but it's by no means rare. Before Docker, this is exactly what ops people spent much of their time doing, wasting huge amounts of manpower and resources on endlessly repeated work.</p>
+<h2 id="after-docker">After Docker</h2>
+<h3 id="a-standard-deliverable">A standard deliverable</h3>
+<p>Saying Docker is like a shipping container, the key point is "standardization." What is its concrete product? It's the "image." Honestly, the Chinese word for it, <em>jingxiang</em> (镜像, "mirror image"), sounds pretty mystical, and the original English word "image" is pretty mystical too. It's mystical because its original meaning has been extended for special contexts. It originally means "picture, likeness," and a picture also carries the sense of "an abstract depiction of a real object." A picture can also be copied easily, which later gave it the sense of "a copy of the original picture," and later still it was used directly for disc images (something that stores an image and is easy to copy, except that a picture is drawn on paper while this kind of image exists digitally on a disc). Of course, <em>jingxiang</em> already means "copy" in Chinese, but it picks up the particular mood of Chinese characters and comes across as mystical and hazy.</p>
+<p>"Image" was later extended further. In Docker, it means taking your application itself and packaging it in a certain format (really just a series of command lines executed according to rules) into something with a standard specification (much like a container packaging your goods). It's just like how a disc image packages the original content into a format that can be burned directly onto a disc. This format can only be parsed by Docker itself, just as your disc image can only be parsed by specific tools.</p>
+<p>In Docker, an image can't be run directly. My guess is that this isn't for technical reasons but for engineering-design reasons. Generally, a specific version of a piece of software gets packaged into exactly one image. If an image could be configured and run, it could easily get damaged in use.</p>
+<p>So how do you avoid that? Add another layer, which amounts to a cloning technique: as long as the original body is fine, the clones can crash and burn all they like without anything really dying. This extra clone layer is called a container. The name is pretty apt: it's like a bottle or some other vessel, your application runs inside it, and you get an extra layer of safety. If you want to use a service or get your application running, you just create a new container from the image (also a single command), while the image itself stays put, untouched. Can't help it, it's precious.</p>
+<p>Roughly speaking, there are two kinds of images:</p>
+<p>One kind, let's simply call base standalone images. Each is usually a standalone service, and the most standalone service images of all are the various stripped-down operating systems. They're packaged into images as the most basic service, and practically every image depends on one. But for ordinary application developers like us, we generally don't use these images directly.<br>
+If we do use one, our Dockerfile usually looks something like this:</p>
+<pre><code class="language-dockerfile"><span class="tok-c"># Base operating system</span>
+From ubuntu:latest
+<span class="tok-c"># Build the other services we need, plus our own code</span>
+<span class="tok-k">RUN</span> apt-get install mysql
+<span class="tok-k">COPY</span> .  /src/</code></pre>
+<p>The other kind, let's call composite images. They're built on top of a standalone image, combining other services on top of it, such as a Python service or something like MySQL. As fairly top-level application developers, we generally use these pre-combined service images directly.<br>
+The Dockerfile then looks something like this:</p>
+<pre><code class="language-dockerfile"><span class="tok-c"># Base python service</span>
+From python:<span class="tok-n">2.7</span>.<span class="tok-n">10</span> 
+<span class="tok-c"># Our own code</span>
+<span class="tok-k">RUN</span> apt-get install mysql
+<span class="tok-k">COPY</span> .  /src/</code></pre>
+<p>In fact, a Python service like the one above is itself built on top of a base operating system. If you look at the Python Dockerfile on Docker Hub, this becomes clear:</p>
+<pre><code class="language-dockerfile"><span class="tok-k">FROM</span> buildpack-deps:jessie    <span class="tok-c"># jessie is a stripped-down debian operating system</span>
+<span class="tok-c"># remove several traces of debian python</span>
+<span class="tok-k">RUN</span> apt-get purge -y python.*</code></pre>
+<p>The images we build ourselves can also be called a kind of composite image. We usually use a Dockerfile to combine our own application code with some of the specific service images above (such as python), and that's how we build our own application.</p>
+<h3 id="what-exactly-does-docker-simplify">What exactly does Docker simplify?</h3>
+<p>Docker takes exactly those repetitive parts of the deployment process and does them automatically. You only need to build a working Docker image during the first deployment. After that, a few short commands are enough to pull the image, create a container from it, and get the service running. All you need is a server with Docker installed, a Dockerfile, and a reasonably smooth network connection. Truly "build once, deploy anywhere."</p>
+<p>Need a Python 3 environment? Just <code>from python:3.x</code> and you're done.<br>
+Need to migrate servers? Copy the application along with its Dockerfile and volumes data to the new server, a few commands, done again.<br>
+Need to offer it as a service to others? The Dockerfile is the clearest deployment document there is. Maintain an official image, and whoever needs it just pulls it down and deploys it with a few commands.<br>
+By now you may have noticed that the Docker image has become a standard shipping unit, just like a container. Unlike traditional software delivery, which just hands you the code and some documentation and calls it a day, it hands you a standard Docker shipment directly. That might be a Dockerfile, or the image itself, and this standard unit includes not only the code but the whole environment the code runs in, including the OS.</p>
+<p>So whoever wants to use my service just pulls the image and instantiates a container, and it directly provides the service you need. No more tedious installation process like before: someone has already done all of that for you.</p>
+<h3 id="and-the-advantages-dont-stop-there">And the advantages don't stop there</h3>
+<p>Just as the "standardization" the container brought to logistics didn't only affect the container itself, but standardized and improved the efficiency of the whole field, from transport machinery to logistics management.</p>
+<p>In other words, once you have "standardization" of one core thing, you can do much more on top of it, like automated mechanical handling of containers. Docker is similar: once this kind of standard software unit is established, the standard unit and the corresponding ways of managing it can bring about many more changes. For example:</p>
+<h3 id="unified-service-management">Unified service management</h3>
+<p>Applications deployed with Docker all fall within Docker's management. This is another huge advantage of Docker: it provides an isolated space and brings the scattered applications deployed on a server together under centralized management.</p>
+<p>For example, say I have a ton of services deployed on one server: MySQL, Redis, RabbitMQ, plus a pile of other applications. One day the server suddenly loses power and reboots. Brace yourself for a tragedy. The apps that weren't set to restart automatically, the apps that broke on restart, the important apps hiding in some corner you didn't even know about that failed to start...</p>
+<p>With Docker, though, you can see at a glance which applications started normally and which ones have problems. Then you just deal with them methodically, and you're fine.</p>
+<h3 id="use-in-continuous-delivery">Use in continuous delivery</h3>
+<p>Continuous delivery is somewhat beyond the scope here. Go find the answers yourself.</p>
+<h2 id="a-misconception-about-docker">A misconception about Docker</h2>
+<p>Someone might ask: I only have one server, and I'm unlikely to migrate. My Python service and MySQL service only need to be deployed once and can be reused from then on. Does Docker still have any advantage for me? After all, Docker has a learning cost too.</p>
+<p>If you're really sure your applications are one-off and only for your own use, then Docker's advantage in this scenario isn't especially obvious: even with Docker, someone has to do the initial build, and that's work. It's about the same amount of work as a one-time deployment. Even so, it still has an upside: it gives you a clean, isolated environment.</p>
+<p>Also, when many people say Docker changed the world of ops, they're speaking at the level of the whole community. For applications with huge user bases like MySQL and Python, and for applications that are frequently migrated, changed, and redeployed, the time saved across the whole community after Dockerizing them is enormous.</p>
+<p>That is, Docker can't reduce deployment work "to zero." In the good case it's "reduced to basically one," because no matter what, you have to build the application and its environment once. Just as the container eliminates the handling along the way but can't avoid the one operation of loading the goods into the container. But that one build can become the foundation of "build once, deliver anywhere." The first time you build your own image is similar to loading a container: it takes about as much work as deploying directly on the machine. At that point, Docker's efficiency gain is very small.</p>
+<p>But are you really sure the work you're doing is only a one-off?</p>
+<p>Huilongguan, Beijing, January 2016</p>
+  </div>
+  <section class="post-related"><h2>Related</h2><ul class="related"><li><a href="/en/2024/03/30/a-short-web-history/">A Short History of the Web: The Key Threads</a><time datetime="2024-03-30T06:38:56.000Z">2024</time></li><li><a href="/en/2016/10/31/material-design-introduct-md/">Material Design: An Introduction and the Theory Behind It</a><time datetime="2016-10-31T09:04:37.000Z">2016</time></li><li><a href="/en/2016/08/29/why-users-can-not-see-collect-function-in-neihan/">Front-End Metaphysics (1): Why Users Can't See the Favorites Button</a><time datetime="2016-08-29T08:44:10.000Z">2016</time></li></ul></section>
+  <div class="post-author"><div class="author-card">
+  <div class="author">
+    <img src="/img/author.jpg" alt="XingHua">
+    <p>We meet by chance in this world.<br>I’m XingHua — glad to meet you.</p>
+  </div>
+  <nav class="social"><a href="https://github.com/starding" title="GitHub" aria-label="GitHub" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+</a><a href="https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70" title="Jike" aria-label="Jike" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M14.6 2h4.2v13.4c0 4.1-2.6 6.6-6.4 6.6-1.9 0-3.6-.6-5-1.7l2.2-3.3c.8.6 1.7.9 2.6.9 1.6 0 2.4-1 2.4-3V2z"/><path fill="none" stroke="currentColor" stroke-width="1.2" d="M16.4 3.6v12.6c0 3.6-2.3 5.9-5.6 6.1"/></svg>
+</a><a href="https://twitter.com/starstarding" title="Twitter" aria-label="Twitter" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M23.6 4.6c-.9.4-1.8.6-2.8.8 1-.6 1.8-1.6 2.1-2.7-.9.6-2 1-3.1 1.2a4.9 4.9 0 00-8.4 4.5C7.4 8.2 3.8 6.2 1.4 3.3a4.9 4.9 0 001.5 6.6c-.8 0-1.6-.3-2.2-.6 0 2.4 1.7 4.4 3.9 4.8-.7.2-1.5.2-2.2.1.6 2 2.4 3.4 4.6 3.4A9.9 9.9 0 010 19.6 13.9 13.9 0 007.5 21.8c9.1 0 14-7.5 14-14v-.6c1-.7 1.8-1.6 2.1-2.6z"/></svg>
+</a><a href="mailto:starstarding@gmail.com" title="Email" aria-label="Email"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 4h18a2 2 0 012 2v12a2 2 0 01-2 2H3a2 2 0 01-2-2V6a2 2 0 012-2zm0 2v.5l9 6 9-6V6H3z"/></svg>
+</a><a href="/en/atom.xml" title="RSS" aria-label="RSS"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="19" r="3" fill="currentColor"/><path fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" d="M3.6 10.6a9.8 9.8 0 019.8 9.8M3.6 3.6a16.8 16.8 0 0116.8 16.8"/></svg>
+</a></nav>
+</div>
+</div>
+  <nav class="pager">
+    <span><a href="/en/2016/01/07/daocloud-deploy/"><small>Newer</small>Continuous Integration with DaoCloud: Deploying a Static Site and a Django App with Docker</a></span>
+    <span class="next"><a href="/en/2016/01/06/closure-decorator-in-python/"><small>Older</small>Closures and Decorators in Python</a></span>
+  </nav>
+  <section class="comments">
+<script src="https://giscus.app/client.js" data-repo="starding/xinghua_blog_giscus" data-repo-id="R_kgDOLagm8g" data-category="Announcements" data-category-id="DIC_kwDOLagm8s4CdqOC" data-mapping="specific" data-term="Docker——从隐喻说起" data-strict="1" data-reactions-enabled="1" data-emit-metadata="1" data-input-position="top" data-theme="preferred_color_scheme" data-lang="en" data-loading="lazy" crossorigin="anonymous" async></script>
+</section>
+</article>
+
+  </main>
+  <aside class="aside"><div class="author-card">
+  <div class="author">
+    <img src="/img/author.jpg" alt="XingHua">
+    <p>We meet by chance in this world.<br>I’m XingHua — glad to meet you.</p>
+  </div>
+  <nav class="social"><a href="https://github.com/starding" title="GitHub" aria-label="GitHub" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+</a><a href="https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70" title="Jike" aria-label="Jike" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M14.6 2h4.2v13.4c0 4.1-2.6 6.6-6.4 6.6-1.9 0-3.6-.6-5-1.7l2.2-3.3c.8.6 1.7.9 2.6.9 1.6 0 2.4-1 2.4-3V2z"/><path fill="none" stroke="currentColor" stroke-width="1.2" d="M16.4 3.6v12.6c0 3.6-2.3 5.9-5.6 6.1"/></svg>
+</a><a href="https://twitter.com/starstarding" title="Twitter" aria-label="Twitter" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M23.6 4.6c-.9.4-1.8.6-2.8.8 1-.6 1.8-1.6 2.1-2.7-.9.6-2 1-3.1 1.2a4.9 4.9 0 00-8.4 4.5C7.4 8.2 3.8 6.2 1.4 3.3a4.9 4.9 0 001.5 6.6c-.8 0-1.6-.3-2.2-.6 0 2.4 1.7 4.4 3.9 4.8-.7.2-1.5.2-2.2.1.6 2 2.4 3.4 4.6 3.4A9.9 9.9 0 010 19.6 13.9 13.9 0 007.5 21.8c9.1 0 14-7.5 14-14v-.6c1-.7 1.8-1.6 2.1-2.6z"/></svg>
+</a><a href="mailto:starstarding@gmail.com" title="Email" aria-label="Email"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 4h18a2 2 0 012 2v12a2 2 0 01-2 2H3a2 2 0 01-2-2V6a2 2 0 012-2zm0 2v.5l9 6 9-6V6H3z"/></svg>
+</a><a href="/en/atom.xml" title="RSS" aria-label="RSS"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="19" r="3" fill="currentColor"/><path fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" d="M3.6 10.6a9.8 9.8 0 019.8 9.8M3.6 3.6a16.8 16.8 0 0116.8 16.8"/></svg>
+</a></nav>
+</div>
+<div class="aside-sticky-wrap"><div class="aside-sticky"><nav class="toc"><b>Contents</b><ol><li class="l2"><a href="#the-academic-definition-of-docker">The academic definition of Docker</a></li><li class="l2"><a href="#the-docker-metaphor">The Docker metaphor</a></li><li class="l3"><a href="#the-literal-meaning-docker-the-dock-worker">The literal meaning: Docker, the dock worker</a></li><li class="l3"><a href="#docker-the-dock-worker-borrows-exactly-the-container-metaphor">Docker (the dock worker) borrows exactly the container metaphor</a></li><li class="l2"><a href="#after-docker">After Docker</a></li><li class="l3"><a href="#a-standard-deliverable">A standard deliverable</a></li><li class="l3"><a href="#what-exactly-does-docker-simplify">What exactly does Docker simplify?</a></li><li class="l3"><a href="#and-the-advantages-dont-stop-there">And the advantages don't stop there</a></li><li class="l3"><a href="#unified-service-management">Unified service management</a></li><li class="l3"><a href="#use-in-continuous-delivery">Use in continuous delivery</a></li><li class="l2"><a href="#a-misconception-about-docker">A misconception about Docker</a></li></ol></nav>
+<script src="/theme/toc.js" defer></script>
+<section class="aside-block">
+  <h2>This post</h2>
+  <dl class="facts">
+    <div><dt>Length</dt><dd>2,189 words</dd></div>
+    <div><dt>Category</dt><dd><a href="/en/categories/as-an-engineer/">As an Engineer</a></dd></div>
+  </dl>
+  
+</section>
+<section class="aside-block">
+  <h2>Related</h2>
+  <ul class="related"><li><a href="/en/2024/03/30/a-short-web-history/">A Short History of the Web: The Key Threads</a><time datetime="2024-03-30T06:38:56.000Z">2024</time></li><li><a href="/en/2016/10/31/material-design-introduct-md/">Material Design: An Introduction and the Theory Behind It</a><time datetime="2016-10-31T09:04:37.000Z">2016</time></li><li><a href="/en/2016/08/29/why-users-can-not-see-collect-function-in-neihan/">Front-End Metaphysics (1): Why Users Can't See the Favorites Button</a><time datetime="2016-08-29T08:44:10.000Z">2016</time></li></ul>
+</section>
+</div></div></aside>
+</div>
+<footer class="pagefoot"><p class="legal"><span class="legal-owner">© 2016–2026 XingHua</span><span class="legal-sep"> · </span><span class="legal-links"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="license noopener">CC BY-NC-SA 4.0</a> · <a href="/llms.txt">llms.txt</a></span></p>
+</footer>
+</body>
+</html>

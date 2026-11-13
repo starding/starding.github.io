@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Running Log of Problems and Fixes | Knots &amp; Nets</title>
+<meta name="description" content="A personal log of problems I ran into and how I solved them: Django and MySQL quirks, Vim tricks, CSS gotchas, over-engineering, and some product design gripes.">
+<meta name="author" content="XingHua">
+<meta name="theme-color" content="#000000">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A Running Log of Problems and Fixes">
+<meta property="og:description" content="A personal log of problems I ran into and how I solved them: Django and MySQL quirks, Vim tricks, CSS gotchas, over-engineering, and some product design gripes.">
+<meta property="og:image" content="https://xinghua.space/brand/logo-512.png">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Knots &amp; Nets">
+<meta name="twitter:card" content="summary">
+<meta property="article:published_time" content="2016-02-25T01:25:29.000Z">
+<meta property="og:url" content="https://xinghua.space/en/2016/02/25/questions-record/">
+<link rel="canonical" href="https://xinghua.space/en/2016/02/25/questions-record/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"A Running Log of Problems and Fixes","description":"A personal log of problems I ran into and how I solved them: Django and MySQL quirks, Vim tricks, CSS gotchas, over-engineering, and some product design gripes.","datePublished":"2016-02-25T01:25:29.000Z","inLanguage":"en","author":{"@type":"Person","name":"XingHua","url":"https://xinghua.space/en/about/","sameAs":["https://github.com/starding","https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70","https://twitter.com/starstarding"]},"publisher":{"@type":"Person","name":"XingHua","url":"https://xinghua.space/en/about/","sameAs":["https://github.com/starding","https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70","https://twitter.com/starstarding"]},"mainEntityOfPage":"https://xinghua.space/en/2016/02/25/questions-record/","articleSection":"As an Engineer"}</script>
+<link rel="alternate" type="application/atom+xml" title="Knots &amp; Nets" href="/en/atom.xml">
+<link rel="alternate" hreflang="zh-CN" href="https://xinghua.space/2016/02/25/questions-record/">
+<link rel="alternate" hreflang="en" href="https://xinghua.space/en/2016/02/25/questions-record/">
+<link rel="alternate" hreflang="x-default" href="https://xinghua.space/2016/02/25/questions-record/">
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="/favicon-96x96.png" type="image/png" sizes="96x96">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#B6002E">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
+<link rel="manifest" href="/manifest.webmanifest">
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="stylesheet" href="/theme/tokens.css">
+<link rel="stylesheet" href="/theme/site.css">
+<script src="/theme/overlay-scroll.js" defer></script>
+<script src="/theme/theme.js" defer></script>
+<script>(()=>{if(location.hostname!=='xinghua.space'||navigator.webdriver)return;try{navigator.sendBeacon('https://xinghua-stats.xinghua-space.workers.dev/c',JSON.stringify({p:location.pathname,r:document.referrer,w:innerWidth,l:navigator.language}))}catch(e){}})()</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-V9SXMWSY9Z"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-V9SXMWSY9Z');</script>
+</head>
+<body>
+<header class="appbar">
+  <div class="appbar-in">
+    <a class="brand" href="/en/"><img src="/brand/logo.svg" alt=""><span><b>Knots &amp; Nets</b><small>Rather than wishing for fish by the water, go home and weave a net.</small></span></a>
+    <div class="theme-pick">
+      <a class="lang-btn" href="/2016/02/25/questions-record/" hreflang="zh-CN" lang="zh-CN" title="中文版">中文</a>
+      <button type="button" class="theme-btn" id="themeBtn" aria-haspopup="menu" aria-expanded="false" title="Appearance"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="currentColor" d="M12 3.5a8.5 8.5 0 0 1 0 17z"/></svg>
+</button>
+      <div class="theme-menu" id="themeMenu" role="menu" hidden>
+        <button type="button" role="menuitemradio" data-theme-set="auto"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="currentColor" d="M12 3.5a8.5 8.5 0 0 1 0 17z"/></svg>
+<span>Auto</span><small>System</small></button>
+        <button type="button" role="menuitemradio" data-theme-set="light"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/><path stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>
+<span>Light</span></button>
+        <button type="button" role="menuitemradio" data-theme-set="dark"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
+<span>Dark</span></button>
+      </div>
+    </div>
+    <nav>
+      <a href="/en/">Home</a>
+      <a href="/en/works/">Works</a>
+      <a href="/en/about/">About</a>
+    </nav>
+  </div>
+</header>
+<div class="frame cols">
+  <main>
+<article class="paper">
+  <header class="post-head">
+    <h1>A Running Log of Problems and Fixes</h1>
+    <div class="meta">
+      <span>@XingHua</span>
+      <time datetime="2016-02-25T01:25:29.000Z">Feb 25, 2016</time>
+      <span>8 min read</span>
+    </div>
+  </header>
+  <div class="prose">
+<p>Meta: This post records problems I run into day to day, along with their solutions.</p>
+<h2 id="miscellaneous">Miscellaneous</h2>
+<h3 id="running-scheduled-commands-with-linux-crontab--django-commands">Running scheduled commands with Linux crontab + Django commands</h3>
+<h4 id="the-problem">The problem</h4>
+<p>While building an archive management system, I had a task that needed to periodically pull data from a DB2 database, process it, and store it in MySQL. That meant running a standalone script inside Django that uses Django's environment.</p>
+<h4 id="the-solution">The solution</h4>
+<p>Django provides user-defined custom commands for exactly this:</p>
+<blockquote>
+<p><a href="https://docs.djangoproject.com/en/1.9/howto/custom-management-commands/" rel="noopener">Writing custom django-admin commands¶</a></p>
+</blockquote>
+<p>And Linux provides a handy tool for scheduling tasks:</p>
+<blockquote>
+<p><a href="https://linuxtools-rst.readthedocs.io/zh-cn/latest/tool/crontab.html" rel="noopener">linux crontab</a></p>
+</blockquote>
+<h3 id="error-2006-mysql-server-has-gone-away-when-writing-large-amounts-of-data-to-mysql">Error 2006 'mysql server has gone away' when writing large amounts of data to MySQL</h3>
+<h4 id="the-problem-1">The problem</h4>
+<p>While building an archive management system with Django + MySQL, this error appeared when I wrote nearly 30,000 rows into MySQL in one go.</p>
+<h4 id="the-solution-1">The solution</h4>
+<p>It turned out MySQL has a default limit on the size of data written. Just add the following to <code>/etc/my.cnf</code> (create the file yourself if it doesn't exist):</p>
+<pre><code class="language-conf">[mysqld]
+max_allowed_packet = <span class="tok-n">16</span>M</code></pre>
+<p>Of course, you can also solve this by limiting how much data you write to MySQL at a time.</p>
+<h3 id="vim-split-screens-and-the-ctrl-p-plugin">Vim split screens and the Ctrl P plugin</h3>
+<p>I'd always heard how great the <code>ctrl p</code> plugin was. But when I first tried it, I really didn't see what was so powerful about it, until I later discovered Vim's split-screen feature.</p>
+<p>Using Vim's split screens together with Ctrl P lets me open multiple files without leaving Vim, which saves a huge amount of time spent cd-ing around directories on the command line.</p>
+<p>Reference: <a href="https://coolshell.cn/articles/1679.html" rel="noopener">Vim's split-screen feature</a></p>
+<h3 id="basic-regular-expressions">Basic regular expressions</h3>
+<p>Once I needed to pad a bunch of short lines of text with trailing spaces so that every line had the same width.<br>
+At first I tried all kinds of column editing and block editing, and none of it worked. Did I really have to write a program just for this?</p>
+<p>Later I found that a regular expression pretty much does the job:</p>
+<pre><code class="language-shell">%s/$/ n_spaces /g</code></pre>
+<p>In Vim, the $ symbol has a rich set of meanings; here it refers to the character just before the end of the line.</p>
+<h2 id="front-end">Front end</h2>
+<p>Mainly notes on things that are easy to confuse while learning front-end development. Personally, among HTML, CSS, and JavaScript, CSS is by far the hardest to pin down. Because of browser default styles and constraints, CSS inheritance, cascading rules, and so on all acting together, CSS often doesn't behave the way I expect. So there may be more CSS content here.<br>
+These are just scattered notes; for now I don't have the energy to organize them into standalone posts. Maybe later I'll expand some of the expandable bits into proper articles.</p>
+<h3 id="the-difference-between-css-pseudo-classes-and-pseudo-elements">The difference between CSS pseudo-classes and pseudo-elements</h3>
+<p>Pseudo-classes<br>
+Pseudo-elements</p>
+<h4 id="telling-the-concepts-apart">Telling the concepts apart</h4>
+<p>An answer on Stack Overflow:<br>
+<a href="https://stackoverflow.com/questions/8069973/what-is-the-difference-between-a-pseudo-class-and-a-pseudo-element-in-css" rel="noopener">What is the difference between a pseudo-class and a pseudo-element in CSS?</a></p>
+<p>The explanation on W3C:<br>
+<a href="https://www.w3.org/TR/2011/REC-css3-selectors-20110929/#pseudo-elements" rel="noopener">pseudo-elements</a><br>
+<a href="https://www.w3.org/TR/2011/REC-css3-selectors-20110929/#pseudo-classes" rel="noopener">pseudo-classes</a></p>
+<h3 id="inheritance-of-relative-font-size-values-in-css">Inheritance of relative font-size values in CSS</h3>
+<p>When font-size uses relative units like em, the calculations compound.</p>
+<blockquote>
+<p>From <em>Stylin' with CSS</em> (quoted from the Chinese edition)</p>
+<p>Generally, em uses the browser default as its base unit, that is, 1em = 16px. If you want to use em but also need to set specific pixel sizes, you can set the body's font-size to 62.5%. That changes the base size from 16 pixels to 10 pixels (16 × 62.5% = 10). Then the correspondence between em and pixels becomes very clear: 1em equals 10 pixels, 1.5em equals 15 pixels, 2em equals 20 pixels, and so on.</p>
+<p>The p element's text is 12 pixels (the body's 16-pixel base × .75 = 12px). strong is a child of p, so its relative text size compounds level by level, and it should be 16px × 0.75 × 0.75 = 9px.</p>
+</blockquote>
+<p><strong>Note the difference from text-indent:</strong> font-size compounds, whereas with text-indent a later value overrides the earlier one.</p>
+<blockquote>
+<p>text-indent is inherited by child elements. If you set text-indent on a div, all paragraphs in the div inherit that indent value. However, as with all inherited CSS values, the indent value is not the value set on the ancestor but the computed value. Here is an example.</p>
+<p>Suppose a 400-pixel-wide div contains text indented 5%; the indent is then 20 pixels (5% of 400). Inside this div is a 200-pixel-wide paragraph. As a child element it inherits its parent's text-indent value, so its text is indented too. But what is the inherited indent value? Not 5%, but 20 pixels. That is, the child inherits the indent value computed from the parent's width. As a result, even though the paragraph is only half as wide as its parent, its text is still indented 20 pixels. This ensures that paragraphs are indented by the same distance no matter how wide they are. Of course, setting text-indent on the child element overrides the inherited value.</p>
+</blockquote>
+<h3 id="how-inline-block-behaves">How inline-block behaves</h3>
+<blockquote>
+<p>This value causes an element to generate an inline-level block container. The inside of an inline-block is formatted as a block box, and the element itself is formatted as an atomic inline-level box.</p>
+<p>Put more plainly: an inline-block element has both the block element's ability to have its width and height set and the inline element's default behavior of not breaking onto a new line. And that's not all; for example, an inline-block element can also take the vertical-align property. In short:<br>
+an inline-block element is a block container formatted as an inline element.</p>
+</blockquote>
+<p>Open question:</p>
+<p>Does an inline-block's margin push out the parent's height, while an ordinary block's margin collapses with the parent's margin?</p>
+<p>References:<br>
+<a href="http://ued.taobao.org/blog/2012/08/inline-block/" rel="noopener">The past and present of inline-block</a></p>
+<p><a href="https://www.w3.org/TR/CSS2/visuren.html#display-prop" rel="noopener">w3c: the ‘display’ property</a></p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/vertical-align" rel="noopener">mozilla: vertical-align</a></p>
+<h3 id="using-rem">Using rem</h3>
+<p>Today I experimented with the rem relative unit in Chrome. My initial test code was:</p>
+<pre><code class="language-html"><span class="tok-k">&lt;!DOCTYPE html&gt;</span>
+&lt;<span class="tok-t">html</span>&gt;
+&lt;<span class="tok-t">head</span>&gt;
+    &lt;<span class="tok-t">meta</span> <span class="tok-a">charset</span>=<span class="tok-s">"utf-8"</span>&gt;
+    &lt;<span class="tok-t">title</span>&gt;test rem&lt;/<span class="tok-t">title</span>&gt;
+    &lt;<span class="tok-t">style</span> <span class="tok-a">type</span>=<span class="tok-s">"text/css"</span>&gt;
+        html{
+            font-size: 62.5%;  // the behavior here is a bit odd
+        }
+        body{
+            font-size: 1.2rem;
+        }
+        div{
+            width: 300px;
+            height: 300px;
+            background-color: red;
+            padding: 1rem;
+        }
+    &lt;/<span class="tok-t">style</span>&gt;
+&lt;/<span class="tok-t">head</span>&gt;
+&lt;<span class="tok-t">body</span>&gt;
+    &lt;<span class="tok-t">p</span>&gt;测试字体大小&lt;/<span class="tok-t">p</span>&gt;
+    &lt;<span class="tok-t">div</span>&gt;&lt;/<span class="tok-t">div</span>&gt;
+&lt;/<span class="tok-t">body</span>&gt;
+&lt;/<span class="tok-t">html</span>&gt;</code></pre>
+<p>But at this point font-size was not 10px. I'd seen online that people set the root element's font-size to 10px to make later calculations easier, but here it didn't seem to take effect.</p>
+<p>The reason is that Chrome's default minimum font size is 12px; any value set below that gets reset to 12px. In that case <code>1rem=12px</code>. On Chrome's minimum font size limit,</p>
+<p>see: <a href="https://banri.me/web/webkit-text-size-adjust.html" rel="noopener">What happened after Chrome dropped -webkit-text-size-adjust</a></p>
+<h3 id="block-level-and-inline-elements">Block-level and inline elements</h3>
+<ul>
+<li>Block-level elements
+<ul>
+<li>Take up a whole line</li>
+<li>width and height can be set</li>
+<li>Default</li>
+</ul></li>
+<li>Inline elements
+<ul>
+<li>Setting width and height has no effect</li>
+</ul></li>
+</ul>
+<p>Reference: <a href="https://geekplux.com/posts/several_core_concepts_of_css.html" rel="noopener">The few most essential concepts in CSS</a></p>
+<h3 id="width-and-height">width and height</h3>
+<p>Defines the width of an element's "content area." The default value is auto, and it is not inherited. The browser computes the actual width.</p>
+<p>When height and width use percentage relative units, they are calculated relative to the parent element's width (the parent's width works the same way). If not specified, the default is the image's own width and height; if the image fails to load, the alt attribute value is shown, or the browser's built-in broken-image display.</p>
+<h3 id="when-to-use-each-centering-method">When to use each centering method</h3>
+<pre><code class="language-css">// Horizontal centering
+// When using margin to center an element horizontally,
+// you need to specify the width of the element being centered (it has nothing to do with the parent<span class="tok-s">'s width)
+</span>// Obviously this only applies to block-level elements
+// It centers the element the property is set on, not its children or its parent
+margin: <span class="tok-n">0</span>, auto;   
+text-align： center</code></pre>
+<h3 id="how-things-behave-when-an-inner-box-is-bigger-than-its-outer-box-can-contain">How things behave when an inner box is bigger than its outer box can contain</h3>
+<h2 id="tools-ive-used">Tools I've used</h2>
+<ul>
+<li>reactjs react router</li>
+<li>underscore</li>
+<li>project-path (npm module)</li>
+<li>fixed-data-table (React component)</li>
+</ul>
+<h2 id="over-engineering-in-code">Over-engineering in code</h2>
+<h3 id="what-is-over-engineering-in-code">What is over-engineering in code</h3>
+<p>Over-design, or over-engineering, means exactly what it says: when writing code, imagining too many scenarios that don't actually exist and designing for those imagined scenarios, such as constantly accounting for changes that might come in the future. In reality, the code at that point is still a long way from needing to consider any of that.</p>
+<h3 id="over-engineering-ive-run-into">Over-engineering I've run into</h3>
+<p>When we were building a product before, we actually overemphasized possible future risks or changes in some places. For example, the product stored images on Qiniu cloud storage (a Chinese cloud storage provider), and at first everything was stored as URLs. But then an engineer imagined a scenario: "What if Qiniu's domain changes someday, or we stop using Qiniu?" So he set about changing the URLs to keys, only to find that the rewrite wasn't easy at all, and in the end it was abandoned.</p>
+<p>The other case was over-design at the product level. While we were developing a product, the product manager's prototype changed countless times, and some of the last changes even altered the most basic data, rendering all the code we'd written completely useless. And this was precisely a product that needed fast iteration; to this day the first version still isn't done. Strictly speaking this example isn't over-design, but I'll put it here for now.</p>
+<p>I don't understand how we, who are always going on about the MVP (minimum viable product), completely ignored it when building our own product.</p>
+<p>Of course, for someone like me without much programming experience, it's still too early to be thinking about this. I'm just writing it down for now, to reflect on later.</p>
+<h2 id="product-experience">Product experience</h2>
+<h3 id="first-impressions-of-ios">First impressions of iOS</h3>
+<p>My Nexus, after three years of service, finally got too old and decrepit and was honorably discharged. Torn by Android's endless variety, I ended up just getting an iPhone. Right away a few things felt really awkward. Some of that is naturally the unfamiliarity that comes with switching systems, but some of it is clearly bad design.</p>
+<h4 id="the-useless-pull-down-menu">The useless pull-down menu</h4>
+<p>Compared with Android's powerful pull-down menu, iOS's pull-down menu is only used for notifications or recently used app features, and part of the settings is placed in a menu that slides up from the bottom. Even those settings are incomplete. Take Wi-Fi: you can only toggle it on and off, and can't use it as an entry point to configure Wi-Fi further. To configure Wi-Fi you have to go dig through the Settings app.</p>
+<p>Now look at Android's pull-down menu: whether it's Wi-Fi or the flashlight, it's incredibly practical and convenient, and used very frequently.</p>
+<h4 id="the-infuriating-alarm-settings">The infuriating alarm settings</h4>
+<p>This one is even more obvious. On Android, setting an alarm takes one step. On the iOS alarm page, you first tap Edit in the top left to enter edit mode, then tap the time before you can choose it. A feature that could be done in one step gets stubbornly split into several. Using it is incredibly frustrating.</p>
+<h4 id="the-baffling-keyboard-and-system-wide-copy-and-paste">The baffling keyboard and system-wide copy and paste</h4>
+<p>The key proportions on the 9-key input layout are a real pain: the main area doesn't get enough space, while a big confirm button sits on the right, taking up a ton of room.</p>
+<p>And the behavior of the keyboard and system-wide copy and paste is simply bewildering; there's no discernible pattern to any of it. It feels like one thing one moment and something else the next.</p>
+<h4 id="a-messaging-screen-that-doesnt-make-full-use-of-the-touchscreen">A messaging screen that doesn't make full use of the touchscreen</h4>
+<p>Editing on the iOS Messages screen still means an Edit button in the top left that you have to tap first. Tapping a message only opens its details, and a long press does nothing.</p>
+<p>This "Edit button" pattern is everywhere in iOS, like the alarm editing mentioned above. It's very different from Android, where a long press generally means editing the item you pressed. iOS doesn't assign any action to a long press, which adds yet another step. It really doesn't make full use of the interaction advantages of the touchscreen itself.</p>
+<h3 id="the-soy-sauce-bottle-in-the-kitchen">The soy sauce bottle in the kitchen</h3>
+<p>There's a soy sauce brand called Haitian with an incredibly annoying seal design. You open the cap, pull the ring tab, pour out the rich soy sauce, and then you discover the cap won't close anymore! Soy sauce is something you use over a long time; I have no idea what a one-time design like a soda-can pull tab is for.</p>
+<p>Compare that with another condiment bottle in the kitchen, the white vinegar, and the gap in design is obvious. The vinegar has a big cap that's easy to twist open, and to help control the flow when pouring, there's a narrow slit inside that regulates it. Convenient in the extreme.</p>
+  </div>
+  <section class="post-related"><h2>Related</h2><ul class="related"><li><a href="/en/2024/03/30/a-short-web-history/">A Short History of the Web: The Key Threads</a><time datetime="2024-03-30T06:38:56.000Z">2024</time></li><li><a href="/en/2016/10/31/material-design-introduct-md/">Material Design: An Introduction and the Theory Behind It</a><time datetime="2016-10-31T09:04:37.000Z">2016</time></li><li><a href="/en/2016/08/29/why-users-can-not-see-collect-function-in-neihan/">Front-End Metaphysics (1): Why Users Can't See the Favorites Button</a><time datetime="2016-08-29T08:44:10.000Z">2016</time></li></ul></section>
+  <div class="post-author"><div class="author-card">
+  <div class="author">
+    <img src="/img/author.jpg" alt="XingHua">
+    <p>We meet by chance in this world.<br>I’m XingHua — glad to meet you.</p>
+  </div>
+  <nav class="social"><a href="https://github.com/starding" title="GitHub" aria-label="GitHub" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+</a><a href="https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70" title="Jike" aria-label="Jike" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M14.6 2h4.2v13.4c0 4.1-2.6 6.6-6.4 6.6-1.9 0-3.6-.6-5-1.7l2.2-3.3c.8.6 1.7.9 2.6.9 1.6 0 2.4-1 2.4-3V2z"/><path fill="none" stroke="currentColor" stroke-width="1.2" d="M16.4 3.6v12.6c0 3.6-2.3 5.9-5.6 6.1"/></svg>
+</a><a href="https://twitter.com/starstarding" title="Twitter" aria-label="Twitter" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M23.6 4.6c-.9.4-1.8.6-2.8.8 1-.6 1.8-1.6 2.1-2.7-.9.6-2 1-3.1 1.2a4.9 4.9 0 00-8.4 4.5C7.4 8.2 3.8 6.2 1.4 3.3a4.9 4.9 0 001.5 6.6c-.8 0-1.6-.3-2.2-.6 0 2.4 1.7 4.4 3.9 4.8-.7.2-1.5.2-2.2.1.6 2 2.4 3.4 4.6 3.4A9.9 9.9 0 010 19.6 13.9 13.9 0 007.5 21.8c9.1 0 14-7.5 14-14v-.6c1-.7 1.8-1.6 2.1-2.6z"/></svg>
+</a><a href="mailto:starstarding@gmail.com" title="Email" aria-label="Email"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 4h18a2 2 0 012 2v12a2 2 0 01-2 2H3a2 2 0 01-2-2V6a2 2 0 012-2zm0 2v.5l9 6 9-6V6H3z"/></svg>
+</a><a href="/en/atom.xml" title="RSS" aria-label="RSS"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="19" r="3" fill="currentColor"/><path fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" d="M3.6 10.6a9.8 9.8 0 019.8 9.8M3.6 3.6a16.8 16.8 0 0116.8 16.8"/></svg>
+</a></nav>
+</div>
+</div>
+  <nav class="pager">
+    <span><a href="/en/2016/02/26/metaphor/"><small>Newer</small>What Is a Metaphor, and How Is It Different from a Simile?</a></span>
+    <span class="next"><a href="/en/2016/01/19/learn-javascript-follow-definitive-guide/"><small>Older</small>Reading Notes on JavaScript: The Definitive Guide (6th Edition, the Rhino Book)</a></span>
+  </nav>
+  <section class="comments">
+<script src="https://giscus.app/client.js" data-repo="starding/xinghua_blog_giscus" data-repo-id="R_kgDOLagm8g" data-category="Announcements" data-category-id="DIC_kwDOLagm8s4CdqOC" data-mapping="specific" data-term="问题记录" data-strict="1" data-reactions-enabled="1" data-emit-metadata="1" data-input-position="top" data-theme="preferred_color_scheme" data-lang="en" data-loading="lazy" crossorigin="anonymous" async></script>
+</section>
+</article>
+
+  </main>
+  <aside class="aside"><div class="author-card">
+  <div class="author">
+    <img src="/img/author.jpg" alt="XingHua">
+    <p>We meet by chance in this world.<br>I’m XingHua — glad to meet you.</p>
+  </div>
+  <nav class="social"><a href="https://github.com/starding" title="GitHub" aria-label="GitHub" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+</a><a href="https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70" title="Jike" aria-label="Jike" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M14.6 2h4.2v13.4c0 4.1-2.6 6.6-6.4 6.6-1.9 0-3.6-.6-5-1.7l2.2-3.3c.8.6 1.7.9 2.6.9 1.6 0 2.4-1 2.4-3V2z"/><path fill="none" stroke="currentColor" stroke-width="1.2" d="M16.4 3.6v12.6c0 3.6-2.3 5.9-5.6 6.1"/></svg>
+</a><a href="https://twitter.com/starstarding" title="Twitter" aria-label="Twitter" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M23.6 4.6c-.9.4-1.8.6-2.8.8 1-.6 1.8-1.6 2.1-2.7-.9.6-2 1-3.1 1.2a4.9 4.9 0 00-8.4 4.5C7.4 8.2 3.8 6.2 1.4 3.3a4.9 4.9 0 001.5 6.6c-.8 0-1.6-.3-2.2-.6 0 2.4 1.7 4.4 3.9 4.8-.7.2-1.5.2-2.2.1.6 2 2.4 3.4 4.6 3.4A9.9 9.9 0 010 19.6 13.9 13.9 0 007.5 21.8c9.1 0 14-7.5 14-14v-.6c1-.7 1.8-1.6 2.1-2.6z"/></svg>
+</a><a href="mailto:starstarding@gmail.com" title="Email" aria-label="Email"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 4h18a2 2 0 012 2v12a2 2 0 01-2 2H3a2 2 0 01-2-2V6a2 2 0 012-2zm0 2v.5l9 6 9-6V6H3z"/></svg>
+</a><a href="/en/atom.xml" title="RSS" aria-label="RSS"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="19" r="3" fill="currentColor"/><path fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" d="M3.6 10.6a9.8 9.8 0 019.8 9.8M3.6 3.6a16.8 16.8 0 0116.8 16.8"/></svg>
+</a></nav>
+</div>
+<div class="aside-sticky-wrap"><div class="aside-sticky"><nav class="toc"><b>Contents</b><ol><li class="l2"><a href="#miscellaneous">Miscellaneous</a></li><li class="l3"><a href="#running-scheduled-commands-with-linux-crontab--django-commands">Running scheduled commands with Linux crontab + Django commands</a></li><li class="l3"><a href="#error-2006-mysql-server-has-gone-away-when-writing-large-amounts-of-data-to-mysql">Error 2006 'mysql server has gone away' when writing large amounts of data to MySQL</a></li><li class="l3"><a href="#vim-split-screens-and-the-ctrl-p-plugin">Vim split screens and the Ctrl P plugin</a></li><li class="l3"><a href="#basic-regular-expressions">Basic regular expressions</a></li><li class="l2"><a href="#front-end">Front end</a></li><li class="l3"><a href="#the-difference-between-css-pseudo-classes-and-pseudo-elements">The difference between CSS pseudo-classes and pseudo-elements</a></li><li class="l3"><a href="#inheritance-of-relative-font-size-values-in-css">Inheritance of relative font-size values in CSS</a></li><li class="l3"><a href="#how-inline-block-behaves">How inline-block behaves</a></li><li class="l3"><a href="#using-rem">Using rem</a></li><li class="l3"><a href="#block-level-and-inline-elements">Block-level and inline elements</a></li><li class="l3"><a href="#width-and-height">width and height</a></li><li class="l3"><a href="#when-to-use-each-centering-method">When to use each centering method</a></li><li class="l3"><a href="#how-things-behave-when-an-inner-box-is-bigger-than-its-outer-box-can-contain">How things behave when an inner box is bigger than its outer box can contain</a></li><li class="l2"><a href="#tools-ive-used">Tools I've used</a></li><li class="l2"><a href="#over-engineering-in-code">Over-engineering in code</a></li><li class="l3"><a href="#what-is-over-engineering-in-code">What is over-engineering in code</a></li><li class="l3"><a href="#over-engineering-ive-run-into">Over-engineering I've run into</a></li><li class="l2"><a href="#product-experience">Product experience</a></li><li class="l3"><a href="#first-impressions-of-ios">First impressions of iOS</a></li><li class="l3"><a href="#the-soy-sauce-bottle-in-the-kitchen">The soy sauce bottle in the kitchen</a></li></ol></nav>
+<script src="/theme/toc.js" defer></script>
+<section class="aside-block">
+  <h2>This post</h2>
+  <dl class="facts">
+    <div><dt>Length</dt><dd>1,820 words</dd></div>
+    <div><dt>Category</dt><dd><a href="/en/categories/as-an-engineer/">As an Engineer</a></dd></div>
+  </dl>
+  
+</section>
+<section class="aside-block">
+  <h2>Related</h2>
+  <ul class="related"><li><a href="/en/2024/03/30/a-short-web-history/">A Short History of the Web: The Key Threads</a><time datetime="2024-03-30T06:38:56.000Z">2024</time></li><li><a href="/en/2016/10/31/material-design-introduct-md/">Material Design: An Introduction and the Theory Behind It</a><time datetime="2016-10-31T09:04:37.000Z">2016</time></li><li><a href="/en/2016/08/29/why-users-can-not-see-collect-function-in-neihan/">Front-End Metaphysics (1): Why Users Can't See the Favorites Button</a><time datetime="2016-08-29T08:44:10.000Z">2016</time></li></ul>
+</section>
+</div></div></aside>
+</div>
+<footer class="pagefoot"><p class="legal"><span class="legal-owner">© 2016–2026 XingHua</span><span class="legal-sep"> · </span><span class="legal-links"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="license noopener">CC BY-NC-SA 4.0</a> · <a href="/llms.txt">llms.txt</a></span></p>
+</footer>
+</body>
+</html>

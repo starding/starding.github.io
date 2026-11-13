@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Continuous Integration with DaoCloud: Deploying a Static Site and a Django App with Docker | Knots &amp; Nets</title>
+<meta name="description" content="Using DaoCloud's Docker-based CI to continuously deploy a static HTML5 site and a MySQL-backed Django app to your own host behind nginx.">
+<meta name="author" content="XingHua">
+<meta name="theme-color" content="#000000">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Continuous Integration with DaoCloud: Deploying a Static Site and a Django App with Docker">
+<meta property="og:description" content="Using DaoCloud's Docker-based CI to continuously deploy a static HTML5 site and a MySQL-backed Django app to your own host behind nginx.">
+<meta property="og:image" content="https://xinghua.space/brand/logo-512.png">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Knots &amp; Nets">
+<meta name="twitter:card" content="summary">
+<meta property="article:published_time" content="2016-01-06T23:24:25.000Z">
+<meta property="og:url" content="https://xinghua.space/en/2016/01/07/daocloud-deploy/">
+<link rel="canonical" href="https://xinghua.space/en/2016/01/07/daocloud-deploy/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Continuous Integration with DaoCloud: Deploying a Static Site and a Django App with Docker","description":"Using DaoCloud's Docker-based CI to continuously deploy a static HTML5 site and a MySQL-backed Django app to your own host behind nginx.","datePublished":"2016-01-06T23:24:25.000Z","inLanguage":"en","author":{"@type":"Person","name":"XingHua","url":"https://xinghua.space/en/about/","sameAs":["https://github.com/starding","https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70","https://twitter.com/starstarding"]},"publisher":{"@type":"Person","name":"XingHua","url":"https://xinghua.space/en/about/","sameAs":["https://github.com/starding","https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70","https://twitter.com/starstarding"]},"mainEntityOfPage":"https://xinghua.space/en/2016/01/07/daocloud-deploy/","articleSection":"As an Engineer"}</script>
+<link rel="alternate" type="application/atom+xml" title="Knots &amp; Nets" href="/en/atom.xml">
+<link rel="alternate" hreflang="zh-CN" href="https://xinghua.space/2016/01/07/daocloud-deploy/">
+<link rel="alternate" hreflang="en" href="https://xinghua.space/en/2016/01/07/daocloud-deploy/">
+<link rel="alternate" hreflang="x-default" href="https://xinghua.space/2016/01/07/daocloud-deploy/">
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="/favicon-96x96.png" type="image/png" sizes="96x96">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#B6002E">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
+<link rel="manifest" href="/manifest.webmanifest">
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="stylesheet" href="/theme/tokens.css">
+<link rel="stylesheet" href="/theme/site.css">
+<script src="/theme/overlay-scroll.js" defer></script>
+<script src="/theme/theme.js" defer></script>
+<script>(()=>{if(location.hostname!=='xinghua.space'||navigator.webdriver)return;try{navigator.sendBeacon('https://xinghua-stats.xinghua-space.workers.dev/c',JSON.stringify({p:location.pathname,r:document.referrer,w:innerWidth,l:navigator.language}))}catch(e){}})()</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-V9SXMWSY9Z"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-V9SXMWSY9Z');</script>
+</head>
+<body>
+<header class="appbar">
+  <div class="appbar-in">
+    <a class="brand" href="/en/"><img src="/brand/logo.svg" alt=""><span><b>Knots &amp; Nets</b><small>Rather than wishing for fish by the water, go home and weave a net.</small></span></a>
+    <div class="theme-pick">
+      <a class="lang-btn" href="/2016/01/07/daocloud-deploy/" hreflang="zh-CN" lang="zh-CN" title="中文版">中文</a>
+      <button type="button" class="theme-btn" id="themeBtn" aria-haspopup="menu" aria-expanded="false" title="Appearance"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="currentColor" d="M12 3.5a8.5 8.5 0 0 1 0 17z"/></svg>
+</button>
+      <div class="theme-menu" id="themeMenu" role="menu" hidden>
+        <button type="button" role="menuitemradio" data-theme-set="auto"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="currentColor" d="M12 3.5a8.5 8.5 0 0 1 0 17z"/></svg>
+<span>Auto</span><small>System</small></button>
+        <button type="button" role="menuitemradio" data-theme-set="light"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/><path stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>
+<span>Light</span></button>
+        <button type="button" role="menuitemradio" data-theme-set="dark"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
+<span>Dark</span></button>
+      </div>
+    </div>
+    <nav>
+      <a href="/en/">Home</a>
+      <a href="/en/works/">Works</a>
+      <a href="/en/about/">About</a>
+    </nav>
+  </div>
+</header>
+<div class="frame cols">
+  <main>
+<article class="paper">
+  <header class="post-head">
+    <h1>Continuous Integration with DaoCloud: Deploying a Static Site and a Django App with Docker</h1>
+    <div class="meta">
+      <span>@XingHua</span>
+      <time datetime="2016-01-06T23:24:25.000Z">Jan 7, 2016</time>
+      <span>7 min read</span>
+    </div>
+  </header>
+  <div class="prose">
+<h2 id="a-word-before-we-start">A word before we start</h2>
+<p>From Wikipedia: <a href="https://en.wikipedia.org/wiki/Cargo_cult_programming" rel="noopener">Cargo cult programming</a></p>
+<p>For readers who can't reach Wikipedia because the GFW (China's Great Firewall) blocks it:</p>
+<blockquote>
+<p>Cargo cult programming is an anti-pattern in computer programming, characterized by the ritual use of code or program structures without understanding them. It is typically a sign that the programmer understands neither the bug they are trying to fix nor the apparent solution.</p>
+</blockquote>
+<blockquote>
+<p>The term sometimes also refers to unskilled or inexperienced programmers copying code from one place to another without really knowing how it works, or whether it is needed in its new place. It can also mean applying design patterns, coding styles or programming methods incorrectly or excessively, without understanding the principles behind them.</p>
+</blockquote>
+<blockquote>
+<p>Cargo cult programming takes its name from the term "cargo cult". A related coinage is "cargo cult software engineering".</p>
+</blockquote>
+<p>When reading any tutorial, don't practice cargo cult programming. Some things need to be changed to fit your own situation, and you need to understand them. If you don't understand something, get familiar with the relevant background first.</p>
+<h2 id="about-daocloud">About DaoCloud</h2>
+<p>DaoCloud offers a Docker-based continuous integration service. With it you can easily set up automated builds and continuous delivery for a project.</p>
+<p>Of course, to use DaoCloud for continuous integration you first need to register a DaoCloud account. If you work for a company, you also need to ask the company to add your account to its user group, so that you can use the company's resources.</p>
+<h2 id="continuous-integration-for-a-simple-html5-app">Continuous integration for a simple HTML5 app</h2>
+<h3 id="scenario-for-this-section">Scenario for this section</h3>
+<ul>
+<li>You have your own host</li>
+<li>You have added the host to DaoCloud</li>
+<li>You only use DaoCloud's automated build and deployment features</li>
+<li>The image is also deployed to your own host.</li>
+</ul>
+<h3 id="what-is-a-simple-html5-app">What is a "simple HTML5 app"</h3>
+<p>Front-end pages only, served by nginx.</p>
+<h3 id="the-general-approach-to-deployment">The general approach to deployment</h3>
+<p>This post assumes one scenario: you have your own host, it is bound to DaoCloud, and you want to deploy continuously to that host through DaoCloud. To deploy a pure front-end project, you bundle nginx in and let nginx serve it.</p>
+<h3 id="preparing-before-building-the-app">Preparing before building the app</h3>
+<h4 id="app-directory-structure">App directory structure</h4>
+<p>Because DaoCloud is based on Docker, before using DaoCloud we need to follow Docker's conventions and turn our project into an app that can be packaged into an image. For an HTML5 project, that means adding a Dockerfile and setting up the nginx config file it needs. For example, I have an app called jinli, with this directory structure (yours may well differ):</p>
+<pre><code class="language-shell">jinli/  <span class="tok-c"># project root</span>
+├── jinli/  <span class="tok-c"># the actual app directory</span>
+│   ├── images/ <span class="tok-c"># images</span>
+│   ├── index.html  <span class="tok-c"># default index html</span>
+│   ├── scripts/  <span class="tok-c">#  js folder</span>
+│   └── styles/    <span class="tok-c"># folder for css</span>
+├── Dockerfile   <span class="tok-c"># Dockerfile</span>
+├── jinli.conf   <span class="tok-c"># nginx config for this app</span>
+└── log/  <span class="tok-c"># log files</span></code></pre>
+<p>In this structure, the file related to building the Docker image is the Dockerfile. jinli.conf is a file that will be packaged into the Docker image along with it. Everything else belongs to the app itself.</p>
+<h4 id="creating-the-dockerfile">Creating the Dockerfile</h4>
+<p>A Dockerfile is Docker's rules file, much like a Makefile for make. It describes the process of building your app into a Docker image.<br>
+In this example, the Dockerfile looks like this:</p>
+<pre><code class="language-dockerfile"><span class="tok-c"># use the nginx service</span>
+<span class="tok-k">FROM</span> nginx:<span class="tok-n">1.9</span>.<span class="tok-n">5</span>
+<span class="tok-c"># copy the code</span>
+<span class="tok-k">COPY</span> . /src
+<span class="tok-c"># add the nginx config file</span>
+<span class="tok-k">COPY</span> jinli.conf /etc/nginx/conf.d/
+<span class="tok-c"># remove the default nginx config file</span>
+<span class="tok-k">RUN</span> rm /etc/nginx/conf.d/default.conf</code></pre>
+<p>Explaining the Dockerfile:</p>
+<ul>
+<li>First, picture the Docker image you're about to build as containing a Linux operating system.</li>
+<li><code>FROM nginx:1.9.5</code> means: bring nginx version 1.9.5 into your image. (This is actually the step where the operating system comes in. nginx is itself an image built on top of a Linux operating system, so when you pull nginx, you pull it together with the whole Linux system it sits on.)</li>
+<li><code>COPY . /src</code> means: copy the code in the current directory to the /src directory in the image (in the image's operating system).</li>
+<li><code>COPY jinli.conf /etc/nginx/conf.d/</code> means: copy the nginx config file you wrote in the current directory to the corresponding directory in the image (in its operating system).</li>
+<li>Delete the original default nginx config (because the default config file takes up localhost; I don't know whether there is a better way around this).</li>
+</ul>
+<h4 id="configuring-the-nginx-config-file-used-inside-docker">Configuring the nginx config file used inside Docker</h4>
+<p>In this example, the nginx config file is named jinli.conf. It is packaged into the image to serve the HTML5 app. This is not very different from deploying directly on a server as usual. The things to watch are:</p>
+<ul>
+<li>server_name is localhost, because this server_name is used inside the Docker container.</li>
+<li>The root folder in location is a path inside the Docker container, not on the host machine.</li>
+</ul>
+<pre><code class="language-nginx"><span class="tok-k">server</span> {
+    <span class="tok-k">listen</span> <span class="tok-n">80</span>;
+    <span class="tok-k">server_name</span> localhost;
+    <span class="tok-k">access_log</span> /src/log/jinli.access.log;
+    <span class="tok-k">error_log</span> /src/log/jinli.error.log;
+    <span class="tok-c"># you can also add options such as gzip here as needed</span>
+    <span class="tok-k">location</span> / {
+    <span class="tok-k">root</span> /src/jinli/;
+    }
+}</code></pre>
+<p>Then push the app to GitHub, for example to: xiaohuruwei/jinli.git</p>
+<p>That's all the material you need. Now on to DaoCloud.</p>
+<h3 id="using-daocloud-to-build-images-and-release-continuously">Using DaoCloud to build images and release continuously</h3>
+<p>The previous steps produced a Docker-ready version of the code, and it doesn't need to connect to external services like MySQL, so it can be built directly as a single-app image.</p>
+<p>DaoCloud already has thorough documentation on this; you can follow its chapters on creating a new project and on continuous integration.</p>
+<p>Section 4, Creating a new project: choose the git source to bind according to your situation<br>
+Section 5, Continuous integration and image building: for a simple HTML deployment, you don't need to know how to write daocloud.yml<br>
+Section 9: Releasing an app to your own host cluster</p>
+<p>The core parts of the process above are:</p>
+<ul>
+<li>Bind a git source</li>
+<li>Choose the git repository to deploy and build it into an image</li>
+<li>Deploy to your own host</li>
+<li>Turn on the settings for subsequent automatic continuous deployment</li>
+<li>In the "Settings" of the specific project under "Code Build", turn on continuous integration and set up the image and the CI trigger rules, for example: trigger automatic CI whenever code is pushed to the docker-support branch.</li>
+<li>In the "Release" settings under "App List", turn on automatic release.</li>
+</ul>
+<h3 id="what-to-do-after-release">What to do after release</h3>
+<p>After release, you can see the details of the created container on DaoCloud, including the port mapped to the host. Click the port number to see the app's access address, and open it to test whether the deployment worked.</p>
+<p>For convenience in what follows, assume the mapped port is 8888. Since we released to our own host, we also need to set up a domain and an nginx reverse proxy ourselves to serve external traffic. Assume a domain is already bound to the host; here, say, xiaohuruwei.com.</p>
+<p>Log in to your host and configure nginx. If nginx was installed with a package manager like apt-get, add jinli.conf under /etc/nginx/conf.d/:</p>
+<pre><code class="language-nginx"><span class="tok-k">server</span> {
+    <span class="tok-k">listen</span> <span class="tok-n">80</span>;
+    <span class="tok-k">server_name</span> xiaohuruwei.com;
+    <span class="tok-k">access_log</span> /var/log/nginx/jinli.access.log;
+    <span class="tok-k">error_log</span> /var/log/nginx/jinli.error.log;
+    client_max_body_size <span class="tok-n">200</span>m;
+    <span class="tok-c"># you can set other options as needed</span>
+    <span class="tok-k">location</span> / {
+        <span class="tok-k">proxy_set_header</span> Host <span class="tok-n">$host</span>;
+        <span class="tok-k">proxy_set_header</span> X-Real-IP <span class="tok-n">$remote_addr</span>;
+        <span class="tok-k">proxy_set_header</span> X-Forwarded-For <span class="tok-n">$proxy_add_x_forwarded_for</span>;
+        <span class="tok-k">proxy_pass</span> <span class="tok-k">http</span>://<span class="tok-n">127.0</span>.<span class="tok-n">0.1</span>:<span class="tok-n">8888</span>;
+    }
+}</code></pre>
+<p>Then visit xiaohuruwei.com and you'll see the content.</p>
+<p>Also, when using DaoCloud, turn on both automatic build and continuous release. That way, next time you only need to push code to GitHub; once your update rule is triggered, the image is rebuilt and released automatically.</p>
+<h2 id="continuous-integration-for-an-app-that-depends-on-external-services">Continuous integration for an app that depends on external services</h2>
+<p>Using a Django app as the example</p>
+<h3 id="scenario-this-section-applies-to">Scenario this section applies to</h3>
+<ul>
+<li>You have your own host</li>
+<li>You have added the host to DaoCloud</li>
+<li>You only use DaoCloud's automated build and deployment features<br>
+The external services it depends on already exist on your host (as Docker containers), and the image is also deployed to your own host. At deploy time, it connects to the external services already on the host (such as MySQL, Redis and so on).</li>
+</ul>
+<h3 id="apps-that-depend-on-external-services">Apps that depend on external services</h3>
+<p>In the Docker world, if a Docker image needs other images to provide services to it, we say the image has external services.</p>
+<p>Take a simple Django app. If it can't do its job on its own and needs MySQL or another database for data persistence, then this Django app depends on external services.</p>
+<h3 id="preparing-before-building">Preparing before building</h3>
+<p>Preparation is close to the HTML5 case. Because it needs to connect to external services, and because uwsgi doesn't handle static files by default, there are a few more changes to the original code.</p>
+<h4 id="project-structure">Project structure</h4>
+<p>First, the Django app's directory. Say there's an app called taikang, with this structure:</p>
+<pre><code class="language-shell">taikang    <span class="tok-c"># project root    </span>
+├── Dockerfile    <span class="tok-c"># Dockerfile</span>
+├── logs    
+├── manage.py
+├── Makefile    <span class="tok-c"># makefile</span>
+├── requirements.txt    <span class="tok-c"># python libraries the app depends on</span>
+├── templates
+└── taikang        <span class="tok-c"># app directory</span>
+    ├── __init__.py
+    ├── models.py
+    ├── settings.py   <span class="tok-c"># django settings file</span>
+    ├── urls.py
+    ├── views.py
+    └── wsgi.py</code></pre>
+<p>Writing the Dockerfile<br>
+The Dockerfile means exactly the same thing as in the HTML5 deployment. Here it is:</p>
+<pre><code class="language-python"><span class="tok-c"># use python 2.7.10 as the base service</span>
+<span class="tok-k">from</span> python:<span class="tok-n">2.7</span>.<span class="tok-n">10</span>
+copy everything <span class="tok-k">in</span> the current project into /src <span class="tok-k">in</span> the image
+COPY . /src
+<span class="tok-c"># install the libraries the django app depends on, using the douban pypi mirror</span>
+RUN cd /src; pip install -r  requirements.txt -i http://pypi.douban.com/simple --trusted-host pypi.douban.com
+<span class="tok-c"># expose port 8000 from the image</span>
+EXPOSE <span class="tok-n">8000</span>
+<span class="tok-c"># set the working directory to where the code is</span>
+WORKDIR  /src
+<span class="tok-c"># set the app's start command</span>
+CMD [<span class="tok-s">"make"</span>, <span class="tok-s">"start-uwsgi"</span>]</code></pre>
+<h4 id="writing-the-makefile">Writing the Makefile</h4>
+<p>You may notice that the start command at the end uses make. That's what the Makefile in the directory structure above is for. I won't go into makefiles in detail here.<br>
+In short, it makes the app easier to manage. Here is the makefile:</p>
+<pre><code class="language-makefile"><span class="tok-c"># host and port uwsgi starts on</span>
+host:=<span class="tok-n">0.0</span>.<span class="tok-n">0.0</span>
+port:=<span class="tok-n">8000</span>
+<span class="tok-c"># when debugging, start with django's built-in server</span>
+debug:
+    ./manage.py runserver <span class="tok-n">$(</span>host):<span class="tok-n">$(</span>port)
+<span class="tok-c"># start the uwsgi service</span>
+start-uwsgi:
+    uwsgi --socket <span class="tok-n">$(</span>host):<span class="tok-n">$(</span>port) \
+        --chdir <span class="tok-n">$(</span>shell pwd) \
+        --wsgi-file taikang/wsgi.py \
+        --master \
+        --process <span class="tok-n">4</span> \
+        --pidfile <span class="tok-n">$(</span>shell pwd)/uwsgi.pid
+<span class="tok-c"># stop the uwsgi service</span>
+stop-uwsgi:
+    uwsgi --stop uwsgi.pid
+<span class="tok-c"># reload the uwsgi service</span>
+reload-uwsgi:
+    uwsgi --reload uwsgi.pid
+<span class="tok-c"># collect static files</span>
+collectstatic:
+    ./manage.py collectstatic --noinput
+.PHONY: debug \
+    collectstatic \
+    reload-uwsgi \
+    start-uwsgi \
+    stop-uwsgi</code></pre>
+<h4 id="static-file-support">Static file support</h4>
+<p>When uwsgi serves the app, static files need to be handled separately. The currently recommended option is the whitenoise library for Django. It makes serving static files easy and needs only a few lines of configuration.</p>
+<h4 id="connecting-to-services-through-environment-variables">Connecting to services through environment variables</h4>
+<p>When deploying with Docker and you need to connect to external services, you usually do it through links plus environment variables. To support environment variables, our Django app needs some changes too: specifically, changing the configuration in settings.py.</p>
+<p>Modify settings.py, using MySQL as the example:</p>
+<pre><code class="language-python"><span class="tok-c"># the original mysql config</span>
+<span class="tok-c">#DATABASES = {</span>
+<span class="tok-c">#    'default': {</span>
+<span class="tok-c">#        'ENGINE': 'django.db.backends.mysql',</span>
+<span class="tok-c">#        'NAME': 'starding_taikang',</span>
+<span class="tok-c">#        'USER': 'root',</span>
+<span class="tok-c">#        'PASSWORD': 'your_password_here',</span>
+<span class="tok-c">#        'HOST': 'localhost',</span>
+<span class="tok-c">#        'PORT': '3306'</span>
+<span class="tok-c">#    }</span>
+<span class="tok-c">#}</span>
+<span class="tok-c"># get the service from environment variables</span>
+<span class="tok-k">import</span> os  <span class="tok-c"># import the os library</span>
+mysql_name = os.environ.<span class="tok-f">get</span>(<span class="tok-s">'MYSQL_INSTANCE_NAME'</span>) <span class="tok-k">or</span> <span class="tok-s">"taikang"</span>  <span class="tok-c"># get the database name</span>
+mysql_user = os.environ.<span class="tok-f">get</span>(<span class="tok-s">'MYSQL_USERNAME'</span>) <span class="tok-k">or</span> <span class="tok-s">"root"</span>  <span class="tok-c"># get the mysql username</span>
+mysql_password = os.environ.<span class="tok-f">get</span>(<span class="tok-s">'MYSQL_PASSWORD'</span>) <span class="tok-k">or</span> <span class="tok-s">"your_password"</span>  <span class="tok-c"># get the password</span>
+mysql_host = os.environ.<span class="tok-f">get</span>(<span class="tok-s">'MYSQL_ADDR'</span>) <span class="tok-k">or</span> <span class="tok-s">"127.0.0.1"</span>  <span class="tok-c"># get the service address</span>
+mysql_port = <span class="tok-s">"3306"</span>
+<span class="tok-c"># use the variables above instead of strings</span>
+DATABASES = {
+   <span class="tok-s">'default'</span>: {
+       <span class="tok-s">'ENGINE'</span>: <span class="tok-s">'django.db.backends.mysql'</span>,
+       <span class="tok-s">'NAME'</span>: mysql_name,
+       <span class="tok-s">'USER'</span>: mysql_user,
+       <span class="tok-s">'PASSWORD'</span>: mysql_password,
+       <span class="tok-s">'HOST'</span>: mysql_host,
+       <span class="tok-s">'PORT'</span>: mysql_port
+   }
+}</code></pre>
+<h3 id="deploying-the-built-taikang-project-with-daocloud">Deploying the built taikang project with DaoCloud</h3>
+<p>The steps are basically the same as the HTML5 deployment. Suppose that after the image is built, its address is:</p>
+<pre><code>daocloud.io/xiaohuruwei/taking:latest</code></pre>
+<p>Next, when deploying from the image, you need to connect the external services, which means editing the yaml file by hand.</p>
+<pre><code class="language-python">takang_test:
+  image: daocloud.io/xiaohuruwei/taking:latest
+  restart: always
+  external_links:
+  - mysql1:mysql      <span class="tok-c"># mysql1 is the existing mysql container instance on your host; after the colon is the alias</span>
+  ports:
+  - <span class="tok-s">'8000'</span>
+  environment:    <span class="tok-c"># environment variables    </span>
+  - MYSQL_ADDR=mysql</code></pre>
+<p>But this approach seems to have a bug. If it doesn't work, deploy directly first, and once that succeeds, edit the yaml file into the form above. When you edit the yaml file, DaoCloud will prompt you to redeploy; just confirm.</p>
+<p>At this point the Django project is deployed too. Then, just like the HTML5 project, turn on automatic build and automatic release.</p>
+<p>Note: because the Django project is deployed with uwsgi, visiting the address DaoCloud gives you directly won't work. You must configure an nginx reverse proxy.</p>
+<p>Here is the nginx proxy config for a Django app deployed with uwsgi:</p>
+<pre><code class="language-nginx"><span class="tok-k">server</span> {
+    <span class="tok-k">listen</span> <span class="tok-n">80</span>;
+    <span class="tok-k">server_name</span> xiaohuruwei.com;
+    <span class="tok-k">access_log</span> /var/log/nginx/taikang.access.log;
+    <span class="tok-k">error_log</span> /var/log/nginx/taikang.error.log;
+    client_max_body_size <span class="tok-n">200</span>m;
+    gzip on;
+    gzip_min_length <span class="tok-n">1</span>k;
+    gzip_buffers <span class="tok-n">16</span> <span class="tok-n">64</span>k;
+    gzip_http_version <span class="tok-n">1.1</span>;
+    gzip_comp_level <span class="tok-n">6</span>;
+    gzip_types text/plain application/x-javascript text/javascript text/css application/xml;
+    gzip_vary on;
+    <span class="tok-k">location</span> / {
+        <span class="tok-k">proxy_set_header</span> Host <span class="tok-n">$host</span>;
+        <span class="tok-k">proxy_set_header</span> X-Real-IP <span class="tok-n">$remote_addr</span>;
+        <span class="tok-k">proxy_set_header</span> X-Forwarded-For <span class="tok-n">$proxy_add_x_forwarded_for</span>;
+        <span class="tok-k">include</span> uwsgi_params;
+        uwsgi_pass <span class="tok-n">127.0</span>.<span class="tok-n">0.1</span>:<span class="tok-n">32801</span>;
+    }
+}</code></pre>
+<p>Huilongguan, Beijing, January 2016</p>
+  </div>
+  <section class="post-related"><h2>Related</h2><ul class="related"><li><a href="/en/2024/03/30/a-short-web-history/">A Short History of the Web: The Key Threads</a><time datetime="2024-03-30T06:38:56.000Z">2024</time></li><li><a href="/en/2016/10/31/material-design-introduct-md/">Material Design: An Introduction and the Theory Behind It</a><time datetime="2016-10-31T09:04:37.000Z">2016</time></li><li><a href="/en/2016/08/29/why-users-can-not-see-collect-function-in-neihan/">Front-End Metaphysics (1): Why Users Can't See the Favorites Button</a><time datetime="2016-08-29T08:44:10.000Z">2016</time></li></ul></section>
+  <div class="post-author"><div class="author-card">
+  <div class="author">
+    <img src="/img/author.jpg" alt="XingHua">
+    <p>We meet by chance in this world.<br>I’m XingHua — glad to meet you.</p>
+  </div>
+  <nav class="social"><a href="https://github.com/starding" title="GitHub" aria-label="GitHub" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+</a><a href="https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70" title="Jike" aria-label="Jike" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M14.6 2h4.2v13.4c0 4.1-2.6 6.6-6.4 6.6-1.9 0-3.6-.6-5-1.7l2.2-3.3c.8.6 1.7.9 2.6.9 1.6 0 2.4-1 2.4-3V2z"/><path fill="none" stroke="currentColor" stroke-width="1.2" d="M16.4 3.6v12.6c0 3.6-2.3 5.9-5.6 6.1"/></svg>
+</a><a href="https://twitter.com/starstarding" title="Twitter" aria-label="Twitter" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M23.6 4.6c-.9.4-1.8.6-2.8.8 1-.6 1.8-1.6 2.1-2.7-.9.6-2 1-3.1 1.2a4.9 4.9 0 00-8.4 4.5C7.4 8.2 3.8 6.2 1.4 3.3a4.9 4.9 0 001.5 6.6c-.8 0-1.6-.3-2.2-.6 0 2.4 1.7 4.4 3.9 4.8-.7.2-1.5.2-2.2.1.6 2 2.4 3.4 4.6 3.4A9.9 9.9 0 010 19.6 13.9 13.9 0 007.5 21.8c9.1 0 14-7.5 14-14v-.6c1-.7 1.8-1.6 2.1-2.6z"/></svg>
+</a><a href="mailto:starstarding@gmail.com" title="Email" aria-label="Email"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 4h18a2 2 0 012 2v12a2 2 0 01-2 2H3a2 2 0 01-2-2V6a2 2 0 012-2zm0 2v.5l9 6 9-6V6H3z"/></svg>
+</a><a href="/en/atom.xml" title="RSS" aria-label="RSS"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="19" r="3" fill="currentColor"/><path fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" d="M3.6 10.6a9.8 9.8 0 019.8 9.8M3.6 3.6a16.8 16.8 0 0116.8 16.8"/></svg>
+</a></nav>
+</div>
+</div>
+  <nav class="pager">
+    <span><a href="/en/2016/01/07/deploy-gitlab-by-docker/"><small>Newer</small>Deploying GitLab with Docker: Volumes, HTTPS via Nginx, SMTP and SSH</a></span>
+    <span class="next"><a href="/en/2016/01/07/docker-a-metaphor/"><small>Older</small>Understanding Docker Through a Metaphor</a></span>
+  </nav>
+  <section class="comments">
+<script src="https://giscus.app/client.js" data-repo="starding/xinghua_blog_giscus" data-repo-id="R_kgDOLagm8g" data-category="Announcements" data-category-id="DIC_kwDOLagm8s4CdqOC" data-mapping="specific" data-term="使用 daocloud 持续集成应用" data-strict="1" data-reactions-enabled="1" data-emit-metadata="1" data-input-position="top" data-theme="preferred_color_scheme" data-lang="en" data-loading="lazy" crossorigin="anonymous" async></script>
+</section>
+</article>
+
+  </main>
+  <aside class="aside"><div class="author-card">
+  <div class="author">
+    <img src="/img/author.jpg" alt="XingHua">
+    <p>We meet by chance in this world.<br>I’m XingHua — glad to meet you.</p>
+  </div>
+  <nav class="social"><a href="https://github.com/starding" title="GitHub" aria-label="GitHub" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+</a><a href="https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70" title="Jike" aria-label="Jike" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M14.6 2h4.2v13.4c0 4.1-2.6 6.6-6.4 6.6-1.9 0-3.6-.6-5-1.7l2.2-3.3c.8.6 1.7.9 2.6.9 1.6 0 2.4-1 2.4-3V2z"/><path fill="none" stroke="currentColor" stroke-width="1.2" d="M16.4 3.6v12.6c0 3.6-2.3 5.9-5.6 6.1"/></svg>
+</a><a href="https://twitter.com/starstarding" title="Twitter" aria-label="Twitter" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M23.6 4.6c-.9.4-1.8.6-2.8.8 1-.6 1.8-1.6 2.1-2.7-.9.6-2 1-3.1 1.2a4.9 4.9 0 00-8.4 4.5C7.4 8.2 3.8 6.2 1.4 3.3a4.9 4.9 0 001.5 6.6c-.8 0-1.6-.3-2.2-.6 0 2.4 1.7 4.4 3.9 4.8-.7.2-1.5.2-2.2.1.6 2 2.4 3.4 4.6 3.4A9.9 9.9 0 010 19.6 13.9 13.9 0 007.5 21.8c9.1 0 14-7.5 14-14v-.6c1-.7 1.8-1.6 2.1-2.6z"/></svg>
+</a><a href="mailto:starstarding@gmail.com" title="Email" aria-label="Email"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 4h18a2 2 0 012 2v12a2 2 0 01-2 2H3a2 2 0 01-2-2V6a2 2 0 012-2zm0 2v.5l9 6 9-6V6H3z"/></svg>
+</a><a href="/en/atom.xml" title="RSS" aria-label="RSS"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="19" r="3" fill="currentColor"/><path fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" d="M3.6 10.6a9.8 9.8 0 019.8 9.8M3.6 3.6a16.8 16.8 0 0116.8 16.8"/></svg>
+</a></nav>
+</div>
+<div class="aside-sticky-wrap"><div class="aside-sticky"><nav class="toc"><b>Contents</b><ol><li class="l2"><a href="#a-word-before-we-start">A word before we start</a></li><li class="l2"><a href="#about-daocloud">About DaoCloud</a></li><li class="l2"><a href="#continuous-integration-for-a-simple-html5-app">Continuous integration for a simple HTML5 app</a></li><li class="l3"><a href="#scenario-for-this-section">Scenario for this section</a></li><li class="l3"><a href="#what-is-a-simple-html5-app">What is a "simple HTML5 app"</a></li><li class="l3"><a href="#the-general-approach-to-deployment">The general approach to deployment</a></li><li class="l3"><a href="#preparing-before-building-the-app">Preparing before building the app</a></li><li class="l3"><a href="#using-daocloud-to-build-images-and-release-continuously">Using DaoCloud to build images and release continuously</a></li><li class="l3"><a href="#what-to-do-after-release">What to do after release</a></li><li class="l2"><a href="#continuous-integration-for-an-app-that-depends-on-external-services">Continuous integration for an app that depends on external services</a></li><li class="l3"><a href="#scenario-this-section-applies-to">Scenario this section applies to</a></li><li class="l3"><a href="#apps-that-depend-on-external-services">Apps that depend on external services</a></li><li class="l3"><a href="#preparing-before-building">Preparing before building</a></li><li class="l3"><a href="#deploying-the-built-taikang-project-with-daocloud">Deploying the built taikang project with DaoCloud</a></li></ol></nav>
+<script src="/theme/toc.js" defer></script>
+<section class="aside-block">
+  <h2>This post</h2>
+  <dl class="facts">
+    <div><dt>Length</dt><dd>1,480 words</dd></div>
+    <div><dt>Category</dt><dd><a href="/en/categories/as-an-engineer/">As an Engineer</a></dd></div>
+  </dl>
+  
+</section>
+<section class="aside-block">
+  <h2>Related</h2>
+  <ul class="related"><li><a href="/en/2024/03/30/a-short-web-history/">A Short History of the Web: The Key Threads</a><time datetime="2024-03-30T06:38:56.000Z">2024</time></li><li><a href="/en/2016/10/31/material-design-introduct-md/">Material Design: An Introduction and the Theory Behind It</a><time datetime="2016-10-31T09:04:37.000Z">2016</time></li><li><a href="/en/2016/08/29/why-users-can-not-see-collect-function-in-neihan/">Front-End Metaphysics (1): Why Users Can't See the Favorites Button</a><time datetime="2016-08-29T08:44:10.000Z">2016</time></li></ul>
+</section>
+</div></div></aside>
+</div>
+<footer class="pagefoot"><p class="legal"><span class="legal-owner">© 2016–2026 XingHua</span><span class="legal-sep"> · </span><span class="legal-links"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="license noopener">CC BY-NC-SA 4.0</a> · <a href="/llms.txt">llms.txt</a></span></p>
+</footer>
+</body>
+</html>

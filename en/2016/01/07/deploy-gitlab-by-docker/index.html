@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deploying GitLab with Docker: Volumes, HTTPS via Nginx, SMTP and SSH | Knots &amp; Nets</title>
+<meta name="description" content="Notes on running GitLab CE in Docker, with host volumes, an Nginx HTTPS reverse proxy, SMTP through a 163.com mailbox, and SSH on a non-standard port.">
+<meta name="author" content="XingHua">
+<meta name="theme-color" content="#000000">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Deploying GitLab with Docker: Volumes, HTTPS via Nginx, SMTP and SSH">
+<meta property="og:description" content="Notes on running GitLab CE in Docker, with host volumes, an Nginx HTTPS reverse proxy, SMTP through a 163.com mailbox, and SSH on a non-standard port.">
+<meta property="og:image" content="https://xinghua.space/brand/logo-512.png">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Knots &amp; Nets">
+<meta name="twitter:card" content="summary">
+<meta property="article:published_time" content="2016-01-07T00:27:22.000Z">
+<meta property="og:url" content="https://xinghua.space/en/2016/01/07/deploy-gitlab-by-docker/">
+<link rel="canonical" href="https://xinghua.space/en/2016/01/07/deploy-gitlab-by-docker/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Deploying GitLab with Docker: Volumes, HTTPS via Nginx, SMTP and SSH","description":"Notes on running GitLab CE in Docker, with host volumes, an Nginx HTTPS reverse proxy, SMTP through a 163.com mailbox, and SSH on a non-standard port.","datePublished":"2016-01-07T00:27:22.000Z","inLanguage":"en","author":{"@type":"Person","name":"XingHua","url":"https://xinghua.space/en/about/","sameAs":["https://github.com/starding","https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70","https://twitter.com/starstarding"]},"publisher":{"@type":"Person","name":"XingHua","url":"https://xinghua.space/en/about/","sameAs":["https://github.com/starding","https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70","https://twitter.com/starstarding"]},"mainEntityOfPage":"https://xinghua.space/en/2016/01/07/deploy-gitlab-by-docker/","keywords":"docker"}</script>
+<link rel="alternate" type="application/atom+xml" title="Knots &amp; Nets" href="/en/atom.xml">
+<link rel="alternate" hreflang="zh-CN" href="https://xinghua.space/2016/01/07/deploy-gitlab-by-docker/">
+<link rel="alternate" hreflang="en" href="https://xinghua.space/en/2016/01/07/deploy-gitlab-by-docker/">
+<link rel="alternate" hreflang="x-default" href="https://xinghua.space/2016/01/07/deploy-gitlab-by-docker/">
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="/favicon-96x96.png" type="image/png" sizes="96x96">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#B6002E">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
+<link rel="manifest" href="/manifest.webmanifest">
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="stylesheet" href="/theme/tokens.css">
+<link rel="stylesheet" href="/theme/site.css">
+<script src="/theme/overlay-scroll.js" defer></script>
+<script src="/theme/theme.js" defer></script>
+<script>(()=>{if(location.hostname!=='xinghua.space'||navigator.webdriver)return;try{navigator.sendBeacon('https://xinghua-stats.xinghua-space.workers.dev/c',JSON.stringify({p:location.pathname,r:document.referrer,w:innerWidth,l:navigator.language}))}catch(e){}})()</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-V9SXMWSY9Z"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-V9SXMWSY9Z');</script>
+</head>
+<body>
+<header class="appbar">
+  <div class="appbar-in">
+    <a class="brand" href="/en/"><img src="/brand/logo.svg" alt=""><span><b>Knots &amp; Nets</b><small>Rather than wishing for fish by the water, go home and weave a net.</small></span></a>
+    <div class="theme-pick">
+      <a class="lang-btn" href="/2016/01/07/deploy-gitlab-by-docker/" hreflang="zh-CN" lang="zh-CN" title="中文版">中文</a>
+      <button type="button" class="theme-btn" id="themeBtn" aria-haspopup="menu" aria-expanded="false" title="Appearance"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="currentColor" d="M12 3.5a8.5 8.5 0 0 1 0 17z"/></svg>
+</button>
+      <div class="theme-menu" id="themeMenu" role="menu" hidden>
+        <button type="button" role="menuitemradio" data-theme-set="auto"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="currentColor" d="M12 3.5a8.5 8.5 0 0 1 0 17z"/></svg>
+<span>Auto</span><small>System</small></button>
+        <button type="button" role="menuitemradio" data-theme-set="light"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/><path stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>
+<span>Light</span></button>
+        <button type="button" role="menuitemradio" data-theme-set="dark"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
+<span>Dark</span></button>
+      </div>
+    </div>
+    <nav>
+      <a href="/en/">Home</a>
+      <a href="/en/works/">Works</a>
+      <a href="/en/about/">About</a>
+    </nav>
+  </div>
+</header>
+<div class="frame cols">
+  <main>
+<article class="paper">
+  <header class="post-head">
+    <h1>Deploying GitLab with Docker: Volumes, HTTPS via Nginx, SMTP and SSH</h1>
+    <div class="meta">
+      <span>@XingHua</span>
+      <time datetime="2016-01-07T00:27:22.000Z">Jan 7, 2016</time>
+      <span>2 min read</span>
+    </div>
+  </header>
+  <div class="prose">
+<h2 id="pulling-the-image-and-starting-the-container">Pulling the Image and Starting the Container</h2>
+<p>Reference: <a href="https://docs.gitlab.com/ee/install/docker.html" rel="noopener">gitlab documentation</a></p>
+<h3 id="first-pull-the-docker-image-with-the-dao-accelerator">First, pull the Docker image with the dao accelerator:</h3>
+<pre><code class="language-shell">dao pull gitlab/gitlab-ce</code></pre>
+<h3 id="creating-volumes">Creating volumes</h3>
+<p>Simply put, volumes are storage outside the container that can be mapped into it. You can keep fairly generic configuration files, data or code as volumes on the host machine where the container runs. This not only keeps the data permanently and safely, it also makes it easy to change what's in the volumes and map them back into the container, which is very useful for containers whose files need frequent changes.<br>
+For this GitLab deployment, I created three volumes: the config, logs and data directories under /mnt/volumes/gitlab.<br>
+Start a GitLab container:</p>
+<pre><code class="language-shell"><span class="tok-k">sudo</span> docker run --detach \
+    --hostname git.xiaohuruwei.com \
+    --publish <span class="tok-n">8443</span>:<span class="tok-n">443</span> --publish <span class="tok-n">8080</span>:<span class="tok-n">80</span> --publish <span class="tok-n">2222</span>:<span class="tok-n">22</span> \
+    --name gitlab \
+    --restart always \
+    --volume /mnt/volumes/gitlab/config:/etc/gitlab \
+    --volume /mnt/volumes/gitlab/logs:/var/log/gitlab \
+    --volume /mnt/volumes/gitlab/data:/var/opt/gitlab \
+    gitlab/gitlab-ce:latest</code></pre>
+<p>What the options mean:</p>
+<p>–hostname<br>
+The domain bound inside the container, used when repositories are created. Here it is bound to git.xiaohuruwei.com.</p>
+<p>–publish<br>
+Port mapping: the part before the colon is the host port, the part after is the port the container exposes.</p>
+<p>–volume<br>
+Volume mapping: the part before the colon is a path on the host, the part after is the path inside the container.</p>
+<h2 id="configuring-nginx-for-https">Configuring Nginx for HTTPS</h2>
+<p>Reference: <a href="https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/doc/settings/nginx.md#enable-https" rel="noopener">gitlab set nginx</a></p>
+<p>Nginx configuration file</p>
+<pre><code class="language-nginx"><span class="tok-k">server</span> {
+    <span class="tok-k">listen</span> <span class="tok-n">80</span>;
+    <span class="tok-k">server_name</span> git.xiaohuruwei.com;
+    <span class="tok-k">access_log</span> /var/log/nginx/gitlab.xiaohuruwei.access.log;
+    <span class="tok-k">error_log</span> /var/log/nginx/gitlab.xiaohuruwei.error.log;
+    <span class="tok-k">rewrite</span> ^ https://git.xiaohuruwei.com;
+}</code></pre>
+<p>HTTPS proxy</p>
+<pre><code class="language-nginx"><span class="tok-k">server</span> {
+    <span class="tok-k">listen</span>       <span class="tok-n">443</span> ssl;
+    <span class="tok-k">server_name</span>  git.xiaohuruwei.com;
+    <span class="tok-k">access_log</span> /var/log/nginx/https-gitlab.xiaohuruwei.access.log;
+    <span class="tok-k">error_log</span> /var/log/nginx/https-gitlab.xiaohuruwei.error.log;
+    <span class="tok-c"># SSL certificate config. This uses a self-generated certificate, so browsers will warn about it; just choose to trust it.</span>
+    <span class="tok-c"># For a publicly trusted certificate, you need to get one from a certificate authority</span>
+    ssl on;
+    ssl_certificate /etc/nginx/ssl/getbase.crt;
+    ssl_certificate_key /etc/nginx/ssl/getbase_nopass.key;
+    <span class="tok-k">location</span> / {
+        <span class="tok-k">proxy_set_header</span> Host <span class="tok-n">$host</span>;
+        <span class="tok-k">proxy_set_header</span> X-Real-IP <span class="tok-n">$remote_addr</span>;
+        <span class="tok-k">proxy_set_header</span> X-Forwarded-For <span class="tok-n">$proxy_add_x_forwarded_for</span>;
+        <span class="tok-k">proxy_pass</span> https://localhost:<span class="tok-n">8443</span>;
+    }
+}</code></pre>
+<h2 id="enabling-https-in-gitlab">Enabling HTTPS in GitLab</h2>
+<p>Having Nginx reverse-proxy HTTPS isn't enough on its own; you also need to turn on HTTPS support in GitLab.</p>
+<p>Edit the configuration: add the following to gitlab.rb in /mnt/volumes/gitlab/config/:</p>
+<pre><code class="language-ruby"><span class="tok-c"># note the 'https' below</span>
+external_url <span class="tok-s">"https://gitlab.example.com"</span></code></pre>
+<p>Create an ssl directory and put the SSL certificate files in it, named to match the domain above:</p>
+<p>git.xiaohuruwei.com.crt<br>
+git.xiaohuruwei.com.key</p>
+<p>Restart the container:</p>
+<pre><code class="language-shell">docker restart gitlab</code></pre>
+<h2 id="testing-access-to-gitlab">Testing Access to GitLab</h2>
+<p>Open the web interface. The default login is root and the password is 5iveL!fe (since changed to the default password of Limi Jiaoyin, the company I was working for). Create a project repository: test.<br>
+Because the SSL certificate is self-generated and not trusted across the web, you have to choose to trust it for now. Set an environment variable locally:</p>
+<pre><code class="language-shell"><span class="tok-k">export</span> GIT_SSL_NO_VERIFY=<span class="tok-n">1</span></code></pre>
+<p>Then clone the repository: git clone <a href="https://git.xiaohuruwei.com/root/test.git" rel="noopener">https://git.xiaohuruwei.com/root/test.git</a></p>
+<h2 id="enabling-email">Enabling Email</h2>
+<p>The default mail service doesn't work very well, so I configured my own. See the official GitLab SMTP documentation.</p>
+<p>Using a 163.com mailbox and following the official docs, you'll find that emails don't get sent.</p>
+<pre><code class="language-ruby">gitlab_rails[<span class="tok-s">'smtp_enable'</span>] = <span class="tok-n">true</span>
+gitlab_rails[<span class="tok-s">'smtp_address'</span>] = <span class="tok-s">"smtp.163.com"</span>
+gitlab_rails[<span class="tok-s">'smtp_port'</span>] = <span class="tok-n">25</span>
+gitlab_rails[<span class="tok-s">'smtp_user_name'</span>] = <span class="tok-s">"xiaohuruwei@163.com"</span>
+gitlab_rails[<span class="tok-s">'smtp_password'</span>] = <span class="tok-s">"xxxx"</span>
+gitlab_rails[<span class="tok-s">'smtp_domain'</span>] = <span class="tok-s">"163.com"</span>
+gitlab_rails[<span class="tok-s">'smtp_authentication'</span>] = <span class="tok-s">"login"</span>
+gitlab_rails[<span class="tok-s">'smtp_enable_starttls_auto'</span>] = <span class="tok-n">true</span>
+gitlab_rails[<span class="tok-s">'smtp_tls'</span>] = <span class="tok-n">false</span>
+gitlab_rails[<span class="tok-s">'smtp_openssl_verify_mode'</span>] = <span class="tok-s">'none'</span></code></pre>
+<p>The logs were messy and I didn't spot the problem in them. Later I found that someone in the Ruby community had solved the same problem:<br>
+<a href="https://ruby-china.org/topics/20450" rel="noopener">GitLab 配置通过 smtp.163.com 发送邮件 (Sending GitLab email through smtp.163.com)</a><br>
+along with NetEase's official explanation:<br>
+<a href="https://www.mail163.cn/fault/analysis/1109.html" rel="noopener">NetEase's SMTP servers require the authentication account and the sender account to be the same; if they differ when a user sends an email, the email is rejected.</a></p>
+<p>So I added two more lines, and after testing it worked:</p>
+<pre><code class="language-ruby">gitlab_rails[<span class="tok-s">'gitlab_email_from'</span>] = <span class="tok-s">"xiaohuruwei@163.com"</span>
+user[<span class="tok-s">'git_user_email'</span>] = <span class="tok-s">"xiaohuruwei@163.com"</span></code></pre>
+<h2 id="access-over-ssh">Access over SSH</h2>
+<p>Because GitLab is deployed with Docker, access over SSH (for example, git clone git@git.xiaohuruwei.com) goes through two layers of authentication:</p>
+<p>One is authentication by the freelancer server.<br>
+The other is GitLab's own authentication.<br>
+The latter needs an SSH key.<br>
+The former might need a reverse proxy for SSH itself (the Nginx we use doesn't reverse-proxy anything other than HTTP and HTTPS).</p>
+<p>For now, port forwarding turned out to be rather difficult, but you can change GitLab's default SSH port to a non-standard one by editing the variable directly in the GitLab configuration file:</p>
+<pre><code class="language-ruby">gitlab_shell_ssh_port = <span class="tok-n">2222</span></code></pre>
+<p>Then restart the Docker container, and you'll see the SSH address change in the web interface:<br>
+ssh://git@git.xiaohuruwei.com:2222/root/test.git, after which you can carry on with git clone as usual.</p>
+<p>Huilongguan, Beijing, January 2016</p>
+  </div>
+  
+  <div class="post-author"><div class="author-card">
+  <div class="author">
+    <img src="/img/author.jpg" alt="XingHua">
+    <p>We meet by chance in this world.<br>I’m XingHua — glad to meet you.</p>
+  </div>
+  <nav class="social"><a href="https://github.com/starding" title="GitHub" aria-label="GitHub" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+</a><a href="https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70" title="Jike" aria-label="Jike" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M14.6 2h4.2v13.4c0 4.1-2.6 6.6-6.4 6.6-1.9 0-3.6-.6-5-1.7l2.2-3.3c.8.6 1.7.9 2.6.9 1.6 0 2.4-1 2.4-3V2z"/><path fill="none" stroke="currentColor" stroke-width="1.2" d="M16.4 3.6v12.6c0 3.6-2.3 5.9-5.6 6.1"/></svg>
+</a><a href="https://twitter.com/starstarding" title="Twitter" aria-label="Twitter" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M23.6 4.6c-.9.4-1.8.6-2.8.8 1-.6 1.8-1.6 2.1-2.7-.9.6-2 1-3.1 1.2a4.9 4.9 0 00-8.4 4.5C7.4 8.2 3.8 6.2 1.4 3.3a4.9 4.9 0 001.5 6.6c-.8 0-1.6-.3-2.2-.6 0 2.4 1.7 4.4 3.9 4.8-.7.2-1.5.2-2.2.1.6 2 2.4 3.4 4.6 3.4A9.9 9.9 0 010 19.6 13.9 13.9 0 007.5 21.8c9.1 0 14-7.5 14-14v-.6c1-.7 1.8-1.6 2.1-2.6z"/></svg>
+</a><a href="mailto:starstarding@gmail.com" title="Email" aria-label="Email"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 4h18a2 2 0 012 2v12a2 2 0 01-2 2H3a2 2 0 01-2-2V6a2 2 0 012-2zm0 2v.5l9 6 9-6V6H3z"/></svg>
+</a><a href="/en/atom.xml" title="RSS" aria-label="RSS"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="19" r="3" fill="currentColor"/><path fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" d="M3.6 10.6a9.8 9.8 0 019.8 9.8M3.6 3.6a16.8 16.8 0 0116.8 16.8"/></svg>
+</a></nav>
+</div>
+</div>
+  <nav class="pager">
+    <span><a href="/en/2016/01/07/raw-sql-in-django/"><small>Newer</small>Using Raw SQL in Django</a></span>
+    <span class="next"><a href="/en/2016/01/07/daocloud-deploy/"><small>Older</small>Continuous Integration with DaoCloud: Deploying a Static Site and a Django App with Docker</a></span>
+  </nav>
+  <section class="comments">
+<script src="https://giscus.app/client.js" data-repo="starding/xinghua_blog_giscus" data-repo-id="R_kgDOLagm8g" data-category="Announcements" data-category-id="DIC_kwDOLagm8s4CdqOC" data-mapping="specific" data-term="docker 部署 gitlab" data-strict="1" data-reactions-enabled="1" data-emit-metadata="1" data-input-position="top" data-theme="preferred_color_scheme" data-lang="en" data-loading="lazy" crossorigin="anonymous" async></script>
+</section>
+</article>
+
+  </main>
+  <aside class="aside"><div class="author-card">
+  <div class="author">
+    <img src="/img/author.jpg" alt="XingHua">
+    <p>We meet by chance in this world.<br>I’m XingHua — glad to meet you.</p>
+  </div>
+  <nav class="social"><a href="https://github.com/starding" title="GitHub" aria-label="GitHub" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+</a><a href="https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70" title="Jike" aria-label="Jike" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M14.6 2h4.2v13.4c0 4.1-2.6 6.6-6.4 6.6-1.9 0-3.6-.6-5-1.7l2.2-3.3c.8.6 1.7.9 2.6.9 1.6 0 2.4-1 2.4-3V2z"/><path fill="none" stroke="currentColor" stroke-width="1.2" d="M16.4 3.6v12.6c0 3.6-2.3 5.9-5.6 6.1"/></svg>
+</a><a href="https://twitter.com/starstarding" title="Twitter" aria-label="Twitter" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M23.6 4.6c-.9.4-1.8.6-2.8.8 1-.6 1.8-1.6 2.1-2.7-.9.6-2 1-3.1 1.2a4.9 4.9 0 00-8.4 4.5C7.4 8.2 3.8 6.2 1.4 3.3a4.9 4.9 0 001.5 6.6c-.8 0-1.6-.3-2.2-.6 0 2.4 1.7 4.4 3.9 4.8-.7.2-1.5.2-2.2.1.6 2 2.4 3.4 4.6 3.4A9.9 9.9 0 010 19.6 13.9 13.9 0 007.5 21.8c9.1 0 14-7.5 14-14v-.6c1-.7 1.8-1.6 2.1-2.6z"/></svg>
+</a><a href="mailto:starstarding@gmail.com" title="Email" aria-label="Email"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 4h18a2 2 0 012 2v12a2 2 0 01-2 2H3a2 2 0 01-2-2V6a2 2 0 012-2zm0 2v.5l9 6 9-6V6H3z"/></svg>
+</a><a href="/en/atom.xml" title="RSS" aria-label="RSS"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="19" r="3" fill="currentColor"/><path fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" d="M3.6 10.6a9.8 9.8 0 019.8 9.8M3.6 3.6a16.8 16.8 0 0116.8 16.8"/></svg>
+</a></nav>
+</div>
+<div class="aside-sticky-wrap"><div class="aside-sticky"><nav class="toc"><b>Contents</b><ol><li class="l2"><a href="#pulling-the-image-and-starting-the-container">Pulling the Image and Starting the Container</a></li><li class="l3"><a href="#first-pull-the-docker-image-with-the-dao-accelerator">First, pull the Docker image with the dao accelerator:</a></li><li class="l3"><a href="#creating-volumes">Creating volumes</a></li><li class="l2"><a href="#configuring-nginx-for-https">Configuring Nginx for HTTPS</a></li><li class="l2"><a href="#enabling-https-in-gitlab">Enabling HTTPS in GitLab</a></li><li class="l2"><a href="#testing-access-to-gitlab">Testing Access to GitLab</a></li><li class="l2"><a href="#enabling-email">Enabling Email</a></li><li class="l2"><a href="#access-over-ssh">Access over SSH</a></li></ol></nav>
+<script src="/theme/toc.js" defer></script>
+<section class="aside-block">
+  <h2>This post</h2>
+  <dl class="facts">
+    <div><dt>Length</dt><dd>528 words</dd></div>
+    
+  </dl>
+  <div class="chips"><a href="/en/tags/docker/">#docker</a></div>
+</section>
+
+</div></div></aside>
+</div>
+<footer class="pagefoot"><p class="legal"><span class="legal-owner">© 2016–2026 XingHua</span><span class="legal-sep"> · </span><span class="legal-links"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="license noopener">CC BY-NC-SA 4.0</a> · <a href="/llms.txt">llms.txt</a></span></p>
+</footer>
+</body>
+</html>

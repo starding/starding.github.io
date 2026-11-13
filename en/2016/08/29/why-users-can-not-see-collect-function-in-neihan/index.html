@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Front-End Metaphysics (1): Why Users Can't See the Favorites Button | Knots &amp; Nets</title>
+<meta name="description" content="Why so many Neihan Duanzi users never noticed the Favorite and Save buttons in the share panel, explained with cognitive psychology, plus two fixes.">
+<meta name="author" content="XingHua">
+<meta name="theme-color" content="#000000">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Front-End Metaphysics (1): Why Users Can't See the Favorites Button">
+<meta property="og:description" content="Why so many Neihan Duanzi users never noticed the Favorite and Save buttons in the share panel, explained with cognitive psychology, plus two fixes.">
+<meta property="og:image" content="https://xinghua.space/2016/08/29/why-users-can-not-see-collect-function-in-neihan/image.5htfc054ky80.webp">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Knots &amp; Nets">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="article:published_time" content="2016-08-29T08:44:10.000Z">
+<meta property="og:url" content="https://xinghua.space/en/2016/08/29/why-users-can-not-see-collect-function-in-neihan/">
+<link rel="canonical" href="https://xinghua.space/en/2016/08/29/why-users-can-not-see-collect-function-in-neihan/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Front-End Metaphysics (1): Why Users Can't See the Favorites Button","description":"Why so many Neihan Duanzi users never noticed the Favorite and Save buttons in the share panel, explained with cognitive psychology, plus two fixes.","datePublished":"2016-08-29T08:44:10.000Z","inLanguage":"en","author":{"@type":"Person","name":"XingHua","url":"https://xinghua.space/en/about/","sameAs":["https://github.com/starding","https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70","https://twitter.com/starstarding"]},"publisher":{"@type":"Person","name":"XingHua","url":"https://xinghua.space/en/about/","sameAs":["https://github.com/starding","https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70","https://twitter.com/starstarding"]},"mainEntityOfPage":"https://xinghua.space/en/2016/08/29/why-users-can-not-see-collect-function-in-neihan/","image":"https://xinghua.space/2016/08/29/why-users-can-not-see-collect-function-in-neihan/image.5htfc054ky80.webp","articleSection":"As an Engineer"}</script>
+<link rel="alternate" type="application/atom+xml" title="Knots &amp; Nets" href="/en/atom.xml">
+<link rel="alternate" hreflang="zh-CN" href="https://xinghua.space/2016/08/29/why-users-can-not-see-collect-function-in-neihan/">
+<link rel="alternate" hreflang="en" href="https://xinghua.space/en/2016/08/29/why-users-can-not-see-collect-function-in-neihan/">
+<link rel="alternate" hreflang="x-default" href="https://xinghua.space/2016/08/29/why-users-can-not-see-collect-function-in-neihan/">
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="/favicon-96x96.png" type="image/png" sizes="96x96">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#B6002E">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
+<link rel="manifest" href="/manifest.webmanifest">
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="stylesheet" href="/theme/tokens.css">
+<link rel="stylesheet" href="/theme/site.css">
+<script src="/theme/overlay-scroll.js" defer></script>
+<script src="/theme/theme.js" defer></script>
+<script>(()=>{if(location.hostname!=='xinghua.space'||navigator.webdriver)return;try{navigator.sendBeacon('https://xinghua-stats.xinghua-space.workers.dev/c',JSON.stringify({p:location.pathname,r:document.referrer,w:innerWidth,l:navigator.language}))}catch(e){}})()</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-V9SXMWSY9Z"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-V9SXMWSY9Z');</script>
+</head>
+<body>
+<header class="appbar">
+  <div class="appbar-in">
+    <a class="brand" href="/en/"><img src="/brand/logo.svg" alt=""><span><b>Knots &amp; Nets</b><small>Rather than wishing for fish by the water, go home and weave a net.</small></span></a>
+    <div class="theme-pick">
+      <a class="lang-btn" href="/2016/08/29/why-users-can-not-see-collect-function-in-neihan/" hreflang="zh-CN" lang="zh-CN" title="中文版">中文</a>
+      <button type="button" class="theme-btn" id="themeBtn" aria-haspopup="menu" aria-expanded="false" title="Appearance"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="currentColor" d="M12 3.5a8.5 8.5 0 0 1 0 17z"/></svg>
+</button>
+      <div class="theme-menu" id="themeMenu" role="menu" hidden>
+        <button type="button" role="menuitemradio" data-theme-set="auto"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="currentColor" d="M12 3.5a8.5 8.5 0 0 1 0 17z"/></svg>
+<span>Auto</span><small>System</small></button>
+        <button type="button" role="menuitemradio" data-theme-set="light"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/><path stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>
+<span>Light</span></button>
+        <button type="button" role="menuitemradio" data-theme-set="dark"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
+<span>Dark</span></button>
+      </div>
+    </div>
+    <nav>
+      <a href="/en/">Home</a>
+      <a href="/en/works/">Works</a>
+      <a href="/en/about/">About</a>
+    </nav>
+  </div>
+</header>
+<div class="frame cols">
+  <main>
+<article class="paper">
+  <header class="post-head">
+    <h1>Front-End Metaphysics (1): Why Users Can't See the Favorites Button</h1>
+    <div class="meta">
+      <span>@XingHua</span>
+      <time datetime="2016-08-29T08:44:10.000Z">Aug 29, 2016</time>
+      <span>6 min read</span>
+    </div>
+  </header>
+  <div class="prose">
+<p>This post looks at an application of cognitive psychology to the "Neihan Duanzi" app (a ByteDance joke-and-meme app; a little plug for my company's product).</p>
+<p>The Neihan Duanzi operations team keeps getting user feedback asking "Does Neihan Duanzi have a favorites feature?", so much of it that you can't help wondering: why can't so many users see the "Favorite" and "Save" features? They sit right there on the panel that pops up when you tap Share, and by rights should be visible at a glance.</p>
+<p>This is in fact a form of blindness known in psychology. Of course, once you know the two features exist and consciously look for them, the blindness disappears. But for many users that is a hard step to take. This post analyzes this baffling problem from the angle of cognitive psychology and proposes solutions.</p>
+<h2 id="the-short-version">The short version</h2>
+<h3 id="a-two-step-analysis">A two-step analysis</h3>
+<p>Before the share panel opens, the share icon carries a strong goal cue (namely, sharing), which makes people subconsciously assume that every function in the panel that appears after tapping it is about sharing.</p>
+<p>The Neihan Duanzi share icon:<br>
+<img src="/2016/08/29/why-users-can-not-see-collect-function-in-neihan/image.5htfc054ky80.webp" alt="Neihan Duanzi share icon" loading="lazy"></p>
+<p>Once the panel is open, attention, shaped by that goal, stays on the sharing functions, which leaves people blind to everything else. The function icons at the bottom also look very much like the iOS system style, which makes the blindness worse. (The image below is the panel after tapping; note the "Favorite" and "Save" functions at the bottom.)<br>
+<img src="/2016/08/29/why-users-can-not-see-collect-function-in-neihan/image.26yvaxxkqnms.webp" alt="The Favorite and Save functions" loading="lazy"></p>
+<p>What the user actually sees is this (the user only sees two spots: the top one when sharing, and the bottom one when cancelling. The middle part usually gets a quick sweep of the eye and is ignored):<br>
+<img src="/2016/08/29/why-users-can-not-see-collect-function-in-neihan/image.1pfm7einwsf4.webp" alt="The share panel as the user sees it" loading="lazy"></p>
+<h3 id="how-to-fix-it">How to fix it</h3>
+<p>It's actually simple. There are two directions:</p>
+<ol>
+<li>Replace the share icon with "…" (meaning more functions): for this icon, users expect several functions to choose from once it opens, so they will look through it more carefully.</li>
+<li>Keep the share icon for sharing only and split it out on its own (one icon, one function, as users expect), and put everything else under "…" (more functions).</li>
+</ol>
+<p>Whichever direction you take, the style of the "Favorite", "Save" and other function icons needs to change so they don't look so close to the system's, ideally matching Neihan's own style.</p>
+<p>For those who want to dig into the analysis, read on for the full version. It works mainly from a few theories of cognition and includes some quite interesting ideas from current cognitive psychology. Recommended.</p>
+<h2 id="the-full-analysis">The full analysis</h2>
+<h3 id="two-questions-wish-i-could-add-a-poll-here">Two questions (wish I could add a poll here)</h3>
+<ol>
+<li>Have you ever noticed "Neihan Duanzi's Favorite and Save features"?</li>
+<li>If you have, how long after you started using the app did it take you to notice?</li>
+</ol>
+<p>To describe the complete mental process of a user using Neihan Duanzi, I've included my own experience of using the app. If you're not interested, skip this section and go straight to the next major heading.</p>
+<h3 id="background-my-experience-with-the-app">Background: my experience with the app</h3>
+<p>As of today I've been using the Neihan Duanzi app for about half a year. What puzzled me most was that sometimes I'd come across a picture or joke I really liked and wanted to save or favorite it, but couldn't find any feature for it.</p>
+<p>As an engineer I consider myself very experienced with apps, yet I genuinely never found anything like that. In the end I could only guess the PM had left these two features out for some special reason. And to keep the jokes I liked, I had to share them straight to my own WeChat, as shown below (dumb, but I couldn't find a better way):<br>
+<img src="/2016/08/29/why-users-can-not-see-collect-function-in-neihan/image.1mk4pz687fgg.webp" alt="Saving things by sharing them to my own WeChat" loading="lazy"></p>
+<p>Today, at my first requirements meeting on Neihan, this question came back to me, so I asked the person in charge, and was told the "Favorite" and "Save" features do exist; I just hadn't found them. (Most people try to find something a few times without success, then basically give up and use some other workaround.)</p>
+<p>So I went through every icon I could see, one by one. Sure enough, I finally found a few features I had overlooked for nearly half a year. For some reason they had been invisible to me, even though I had tapped the share icon countless times. As shown below, Favorite and Save are right there at the bottom of the panel:<br>
+<img src="/2016/08/29/why-users-can-not-see-collect-function-in-neihan/image.5htfc054ky80-1.webp" alt="Neihan Duanzi share icon" loading="lazy"></p>
+<h3 id="why-were-favorite-and-save-invisible">Why were "Favorite" and "Save" invisible?</h3>
+<p>The reasons can be found in cognitive psychology. In short there are four main ones (I won't expand on them, just the conclusions):</p>
+<p>The area where our gaze is focused (central vision) is very narrow. At normal screen distance (half an arm to an arm's length), our point of focus is roughly the size of a thumbnail.<br>
+Human attention is very limited. When looking at a phone, an ordinary person can basically focus on only one point (usually the point of gaze).<br>
+Attention is easily guided by goals. Things strongly related to the goal get noticed easily; the rest tends to be ignored.<br>
+How we perceive things is shaped by experience and habit.</p>
+<h3 id="step-by-step-analysis">Step-by-step analysis</h3>
+<h4 id="tapping-the-share-icon">Tapping the share icon</h4>
+<p>The share icon:<br>
+<img src="/2016/08/29/why-users-can-not-see-collect-function-in-neihan/image.1pfm7einwsf4-1.webp" alt="Share icon" loading="lazy"></p>
+<p>Anyone with experience of internet products knows this icon well, and usually taps it only when they want to share. Note the causality here: people generally don't tap the icon first and then decide whether to share. They come with the purpose from the start.</p>
+<p>The share icon is so common that it sets up a strong representation (and a strong cue): the icon is the function. For experienced internet users, the share icon and the share function map one to one. (If functions other than sharing show up, that goes against what users expect.)</p>
+<p>Taken together, these two points determine what users expect when tapping this icon: they're heading for sharing, and they expect to see sharing functions on the next screen (points 3 and 4 of the cognitive theory above).</p>
+<h4 id="entering-the-share-panel">Entering the share panel</h4>
+<p>The function panel:<br>
+<img src="/2016/08/29/why-users-can-not-see-collect-function-in-neihan/image.5htfc054ky80-1-1.webp" alt="Neihan Duanzi share panel" loading="lazy"></p>
+<p>Once in the share panel, because the user already has a goal and expectation and is shaped by them, their gaze and attention look like this (per the theory above, the user's point of focus is small, and it only lands on what most deserves attention), as below:<br>
+<img src="/2016/08/29/why-users-can-not-see-collect-function-in-neihan/image.1x5dtdlzl3mo.webp" alt="The share panel as the user sees it" loading="lazy"></p>
+<p>If the user decides not to share after all, habit sends their eyes straight to the bottom. Their gaze and attention at that moment look like this:<br>
+<img src="/2016/08/29/why-users-can-not-see-collect-function-in-neihan/image.6pbzkr4oook0.webp" alt="The share panel as the user sees it" loading="lazy"></p>
+<p>Another reason for the blindness<br>
+The Toutiao share panel &amp;&amp; the Neihan share panel</p>
+<p>Toutiao (ByteDance's news app):<br>
+<img src="/2016/08/29/why-users-can-not-see-collect-function-in-neihan/image.2gyyac07p2w0.webp" alt="Toutiao share panel" loading="lazy"></p>
+<p>Neihan:<br>
+<img src="/2016/08/29/why-users-can-not-see-collect-function-in-neihan/image.5htfc054ky80-1-1-1.webp" alt="Neihan Duanzi share icon" loading="lazy"></p>
+<p>Comparing the two, you can see that the buttons in the lower part of Neihan's share panel are styled very much like iOS, and this style uses light-gray line icons with very low visual salience (hard for peripheral vision to pick up). Drawing on their own experience of iOS, users subconsciously assume this part is just a bunch of miscellaneous built-in system functions, so their eyes sweep straight past it and the information is lost.</p>
+<h3 id="how-to-fix-it-1">How to fix it</h3>
+<p>It's actually simple. There are two directions:</p>
+<p>Replace the share icon with "…", meaning more functions, because for this icon users expect several functions inside once it opens, so they will look through it more carefully.</p>
+<p>Keep the share icon for sharing only and split it out on its own (one icon, one function, as users expect), and put everything else under "…" (more functions).</p>
+<p>Whichever direction you take, the style of the "Favorite", "Save" and other function icons needs to change so they don't look so close to the system's, ideally matching Neihan's own style.</p>
+  </div>
+  <section class="post-related"><h2>Related</h2><ul class="related"><li><a href="/en/2024/03/30/a-short-web-history/">A Short History of the Web: The Key Threads</a><time datetime="2024-03-30T06:38:56.000Z">2024</time></li><li><a href="/en/2016/10/31/material-design-introduct-md/">Material Design: An Introduction and the Theory Behind It</a><time datetime="2016-10-31T09:04:37.000Z">2016</time></li><li><a href="/en/2016/04/20/standardization/">Bricks, Stones, Web Standards and the W3C</a><time datetime="2016-04-20T07:41:51.000Z">2016</time></li></ul></section>
+  <div class="post-author"><div class="author-card">
+  <div class="author">
+    <img src="/img/author.jpg" alt="XingHua">
+    <p>We meet by chance in this world.<br>I’m XingHua — glad to meet you.</p>
+  </div>
+  <nav class="social"><a href="https://github.com/starding" title="GitHub" aria-label="GitHub" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+</a><a href="https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70" title="Jike" aria-label="Jike" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M14.6 2h4.2v13.4c0 4.1-2.6 6.6-6.4 6.6-1.9 0-3.6-.6-5-1.7l2.2-3.3c.8.6 1.7.9 2.6.9 1.6 0 2.4-1 2.4-3V2z"/><path fill="none" stroke="currentColor" stroke-width="1.2" d="M16.4 3.6v12.6c0 3.6-2.3 5.9-5.6 6.1"/></svg>
+</a><a href="https://twitter.com/starstarding" title="Twitter" aria-label="Twitter" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M23.6 4.6c-.9.4-1.8.6-2.8.8 1-.6 1.8-1.6 2.1-2.7-.9.6-2 1-3.1 1.2a4.9 4.9 0 00-8.4 4.5C7.4 8.2 3.8 6.2 1.4 3.3a4.9 4.9 0 001.5 6.6c-.8 0-1.6-.3-2.2-.6 0 2.4 1.7 4.4 3.9 4.8-.7.2-1.5.2-2.2.1.6 2 2.4 3.4 4.6 3.4A9.9 9.9 0 010 19.6 13.9 13.9 0 007.5 21.8c9.1 0 14-7.5 14-14v-.6c1-.7 1.8-1.6 2.1-2.6z"/></svg>
+</a><a href="mailto:starstarding@gmail.com" title="Email" aria-label="Email"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 4h18a2 2 0 012 2v12a2 2 0 01-2 2H3a2 2 0 01-2-2V6a2 2 0 012-2zm0 2v.5l9 6 9-6V6H3z"/></svg>
+</a><a href="/en/atom.xml" title="RSS" aria-label="RSS"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="19" r="3" fill="currentColor"/><path fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" d="M3.6 10.6a9.8 9.8 0 019.8 9.8M3.6 3.6a16.8 16.8 0 0116.8 16.8"/></svg>
+</a></nav>
+</div>
+</div>
+  <nav class="pager">
+    <span><a href="/en/2016/09/04/fe-metaphysics/"><small>Newer</small>The Metaphysics of Front-End Engineering (0)</a></span>
+    <span class="next"><a href="/en/2016/07/29/one-year-after-graduation/"><small>Older</small>One Year After Graduation</a></span>
+  </nav>
+  <section class="comments">
+<script src="https://giscus.app/client.js" data-repo="starding/xinghua_blog_giscus" data-repo-id="R_kgDOLagm8g" data-category="Announcements" data-category-id="DIC_kwDOLagm8s4CdqOC" data-mapping="specific" data-term="前端工程师的形而上学 (1)—— 一个例子" data-strict="1" data-reactions-enabled="1" data-emit-metadata="1" data-input-position="top" data-theme="preferred_color_scheme" data-lang="en" data-loading="lazy" crossorigin="anonymous" async></script>
+</section>
+</article>
+
+  </main>
+  <aside class="aside"><div class="author-card">
+  <div class="author">
+    <img src="/img/author.jpg" alt="XingHua">
+    <p>We meet by chance in this world.<br>I’m XingHua — glad to meet you.</p>
+  </div>
+  <nav class="social"><a href="https://github.com/starding" title="GitHub" aria-label="GitHub" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+</a><a href="https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70" title="Jike" aria-label="Jike" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M14.6 2h4.2v13.4c0 4.1-2.6 6.6-6.4 6.6-1.9 0-3.6-.6-5-1.7l2.2-3.3c.8.6 1.7.9 2.6.9 1.6 0 2.4-1 2.4-3V2z"/><path fill="none" stroke="currentColor" stroke-width="1.2" d="M16.4 3.6v12.6c0 3.6-2.3 5.9-5.6 6.1"/></svg>
+</a><a href="https://twitter.com/starstarding" title="Twitter" aria-label="Twitter" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M23.6 4.6c-.9.4-1.8.6-2.8.8 1-.6 1.8-1.6 2.1-2.7-.9.6-2 1-3.1 1.2a4.9 4.9 0 00-8.4 4.5C7.4 8.2 3.8 6.2 1.4 3.3a4.9 4.9 0 001.5 6.6c-.8 0-1.6-.3-2.2-.6 0 2.4 1.7 4.4 3.9 4.8-.7.2-1.5.2-2.2.1.6 2 2.4 3.4 4.6 3.4A9.9 9.9 0 010 19.6 13.9 13.9 0 007.5 21.8c9.1 0 14-7.5 14-14v-.6c1-.7 1.8-1.6 2.1-2.6z"/></svg>
+</a><a href="mailto:starstarding@gmail.com" title="Email" aria-label="Email"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 4h18a2 2 0 012 2v12a2 2 0 01-2 2H3a2 2 0 01-2-2V6a2 2 0 012-2zm0 2v.5l9 6 9-6V6H3z"/></svg>
+</a><a href="/en/atom.xml" title="RSS" aria-label="RSS"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="19" r="3" fill="currentColor"/><path fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" d="M3.6 10.6a9.8 9.8 0 019.8 9.8M3.6 3.6a16.8 16.8 0 0116.8 16.8"/></svg>
+</a></nav>
+</div>
+<div class="aside-sticky-wrap"><div class="aside-sticky"><nav class="toc"><b>Contents</b><ol><li class="l2"><a href="#the-short-version">The short version</a></li><li class="l3"><a href="#a-two-step-analysis">A two-step analysis</a></li><li class="l3"><a href="#how-to-fix-it">How to fix it</a></li><li class="l2"><a href="#the-full-analysis">The full analysis</a></li><li class="l3"><a href="#two-questions-wish-i-could-add-a-poll-here">Two questions (wish I could add a poll here)</a></li><li class="l3"><a href="#background-my-experience-with-the-app">Background: my experience with the app</a></li><li class="l3"><a href="#why-were-favorite-and-save-invisible">Why were "Favorite" and "Save" invisible?</a></li><li class="l3"><a href="#step-by-step-analysis">Step-by-step analysis</a></li><li class="l3"><a href="#how-to-fix-it-1">How to fix it</a></li></ol></nav>
+<script src="/theme/toc.js" defer></script>
+<section class="aside-block">
+  <h2>This post</h2>
+  <dl class="facts">
+    <div><dt>Length</dt><dd>1,214 words</dd></div>
+    <div><dt>Category</dt><dd><a href="/en/categories/as-an-engineer/">As an Engineer</a></dd></div>
+  </dl>
+  
+</section>
+<section class="aside-block">
+  <h2>Related</h2>
+  <ul class="related"><li><a href="/en/2024/03/30/a-short-web-history/">A Short History of the Web: The Key Threads</a><time datetime="2024-03-30T06:38:56.000Z">2024</time></li><li><a href="/en/2016/10/31/material-design-introduct-md/">Material Design: An Introduction and the Theory Behind It</a><time datetime="2016-10-31T09:04:37.000Z">2016</time></li><li><a href="/en/2016/04/20/standardization/">Bricks, Stones, Web Standards and the W3C</a><time datetime="2016-04-20T07:41:51.000Z">2016</time></li></ul>
+</section>
+</div></div></aside>
+</div>
+<footer class="pagefoot"><p class="legal"><span class="legal-owner">© 2016–2026 XingHua</span><span class="legal-sep"> · </span><span class="legal-links"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="license noopener">CC BY-NC-SA 4.0</a> · <a href="/llms.txt">llms.txt</a></span></p>
+</footer>
+</body>
+</html>
