@@ -300,6 +300,14 @@ body:has(>.pagefoot)>.frame{width:100%;box-sizing:border-box}
 .aside-legal{margin:12px 4px 0;font-size:var(--fs-small);line-height:18px;color:var(--faint)}
 .aside-legal a{color:var(--faint)}
 .aside-legal .legal{margin:0;padding:0;border:0}
+/* 版权行：两段各自不断行；窄处分成「版权」「许可与链接」两行，不在词中间折断 */
+.legal-owner,.legal-links{white-space:nowrap}
+.aside-legal .legal-sep{display:none}
+.aside-legal .legal-owner,.aside-legal .legal-links{display:block}
+@media (max-width:600px){
+  .pagefoot .legal-sep{display:none}
+  .pagefoot .legal-owner,.pagefoot .legal-links{display:block}
+}
 
 /* 代码着色：颜色只区分语法类别，取自主题变量 */
 .tok-c{color:var(--tok-c);font-style:italic}
