@@ -382,3 +382,8 @@ body:has(>.pagefoot)>.frame{width:100%;box-sizing:border-box}
 .aside-sticky-wrap,.side{transition:top .2s cubic-bezier(.2,0,0,1)}
 .mini-on .aside-sticky-wrap,.mini-on .side{top:76px;max-height:calc(100vh - 100px)}
 .minibar .lang-btn{margin-left:auto;margin-right:-10px}
+
+/* 同站页面之间切换：页头保持不动，内容区淡入淡出，不整页闪跳 */
+@view-transition{navigation:auto}
+.appbar{view-transition-name:appbar}
+@media (prefers-reduced-motion:reduce){@view-transition{navigation:none}}

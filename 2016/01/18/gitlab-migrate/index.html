@@ -29,11 +29,11 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
 <link rel="manifest" href="/manifest.webmanifest">
 <script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}</script>
-<link rel="stylesheet" href="/theme/tokens.css">
-<link rel="stylesheet" href="/theme/site.css">
-<script src="/theme/overlay-scroll.js" defer></script>
-<script src="/theme/theme.js" defer></script>
-<script src="/theme/nav.js" defer></script>
+<link rel="stylesheet" href="/theme/tokens.css?v=0a1b6287">
+<link rel="stylesheet" href="/theme/site.css?v=0a1b6287">
+<script src="/theme/overlay-scroll.js?v=0a1b6287" defer></script>
+<script src="/theme/theme.js?v=0a1b6287" defer></script>
+<script src="/theme/nav.js?v=0a1b6287" defer></script>
 <script>(()=>{if(location.hostname!=='xinghua.space'||navigator.webdriver)return;try{navigator.sendBeacon('https://xinghua-stats.xinghua-space.workers.dev/c',JSON.stringify({p:location.pathname,r:document.referrer,w:innerWidth,l:navigator.language}))}catch(e){}})()</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-V9SXMWSY9Z"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-V9SXMWSY9Z');</script>
@@ -41,7 +41,7 @@
 <body>
 <header class="appbar">
   <div class="appbar-in">
-    <a class="brand" href="/"><img src="/brand/logo.svg" alt=""><span><b>结绳以渔</b><small>临渊羡鱼，不如退而结网</small></span></a>
+    <a class="brand" href="/"><img src="/brand/logo.svg" alt="" width="80" height="80"><span><b>结绳以渔</b><small>临渊羡鱼，不如退而结网</small></span></a>
     <div class="theme-pick">
       <a class="lang-btn" href="/en/2016/01/18/gitlab-migrate/" hreflang="en" lang="en" title="English version">EN</a>
       <button type="button" class="theme-btn" id="themeBtn" aria-haspopup="menu" aria-expanded="false" title="外观"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="currentColor" d="M12 3.5a8.5 8.5 0 0 1 0 17z"/></svg>
@@ -64,7 +64,7 @@
 </header>
 <div class="minibar" id="minibar" inert>
   <div class="minibar-in">
-    <a class="mini-brand" href="/"><img src="/brand/logo.svg" alt=""><span>结绳以渔</span></a>
+    <a class="mini-brand" href="/"><img src="/brand/logo.svg" alt="" width="26" height="26"><span>结绳以渔</span></a>
     <nav>
       <a href="/" aria-current="page">主页</a>
       <a href="/works/">作品</a>
@@ -274,7 +274,7 @@ Git:    /opt/gitlab/embedded/bin/git</code></pre>
 </a></nav>
 </div>
 <div class="aside-sticky-wrap"><div class="aside-sticky"><nav class="toc"><b>文章目录</b><ol><li class="l2"><a href="#问题来源docker-的-file-system-神坑">问题来源：docker 的 file system 神坑</a></li><li class="l2"><a href="#gitlab-数据迁移">gitlab 数据迁移</a></li><li class="l3"><a href="#遇到的问题">遇到的问题</a></li><li class="l3"><a href="#最终的解决办法">最终的解决办法</a></li><li class="l2"><a href="#附录下面是原文已翻译">附录：下面是原文（已翻译）</a></li><li class="l3"><a href="#1停止-gitlab-容器">1.停止 Gitlab 容器</a></li><li class="l3"><a href="#2备份所有-docker-volumes-所有的-gitlab-文件">2.备份所有 Docker Volumes (所有的 gitlab 文件)</a></li><li class="l3"><a href="#3备份-gitlab-镜像可选">3.备份 gitlab 镜像（可选）</a></li><li class="l3"><a href="#4删除-gitlab-容器-译注如果你是把数据迁到其他服务器的-docker-gitlab-实例下的话本步骤可选">4.删除 gitlab 容器 ( 译注：如果你是把数据迁到其他服务器的 docker gitlab 实例下的话，本步骤可选)</a></li><li class="l3"><a href="#5拉取最新的-gitlab-镜像">5.拉取最新的 gitlab 镜像</a></li><li class="l3"><a href="#6拉取完毕后创建并运行容器">6.拉取完毕后，创建并运行容器</a></li><li class="l3"><a href="#7容器启动后观察运行日志">7.容器启动后，观察运行日志：</a></li><li class="l3"><a href="#8然后我们需要检查数据库迁移是否成功以及避免3255-问题">8.然后我们需要检查数据库迁移是否成功以及避免#3255 问题。</a></li><li class="l3"><a href="#9继续在容器内部的-bash-shell-上重新配置-gitlab">9.继续在容器内部的 bash shell 上，重新配置 gitlab:</a></li><li class="l3"><a href="#10如果一切正常执行下面的命令">10.如果一切正常，执行下面的命令：</a></li><li class="l3"><a href="#11最后清除-redis-的缓存">11.最后，清除 Redis 的缓存</a></li><li class="l3"><a href="#12访问测试">12.访问测试</a></li></ol></nav>
-<script src="/theme/toc.js" defer></script>
+<script src="/theme/toc.js?v=0a1b6287" defer></script>
 <section class="aside-block">
   <h2>本文</h2>
   <dl class="facts">
