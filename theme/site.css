@@ -335,3 +335,17 @@ body:has(>.pagefoot)>.frame{width:100%;box-sizing:border-box}
 .theme-menu small{color:var(--faint);font-size:var(--fs-small);justify-self:end}
 .theme-menu button[aria-checked="true"]{color:var(--primary);font-weight:500}
 .theme-menu button[aria-checked="true"] svg{color:var(--primary)}
+/* 文章里的交互图：图在浅色底板上，下面一行控件与读数；颜色只分「光路 / 绳」与「相等的角」两类 */
+.ifig{margin:32px 0}
+.ifig svg{display:block;width:100%;height:auto;background:var(--tone);border-radius:var(--r-m);touch-action:none;user-select:none;-webkit-user-select:none}
+.ifig svg text{font-family:var(--sans);font-size:15px;fill:var(--muted)}
+.ifig .handle{cursor:grab}
+.ifig .handle:focus{outline:none}
+.ifig .handle:focus-visible circle:last-child{stroke:var(--primary);stroke-width:3}
+.ifig-ctl{display:flex;flex-wrap:wrap;align-items:center;gap:8px 20px;margin-top:12px;font-size:var(--fs-label);color:var(--muted)}
+.ifig-ctl label{display:flex;align-items:center;gap:10px}
+.ifig-ctl input[type=range]{width:150px;accent-color:var(--primary)}
+.ifig-ctl button{font:inherit;font-size:13px;line-height:28px;padding:0 14px;border-radius:999px;border:0;background:var(--primary-soft);color:var(--on-primary-soft);cursor:pointer}
+.ifig-read{font-variant-numeric:tabular-nums;color:var(--text)}
+.ifig-read b{font-weight:600;color:var(--tok-n)}
+@media (max-width:600px){.ifig svg text{font-size:24px}.ifig-ctl input[type=range]{width:120px}}

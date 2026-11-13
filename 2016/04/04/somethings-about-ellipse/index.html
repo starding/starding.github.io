@@ -4,20 +4,20 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>椭圆的反射性质：为什么光从一个焦点出发会汇聚到另一个焦点 | 结绳以渔</title>
-<meta name="description" content="从椭圆一个焦点射出的光，经椭圆反射后一定经过另一个焦点。本文先给出证明，再用「绳子画椭圆」的受力分析给出一个直观解释，并推广到其他圆锥曲线。">
+<meta name="description" content="从椭圆一个焦点射出的光，经椭圆反射后一定经过另一个焦点。本文不走代数证明，而是用「绳子画椭圆」时笔尖的受力分析给出一个直观解释，并附可拖动的交互图。">
 <meta name="author" content="XingHua">
 <meta name="theme-color" content="#000000">
 <meta property="og:type" content="article">
 <meta property="og:title" content="椭圆的反射性质：为什么光从一个焦点出发会汇聚到另一个焦点">
-<meta property="og:description" content="从椭圆一个焦点射出的光，经椭圆反射后一定经过另一个焦点。本文先给出证明，再用「绳子画椭圆」的受力分析给出一个直观解释，并推广到其他圆锥曲线。">
-<meta property="og:image" content="https://xinghua.space/2016/04/04/somethings-about-ellipse/image.2w7eaer55vo0.webp">
+<meta property="og:description" content="从椭圆一个焦点射出的光，经椭圆反射后一定经过另一个焦点。本文不走代数证明，而是用「绳子画椭圆」时笔尖的受力分析给出一个直观解释，并附可拖动的交互图。">
+<meta property="og:image" content="https://xinghua.space/brand/logo-512.png">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:site_name" content="结绳以渔">
-<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:card" content="summary">
 <meta property="article:published_time" content="2016-04-04T07:24:12.000Z">
 <meta property="og:url" content="https://xinghua.space/2016/04/04/somethings-about-ellipse/">
 <link rel="canonical" href="https://xinghua.space/2016/04/04/somethings-about-ellipse/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"椭圆的反射性质：为什么光从一个焦点出发会汇聚到另一个焦点","description":"从椭圆一个焦点射出的光，经椭圆反射后一定经过另一个焦点。本文先给出证明，再用「绳子画椭圆」的受力分析给出一个直观解释，并推广到其他圆锥曲线。","datePublished":"2016-04-04T07:24:12.000Z","inLanguage":"zh-CN","author":{"@type":"Person","name":"XingHua","url":"https://xinghua.space/about/","sameAs":["https://github.com/starding","https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70","https://twitter.com/starstarding"]},"publisher":{"@type":"Person","name":"XingHua","url":"https://xinghua.space/about/","sameAs":["https://github.com/starding","https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70","https://twitter.com/starstarding"]},"mainEntityOfPage":"https://xinghua.space/2016/04/04/somethings-about-ellipse/","image":"https://xinghua.space/2016/04/04/somethings-about-ellipse/image.2w7eaer55vo0.webp","articleSection":"随笔"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"椭圆的反射性质：为什么光从一个焦点出发会汇聚到另一个焦点","description":"从椭圆一个焦点射出的光，经椭圆反射后一定经过另一个焦点。本文不走代数证明，而是用「绳子画椭圆」时笔尖的受力分析给出一个直观解释，并附可拖动的交互图。","datePublished":"2016-04-04T07:24:12.000Z","inLanguage":"zh-CN","author":{"@type":"Person","name":"XingHua","url":"https://xinghua.space/about/","sameAs":["https://github.com/starding","https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70","https://twitter.com/starstarding"]},"publisher":{"@type":"Person","name":"XingHua","url":"https://xinghua.space/about/","sameAs":["https://github.com/starding","https://web.okjike.com/u/2250A31B-8494-40CF-AA3A-2EF87EE24D70","https://twitter.com/starstarding"]},"mainEntityOfPage":"https://xinghua.space/2016/04/04/somethings-about-ellipse/","articleSection":"随笔"}</script>
 <link rel="alternate" type="application/atom+xml" title="结绳以渔" href="/atom.xml">
 <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
 <link rel="icon" href="/favicon-96x96.png" type="image/png" sizes="96x96">
@@ -65,7 +65,7 @@
     <div class="meta">
       <span>@XingHua</span>
       <time datetime="2016-04-04T07:24:12.000Z">2016 年 4 月 4 日</time>
-      <span>约 2 分钟</span>
+      <span>约 3 分钟</span>
     </div>
   </header>
   <div class="prose">
@@ -73,7 +73,93 @@
 <p>虽然文章说的是椭圆，但是放在更一般的圆锥曲线上基本上也都适用。</p>
 <h2 id="椭圆的光学性质">椭圆的光学性质</h2>
 <p>在圆锥曲线的性质中，我们常常会见到下面这样一张图：从椭圆的一个焦点入射的光线，经过椭圆壁的反射后，会通过另一个焦点。</p>
-<p><img src="image.2w7eaer55vo0.webp" alt="椭圆的光学性质" loading="lazy"></p>
+<figure class="ifig">
+  <svg viewBox="-330 -215 660 430" role="img" aria-label="椭圆的反射性质：从焦点 F₁ 射到椭圆上任一点 P 的光线，反射后经过另一个焦点 F₂；入射角与反射角相等">
+    <g data-root>
+    <ellipse data-e fill="none" stroke="var(--muted)" stroke-width="2"/>
+    <line data-tan stroke="var(--faint)" stroke-width="1.5" stroke-dasharray="6 6"/>
+    <path data-a1 fill="none" stroke="var(--tok-n)" stroke-width="2.5"/>
+    <path data-a2 fill="none" stroke="var(--tok-n)" stroke-width="2.5"/>
+    <text data-t1 fill="var(--tok-n)" text-anchor="middle" style="fill:var(--tok-n);font-weight:600"></text>
+    <text data-t2 fill="var(--tok-n)" text-anchor="middle" style="fill:var(--tok-n);font-weight:600"></text>
+    <line data-r1 stroke="var(--primary)" stroke-width="2.5"/>
+    <line data-r2 stroke="var(--primary)" stroke-width="2.5"/>
+    <polygon data-h1 fill="var(--primary)"/>
+    <polygon data-h2 fill="var(--primary)"/>
+    <circle data-f1 r="5" fill="var(--text)"/><text data-l1 text-anchor="middle">F₁</text>
+    <circle data-f2 r="5" fill="var(--text)"/><text data-l2 text-anchor="middle">F₂</text>
+    <g class="handle" data-p tabindex="0" role="slider" aria-label="椭圆上的点 P，左右方向键移动">
+      <circle r="34" fill="transparent"/>
+      <circle r="7" fill="var(--paper)" stroke="var(--primary)" stroke-width="2.5"/>
+    </g>
+    <text data-lp text-anchor="middle" style="fill:var(--text);font-weight:600">P</text>
+    </g>
+  </svg>
+  <div class="ifig-ctl">
+    <label>两焦点的距离 <input type="range" min="0" max="92" value="70" data-c aria-label="两焦点的距离"></label>
+    <span class="ifig-read" data-read></span>
+  </div>
+  <figcaption>拖动椭圆上的点 P，或调节两焦点的距离：从 F₁ 出发的光线，在 P 点按「入射角等于反射角」反射后，总是经过 F₂。</figcaption>
+</figure>
+<script>(() => {
+  const fig = document.currentScript.previousElementSibling, $ = s => fig.querySelector(`[data-${s}]`);
+  const svg = fig.querySelector('svg'), A = 270;   // 半长轴，画布单位；读数按 a = 5 换算
+  let t = 0.9, c = 0, k = 1;
+  const set = (el, o) => { for (const k in o) el.setAttribute(k, o[k]); };
+  const unit = (x, y) => { const l = Math.hypot(x, y) || 1; return [x / l, y / l]; };
+  const deg = r => (r * 180 / Math.PI).toFixed(1);
+  // 从点 p 出发、方向 u1 到 u2 的小圆弧
+  const arc = (p, u1, u2, r) => {
+    const s = [p[0] + u1[0] * r, p[1] + u1[1] * r], e = [p[0] + u2[0] * r, p[1] + u2[1] * r];
+    const sweep = u1[0] * u2[1] - u1[1] * u2[0] > 0 ? 1 : 0;
+    return `M${s[0].toFixed(1)},${s[1].toFixed(1)} A${r},${r} 0 0 ${sweep} ${e[0].toFixed(1)},${e[1].toFixed(1)}`;
+  };
+  const head = (to, u) => { const [x, y] = to, n = [-u[1], u[0]], b = [x - u[0] * 14, y - u[1] * 14]; return `${x},${y} ${b[0] + n[0] * 6},${b[1] + n[1] * 6} ${b[0] - n[0] * 6},${b[1] - n[1] * 6}`; };
+  function draw() {
+    c = A * $('c').value / 100;
+    const B = Math.sqrt(A * A - c * c);
+    k = Math.min(1, 200 / B); $('root').setAttribute('transform', `scale(${k})`);   // 接近圆时整体缩小，免得超出图框
+    const F1 = [-c, 0], F2 = [c, 0], P = [A * Math.cos(t), -B * Math.sin(t)];
+    set($('e'), { cx: 0, cy: 0, rx: A, ry: B });
+    set($('f1'), { cx: F1[0], cy: F1[1] }); set($('f2'), { cx: F2[0], cy: F2[1] });
+    set($('l1'), { x: F1[0] - (c > 20 ? 0 : 14), y: F1[1] + 26 }); set($('l2'), { x: F2[0] + (c > 20 ? 0 : 14), y: F2[1] + 26 });
+    $('l1').textContent = c > 1 ? 'F₁' : 'F₁ = F₂'; $('l2').textContent = c > 1 ? 'F₂' : '';
+    $('p').setAttribute('transform', `translate(${P[0]},${P[1]})`);
+    const out = unit(P[0] / (A * A), P[1] / (B * B));       // 外法线方向
+    set($('lp'), { x: P[0] + out[0] * 26, y: P[1] + out[1] * 26 + 5 });
+    const tan = [-out[1], out[0]];
+    set($('tan'), { x1: P[0] - tan[0] * 150, y1: P[1] - tan[1] * 150, x2: P[0] + tan[0] * 150, y2: P[1] + tan[1] * 150 });
+    // 入射光线 F1 → P，反射光线 P → F2
+    const d1 = unit(P[0] - F1[0], P[1] - F1[1]), d2 = unit(F2[0] - P[0], F2[1] - P[1]);
+    set($('r1'), { x1: F1[0], y1: F1[1], x2: P[0] - d1[0] * 9, y2: P[1] - d1[1] * 9 });
+    set($('r2'), { x1: P[0], y1: P[1], x2: F2[0] - d2[0] * 8, y2: F2[1] - d2[1] * 8 });
+    set($('h1'), { points: head([P[0] - d1[0] * 9, P[1] - d1[1] * 9], d1) });
+    set($('h2'), { points: head([F2[0] - d2[0] * 8, F2[1] - d2[1] * 8], d2) });
+    // 两个夹角：P→F1 与 P→F2 各自和同侧切线的夹角
+    const toF1 = unit(F1[0] - P[0], F1[1] - P[1]), toF2 = unit(F2[0] - P[0], F2[1] - P[1]);
+    const side = v => (v[0] * tan[0] + v[1] * tan[1] >= 0 ? tan : [-tan[0], -tan[1]]);
+    const t1 = side(toF1), t2 = c > 1 ? side(toF2) : [-t1[0], -t1[1]];
+    const ang1 = Math.acos(Math.min(1, toF1[0] * t1[0] + toF1[1] * t1[1])), ang2 = Math.acos(Math.min(1, toF2[0] * t2[0] + toF2[1] * t2[1]));
+    $('a1').setAttribute('d', arc(P, toF1, t1, 42)); $('a2').setAttribute('d', arc(P, toF2, t2, 42));
+    const mid = (u, v) => unit(u[0] + v[0], u[1] + v[1]), m1 = mid(toF1, t1), m2 = mid(toF2, t2);
+    set($('t1'), { x: P[0] + m1[0] * 64, y: P[1] + m1[1] * 64 + 5 }); $('t1').textContent = `${deg(ang1)}°`;
+    set($('t2'), { x: P[0] + m2[0] * 64, y: P[1] + m2[1] * 64 + 5 }); $('t2').textContent = `${deg(ang2)}°`;
+    const u = 5 / A, s = (Math.hypot(P[0] - F1[0], P[1] - F1[1]) + Math.hypot(P[0] - F2[0], P[1] - F2[1])) * u;   // 按 a = 5 换算
+    $('read').innerHTML = `PF₁ + PF₂ = ${s.toFixed(2)}（始终等于 2a = 10）· 入射角 <b>${deg(ang1)}°</b> = 反射角 <b>${deg(ang2)}°</b>`;
+  }
+  // 拖动：把指针位置换算成椭圆参数角
+  const toLocal = e => { const p = svg.createSVGPoint(); p.x = e.clientX; p.y = e.clientY; return p.matrixTransform(svg.getScreenCTM().inverse()); };
+  let drag = false;
+  const move = e => { const q = toLocal(e), B = Math.sqrt(A * A - c * c); t = Math.atan2(-q.y / k / B, q.x / k / A); draw(); };
+  $('p').addEventListener('pointerdown', e => { drag = true; svg.setPointerCapture(e.pointerId); e.preventDefault(); });
+  svg.addEventListener('pointerdown', e => { if (!drag && e.target === svg) { drag = true; svg.setPointerCapture(e.pointerId); move(e); } });
+  svg.addEventListener('pointermove', e => { if (drag) move(e); });
+  svg.addEventListener('pointerup', () => { drag = false; });
+  $('p').addEventListener('keydown', e => { if (/Arrow(Left|Down)/.test(e.key)) t += 0.05; else if (/Arrow(Right|Up)/.test(e.key)) t -= 0.05; else return; e.preventDefault(); draw(); });
+  $('c').addEventListener('input', draw);
+  draw();
+})();</script>
+
 <p>当然在其他一些圆锥曲线，比如抛物线或是双曲线中，也会有一些类似的性质，大抵都是从焦点发出的光线怎样怎样等。</p>
 <p>但是为什么？</p>
 <p>显然，可以通过数学来证明这一点，即反射处（图为 P 点）的入射光线和出射光线，与该点处的切线夹角相等。证明过程这里省略，虽然有些曲折，但是也不算是难以理解的问题。</p>
@@ -83,7 +169,96 @@
 <h2 id="一个更有趣的解释-力学性质">一个更有趣的解释 (力学性质)</h2>
 <p>纠结于这个问题以及椭圆的这些奇妙性质，高中的时候我想了好久。</p>
 <p>突然有一天我注意到了数学课本上椭圆的画法：将绳子固定在两颗钉子上，用笔尖把绳子拉紧，绕钉子一周，则得到一个椭圆。</p>
-<p><img src="image.2hd4q2vcybg0.webp" alt="椭圆的画法" loading="lazy"></p>
+<figure class="ifig">
+  <svg viewBox="-330 -215 660 430" role="img" aria-label="用绳子画椭圆：绳的两端钉在 F₁、F₂，笔尖拉紧绳子绕一圈；笔尖处两段绳的拉力相等，合力沿法线，所以两段绳与切线的夹角相等">
+    <g data-root>
+    <path data-trail fill="none" stroke="var(--muted)" stroke-width="2"/>
+    <line data-tan stroke="var(--faint)" stroke-width="1.5" stroke-dasharray="6 6"/>
+    <path data-a1 fill="none" stroke="var(--tok-n)" stroke-width="2.5"/>
+    <path data-a2 fill="none" stroke="var(--tok-n)" stroke-width="2.5"/>
+    <polyline data-rope fill="none" stroke="var(--primary)" stroke-width="2.5" stroke-linejoin="round"/>
+    <line data-v1 stroke="var(--primary)" stroke-width="4" stroke-linecap="round"/><polygon data-h1 fill="var(--primary)"/>
+    <line data-v2 stroke="var(--primary)" stroke-width="4" stroke-linecap="round"/><polygon data-h2 fill="var(--primary)"/>
+    <line data-vs stroke="var(--text)" stroke-width="2.5" stroke-dasharray="5 4"/><polygon data-hs fill="var(--text)"/>
+    <text data-ts></text>
+    <rect data-n1 width="12" height="12" rx="2" fill="var(--text)"/><text data-l1 text-anchor="middle">F₁</text>
+    <rect data-n2 width="12" height="12" rx="2" fill="var(--text)"/><text data-l2 text-anchor="middle">F₂</text>
+    <g class="handle" data-p tabindex="0" role="slider" aria-label="笔尖，左右方向键移动">
+      <circle r="34" fill="transparent"/>
+      <circle r="7" fill="var(--paper)" stroke="var(--primary)" stroke-width="2.5"/>
+    </g>
+    </g>
+  </svg>
+  <div class="ifig-ctl">
+    <button type="button" data-play>暂停</button>
+    <label>两颗钉子的距离 <input type="range" min="0" max="92" value="70" data-c aria-label="两颗钉子的距离"></label>
+    <span class="ifig-read" data-read></span>
+  </div>
+  <figcaption>绳长不变，笔尖到两颗钉子的距离之和就不变，画出来的就是椭圆。笔尖静止时，两段绳的拉力大小相等（蓝色箭头），合力（虚线箭头）必须垂直于切线，绳子才不会沿切线滑动；所以两段绳与切线的夹角必然相等。把两颗钉子移到一起，椭圆就变成了圆。</figcaption>
+</figure>
+<script>(() => {
+  const fig = document.currentScript.previousElementSibling, $ = s => fig.querySelector(`[data-${s}]`);
+  const svg = fig.querySelector('svg'), A = 270, L = 90;   // 半长轴与拉力箭头长度（画布单位）
+  let t = 0.9, c = 0, k = 1, playing = !matchMedia('(prefers-reduced-motion: reduce)').matches, drawnTo = t, last = 0;
+  const set = (el, o) => { for (const k in o) el.setAttribute(k, o[k]); };
+  const unit = (x, y) => { const l = Math.hypot(x, y) || 1; return [x / l, y / l]; };
+  const deg = r => (r * 180 / Math.PI).toFixed(1);
+  const arc = (p, u1, u2, r) => {
+    const s = [p[0] + u1[0] * r, p[1] + u1[1] * r], e = [p[0] + u2[0] * r, p[1] + u2[1] * r];
+    return `M${s[0].toFixed(1)},${s[1].toFixed(1)} A${r},${r} 0 0 ${u1[0] * u2[1] - u1[1] * u2[0] > 0 ? 1 : 0} ${e[0].toFixed(1)},${e[1].toFixed(1)}`;
+  };
+  const head = (to, u) => { const [x, y] = to, n = [-u[1], u[0]], b = [x - u[0] * 13, y - u[1] * 13]; return `${x},${y} ${b[0] + n[0] * 6},${b[1] + n[1] * 6} ${b[0] - n[0] * 6},${b[1] - n[1] * 6}`; };
+  const arrow = (line, h, from, u, len) => { const to = [from[0] + u[0] * len, from[1] + u[1] * len]; set(line, { x1: from[0], y1: from[1], x2: to[0] - u[0] * 10, y2: to[1] - u[1] * 10 }); set(h, { points: head(to, u) }); };
+  function draw() {
+    c = A * $('c').value / 100;
+    const B = Math.sqrt(A * A - c * c);
+    k = Math.min(1, 200 / B); $('root').setAttribute('transform', `scale(${k})`);   // 接近圆时整体缩小，免得超出图框
+    const F1 = [-c, 0], F2 = [c, 0], P = [A * Math.cos(t), -B * Math.sin(t)];
+    // 笔尖走过的轨迹：从起点画到当前位置，走满一圈后保留整条椭圆
+    const span = Math.min(drawnTo, 2 * Math.PI), pts = [];
+    for (let k = 0; k <= 120; k++) { const s = t - span * (1 - k / 120); pts.push(`${(A * Math.cos(s)).toFixed(1)},${(-B * Math.sin(s)).toFixed(1)}`); }
+    $('trail').setAttribute('d', `M${pts.join(' L')}`);
+    set($('n1'), { x: F1[0] - 6, y: F1[1] - 6 }); set($('n2'), { x: F2[0] - 6, y: F2[1] - 6 });
+    set($('l1'), { x: F1[0] - (c > 20 ? 0 : 16), y: F1[1] + 28 }); set($('l2'), { x: F2[0] + (c > 20 ? 0 : 16), y: F2[1] + 28 });
+    $('l1').textContent = c > 1 ? 'F₁' : 'F₁ = F₂'; $('l2').textContent = c > 1 ? 'F₂' : '';
+    $('rope').setAttribute('points', `${F1} ${P} ${F2}`);
+    $('p').setAttribute('transform', `translate(${P[0]},${P[1]})`);
+    const out = unit(P[0] / (A * A), P[1] / (B * B)), tan = [-out[1], out[0]];
+    set($('tan'), { x1: P[0] - tan[0] * 140, y1: P[1] - tan[1] * 140, x2: P[0] + tan[0] * 140, y2: P[1] + tan[1] * 140 });
+    // 两段绳对笔尖的拉力：大小相等，方向分别指向两颗钉子；合力沿内法线
+    const u1 = unit(F1[0] - P[0], F1[1] - P[1]), u2 = c > 1 ? unit(F2[0] - P[0], F2[1] - P[1]) : u1;
+    arrow($('v1'), $('h1'), P, u1, L); arrow($('v2'), $('h2'), P, u2, c > 1 ? L : 0.01);
+    const sum = [u1[0] + u2[0], u1[1] + u2[1]], sl = Math.hypot(...sum) * L, su = unit(...sum);
+    arrow($('vs'), $('hs'), P, su, sl);
+    set($('ts'), { x: P[0] + su[0] * (sl + 22), y: P[1] + su[1] * (sl + 22) + 5, 'text-anchor': su[0] < -0.3 ? 'end' : su[0] > 0.3 ? 'start' : 'middle' });
+    $('ts').textContent = '合力沿法线';
+    const side = v => (v[0] * tan[0] + v[1] * tan[1] >= 0 ? tan : [-tan[0], -tan[1]]);
+    const t1 = side(u1), t2 = c > 1 ? side(u2) : [-t1[0], -t1[1]];
+    const g1 = Math.acos(Math.min(1, u1[0] * t1[0] + u1[1] * t1[1])), g2 = Math.acos(Math.min(1, u2[0] * t2[0] + u2[1] * t2[1]));
+    $('a1').setAttribute('d', arc(P, u1, t1, 36)); $('a2').setAttribute('d', arc(P, u2, t2, 36));
+    $('read').innerHTML = `两段绳与切线的夹角 <b>${deg(g1)}°</b> = <b>${deg(g2)}°</b>`;
+  }
+  function tick(now) {
+    if (playing && fig.isConnected) { const dt = Math.min(50, now - (last || now)); t += dt * 0.0006; drawnTo += dt * 0.0006; draw(); }
+    last = now;
+    if (fig.isConnected) requestAnimationFrame(tick);
+  }
+  const setPlay = v => { playing = v; $('play').textContent = v ? '暂停' : '播放'; };
+  $('play').addEventListener('click', () => setPlay(!playing));
+  const toLocal = e => { const p = svg.createSVGPoint(); p.x = e.clientX; p.y = e.clientY; return p.matrixTransform(svg.getScreenCTM().inverse()); };
+  let drag = false;
+  const move = e => { const q = toLocal(e), B = Math.sqrt(A * A - c * c), nt = Math.atan2(-q.y / k / B, q.x / k / A); drawnTo = 2 * Math.PI; t = nt; draw(); };
+  $('p').addEventListener('pointerdown', e => { drag = true; setPlay(false); svg.setPointerCapture(e.pointerId); e.preventDefault(); });
+  svg.addEventListener('pointerdown', e => { if (!drag && e.target === svg) { drag = true; setPlay(false); svg.setPointerCapture(e.pointerId); move(e); } });
+  svg.addEventListener('pointermove', e => { if (drag) move(e); });
+  svg.addEventListener('pointerup', () => { drag = false; });
+  $('p').addEventListener('keydown', e => { if (/Arrow(Left|Down)/.test(e.key)) t += 0.05; else if (/Arrow(Right|Up)/.test(e.key)) t -= 0.05; else return; setPlay(false); drawnTo = 2 * Math.PI; e.preventDefault(); draw(); });
+  $('c').addEventListener('input', () => { drawnTo = 2 * Math.PI; draw(); });
+  if (!playing) { drawnTo = 2 * Math.PI; setPlay(false); }
+  draw();
+  requestAnimationFrame(tick);
+})();</script>
+
 <p>仔细想发现这个描述很有意思，它具有了两个隐含的事实：</p>
 <p>第一个内容很明显，也算是椭圆的定义：椭圆上任意一点到两焦点的距离之和恒定。</p>
 <p>第二个内容则比较隐蔽，可以从物理学角度来分析这个画椭圆的过程：在画椭圆的时候，对于任何一个切线点，笔尖两端的力是相等的，那么必然有入射角等于反射角这个性质，不然绳子不会平衡（而是会滑动）。由此可以预想到，计算的结果也会是这样。</p>
@@ -132,7 +307,7 @@
 <section class="aside-block">
   <h2>本文</h2>
   <dl class="facts">
-    <div><dt>字数</dt><dd>893 字</dd></div>
+    <div><dt>字数</dt><dd>1,075 字</dd></div>
     <div><dt>分类</dt><dd><a href="/categories/随笔/">随笔</a></dd></div>
   </dl>
   
