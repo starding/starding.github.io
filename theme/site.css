@@ -131,7 +131,7 @@ a:hover{text-decoration:underline;text-underline-offset:3px}
   .side{position:static;max-height:none}
   .appbar-in{padding:24px 16px 16px}
   .appbar nav{gap:24px}
-  .paper{padding:24px 20px}
+  .paper{padding:24px}
   .card{padding:20px}
 }
 @media (max-width:600px){
@@ -178,7 +178,7 @@ a:hover{text-decoration:underline;text-underline-offset:3px}
 .shots img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;object-position:top;border-radius:var(--r-m);background:#fafaf9;margin-bottom:8px;border:1px solid var(--line)}
 .app-credits{margin:32px 0 0;font-size:var(--fs-small);line-height:20px;color:var(--faint)}
 @media (max-width:900px){
-  .app-body{padding:24px 20px 32px}
+  .app-body{padding:24px 24px 32px}
   .shots{margin:0 -20px;padding-left:20px;padding-right:20px;scroll-padding:0 20px;grid-auto-columns:78%}
 }
 @media (max-width:600px){
@@ -373,12 +373,16 @@ body:has(>.pagefoot)>.frame{width:100%;box-sizing:border-box}
 
 /* 文章所属主题：标题上方一行，点了去主题页 */
 /* 作品详情页回到作品列表 */
-.title-row{display:flex;align-items:flex-start;gap:2px;margin-left:-12px}
-.title-row h1{flex:1;min-width:0}
-.back-btn{flex:none;display:grid;place-items:center;width:40px;height:40px;border-radius:20px;color:var(--on)}
-@media (max-width:600px){.paper .back-btn{height:34px}}
+.title-row{position:relative}
+/* 返回图标挂在卡片左侧留白里，标题文字与正文左对齐 */
+.back-btn{position:absolute;left:-40px;top:0;display:grid;place-items:center;width:40px;height:40px;border-radius:20px;color:var(--on)}
 .back-btn:hover{background:var(--tone-2);text-decoration:none}
 .back-btn svg{width:24px;height:24px}
+@media (max-width:600px){
+  .back-btn{left:-24px;width:24px;height:34px;border-radius:12px}
+  .back-btn svg{width:18px;height:18px}
+  .back-btn::after{content:"";position:absolute;inset:-6px -8px}
+}
 .aside-sticky-wrap,.side{transition:top .2s cubic-bezier(.2,0,0,1)}
 .mini-on .aside-sticky-wrap,.mini-on .side{top:76px;max-height:calc(100vh - 100px)}
 .minibar .lang-btn{margin-left:auto;margin-right:-10px}
@@ -387,3 +391,6 @@ body:has(>.pagefoot)>.frame{width:100%;box-sizing:border-box}
 @view-transition{navigation:auto}
 .appbar{view-transition-name:appbar}
 @media (prefers-reduced-motion:reduce){@view-transition{navigation:none}}
+
+/* 手机上阅读页的卡片铺满屏宽：正文离屏幕边 24px，返回图标落在这段留白里 */
+@media (max-width:600px){main > article.paper,main > .app{margin:0 -16px;border-radius:0}.frame:has(> main > article.paper),.frame:has(> main > .app){margin-top:0}}
