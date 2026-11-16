@@ -256,7 +256,10 @@ html::-webkit-scrollbar{display:none}
 .profile b{display:block;font-size:18px;line-height:26px;margin:12px 0 4px;color:var(--on);font-weight:600}
 .profile p{margin:0;color:var(--muted);font-size:13px;line-height:20px}
 .profile .social{margin:12px 0 16px -8px}
-.profile .facts{margin:0;padding-top:12px;border-top:1px solid var(--line)}
+.profile .facts{margin:0;padding-top:12px;border-top:1px solid var(--line);grid-template-columns:minmax(0,1fr);gap:0}
+.profile .facts dt{font-size:var(--fs-small);line-height:18px}
+.profile .facts dd{margin-bottom:8px;overflow-wrap:anywhere}
+.profile .facts div:last-child dd{margin-bottom:0}
 .about .lead{font-size:18px;line-height:1.8;color:var(--on);margin:8px 0 0}
 .about-h{font-size:var(--fs-title);line-height:28px;font-weight:600;color:var(--on);margin:40px 0 12px}
 .about .posts{margin-bottom:16px}
