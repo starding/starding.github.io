@@ -28,12 +28,13 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#B6002E">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
 <link rel="manifest" href="/manifest.webmanifest">
+<script>(()=>{let s=null;try{s=localStorage.getItem('lang')}catch(e){}const ls=navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||''];const p=s==='zh'||s==='en'?s:ls.some(l=>/^zh(-|$)/i.test(l))?'zh':'en';document.documentElement.dataset.pref=p;if(location.pathname==='/'&&p==='en'&&!navigator.webdriver&&!/bot|crawl|spider|slurp|preview|lighthouse/i.test(navigator.userAgent))location.replace('/en/'+location.search+location.hash)})()</script>
 <script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}</script>
-<link rel="stylesheet" href="/theme/tokens.css?v=7b3f2e3a">
-<link rel="stylesheet" href="/theme/site.css?v=7b3f2e3a">
-<script src="/theme/overlay-scroll.js?v=7b3f2e3a" defer></script>
-<script src="/theme/theme.js?v=7b3f2e3a" defer></script>
-<script src="/theme/nav.js?v=7b3f2e3a" defer></script>
+<link rel="stylesheet" href="/theme/tokens.css?v=db42cd41">
+<link rel="stylesheet" href="/theme/site.css?v=db42cd41">
+<script src="/theme/overlay-scroll.js?v=db42cd41" defer></script>
+<script src="/theme/theme.js?v=db42cd41" defer></script>
+<script src="/theme/nav.js?v=db42cd41" defer></script>
 <script>(()=>{if(location.hostname!=='xinghua.space'||navigator.webdriver)return;try{navigator.sendBeacon('https://xinghua-stats.xinghua-space.workers.dev/c',JSON.stringify({p:location.pathname,r:document.referrer,w:innerWidth,l:navigator.language}))}catch(e){}})()</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-V9SXMWSY9Z"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-V9SXMWSY9Z');</script>
@@ -77,6 +78,7 @@
   <main>
 <article class="paper">
   <header class="post-head">
+    <p class="lang-hint" data-for="zh" lang="zh-CN"><a href="/2016/01/07/raw-sql-in-django/" hreflang="zh-CN">这篇文章有中文原文 →</a></p>
     <div class="title-row"><a class="back-btn" id="backBtn" href="/en/" aria-label="Back" title="Back"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M15 5l-7 7 7 7"/></svg>
 </a><h1>Using Raw SQL in Django</h1></div>
     <div class="meta">
@@ -186,7 +188,7 @@ raw_sql = archive_statistics.<span class="tok-f">add_field</span>(<span class="t
 
 </div>
 <div class="aside-sticky-wrap"><div class="aside-sticky"><nav class="toc"><b>Contents</b><ol><li class="l2"><a href="#the-orm-is-not-a-silver-bullet">The ORM Is Not a Silver Bullet</a></li><li class="l2"><a href="#sql-control-flow-a-case-when-example">SQL Control Flow: A CASE WHEN Example</a></li><li class="l2"><a href="#chained-queries-on-top-of-that">Chained Queries on Top of That</a></li></ol></nav>
-<script src="/theme/toc.js?v=7b3f2e3a" defer></script>
+<script src="/theme/toc.js?v=db42cd41" defer></script>
 <section class="aside-block">
   <h2>This post</h2>
   <dl class="facts">

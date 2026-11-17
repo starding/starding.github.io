@@ -384,6 +384,9 @@ body:has(>.pagefoot)>.frame{width:100%;box-sizing:border-box}
 
 /* 文章所属主题：标题上方一行，点了去主题页 */
 /* 作品详情页回到作品列表 */
+.lang-hint{display:none;margin:0 0 12px;font-size:var(--fs-small)}
+.lang-hint a{color:var(--primary)}
+html[data-pref="en"] .lang-hint[data-for="en"],html[data-pref="zh"] .lang-hint[data-for="zh"]{display:block}
 .title-row{position:relative}
 /* 返回图标挂在卡片左侧留白里，标题文字与正文左对齐 */
 .back-btn{position:absolute;left:-40px;top:0;display:grid;place-items:center;width:40px;height:40px;border-radius:20px;color:var(--on)}

@@ -13,6 +13,11 @@
       }
     });
   }
+  // 读者手动切换语言后记住选择，首页不再按浏览器语言自动跳转。
+  document.addEventListener('click', e => {
+    const a = e.target.closest?.('.lang-btn, .lang-hint a');
+    if (a) try { localStorage.setItem('lang', a.hreflang.startsWith('zh') ? 'zh' : 'en'); } catch {}
+  });
   const bar = document.getElementById('minibar'), head = document.querySelector('.appbar');
   if (!bar || !head) return;
   let last = scrollY, shown = false;
