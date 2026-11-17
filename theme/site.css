@@ -114,7 +114,7 @@ a:hover{text-decoration:underline;text-underline-offset:3px}
 .social button{display:grid;place-items:center;width:36px;height:36px;border-radius:18px;color:var(--muted);border:0;background:none;padding:0;cursor:pointer}
 .social button:hover{background:var(--tone);color:var(--primary)}
 .linkish{border:0;background:none;padding:0;font:inherit;color:var(--text);cursor:pointer;text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:3px}
-.qr-pop{margin:auto;padding:24px;border:1px solid var(--line);border-radius:12px;background:var(--paper);color:var(--text);text-align:center;width:248px}
+.qr-pop{margin:auto;padding:24px;border:1px solid var(--line);border-radius:12px;background:var(--paper);color:var(--text);text-align:center;width:fit-content;max-width:calc(100vw - 32px);overflow:visible}
 .qr-pop::backdrop{background:rgba(0,0,0,.35)}
 .qr-pop img{display:block;width:200px;height:200px;margin:0 auto 12px;padding:8px;box-sizing:border-box;border-radius:6px;background:#fff}
 .qr-pop b{display:block;font-weight:600}
