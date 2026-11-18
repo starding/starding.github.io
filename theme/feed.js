@@ -14,6 +14,7 @@
   const io = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) more(); }, { rootMargin: '600px 0px' });
   function render(upto) {
     feed.insertAdjacentHTML('beforeend', cards.slice(next, upto).join('\n'));
+    window.fillViews?.(feed);   // 新接上的卡片补上浏览数（数还没取到时，取到后会统一补）
     next = Math.max(next, upto);
     if (next >= cards.length) { io.disconnect(); mark.remove(); }
   }

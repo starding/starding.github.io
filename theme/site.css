@@ -235,6 +235,10 @@ html::-webkit-scrollbar{display:none}
 .aside .author{flex-direction:column;align-items:flex-start;gap:12px}
 .aside .author img{width:56px;height:56px}
 .aside .author p{white-space:normal}
+.sitestats{display:flex;gap:24px;margin:16px 0 0;padding-top:12px;border-top:1px solid var(--line)}
+.sitestats[hidden]{display:none}
+.sitestats dt{color:var(--faint);font-size:var(--fs-small);line-height:18px}
+.sitestats dd{margin:0;color:var(--text);font-size:var(--fs-label);line-height:22px;font-variant-numeric:tabular-nums}
 .aside-sticky-wrap{position:sticky;top:24px;max-height:calc(100vh - 48px);overflow-y:auto;scrollbar-width:none}
 .aside-sticky-wrap::-webkit-scrollbar{display:none}
 .aside-sticky{background:var(--paper);border-radius:var(--r-l);padding:20px}
@@ -250,6 +254,7 @@ html::-webkit-scrollbar{display:none}
 .aside h2,.post-related h2{font-size:var(--fs-small);line-height:16px;letter-spacing:.08em;color:var(--faint);font-weight:500;margin:0 0 10px}
 .facts{margin:0 0 12px;display:grid;grid-template-columns:max-content 1fr;gap:6px 12px}
 .facts div{display:contents}
+.facts div[hidden]{display:none}
 .facts dt{color:var(--faint)}
 .facts dd{margin:0;color:var(--text)}
 .facts a{color:var(--text)}

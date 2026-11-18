@@ -30,12 +30,12 @@
 <link rel="manifest" href="/manifest.webmanifest">
 <script>(()=>{let s=null;try{s=localStorage.getItem('lang')}catch(e){}const ls=navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||''];const p=s==='zh'||s==='en'?s:ls.some(l=>/^zh(-|$)/i.test(l))?'zh':'en';document.documentElement.dataset.pref=p;if(location.pathname==='/'&&p==='en'&&!navigator.webdriver&&!/bot|crawl|spider|slurp|preview|lighthouse/i.test(navigator.userAgent))location.replace('/en/'+location.search+location.hash)})()</script>
 <script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}</script>
-<link rel="stylesheet" href="/theme/tokens.css?v=db42cd41">
-<link rel="stylesheet" href="/theme/site.css?v=db42cd41">
-<script src="/theme/overlay-scroll.js?v=db42cd41" defer></script>
-<script src="/theme/theme.js?v=db42cd41" defer></script>
-<script src="/theme/nav.js?v=db42cd41" defer></script>
-<script>(()=>{if(location.hostname!=='xinghua.space'||navigator.webdriver)return;try{navigator.sendBeacon('https://xinghua-stats.xinghua-space.workers.dev/c',JSON.stringify({p:location.pathname,r:document.referrer,w:innerWidth,l:navigator.language}))}catch(e){}})()</script>
+<link rel="stylesheet" href="/theme/tokens.css?v=5554d614">
+<link rel="stylesheet" href="/theme/site.css?v=5554d614">
+<script src="/theme/overlay-scroll.js?v=5554d614" defer></script>
+<script src="/theme/theme.js?v=5554d614" defer></script>
+<script src="/theme/nav.js?v=5554d614" defer></script>
+<script>(()=>{if(navigator.webdriver)return;const S='https://xinghua-stats.xinghua-space.workers.dev',P=location.pathname,live=location.hostname==='xinghua.space',all=0;const got=live?fetch(S+'/c',{method:'POST',keepalive:true,body:JSON.stringify({p:P,r:document.referrer,w:innerWidth,l:navigator.language,all})}):fetch(S+'/v?p='+encodeURIComponent(P)+(all?'&all':''));const ready=new Promise(r=>document.readyState==='loading'?addEventListener('DOMContentLoaded',r):r());const show=(e,n)=>{if(!n)return;e.textContent=n.toLocaleString('en');e.closest('[hidden]')?.removeAttribute('hidden')};let m=null;window.fillViews=root=>{if(m)for(const e of (root||document).querySelectorAll('[data-views]'))show(e,m[e.dataset.views]??m[encodeURI(e.dataset.views)])};Promise.all([got.then(r=>r.ok?r.json():null),ready]).then(([d])=>{if(!d)return;const v={'page-views':d.page.views,'site-views':d.site.views,'site-visitors':d.site.visitors};for(const e of document.querySelectorAll('[data-stat]'))show(e,v[e.dataset.stat]);if(d.pages){m=d.pages;fillViews()}}).catch(()=>{})})()</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-V9SXMWSY9Z"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-V9SXMWSY9Z');</script>
 </head>
@@ -86,6 +86,7 @@
       <time datetime="2016-01-15T01:14:51.000Z">2016 年 1 月 15 日</time>
       <a href="/topics/learning/">学习与认知</a>
       <span>约 4 分钟</span>
+      <span hidden><span data-stat="page-views"></span> 次浏览</span>
     </div>
   </header>
   <div class="prose">
@@ -137,6 +138,7 @@
 </a><a href="/atom.xml" title="订阅" aria-label="订阅"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="19" r="3" fill="currentColor"/><path fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" d="M3.6 10.6a9.8 9.8 0 019.8 9.8M3.6 3.6a16.8 16.8 0 0116.8 16.8"/></svg>
 </a></nav>
 
+  
 </div>
 </div>
   <nav class="pager">
@@ -162,13 +164,15 @@
 </a><a href="/atom.xml" title="订阅" aria-label="订阅"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="19" r="3" fill="currentColor"/><path fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" d="M3.6 10.6a9.8 9.8 0 019.8 9.8M3.6 3.6a16.8 16.8 0 0116.8 16.8"/></svg>
 </a></nav>
 
+  <dl class="sitestats" hidden><div><dt>全站浏览</dt><dd data-stat="site-views"></dd></div><div><dt>访客</dt><dd data-stat="site-visitors"></dd></div></dl>
 </div>
 <div class="aside-sticky-wrap"><div class="aside-sticky"><nav class="toc"><b>文章目录</b><ol><li class="l2"><a href="#概念辨析">概念辨析？</a></li><li class="l2"><a href="#修辞学以及翻译中的失真">修辞学以及翻译中的失真</a></li><li class="l2"><a href="#概念背后的隐喻">概念背后的隐喻</a></li><li class="l2"><a href="#概念辨析背后的哲学思想">概念辨析背后的哲学思想</a></li></ol></nav>
-<script src="/theme/toc.js?v=db42cd41" defer></script>
+<script src="/theme/toc.js?v=5554d614" defer></script>
 <section class="aside-block">
   <h2>本文</h2>
   <dl class="facts">
     <div><dt>字数</dt><dd>1,460 字</dd></div>
+    <div hidden><dt>浏览</dt><dd data-stat="page-views"></dd></div>
     <div><dt>主题</dt><dd><a href="/topics/learning/">学习与认知</a></dd></div>
   </dl>
 </section>
