@@ -7,6 +7,7 @@
 ## 作品
 
 - [产品×金融×AI](https://xinghua.space/product-finance-ai/)：AI 时代的金融产品，交互式网页书 · 连载中
+- [专题研究](https://xinghua.space/studies/)：一个专题一组幻灯，中英双语，专题研究合集 · 持续更新
 - [PitBus](https://xinghua.spacehttps://github.com/starding/pitbus)：给 Agent 用的事件总线，macOS 菜单栏应用 · 开源
 - [LessonML](https://xinghua.spacehttps://github.com/starding/lessonml)：写给语言模型的互动课程剧本语言，编程语言 · 开源 · 早期草案
 - [Markdown 上传到 Notion](https://xinghua.spacehttps://github.com/starding/markdown-upload-to-notion)：把 Markdown 文件和图片批量上传到 Notion，工具 · 开源
